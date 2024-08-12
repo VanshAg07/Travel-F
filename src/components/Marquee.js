@@ -12,7 +12,7 @@ import img10 from '../img/leh.jpg';
 
 export default class Marquee extends Component {
   componentDidMount(){
-    fetch("https://travel-s.onrender.com/userData",{
+    fetch("https://travel-server-iley.onrender.com/userData",{
       method: "POST",
       crossDomain: true,
       headers: {
