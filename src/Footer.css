@@ -1,0 +1,17 @@
+.footer-wrapper{
+    background-color: rgb(193, 117, 117);
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.footer-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.footer-info {
+    text-align: center;
+    font-weight: bold;
+}

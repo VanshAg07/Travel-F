@@ -1,0 +1,57 @@
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    width: 80%; /* Adjust container width to 80% */
+    margin-left: auto;
+    margin-right: auto;
+    height: max-content;
+    padding-bottom: 20px;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+
+}
+
+.image-container img {
+    width: 100%; /* Make sure each image fills its grid cell */
+    height: 350px; /* Set a fixed height for all images */
+    object-fit: cover; /* Ensure images cover the entire area */
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.1);
+}
+
+.btn-1 {
+    margin: 12px;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    background: #333;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+      inset -5px -5px 10px #222;
+    font-family: "Damion", cursive;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: rgb(161, 161, 161);
+    transition: 500ms;
+    
+  }
+  
+  .btn-1:hover {
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+      inset -5px -5px 10px #444;
+    color: #d6d6d6;
+    transition: 500ms;
+  }
