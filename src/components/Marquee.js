@@ -11,28 +11,6 @@ import img9 from '../img/kerala.jpg';
 import img10 from '../img/leh.jpg';
 
 export default class Marquee extends Component {
-  componentDidMount(){
-    fetch("http://localhost:5000/userData",{
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer your-token'
-    },
-    body: JSON.stringify({
-     token: window.localStorage.getItem("token"),
-    })
-    })
-    .then((res)=> res.json())
-    .then ((data)=>{
-    console.log(data, "userData");  
-    })
-  }
-  logOut= ()=>{
-    window.localStorage.clear();
-    window.location.href = "./Signup"
-  }
-
   render() {
     const images = [
       { src: img1 },
@@ -58,7 +36,6 @@ export default class Marquee extends Component {
           
         </div>
         <div>
-        <button onClick={this.logOut}>log out</button>
         </div>
       </div>
     );
