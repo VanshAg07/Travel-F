@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register the plugin
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default class Login extends Component {
   constructor(props) {

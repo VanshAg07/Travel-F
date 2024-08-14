@@ -1,0 +1,212 @@
+.wrpper-inter {
+    position: relative;
+}
+
+.hero-section-left-1 {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Send the image to the background */
+}
+
+.hero-heading {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2.7rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-section-right-1{
+    position: absolute;
+    left: 70%;
+}
+
+.hero-section-h2{
+    text-align: center;
+}
+
+/* From Uiverse.io by adamgiebl */ 
+.hero-button {
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .hero-button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .hero-button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hero-button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  .hero-button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  .hero-button:hover span {
+    transform: translateX(5em);
+  }
+  
+  .hero-button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+
+  /* CodeSnippet.css */
+
+.code-container {
+    position: relative;
+    width: 70%;
+    margin: 20px auto;
+    padding: 10px;
+    margin-top: 80px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+pre {
+    max-height: 3.6em; /* Show approximately 2 lines */
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    transition: max-height 0.3s ease;
+}
+
+.code-container.expanded pre {
+    max-height: none;  
+}
+
+
+/* Ensure the button container takes the full width of its parent */
+.code-container {
+    position: relative;
+    padding: 20px;
+}
+
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+                7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+                4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.btn-12 {
+    background: rgb(96, 9, 240);
+    background: linear-gradient(0deg, rgba(96, 9, 240, 1) 0%, rgba(129, 5, 240, 1) 100%);
+    border: none;
+}
+
+.btn-12:before {
+    height: 0%;
+    width: 2px;
+}
+
+.btn-12:hover {
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
+                inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Center align the button */
+.code-container {
+  margin-top: 20px;
+}
+
+.code-text {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.truncated-text {
+  max-height: 4.8em; /* Approx 2 lines of text */
+  padding: 0 0.5em;
+  position: relative;
+}
+
+.expanded-text {
+  max-height: none;
+  padding: 0 0.5em;
+}
+
+.custom-btn {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.custom-btn.btn-12 {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.hero-lottie{
+    width: 40%;
+    height: 70%;
+}
+
+.lottie-wr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

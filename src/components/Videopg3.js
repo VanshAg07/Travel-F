@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import './Videopg-3.css';
-import img1 from '../img/dubai.jpg';
-import img2 from '../img/Maldives.jpg';
-import img3 from '../img/Europe.jpg';
-import img4 from '../img/bali.jpg';
-import img5 from '../img/singapore.jpg';
-import img6 from '../img/thailand.jpg';
-import img7 from '../img/kashmir.jpg';
-import img8 from '../img/rajasthan.jpg';
-import img9 from '../img/meghalaya.jpg';
-import img10 from '../img/kerala.jpg';
-import img11 from '../img/leh.jpg';
-import img12 from '../img/sikkim.jpg';
+import img1 from '../img/HimachalPradesh.png';
+import img2 from '../img/Uttarakhand.png';
+import img3 from '../img/Kashmir.png';
+import img4 from '../img/kerala.png';
+import img5 from '../img/goa.png';
+import img6 from '../img/karnataka.png';
+import img7 from '../img/manali.png';
+import img8 from '../img/ladakh.png';
+import img9 from '../img/kedarnath.png';
+import img10 from '../img/badrinath.png';
+import img11 from '../img/rishikesh.png';
+import img12 from '../img/meghalaya.png';
+import img13 from '../img/rajasthan.png';
 import video from '../img/intern1.mp4';
 
 const images = [
-  { src: img1, text: "Dubai" },
-  { src: img2, text: "Maldives" },
-  { src: img3, text: "Europe" },
-  { src: img4, text: "Bali" },
-  { src: img5, text: "Singapore" },
-  { src: img6, text: "Tokyo" },
-  { src: img7, text: "New York" },
-  { src: img8, text: "Sydney" },
-  { src: img9, text: "Paris" },
-  { src: img10, text: "Rome" },
-  { src: img11, text: "London" },
-  { src: img12, text: "Bangkok" },
+  { src: img1, text: "Himachal Pradesh" },
+  { src: img2, text: "Uttarakhand" },
+  { src: img3, text: "Kashmir" },
+  { src: img4, text: "kerala" },
+  { src: img5, text: "Goa" },
+  { src: img6, text: "Karnataka" },
+  { src: img7, text: "Manali" },
+  { src: img8, text: "Ladakh" },
+  { src: img9, text: "Kedarnath" },
+  { src: img10, text: "Badrinath" },
+  { src: img11, text: "Rishikesh" },
+  { src: img12, text: "Meghalaya" },
+  { src: img13, text: "Rajasthan" },
 ];
 
 const ImageSlider = () => {
@@ -44,6 +46,7 @@ const ImageSlider = () => {
     <div className="wrpper-2">
       <div className="video-div-2">
         <video className="video-2" src={video} autoPlay loop muted></video>
+        <h1 className="video-heading-2">Explore India</h1>
       </div>
       <div className="slider-2">
         <button onClick={prevSlide} className="arrow-2 left-2">

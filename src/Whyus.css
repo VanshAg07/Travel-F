@@ -13,6 +13,14 @@
     padding-bottom: 40px;
 }
 
+.top>h1{
+    font-size: 2rem
+}
+
+.top>p{
+    font-size: 1.5rem
+}
+
 .info{
     display: flex;
     justify-content: space-around;
@@ -28,4 +36,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.3rem;
 }

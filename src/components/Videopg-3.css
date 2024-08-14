@@ -89,3 +89,15 @@
     position:relative;
     
   }
+
+  .video-heading-2 {
+    position: absolute;
+    top: 70px; /* Adjust as needed */
+    left: 18%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2.5rem; /* Adjust the size as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 10; /* Ensure it's on top of the video */
+    text-align: center;
+  }

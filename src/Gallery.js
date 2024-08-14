@@ -4,10 +4,11 @@ import img1 from "./img/dubai.jpg";
 import img2 from "./img/Maldives.jpg";
 import img3 from "./img/Europe.jpg";
 import img4 from "./img/bali.jpg";
-import img5 from "./img/singapore.jpg";
-import img6 from "./img/thailand.jpg";
-import img7 from "./img/kashmir.jpg";
-import img8 from "./img/rajasthan.jpg";
+import img5 from './img/HimachalPradesh.png';
+import img6 from './img/Uttarakhand.png';
+import img7 from './img/Kashmir.png';
+import img8 from './img/kerala.png';
+
 import { Link } from "react-router-dom";
 
 const Gallery = () => {
@@ -32,6 +33,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery">
+    <h1>Captured Moments</h1>
       <div className="image-container">
         {visibleImages.map((image, index) => (
           <img key={index} src={image.src} alt={`Image ${index + 1}`} />

@@ -1,38 +1,37 @@
 .marquee-container {
-    width: 90%; /* 100% - 20% from each side */
-    overflow: hidden;
-    margin: 0 auto;
-    position: relative;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  
-  .marquee-container h1 {
-    text-align: center;
-    padding-bottom: 20px;
-  }
-  
-  .marquee {
-    display: flex;
-    width: max-content; /* Set width to accommodate all images */
-    animation: marquee 15s linear infinite; /* Adjust duration for smooth scrolling */
-    
-  }
-  
-  .marquee-image {
-    width: calc(20% - 10px); /* Subtract padding from the width */
-    height: 200px; /* Fixed height */
-    object-fit: cover; /* Maintain aspect ratio */
-    margin-right: 30px; /* Padding between images */
-  }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
+  width: 90%; /* 100% - 20% from each side */
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
-  
+.marquee {
+  display: flex;
+  width: max-content; /* Set width to accommodate all images */
+  animation: marquee 25s linear infinite; /* Adjust duration for smooth scrolling */
+}
+
+.marquee-image {
+  width: 350px; /* Fixed width for all images */
+  height: 350px; /* Fixed height for all images */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  margin-right: 20px; /* Padding between images */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container>h1{
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 2.5rem;
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); */
+}

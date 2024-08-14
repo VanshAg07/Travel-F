@@ -1,5 +1,5 @@
 .footer-wrapper{
-    background-color: rgb(193, 117, 117);
+    background-color: #fffadb;
     padding-top: 40px;
     padding-bottom: 30px;
 }
@@ -9,9 +9,19 @@
     justify-content: center;
     align-items: center;
     gap: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .footer-info {
     text-align: center;
     font-weight: bold;
+}
+
+.icon-lrge{
+    font-size: 28px;
+}
+
+.icon-lrge-1{
+    font-size: 15px;
 }

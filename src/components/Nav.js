@@ -35,13 +35,15 @@ const Nav = () => {
             <i className="ri-home-4-line"></i>Home
           </a>
         </Link>
-        <a className="nav-link" href="#">
-          <i className="ri-suitcase-3-fill"></i>Trips
+     <Link to="National">   <a className="nav-link" href="#">
+          <i className="ri-suitcase-3-fill"></i>India
         </a>
-        <a className="nav-link" href="#">
+        </Link>
+       <Link to="/intern"> <a className="nav-link" href="#">
           <i className="ri-plane-line"></i>International
         </a>
-        <Link to="/Contactus">
+        </Link>
+        <Link to="/Cont">
           <a className="nav-link" href="#">
             <i className="fa-regular fa-address-book"></i>Contact Us
           </a>

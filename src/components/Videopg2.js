@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
-import './Videopg2.css';
-import img1 from '../img/dubai.jpg';
-import img2 from '../img/Maldives.jpg';
-import img3 from '../img/Europe.jpg';
-import img4 from '../img/bali.jpg';
-import img5 from '../img/singapore.jpg';
-import img6 from '../img/thailand.jpg';
-import img7 from '../img/kashmir.jpg';
-import img8 from '../img/rajasthan.jpg';
-import img9 from '../img/meghalaya.jpg';
-import img10 from '../img/kerala.jpg';
-import img11 from '../img/leh.jpg';
-import img12 from '../img/sikkim.jpg';
-import video from '../img/intern1.mp4';
+import React, { useState } from "react";
+import "./Videopg2.css";
+import img1 from "../img/dubai.jpg";
+import img2 from "../img/Maldives.jpg";
+import img3 from "../img/Europe.jpg";
+import img4 from "../img/bali.jpg";
+import img5 from "../img/singapore.jpg";
+import img6 from "../img/thailand.jpg";
+import video from "../img/intern1.mp4";
 
 const images = [
   { src: img1, text: "Dubai" },
@@ -20,30 +14,29 @@ const images = [
   { src: img3, text: "Europe" },
   { src: img4, text: "Bali" },
   { src: img5, text: "Singapore" },
-  { src: img6, text: "Tokyo" },
-  { src: img7, text: "New York" },
-  { src: img8, text: "Sydney" },
-  { src: img9, text: "Paris" },
-  { src: img10, text: "Rome" },
-  { src: img11, text: "London" },
-  { src: img12, text: "Bangkok" },
+  { src: img6, text: "Thailand" },
 ];
 
 const ImageSlider = () => {
   const [index, setIndex] = useState(0);
 
   const prevSlide = () => {
-    setIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : images.length - 5));
+    setIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : images.length - 5
+    );
   };
 
   const nextSlide = () => {
-    setIndex((prevIndex) => (prevIndex < images.length - 5 ? prevIndex + 1 : 0));
+    setIndex((prevIndex) =>
+      prevIndex < images.length - 5 ? prevIndex + 1 : 0
+    );
   };
 
   return (
     <div className="wrpper-1">
       <div className="video-div-1">
         <video className="video-1" src={video} autoPlay loop muted></video>
+        <h1 className="video-heading">International Trips</h1>
       </div>
       <div className="slider-1">
         <button onClick={prevSlide} className="arrow-1 left-1">
