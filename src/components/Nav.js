@@ -61,7 +61,7 @@ const Nav = () => {
         <Link to="/home/Cont" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <RiContactsBook3Line />
-            <p>Contact Us</p>
+            <p>Contact</p>
           </div>
         </Link>
         <Link to="/home/Glry" onClick={() => setIsMenuOpen(false)}>

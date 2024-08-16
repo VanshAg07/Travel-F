@@ -4,17 +4,16 @@ import video from '../img/48668-455853174_medium.mp4'
 
 const Videopage = () => {
   return (
-    <div className='w-full h-full'>
-    <h1 className='videopg-h1'>Discover the real value of travel</h1>
+    <div className='w-full h-full relative'>
+      <h1 className='videopg-h1'>Discover the real value of travel</h1>
       <video 
         src={video} 
         autoPlay 
         loop 
         muted 
-        style={{ height: '100vh' }} 
+        style={{ height: '100vh', width: '100vw' }} 
         className='w-full object-cover'
       ></video>
-      
     </div>
   )
 }
