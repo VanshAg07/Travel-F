@@ -11,8 +11,8 @@ const Videopage = () => {
         autoPlay 
         loop 
         muted 
-        style={{ height: '100vh', width: '100vw' }} 
-        className='w-full object-cover'
+        // style={{ height: '100vh', width: '100vw' }} 
+        className=' video-video'
       ></video>
     </div>
   )

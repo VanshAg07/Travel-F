@@ -22,17 +22,24 @@ const ImageSlider = () => {
 
   const prevSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : images.length - 5
+      prevIndex > 0 ? prevIndex - 1 : images.length - getNumberOfImages()
     );
   };
 
   const nextSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex < images.length - 5 ? prevIndex + 1 : 0
+      prevIndex < images.length - getNumberOfImages() ? prevIndex + 1 : 0
     );
   };
 
-  
+  const getNumberOfImages = () => {
+    // Return 5 images by default, 3 images for screens smaller than 425px
+    if (window.innerWidth <= 426) {
+      return 3;
+    }
+    return 5;
+  };
+
   return (
     <div className="wrpper-1">
       <div className="video-div-1">
@@ -44,7 +51,7 @@ const ImageSlider = () => {
           <i className="fa-solid fa-circle-left"></i>
         </button>
         <div className="slider-wrapper-1">
-          {images.slice(index, index + 5).map((img, i) => (
+          {images.slice(index, index + getNumberOfImages()).map((img, i) => (
             <div key={i} className="slide-1">
               <img src={img.src} alt={`Slide ${i}`} />
               <h1>{img.text}</h1> {/* Display the corresponding text */}

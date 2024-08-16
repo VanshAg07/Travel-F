@@ -34,3 +34,13 @@
       font-size: 1.2rem;
   }
 }
+
+@media (max-width: 425px) {
+  .videopg-h1 {
+      font-size: 1.2rem;
+  }
+
+  .video-video {
+    height: 30px;
+  }
+}

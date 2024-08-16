@@ -1,6 +1,6 @@
 .nav-wrapper {
   width: 100vw;
-  background-color: #d3d332a8;
+  background-color: #d3d332;
   position: fixed;
   z-index: 9999;
   height: 80px;
@@ -223,7 +223,7 @@
     right: 0;
     width: 30%; /* Menu takes up 30% of the screen on smaller screens */
     height: 100vh;
-    background-color: #d3d332a8;
+    background-color: #fff;
     transition: all 0.3s ease;
     align-items: flex-start;
     justify-content: flex-start;
@@ -307,6 +307,11 @@
 }
 
 @media (max-width: 460px) {
+
+  .nav-links{
+    width: 60%;
+    
+  }
   
   .cta {
     margin-right: 5px; 
@@ -337,23 +342,5 @@
   .cta svg {
     width: 12px; /* Adjust the size of the SVG */
     height: 12px;
-  }
-}
-
-/* Media query for screens under 375px */
-@media (max-width: 375px) {
-  .cta {
-    margin-right: 10px; /* Further reduced margin */
-    padding: 6px 8px; /* Further reduced padding */
-    gap: 2px; /* Minimize gap to keep everything in one line */
-  }
-
-  .cta span {
-    font-size: 12px; /* Further reduce font size */
-  }
-
-  .cta svg {
-    width: 10px; /* Reduce SVG size */
-    height: 10px;
   }
 }

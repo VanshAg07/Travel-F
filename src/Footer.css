@@ -69,5 +69,11 @@
     .icon-lrge-1 {
         font-size: 13px; /* Reduce copyright icon size */
     }
+
+    @media (max-width: 425px){
+        .footer-wrapper{
+            height: 70vh;
+        }
+    }
 }
 

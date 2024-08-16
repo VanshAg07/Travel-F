@@ -12,9 +12,15 @@ import Footer from "./Footer.js";
 import Marquee from "./components/Marquee.js";
 import Lottie from "lottie-react";
 import cont from "./img/cont-button.json";
+import PhoneFooter from "./components/PhoneFooter.js";
+import { useMediaQuery } from 'react-responsive';
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
+
+  // Use media query to check if screen width is 425px or less
+  const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
+
   return (
     <div className="home-wr">
       <Outlet />
@@ -25,9 +31,12 @@ const Home = () => {
       <Videopg3 />
       <Gallery />
       <Whyus />
-      <Marquee />
+      <div className="marquee-wrapper">
+        <Marquee />
+      </div>
       <Contactus />
-      <Footer />
+      <Footer /> 
+      {isMobile && <PhoneFooter />} {/* Conditionally render PhoneFooter */}
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(
@@ -39,9 +48,9 @@ const Home = () => {
           <Lottie loop={true} animationData={cont} />
         </a>
       </div>
-
     </div>
   );
 };
 
 export default Home;
+

@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
 
-        <p><i class="fa-regular fa-copyright icon-lrge-1"></i>TRAVELLOTEN INDIA PRIVATE LIMITED All rights reserved.</p>
+        <p><i class="fa-regular fa-copyright icon-lrge-1"></i>TRAVELLOTEN INDIA PRIVATE LIMITED All Rights Reserved.</p>
         </div>
     </div>
   );

@@ -11,8 +11,8 @@
 }
 
 .hero-img {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -22,8 +22,8 @@
 
 .hero-heading {
   position: absolute;
-  top: 40%;
-  left: 30%;
+  top: 40vh;
+  left: 30vw;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 2.7rem;
@@ -33,7 +33,7 @@
 
 .hero-section-right-1{
   position: absolute;
-  left: 70%;
+  left: 70vw;
 }
 
 .hero-section-h2{
@@ -95,110 +95,6 @@
   }
 }
 
-/* CodeSnippet.css */
-
-.code-container {
-  position: relative;
-  width: 70%;
-  margin: 20px auto;
-  padding: 10px;
-  margin-top: 80px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
-
-pre {
-  max-height: 3.6em; /* Show approximately 2 lines */
-  overflow: hidden;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  transition: max-height 0.3s ease;
-}
-
-.code-container.expanded pre {
-  max-height: none;  
-}
-
-
-/* Ensure the button container takes the full width of its parent */
-.code-container {
-  position: relative;
-  padding: 20px;
-}
-
-.custom-btn {
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-              7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-              4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-.btn-12 {
-  background: rgb(96, 9, 240);
-  background: linear-gradient(0deg, rgba(96, 9, 240, 1) 0%, rgba(129, 5, 240, 1) 100%);
-  border: none;
-}
-
-.btn-12:before {
-  height: 0%;
-  width: 2px;
-}
-
-.btn-12:hover {
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
-              inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-              inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
-}
-
-/* Center align the button */
-.code-container {
-margin-top: 20px;
-}
-
-.code-text {
-overflow: hidden;
-transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-}
-
-.truncated-text {
-max-height: 4.8em; /* Approx 2 lines of text */
-padding: 0 0.5em;
-position: relative;
-}
-
-.expanded-text {
-max-height: none;
-padding: 0 0.5em;
-}
-
-.custom-btn {
-margin-top: 10px;
-cursor: pointer;
-}
-
-.custom-btn.btn-12 {
-background-color: #007bff;
-color: white;
-border: none;
-padding: 10px 20px;
-font-size: 16px;
-border-radius: 4px;
-}
-
 .hero-lottie{
   width: 40%;
   height: 70%;
@@ -227,4 +123,11 @@ border-radius: 4px;
 .ind-h{
   font-size: 2.5rem;
   left: 20%;
+}
+
+@media (max-width: 1024px) {
+  .contact-form{
+    /* width: 80vw; */
+    margin-right: 80px;
+  }
 }
