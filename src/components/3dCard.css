@@ -1,0 +1,60 @@
+.card-container {
+    width: 426px;
+    min-height: 500px; /* Decreased height */
+    background-color: #fffadb;
+    border-radius: 30px;
+    border: 4px solid white;
+    padding: 24px 40px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+    box-sizing: border-box; /* Ensure padding is included in width and height */
+}
+
+.image-container-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px; /* Padding from the top */
+}
+
+.card-image {
+    width: 100%; /* Make image responsive within the container */
+    height: 50%; /* Image occupies 50% of the container */
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+h1 {
+    margin-top: 20px; /* Space between the image and text */
+    text-align: center;
+}
+
+i {
+    display: block; /* Stack icons vertically */
+    margin-top: 10px;
+    text-align: center;
+}
+
+.button-card {
+    background-color: #2d2b2c;
+    color: white;
+    font-size: 16px;
+    font-weight: medium;
+    padding: 16px 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+    align-self: center; /* Center button horizontally */
+}
+
+.color-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: 20px;
+}

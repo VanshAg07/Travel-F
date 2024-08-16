@@ -5,6 +5,7 @@ import intern from "./img/international.jpg";
 import Lottie  from 'lottie-react';
 import animationData from './img/intern.json';
 import Footer from "./Footer.js"; 
+import Card from "./components/3dCard.js";
 
 const International = () => {
   const [formData, setFormData] = useState({
@@ -122,6 +123,49 @@ const International = () => {
            className="hero-lottie"
         />
       </div>
+      <h1 className="ind-h-2">Featured Packages</h1>
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
+      <div className="cards-container-2">
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+        <Card className="card-container-2" />
+      </div>
+
       <Footer/>
     </div>
   );

@@ -103,7 +103,7 @@ const Cont = () => {
             </div>
             <Footer />
 
-            {/* Fixed button at bottom right */}
+
             <div className="fixed-button">
                 <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
                    target="_blank" 

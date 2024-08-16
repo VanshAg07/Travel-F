@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./Home.css"
+import { Outlet } from "react-router-dom";
+import "./Home.css";
 import Nav from "./components/Nav.js";
 import Videopage from "./components/Videopage.js";
 import Videopg2 from "./components/Videopg2.js";
@@ -17,23 +17,29 @@ const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   return (
     <div>
+      <Outlet />
+
       <Nav />
       <Videopage />
-      <Videopg2/>
+      <Videopg2 />
       <Videopg3 />
       <Gallery />
       <Whyus />
       <Marquee />
       <Contactus />
       <Footer />
-
       <div className="fixed-button-1">
-                <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <Lottie loop={true} animationData={cont}/>
-                </a>
-            </div>
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
+
     </div>
   );
 };

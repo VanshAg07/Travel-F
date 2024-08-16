@@ -210,3 +210,20 @@ pre {
     align-items: center;
 
 }
+
+.cards-container-2 {
+  display: flex;
+  justify-content: space-around; /* Space between the cards */
+  align-items: center;
+  margin: 50px auto; /* Center the cards container and give it some top and bottom space */
+  padding: 20px; /* Padding around the cards container */
+}
+
+.card-container-2 {
+  margin: 20px; /* Space around each card */
+}
+
+.ind-h-2{
+  font-size: 2.5rem;
+  left: 20%;
+}

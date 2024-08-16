@@ -13,7 +13,7 @@ import img10 from '../img/badrinath.png';
 import img11 from '../img/rishikesh.png';
 import img12 from '../img/meghalaya.png';
 import img13 from '../img/rajasthan.png';
-import video from '../img/intern1.mp4';
+import video from '../img/india.mp4';
 
 const images = [
   { src: img1, text: "Himachal Pradesh" },
