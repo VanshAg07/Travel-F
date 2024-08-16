@@ -120,10 +120,12 @@
 
 @media (max-width: 768px) {
   .video-heading-2 {
-    font-size: 1.8rem; /* Further adjust font size for mobile */
-    left: 10%; /* Adjust position */
-    top: 40px; /* Adjust position */
-  }
+    font-size: 2rem;
+    padding-left: 80px;
+    z-index: 1000;
+    top: 50px;
+}
+
 
   .video-2 {
     height: 70vh; /* Adjust video height for smaller screens */
@@ -137,3 +139,11 @@
     font-size: 1.2rem; /* Adjust slide text size */
   }
 }
+
+@media (max-width: 480px) {
+  .video-heading-2 {
+    font-size: 1.5rem;
+    padding-left: 80px;
+    z-index: 1000;
+    top: 50px;
+}}

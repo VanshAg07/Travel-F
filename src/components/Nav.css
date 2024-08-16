@@ -15,7 +15,6 @@
   height: 70px; /* Adjust logo size */
 }
 
-/* Call-to-Action Button */
 .cta {
   position: relative;
   padding: 12px 18px;
@@ -24,8 +23,9 @@
   background: none;
   cursor: pointer;
   margin-right: 40px;
-  display: flex;
-  align-items: center;
+  display: inline-flex; /* Use inline-flex to ensure elements align horizontally */
+  align-items: center; /* Align items vertically centered */
+  gap: 8px; /* Add space between the text and the icon */
 }
 
 .cta:before {
@@ -52,14 +52,11 @@
 
 .cta svg {
   position: relative;
-  top: 0;
-  margin-left: 10px;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke: #234567;
   stroke-width: 2;
-  transform: translateX(-5px);
   transition: all 0.3s ease;
 }
 
@@ -75,7 +72,6 @@
 .cta:active {
   transform: scale(0.95);
 }
-
 /* Button with Icon */
 .Btn-n {
   display: flex;
@@ -183,7 +179,6 @@
     justify-content: flex-start;
     padding: 20px;
     font-size: 1.3rem;
-   
   }
 
   .nav-links.open {
@@ -198,7 +193,7 @@
     display: flex;
     align-items: center; /* Ensure icons align with text */
     gap: 8px; /* Add space between icons and text */
-    color: #000; 
+    color: #000;
   }
 
   .nav-links .flex {
@@ -242,8 +237,8 @@
 
   .nav-links a {
     width: 100%;
-    padding: 15px 20px; /* Increase padding for better touch targets */
-    margin: 10px 0; /* Increase space between links */
+    padding: 10px 20px; /* Increase padding for better touch targets */
+    margin: 5px 0; /* Increase space between links */
     text-align: left;
     display: flex;
     align-items: center; /* Ensure icons align with text */
@@ -254,9 +249,27 @@
   .nav-links .flex {
     justify-content: flex-start;
   }
+
+  /* Small screen adjustments for Sign In button */
+  .cta {
+    margin-right: 20px; /* Reduced margin */
+    padding: 8px 12px; /* Adjust padding */
+    gap: 6px; /* Adjust gap between text and icon */
+  }
+
+  .cta span {
+    font-size: 16px; /* Adjust font size */
+  }
+
+  .cta svg {
+    margin-left: 0; /* Remove margin to bring the arrow closer */
+    stroke-width: 1.5;
+  }
 }
 
-@media (max-width: 480px) {
+
+
+@media (max-width:677px) {
   .menu-icon {
     font-size: 22px; /* Adjust menu icon size for very small screens */
     padding-right: 10px;
@@ -279,16 +292,68 @@
   }
 
   .cta {
-    margin-right: 20px; /* Reduced margin */
-    padding: 8px 12px; /* Adjust padding */
+    margin-right: 10px; /* Further reduced margin */
+    padding: 6px 10px; /* Further adjust padding */
+    gap: 4px; /* Further reduce gap for very small screens */
   }
 
   .cta span {
-    font-size: 16px; /* Adjust font size */
+    font-size: 14px; /* Further adjust font size */
   }
 
   .cta svg {
-    margin-left: 8px;
-    stroke-width: 1.5;
+    stroke-width: 1.5; /* Adjust stroke width */
+  }
+}
+
+@media (max-width: 460px) {
+  
+  .cta {
+    margin-right: 5px; 
+    padding: 4px 8px;
+    gap: 2px; 
+  }
+
+  .cta span {
+    font-size: 12px; /* Slightly reduce font size */
+  }
+
+  .cta svg {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 425px) {
+  .cta {
+    margin-right: 20px; /* Reduced margin for smaller screens */
+    padding: 8px 10px; /* Adjust padding to ensure button stays in one line */
+    gap: 4px; /* Reduce the gap between text and icon */
+  }
+
+  .cta span {
+    font-size: 14px; /* Slightly reduce font size */
+  }
+
+  .cta svg {
+    width: 12px; /* Adjust the size of the SVG */
+    height: 12px;
+  }
+}
+
+/* Media query for screens under 375px */
+@media (max-width: 375px) {
+  .cta {
+    margin-right: 10px; /* Further reduced margin */
+    padding: 6px 8px; /* Further reduced padding */
+    gap: 2px; /* Minimize gap to keep everything in one line */
+  }
+
+  .cta span {
+    font-size: 12px; /* Further reduce font size */
+  }
+
+  .cta svg {
+    width: 10px; /* Reduce SVG size */
+    height: 10px;
   }
 }

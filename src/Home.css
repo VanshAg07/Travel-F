@@ -7,6 +7,10 @@
     z-index: 1000;
 }
 
+.home-wr{
+    overflow-x: hidden;
+}
+
 @media (max-width: 1024px) {
     .fixed-button-1 {
         width: 18%;
@@ -14,12 +18,14 @@
 }
 
 @media (max-width: 768px) {
+
     .fixed-button-1 {
         width: 20%;
     }
 }
 
 @media (max-width: 480px) {
+    
     .fixed-button-1 {
         width: 25%;
         right: -15px;
