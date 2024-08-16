@@ -16,7 +16,7 @@ import cont from "./img/cont-button.json";
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   return (
-    <div>
+    <div className="home-wr">
       <Outlet />
 
       <Nav />

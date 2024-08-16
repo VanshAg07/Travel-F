@@ -100,4 +100,16 @@
   color: #000;
 }
 
+@media (max-width: 1024px) {
+  .video-heading {
+      /* width: 25%; */
+      padding-left: 80px;
+      cursor: pointer;
+      z-index: 1000;
+  }
 
+  .fa-solid{
+    padding-top: 32px;
+  }
+
+}  

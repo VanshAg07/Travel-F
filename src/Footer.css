@@ -25,3 +25,22 @@
 .icon-lrge-1{
     font-size: 15px;
 }
+
+@media (max-width: 1024px) {
+   .footer-info>p{
+    width: 100vw;
+    padding: 0 120px;
+   }
+   .footer-icons{
+    display: block;
+    padding-bottom: 10px;
+   }
+   .footer-anchors{
+    margin-right: 50px;
+   }
+
+   .icon-lrge{
+    font-size: 25px;
+}
+  
+  }  

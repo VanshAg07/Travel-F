@@ -7,9 +7,11 @@ import { BsSuitcaseFill } from "react-icons/bs";
 import { MdOutlineAirplanemodeActive } from "react-icons/md";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { GrGallery } from "react-icons/gr";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Nav = () => {
   const [username, setUsername] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("loggedIn");
@@ -34,33 +36,36 @@ const Nav = () => {
           <img src={travel_img} alt="Logo" className="logo" />
         </Link>
       </div>
-      <div className="flex justify-evenly items-center">
-        <Link to="/home">
-          <div className="flex flex-row mr-7 justify-center items-center gap-1">
+      <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+      </div>
+      <div className={`nav-links  ${isMenuOpen ? "open" : ""}`}>
+        <Link to="/home" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <RiHome4Line />
             <p>Home</p>
           </div>
         </Link>
-        <Link to="/home/National">
-          <div className="flex flex-row mr-7 justify-center items-center gap-1">
+        <Link to="/home/National" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center items-center mr-10 gap-1">
             <BsSuitcaseFill />
             <p>India</p>
           </div>
         </Link>
-        <Link to="/home/intern">
-          <div className="flex flex-row mr-7 justify-center items-center gap-1">
+        <Link to="/home/intern" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <MdOutlineAirplanemodeActive />
-            <p>Interntional</p>
+            <p>International</p>
           </div>
         </Link>
-        <Link to="/home/Cont">
-          <div className="flex flex-row mr-7 justify-center items-center gap-1">
-            <RiContactsBook3Line/>
+        <Link to="/home/Cont" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center mr-10 items-center gap-1">
+            <RiContactsBook3Line />
             <p>Contact Us</p>
           </div>
         </Link>
-        <Link to="/home/Glry">
-          <div className="flex flex-row mr-7 justify-center items-center gap-1">
+        <Link to="/home/Glry" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <GrGallery />
             <p>Gallery</p>
           </div>
@@ -78,7 +83,7 @@ const Nav = () => {
             </button>
           </>
         ) : (
-          <Link to="/Signup">
+          <Link to="/Signup" onClick={() => setIsMenuOpen(false)}>
             <a className="cta">
               <span>Sign In</span>
               <svg width="15px" height="10px" viewBox="0 0 13 10">
@@ -94,3 +99,4 @@ const Nav = () => {
 };
 
 export default Nav;
+

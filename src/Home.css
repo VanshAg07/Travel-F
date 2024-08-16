@@ -6,3 +6,13 @@
     cursor: pointer;
     z-index: 1000;
 }
+
+@media (max-width: 1024px) {
+    .fixed-button-1 {
+        width: 18%;
+        /* right: -25px; */
+        cursor: pointer;
+        z-index: 1000;
+        position: fixed;
+    }
+}  

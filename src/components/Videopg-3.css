@@ -101,3 +101,17 @@
     z-index: 10; /* Ensure it's on top of the video */
     text-align: center;
   }
+
+  @media (max-width: 1024px) {
+    .video-heading-2 {
+        /* width: 25%; */
+        padding-left: 80px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+  
+    .fa-solid{
+      padding-top: 32px;
+    }
+  
+  }  

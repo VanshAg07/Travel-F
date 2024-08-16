@@ -32,6 +32,7 @@ const ImageSlider = () => {
     );
   };
 
+  
   return (
     <div className="wrpper-1">
       <div className="video-div-1">
