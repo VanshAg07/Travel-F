@@ -39,7 +39,7 @@ const Gallery = () => {
           <img key={index} src={image.src} alt={`Image ${index + 1}`} />
         ))}
       </div>
-    <Link to="/Gallery">  <button className="btn-1" >View More</button></Link>
+    <Link to="/Glry">  <button className="btn-1" >View More</button></Link>
     </div>
   );
 };

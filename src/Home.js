@@ -13,7 +13,11 @@ import Marquee from "./components/Marquee.js";
 import Lottie from "lottie-react";
 import cont from "./img/cont-button.json";
 import PhoneFooter from "./components/PhoneFooter.js";
+import Dashboard from "./components/dmin/Dashboard.js";
 import { useMediaQuery } from 'react-responsive';
+import Signup from "./components/Signup.js";
+import {GoogleOAuthProvider} from '@react-oauth/google';
+
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -22,10 +26,16 @@ const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
 
   return (
+    
     <div className="home-wr">
-      <Outlet />
+    <GoogleOAuthProvider clientId="296927192780-60h36sne2alsb0pnhm89kbnt4pst0eqk.apps.googleusercontent.com">
+
+      {/* <Outlet /> */}
+
+      {/* <Signup/> */}
 
       <Nav />
+      {/* <Dashboard /> */}
       <Videopage />
       <Videopg2 />
       <Videopg3 />
@@ -36,7 +46,7 @@ const Home = () => {
       </div>
       <Contactus />
       <Footer /> 
-      {isMobile && <PhoneFooter />} {/* Conditionally render PhoneFooter */}
+      {isMobile && <PhoneFooter />} 
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(
@@ -48,6 +58,8 @@ const Home = () => {
           <Lottie loop={true} animationData={cont} />
         </a>
       </div>
+      </GoogleOAuthProvider>
+     
     </div>
   );
 };

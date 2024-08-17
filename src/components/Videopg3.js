@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link} from 'react-router-dom';
 import './Videopg-3.css';
 import img1 from '../img/HimachalPradesh.png';
 import img2 from '../img/Uttarakhand.png';
@@ -57,7 +58,7 @@ const ImageSlider = () => {
   return (
     <div className="wrpper-2">
       <div className="video-div-2">
-        <video className="video-2" src={video} autoPlay loop muted></video>
+       <Link to="/National"> <video className="video-2" src={video} autoPlay loop muted></video></Link>
         <h1 className="video-heading-2">Explore India</h1>
       </div>
       <div className="slider-2">

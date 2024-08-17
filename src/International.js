@@ -130,42 +130,6 @@ const International = () => {
         <Card className="card-container-2" />
       </div>
 
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-      </div>
-
       <Footer/>
     </div>
   );

@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register the plugin
-gsap.registerPlugin(ScrollTrigger);
-
+import {jwtDecode} from "jwt-decode"; // Correct import
 
 export default class Login extends Component {
   constructor(props) {
@@ -23,7 +18,7 @@ export default class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    fetch("https://travel-server-iley.onrender.com/login-user", {
+    fetch("http://localhost:5000/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -43,12 +38,17 @@ export default class Login extends Component {
           window.localStorage.setItem("token", data.data.token); // store the token
           window.localStorage.setItem("username", data.data.username); // store the username
           window.localStorage.setItem("loggedIn", true); // store loggedIn state
-  
-          // Add console.log here to debug
-          console.log("Token:", window.localStorage.getItem("token"));
-          console.log("Username:", window.localStorage.getItem("username"));
-  
-          window.location.href = "/"; // redirect to home
+
+          // Decode the token to get user role
+          const decodedToken = jwtDecode(data.data.token);
+          const role = decodedToken.role;
+
+          // Redirect based on user role
+          if (role === "admin") {
+            window.location.href = "/admin"; // Redirect to admin page
+          } else {
+            window.location.href = "/"; // Redirect to home page
+          }
         } else {
           alert(data.error || "Login failed");
         }

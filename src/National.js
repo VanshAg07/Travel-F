@@ -128,42 +128,6 @@ const National = () => {
         <Card className="card-container-1" />
       </div>
 
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-      </div>
-
       <Footer/>
     </div>
   );

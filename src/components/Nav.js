@@ -40,31 +40,31 @@ const Nav = () => {
         {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
       <div className={`nav-links  ${isMenuOpen ? "open" : ""}`}>
-        <Link to="/home" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <RiHome4Line />
             <p>Home</p>
           </div>
         </Link>
-        <Link to="/home/National" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/National" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center items-center mr-10 gap-1">
             <BsSuitcaseFill />
             <p>India</p>
           </div>
         </Link>
-        <Link to="/home/intern" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <MdOutlineAirplanemodeActive />
             <p>International</p>
           </div>
         </Link>
-        <Link to="/home/Cont" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/Cont" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <RiContactsBook3Line />
             <p>Contact</p>
           </div>
         </Link>
-        <Link to="/home/Glry" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <GrGallery />
             <p>Gallery</p>

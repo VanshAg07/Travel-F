@@ -9,25 +9,28 @@ import Cont from "./Cont.js";
 import International from "./International.js";
 import National from "./National.js";
 import Glry from "./Glry.js";
-
+import Test from "./components/Test.js";
+import AdminPortal from "./components/dmin/AdminPortal.js"
 const App = () => {
   return (
+
     <BrowserRouter>
+    
       <Routes>
+      
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/home" element={<Home />}>
-        <Route index element={<Home />} />
-          <Route path="Contactus" element={<Contactus />} />
-          <Route path="Glry" element={<Glry />} />
-          <Route path="Cont" element={<Cont />} />
-          <Route path="intern" element={<International />} />
-          <Route path="National" element={<National />} />
-        </Route>
+        <Route path="/admin" element={<AdminPortal />} />
+        <Route path="/Contactus" element={<Contactus />} />
+        <Route path="/Glry" element={<Glry />} />
+        <Route path="/Cont" element={<Cont />} />
+        <Route path="/intern" element={<International />} />
+        <Route path="/National" element={<National />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default App;
+

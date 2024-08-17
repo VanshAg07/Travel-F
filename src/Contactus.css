@@ -80,7 +80,7 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contact-form {
-    max-width: 350px; /* Slightly reduce the form width */
+    max-width: 350px; 
   }
 
   .heading-section-1 {
