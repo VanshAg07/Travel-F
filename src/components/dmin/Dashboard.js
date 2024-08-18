@@ -38,7 +38,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/addTrip", tripDetails);
+      const response = await axios.post("https://travel-server-iley.onrender.com/api/admin/addTrip", tripDetails);
       alert("Trip added successfully!");
       setTripDetails({
         tripName: "",
