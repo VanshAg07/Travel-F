@@ -10,7 +10,7 @@ const AdminPortal = () => {
   const navigate = useNavigate();  // Updated to useNavigate
 
   const handleLogout = () => {
-    axios.post('http://localhost:5000/api/admin/logout')
+    axios.post('https://travel-server-iley.onrender.com/api/admin/logout')
       .then(() => {
         // Redirect to homepage after successful logout
         navigate('/');  // Updated to navigate
