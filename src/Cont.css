@@ -66,10 +66,9 @@
 
 .fixed-button {
     position: fixed;
-    bottom: 20px;
-    right: -25px;
-    width: 15%;
-    cursor: pointer;
-    z-index: 1000;
+    bottom: 10%;
+     right: -25px;
+     width: 10%;
+     cursor: pointer;
+     z-index: 1000;
 }
-

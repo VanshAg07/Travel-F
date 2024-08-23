@@ -6,9 +6,11 @@ const UserDetails = () => {
 
   useEffect(() => {
     // Fetch user data from the backend
-    axios.get('/api/users')
+    axios.get('http://localhost:5000/api/admin/users')
       .then(response => {
-        setUsers(response.data);
+        // Filter out users with the role of 'admin'
+        const nonAdminUsers = response.data.filter(user => user.role !== 'admin');
+        setUsers(nonAdminUsers);
       })
       .catch(error => {
         console.error('There was an error fetching the user data!', error);
@@ -17,9 +19,10 @@ const UserDetails = () => {
 
   const deleteUser = (userId) => {
     // Delete user from the backend
-    axios.delete(`/api/users/${userId}`)
+    axios.delete(`http://localhost:5000/api/admin/users/${userId}`)
       .then(() => {
-        setUsers(users.filter(user => user.id !== userId));
+        // Remove the deleted user from the state
+        setUsers(users.filter(user => user._id !== userId));
       })
       .catch(error => {
         console.error('There was an error deleting the user!', error);
@@ -27,8 +30,8 @@ const UserDetails = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">User Details</h2>
+    <div className='pl-14'>
+      <h2 className="text-5xl flex justify-center  items-center font-bold mb-4 pb-6">Admin Dashboard</h2>
       <table className="w-full text-left table-auto">
         <thead>
           <tr>
@@ -39,13 +42,13 @@ const UserDetails = () => {
         </thead>
         <tbody>
           {users.map(user => (
-            <tr key={user.id}>
-              <td className="border px-4 py-2">{user.name}</td>
+            <tr key={user._id}>
+              <td className="border px-4 py-2">{user.username}</td>
               <td className="border px-4 py-2">{user.email}</td>
               <td className="border px-4 py-2">
                 <button
-                  onClick={() => deleteUser(user.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                  onClick={() => deleteUser(user._id)}
+                  className="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-700"
                 >
                   Delete
                 </button>
@@ -59,3 +62,4 @@ const UserDetails = () => {
 };
 
 export default UserDetails;
+

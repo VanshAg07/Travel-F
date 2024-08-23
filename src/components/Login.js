@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import {jwtDecode} from "jwt-decode"; // Correct import
+import { jwtDecode } from "jwt-decode"; // Correct import
 
 export default class Login extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class Login extends Component {
           alert(data.error || "Login failed");
         }
       });
-  }  
+  }
 
   render() {
     const { error } = this.state;
