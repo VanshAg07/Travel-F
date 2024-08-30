@@ -6,7 +6,7 @@ const UserDetails = () => {
 
   useEffect(() => {
     // Fetch user data from the backend
-    axios.get('http://localhost:5000/api/admin/users')
+    axios.get('https://travel-server-iley.onrender.com/api/admin/users')
       .then(response => {
         // Filter out users with the role of 'admin'
         const nonAdminUsers = response.data.filter(user => user.role !== 'admin');
