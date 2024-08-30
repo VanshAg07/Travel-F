@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./National.css";
 import Nav from "./components/Nav";
-import intern from "./img/india.jpg";
-import Lottie from 'lottie-react';
-import animationData from './img/India.json';
+import intern from "./img/international.jpg";
+import Lottie from "lottie-react";
+import animationData from "./img/India.json";
 import Footer from "./Footer.js";
 import Card from "./components/3dCard.js";
+import shi from "./img/crd-shi.png";
+import Whyus from "./Whyus.js";
+import Form from "./components/Form.js";
+import Guide from "./components/Indguide.js"
 
 const National = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +18,6 @@ const National = () => {
     contactNo: "",
     message: "",
   });
-
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,9 +47,10 @@ const National = () => {
     <div className="wrpper-inter">
       <Nav />
       <div className="hero-section-left-1">
-        <img className="hero-img" src={intern} alt="India" />
+      <img className="hero-img" src={intern} alt="International" />
         <h1 className="hero-heading">
-          India's Majestic Adventures<br /> Unveil the Wonders
+          India's Majestic Adventures
+          <br /> Unveil the Wonders
         </h1>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -114,22 +113,41 @@ const National = () => {
       </div>
 
       <div className="lottie-wr">
-        <Lottie 
-          animationData={animationData} 
-          loop={true} 
+        <Lottie
+          animationData={animationData}
+          loop={true}
           autoplay={true}
           className="hero-lottie"
         />
       </div>
-            <h1 className="ind-h">Featured Packages</h1>
-      <div className="cards-container-1">
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
-        <Card className="card-container-1" />
+
+      <h1 className="ind-h">Destinations</h1>
+      <div className="ind-div">
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
       </div>
 
-      <Footer/>
+      <h1 className="all-packages-heading">All Packages</h1>
+      <p className="all-packages-description">
+        Discover Your Dream Journey with Our Best-Selling Travel Packages
+      </p>
+
+      <div>
+        <Card />
+      </div>
+      <Whyus/>
+      <Guide />
+      <Form/>
+
+      <Footer />
     </div>
+
   );
 };
 

@@ -14,8 +14,8 @@ const Footer = () => {
         <p>+91 8287804197</p>
 
         <div className="footer-icons">
-        <a className="footer-anchors text-[#3953fe]" href="https://www.facebook.com/Travello10" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-square-facebook icon-lrge "></i>
+        <a className="footer-anchors text-[#3953fe] " href="https://www.facebook.com/Travello10" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-square-facebook icon-lrge text-[#3953fe] "></i>
         </a>
         <a className="footer-anchors " href="https://www.instagram.com/travello10/" target="_blank" rel="noopener noreferrer">
           <i class="fa-brands fa-instagram icon-lrge text-[#FF0000]"></i>

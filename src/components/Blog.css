@@ -1,0 +1,62 @@
+.blog-container {
+    position: relative;
+  }
+  
+  .blog-img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures the image covers the full width/height */
+  }
+  
+  .blog-heading-bottom {
+    position: absolute;
+    top: 50%; /* Position the heading at the bottom of the image */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Change the color as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+    padding: 10px 20px; /* Padding around the text */
+    text-align: center;
+  }
+  
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of the Crd components */
+    justify-content: center; /* Centers the cards within the grid */
+    gap: 20px; /* Space between cards */
+    margin: 20px auto;
+    max-width: 1200px; /* Width of the entire grid */
+    padding: 0 10px;
+  }
+  
+  .card-grid > * {
+    flex: 1 1 calc(30% - 40px); /* Three cards per row */
+    max-width: calc(30% - 40px); /* Ensures the cards don't exceed the width */
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+  }
+  
+  .card {
+    overflow: hidden; /* Ensures content doesn't overflow */
+    text-align: center; /* Center-align text */
+    margin: 10px; /* Space around each card */
+    border-radius: 8px; /* Optional: Rounded corners */
+    position: relative; /* Allows absolute positioning of content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow effect */
+  }
+  
+  .card-image {
+    width: 100%; /* Full width of the card */
+    height: 400px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the assigned height */
+  }
+  
+  .card-content {
+    padding: 10px 15px; /* Padding inside the card */
+    background-color: #fff; /* Background color for the content */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  

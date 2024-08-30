@@ -10,7 +10,7 @@ const Whyus = () => {
   return (
     <div className='wrapper'>
     <div className="top">
-        <h1>Why Choose Us</h1>
+        <h1 className='h-w'>Why Choose Us</h1>
         <p>We help our clients throughout the trip</p>
     </div>
 

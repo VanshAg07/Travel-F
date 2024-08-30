@@ -1,5 +1,4 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import "./Home.css";
 import Nav from "./components/Nav.js";
 import Videopage from "./components/Videopage.js";
@@ -13,10 +12,9 @@ import Marquee from "./components/Marquee.js";
 import Lottie from "lottie-react";
 import cont from "./img/cont-button.json";
 import PhoneFooter from "./components/PhoneFooter.js";
-import Dashboard from "./components/dmin/Dashboard.js";
 import { useMediaQuery } from 'react-responsive';
-import Signup from "./components/Signup.js";
 import {GoogleOAuthProvider} from '@react-oauth/google';
+
 
 
 const Home = () => {
@@ -30,9 +28,6 @@ const Home = () => {
     <div className="home-wr">
     <GoogleOAuthProvider clientId="296927192780-60h36sne2alsb0pnhm89kbnt4pst0eqk.apps.googleusercontent.com">
 
-      {/* <Outlet /> */}
-
-      {/* <Signup/> */}
 
       <Nav />
       {/* <Dashboard /> */}
@@ -45,6 +40,7 @@ const Home = () => {
         <Marquee />
       </div>
       <Contactus />
+
       <Footer /> 
       {isMobile && <PhoneFooter />} 
       <div className="fixed-button-1">

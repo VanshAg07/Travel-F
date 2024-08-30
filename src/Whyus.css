@@ -12,7 +12,10 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
-
+.h-w{
+    color: white;
+    font-size: 2rem;
+}
 .top > h1 {
     font-size: 2rem;
 }

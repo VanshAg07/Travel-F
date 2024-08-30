@@ -7,6 +7,7 @@ import { BsSuitcaseFill } from "react-icons/bs";
 import { MdOutlineAirplanemodeActive } from "react-icons/md";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { GrGallery } from "react-icons/gr";
+import { FaBloggerB } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Nav = () => {
@@ -62,6 +63,12 @@ const Nav = () => {
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <RiContactsBook3Line />
             <p>Contact</p>
+          </div>
+        </Link>
+        <Link to="/Blog" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-row justify-center mr-10 items-center gap-1">
+          <FaBloggerB/>
+            <p>Blog</p>
           </div>
         </Link>
         <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>

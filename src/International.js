@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./International.css";
 import Nav from "./components/Nav";
-import intern from "./img/international.jpg";
+import intern from "./img/india.jpg";
 import Lottie  from 'lottie-react';
 import animationData from './img/intern.json';
 import Footer from "./Footer.js"; 
 import Card from "./components/3dCard.js";
+import shi from "./img/crd-shi.png";
+import Whyus from "./Whyus.js";
+import Form from "./components/Form.js";
+import Guide from "./components/Interguide.js"
 
 const International = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +54,8 @@ const International = () => {
     <div className="wrpper-inter">
       <Nav />
       <div className="hero-section-left-1">
-        <img className="hero-img" src={intern} alt="International" />
+        
+        <img className="hero-img" src={intern} alt="India" />
         <h1 className="hero-heading">
           Luxury Getaways Abroad - Book <br /> Your Dream Vacation
         </h1>
@@ -123,15 +128,33 @@ const International = () => {
            className="hero-lottie"
         />
       </div>
-      <h1 className="ind-h-2">Featured Packages</h1>
-      <div className="cards-container-2">
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
-        <Card className="card-container-2" />
+      <h1 className="ind-h">Destinations</h1>
+      <div className="ind-div">
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
+        <img className="ind-img" src={shi} alt="India" />
       </div>
 
-      <Footer/>
+      <h1 className="all-packages-heading">All Packages</h1>
+      <p className="all-packages-description">
+        Discover Your Dream Journey with Our Best-Selling Travel Packages
+      </p>
+
+      <div>
+        <Card />
+      </div>
+      <Whyus/>
+      <Guide/>
+      <Form/>
+
+      <Footer />
     </div>
+
   );
 };
 

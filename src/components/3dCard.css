@@ -1,6 +1,15 @@
+/* src/3dCard.css */
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+}
+
 .card-container {
     width: 426px;
-    min-height: 500px; /* Decreased height */
+    min-height: 500px; /* Adjusted height */
     background-color: #fffadb;
     border-radius: 30px;
     border: 4px solid white;
@@ -10,12 +19,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease;
     box-sizing: border-box; /* Ensure padding is included in width and height */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
 }
 
-.image-container-card {
-    width: 100%;
+.image-container-cards {
     display: flex;
     justify-content: center;
     padding-top: 20px; /* Padding from the top */
@@ -23,21 +31,22 @@
 
 .card-image {
     width: 100%; /* Make image responsive within the container */
-    height: 50%; /* Image occupies 50% of the container */
+    height: 40%; /* Image occupies 50% of the container */
     object-fit: cover;
     border-radius: 20px;
-    transition: transform 0.3s ease;
 }
 
 h1 {
     margin-top: 20px; /* Space between the image and text */
     text-align: center;
+    color: #333; /* Adjust text color */
 }
 
 i {
     display: block; /* Stack icons vertically */
     margin-top: 10px;
     text-align: center;
+    color: #555; /* Adjust icon color */
 }
 
 .button-card {
@@ -49,12 +58,11 @@ i {
     border-radius: 10px;
     margin-top: 20px;
     align-self: center; /* Center button horizontally */
+    border: none; /* Remove button border */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.color-dot {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: 20px;
+.button-card:hover {
+    background-color: #444; /* Darker shade on hover */
 }
