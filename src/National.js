@@ -9,7 +9,8 @@ import Card from "./components/3dCard.js";
 import shi from "./img/crd-shi.png";
 import Whyus from "./Whyus.js";
 import Form from "./components/Form.js";
-import Guide from "./components/Indguide.js"
+import Guide from "./components/Indguide.js";
+import Lottie from "lottie-react";
 
 const National = () => {
   const [formData, setFormData] = useState({
@@ -146,6 +147,15 @@ const National = () => {
       <Form/>
 
       <Footer />
+
+      <div className="fixed-button">
+                <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <Lottie loop={true} animationData={cont}/>
+                </a>
+            </div>
+            
     </div>
 
   );
