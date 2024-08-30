@@ -10,7 +10,9 @@ import shi from "./img/crd-shi.png";
 import Whyus from "./Whyus.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Interguide.js";
-import Lottie from "lottie-react";
+import cont from "./img/cont-button.json";
+
+// import Lottie from "lottie-react";
 
 const International = () => {
   const [formData, setFormData] = useState({
@@ -50,6 +52,8 @@ const International = () => {
     console.log("Form submitted:", formData);
     // Add form submission logic here (e.g., API call)
   };
+
+  const whatsappMessage = "Hello, I need assistance with my issue.";
 
   return (
     <div className="wrpper-inter">
