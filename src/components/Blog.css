@@ -27,6 +27,7 @@
     margin: 20px auto;
     max-width: 1200px; /* Width of the entire grid */
     padding: 0 10px;
+    color: #000;
   }
   
   .card-grid > * {

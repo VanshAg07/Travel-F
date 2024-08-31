@@ -1,43 +1,144 @@
+.relative{
+  margin-top: -80px;
+}
 .videopg-h1 {
   position: absolute;
-  top: 50%; /* Center vertically */
+  top: 40%; /* Adjust this value if needed */
   left: 50%;
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   color: white;
-  font-size: 2rem; /* Base font size */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   text-align: center;
   width: 90%; /* Make sure it fits within the viewport */
+  font-size: 2rem; /* Base font size */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.line1,
+.line2 {
+  display: block; /* Ensure each line is on a new line */
+}
+
+.line1 {
+  font-size: 5rem; /* Adjust size as needed */
+}
+
+.line2 {
+  font-size: 5rem; /* Adjust size as needed */
+}
+
+.sp-1 {
+  color: yellow;
+}
+
+.videopg-p {
+  position: absolute;
+  top: calc(42% + 6rem); /* Adjust based on the height of your h1 */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  color: white;
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+  width: 90%; /* Make sure it fits within the viewport */
+  text-align: center;
+}
+
+.review-image{
+  position: absolute; /* Ensure image is positioned absolutely */
+  top: 7%; /* Adjust based on your design */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Place image above the video */
+  width: 100%; /* Adjust size as needed */
 }
 
 /* Responsive font size */
 @media (max-width: 1200px) {
   .videopg-h1 {
-      font-size: 1.8rem;
+    font-size: 1.8rem;
+  }
+
+  .line1 {
+    font-size: 1.8rem;
+  }
+
+  .line2 {
+    font-size: 1.4rem;
+  }
+  
+  .videopg-p {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 992px) {
   .videopg-h1 {
-      font-size: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  .line1 {
+    font-size: 1.6rem;
+  }
+
+  .line2 {
+    font-size: 1.3rem;
+  }
+  
+  .videopg-p {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 768px) {
   .videopg-h1 {
-      font-size: 1.4rem;
+    font-size: 1.4rem;
+  }
+
+  .line1 {
+    font-size: 1.4rem;
+  }
+
+  .line2 {
+    font-size: 1.2rem;
+  }
+  
+  .videopg-p {
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 576px) {
   .videopg-h1 {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .line1 {
+    font-size: 1.2rem;
+  }
+
+  .line2 {
+    font-size: 1rem;
+  }
+  
+  .videopg-p {
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 425px) {
   .videopg-h1 {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .line1 {
+    font-size: 1.2rem;
+  }
+
+  .line2 {
+    font-size: 1rem;
+  }
+  
+  .videopg-p {
+    font-size: 0.6rem;
   }
 
   .video-video {

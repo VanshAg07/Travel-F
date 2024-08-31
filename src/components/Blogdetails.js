@@ -143,7 +143,7 @@ const Blogdetails = () => {
         </>
       ),
     },
-    Kashmir: {
+    kashmir: {
       title: "Kashmir",
       content: (
         <>
@@ -511,7 +511,7 @@ const Blogdetails = () => {
         </>
       ),
     },
-    Himachalpradesh: {
+    himachalpradesh: {
       title: "Himachalpradesh",
       content: (
         <>

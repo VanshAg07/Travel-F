@@ -42,6 +42,7 @@ const ImageSlider = () => {
   };
 
   return (
+    <div className="wr-1">
     <div className="wrpper-1">
       <div className="video-div-1">
       <Link to="/intern"> <video className="video-1" src={video} autoPlay loop muted></video> </Link> 
@@ -63,6 +64,7 @@ const ImageSlider = () => {
           <i className="fa-solid fa-circle-right"></i>
         </button>
       </div>
+    </div>
     </div>
   );
 };

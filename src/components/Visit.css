@@ -1,0 +1,92 @@
+.visiting-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+    gap: 20px; /* Space between cards */
+    padding: 20px; /* Padding around the grid */
+    max-width: 1200px; /* Set a max-width for the grid container */
+    margin: 0 auto; /* Center align the grid */
+  }
+  
+  .visiting-card {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    text-align: left;
+  }
+  
+  .visiting-card-img {
+    width: 100%;
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensure image covers the area */
+  }
+  
+  .visiting-card-content {
+    padding: 20px;
+    position: relative; /* Positioning context for the location-info */
+  }
+  
+  .clock-text-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .visiting-card-clock {
+    font-size: 14px;
+    color: yellow;
+    margin-right: 8px;
+  }
+  
+  .duration-text {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .visiting-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .visiting-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  /* New styles for location info */
+  .location-info {
+    display: flex;
+    align-items: center; /* Vertically align icon and text */
+    justify-content: flex-end; /* Align text and icon to the right */
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+  
+  .location-icon {
+    font-size: 18px; /* Adjust the size of the icon */
+    color: yellow; /* Set icon color to yellow */
+    margin-left: 8px; /* Add space between icon and text */
+  }
+  
+  .location-text {
+    font-size: 0.9rem; /* Ensure text size is proportional */
+    color: #333;
+  }
+  
+  /* Optional Responsive Design */
+  @media (max-width: 1024px) {
+    .visiting-cards-grid {
+      grid-template-columns: repeat(2, 1fr); /* Two cards per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .visiting-cards-grid {
+      grid-template-columns: 1fr; /* One card per row on small screens */
+    }
+  }
+  

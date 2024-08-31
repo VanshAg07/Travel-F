@@ -6,7 +6,8 @@
     position: relative; /* Ensure positioning context for absolutely positioned content */
     height: 100vh; /* Ensure it takes up the full height of the viewport */
     display: flex;
-    justify-content: flex-start; /* Align items to the left */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align items to the top */
     text-align: left; /* Align text to the left */
     color: #fff; /* Set default text color */
     padding: 0 20px; /* Add padding to ensure text doesn’t touch the edges */
@@ -19,13 +20,23 @@
     position: absolute; /* Position image absolutely */
     top: 0;
     left: 0;
-    z-index: -1; /* Ensure image is behind text */
+    z-index: 1; /* Ensure image is behind other content */
+  }
+  
+  .review-img {
+    position: absolute; /* Position image absolutely */
+  top: 35%; /* Adjust this value based on your design */
+  left: 30%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 2; /* Place image above the background image */
+  width: 70%; /* Increase width as needed */
+  height: auto; /* Maintain aspect ratio */
   }
   
   .place-hero h1,
   .place-hero p {
     position: relative; /* Ensure text is positioned relative to its container */
-    z-index: 1; /* Ensure text is above the background image */
+    z-index: 3; /* Ensure text is above the review image */
     margin: 0; /* Remove default margin */
     padding-left: 60px;
   }
@@ -59,4 +70,138 @@
     color:black;
     margin-left: 60px;
   }
+  
+  .hiking-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: left;
+  
+  }
+
+  .hiking-container h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin-bottom: 1rem; /* Space below the heading */
+    color: #333; /* Change the color if needed */
+ 
+  }
+  
+  .hiking-container p {
+    font-size: 1.125rem; /* Adjust size as needed */
+    line-height: 1.6; /* Adjust line height for readability */
+    color: #666; /* Change the color if needed */
+    margin-top: 0; /* Adjust the space above the paragraph */
+
+  }
+
+  .Visiting-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: left;
+  
+  }
+
+  .Visiting-container h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin-bottom: 1rem; /* Space below the heading */
+    color: #333; /* Change the color if needed */
+ 
+  }
+  
+  .Visiting-container p {
+    font-size: 1.125rem; /* Adjust size as needed */
+    line-height: 1.6; /* Adjust line height for readability */
+    color: #666; /* Change the color if needed */
+    margin-top: 0; /* Adjust the space above the paragraph */
+
+  }
+
+  .food-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: left;
+  
+  }
+
+  .food-container h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin-bottom: 1rem; /* Space below the heading */
+    color: #333; /* Change the color if needed */
+ 
+  }
+  
+  .food-container p {
+    font-size: 1.125rem; /* Adjust size as needed */
+    line-height: 1.6; /* Adjust line height for readability */
+    color: #666; /* Change the color if needed */
+    margin-top: 0; /* Adjust the space above the paragraph */
+
+  }
+
+  .shop-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: left;
+  
+  }
+
+  .shop-container h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin-bottom: 1rem; /* Space below the heading */
+    color: #333; /* Change the color if needed */
+ 
+  }
+  
+  .shop-container p {
+    font-size: 1.125rem; /* Adjust size as needed */
+    line-height: 1.6; /* Adjust line height for readability */
+    color: #666; /* Change the color if needed */
+    margin-top: 0; /* Adjust the space above the paragraph */
+
+  }
+
+  .travel-guidelines1-container {
+    margin-top: 100px; /* Adjust this value as needed */
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 80px;
+}
+  
+.guidelines1-heading {
+    font-size: 2em; 
+    color: #555; 
+    text-align: left; /* Align text to the left */
+    margin-bottom: 20px;
+    border-left: 4px solid #ffcc00; /* Yellow left border */
+    padding-left: 10px; /* Space between text and border */
+}
+  
+.guidelines1-description {
+    font-size: 1.1em;
+    color: #121212cc; /* Medium grey for paragraph text */
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify; /* Justify text for a cleaner look */
+}
+  
+.guidelines1-list {
+    list-style-type: decimal; /* Numbered list */
+    padding-left: 20px; /* Space between list numbers and text */
+}
+  
+.guidelines1-list li {
+    font-size: 1em;
+    color: #444; /* Slightly darker text for list items */
+    line-height: 1.5;
+    margin-bottom: 10px; /* Space between list items */
+}
+
+.why{
+  padding-bottom: 80px;
+}
+  
   

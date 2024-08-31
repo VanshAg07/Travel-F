@@ -5,6 +5,13 @@
   height: 105vh; /* Adjust if needed */
   overflow: hidden;
 }
+.wr-1{
+  position: relative;
+  padding-top: 30px;
+  background-color: #fffadb;
+  height: 120vh;
+ padding-top: 150px;
+}
 
 .video-div-1 {
   position: relative;

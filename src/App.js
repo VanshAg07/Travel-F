@@ -14,13 +14,16 @@ import AdminPortal from "./components/dmin/AdminPortal.js"
 import Blog from "./components/Blog.js";
 import Blogdetails from "./components/Blogdetails.js";
 import Places from "./components/Places.js";
+import Hiking from "./components/Hiking.js";
+import Visit from "./components/Visit.js";
+import Food from "./components/Food.js";
+import Shop from "./components/Shop.js";
 const App = () => {
   return (
 
     <BrowserRouter>
     
       <Routes>
-      
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Login" element={<Login />} />
@@ -31,6 +34,10 @@ const App = () => {
         <Route path="/intern" element={<International />} />
         <Route path="/National" element={<National />} />
         <Route path="/Blog" element={<Blog />} />
+        <Route path="/Hiking" element={<Hiking/>} />
+        <Route path="/Visit" element={<Visit/>} />
+        <Route path="/Food" element={<Food/>} />
+        <Route path="/Shop" element={<Shop/>} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/place/:id" element={<Places />} /> 
       </Routes>
