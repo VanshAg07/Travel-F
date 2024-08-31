@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav.js";
-import Con from './img/2.png';
+import Con from './img/C-2.png';
 import './Cont.css';
 import Footer from "./Footer.js";
 import cont from "./img/cont-button.json";

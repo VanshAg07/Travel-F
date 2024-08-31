@@ -1,4 +1,3 @@
-/* src/3dCard.css */
 .cards-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -9,60 +8,63 @@
 
 .card-container {
     width: 426px;
-    min-height: 500px; /* Adjusted height */
-    background-color: #fffadb;
+    min-height: 500px;
+    background-size: cover; /* Make the background image cover the entire container */
+    background-position: center; /* Center the background image */
     border-radius: 30px;
     border: 4px solid white;
-    padding: 24px 40px;
+    overflow: hidden; /* Ensure content does not overflow the card */
     cursor: pointer;
-    position: relative;
+    position: relative; /* Set container as a reference for absolutely positioned children */
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box; /* Ensure padding is included in width and height */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.image-container-cards {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px; /* Padding from the top */
-}
-
-.card-image {
-    width: 100%; /* Make image responsive within the container */
-    height: 40%; /* Image occupies 50% of the container */
+.card-container img {
+    height: 100%;
+    width: 100%;
     object-fit: cover;
-    border-radius: 20px;
+  }
+
+
+.card-content {
+    position: absolute; /* Position content on top of the background image */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Text color for readability */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better text visibility */
+    padding: 20px;
+    text-align: center;
 }
 
-h1 {
-    margin-top: 20px; /* Space between the image and text */
-    text-align: center;
-    color: #333; /* Adjust text color */
-}
-
-i {
-    display: block; /* Stack icons vertically */
-    margin-top: 10px;
-    text-align: center;
-    color: #555; /* Adjust icon color */
+.card-links {
+    margin: 10px 0; /* Add space between elements */
+    color: white; /* Ensure text is readable on the image */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); /* Optional text shadow for readability */
 }
 
 .button-card {
-    background-color: #2d2b2c;
-    color: white;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white button */
+    color: #333; /* Dark text color for the button */
     font-size: 16px;
     font-weight: medium;
-    padding: 16px 40px;
+    padding: 10px 20px;
     border-radius: 10px;
-    margin-top: 20px;
-    align-self: center; /* Center button horizontally */
-    border: none; /* Remove button border */
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .button-card:hover {
-    background-color: #444; /* Darker shade on hover */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent on hover */
 }
+

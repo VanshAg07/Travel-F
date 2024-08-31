@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import './3dCard.css';
-import Ind from "../img/india.jpg";
+import shi1 from "../img/1.png";
 
 const Card = () => {
     const [trips, setTrips] = useState([]);
@@ -23,16 +23,17 @@ const Card = () => {
     return (
         <div className='cards-wrapper'>
             {trips.map((trip, index) => (
-                <div key={index} className='card-container'>
-                    <div className="image-container-cards">
-                        <img src={Ind} alt="India" draggable="false" className='card-image' />
-                    </div>
-                    <h1>{trip.tripName}</h1>
-                    <i className="fa-solid fa-clock">6N/7D</i>
-                    <i className="fa-solid fa-location-dot">Srinagar</i>
-                    <i className="fa-solid fa-calendar-days">Any date of your choice</i>
-                    <div>
-                        <button className='button-card'>Button</button>
+                <div
+                    key={index}
+                    className='card-container'
+                >
+                    <img src={shi1} alt="India" />
+                    <div className='card-content'>
+                        <h1 className='card-links'>{trip.tripName}</h1>
+                        <p className='card-links'>hello details</p>
+                        <i className="fa-solid fa-clock card-links">6N/7D</i>
+                        <i className="fa-solid fa-location-dot card-links">Srinagar</i>
+                        <i className="fa-solid fa-calendar-days card-links">Any date of your choice</i>
                     </div>
                 </div>
             ))}
@@ -41,3 +42,5 @@ const Card = () => {
 };
 
 export default Card;
+
+

@@ -1,0 +1,62 @@
+.place-container {
+    padding-top: 80px; /* Adjust this value based on your Nav height */
+  }
+  
+  .place-hero {
+    position: relative; /* Ensure positioning context for absolutely positioned content */
+    height: 100vh; /* Ensure it takes up the full height of the viewport */
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    text-align: left; /* Align text to the left */
+    color: #fff; /* Set default text color */
+    padding: 0 20px; /* Add padding to ensure text doesn’t touch the edges */
+  }
+  
+  .pl-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute; /* Position image absolutely */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure image is behind text */
+  }
+  
+  .place-hero h1,
+  .place-hero p {
+    position: relative; /* Ensure text is positioned relative to its container */
+    z-index: 1; /* Ensure text is above the background image */
+    margin: 0; /* Remove default margin */
+    padding-left: 60px;
+  }
+  
+  .place-hero h1 {
+    font-size: 3rem; /* Adjust font size for the heading */
+    font-weight: bold; /* Make the heading bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+    margin-bottom: 20px; /* Add space below the heading for separation from the paragraph */
+    position: relative; /* Set position relative to create a positioning context for the ::before pseudo-element */
+    margin-top: 150px;
+  }
+  
+  .place-hero h1::before {
+    content: ""; /* Create an empty pseudo-element */
+    position: absolute; /* Position it absolutely within the h1 */
+    left: 40px; /* Adjust this value based on the desired distance from the text */
+    top: 50%; /* Center the line vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 5px; /* Line width */
+    height: 80%; /* Line height should match the height of the h1 */
+    background-color: yellow; /* Line color */
+  }
+  
+  .place-hero p {
+    font-size: 1.5rem; /* Adjust font size for the paragraph */
+    line-height: 1.6; /* Adjust line height for readability */
+    background-color: yellow; /* Background color */
+    display: inline; /* Ensure background color extends only to text */
+    padding: 10px 20px; /* Optional: Add padding if needed */
+    color:black;
+    margin-left: 60px;
+  }
+  

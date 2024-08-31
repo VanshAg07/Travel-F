@@ -13,6 +13,7 @@ import Glry from "./Glry.js";
 import AdminPortal from "./components/dmin/AdminPortal.js"
 import Blog from "./components/Blog.js";
 import Blogdetails from "./components/Blogdetails.js";
+import Places from "./components/Places.js";
 const App = () => {
   return (
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/National" element={<National />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
+        <Route path="/place/:id" element={<Places />} /> 
       </Routes>
     </BrowserRouter>
   );
