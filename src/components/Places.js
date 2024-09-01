@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Nav from './Nav';
 import Footer from '../Footer';
 import "./Places.css"; // Ensure this file has the styles defined above
@@ -37,14 +37,14 @@ const Place = () => {
           <img className='pl-img' src={bg} alt="Background" />
           <img src={review} className='review-img' alt='Review' />
           <div>
-            <h1>Himachal Pradesh Tour Packages</h1>
-            <p>Discover the Divine and Uncharted Realms of Adventure</p>
+            <h1>Meghalaya Tour Packages</h1>
+            <p>The Perfect Blend of Serenity and Adventure</p>
           </div>
         </div>
         <div>
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>
-            <Card />
+          <Link to={"/Packagedetails"}>  <Card /></Link>
           </div>
         </div>
         <div className='hiking-container'>

@@ -18,6 +18,7 @@ import Hiking from "./components/Hiking.js";
 import Visit from "./components/Visit.js";
 import Food from "./components/Food.js";
 import Shop from "./components/Shop.js";
+import Packagedetails from "./components/Packagedetails.js";
 const App = () => {
   return (
 
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/Visit" element={<Visit/>} />
         <Route path="/Food" element={<Food/>} />
         <Route path="/Shop" element={<Shop/>} />
+        <Route path="/Packagedetails" element={<Packagedetails/>} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/place/:id" element={<Places />} /> 
       </Routes>
