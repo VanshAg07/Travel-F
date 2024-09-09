@@ -2,7 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
+  // Array of states for the dropdown
+  const states = [
+    "Meghalaya",
+    "Kashmir",
+    "Spiti Valley",
+    "Kerala",
+    "Himachal Pradesh",
+    "Rajasthan",
+    "Uttrakhand",
+    "Ladakh",
+    "Goa",
+    "Manali",
+  ];
+
   const [tripDetails, setTripDetails] = useState({
+    stateName: "",
     tripName: "",
     tripPrice: "",
     tripQuantity: "",
@@ -41,6 +56,7 @@ const Dashboard = () => {
       const response = await axios.post("https://travel-server-iley.onrender.com/api/admin/addTrip", tripDetails);
       alert("Trip added successfully!");
       setTripDetails({
+        stateName: "",
         tripName: "",
         tripPrice: "",
         tripQuantity: "",
@@ -61,6 +77,7 @@ const Dashboard = () => {
         tripPaymentMethods: "",
         tripAmenities: "",
         tripRules: "",
+        tripImages: "",
         tripDescription: "",
       });
     } catch (error) {
@@ -70,9 +87,26 @@ const Dashboard = () => {
   };
 
   return (
-    <div className=" max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Trip</h2>
-      <form onSubmit={handleSubmit} className=" text-center ite space-y-4">
+      <form onSubmit={handleSubmit} className="text-center space-y-4">
+        {/* Dropdown for selecting the state */}
+        <select
+          name="stateName"
+          value={tripDetails.stateName}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded-lg"
+          // required
+        >
+          <option value="">Select State</option>
+          {states.map((state, index) => (
+            <option key={index} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
+
+        {/* Input fields for other trip details */}
         <input
           type="text"
           name="tripName"
@@ -80,7 +114,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Name"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="number"
@@ -89,7 +123,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Price"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="number"
@@ -98,7 +132,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Quantity"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="date"
@@ -107,7 +141,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Date"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -116,7 +150,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Location"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="number"
@@ -125,7 +159,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Duration (days)"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -134,7 +168,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Accommodation"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -143,7 +177,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Activities"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -152,7 +186,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Transportation"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -161,7 +195,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Food"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -170,7 +204,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Beverages"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -179,7 +213,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Special Requests"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -188,7 +222,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Cancellations"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -197,7 +231,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Inclusions"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -206,7 +240,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Exclusions"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -215,7 +249,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Additional Services"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -224,7 +258,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Cancellation Policy"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -233,7 +267,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Payment Methods"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -242,7 +276,7 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Amenities"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          required
+          // required
         />
         <input
           type="text"
@@ -267,11 +301,11 @@ const Dashboard = () => {
           placeholder="Trip Description"
           className="w-full p-2 border border-gray-300 rounded-lg"
           rows="4"
-          required
+          // required
         />
         <button
           type="submit"
-          className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full"
         >
           Add Trip
         </button>

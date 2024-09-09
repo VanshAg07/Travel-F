@@ -39,9 +39,10 @@ const App = () => {
         <Route path="/Visit" element={<Visit/>} />
         <Route path="/Food" element={<Food/>} />
         <Route path="/Shop" element={<Shop/>} />
-        <Route path="/Packagedetails" element={<Packagedetails/>} />
+        <Route path="/Packagedetails/:name" element={<Packagedetails/>} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
-        <Route path="/place/:id" element={<Places />} /> 
+        <Route path="/place/:name" element={<Places />} />
+        <Route path="/trip/:tripName/:name" element={<Packagedetails/>} />
       </Routes>
     </BrowserRouter>
   );

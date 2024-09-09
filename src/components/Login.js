@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // Correct import
-
+import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -34,10 +34,10 @@ export default class Login extends Component {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
-          alert("Login Success");
-          window.localStorage.setItem("token", data.data.token); // store the token
-          window.localStorage.setItem("username", data.data.username); // store the username
-          window.localStorage.setItem("loggedIn", true); // store loggedIn state
+          toast.success("Login Successfull")
+          window.localStorage.setItem("token", data.data.token);
+          window.localStorage.setItem("username", data.data.username);
+          window.localStorage.setItem("loggedIn", true);
 
           // Decode the token to get user role
           const decodedToken = jwtDecode(data.data.token);
@@ -49,6 +49,7 @@ export default class Login extends Component {
           } else {
             window.location.href = "/"; // Redirect to home page
           }
+          toast.success("Login Successfull")
         } else {
           alert(data.error || "Login failed");
         }
