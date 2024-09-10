@@ -19,6 +19,9 @@ import Visit from "./components/Visit.js";
 import Food from "./components/Food.js";
 import Shop from "./components/Shop.js";
 import Packagedetails from "./components/Packagedetails.js";
+import Dropnav from "./components/Dropnav.js";
+import Review from "./components/Review.js";
+// import Mobcrd from "./components/Mobcrd.js";
 const App = () => {
   return (
 
@@ -39,9 +42,13 @@ const App = () => {
         <Route path="/Visit" element={<Visit/>} />
         <Route path="/Food" element={<Food/>} />
         <Route path="/Shop" element={<Shop/>} />
+        <Route path="/Dropnav" element={<Dropnav/>} />
+        <Route path="/Review" element={<Review/>} />
         <Route path="/Packagedetails" element={<Packagedetails/>} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/place/:id" element={<Places />} /> 
+        {/* <Route path="/Mobcrd" element={<Mobcrd />} />  */}
+
       </Routes>
     </BrowserRouter>
   );

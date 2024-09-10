@@ -59,7 +59,8 @@ const Nav = () => {
             <p>International</p>
           </div>
         </Link>
-        <Link to="/Hiking" onClick={() => setIsMenuOpen(false)}>
+
+        <Link to="/Review" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <MdOutlineAirplanemodeActive />
             <p>Corporate Tours</p>

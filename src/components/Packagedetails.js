@@ -86,14 +86,14 @@ const Packagedetails = () => {
             className={activeSection === "inclusions" ? "active" : ""}
             onClick={() => setActiveSection("inclusions")}
           >
-            Inclusions
+            Inclusion
           </a>
           <a
             href="#exclusions"
             className={activeSection === "exclusions" ? "active" : ""}
             onClick={() => setActiveSection("exclusions")}
           >
-            Exclusions
+            Exclusion
           </a>
           <a
             href="#other-info"
