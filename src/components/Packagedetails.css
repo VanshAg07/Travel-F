@@ -1,326 +1,325 @@
 .full-width-image {
-    width: 100%;
-    height: auto;
-    max-height: 730px;
-    object-fit: cover;
-  }
-  
-  .cssbuttons-io-button {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    font-family: inherit;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 17px;
-    padding: 0.8em 1.5em 0.8em 1.2em;
-    color: white;
-    background: linear-gradient(0deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
-    border: none;
-    box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
-    letter-spacing: 0.05em;
-    border-radius: 20em;
-    z-index: 99;
-    top: 70%;
-    left: 45%;
-  }
-  
-  .cssbuttons-io-button svg {
-    margin-right: 8px;
-  }
-  
-  .cssbuttons-io-button:hover {
-    box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
-  }
-  
-  .cssbuttons-io-button:active {
-    box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
-  }
-  
-  .icon-text-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    margin: 1em 0;
-    padding-left: 40px;
-  }
-  
-  .icon {
-    font-size: 1.5em;
-    color: #333;
-  }
-  
-  .icon-text {
-    font-size: 1em;
-    color: #333;
-  }
-  
-  .icons {
-    display: flex;
-  }
-  
-  .package-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-    padding: 1em 0; /* Adds some padding around the nav */
-    border-radius: 10px; /* Optional rounded corners */
-    background-color: #E0FAFF;
-  }
-  
-  .package-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    padding: 0.5em 1em;
-    transition: color 0.3s, background-color 0.3s;
-  }
-  
-  .package-nav a:hover {
-    color: #000;
-    border-radius: 5px; /* Optional rounded corners on hover */
-  }
-  
-  .package-nav a.active {
-    color: #01AFD1;
-    border-radius: 5px;
-  }
+  width: 100%;
+  height: auto;
+  max-height: 730px;
+  object-fit: cover;
+}
 
- /* New CSS for Overview Container */
+.cssbuttons-io-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 17px;
+  padding: 0.8em 1.5em 0.8em 1.2em;
+  color: white;
+  background: linear-gradient(0deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+  z-index: 99;
+  top: 70%;
+  left: 45%;
+}
+
+.cssbuttons-io-button svg {
+  margin-right: 8px;
+}
+
+.cssbuttons-io-button:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+}
+
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+}
+
+.icon-text-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.icon {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.icon-text {
+  font-size: 1em;
+  color: #333;
+}
+
+.icons {
+  display: flex;
+}
+
+.package-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  padding: 1em 0; /* Adds some padding around the nav */
+  border-radius: 10px; /* Optional rounded corners */
+  background-color: #E0FAFF;
+}
+
+.package-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.package-nav a:hover {
+  color: #000;
+  border-radius: 5px; /* Optional rounded corners on hover */
+}
+
+.package-nav a.active {
+  color: #01AFD1;
+  border-radius: 5px;
+}
+
+/* New CSS for Overview Container */
 .overview-container {
-    width: 60%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #f9f9f9; /* Optional: background color */
-    border-radius: 8px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
-  }
-  
-  /* Styling for h1 inside overview-container */
-  .overview-container h1 {
-    font-size: 1.5rem; /* Large font size for prominence */
-    font-weight: bold; /* Bold font weight for emphasis */
-    color: #333; /* Darker color for contrast */
-    text-align:left; /* Center-align text */
-    margin-bottom: 20px; /* Space below the h1 */
-  }
-  
-  /* Styling for h2 inside overview-container */
-  .overview-container h2 {
-    font-size: 1.3rem; /* Slightly smaller than h1 for hierarchy */
-    font-weight: 600; /* Semi-bold font weight */
-    color: #444; /* A lighter shade for less emphasis */
-    text-align: left; /* Left-align text */
-    margin-bottom: 15px; /* Space below the h2 */
-  }
-  
-  /* Styling for p inside overview-container */
-  .overview-container p {
-    font-size: 1rem; /* Standard font size */
-    line-height: 1.6; /* Increased line height for readability */
-    color: #444; /* Neutral color for body text */
-    text-align: justify; /* Justify text for clean alignment */
-    margin-bottom: 20px; /* Space below each paragraph */
-  }
-  
-  /* Container for the inclusions section */
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9; /* Optional: background color */
+  border-radius: 8px; /* Optional: rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+/* Styling for h1 inside overview-container */
+.overview-container h1 {
+  font-size: 1.5rem; /* Large font size for prominence */
+  font-weight: bold; /* Bold font weight for emphasis */
+  color: #333; /* Darker color for contrast */
+  text-align:left; /* Center-align text */
+  margin-bottom: 20px; /* Space below the h1 */
+}
+
+/* Styling for h2 inside overview-container */
+.overview-container h2 {
+  font-size: 1.3rem; /* Slightly smaller than h1 for hierarchy */
+  font-weight: 600; /* Semi-bold font weight */
+  color: #444; /* A lighter shade for less emphasis */
+  text-align: left; /* Left-align text */
+  margin-bottom: 15px; /* Space below the h2 */
+}
+
+/* Styling for p inside overview-container */
+.overview-container p {
+  font-size: 1rem; /* Standard font size */
+  line-height: 1.6; /* Increased line height for readability */
+  color: #444; /* Neutral color for body text */
+  text-align: justify; /* Justify text for clean alignment */
+  margin-bottom: 20px; /* Space below each paragraph */
+}
+
+/* Container for the inclusions section */
 .inclusions-container {
-    width: 60%;
-    margin: 20px ;
-    padding: 20px;
-    background-color: #F5FFF6; /* Light green background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    box-sizing: border-box; /* Include padding in width/height */
-  }
-  
-  /* Styling for the Inclusions heading */
-  .inclusions-container h1 {
-    font-size: 2em; /* Large font size */
-    font-weight: bold; /* Bold text for emphasis */
-    color: #333; /* Dark text color for contrast */
-    text-align: center; /* Center-align the heading */
-    margin-bottom: 20px; /* Space below the heading */
-  }
-  
-  /* List styling */
-  .inclusions-list {
-    list-style-type: none; /* Remove default list bullets */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    padding: 1em; /* Add padding to the div */
-    border-radius: 10px; /* Optional rounded corners */
-  }
-  
-  .inclusions-list li {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 0.5em; /* Space between list items */
-    font-size: 1em; /* Adjust font size */
-    color: #333; /* Text color */
-  }
-  
-  .inclusions-list .icon {
-    color: #66bb6a; 
-    font-size: 1.2em; /* Adjust icon size */
-    margin-right: 0.5em; /* Space between icon and text */
-  }
-  
-  
-  .Exclusion-container {
-    width: 60%;
-    margin: 20px ;
-    padding: 20px;
-    background-color: #FFF4F4; /* Light green background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    box-sizing: border-box; /* Include padding in width/height */
-  }
-  
-  /* Styling for the Exclusion heading */
-  .Exclusion-container h1 {
-    font-size: 2em; /* Large font size */
-    font-weight: bold; /* Bold text for emphasis */
-    color: #333; /* Dark text color for contrast */
-    text-align: center; /* Center-align the heading */
-    margin-bottom: 20px; /* Space below the heading */
-  }
-  
-  /* List styling */
-  .Exclusion-list {
-    list-style-type: none; /* Remove default list bullets */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    padding: 1em; /* Add padding to the div */
-    border-radius: 10px; /* Optional rounded corners */
-  }
-  
-  .Exclusion-list li {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 0.5em; /* Space between list items */
-    font-size: 1em; /* Adjust font size */
-    color: #333; /* Text color */
-  }
-  
-  .Exclusion-list .icon-e {
-    color: #FF2C2C; 
-    font-size: 1.2em; /* Adjust icon size */
-    margin-right: 0.5em; /* Space between icon and text */
-  }
+  width: 60%;
+  margin: 20px ;
+  padding: 20px;
+  background-color: #F5FFF6; /* Light green background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-sizing: border-box; /* Include padding in width/height */
+}
 
-  .Other-info-container {
-    width: 60%;
-    margin: 20px ;
-    padding: 20px;
-    background-color: #FFFFFF; /* Light green background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    box-sizing: border-box; /* Include padding in width/height */
-  }
-  
-  /* Styling for the Other-info heading */
-  .Other-info-container h1 {
-    font-size: 2em; /* Large font size */
-    font-weight: bold; /* Bold text for emphasis */
-    color: #333; /* Dark text color for contrast */
-    text-align: center; /* Center-align the heading */
-    margin-bottom: 20px; /* Space below the heading */
-  }
-  
-  /* List styling */
-  .Other-info-list {
-    list-style-type: none; /* Remove default list bullets */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    padding: 1em; /* Add padding to the div */
-    border-radius: 10px; /* Optional rounded corners */
-  }
-  
-  .Other-info-list li {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 0.5em; /* Space between list items */
-    font-size: 1em; /* Adjust font size */
-    color: #333; /* Text color */
-  }
-  
-  .Other-info-list .icon-e {
-    
-    font-size: 1.2em; /* Adjust icon size */
-    margin-right: 0.5em; /* Space between icon and text */
-  }
+/* Styling for the Inclusions heading */
+.inclusions-container h1 {
+  font-size: 2em; /* Large font size */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark text color for contrast */
+  text-align: center; /* Center-align the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
 
-  .toggle-button {
-    color: #0c4fdf;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    text-align: right;
-  float: right;
-  margin-top: -40px;
-  }
-  .toggle-button-1 {
-    color: #0c4fdf;
-    border: none;
-    padding: 20px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    text-align: right;
-  float: right;
-  margin-top: -40px;
-  }
- 
-  .itinerary-container {
-    padding: 20px;
-    width: 60%;
-  }
+/* List styling */
+.inclusions-list {
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  padding: 1em; /* Add padding to the div */
+  border-radius: 10px; /* Optional rounded corners */
+}
 
-  .itinerary-container h1 {
-    font-size: 2em; /* Large font size */
-    font-weight: bold; /* Bold text for emphasis */
-    color: #333; /* Dark text color for contrast */
-    margin-bottom: 20px; /* Space below the heading */
-    text-align: center;
-  }
+.inclusions-list li {
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 0.5em; /* Space between list items */
+  font-size: 1em; /* Adjust font size */
+  color: #333; /* Text color */
+}
+
+.inclusions-list .icon {
+  color: #66bb6a; 
+  font-size: 1.2em; /* Adjust icon size */
+  margin-right: 0.5em; /* Space between icon and text */
+}
+
+
+.Exclusion-container {
+  width: 60%;
+  margin: 20px ;
+  padding: 20px;
+  background-color: #FFF4F4; /* Light green background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Styling for the Exclusion heading */
+.Exclusion-container h1 {
+  font-size: 2em; /* Large font size */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark text color for contrast */
+  text-align: center; /* Center-align the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* List styling */
+.Exclusion-list {
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  padding: 1em; /* Add padding to the div */
+  border-radius: 10px; /* Optional rounded corners */
+}
+
+.Exclusion-list li {
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 0.5em; /* Space between list items */
+  font-size: 1em; /* Adjust font size */
+  color: #333; /* Text color */
+}
+
+.Exclusion-list .icon-e {
+  color: #FF2C2C; 
+  font-size: 1.2em; /* Adjust icon size */
+  margin-right: 0.5em; /* Space between icon and text */
+}
+
+.Other-info-container {
+  width: 60%;
+  margin: 20px ;
+  padding: 20px;
+  background-color: #FFFFFF; /* Light green background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Styling for the Other-info heading */
+.Other-info-container h1 {
+  font-size: 2em; /* Large font size */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark text color for contrast */
+  text-align: center; /* Center-align the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* List styling */
+.Other-info-list {
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  padding: 1em; /* Add padding to the div */
+  border-radius: 10px; /* Optional rounded corners */
+}
+
+.Other-info-list li {
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 0.5em; /* Space between list items */
+  font-size: 1em; /* Adjust font size */
+  color: #333; /* Text color */
+}
+
+.Other-info-list .icon-e {
   
-  
-  .day-container {
-    margin-bottom: 20px;
-    background-color: #F5FDFF;
-  }
-  
-  .day-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
- 
-  }
-  
-  .day-header h3 {
-    margin: 0;
-  }
-  
-  .day-header p {
-    margin: 0;
-    margin-right: auto;
-  }
-  
-  .plus-icon {
-    cursor: pointer;
-    font-size: 24px;
-    color: #007bff; /* Blue color for the plus icon */
-  }
-  
-  .itinerary-details {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .itinerary-details li {
-    margin-bottom: 5px;
-  }
-  
+  font-size: 1.2em; /* Adjust icon size */
+  margin-right: 0.5em; /* Space between icon and text */
+}
+
+.toggle-button {
+  color: #0c4fdf;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: right;
+float: right;
+margin-top: -40px;
+}
+.toggle-button-1 {
+  color: #0c4fdf;
+  border: none;
+  padding: 20px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: right;
+float: right;
+margin-top: -40px;
+}
+
+.itinerary-container {
+  padding: 20px;
+  width: 60%;
+}
+
+.itinerary-container h1 {
+  font-size: 2em; /* Large font size */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark text color for contrast */
+  margin-bottom: 20px; /* Space below the heading */
+  text-align: center;
+}
+
+
+.day-container {
+  margin-bottom: 20px;
+  background-color: #F5FDFF;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.day-header h3 {
+  margin: 0;
+}
+
+.day-header p {
+  margin: 0;
+  margin-right: auto;
+}
+
+.plus-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #007bff; /* Blue color for the plus icon */
+}
+
+.itinerary-details {
+  list-style: none;
+  padding-left: 0;
+}
+
+.itinerary-details li {
+  margin-bottom: 5px;
+}

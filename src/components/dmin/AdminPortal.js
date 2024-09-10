@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 import AddDetails from './AddDetails';
 import UserDetails from './UserDetails';
+import BeautifulPlaces from './BeautifulPlaces';
+import BestActivities from './BestActivities';
+import RichFlavour from './RichFlavour';
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState('user-details');
-  const navigate = useNavigate();  // Updated to useNavigate
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     axios.post('https://travel-server-iley.onrender.com/api/admin/logout')
       .then(() => {
-        // Redirect to homepage after successful logout
-        navigate('/');  // Updated to navigate
+        navigate('/');
       })
       .catch(error => {
         console.error('Logout failed', error);
@@ -23,7 +25,7 @@ const AdminPortal = () => {
   return (
     <div className="flex h-screen">
       {/* Left Side Navigation Bar */}
-      <nav className="w-1/4 h-full bg-black text-white fixed top-0 left-0 flex flex-col">
+      <nav className="w-1/6 h-full bg-black text-white fixed top-0 left-0 flex flex-col">
         <ul className="flex-1 space-y-4 p-4">
           <li>
             <button
@@ -49,6 +51,30 @@ const AdminPortal = () => {
               Add User
             </button>
           </li>
+          <li>
+            <button
+              onClick={() => setActiveTab('beautiful-places')}
+              className={`block w-full text-left py-4 px-4 ${activeTab === 'beautiful-places' ? 'bg-red-600' : 'hover:bg-gray-700'}`}
+            >
+              Add BeautiFul Places
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setActiveTab('best-activities')}
+              className={`block w-full text-left py-4 px-4 ${activeTab === 'best-activities' ? 'bg-red-600' : 'hover:bg-gray-700'}`}
+            >
+              Add Best Activities
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setActiveTab('rich-flavour')}
+              className={`block w-full text-left py-4 px-4 ${activeTab === 'rich-flavour' ? 'bg-red-600' : 'hover:bg-gray-700'}`}
+            >
+              Add Rich Flavour 
+            </button>
+          </li>
         </ul>
         <button
           onClick={handleLogout}
@@ -62,6 +88,9 @@ const AdminPortal = () => {
       <div className="ml-[25%] w-[75%] p-8">
         {activeTab === 'user-details' && <UserDetails />}
         {activeTab === 'add-details' && <AddDetails />}
+        {activeTab === 'beautiful-places' && <BeautifulPlaces />}
+        {activeTab === 'best-activities' && <BestActivities />}
+        {activeTab === 'rich-flavour' && <RichFlavour />}
         {activeTab === 'add-user' && <div>Add User Content</div>}
       </div>
     </div>

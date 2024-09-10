@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./National.css";
 import Nav from "./components/Nav";
@@ -29,29 +29,44 @@ import Whyus from "./Whyus.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
+import axios from "axios";
+import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 
 const National = () => {
+  const [getTrip, setGetTrip] = useState([]);
+  const tripDetails = () => {
+    const response = axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
+    response.then((res) => {
+      setGetTrip(res.data);
+    });
+  };
+  useEffect(() => {
+    tripDetails();
+  });
   const places = [
-    { id: 13, name: "Place 13", img: shi13 },
-    { id: 3, name: "Place 3", img: shi3 },
-    { id: 12, name: "Place 12", img: shi12 },
-    { id: 4, name: "Place 4", img: shi4 },
-    { id: 1, name: "Place 1", img: shi1 },
-    { id: 15, name: "Place 15", img: shi15 },
-    { id: 2, name: "Place 2", img: shi2 },
-    { id: 8, name: "Place 8", img: shi8 },
-    { id: 5, name: "Place 5", img: shi5 },
-    { id: 7, name: "Place 7", img: shi7 },
-    { id: 6, name: "Place 6", img: shi6 },
-    { id: 9, name: "Place 9", img: shi9 },
-    { id: 11, name: "Place 11", img: shi11 },
-    { id: 10, name: "Place 10", img: shi10 },
-    { id: 14, name: "Place 14", img: shi14 },
-    { id: 16, name: "Place 16", img: shi16 },
-    { id: 17, name: "Place 17", img: shi17 },
-    { id: 18, name: "Place 18", img: shi18 },
+    { id: 1, name: "Meghalaya", img: shi13 },
+    { id: 2, name: "Kashmir", img: shi3 },
+    { id: 3, name: "Spiti Valley", img: shi12 },
+    { id: 4, name: "Kerala", img: shi4 },
+    { id: 5, name: "Himachal Pradesh", img: shi1 },
+    { id: 6, name: "Rajasthan", img: shi15 },
+    { id: 7, name: "Uttarakhand", img: shi2 },
+    { id: 8, name: "Ladakh", img: shi8 },
+    { id: 9, name: "Andaman", img: shi5 },
+    { id: 10, name: "Sikkim", img: shi7 },
+    // { id: 6, name: "Place 6", img: shi6 },
+    // { id: 9, name: "Place 9", img: shi9 },
+    // { id: 11, name: "Place 11", img: shi11 },
+    // { id: 10, name: "Place 10", img: shi10 },
+    // { id: 14, name: "Place 14", img: shi14 },
+    // { id: 16, name: "Place 16", img: shi16 },
+    // { id: 17, name: "Place 17", img: shi17 },
+    // { id: 18, name: "Place 18", img: shi18 },
   ];
-
+  const linkedPlaces = places.map((place) => {
+    const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
+    return matchingTrip ? { ...place, tripId: matchingTrip._id } : place;
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -172,25 +187,28 @@ const National = () => {
 
       <h1 className="ind-h">Destinations</h1>
       <div className="ind-div">
-        {places.map((place) => (
-          <Link to={`/place/${place.id}`} key={place.id}>
+        {linkedPlaces.map((place) => (
+          <Link to={`/place/${place.name}`} key={place.id}>
             <img className="ind-img" src={place.img} alt={place.name} />
           </Link>
         ))}
       </div>
-
       <h1 className="all-packages-heading">All Packages</h1>
       <p className="all-packages-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
-
-      <div>
+      {/* <div>
         <Card />
+      </div> */}
+      <div className="flex justify-center mt-28">
+        <div className="w-[80%]">
+          <AllPackagesCard />
+        </div>
       </div>
+
       <Whyus />
       <Guide />
       <Form />
-
       <Footer />
 
       <div className="fixed-button">

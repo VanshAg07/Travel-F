@@ -19,7 +19,7 @@ const UserDetails = () => {
 
   const deleteUser = (userId) => {
     // Delete user from the backend
-    axios.delete(`http://localhost:5000/api/admin/users/${userId}`)
+    axios.delete(`https://travel-server-iley.onrender.com/api/admin/users/${userId}`)
       .then(() => {
         // Remove the deleted user from the state
         setUsers(users.filter(user => user._id !== userId));

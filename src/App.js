@@ -4,13 +4,11 @@ import Home from "./Home.js";
 import Signup from "./components/Signup.js";
 import Login from "./components/Login.js";
 import Contactus from "./Contactus.js";
-
 import Cont from "./Cont.js";
 import International from "./International.js";
 import National from "./National.js";
 import Glry from "./Glry.js";
-
-import AdminPortal from "./components/dmin/AdminPortal.js"
+import AdminPortal from "./components/dmin/AdminPortal.js";
 import Blog from "./components/Blog.js";
 import Blogdetails from "./components/Blogdetails.js";
 import Places from "./components/Places.js";
@@ -22,11 +20,10 @@ import Packagedetails from "./components/Packagedetails.js";
 import Dropnav from "./components/Dropnav.js";
 import Review from "./components/Review.js";
 // import Mobcrd from "./components/Mobcrd.js";
+
 const App = () => {
   return (
-
     <BrowserRouter>
-    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
@@ -38,21 +35,20 @@ const App = () => {
         <Route path="/intern" element={<International />} />
         <Route path="/National" element={<National />} />
         <Route path="/Blog" element={<Blog />} />
-        <Route path="/Hiking" element={<Hiking/>} />
-        <Route path="/Visit" element={<Visit/>} />
-        <Route path="/Food" element={<Food/>} />
-        <Route path="/Shop" element={<Shop/>} />
-        <Route path="/Dropnav" element={<Dropnav/>} />
-        <Route path="/Review" element={<Review/>} />
-        <Route path="/Packagedetails" element={<Packagedetails/>} />
+        <Route path="/Hiking" element={<Hiking />} />
+        <Route path="/Visit" element={<Visit />} />
+        <Route path="/Food" element={<Food />} />
+        <Route path="/Shop" element={<Shop />} />
+        <Route path="/Dropnav" element={<Dropnav />} />
+        <Route path="/Review" element={<Review />} />
+        <Route path="/Packagedetails" element={<Packagedetails />} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
-        <Route path="/place/:id" element={<Places />} /> 
-        {/* <Route path="/Mobcrd" element={<Mobcrd />} />  */}
-
+        <Route path="/place/:id" element={<Places />} />
+        <Route path="/Packagedetails/:name" element={<Packagedetails />} />
+        <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default App;
-

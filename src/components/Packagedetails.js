@@ -8,6 +8,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { GoDot } from "react-icons/go";
 import Footer from "../Footer";
 import { GoDotFill } from "react-icons/go";
+import { useParams } from "react-router-dom";
 
 const Packagedetails = () => {
   // State to track the active link
@@ -16,7 +17,7 @@ const Packagedetails = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [isDay1Expanded, setIsDay1Expanded] = useState(false);
-
+const{name} = useParams()
   // Function to handle the download action
   const handleDownload = () => {
     window.open("/itinerary.pdf", "_blank");
@@ -51,7 +52,7 @@ const Packagedetails = () => {
         <span>Download Itinerary</span>
       </button>
       <div>
-        <h2>Meghalaya Road Trip</h2>
+        <h2>{name} Road Trip</h2>
       </div>
       <div className="icons">
         <div className="icon-text-container">
