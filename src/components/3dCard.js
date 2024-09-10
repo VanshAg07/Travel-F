@@ -30,7 +30,7 @@ const Card = () => {
     .flatMap((trip) => trip.trips);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-24 mx-36  ">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-24 mx-40  ">
       {filteredTrips.length > 0 ? (
         filteredTrips.map((trip, index) => (
           <Link 
