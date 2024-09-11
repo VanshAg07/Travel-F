@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import './Videopg4.css';
-import img1 from '../img/HimachalPradesh.png';
+import img1 from "../img/bali.jpg";
 import img2 from '../img/Uttarakhand.png';
-import img3 from '../img/Kashmir.png';
-import img4 from '../img/kerala.png';
-import img5 from '../img/goa.png';
-import img6 from '../img/karnataka.png';
-import img7 from '../img/manali.png';
-import img8 from '../img/ladakh.png';
-import img9 from '../img/kedarnath.png';
-import img10 from '../img/badrinath.png';
-import img11 from '../img/rishikesh.png';
-import img12 from '../img/meghalaya.png';
-import img13 from '../img/rajasthan.png';
+import img3 from "../img/singapore.jpg";
+import img4 from "../img/thailand.jpg";
+import img5 from '../img/Kashmir.png';
+import img6 from '../img/rishikesh.png';
+import img7 from '../img/kerala.png';
 import video from '../img/india.mp4';
 
 const images = [
-  { src: img1, text: "Himachal Pradesh" },
-  { src: img2, text: "Uttarakhand" },
-  { src: img3, text: "Kashmir" },
-  { src: img4, text: "kerala" },
-  { src: img5, text: "Goa" },
-  { src: img6, text: "Karnataka" },
-  { src: img7, text: "Manali" },
-  { src: img8, text: "Ladakh" },
-  { src: img9, text: "Kedarnath" },
-  { src: img10, text: "Badrinath" },
-  { src: img11, text: "Rishikesh" },
-  { src: img12, text: "Meghalaya" },
-  { src: img13, text: "Rajasthan" },
+  { src: img1, text: "Bali" },
+  { src: img2, text: "Vietnam" },
+  { src: img3, text: "Singapore" },
+  { src: img4, text: "Thailand" },
+  { src: img5, text: "Kashmir" },
+  { src: img6, text: "Andaman" },
+  { src: img7, text: "Kerala" },
 ];
 
 const ImageSlider = () => {

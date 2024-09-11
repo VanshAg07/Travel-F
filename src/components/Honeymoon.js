@@ -12,6 +12,7 @@ import Form from "../components/Form.js";
 import Guide from "../components/Interguide.js";
 import cont from "../img/cont-button.json";
 import Review from "../components/Review";
+import Faq from "./Faq.js";
 
 // import Lottie from "lottie-react";
 
@@ -157,6 +158,7 @@ const Honeymoon = () => {
       <Whyus/>
       <Review/>
       <Guide/>
+      <Faq/>
       <Form/>
 
       <Footer />
