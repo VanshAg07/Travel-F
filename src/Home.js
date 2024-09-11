@@ -4,6 +4,7 @@ import Nav from "./components/Nav.js";
 import Videopage from "./components/Videopage.js";
 import Videopg2 from "./components/Videopg2.js";
 import Videopg3 from "./components/Videopg3.js";
+import Videopg4 from "./components/Videopg4.js";
 import Gallery from "./Gallery.js";
 import Whyus from "./Whyus.js";
 import Contactus from "./Contactus.js";
@@ -14,6 +15,7 @@ import cont from "./img/cont-button.json";
 import PhoneFooter from "./components/PhoneFooter.js";
 import { useMediaQuery } from 'react-responsive';
 import {GoogleOAuthProvider} from '@react-oauth/google';
+import Review from "./components/Review.js";
 
 
 
@@ -35,7 +37,9 @@ const Home = () => {
       <Videopg2 />
       <Videopg3 />
       <Gallery />
+      <Videopg4 />
       <Whyus />
+      <Review />
       <div className="marquee-wrapper">
         <Marquee />
       </div>

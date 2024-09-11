@@ -10,7 +10,7 @@
 .marquee {
   display: flex;
   width: max-content; /* Set width to accommodate all images */
-  animation: marquee 25s linear infinite; /* Adjust duration for smooth scrolling */
+  animation: marquee 40s linear infinite; /* Adjust duration for smooth scrolling */
 }
 
 .marquee-image {

@@ -15,7 +15,7 @@ const TravelerTestimonials = () => {
 
   return (
     <div className="testimonials-section">
-      <h2 className="testimonials-heading">Hear from Travelers like you</h2>
+      <h2 className="testimonials-heading">Hear From Travelers Like You</h2>
       <div className="testimonials-grid">
         {images.map((image, index) => (
           <div key={index} className="testimonial-image-container">

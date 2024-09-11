@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import "./International.css";
-import Nav from "./components/Nav";
-import intern from "./img/india.jpg";
+import "./Honeymoon.css";
+import Nav from "../components/Nav";
+import intern from "../img/india.jpg";
 import Lottie  from 'lottie-react';
-import animationData from './img/intern.json';
-import Footer from "./Footer.js"; 
-import Card from "./components/3dCard.js";
-import shi from "./img/crd-shi.png";
-import Whyus from "./Whyus.js";
-import Form from "./components/Form.js";
-import Guide from "./components/Interguide.js";
-import Review from "./components/Review";
-import cont from "./img/cont-button.json";
+import animationData from '../img/intern.json';
+import Footer from "../Footer.js"; 
+import Card from "../components/3dCard.js";
+import shi from "../img/crd-shi.png";
+import Whyus from "../Whyus.js";
+import Form from "../components/Form.js";
+import Guide from "../components/Interguide.js";
+import cont from "../img/cont-button.json";
+import Review from "../components/Review";
 
 // import Lottie from "lottie-react";
 
-const International = () => {
+const Honeymoon = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,7 +63,7 @@ const International = () => {
         
         <img className="hero-img" src={intern} alt="India" />
         <h1 className="hero-heading">
-          Luxury Getaways Abroad - Book <br /> Your Dream Vacation
+        Honeymoon Tour Packages <br /> Where Forever Begins...Together!
         </h1>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -134,7 +134,7 @@ const International = () => {
            className="hero-lottie"
         />
       </div>
-      <h1 className="ind-h">Destinations</h1>
+      <h1 className="ind-h">Your Love Story, Our Destinations!</h1>
       <div className="ind-div">
         <img className="ind-img" src={shi} alt="India" />
         <img className="ind-img" src={shi} alt="India" />
@@ -172,4 +172,4 @@ const International = () => {
   );
 };
 
-export default International;
+export default Honeymoon;

@@ -30,6 +30,7 @@ import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
+import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 
 const National = () => {
@@ -207,6 +208,7 @@ const National = () => {
       </div>
 
       <Whyus />
+      <Review/>
       <Guide />
       <Form />
       <Footer />
