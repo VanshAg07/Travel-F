@@ -60,7 +60,7 @@ const Nav = () => {
           </div>
         </Link>
 
-        <Link to="/Faq" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/CorporateTours" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <MdOutlineAirplanemodeActive />
             <p>Corporate Tours</p>
