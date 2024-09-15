@@ -46,8 +46,6 @@ const Place = () => {
             breathtaking views of nature here.
           </p>
           <Hiking />
-          <Hiking />
-          <Hiking />
         </div>
         <div className="Visiting-container">
           <h1>Beautiful Places To Visit In {name} For A Blissful Vacay</h1>
@@ -56,8 +54,6 @@ const Place = () => {
             enjoy natural scenery, {name} is the perfect place for you. It
             should be at the top of your list for your next getaway.
           </p>
-          <Visit />
-          <Visit />
           <Visit />
         </div>
         <div className="food-container">
@@ -69,7 +65,6 @@ const Place = () => {
             to eat and explore.
           </p>
           <Food />
-          <Food />
         </div>
         <div className="shop-container">
           <h1>Best Places to shop in {name}</h1>
@@ -79,7 +74,6 @@ const Place = () => {
             can explore the bustling bazaars for traditional clothes,
             accessories, bamboo crafts, and food items.
           </p>
-          <Shop />
           <Shop />
         </div>
 

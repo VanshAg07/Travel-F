@@ -31,9 +31,8 @@ import Disclaimer from "./components/Disclaimer.js";
 import Whyuss from "./components/Whyuss.js";
 import Forms from "./components/Forms.js";
 import Mainreview from "./components/Mainreview.js";
-import Mobcard from "./components/Mobcard.js";
-import Reflection from "./components/Reflection.js";
-import Explore from "./components/Explore.js"
+import Mobcard from "./components/Mobcard.js"
+import Reflection from "./components/Reflection.js"
 
 const App = () => {
   return (
@@ -70,8 +69,7 @@ const App = () => {
         <Route path="/Forms" element={<Forms />} />
         <Route path="/Mainreview" element={<Mainreview />} />
         <Route path="/Mobcard" element={<Mobcard />} />
-        <Route path="/Explore" element={<Explore />} />
-        <Route path="/place/:id" element={<Places />} />
+        <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
       </Routes>

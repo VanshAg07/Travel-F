@@ -1,46 +1,60 @@
-import React from 'react';
-import './Hiking.css'; // Ensure this file has the styles defined below
-import { FaClock } from 'react-icons/fa'; // Import FontAwesome clock icon
-import bg from "../img/india.jpg";
-
-const hikingData = [
-  {
-    img: bg, // Replace with your actual image path
-    title: 'Hiking',
-    description: 'Meghalaya offers stunning hiking opportunities, with its scenic hills, waterfalls, and living root bridges, making for a memorable outdoor adventure.',
-    duration: '4 hours approx',
-  },
-  {
-    img: bg, // Replace with your actual image path
-    title: 'Golfing',
-    description: 'Golfing in Meghalaya offers a unique experience with its picturesque courses set amidst rolling hills and refreshing weather.',
-    duration: '30 minutes approx',
-  },
-  {
-    img: bg, // Replace with your actual image path
-    title: 'River Canyoning',
-    description: 'River canyoning in Meghalaya is an exhilarating adventure, exploring hidden gorges and waterfalls while rappelling, sliding, and jumping into natural pools.',
-    duration: '8 hours approx',
-  },
-  // Add more hiking data here if needed
-];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Hiking.css"; // Ensure this file has the styles defined below
+import { FaClock } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 const Hiking = () => {
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { name } = useParams();
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/user/getBestActivities/${name}`
+        );
+        console.log(response.data); // Check if data is logged in console
+        setActivities(response.data.activities || []); // Update activities state
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchActivities();
+  }, [name]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
-    <div className="hiking-cards-grid">
-      {hikingData.map((hike, index) => (
-        <div key={index} className="hiking-card">
-          <img src={hike.img} alt={hike.title} className="hiking-card-img" />
-          <div className="hiking-card-content">
-            <div className="clock-text-container">
-              <FaClock className="hiking-card-clock" />
-              <span className="duration-text">{hike.duration}</span>
+    <div className="hiking-cards-grid grid-cols-3">
+      {activities.length > 0 ? (
+        activities.map((activity, index) => (
+          <div key={index} className="hiking-card">
+            <img
+              src={activity.img}
+              alt={activity.title}
+              className="hiking-card-img"
+            />
+            <div className="hiking-card-content">
+              <div className="clock-text-container">
+                <FaClock className="hiking-card-clock" />
+                <span className="duration-text">{activity.time}</span>{" "}
+                {/* Displaying time */}
+              </div>
+              <h1>{activity.title}</h1> {/* Displaying title */}
+              <p>{activity.description}</p> {/* Displaying description */}
             </div>
-            <h1>{hike.title}</h1>
-            <p>{hike.description}</p>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No activities found</p>
+      )}
     </div>
   );
 };

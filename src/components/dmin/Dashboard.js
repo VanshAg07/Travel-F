@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
-  // Array of states for the dropdown
   const states = [
     "Meghalaya",
     "Kashmir",
@@ -53,7 +52,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://travel-server-iley.onrender.com/api/admin/addTrip", tripDetails);
+      const response = await axios.post("http://localhost:5000/api/admin/addTrip", tripDetails);
       alert("Trip added successfully!");
       setTripDetails({
         stateName: "",
@@ -90,7 +89,6 @@ const Dashboard = () => {
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Trip</h2>
       <form onSubmit={handleSubmit} className="text-center space-y-4">
-        {/* Dropdown for selecting the state */}
         <select
           name="stateName"
           value={tripDetails.stateName}
@@ -106,7 +104,6 @@ const Dashboard = () => {
           ))}
         </select>
 
-        {/* Input fields for other trip details */}
         <input
           type="text"
           name="tripName"

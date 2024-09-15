@@ -13,7 +13,7 @@ const AdminPortal = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    axios.post('https://travel-server-iley.onrender.com/api/admin/logout')
+    axios.post('http://localhost:5000/api/admin/logout')
       .then(() => {
         navigate('/');
       })
@@ -24,7 +24,6 @@ const AdminPortal = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Left Side Navigation Bar */}
       <nav className="w-1/6 h-full bg-black text-white fixed top-0 left-0 flex flex-col">
         <ul className="flex-1 space-y-4 p-4">
           <li>
@@ -84,7 +83,6 @@ const AdminPortal = () => {
         </button>
       </nav>
 
-      {/* Main Content Area */}
       <div className="ml-[25%] w-[75%] p-8">
         {activeTab === 'user-details' && <UserDetails />}
         {activeTab === 'add-details' && <AddDetails />}
