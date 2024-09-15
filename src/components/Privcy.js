@@ -1,7 +1,7 @@
 import React from "react";
 import "./Privcy.css";
 
-const Quicklinks = () => {
+const Privcy = () => {
   return (
     <div>
       <div>
@@ -154,4 +154,4 @@ const Quicklinks = () => {
   );
 };
 
-export default Quicklinks;
+export default Privcy;

@@ -7,14 +7,21 @@ const Quicklinks = () => {
       <div className="container">
         <h1>About Us</h1>
         <p>
-          We at WanderOn are a modern travel community that provides end to end
-          travel packages in India and abroad. We design the best travel
-          itineraries that encourage group traveling for like-minded people. Our
-          services include road trips, trekking expeditions, corporate trips,
-          and customized tour packages. On our trips, we ensure hassle-free
-          traveling, top-notch accommodation and guided sightseeing that too in
-          a budget that won't burn a hole in your pocket. Just give us your
-          dates and be ready to experience traveling like never before.
+          TravelloTen india Private Limited is a specialist for Travel &
+          Transport serving exclusively the academic sector by arranging
+          educational & fun tours for students of every age all over India. We
+          are different as we educate and inform students about
+          historical/geographical/cultural values etc. wherever the tour takes
+          place. We also doing school tour , colleges tour , corporate tour &
+          Family's tour for all place in India. We have over many years combined
+          experience in providing the almost in quality, authenticity and
+          service in the group travel industry. We have strong hold in the
+          domestic market as well. We believe in “Service with quality & Smile”.
+          We use the best system for operations which adds “Valued Efficiency”
+          to our teamwork thus making hospitality not a business affair but a
+          “Commitment & Pledge” towards client’s satisfaction. At Travello10
+          understand that planning a group trip can be a lot of work and that is
+          why we believe in providing value every step of the way
         </p>
       </div>
 
@@ -47,8 +54,6 @@ const Quicklinks = () => {
         <p>About Us</p>
         <p>Payments</p>
       </div>
-
-      
     </div>
   );
 };
