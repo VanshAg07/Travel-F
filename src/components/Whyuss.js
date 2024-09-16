@@ -20,9 +20,9 @@ const WhyWanderOn = () => {
           backgroundImage: `url(${icon1})`,
         }}
       >
-        <h3 className="text-cyan-500 font-bold text-xl mb-4">No Third Party Mess</h3>
+        <h3 className="text-cyan-500 font-bold text-xl mb-4">No Unnecessary Add-ons</h3>
         <p className="text-gray-600 mb-4">
-          100 percent in-house operations for all trips! No third parties involved, hence no fishy claims!
+        100% In-House Expertise on Every Adventure! No Outsiders, Just Quality!
         </p>
       </div>
 
@@ -34,11 +34,11 @@ const WhyWanderOn = () => {
           }}
         >
           <h3 className="text-cyan-500 font-bold text-xl mb-4">
-            Transparency & Security
-          </h3>
+          Clarity & Trust
+                    </h3>
           <p className="text-gray-600 mb-4">
-            Real-time monitoring of all trips by ground team! All routes and
-            weather conditions are accurately updated!
+          Live Monitoring of All Trips—Stay Informed with Up-to-Date Routes and Weather Conditions!
+
           </p>
         </div>
 
@@ -50,11 +50,10 @@ const WhyWanderOn = () => {
           }}
         >
           <h3 className="text-cyan-500 font-bold text-xl mb-4">
-            Co-Travelers Filtering
+          Custom Co-Travelers Selection
           </h3>
           <p className="text-gray-600 mb-4">
-            Multi-step filtering to bring only like-minded people together!
-            That’s our key to have fuss-free trips!
+          Bringing the Right People Together with Precision Filtering—For the Perfect Trip!
           </p>
         </div>
 
@@ -66,11 +65,10 @@ const WhyWanderOn = () => {
           }}
         >
           <h3 className="text-cyan-500 font-bold text-xl mb-4">
-            One Stop Hassle Free Experience
+          Your Stress-Free Travel Solution
           </h3>
           <p className="text-gray-600 mb-4">
-            Comfortable stays, trained drivers, hospitable staff, and friendly
-            trip leaders put together that one memorable trip for you!
+          Luxury Stays, Trained Drivers, Friendly Crew, and Experienced Trip Leaders—Crafting Unforgettable Memories!
           </p>
         </div>
       </div>

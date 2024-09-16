@@ -1,48 +1,59 @@
 .testimonials-section {
-    text-align: center; /* Centers the heading */
-    padding: 20px;
-    background-color: #f9f9f9; /* Light background color for the section */
-  }
-  
-  .testimonials-heading {
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 2.5rem;
-  }
-  
-  .testimonials-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Space between the images */
-  }
-  
+  text-align: center; /* Centers the heading */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background color for the section */
+}
+
+.testimonials-heading {
+  padding-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Space between the images */
+}
+
+.testimonial-image-container {
+  position: relative; /* Allows for absolute positioning of the link */
+  flex: 0 0 45%; /* Takes up 45% of the container width for each image */
+  max-width: 600px; /* Ensures images do not exceed a certain width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds some shadow to the images */
+  border-radius: 8px; /* Rounds the corners of the images */
+  overflow: hidden;
+  margin-bottom: 20px; /* Adds some space below each row of images */
+}
+
+.testimonial-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: transparent; /* Removes white background from the images */
+  padding-bottom: 30px;
+}
+
+.continue-reading-link {
+  position: absolute;
+  bottom: 10px;
+  left: 80%;
+  transform: translateX(-50%);
+  color: blue;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
   .testimonial-image-container {
-    flex: 0 0 45%; /* Takes up 45% of the container width for each image */
-    max-width: 600px; /* Ensures images do not exceed a certain width */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds some shadow to the images */
-    border-radius: 8px; /* Rounds the corners of the images */
-    overflow: hidden;
-    margin-bottom: 20px; /* Adds some space below each row of images */
+    flex: 0 0 80%; /* Width reduced for mobile screens */
+    max-width: 100%;
   }
-  
-  .testimonial-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    background-color: transparent; /* Removes white background from the images */
+}
+
+@media (max-width: 480px) {
+  .testimonial-image-container {
+    flex: 0 0 100%; /* Full width for smaller mobile screens */
   }
-  
-  @media (max-width: 768px) {
-    .testimonial-image-container {
-      flex: 0 0 80%; /* Width reduced for mobile screens */
-      max-width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .testimonial-image-container {
-      flex: 0 0 100%; /* Full width for smaller mobile screens */
-    }
-  }
-  
+}
