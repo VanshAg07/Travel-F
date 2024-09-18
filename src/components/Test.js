@@ -8,7 +8,7 @@ const Test = () => {
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get("https://travel-server-iley.onrender.com/api/admin/getTrip");
+        const response = await axios.get("http://localhost:5000/api/admin/getTrip");
         setTrips(response.data);
       } catch (error) {
         console.error("Error fetching trips:", error);

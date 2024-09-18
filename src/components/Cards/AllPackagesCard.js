@@ -12,7 +12,7 @@ function AllPackagesCard() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://travel-server-iley.onrender.com/api/user/getTripDetails"
+          "http://localhost:5000/api/user/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);

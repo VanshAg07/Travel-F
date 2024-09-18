@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home.js";
-import Signup from "./components/Signup.js";
-import Login from "./components/Login.js";
 import Contactus from "./Contactus.js";
 import Cont from "./Cont.js";
 import International from "./International.js";
@@ -22,6 +20,8 @@ import Review from "./components/Review.js";
 import Honeymoon from "./components/Honeymoon.js";
 import Faq from "./components/Faq.js";
 import CorporateHome from "./components/CorporateTours/CorporateHome.js";
+import Login from "./components/Login/Login.js";
+import Signup from "./components/Login/SignUp.js";
 // import Mobcrd from "./components/Mobcrd.js";
 
 const App = () => {

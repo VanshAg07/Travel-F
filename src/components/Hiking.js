@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Hiking.css"; // Ensure this file has the styles defined below
 import { FaClock } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import bg from "../img/india.jpg";
 
 const Hiking = () => {
   const [activities, setActivities] = useState([]);
@@ -14,7 +15,7 @@ const Hiking = () => {
     const fetchActivities = async () => {
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/getBestActivities/${name}`
+          `http://localhost:5000/api/user/getBestActivities/${name}`
         );
         console.log(response.data); // Check if data is logged in console
         setActivities(response.data.activities || []); // Update activities state
@@ -37,7 +38,8 @@ const Hiking = () => {
         activities.map((activity, index) => (
           <div key={index} className="hiking-card">
             <img
-              src={activity.img}
+              src={bg}
+              // src={activity.img}
               alt={activity.title}
               className="hiking-card-img"
             />

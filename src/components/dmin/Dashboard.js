@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const states = [
@@ -37,9 +38,10 @@ const Dashboard = () => {
     tripPaymentMethods: "",
     tripAmenities: "",
     tripRules: "",
-    tripImages: "",
     tripDescription: "",
   });
+
+  const [tripImage, setTripImage] = useState(null); // New state for image
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,11 +51,37 @@ const Dashboard = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    setTripImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    // Append all trip details
+    Object.keys(tripDetails).forEach((key) => {
+      formData.append(key, tripDetails[key]);
+    });
+
+    // Append the image if selected
+    if (tripImage) {
+      formData.append("tripImage", tripImage);
+    }
+
     try {
-      const response = await axios.post("https://travel-server-iley.onrender.com/api/admin/addTrip", tripDetails);
-      alert("Trip added successfully!");
+      const response = await axios.post(
+        "http://localhost:5000/api/admin/addTrip",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      toast.success("Trip added successfully!");
+
+      // Reset form
       setTripDetails({
         stateName: "",
         tripName: "",
@@ -76,9 +104,9 @@ const Dashboard = () => {
         tripPaymentMethods: "",
         tripAmenities: "",
         tripRules: "",
-        tripImages: "",
         tripDescription: "",
       });
+      setTripImage(null); // Clear image
     } catch (error) {
       console.error("Error adding trip:", error);
       alert("Failed to add trip. Please try again.");
@@ -94,7 +122,6 @@ const Dashboard = () => {
           value={tripDetails.stateName}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         >
           <option value="">Select State</option>
           {states.map((state, index) => (
@@ -283,12 +310,11 @@ const Dashboard = () => {
           placeholder="Trip Rules"
           className="w-full p-2 border border-gray-300 rounded-lg"
         />
+
         <input
-          type="text"
-          name="tripImages"
-          value={tripDetails.tripImages}
-          onChange={handleChange}
-          placeholder="Trip Images (comma-separated URLs)"
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
           className="w-full p-2 border border-gray-300 rounded-lg"
         />
         <textarea
@@ -298,7 +324,6 @@ const Dashboard = () => {
           placeholder="Trip Description"
           className="w-full p-2 border border-gray-300 rounded-lg"
           rows="4"
-          // required
         />
         <button
           type="submit"

@@ -17,7 +17,7 @@ export default function Signup() {
             return;
         }
 
-        fetch("https://travel-server-iley.onrender.com/register", {
+        fetch("http://localhost:5000/register", {
             method: "POST",
             crossDomain: true,
             headers: {

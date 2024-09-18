@@ -13,7 +13,7 @@ const Visit = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get(`https://travel-server-iley.onrender.com/api/user/getBeautifulPlaces/${name}`);
+        const response = await axios.get(`http://localhost:5000/api/user/getBeautifulPlaces/${name}`);
         setPlaces(response.data.places || []); 
       } catch (err) {
         setError(err.message);
