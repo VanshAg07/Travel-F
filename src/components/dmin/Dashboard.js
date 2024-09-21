@@ -40,8 +40,8 @@ const Dashboard = () => {
     tripRules: "",
     tripDescription: "",
   });
-
   const [tripImage, setTripImage] = useState(null); // New state for image
+  const [loading, setLoading] = useState(false); // State to handle loading
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,30 +55,47 @@ const Dashboard = () => {
     setTripImage(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const uploadImageToCloudinary = async (imageFile) => {
     const formData = new FormData();
-    // Append all trip details
-    Object.keys(tripDetails).forEach((key) => {
-      formData.append(key, tripDetails[key]);
-    });
-
-    // Append the image if selected
-    if (tripImage) {
-      formData.append("tripImage", tripImage);
-    }
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "Travell"); // Use your own Cloudinary upload preset
+    formData.append("cloud_name", "dfsl9zcrt"); // Replace with your Cloudinary cloud name
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/addTrip",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        "https://api.cloudinary.com/v1_1/dfsl9zcrt/image/upload",
+        formData
       );
+      return response.data.secure_url; // Return the image URL from Cloudinary
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+      toast.error("Failed to upload image. Please try again.");
+      return null;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    let imageUrl = null;
+
+    if (tripImage) {
+      imageUrl = await uploadImageToCloudinary(tripImage);
+      if (!imageUrl) {
+        setLoading(false);
+        return; // Stop if image upload fails
+      }
+    }
+
+    const tripData = {
+      ...tripDetails,
+      stateName:tripDetails.stateName,
+      tripImage: imageUrl,
+    };
+
+    try {
+      await axios.post("http://localhost:5000/api/admin/addTrip", tripData);
       toast.success("Trip added successfully!");
 
       // Reset form
@@ -106,13 +123,14 @@ const Dashboard = () => {
         tripRules: "",
         tripDescription: "",
       });
-      setTripImage(null); // Clear image
+      setTripImage(null);
     } catch (error) {
       console.error("Error adding trip:", error);
-      alert("Failed to add trip. Please try again.");
+      toast.error("Failed to add trip. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Trip</h2>
@@ -328,8 +346,9 @@ const Dashboard = () => {
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full"
+          disabled={loading}
         >
-          Add Trip
+          {loading ? "Adding Trip..." : "Add Trip"}
         </button>
       </form>
     </div>
