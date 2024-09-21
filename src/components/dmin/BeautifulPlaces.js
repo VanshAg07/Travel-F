@@ -56,7 +56,7 @@ const BeautifulPlaces = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/addBeautifulPlaces",
+        "https://travel-server-iley.onrender.com/api/admin/addBeautifulPlaces",
         payload,
         {
           headers: {
