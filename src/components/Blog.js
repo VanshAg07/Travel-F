@@ -9,8 +9,8 @@ import img5 from "../img/HimachalPradesh.png";
 import img6 from "../img/Uttarakhand.png";
 import "./Blog.css";
 import Footer from "../Footer";
-import Crd from "./Card";
 import { Link } from "react-router-dom";
+import FooterSection from "./Footersection";
 
 const Data = [
   {
@@ -78,6 +78,7 @@ const Blog = () => {
         ))}
 
       </div>
+      <FooterSection/>
       <Footer />
     </>
   );

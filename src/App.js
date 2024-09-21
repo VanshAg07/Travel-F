@@ -36,6 +36,9 @@ import Reflection from "./components/Reflection.js";
 import Newsignin from "./components/Newsignin.js";
 import Explore from "./components/Explore.js";
 import Homeglry from "./components/Homeglry.js";
+import Corporate from "./components/Corporate.js";
+import Superpower from "./components/Superpower.js";
+import Corpohero from "./components/Corpo-hero.js";
 
 const App = () => {
   return (
@@ -75,6 +78,9 @@ const App = () => {
         <Route path="/Mainreview" element={<Mainreview />} />
         <Route path="/Mobcard" element={<Mobcard />} />
         <Route path="/Explore" element={<Explore />} />
+        <Route path="/Corporate" element={<Corporate />} />
+        <Route path="/Corpohero" element={<Corpohero />} />
+        <Route path="/Superpower" element={<Superpower />} /> 
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

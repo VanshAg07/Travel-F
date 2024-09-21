@@ -18,7 +18,7 @@ const Forms = () => {
         {/* Right side form */}
         <div className="bg-white rounded-lg shadow-lg p-8 w-[500px]">
           <h2 className="text-cyan-500 text-lg font-semibold mb-1">
-            Travell010 Calling?
+            Travello10 Calling?
           </h2>
           <h3 className="text-lg font-semibold mb-6">Allow Us to Call You Back!</h3>
 

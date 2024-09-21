@@ -58,7 +58,11 @@
     border-image: none;
     position: relative;
     transition: all 0.4s ease 0s;
+    
     .product_image{
+        background-size: cover; /* Ensures the background image covers the element */
+    background-position: center; /* Centers the background image */
+    height: 250px; /* Set a fixed height for your card */
         cursor: pointer;
         max-width: 100%;
         transition: all 0.4s ease 0s;
@@ -95,7 +99,7 @@
         box-sizing: border-box;
         transition: all 0.2s ease-in-out;
         a{
-            color: #716f6f;
+            color: #000;
             display: block;
             font-size: 11px;
             font-weight: 500;
@@ -103,25 +107,23 @@
             width: 80%;
             text-decoration: none;
             .product_name{
-                font-size: 14px;
+                font-size: 20px;
                 font-weight: normal;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                overflow: hidden;   
+                overflow: hidden;  
             }
             &:hover{
                 text-decoration: none;
-                color: #f7892a;
             }
         }
         .new-price{
-            color: #716f6f;
+            color: #222121;
             font-size: 14px;
             margin: 0;
             text-align: left;
             font-weight: normal;
             font-weight: bold;
-            color: #f7892a;
         }
         .offer_label{
             display: flex;

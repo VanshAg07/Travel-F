@@ -6,6 +6,7 @@ import './Cont.css';
 import Footer from "./Footer.js";
 import cont from "./img/cont-button.json";
 import Lottie from "lottie-react";
+import FooterSection from './components/Footersection.js';
 
 const Cont = () => {
     const [formData, setFormData] = useState({
@@ -103,6 +104,7 @@ const Cont = () => {
                     </form>
                 </div>
             </div>
+            <FooterSection/>
             <Footer />
 
 
