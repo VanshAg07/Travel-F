@@ -12,6 +12,7 @@ import image9 from './img/kashmir.jpg';
 import image10 from './img/kerala.jpg';
 import Nav from './components/Nav';
 import Footer from './Footer';
+import FooterSection from './components/Footersection';
 
 const images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10];
 
@@ -27,6 +28,7 @@ const Glry = () => {
                     </div>
                 ))}
             </div>
+            <FooterSection/>
             <Footer/>
         </div>
     );

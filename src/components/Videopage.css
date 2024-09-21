@@ -1,6 +1,13 @@
 .relative{
   margin-top: -80px;
 }
+
+.video-video {
+  width: 100%; /* Make the video responsive */
+  height: 98vh; /* Set the desired height */
+  object-fit: cover; /* Ensures the video covers the area without distortion */
+}
+
 .videopg-h1 {
   position: absolute;
   top: 40%; /* Adjust this value if needed */

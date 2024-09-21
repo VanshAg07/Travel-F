@@ -1,0 +1,40 @@
+.terms-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding-top: 90px;
+  }
+  
+  .terms-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #000000;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .section-content {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
+    text-align: justify;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  /* Additional styles for sections */
+  .terms-section {
+    margin-bottom: 40px;
+  }
+  

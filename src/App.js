@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.scss"
 import Home from "./Home.js";
 import Contactus from "./Contactus.js";
 import Cont from "./Cont.js";
@@ -19,17 +20,32 @@ import Dropnav from "./components/Dropnav.js";
 import Review from "./components/Review.js";
 import Honeymoon from "./components/Honeymoon.js";
 import Faq from "./components/Faq.js";
-import CorporateHome from "./components/CorporateTours/CorporateHome.js";
-import Login from "./components/Login/Login.js";
-import Signup from "./components/Login/SignUp.js";
-// import Mobcrd from "./components/Mobcrd.js";
+import Payments from "./components/Payments.js";
+import FooterSection from "./components/Footersection.js";
+import Privcy from "./components/Privcy.js";
+import Cancellation from "./components/Cancellation.js";
+import Termcondition from "./components/Termcondition.js";
+import Disclaimer from "./components/Disclaimer.js";
+import Whyuss from "./components/Whyuss.js";
+import Forms from "./components/Forms.js";
+import Mainreview from "./components/Mainreview.js";
+import Mobcard from "./components/Mobcard.js";
+import Reflection from "./components/Reflection.js";
+import Newsignin from "./components/Newsignin.js";
+import Explore from "./components/Explore.js";
+import Homeglry from "./components/Homeglry.js";
+import Corporate from "./components/Corporate.js";
+import Superpower from "./components/Superpower.js";
+import Corpohero from "./components/Corpo-hero.js";
+import SignUp from './components/Login/SignUp.js';
+import Login from './components/Login/Login.js';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/admin" element={<AdminPortal />} />
         <Route path="/Contactus" element={<Contactus />} />
@@ -46,9 +62,25 @@ const App = () => {
         <Route path="/Review" element={<Review />} />
         <Route path="/Packagedetails" element={<Packagedetails />} />
         <Route path="/Honeymoon" element={<Honeymoon />} />
+        <Route path="/Privcy" element={<Privcy />} />
+        <Route path="/Cancellation" element={<Cancellation />} />
+        <Route path="/Termcondition" element={<Termcondition />} />
+        <Route path="/Disclaimer" element={<Disclaimer />} />
+        <Route path="/Whyuss" element={<Whyuss />} />
+        <Route path="/Reflection" element={<Reflection />} />
+        <Route path="/Newsignin" element={<Newsignin />} />
+        <Route path="/Homeglry" element={<Homeglry />} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
+        <Route path="/Footersection" element={<FooterSection />} />
         <Route path="/Faq" element={<Faq />} />
-        <Route path="/CorporateTours" element={<CorporateHome />} />
+        <Route path="/Payments" element={<Payments />} />
+        <Route path="/Forms" element={<Forms />} />
+        <Route path="/Mainreview" element={<Mainreview />} />
+        <Route path="/Mobcard" element={<Mobcard />} />
+        <Route path="/Explore" element={<Explore />} />
+        <Route path="/Corporate" element={<Corporate />} />
+        <Route path="/Corpohero" element={<Corpohero />} />
+        <Route path="/Superpower" element={<Superpower />} /> 
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

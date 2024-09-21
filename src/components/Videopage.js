@@ -1,7 +1,8 @@
 import React from 'react';
 import './Videopage.css';
 import video from '../img/bg-v.mp4';
-import review from "../img/vp-img.png";
+import Mainreview from "./Mainreview";
+
 
 const Videopage = () => {
   return (
@@ -11,7 +12,6 @@ const Videopage = () => {
         <span className='line2'>WITH <span className='sp-1'>TRAVELLO10</span></span>
       </h1>
       <p className='videopg-p'>Book trips and explore new destinations with ease from anywhere</p>
-      <img src={review} className='review-image' alt='Review' />
       <video 
         src={video} 
         autoPlay 
@@ -19,6 +19,7 @@ const Videopage = () => {
         muted 
         className='video-video'
       ></video>
+      <Mainreview />
     </div>
   );
 };

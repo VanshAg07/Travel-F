@@ -7,12 +7,15 @@ import animationData from '../img/intern.json';
 import Footer from "../Footer.js"; 
 import Card from "../components/3dCard.js";
 import shi from "../img/crd-shi.png";
-import Whyus from "../Whyus.js";
+import Whyuss from "./Whyuss.js";
 import Form from "../components/Form.js";
 import Guide from "../components/Interguide.js";
 import cont from "../img/cont-button.json";
 import Review from "../components/Review";
 import Faq from "./Faq.js";
+import FooterSection from "./Footersection";
+import Gallery from "../Gallery.js";
+
 
 // import Lottie from "lottie-react";
 
@@ -155,12 +158,12 @@ const Honeymoon = () => {
       <div>
         <Card />
       </div>
-      <Whyus/>
+      <Gallery/>
+      <Whyuss/>
       <Review/>
-      <Guide/>
       <Faq/>
       <Form/>
-
+      <FooterSection/>
       <Footer />
       <div className="fixed-button">
                 <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 

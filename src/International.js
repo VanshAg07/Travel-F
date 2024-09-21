@@ -7,11 +7,12 @@ import animationData from './img/intern.json';
 import Footer from "./Footer.js"; 
 import Card from "./components/3dCard.js";
 import shi from "./img/crd-shi.png";
-import Whyus from "./Whyus.js";
+import Whyuss from "./components/Whyuss.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
+import FooterSection from "./components/Footersection.js";
 
 // import Lottie from "lottie-react";
 
@@ -154,11 +155,11 @@ const International = () => {
       <div>
         <Card />
       </div>
-      <Whyus/>
+      <Whyuss/>
       <Review/>
       <Guide/>
       <Form/>
-
+      <FooterSection/>
       <Footer />
       <div className="fixed-button">
                 <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 

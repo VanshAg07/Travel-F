@@ -15,7 +15,7 @@ const Hiking = () => {
     const fetchActivities = async () => {
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/getBestActivities/${name}`
+          `http://localhost:5000/api/user/getBestActivities/${name}`
         );
         console.log(response.data); // Check if data is logged in console
         setActivities(response.data.activities || []); // Update activities state

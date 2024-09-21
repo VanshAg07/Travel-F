@@ -14,7 +14,7 @@ const Card = () => {
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
+        const response = await axios.get("http://localhost:5000/api/user/getTripDetails");
         setTrips(response.data);
         console.log(response.data);
       } catch (error) {

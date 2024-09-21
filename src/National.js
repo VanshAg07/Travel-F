@@ -6,7 +6,6 @@ import intern from "./img/international.jpg";
 import Lottie from "lottie-react";
 import animationData from "./img/India.json";
 import Footer from "./Footer.js";
-import Card from "./components/3dCard.js";
 import shi1 from "./img/1.png";
 import shi2 from "./img/2.png";
 import shi3 from "./img/3.png";
@@ -15,7 +14,7 @@ import shi5 from "./img/5.png";
 import shi6 from "./img/6.png";
 import shi7 from "./img/7.png";
 import shi8 from "./img/8.png";
-import shi9 from "./img/9.png";
+import shi9 from "./img/9.png"; 
 import shi10 from "./img/10.png";
 import shi11 from "./img/11.png";
 import shi12 from "./img/12.png";
@@ -25,18 +24,20 @@ import shi15 from "./img/15.png";
 import shi16 from "./img/16.png";
 import shi17 from "./img/17.png";
 import shi18 from "./img/18.png";
-import Whyus from "./Whyus.js";
+import Whyuss from "./components/Whyuss.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
 import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
+import FooterSection from "./components/Footersection";
+
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -207,10 +208,11 @@ const National = () => {
         </div>
       </div>
 
-      <Whyus />
+      <Whyuss />
       <Review/>
       <Guide />
       <Form />
+      <FooterSection/>
       <Footer />
 
       <div className="fixed-button">

@@ -9,6 +9,7 @@ import img5 from '../img/Kashmir.png';
 import img6 from '../img/rishikesh.png';
 import img7 from '../img/kerala.png';
 import video from '../img/india.mp4';
+import FooterSection from "./Footersection";
 
 const images = [
   { src: img1, text: "Bali" },
