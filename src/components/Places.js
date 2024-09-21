@@ -5,9 +5,10 @@ import Footer from "../Footer";
 import "./Places.css"; // Ensure this file has the styles defined above
 import bg from "../img/india.jpg";
 import Card from "./3dCard";
-import Whyus from "../Whyus";
+import Whyuss from "./Whyuss";
+import Review from "./Review"
+import FooterSection from "./Footersection";
 import review from "../img/reviews.png";
-
 import Hiking from "./Hiking";
 import Visit from "./Visit";
 import Food from "./Food";
@@ -103,10 +104,12 @@ const Place = () => {
           </ol>
         </div>
         <div className="why">
-          <Whyus />
+          <Whyuss />
         </div>
+        <Review/>
         <Form />
       </div>
+      <FooterSection />
       <Footer />
     </>
   );

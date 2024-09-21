@@ -17,6 +17,9 @@ import { useMediaQuery } from 'react-responsive';
 import {GoogleOAuthProvider} from '@react-oauth/google';
 import Review from "./components/Review.js";
 import Forms from "./components/Forms.js";
+import Explore from "./components/Explore.js";
+import FooterSection from "./components/Footersection.js";
+import Homeglry from "./components/Homeglry.js";
 
 
 
@@ -33,11 +36,12 @@ const Home = () => {
 
 
       <Nav />
-      {/* <Dashboard /> */}
       <Videopage />
       <Videopg2 />
       <Videopg3 />
+      <Explore/>
       <Gallery />
+      <Homeglry />
       <Videopg4 />
       <Whyuss />
       <Review />
@@ -45,7 +49,7 @@ const Home = () => {
         <Marquee />
       </div>
       <Forms />
-
+      <FooterSection/>
       <Footer /> 
       {isMobile && <PhoneFooter />} 
       <div className="fixed-button-1">

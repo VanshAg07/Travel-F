@@ -1,6 +1,8 @@
 import React from 'react';
 import './Videopage.css';
 import video from '../img/bg-v.mp4';
+import Mainreview from "./Mainreview";
+
 
 const Videopage = () => {
   return (
@@ -17,6 +19,7 @@ const Videopage = () => {
         muted 
         className='video-video'
       ></video>
+      <Mainreview />
     </div>
   );
 };

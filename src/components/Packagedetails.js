@@ -9,6 +9,9 @@ import { GoDot } from "react-icons/go";
 import Footer from "../Footer";
 import { GoDotFill } from "react-icons/go";
 import { useParams } from "react-router-dom";
+import Review from "./Review"
+import Whyuss from "./Whyuss"
+import FooterSection from "./Footersection";
 
 const Packagedetails = () => {
   // State to track the active link
@@ -28,9 +31,91 @@ const{name} = useParams()
     setIsExpanded(!isExpanded);
   };
 
+    const [expandedDays, setExpandedDays] = useState({});
+  
+    // Function to handle toggling expansion of a specific day
+    const handleToggleDay = (day) => {
+      setExpandedDays((prevState) => ({
+        ...prevState,
+        [day]: !prevState[day], // Toggle the specific day
+      }));
+    };
+
   const handleToggleDay1 = () => {
     setIsDay1Expanded(!isDay1Expanded);
   };
+
+
+  const itineraryData = [
+    {
+      day: 1,
+      description: "Guwahati Arrival | Umiam Lake | Overnight at Shillong",
+      details: [
+        "Arrive at Lokpriya Gopinath Bordoloi International Airport by morning. Arrive till 11:30 AM.",
+        "Post breakfast, depart for Shillong.",
+        "Post lunch visit Umiam Lake & then head to Shillong market for some shopping.",
+        "Check in to the hotel & freshen up.",
+        "Overnight stay at Shillong."
+      ]
+    },
+    {
+      day: 2,
+      description: "Shillong to Cherrapunjee | Lyngksiar Waterfalls | Arwah Cave | Nohkalikai Falls",
+      details: [
+        "Wake up and enjoy your breakfast with a view.",
+        "Check out from Hotel and visit the beautiful Lyngksiar Waterfalls.",
+        "Later depart for Arwah Cave.",
+        "Post lunch continue toward Cherrapunjee.",
+        "Spend your time awestruck by the amazing beauty.",
+        "Reach Cherrapunjee and visit Nohkalikai Falls.",
+        "Dinner & sleep overnight."
+      ]
+    },
+    {
+      day: 3,
+      description: "Single Root Bridge | Double Decker Bridge",
+      details: [
+        "Post breakfast, depart for Tyrna Village.",
+        "Reach Tyrna & first start your trek to the Single Root Bridge.",
+        "Later visit the astonishing Double Decker Bridge.",
+        "Trek back to Tyrna Village & start your journey to Cherrapunjee.",
+        "Overnight stay at Cherrapunjee."
+      ]
+    },
+    {
+      day: 4,
+      description: "Mawsmai Caves | Mawlynnong Village | Overnight at Shnongpdeng",
+      details: [
+        "Post breakfast, visit Mawsmai Caves.",
+        "Mawer to Mawlynnong Village.",
+        "Later transfer to Shnongpdeng Village.",
+        "Arrive at Shnongpdeng & check in to the camps.",
+        "Overnight stay at Shnongpdeng."
+      ]
+    },
+    {
+      day: 5,
+      description: "Water Sports | Phe-Phe Waterfall | Overnight at Shillong",
+      details: [
+        "Enjoy your breakfast with a sight of crystal clear water.",
+        "Enjoy various water sports activities.",
+        "Have your lunch and transfer to Shillong.",
+        "On the way visit Phe-Phe Waterfall.",
+        "Reach Shillong & explore the local market.",
+        "Overnight stay at Shillong."
+      ]
+    },
+    {
+      day: 6,
+      description: "Laitlum Grand Canyon | Departure",
+      details: [
+        "Enjoy a delicious breakfast.",
+        "Check out and depart for Laitlum Grand Canyon.",
+        "Later depart for Guwahati Airport.",
+        "Reach your home with a suitcase full of memories. Book your flight post 5 PM."
+      ]
+    }
+  ];
 
   return (
     <div>
@@ -52,7 +137,7 @@ const{name} = useParams()
         <span>Download Itinerary</span>
       </button>
       <div>
-        <h2>{name} Road Trip</h2>
+        <h2 className="place-head">{name} Road Trip</h2>
       </div>
       <div className="icons">
         <div className="icon-text-container">
@@ -171,109 +256,26 @@ const{name} = useParams()
       </div>
 
       <div id="itinerary" className="itinerary-container">
-  <h1>Itinerary</h1>
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day 1</h3>
-      <p>Guwahati Arrival | Umiam Lake | Overnight at Shillong</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
+      <h1>Itinerary</h1>
+      {itineraryData.map(({ day, description, details }) => (
+        <div className="day-container" key={day}>
+          <div className="day-header">
+            <h3>Day {day}</h3>
+            <p>{description}</p>
+            <span className="plus-icon" onClick={() => handleToggleDay(day)}>
+              {expandedDays[day] ? '-' : '+'}
+            </span>
+          </div>
+          {expandedDays[day] && (
+            <ul className="itinerary-details">
+              {details.map((detail, index) => (
+                <li key={index}>{detail}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
     </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Arrive at Lokpriya Gopinath Bordoloi International Airport by morning. Arrive till 11:30 AM</li>
-        <li>Post breakfast, depart for Shillong.</li>
-        <li>Post lunch visit Umiam Lake & then head to Shillong market for some shopping.</li>
-        <li>Check in to the hotel & freshen up.</li>
-        <li>Overnight stay at Shillong.</li>
-      </ul>
-    )}
-  </div>
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day 2</h3>
-      <p>Shillong to Cherrapunjee | Lyngksiar Waterfalls | Arwah Cave | Nohkalikai Falls</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
-    </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Wake up and enjoy your breakfast with a view.</li>
-        <li>Check out from Hotel and visit the beautiful Lyngksiar Waterfalls.</li>
-        <li>Later depart for Arwah Cave.</li>
-        <li>Post lunch continue toward Cherrapunjee.</li>
-        <li>Spend your time awestruck by the amazing beauty.</li>
-        <li>Reach Cherrapunjee and visit Nohkalikai Falls</li>
-        <li>Dinner & sleep overnight.</li>
-      </ul>
-    )}
-  </div>
-  
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day 3</h3>
-      <p>Guwahati Arrival | Umiam Lake | Overnight at Shillong</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
-    </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Post breakfast, depart for Tyrna Village.</li>
-        <li>Reach Tyrna & first start your trek to the Single Root Bridge.</li>
-        <li>Later Visit the astonishing Double Decker Bridge. Trek back to Tyrna Village & start your journey to Cherrapunjee. ( This trek consists of 3300 steps one side, a total of 6600 steps in the entire trek )</li>
-        <li>Reach Cherrapunjee.</li>
-        <li>Overnight stay at Cherrapunjee.</li>
-      </ul>
-    )}
-  </div>
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day4 </h3>
-      <p>Mawsma Mawlynnong Village | Overnight at Shnongpdeng ( Dawki )</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
-    </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Post breakfast, Visit Mawsmai Caves</li>
-        <li>Mawer to Mawlynnong Village.</li>
-        <li>Later transfer to Shnongpdeng Village.</li>
-        <li>Arrive at Shnongpdeng & check in to the camps. Camping by the crystal clear Umngot river which is also known as Dawki river</li>
-        <li>Overnight stay at Shnongpdeng.</li>
-      </ul>
-    )}
-  </div>
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day5 </h3>
-      <p>Water Sports | Phe-Phe Waterfall | Overnight at Shillong</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
-    </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Enjoy your breakfast with a sight of crystal clear water of the river.</li>
-        <li>Enjoy various water sports activities.</li>
-        <li>Have your lunch and transfer to Shillong.</li>
-        <li>On the way visit Phe-Phe Waterfall.</li>
-        <li>Reach Shillong & explore the local market.</li>
-        <li>Overnight stay at Shillong.</li>
-      </ul>
-    )}
-  </div>
-
-  <div className="day-container">
-    <div className="day-header">
-      <h3>Day6 </h3>
-      <p>Laitlum Grand Canyon | Departure</p>
-      <span className="plus-icon" onClick={handleToggleDay1}>+</span>
-    </div>
-    {isDay1Expanded && (
-      <ul className="itinerary-details">
-        <li>Enjoy a delicious breakfast.</li>
-        <li>Check out and depart for Laitlum Grand Canyon.</li>
-        <li>Later depart for Guwahati Airport.</li>
-        <li>Reach your home with a suitcase full of memories.Book your flight post 5 PM.</li>
-      </ul>
-    )}
-  </div>
-  
-</div>
 
 
 
@@ -354,7 +356,8 @@ const{name} = useParams()
         </ul>
       </div>
 
-
+          <Review/>
+          <FooterSection/>
       <Footer />
     </div>
   );

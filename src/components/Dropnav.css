@@ -1,32 +1,32 @@
-.navbar {
+.navbar-1 {
     background-color: #333;
     padding: 10px 2px;
   }
   
-  .nav-links {
+  .nav-links-1 {
     list-style: none;
     display: flex;
-    justify-content: space-around;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
   }
   
-  .nav-item {
+  .nav-item-1 {
     position: relative;
     color: #fff;
     padding: 10px 5px;
     cursor: pointer;
     display: inline-flex; /* Ensures horizontal alignment of text and icon */
     align-items: center; /* Vertically centers the content */
+    padding-right: 50px;
   }
   
   .dropdown-icon {
     margin-left: 5px; /* Space between text and icon */
     font-size: 0.8em; /* Adjust icon size if needed */
-    transition: transform 0.3s ease; /* Smooth transition for rotation */
+    transition: transform 0.7s ease; /* Smooth transition for rotation */
   }
   
-  .nav-item:hover .dropdown-icon {
+  .nav-item-1:hover .dropdown-icon {
     transform: rotate(180deg); /* Rotates icon by 90 degrees on hover */
   }
   
@@ -57,7 +57,7 @@
     background-color: #555;
   }
   
-  .nav-item:hover .dropdown {
+  .nav-item-1:hover .dropdown {
     display: block; /* Show dropdown on hover */
   }
   

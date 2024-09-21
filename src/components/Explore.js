@@ -1,48 +1,67 @@
-import React from 'react';
-import Slider from 'react-slick';
-import './Explore.css'; 
+import React, { useState } from "react";
+import "./Explore.css";
+import img1 from "../img/dubai.jpg";
+import img2 from "../img/Maldives.jpg";
+import img3 from "../img/Europe.jpg";
+import img4 from "../img/bali.jpg";
+import img5 from "../img/singapore.jpg";
+import img6 from "../img/thailand.jpg";
 
-import img1 from '../img/1.png';
-import img2 from '../img/2.png';
-import img3 from '../img/3.png';
-import img4 from '../img/4.png';
-import img5 from '../img/5.png';
-
-const carouselData = [
-  { src: img1, title: 'Corporate Trips' },
-  { src: img2, title: 'Romantic Escapes' },
-  { src: img3, title: 'International Trips' },
-  { src: img4, title: 'Explore India' },
-  { src: img5, title: 'Adventure Trails' }
+const images = [
+  { src: img1, text: "Romantic Escapes", link: "/Honeymoon" },
+  { src: img2, text: "Corporate Trips", link: "/corporate-trips" },
+  { src: img3, text: "Experience India", link: "/National" },
+  { src: img4, text: "International Trips", link: "/intern" },
+  { src: img5, text: "Team Adventures", link: "/team-adventures" },
+  { src: img6, text: "Weekend Trips", link: "/weekend-trips" },
 ];
 
-const ReflectionCarousel = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true,
+const ImageSlider = () => {
+  const [index, setIndex] = useState(0);
+
+  const prevSlide = () => {
+    setIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : images.length - getNumberOfImages()
+    );
+  };
+
+  const nextSlide = () => {
+    setIndex((prevIndex) =>
+      prevIndex < images.length - getNumberOfImages() ? prevIndex + 1 : 0
+    );
+  };
+
+  const getNumberOfImages = () => {
+    // Return 4 images by default, 3 images for screens smaller than 425px
+    if (window.innerWidth <= 426) {
+      return 3; // Adjust if necessary
+    }
+    return 4; // Display 4 images
   };
 
   return (
-    <div className="carousel-container">
-      <h2>Explore</h2>
-      <Slider {...settings}>
-        {carouselData.map((item, index) => (
-          <div key={index} className="carousel-item">
-            <div className="image-container">
-              <img src={item.src} alt={item.title} />
-              <div className="overlay">
-                <div className="overlay-text">{item.title}</div>
-              </div>
+    <div className="wr-5">
+      <h2 className="slider-heading">Explore Your Adventure</h2>
+      <div className="slider-5">
+        <button onClick={prevSlide} className="arrow-5 left-5">
+          <i className="fa-solid fa-circle-left"></i>
+        </button>
+        <div className="slider-wrapper-5">
+          {images.slice(index, index + getNumberOfImages()).map((img, i) => (
+            <div key={i} className="slide-5">
+              <a href={img.link}>
+                <img src={img.src} alt={`Slide ${i}`} />
+                <h1>{img.text}</h1>
+              </a>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </div>
+        <button onClick={nextSlide} className="arrow-5 right-5">
+          <i className="fa-solid fa-circle-right"></i>
+        </button>
+      </div>
     </div>
   );
 };
 
-export default ReflectionCarousel;
+export default ImageSlider;

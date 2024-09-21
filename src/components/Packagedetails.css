@@ -59,12 +59,15 @@
   display: flex;
 }
 
+.icon-text-container{
+  border: 1px solid black;
+}
 .package-nav {
   display: flex;
   justify-content: space-between;
   width: 60%;
-  padding: 1em 0; /* Adds some padding around the nav */
-  border-radius: 10px; /* Optional rounded corners */
+  padding: 1em 0; 
+  border-radius: 10px; 
   background-color: #E0FAFF;
 }
 
@@ -84,6 +87,15 @@
 .package-nav a.active {
   color: #01AFD1;
   border-radius: 5px;
+}
+
+.place-head{
+  padding-left: 20%;
+  font-size: 2rem; /* Large font size for prominence */
+  font-weight: bold; /* Bold font weight for emphasis */
+  color: #000; /* Darker color for contrast */
+  margin-bottom: 10px; /* Space below the h1 */
+  margin-top: 20px; /* Space below the h1 */
 }
 
 /* New CSS for Overview Container */

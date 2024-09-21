@@ -1,16 +1,21 @@
 import React from "react";
 import "./Privcy.css";
+import Nav from "./Nav";
+import FooterSection from "./Footersection";
+import Footer from "../Footer";
 
 const Privcy = () => {
   return (
-    <div>
-      <div>
-        <h1>Privacy Policy</h1>
-        <p>
+    <>
+    <Nav/>
+    <div className="privacy-container">
+      <div className="privacy-section">
+        <h1 className="privacy-title">PRIVACY POLICY</h1>
+        <p className="privacy-text">
           The terms “We” / “Us” / “Our”/”Company” individually and collectively
           refer to WanderOn and the terms “You” /”Your” / “Yourself” refer to
           the users. This Privacy Policy is an electronic record in the form of
-          an electronic contract formed underInformationation Technology Act,
+          an electronic contract formed under the Information Technology Act,
           2000 and the rules made thereunder and the amended provisions
           pertaining to electronic documents/records in various statutes as
           amended by the Information Technology Act, 2000. This Privacy Policy
@@ -24,7 +29,7 @@ const Privcy = () => {
           (defined below). This document is published and shall be construed in
           accordance with the provisions of the Information Technology
           (reasonable security practices and procedures and sensitive personal
-          data or information) rules, 2011 under Information Technology Act,
+          data or information) rules, 2011 under the Information Technology Act,
           2000; that require publishing of the Privacy Policy for collection,
           use, storage and transfer of sensitive personal data or information.
           Please read this Privacy Policy carefully by using the Website, you
@@ -40,9 +45,9 @@ const Privcy = () => {
         </p>
       </div>
 
-      <div>
-        <h1>USER INFORMATION</h1>
-        <p>
+      <div className="privacy-section">
+        <h1 className="privacy-title">USER INFORMATION</h1>
+        <p className="privacy-text">
           To avail certain services on our Websites, users are required to
           provide certain information for the registration process namely: – a)
           your name, b) email address, c) sex, d) age, e) PIN code, f) credit
@@ -51,18 +56,18 @@ const Privcy = () => {
           occupation, interests, and the like. The Information as supplied by
           the users enables us to improve our sites and provide you the most
           user-friendly experience. All required information is service
-          dependent and we may use the above-said user information to, maintain,
+          dependent and we may use the above-said user information to maintain,
           protect, and improve its services (including advertising services) and
-          for developing new services Such information will not be considered as
+          for developing new services. Such information will not be considered as
           sensitive if it is freely available and accessible in the public
           domain or is furnished under the Right to Information Act, 2005 or any
           other law for the time being in force.
         </p>
       </div>
 
-      <div>
-        <h1>Cookies</h1>
-        <p>
+      <div className="privacy-section">
+        <h1 className="privacy-title">COOKIES</h1>
+        <p className="privacy-text">
           To improve the responsiveness of the sites for our users, we may use
           “cookies”, or similar electronic tools to collect information to
           assign each visitor a unique, random number as a User Identification
@@ -86,9 +91,9 @@ const Privcy = () => {
         </p>
       </div>
 
-      <div>
-        <h1>LINKS TO THE OTHER SITES</h1>
-        <p>
+      <div className="privacy-section">
+        <h1 className="privacy-title">LINKS TO OTHER SITES</h1>
+        <p className="privacy-text">
           Our policy discloses the privacy practices for our own web site only.
           Our site provides links to other websites also that are beyond our
           control. We shall in no way be responsible in a way for your use of
@@ -96,9 +101,9 @@ const Privcy = () => {
         </p>
       </div>
 
-      <div>
-        <h1>INFORMATION SHARING</h1>
-        <p>
+      <div className="privacy-section">
+        <h1 className="privacy-title">INFORMATION SHARING</h1>
+        <p className="privacy-text">
           We share the sensitive personal information to any third party without
           obtaining the prior consent of the user in the following limited
           circumstances: (a) When it is requested or required by law or by any
@@ -117,9 +122,9 @@ const Privcy = () => {
         </p>
       </div>
 
-      <div>
-        <h1>INFORMATION SECURITY</h1>
-        <p>
+      <div className="privacy-section">
+        <h1 className="privacy-title">INFORMATION SECURITY</h1>
+        <p className="privacy-text">
           We take appropriate security measures to protect against unauthorized
           access to or unauthorized alteration, disclosure or destruction of
           data. These include internal reviews of our data collection, storage
@@ -139,18 +144,21 @@ const Privcy = () => {
           Policy from time to time to incorporate necessary future changes. Of
           course, our use of any information we gather will always be consistent
           with the policy under which the information was collected, regardless
-          of what the new policy may be. In accordance with Information
+          of what the new policy may be. In accordance with the Information
           Technology Act, 2000, if you wish to contact WanderOn about this
           privacy policy or privacy-related issues via email, you may send an
           email to connect@wanderon.in. Alternatively, you may send your concern
           via postal mail/courier at the following address:
         </p>
-        <h4>WanderOn,</h4>
-        <h4>17, S-2, Okhla Phase II,</h4>
-        <h4>New Delhi – 110020 Attn: Chief Technology Officer</h4>
-        <h4>Ph: +91-9729365321</h4>
+        <h4 className="privacy-contact-title">WanderOn,</h4>
+        <h4 className="privacy-contact-details">17, S-2, Okhla Phase II,</h4>
+        <h4 className="privacy-contact-details">New Delhi – 110020 Attn: Chief Technology Officer</h4>
+        <h4 className="privacy-contact-details">Ph: +91-9729365321</h4>
       </div>
     </div>
+    <FooterSection/>
+    <Footer/>
+    </>
   );
 };
 

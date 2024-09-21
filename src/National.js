@@ -6,7 +6,6 @@ import intern from "./img/international.jpg";
 import Lottie from "lottie-react";
 import animationData from "./img/India.json";
 import Footer from "./Footer.js";
-import Card from "./components/3dCard.js";
 import shi1 from "./img/1.png";
 import shi2 from "./img/2.png";
 import shi3 from "./img/3.png";
@@ -25,13 +24,15 @@ import shi15 from "./img/15.png";
 import shi16 from "./img/16.png";
 import shi17 from "./img/17.png";
 import shi18 from "./img/18.png";
-import Whyus from "./Whyus.js";
+import Whyuss from "./components/Whyuss.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
 import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
+import FooterSection from "./components/Footersection";
+
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
@@ -207,10 +208,11 @@ const National = () => {
         </div>
       </div>
 
-      <Whyus />
+      <Whyuss />
       <Review/>
       <Guide />
       <Form />
+      <FooterSection/>
       <Footer />
 
       <div className="fixed-button">

@@ -34,6 +34,8 @@ import Mainreview from "./components/Mainreview.js";
 import Mobcard from "./components/Mobcard.js";
 import Reflection from "./components/Reflection.js";
 import Newsignin from "./components/Newsignin.js";
+import Explore from "./components/Explore.js";
+import Homeglry from "./components/Homeglry.js";
 
 const App = () => {
   return (
@@ -64,6 +66,7 @@ const App = () => {
         <Route path="/Whyuss" element={<Whyuss />} />
         <Route path="/Reflection" element={<Reflection />} />
         <Route path="/Newsignin" element={<Newsignin />} />
+        <Route path="/Homeglry" element={<Homeglry />} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/Footersection" element={<FooterSection />} />
         <Route path="/Faq" element={<Faq />} />
@@ -71,6 +74,7 @@ const App = () => {
         <Route path="/Forms" element={<Forms />} />
         <Route path="/Mainreview" element={<Mainreview />} />
         <Route path="/Mobcard" element={<Mobcard />} />
+        <Route path="/Explore" element={<Explore />} />
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

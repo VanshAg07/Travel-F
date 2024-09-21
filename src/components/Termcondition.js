@@ -1,13 +1,18 @@
 import React from "react";
 import "./T&c.css";
+import Nav from "./Nav";
+import FooterSection from "./Footersection";
+import Footer from "../Footer";
 
 const Termcondition = () => {
   return (
+    <>
+    <Nav/>
     <div>
-      <h1>Terms & Conditions</h1>
-      <div>
-        <h1>Introduction</h1>
-        <p>
+      <h1 className="terms-title">Terms & Conditions</h1>
+      <div className="terms-section">
+        <h2 className="section-title">Introduction</h2>
+        <p className="section-content">
           These Terms and Conditions ("Terms") govern the relationship between
           you ("Client" or "you") and WanderOn Experiences Pvt. Ltd.
           ("WanderOn," "company," "we," or "us"). By booking any tour or service
@@ -352,6 +357,9 @@ const Termcondition = () => {
 
 
     </div>
+    <FooterSection/>
+    <Footer/>
+    </>
   );
 };
 
