@@ -25,7 +25,7 @@ const services = [
 
 function App() {
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col items-center">
+    <div className="bg-gray-50 flex flex-col items-center">
       {/* Heading Section */}
       <header className="w-[80%] text-center mt-10">
         <h1 className="text-4xl font-bold">
@@ -35,7 +35,7 @@ function App() {
       </header>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 w-4/5 md:w-3/4 lg:w-2/3 text-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 w-4/5 md:w-3/4 lg:w-2/3 text-center mb-20">
         {services.map(service => (
           <div key={service.id} className="flex flex-col items-center">
             {/* Icon */}

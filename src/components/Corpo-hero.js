@@ -2,7 +2,7 @@ import React from 'react';
 
 const HighLevelCorporateTour = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white mb-48">
       {/* Title */}
       <div className="text-center py-8">
       <header className="w-full bg-white p-6 shadow-md text-center">
@@ -15,7 +15,6 @@ const HighLevelCorporateTour = () => {
       {/* Main Content Section */}
       <div className="relative bg-blue-900 text-white py-16 top-10 max-h-[120vh]">
         <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-8 lg:px-16">
-          
           {/* Left Content */}
           <div className="flex-1">
             <div className="mb-4">

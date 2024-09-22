@@ -92,11 +92,6 @@ function Login() {
                 className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-
-            <p className="text-right text-blue-600 cursor-pointer hover:underline mb-4">
-              Forgot Password?
-            </p>
-
             <button
               type="submit"
               className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
