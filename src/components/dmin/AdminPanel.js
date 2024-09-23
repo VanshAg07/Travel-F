@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
 const states = [
-  "Meghalaya",
-  "Kashmir",
-  "Spiti Valley",
-  "Kerala",
-  "Himachal Pradesh",
-  "Rajasthan",
-  "Uttarakhand",
-  "Ladakh",
-  "Goa",
-  "Manali",
+  { _id: "66f05385d87823fc7b98f371", stateName: "Kashmir" },
+  { _id: "66f05389d87823fc7b98f373", stateName: "Goa" },
+  { _id: "66f0538fd87823fc7b98f375", stateName: "Meghalaya" },
+  { _id: "66f05395d87823fc7b98f377", stateName: "Rajasthan" },
+  { _id: "66f053a6d87823fc7b98f379", stateName: "Spiti Valley" },
+  { _id: "66f053afd87823fc7b98f37b", stateName: "Kerala" },
+  { _id: "66f053b6d87823fc7b98f37d", stateName: "Himachal Pradesh" },
+  { _id: "66f053bdd87823fc7b98f37f", stateName: "Uttarakhand" },
+  { _id: "66f053c3d87823fc7b98f381", stateName: "Ladakh" },
+  { _id: "66f053cad87823fc7b98f383", stateName: "Manali" },
 ];
 
 const AdminPanel = () => {
+  const [selectedState, setSelectedState] = useState("");
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",
@@ -79,13 +80,11 @@ const AdminPanel = () => {
     setTripData({ ...tripData, tripItinerary: updatedItinerary });
   };
 
-  // Handle image files
   const handleImageChange = (e) => {
     const images = Array.from(e.target.files);
     setTripData({ ...tripData, tripImages: images });
   };
 
-  // Handle PDF file
   const handlePdfChange = (e) => {
     setTripData({ ...tripData, pdf: e.target.files[0] });
   };
@@ -93,28 +92,55 @@ const AdminPanel = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create FormData to handle file uploads
+    if (!selectedState) {
+      alert("Please select a state before submitting the form.");
+      return;
+    }
+
     const formData = new FormData();
     Object.keys(tripData).forEach((key) => {
       if (key === "tripImages") {
-        tripData.tripImages.forEach((image, index) => {
-          formData.append(`tripImages[${index}]`, image);
+        tripData.tripImages.forEach((image) => {
+          formData.append("tripImages", image);
         });
-      } else if (key === "pdf") {
-        formData.append(key, tripData.pdf);
+      } else if (key === "pdf" && tripData.pdf) {
+        formData.append("pdf", tripData.pdf);
+      } else if (Array.isArray(tripData[key])) {
+        tripData[key].forEach((item, index) => {
+          if (key === "tripItinerary") {
+            formData.append(`${key}[${index}][title]`, item.title);
+            item.points.forEach((point, pointIndex) => {
+              formData.append(`${key}[${index}][points][${pointIndex}]`, point);
+            });
+          } else {
+            formData.append(`${key}[${index}]`, item);
+          }
+        });
       } else {
         formData.append(key, tripData[key]);
       }
     });
 
-    // Make API request to submit formData (replace with actual API endpoint)
-    fetch("https://travel-server-iley.onrender.com/api/trip/state/:stateId/trip", {
+    // Log FormData for debugging
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    fetch(`https://travel-server-iley.onrender.com/api/trip/state/${selectedState}/trip`, {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(text || "Network response was not ok");
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log("Trip submitted successfully", data);
+        alert("Trip submitted successfully!");
       })
       .catch((error) => {
         console.error("Error submitting trip", error);
@@ -122,33 +148,47 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-yellow-700">
+    <div className="max-w-full mx-auto p-8 bg-white shadow-lg ">
       <h2 className="text-2xl font-bold mb-4">Add Trip Details</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
-          {/* Trip Location Dropdown */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-lg font-medium">
               Trip Location
             </label>
             <select
               name="tripLocation"
               value={tripData.tripLocation}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
             >
               <option value="">Select a Location</option>
-              {states.map((state, index) => (
-                <option key={index} value={state}>
-                  {state}
+              {states.map((state) => (
+                <option key={state._id} value={state.stateName}>
+                  {state.stateName}
                 </option>
               ))}
             </select>
           </div>
-
-          {/* Other form fields for trip details */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-lg font-medium">
+              Select State
+            </label>
+            <select
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            >
+              <option value="">Select a State</option>
+              {states.map((state) => (
+                <option key={state._id} value={state._id}>
+                  {state.stateName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
               Trip Name
             </label>
             <input
@@ -156,123 +196,324 @@ const AdminPanel = () => {
               name="tripName"
               value={tripData.tripName}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
             />
           </div>
-          {/* Repeat for other fields */}
-        </div>
-
-        {/* Dynamic fields for inclusions */}
-        <div>
-          <h3 className="text-lg font-semibold">Trip Inclusions</h3>
-          {tripData.tripInclusions.map((inclusion, index) => (
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Price
+            </label>
             <input
-              key={index}
-              type="text"
-              value={inclusion}
-              onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
-              className="block w-full border-gray-300 rounded-md mb-2"
+              type="number"
+              name="tripPrice"
+              value={tripData.tripPrice}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
             />
-          ))}
-          <button
-            type="button"
-            onClick={() => addField("tripInclusions")}
-            className="text-blue-500"
-          >
-            + Add Inclusion
-          </button>
-        </div>
-
-        {/* Dynamic fields for exclusions */}
-        <div>
-          <h3 className="text-lg font-semibold">Trip Exclusions</h3>
-          {tripData.tripExclusions.map((exclusion, index) => (
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Quantity
+            </label>
             <input
-              key={index}
-              type="text"
-              value={exclusion}
-              onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
-              className="block w-full border-gray-300 rounded-md mb-2"
+              type="number"
+              name="tripQuantity"
+              value={tripData.tripQuantity}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
             />
-          ))}
-          <button
-            type="button"
-            onClick={() => addField("tripExclusions")}
-            className="text-blue-500"
-          >
-            + Add Exclusion
-          </button>
-        </div>
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Date
+            </label>
+            <input
+              type="date"
+              name="tripDate"
+              value={tripData.tripDate}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Duration (in days)
+            </label>
+            <input
+              type="number"
+              name="tripDuration"
+              value={tripData.tripDuration}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Accommodation
+            </label>
+            <input
+              type="text"
+              name="tripAccommodation"
+              value={tripData.tripAccommodation}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Activities
+            </label>
+            <input
+              type="text"
+              name="tripActivities"
+              value={tripData.tripActivities}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Transportation
+            </label>
+            <input
+              type="text"
+              name="tripTransportation"
+              value={tripData.tripTransportation}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Food
+            </label>
+            <input
+              type="text"
+              name="tripFood"
+              value={tripData.tripFood}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Beverages
+            </label>
+            <input
+              type="text"
+              name="tripBeverages"
+              value={tripData.tripBeverages}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Special Requests
+            </label>
+            <input
+              type="text"
+              name="tripSpecialRequests"
+              value={tripData.tripSpecialRequests}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Cancellations
+            </label>
+            <input
+              type="text"
+              name="tripCancellations"
+              value={tripData.tripCancellations}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
 
-        {/* Itinerary Fields */}
-        <div>
-          <h3 className="text-lg font-semibold">Trip Itinerary</h3>
-          {tripData.tripItinerary.map((item, index) => (
-            <div key={index} className="mb-4">
-              <input
-                type="text"
-                value={item.title}
-                onChange={(e) => handleItineraryChange(e, index, "title")}
-                placeholder="Itinerary Title"
-                className="block w-full border-gray-300 rounded-md mb-2"
-              />
-              {item.points.map((point, itineraryIndex) => (
+          {/* Trip Inclusions */}
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Inclusions
+            </label>
+            {tripData.tripInclusions.map((inclusion, index) => (
+              <div key={index} className="flex items-center">
                 <input
-                  key={itineraryIndex}
                   type="text"
-                  value={point}
+                  value={inclusion}
                   onChange={(e) =>
-                    handleItineraryChange(e, index, "points", itineraryIndex)
+                    handleArrayChange(e, index, "tripInclusions")
                   }
-                  placeholder="Itinerary Point"
-                  className="block w-full border-gray-300 rounded-md mb-2"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
                 />
-              ))}
-              <button
-                type="button"
-                onClick={() => addItineraryPoint(index)}
-                className="text-blue-500"
-              >
-                + Add Itinerary Point
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={addItineraryField}
-            className="text-blue-500"
-          >
-            + Add Itinerary
-          </button>
-        </div>
+                <button
+                  type="button"
+                  onClick={() => addField("tripInclusions")}
+                  className="ml-2 p-1 text-white bg-green-600 rounded"
+                >
+                  +
+                </button>
+              </div>
+            ))}
+          </div>
 
-        {/* File upload for images */}
-        <div>
-          <h3 className="text-lg font-semibold">Trip Images</h3>
-          <input
-            type="file"
-            multiple
-            onChange={handleImageChange}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-          />
-        </div>
+          {/* Trip Exclusions */}
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Exclusions
+            </label>
+            {tripData.tripExclusions.map((exclusion, index) => (
+              <div key={index} className="flex items-center">
+                <input
+                  type="text"
+                  value={exclusion}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "tripExclusions")
+                  }
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                />
+                <button
+                  type="button"
+                  onClick={() => addField("tripExclusions")}
+                  className="ml-2 p-1 text-white bg-green-600 rounded"
+                >
+                  +
+                </button>
+              </div>
+            ))}
+          </div>
 
-        {/* File upload for PDF */}
-        <div>
-          <h3 className="text-lg font-semibold">Trip PDF</h3>
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={handlePdfChange}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-          />
-        </div>
+          {/* Trip Itinerary */}
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Itinerary
+            </label>
+            {tripData.tripItinerary.map((item, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  value={item.title}
+                  onChange={(e) => handleItineraryChange(e, index, "title")}
+                  placeholder="Itinerary Title"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                />
+                {item.points.map((point, pointIndex) => (
+                  <input
+                    key={pointIndex}
+                    type="text"
+                    value={point}
+                    onChange={(e) =>
+                      handleItineraryChange(e, index, "point", pointIndex)
+                    }
+                    placeholder="Point"
+                    className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={() => addItineraryPoint(index)}
+                  className="ml-2 p-1 text-white bg-green-600 rounded"
+                >
+                  Add Point
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={addItineraryField}
+              className="mt-2 p-1 text-white bg-green-600 rounded"
+            >
+              Add Itinerary
+            </button>
+          </div>
 
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Cancellation Policy
+            </label>
+            <input
+              type="text"
+              name="tripCancellationPolicy"
+              value={tripData.tripCancellationPolicy}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Payment Methods
+            </label>
+            <input
+              type="text"
+              name="tripPaymentMethods"
+              value={tripData.tripPaymentMethods}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Amenities
+            </label>
+            <input
+              type="text"
+              name="tripAmenities"
+              value={tripData.tripAmenities}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Rules
+            </label>
+            <input
+              type="text"
+              name="tripRules"
+              value={tripData.tripRules}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Description
+            </label>
+            <textarea
+              name="tripDescription"
+              value={tripData.tripDescription}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Trip Images
+            </label>
+            <input
+              type="file"
+              multiple
+              onChange={handleImageChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Upload PDF
+            </label>
+            <input
+              type="file"
+              onChange={handlePdfChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+            />
+          </div>
+        </div>
         <button
           type="submit"
-          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md"
+          className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded"
         >
-          Submit Trip
+          Submit
         </button>
       </form>
     </div>

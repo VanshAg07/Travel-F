@@ -20,21 +20,16 @@ const BeautifulPlaces = () => {
     location: "",
     title: "",
     description: "",
-    img: "", // Base64 image string
+    img: null, // Store image file directly
   });
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "img" && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setForm((prevState) => ({
-          ...prevState,
-          img: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
+      setForm((prevState) => ({
+        ...prevState,
+        img: files[0], // Store the file object in the state
+      }));
     } else {
       setForm((prevState) => ({
         ...prevState,
@@ -46,21 +41,21 @@ const BeautifulPlaces = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      stateName: form.stateName,
-      location: form.location,
-      title: form.title,
-      description: form.description,
-      img: form.img, // Base64 image string
-    };
+    // Create a FormData object to handle file and other data
+    const formData = new FormData();
+    formData.append("stateName", form.stateName);
+    formData.append("location", form.location);
+    formData.append("title", form.title);
+    formData.append("description", form.description);
+    formData.append("img", form.img); // Append the image file
 
     try {
       const response = await axios.post(
         "https://travel-server-iley.onrender.com/api/admin/addBeautifulPlaces",
-        payload,
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data", // Set the header for file upload
           },
         }
       );
@@ -70,7 +65,7 @@ const BeautifulPlaces = () => {
         location: "",
         title: "",
         description: "",
-        img: "",
+        img: null,
       });
     } catch (error) {
       console.error("Error adding place:", error.response ? error.response.data : error.message);
@@ -83,7 +78,9 @@ const BeautifulPlaces = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Beautiful Place</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="stateName" className="block text-lg font-semibold mb-2">State Name:</label>
+          <label htmlFor="stateName" className="block text-lg font-semibold mb-2">
+            State Name:
+          </label>
           <select
             id="stateName"
             name="stateName"

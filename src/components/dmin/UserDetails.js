@@ -37,6 +37,7 @@ const UserDetails = () => {
           <tr>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Email</th>
+            <th className="px-4 py-2">Phone No.</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
@@ -45,6 +46,7 @@ const UserDetails = () => {
             <tr key={user._id}>
               <td className="border px-4 py-2">{user.username}</td>
               <td className="border px-4 py-2">{user.email}</td>
+              <td className="border px-4 py-2">{user.phoneNo}</td>
               <td className="border px-4 py-2">
                 <button
                   onClick={() => deleteUser(user._id)}
@@ -62,4 +64,3 @@ const UserDetails = () => {
 };
 
 export default UserDetails;
-

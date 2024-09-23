@@ -1,6 +1,5 @@
 .testimonials-section {
   text-align: center; /* Centers the heading */
-  padding: 20px;
   background-color: #f9f9f9; /* Light background color for the section */
 }
 
@@ -12,14 +11,13 @@
 .testimonials-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 20px; /* Space between the images */
+  margin-left: 20px;
 }
 
 .testimonial-image-container {
   position: relative; /* Allows for absolute positioning of the link */
   flex: 0 0 45%; /* Takes up 45% of the container width for each image */
-  max-width: 600px; /* Ensures images do not exceed a certain width */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds some shadow to the images */
   border-radius: 8px; /* Rounds the corners of the images */
   overflow: hidden;

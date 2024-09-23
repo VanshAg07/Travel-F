@@ -26,7 +26,7 @@ const TravelerTestimonials = () => {
   return (
     <div className="testimonials-section">
       <h2 className="testimonials-heading">Hear From Travelers Like You</h2>
-      <div className="testimonials-grid">
+      <div className="flex flex-wrap mx-32 justify-center gap-10 ">
         {images.map((image, index) => (
           <div key={index} className="testimonial-image-container">
             <img src={image} alt={`Traveler ${index + 1}`} className="testimonial-image" />

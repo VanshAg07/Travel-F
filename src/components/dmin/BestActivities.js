@@ -17,24 +17,19 @@ const states = [
 const BestActivities = () => {
   const [form, setForm] = useState({
     stateName: "",
-    time: "", // Changed to string input
+    time: "",
     title: "",
     description: "",
-    img: "", // Base64 image string
+    img: null, // Store the file object instead of Base64 string
   });
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "img" && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setForm((prevState) => ({
-          ...prevState,
-          img: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
+      setForm((prevState) => ({
+        ...prevState,
+        img: files[0], // Save the file object in the form state
+      }));
     } else {
       setForm((prevState) => ({
         ...prevState,
@@ -46,21 +41,23 @@ const BestActivities = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      stateName: form.stateName,
-      time: form.time, // Now a string input
-      title: form.title,
-      description: form.description,
-      img: form.img, // Base64 image string
-    };
+    // Create a FormData object to send the form data as multipart/form-data
+    const formData = new FormData();
+    formData.append("stateName", form.stateName);
+    formData.append("time", form.time);
+    formData.append("title", form.title);
+    formData.append("description", form.description);
+    if (form.img) {
+      formData.append("img", form.img); // Append the image file
+    }
 
     try {
       const response = await axios.post(
         "https://travel-server-iley.onrender.com/api/admin/addActivity",
-        payload,
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -70,20 +67,30 @@ const BestActivities = () => {
         time: "",
         title: "",
         description: "",
-        img: "",
+        img: null, // Reset the image field
       });
     } catch (error) {
-      console.error("Error adding activity:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error adding activity:",
+        error.response ? error.response.data : error.message
+      );
       alert("Failed to add activity. Please try again.");
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100">
-      <h2 className="text-2xl font-bold mb-6 text-center">Add New Best Activity</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Add New Best Activity
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="stateName" className="block text-lg font-semibold mb-2">State Name:</label>
+          <label
+            htmlFor="stateName"
+            className="block text-lg font-semibold mb-2"
+          >
+            State Name:
+          </label>
           <select
             id="stateName"
             name="stateName"
@@ -102,7 +109,9 @@ const BestActivities = () => {
         </div>
 
         <div>
-          <label htmlFor="time" className="block text-lg font-semibold mb-2">Time (e.g., 4 hours approx):</label>
+          <label htmlFor="time" className="block text-lg font-semibold mb-2">
+            Time (e.g., 4 hours approx):
+          </label>
           <input
             type="text"
             id="time"

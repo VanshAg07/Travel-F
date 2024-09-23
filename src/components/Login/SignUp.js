@@ -6,6 +6,7 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNo, setPhoneNo] = useState("")
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ function Signup() {
           username,
           email,
           password,
+          phoneNo
         }),
       });
 
@@ -63,6 +65,17 @@ function Signup() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your username"
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                autoComplete="off"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-gray-600 mb-1">Phone No.</label>
+              <input
+                type="number"
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(e.target.value)}
+                placeholder="Enter phone number"
                 className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 autoComplete="off"
               />

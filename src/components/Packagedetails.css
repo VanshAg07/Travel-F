@@ -64,11 +64,13 @@
 }
 .package-nav {
   display: flex;
-  justify-content: space-between;
-  width: 60%;
+  justify-content: space-around;
+  /* width: 60%; */
   padding: 1em 0; 
   border-radius: 10px; 
-  background-color: #E0FAFF;
+  background-color: #0fbee1;
+  position: sticky;
+  
 }
 
 .package-nav a {
@@ -85,8 +87,9 @@
 }
 
 .package-nav a.active {
-  color: #01AFD1;
+  color: #ffffff;
   border-radius: 5px;
+  border-bottom-width: 1px;
 }
 
 .place-head{
@@ -100,7 +103,7 @@
 
 /* New CSS for Overview Container */
 .overview-container {
-  width: 60%;
+  /* width: 60%; */
   padding: 20px;
   box-sizing: border-box;
   background-color: #f9f9f9; /* Optional: background color */
@@ -110,7 +113,7 @@
 
 /* Styling for h1 inside overview-container */
 .overview-container h1 {
-  font-size: 1.5rem; /* Large font size for prominence */
+  font-size: 2rem; /* Large font size for prominence */
   font-weight: bold; /* Bold font weight for emphasis */
   color: #333; /* Darker color for contrast */
   text-align:left; /* Center-align text */
@@ -128,7 +131,7 @@
 
 /* Styling for p inside overview-container */
 .overview-container p {
-  font-size: 1rem; /* Standard font size */
+  font-size: 1.1rem; /* Standard font size */
   line-height: 1.6; /* Increased line height for readability */
   color: #444; /* Neutral color for body text */
   text-align: justify; /* Justify text for clean alignment */
@@ -137,8 +140,8 @@
 
 /* Container for the inclusions section */
 .inclusions-container {
-  width: 60%;
-  margin: 20px ;
+  /* width: 60%; */
+  /* margin: 20px ; */
   padding: 20px;
   background-color: #F5FFF6; /* Light green background color */
   border-radius: 8px; /* Rounded corners */
@@ -180,13 +183,14 @@
 
 
 .Exclusion-container {
-  width: 60%;
-  margin: 20px ;
+  /* width: 60%; */
+  /* margin: 20px ; */
   padding: 20px;
   background-color: #FFF4F4; /* Light green background color */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   box-sizing: border-box; /* Include padding in width/height */
+  margin-top: 30px;
 }
 
 /* Styling for the Exclusion heading */
@@ -222,13 +226,14 @@
 }
 
 .Other-info-container {
-  width: 60%;
-  margin: 20px ;
+  /* width: 60%; */
+  margin-top: 30px ;
   padding: 20px;
   background-color: #FFFFFF; /* Light green background color */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   box-sizing: border-box; /* Include padding in width/height */
+  margin-bottom: 30px;
 }
 
 /* Styling for the Other-info heading */
@@ -303,6 +308,7 @@ margin-top: -40px;
 .day-container {
   margin-bottom: 20px;
   background-color: #F5FDFF;
+  padding: 10px;
 }
 
 .day-header {

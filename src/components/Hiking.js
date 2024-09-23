@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Hiking.css"; // Ensure this file has the styles defined below
+import "./Hiking.css"; 
 import { FaClock } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import bg from "../img/india.jpg";
 
 const Hiking = () => {
   const [activities, setActivities] = useState([]);
@@ -13,24 +12,22 @@ const Hiking = () => {
 
   useEffect(() => {
     const fetchActivities = async () => {
+      console.log("Fetching activities..."); 
       try {
         const response = await axios.get(
           `https://travel-server-iley.onrender.com/api/user/getBestActivities/${name}`
         );
-        console.log(response.data); // Check if data is logged in console
-        setActivities(response.data.activities || []); // Update activities state
-        setLoading(false);
+        console.log(response.data); 
+        setActivities(response.data.activities || []); 
       } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchActivities();
-  }, [name]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  }, [name]); 
 
   return (
     <div className="hiking-cards-grid grid-cols-3">
@@ -38,8 +35,7 @@ const Hiking = () => {
         activities.map((activity, index) => (
           <div key={index} className="hiking-card">
             <img
-              src={bg}
-              // src={activity.img}
+              src={activity.img}
               alt={activity.title}
               className="hiking-card-img"
             />
@@ -47,10 +43,9 @@ const Hiking = () => {
               <div className="clock-text-container">
                 <FaClock className="hiking-card-clock" />
                 <span className="duration-text">{activity.time}</span>{" "}
-                {/* Displaying time */}
               </div>
-              <h1>{activity.title}</h1> {/* Displaying title */}
-              <p>{activity.description}</p> {/* Displaying description */}
+              <h1>{activity.title}</h1> 
+              <p>{activity.description}</p>
             </div>
           </div>
         ))

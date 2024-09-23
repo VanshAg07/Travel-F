@@ -1,43 +1,48 @@
-import React from 'react';
-import './Shop.css'; // Ensure this file has the styles defined below
-import { FaClock } from 'react-icons/fa'; // Import FontAwesome clock icon
-import bg from "../img/india.jpg";
-
-const shopData = [
-  {
-    img: bg, // Replace with your actual image path
-    title: 'Polo Bazaar',
-    description: 'Shop For: Local fruits, clothes, and Jadoh',
-    duration: '08:00 AM - 09:00 PM',
-  },
-  {
-    img: bg, // Replace with your actual image path
-    title: 'OB Shopping Mall',
-    description: 'Shop For: Modern clothes & food',
-    duration: '09:00 AM - 09:00 PM',
-  },
-  {
-    img: bg, // Replace with your actual image path
-    title: 'Glory’s Plaza',
-    description: 'Shop For: Apparels',
-    duration: '11:00 AM - 08:30 PM',
-  },
-  // Add more hiking data here if needed
-];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import './Shop.css'; 
+import { FaClock } from 'react-icons/fa'; 
+import { useParams } from "react-router-dom";
 
 const Shop = () => {
+  const [shops, setShops] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { name } = useParams();
+
+  useEffect(() => {
+    const fetchShops = async () => {
+      try {
+        const response = await axios.get(
+          `https://travel-server-iley.onrender.com/api/user/getShops/${name}` 
+        );
+        console.log(response.data); 
+        setShops(response.data.shops || []); 
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShops();
+  }, [name]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="shop-cards-grid">
-      {shopData.map((hike, index) => (
+      {shops.map((shop, index) => (
         <div key={index} className="shop-card">
-          <img src={hike.img} alt={hike.title} className="shop-card-img" />
+          <img src={shop.img} alt={shop.title} className="shop-card-img" />
           <div className="shop-card-content">
             <div className="clock-text-container">
               <FaClock className="shop-card-clock" />
-              <span className="duration-text">{hike.duration}</span>
+              <span className="duration-text">{shop.duration}</span>
             </div>
-            <h1>{hike.title}</h1>
-            <p>{hike.description}</p>
+            <h1>{shop.title}</h1>
+            <p>{shop.description}</p>
           </div>
         </div>
       ))}

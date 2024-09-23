@@ -7,6 +7,7 @@ import UserDetails from './UserDetails';
 import BeautifulPlaces from './BeautifulPlaces';
 import BestActivities from './BestActivities';
 import RichFlavour from './RichFlavour';
+import Shop from './Shop';
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState('user-details');
@@ -74,6 +75,14 @@ const AdminPortal = () => {
               Add Rich Flavour 
             </button>
           </li>
+          <li>
+            <button
+              onClick={() => setActiveTab('shop')}
+              className={`block w-full text-left py-4 px-4 ${activeTab === 'shop' ? 'bg-red-600' : 'hover:bg-gray-700'}`}
+            >
+              Add Shops
+            </button>
+          </li>
         </ul>
         <button
           onClick={handleLogout}
@@ -89,6 +98,7 @@ const AdminPortal = () => {
         {activeTab === 'beautiful-places' && <BeautifulPlaces />}
         {activeTab === 'best-activities' && <BestActivities />}
         {activeTab === 'rich-flavour' && <RichFlavour />}
+        {activeTab === 'shop' && <Shop />}
         {activeTab === 'add-user' && <div>Add User Content</div>}
       </div>
     </div>

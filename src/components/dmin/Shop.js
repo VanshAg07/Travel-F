@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const states = [
@@ -14,7 +14,7 @@ const states = [
   "Manali",
 ];
 
-const RichFlavour = () => {
+const Shop = () => {
   const [form, setForm] = useState({
     stateName: "",
     title: "",
@@ -51,7 +51,7 @@ const RichFlavour = () => {
 
     try {
       const response = await axios.post(
-        "https://travel-server-iley.onrender.com/api/admin/addRichFlavour",
+        "https://travel-server-iley.onrender.com/api/admin/addShop",
         formData,
         {
           headers: {
@@ -59,7 +59,7 @@ const RichFlavour = () => {
           },
         }
       );
-      alert("Rich Flavour added successfully!");
+      alert("Shop added successfully!");
       setForm({
         stateName: "",
         title: "",
@@ -68,18 +68,16 @@ const RichFlavour = () => {
       });
     } catch (error) {
       console.error(
-        "Error adding flavour:",
+        "Error adding shop:",
         error.response ? error.response.data : error.message
       );
-      alert("Failed to add flavour. Please try again.");
+      alert("Failed to add shop. Please try again.");
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100">
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        Add New Rich Flavour
-      </h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Add New Shop</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label
@@ -133,11 +131,11 @@ const RichFlavour = () => {
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded-lg"
         >
-          Add Rich Flavour
+          Add Shop
         </button>
       </form>
     </div>
   );
 };
 
-export default RichFlavour;
+export default Shop;
