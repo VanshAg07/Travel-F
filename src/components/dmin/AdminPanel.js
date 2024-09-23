@@ -153,9 +153,7 @@ const AdminPanel = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-lg font-medium">
-              Trip Location
-            </label>
+            <label className="block text-lg font-medium">Trip Location</label>
             <select
               name="tripLocation"
               value={tripData.tripLocation}
@@ -171,9 +169,7 @@ const AdminPanel = () => {
             </select>
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Select State
-            </label>
+            <label className="block text-lg font-medium">Select State</label>
             <select
               value={selectedState}
               onChange={(e) => setSelectedState(e.target.value)}
@@ -188,9 +184,7 @@ const AdminPanel = () => {
             </select>
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Name
-            </label>
+            <label className="block text-lg font-medium">Trip Name</label>
             <input
               type="text"
               name="tripName"
@@ -200,9 +194,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Price
-            </label>
+            <label className="block text-lg font-medium">Trip Price</label>
             <input
               type="number"
               name="tripPrice"
@@ -212,9 +204,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Quantity
-            </label>
+            <label className="block text-lg font-medium">Trip Quantity</label>
             <input
               type="number"
               name="tripQuantity"
@@ -224,9 +214,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Date
-            </label>
+            <label className="block text-lg font-medium">Trip Date</label>
             <input
               type="date"
               name="tripDate"
@@ -248,9 +236,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Accommodation
-            </label>
+            <label className="block text-lg font-medium">Accommodation</label>
             <input
               type="text"
               name="tripAccommodation"
@@ -260,9 +246,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Activities
-            </label>
+            <label className="block text-lg font-medium">Activities</label>
             <input
               type="text"
               name="tripActivities"
@@ -272,9 +256,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Transportation
-            </label>
+            <label className="block text-lg font-medium">Transportation</label>
             <input
               type="text"
               name="tripTransportation"
@@ -284,9 +266,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Food
-            </label>
+            <label className="block text-lg font-medium">Food</label>
             <input
               type="text"
               name="tripFood"
@@ -296,9 +276,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Beverages
-            </label>
+            <label className="block text-lg font-medium">Beverages</label>
             <input
               type="text"
               name="tripBeverages"
@@ -320,9 +298,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Cancellations
-            </label>
+            <label className="block text-lg font-medium">Cancellations</label>
             <input
               type="text"
               name="tripCancellations"
@@ -334,9 +310,7 @@ const AdminPanel = () => {
 
           {/* Trip Inclusions */}
           <div>
-            <label className="block text-lg font-medium">
-              Trip Inclusions
-            </label>
+            <label className="block text-lg font-medium">Trip Inclusions</label>
             {tripData.tripInclusions.map((inclusion, index) => (
               <div key={index} className="flex items-center">
                 <input
@@ -360,9 +334,7 @@ const AdminPanel = () => {
 
           {/* Trip Exclusions */}
           <div>
-            <label className="block text-lg font-medium">
-              Trip Exclusions
-            </label>
+            <label className="block text-lg font-medium">Trip Exclusions</label>
             {tripData.tripExclusions.map((exclusion, index) => (
               <div key={index} className="flex items-center">
                 <input
@@ -386,9 +358,7 @@ const AdminPanel = () => {
 
           {/* Trip Itinerary */}
           <div>
-            <label className="block text-lg font-medium">
-              Trip Itinerary
-            </label>
+            <label className="block text-lg font-medium">Trip Itinerary</label>
             {tripData.tripItinerary.map((item, index) => (
               <div key={index}>
                 <input
@@ -453,9 +423,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Amenities
-            </label>
+            <label className="block text-lg font-medium">Trip Amenities</label>
             <input
               type="text"
               name="tripAmenities"
@@ -465,9 +433,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Rules
-            </label>
+            <label className="block text-lg font-medium">Trip Rules</label>
             <input
               type="text"
               name="tripRules"
@@ -488,9 +454,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Images
-            </label>
+            <label className="block text-lg font-medium">Trip Images</label>
             <input
               type="file"
               multiple
@@ -499,9 +463,7 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Upload PDF
-            </label>
+            <label className="block text-lg font-medium">Upload PDF</label>
             <input
               type="file"
               onChange={handlePdfChange}

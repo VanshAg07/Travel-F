@@ -3,70 +3,60 @@ import { Link } from 'react-router-dom';
 
 const FooterSection = () => {
   return (
-    <div className="bg-cyan-500 text-white py-10 px-36">
-      <div className="container mx-auto px-4">
-        {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-5  gap-8">
-          {/* About Us */}
-          <div className="md:col-span-2 w-[75%] float-right">
-            <h2 className="font-bold text-2xl mb-4">About Us</h2>
-            <p className="leading-relaxed text-[#fffff9d5]">
-            TravelloTen india Private Limited is a specialist for Travel &
-          Transport serving exclusively the academic sector by arranging
-          educational & fun tours for students of every age all over India. We
-          are different as we educate and inform students about
-          historical/geographical/cultural values etc. wherever the tour takes
-          place. We also doing school tour , colleges tour , corporate tour &
-          Family's tour for all place in India. We have over many years combined
-          experience in providing the almost in quality, authenticity and
-          service in the group travel industry. We have strong hold in the
-          domestic market as well. We believe in “Service with quality & Smile”.
+    <div className="bg-gradient-to-r from-blue-950 to-blue-600 text-white w-full ">
+      <div className="py-12 px-4 md:px-16 flex justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 w-full max-w-screen-xl">
+          {/* About Us Section */}
+          <div className="md:col-span-2">
+            <h2 className="font-bold text-3xl mb-4">About Us</h2>
+            <p className="leading-relaxed text-gray-300">
+              TravelloTen India Private Limited specializes in Travel & Transport services, exclusively for the academic sector. We arrange educational & fun tours for students all over India, providing insights on history, geography, and culture. Our services extend to school tours, college tours, corporate tours, and family trips across India. With years of experience, we ensure quality, authenticity, and exceptional service. We believe in “Service with Quality & Smile.”
             </p>
           </div>
-
-          {/* Weekend Trips */}
+          
+          {/* Weekend Trips Section */}
           <div>
             <h2 className="font-bold text-2xl mb-4">Weekend Trips</h2>
-            <ul className='text-[#fffff9d5]'>
-             <Link> <li>Bir Billing</li></Link>
-             <Link> <li>Chopta Tungnath</li></Link>
-           <Link>   <li>Kasol Kheerganga</li></Link>
-            <Link>  <li>Tirthan Valley</li></Link>
-             <Link> <li>Manali Solang</li></Link>
+            <ul className="text-gray-300 space-y-2">
+              <li><Link to="#" className="hover:text-yellow-300">Bir Billing</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Chopta Tungnath</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Kasol Kheerganga</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Tirthan Valley</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Manali Solang</Link></li>
             </ul>
           </div>
-
-          {/* Backpacking Trips */}
+          
+          {/* Backpacking Trips Section */}
           <div>
             <h2 className="font-bold text-2xl mb-4">Backpacking Trips</h2>
-            <ul className='text-[#fffff9d5]'>
-             <Link> <li>Himachal Backpacking</li></Link>
-             <Link> <li>Spiti Valley</li></Link>
-             <Link><li>Ladakh Trips</li></Link>
-             <Link> <li>Meghalaya Backpacking</li></Link>
-             <Link> <li>Kashmir Backpacking</li></Link>
+            <ul className="text-gray-300 space-y-2">
+              <li><Link to="#" className="hover:text-yellow-300">Himachal Backpacking</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Spiti Valley</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Ladakh Trips</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Meghalaya Backpacking</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Kashmir Backpacking</Link></li>
             </ul>
 
             <h2 className="font-bold text-2xl mt-8 mb-4">Blogs</h2>
-            <ul className='text-[#fffff9d5]'>
-            <Link>  <li>Beautiful Places to Visit in Spring in India</li></Link>
-            <Link> <li>Workcations: The New Trend of Travel</li></Link>
-            <Link>  <li>Breathtaking Monasteries of Ladakh</li></Link>
-            <Link>  <li>Soul-Satisfying things to do in Spiti Valley</li></Link>
-            <Link>  <li>Mesmerizing Waterfalls of Meghalaya to Visit</li></Link>
+            <ul className="text-gray-300 space-y-2">
+              <li><Link to="#" className="hover:text-yellow-300">Beautiful Places to Visit in Spring</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Workcations: The New Trend of Travel</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Monasteries of Ladakh</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Things to Do in Spiti Valley</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Waterfalls of Meghalaya</Link></li>
             </ul>
           </div>
-
-          {/* Quick Links */}
+          
+          {/* Quick Links Section */}
           <div>
             <h2 className="font-bold text-2xl mb-4">Quick Links</h2>
-            <ul className='text-[#fffff9d5]'>
-            <Link to='/Privcy'>  <li>Privacy Policy</li></Link>
-            <Link to="/Cancellation"> <li>Cancellation Policy</li></Link>
-             <Link to="/Termcondition"> <li>Terms & Conditions</li></Link>
-             <Link to="/Disclaimer"> <li>Disclaimer</li> </Link>
-              <li>About Us</li>
-              <li>Payments</li>
+            <ul className="text-gray-300 space-y-2">
+              <li><Link to="/Privcy" className="hover:text-yellow-300">Privacy Policy</Link></li>
+              <li><Link to="/Cancellation" className="hover:text-yellow-300">Cancellation Policy</Link></li>
+              <li><Link to="/Termcondition" className="hover:text-yellow-300">Terms & Conditions</Link></li>
+              <li><Link to="/Disclaimer" className="hover:text-yellow-300">Disclaimer</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">About Us</Link></li>
+              <li><Link to="#" className="hover:text-yellow-300">Payments</Link></li>
             </ul>
           </div>
         </div>

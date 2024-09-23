@@ -55,7 +55,7 @@ const National = () => {
     { id: 7, name: "Uttarakhand", img: shi2 },
     { id: 8, name: "Ladakh", img: shi8 },
     { id: 9, name: "Goa", img: shi5 },
-    { id: 10, name: "Sikkim", img: shi7 },
+    { id: 10, name: "Manali", img: shi7 },
     // { id: 6, name: "Place 6", img: shi6 },
     // { id: 9, name: "Place 9", img: shi9 },
     // { id: 11, name: "Place 11", img: shi11 },

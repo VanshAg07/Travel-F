@@ -41,6 +41,7 @@ const Home = () => {
       <Videopg3 />
       <Explore/>
       <Gallery />
+      
       <Homeglry />
       <Videopg4 />
       <Whyuss />

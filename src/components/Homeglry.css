@@ -45,3 +45,26 @@ img {
   margin-top: 10%;
   margin-bottom: 10%;
 }
+
+/* Arrow Styles */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #000000;
+  cursor: pointer;
+  z-index: 100;
+  background-color: rgb(112, 206, 225);
+  border-radius: 20px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.arrow-left {
+  left: 10px;
+}
+
+.arrow-right {
+  right: 10px;
+}
