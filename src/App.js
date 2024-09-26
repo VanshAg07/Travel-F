@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.scss"
+import "./App.scss";
 import Home from "./Home.js";
 import Contactus from "./Contactus.js";
 import Cont from "./Cont.js";
@@ -37,8 +37,10 @@ import Homeglry from "./components/Homeglry.js";
 import Corporate from "./components/Corporate.js";
 import Superpower from "./components/Superpower.js";
 import Corpohero from "./components/Corpo-hero.js";
-import SignUp from './components/Login/SignUp.js';
-import Login from './components/Login/Login.js';
+import SignUp from "./components/Login/SignUp.js";
+import Login from "./components/Login/Login.js";
+import DateCosting from "./components/DatesCosting/DateCosting.js";
+import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 
 const App = () => {
   return (
@@ -80,10 +82,12 @@ const App = () => {
         <Route path="/Explore" element={<Explore />} />
         <Route path="/Corporate" element={<Corporate />} />
         <Route path="/Corpohero" element={<Corpohero />} />
-        <Route path="/Superpower" element={<Superpower />} /> 
+        <Route path="/Superpower" element={<Superpower />} />
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
+        <Route path="/dates-and-costing" element={<DateCosting />} />
+        <Route path="/booking-options" element={<BookingOptions />} />
       </Routes>
     </BrowserRouter>
   );

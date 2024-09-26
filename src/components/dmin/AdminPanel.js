@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const states = [
   { _id: "66f05385d87823fc7b98f371", stateName: "Kashmir" },
-  { _id: "66f05389d87823fc7b98f373", stateName: "Goa" },
+  { _id: "66f2f0ecad7a7846f232e147", stateName: "Sikkim" },
   { _id: "66f0538fd87823fc7b98f375", stateName: "Meghalaya" },
   { _id: "66f05395d87823fc7b98f377", stateName: "Rajasthan" },
   { _id: "66f053a6d87823fc7b98f379", stateName: "Spiti Valley" },
@@ -10,7 +10,7 @@ const states = [
   { _id: "66f053b6d87823fc7b98f37d", stateName: "Himachal Pradesh" },
   { _id: "66f053bdd87823fc7b98f37f", stateName: "Uttarakhand" },
   { _id: "66f053c3d87823fc7b98f381", stateName: "Ladakh" },
-  { _id: "66f053cad87823fc7b98f383", stateName: "Manali" },
+  { _id: "66f2f117ad7a7846f232ea78", stateName: "Andaman" },
 ];
 
 const AdminPanel = () => {
@@ -19,7 +19,7 @@ const AdminPanel = () => {
     tripName: "",
     tripPrice: "",
     tripQuantity: "",
-    tripDate: "",
+    tripDate: [""],
     tripLocation: "",
     tripDuration: "",
     tripAccommodation: "",
@@ -214,21 +214,31 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Trip Date</label>
-            <input
-              type="date"
-              name="tripDate"
-              value={tripData.tripDate}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
+            <label className="block text-lg font-medium">Trip Dates</label>
+            {tripData.tripDate.map((date, index) => (
+              <div key={index} className="flex items-center">
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => handleArrayChange(e, index, "tripDate")}
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                />
+                <button
+                  type="button"
+                  onClick={() => addField("tripDate")}
+                  className="ml-2 p-1 text-white bg-green-600 rounded"
+                >
+                  +
+                </button>
+              </div>
+            ))}
           </div>
           <div>
             <label className="block text-lg font-medium">
               Trip Duration (in days)
             </label>
             <input
-              type="number"
+              type="text"
               name="tripDuration"
               value={tripData.tripDuration}
               onChange={handleInputChange}

@@ -36,7 +36,12 @@ const Visit = () => {
       {places.length > 0 ? (
         places.map((place, index) => (
           <div key={index} className="visiting-card">
-            <img src={place.img} alt={place.title} className="food-card-img" />
+            {/* Construct the full image URL using the base URL and the image filename */}
+            <img
+              src={`https://travel-server-iley.onrender.com/uploads/${place.img}`}
+              alt={place.title}
+              className="food-card-img"
+            />
             <div className="visiting-card-content">
               <h1>{place.title}</h1>
               <p>{place.description}</p>

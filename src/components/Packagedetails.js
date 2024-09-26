@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Packagedetails.css";
 import Nav from "./Nav";
 import bg from "../img/india.jpg";
@@ -13,31 +14,39 @@ import Review from "./Review";
 import Whyuss from "./Whyuss";
 import FooterSection from "./Footersection";
 import { LuCircleDotDashed } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 const Packagedetails = () => {
-  // State to track the active link
+  const navigate = useNavigate();
+
   const [activeSection, setActiveSection] = useState("overview");
-  // State to track if content is expanded
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [isDay1Expanded, setIsDay1Expanded] = useState(false);
-  const { name } = useParams();
-  // Function to handle the download action
+  const { tripName, name } = useParams();
+  const [trips, setTrip] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const handleDownload = () => {
-    window.open("/itinerary.pdf", "_blank");
+    if (trips.pdf) {
+      const fileUrl = `https://travel-server-iley.onrender.com/uploads/${trips.pdf}`;
+      window.open(fileUrl, "_blank");
+    } else {
+      console.error("No PDF file available");
+    }
   };
 
-  // Function to toggle the expanded state
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
 
   const [expandedDays, setExpandedDays] = useState({});
 
-  // Function to handle toggling expansion of a specific day
   const handleToggleDay = (day) => {
     setExpandedDays((prevState) => ({
       ...prevState,
-      [day]: !prevState[day], // Toggle the specific day
+      [day]: !prevState[day],
     }));
   };
 
@@ -45,98 +54,56 @@ const Packagedetails = () => {
     setIsDay1Expanded(!isDay1Expanded);
   };
 
-  const itineraryData = [
-    {
-      day: 1,
-      description: " Guwahati Arrival | Umiam Lake | Overnight at Shillong",
-      details: [
-        "Arrive at Lokpriya Gopinath Bordoloi International Airport by morning. Arrive till 11:30 AM.",
-        "Post breakfast, depart for Shillong.",
-        "Post lunch visit Umiam Lake & then head to Shillong market for some shopping.",
-        "Check in to the hotel & freshen up.",
-        "Overnight stay at Shillong.",
-      ],
-    },
-    {
-      day: 2,
-      description:
-        "Shillong to Cherrapunjee | Lyngksiar Waterfalls | Arwah Cave | Nohkalikai Falls",
-      details: [
-        "Wake up and enjoy your breakfast with a view.",
-        "Check out from Hotel and visit the beautiful Lyngksiar Waterfalls.",
-        "Later depart for Arwah Cave.",
-        "Post lunch continue toward Cherrapunjee.",
-        "Spend your time awestruck by the amazing beauty.",
-        "Reach Cherrapunjee and visit Nohkalikai Falls.",
-        "Dinner & sleep overnight.",
-      ],
-    },
-    {
-      day: 3,
-      description: "Single Root Bridge | Double Decker Bridge",
-      details: [
-        "Post breakfast, depart for Tyrna Village.",
-        "Reach Tyrna & first start your trek to the Single Root Bridge.",
-        "Later visit the astonishing Double Decker Bridge.",
-        "Trek back to Tyrna Village & start your journey to Cherrapunjee.",
-        "Overnight stay at Cherrapunjee.",
-      ],
-    },
-    {
-      day: 4,
-      description:
-        "Mawsmai Caves | Mawlynnong Village | Overnight at Shnongpdeng",
-      details: [
-        "Post breakfast, visit Mawsmai Caves.",
-        "Mawer to Mawlynnong Village.",
-        "Later transfer to Shnongpdeng Village.",
-        "Arrive at Shnongpdeng & check in to the camps.",
-        "Overnight stay at Shnongpdeng.",
-      ],
-    },
-    {
-      day: 5,
-      description: "Water Sports | Phe-Phe Waterfall | Overnight at Shillong",
-      details: [
-        "Enjoy your breakfast with a sight of crystal clear water.",
-        "Enjoy various water sports activities.",
-        "Have your lunch and transfer to Shillong.",
-        "On the way visit Phe-Phe Waterfall.",
-        "Reach Shillong & explore the local market.",
-        "Overnight stay at Shillong.",
-      ],
-    },
-    {
-      day: 6,
-      description: "Laitlum Grand Canyon | Departure",
-      details: [
-        "Enjoy a delicious breakfast.",
-        "Check out and depart for Laitlum Grand Canyon.",
-        "Later depart for Guwahati Airport.",
-        "Reach your home with a suitcase full of memories. Book your flight post 5 PM.",
-      ],
-    },
-  ];
+  const stateName = name;
+  useEffect(() => {
+    const fetchTripDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://travel-server-iley.onrender.com/api/user/findStateAndTrip/${stateName}/${tripName}`
+        );
+        setTrip(response.data.trip);
+        console.log(trips);
+      } catch (error) {
+        console.error("Error fetching trip details:", error);
+        setError("Failed to load trip details");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchTripDetails();
+  }, [name, tripName]);
+  const handleDatesAndCostingClick = () => {
+    if (trips && trips.tripDate) {
+      navigate("/dates-and-costing", {
+        state: { tripDates: trips.tripDate, tripPrice: trips.tripPrice, tripName: trips.tripName },
+      });
+    } else {
+      console.error("Trip dates not available");
+    }
+  };
   return (
     <div>
       <Nav />
       <img src={bg} alt="Descriptive Alt Text" className="full-width-image" />
-      <button className="cssbuttons-io-button" onClick={handleDownload}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path fill="none" d="M0 0h24v24H0z"></path>
-          <path
-            fill="currentColor"
-            d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
-          ></path>
-        </svg>
-        <span>Download Itinerary</span>
-      </button>
+      {trips.pdf && (
+        <button className="cssbuttons-io-button" onClick={handleDownload}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
+            ></path>
+          </svg>
+          <span>Download Itinerary</span>
+        </button>
+      )}
+
       <div className="flex gap-0 w-full justify-center m-2">
         <div className="max-w-[50%]">
           <div className="mt-10 ">
@@ -154,7 +121,9 @@ const Packagedetails = () => {
               <FaClock className="text-white" />
               <div className="flex flex-col">
                 <span className="text-white">Duration:</span>
-                <span className="text-white">5N - 6D</span>
+                <span className="text-white">
+                  {trips && trips.tripDuration}
+                </span>
               </div>
             </div>
           </div>
@@ -206,7 +175,9 @@ const Packagedetails = () => {
             </div>
             <div className="">
               <p>
-                Meghalaya - A Potpourri of Beauty & Culture Confused about
+                {trips && trips.tripDescription}
+                {/* {trip.trip.tripDescription} */}
+                {/* Meghalaya - A Potpourri of Beauty & Culture Confused about
                 choosing your next travel destination? Wondering whether to go
                 trekking in forests, or take a dip in blue lagoons or just relax
                 by the beachside? What if we tell you there exists a magical
@@ -263,119 +234,94 @@ const Packagedetails = () => {
                     next Meghalaya batch and become a part of India’s coolest
                     travel community!
                   </>
-                )}
+                )} */}
               </p>
             </div>
-
-            <button onClick={handleToggle} className="toggle-button-1">
+            {/* <button onClick={handleToggle} className="toggle-button-1">
               {isExpanded ? "Read Less" : "Read More"}
-            </button>
+            </button> */}
           </div>
           <div id="itinerary" className="mt-10">
             <p className="text-center font-bold text-3xl mb-4">Itinerary</p>
-            {itineraryData.map(({ day, description, details }) => (
-              <div className="mb-5 bg-blue-100 p-3 rounded-lg" key={day}>
-                <div className="day-header">
-                  <div className="border-2 p-2 rounded-md mr-5 border-blue-400 bg-white">
-                    Day {day}:{" "}
+
+            {/* Ensure trip and tripItinerary exist before mapping */}
+            {trips && trips.tripItinerary && trips.tripItinerary.length > 0 ? (
+              trips.tripItinerary.map((itineraryItem, index) => (
+                <div className="mb-5 bg-blue-100 p-3 rounded-lg" key={index}>
+                  <div className="day-header flex justify-between items-center">
+                    <div className="border-2 p-2 rounded-md mr-5 border-blue-400 bg-white">
+                      Day {index + 1}: {/* Use index+1 for day number */}
+                    </div>
+                    <p className="text-xl">{itineraryItem.title}</p>
+                    <span
+                      className="plus-icon cursor-pointer"
+                      onClick={() => handleToggleDay(index + 1)}
+                    >
+                      {expandedDays[index + 1] ? "-" : "+"}
+                    </span>
                   </div>
-                  <p className="text-xl">{description}</p>
-                  <span
-                    className="plus-icon"
-                    onClick={() => handleToggleDay(day)}
-                  >
-                    {expandedDays[day] ? "-" : "+"}
-                  </span>
-                </div>
-                {expandedDays[day] && (
-                  <ul className="mt-4 mx-10">
-                    {details.map((detail, index) => (
-                      <div className="mt-2">
-                        <div className="flex flex-row items-center gap-3">
-                          <LuCircleDotDashed />
-                          <li key={index}>{detail}</li>
+
+                  {/* Conditionally render details when day is expanded */}
+                  {expandedDays[index + 1] && (
+                    <ul className="mt-4 mx-10">
+                      {itineraryItem.points.map((detail, i) => (
+                        <div className="mt-2" key={i}>
+                          <div className="flex flex-row items-center gap-3">
+                            <LuCircleDotDashed />
+                            <li>{detail}</li>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p>No Itinerary Available</p>
+            )}
           </div>
 
           <div id="inclusions" className="inclusions-container">
-            <h1>Inclusions</h1>
+            <h1 className="text-center font-bold text-3xl mb-4">Inclusions</h1>
             <ul className="p-2 flex flex-col">
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Entire travel as per the itinerary by tempo traveler.
-              </li>
-              {/* <li className="flex flex-row items-center gap-4 mt-2 text-l">
-              <SiTicktick className="text-green-500" size={20} />5 nights accommodation – 2 Nights
-              in Hotel at Cherrapunjee, 1 Night in Camps at Shnongpdeng & 2
-              Nights in Hotel at Shillong on double/triple sharing basis.
-            </li> */}
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />6 meals –
-                Breakfast on Day 2, Day 3, Day 4, Day 5 & Day 6 + Dinner on Day
-                4.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Entry fees to the sightseeing places mentioned in the itinerary.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Guided trek to various points.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Team Captain throughout the trip.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Medical Kit to handle emergency conditions.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Driver night charges, toll & parking charges.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                All inner line permits.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Boating in Shnongpdeng.
-              </li>
-              <li className="flex flex-row items-center gap-4 mt-2 text-l">
-                <SiTicktick className="text-green-500" size={20} />
-                Bonfire (If Weather permits).
-              </li>
+              {/* Check if trip and tripInclusions exist before mapping */}
+              {trips &&
+              trips.tripInclusions &&
+              trips.tripInclusions.length > 0 ? (
+                trips.tripInclusions.map((inclusion, index) => (
+                  <li
+                    className="flex flex-row items-center gap-4 mt-2 text-l"
+                    key={index}
+                  >
+                    <SiTicktick className="text-green-500" size={20} />
+                    {inclusion}
+                  </li>
+                ))
+              ) : (
+                <li>No Inclusions Available</li>
+              )}
             </ul>
           </div>
 
           <div id="exclusions" className="Exclusion-container">
-            <h1>Exclusions</h1>
-            <ul className="Exclusion-list">
-              <li className="flex flex-row items-center text-l gap-4 mt-2">
-                <RxCrossCircled className="text-red-500" size={22} />
-                GST (5%) is applicable extra.
-              </li>
-              <li className="flex flex-row items-center text-l gap-4 mt-2">
-                <RxCrossCircled className="text-red-500" size={22} />
-                Any other food or beverage charges that are not included in the
-                package.
-              </li>
-              <li className="flex flex-row items-center text-l gap-4 mt-2">
-                <RxCrossCircled className="text-red-500" size={22} />
-                Any other costing involved due to any kind of natural calamity,
-                forced circumstances, which are out of our control.
-              </li>
-              <li className="flex flex-row items-center text-l gap-4 mt-2">
-                <RxCrossCircled className="text-red-500" size={22} />
-                Any other expense not mentioned in the inclusion column.
-              </li>
+            <h1 className="text-center font-bold text-3xl mb-4">Exclusions</h1>
+            <ul className="Exclusion-list p-2 flex flex-col">
+              {/* Check if trip and tripExclusions exist before mapping */}
+              {trips &&
+              trips.tripExclusions &&
+              trips.tripExclusions.length > 0 ? (
+                trips.tripExclusions.map((exclusion, index) => (
+                  <li
+                    className="flex flex-row items-center text-l gap-4 mt-2"
+                    key={index}
+                  >
+                    <RxCrossCircled className="text-red-500" size={22} />
+                    {exclusion}
+                  </li>
+                ))
+              ) : (
+                <li>No Exclusions Available</li>
+              )}
             </ul>
           </div>
 
@@ -504,11 +450,15 @@ const Packagedetails = () => {
             <div className="bg-white shadow-lg p-4 rounded-2xl">
               <p className="text-2xl">Starting From</p>
               <p className="text-2xl text-blue-500">
-                <span className="font-bold text-3xl">Rs. 21,4999/- </span>per
+                <span className="font-bold text-3xl">Rs.{trips.tripPrice}/- </span>per
                 person
               </p>
               <div className="bg-blue-500 items-center justify-center flex p-4 rounded-xl mt-5">
-                <p className="text-white text-xl font-bold">Dates & Costing</p>
+                <button onClick={handleDatesAndCostingClick}>
+                  <p className="text-white text-xl font-bold">
+                    Dates & Costing
+                  </p>
+                </button>
               </div>
             </div>
             <div className="border-2 border-blue-500 mt-10 rounded-lg shadow-lg max-w-lg">
