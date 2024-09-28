@@ -62,7 +62,7 @@ const Packagedetails = () => {
         const response = await axios.get(
           `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
-        setTrip(response.data.trip);
+        setTrip(response.data.trips);
         console.log(trips);
       } catch (error) {
         console.error("Error fetching trip details:", error);
@@ -71,7 +71,6 @@ const Packagedetails = () => {
         setLoading(false);
       }
     };
-
     fetchTripDetails();
   }, [name, tripName]);
   const handleDatesAndCostingClick = () => {

@@ -40,8 +40,8 @@ const Dashboard = () => {
     tripRules: "",
     tripDescription: "",
   });
-  const [tripImage, setTripImage] = useState(null); // New state for image
-  const [loading, setLoading] = useState(false); // State to handle loading
+  const [tripImage, setTripImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,51 +54,18 @@ const Dashboard = () => {
   const handleImageChange = (e) => {
     setTripImage(e.target.files[0]);
   };
-
-  const uploadImageToCloudinary = async (imageFile) => {
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    formData.append("upload_preset", "Travell"); // Use your own Cloudinary upload preset
-    formData.append("cloud_name", "dfsl9zcrt"); // Replace with your Cloudinary cloud name
-
-    try {
-      const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dfsl9zcrt/image/upload",
-        formData
-      );
-      return response.data.secure_url; // Return the image URL from Cloudinary
-    } catch (error) {
-      console.error("Error uploading image to Cloudinary:", error);
-      toast.error("Failed to upload image. Please try again.");
-      return null;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     let imageUrl = null;
-
-    if (tripImage) {
-      imageUrl = await uploadImageToCloudinary(tripImage);
-      if (!imageUrl) {
-        setLoading(false);
-        return; // Stop if image upload fails
-      }
-    }
-
     const tripData = {
       ...tripDetails,
-      stateName:tripDetails.stateName,
+      stateName: tripDetails.stateName,
       tripImage: imageUrl,
     };
-
     try {
       await axios.post("http://localhost:5000/api/admin/addTrip", tripData);
       toast.success("Trip added successfully!");
-
-      // Reset form
       setTripDetails({
         stateName: "",
         tripName: "",
@@ -132,9 +99,9 @@ const Dashboard = () => {
     }
   };
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Add New Trip</h2>
-      <form onSubmit={handleSubmit} className="text-center space-y-4">
+    <div className="max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg">
+      <h2 className="text-xl font-bold mb-6 text-center">Add New Trip</h2>
+      <form onSubmit={handleSubmit} className="text-center space-y-2">
         <select
           name="stateName"
           value={tripDetails.stateName}
@@ -156,7 +123,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Name"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="number"
@@ -165,7 +131,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Price"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="number"
@@ -174,7 +139,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Quantity"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="date"
@@ -183,7 +147,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Date"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -192,7 +155,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Location"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="number"
@@ -201,7 +163,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Duration (days)"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -210,7 +171,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Accommodation"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -219,7 +179,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Activities"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -228,7 +187,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Transportation"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -237,7 +195,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Food"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -246,7 +203,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Beverages"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -255,7 +211,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Special Requests"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -264,7 +219,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Cancellations"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -273,7 +227,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Inclusions"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -282,7 +235,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Exclusions"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -291,7 +243,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Additional Services"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -300,7 +251,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Cancellation Policy"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -309,7 +259,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Payment Methods"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
@@ -318,7 +267,6 @@ const Dashboard = () => {
           onChange={handleChange}
           placeholder="Trip Amenities"
           className="w-full p-2 border border-gray-300 rounded-lg"
-          // required
         />
         <input
           type="text"
