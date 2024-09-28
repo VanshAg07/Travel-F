@@ -11,6 +11,7 @@ import "./Blog.css";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import FooterSection from "./Footersection";
+import Dropnav from "../components/Dropnav"
 
 const Data = [
   {
@@ -55,6 +56,7 @@ const Blog = () => {
   return (
     <>
       <Nav />
+      <Dropnav />
       <div className="blog-container">
         <img className="blog-img" src={Blog1} alt="Blog Cover" />
 

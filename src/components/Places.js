@@ -14,6 +14,7 @@ import Visit from "./Visit";
 import Food from "./Food";
 import Shop from "./Shop";
 import Form from "./Form";
+import Dropnav from "../components/Dropnav"
 
 const Place = () => {
   const { name } = useParams();
@@ -21,6 +22,7 @@ const Place = () => {
   return (
     <>
       <Nav />
+      <Dropnav />
       <div className="place-container">
         <div className="place-hero">
           <img className="pl-img" src={bg} alt="Background" />

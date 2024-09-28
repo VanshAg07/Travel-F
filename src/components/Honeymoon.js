@@ -15,7 +15,7 @@ import Review from "../components/Review";
 import Faq from "./Faq.js";
 import FooterSection from "./Footersection";
 import Gallery from "../Gallery.js";
-
+import Dropnav from "../components/Dropnav"
 
 // import Lottie from "lottie-react";
 
@@ -63,6 +63,7 @@ const Honeymoon = () => {
   return (
     <div className="wrpper-inter">
       <Nav />
+      <Dropnav />
       <div className="hero-section-left-1">
         
         <img className="hero-img" src={intern} alt="India" />

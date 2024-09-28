@@ -3,12 +3,14 @@ import "./Cancellation.css";
 import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
+import Dropnav from "../components/Dropnav"
 
 const Cancellation = () => {
 
   return (
     <>
     <Nav />
+    <Dropnav />
     <div className="cancellation-container">
 
       <div className="cancellation-header">

@@ -13,6 +13,7 @@ import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
 import FooterSection from "./components/Footersection.js";
+import Dropnav from "./components/Dropnav.js"
 
 // import Lottie from "lottie-react";
 
@@ -60,6 +61,7 @@ const International = () => {
   return (
     <div className="wrpper-inter">
       <Nav />
+      <Dropnav/>
       <div className="hero-section-left-1">
         
         <img className="hero-img" src={intern} alt="India" />

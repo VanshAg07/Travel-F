@@ -15,6 +15,7 @@ import Whyuss from "./Whyuss";
 import FooterSection from "./Footersection";
 import { LuCircleDotDashed } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import Dropnav from "../components/Dropnav"
 const Packagedetails = () => {
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const Packagedetails = () => {
 
   const handleDownload = () => {
     if (trips.pdf) {
-      const fileUrl = `https://travel-server-iley.onrender.com/uploads/${trips.pdf}`;
+      const fileUrl = `http://localhost:5000/uploads/${trips.pdf}`;
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
@@ -59,7 +60,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         console.log(trips);
@@ -85,6 +86,7 @@ const Packagedetails = () => {
   return (
     <div>
       <Nav />
+      <Dropnav/>
       <img src={bg} alt="Descriptive Alt Text" className="full-width-image" />
       {trips.pdf && (
         <button className="cssbuttons-io-button" onClick={handleDownload}>

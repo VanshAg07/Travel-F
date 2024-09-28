@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Blogdetails.css";
 import Nav from "./Nav";
 import Footer from "../Footer";
+import Dropnav from "../components/Dropnav"
 
 const Blogdetails = () => {
   const { blogId } = useParams();
@@ -1204,6 +1205,7 @@ Respect Local Traditions:
   return (
     <>
       <Nav />
+     <Dropnav/>
       <div className="blog-details">
         {blogData ? (
           <>

@@ -2,38 +2,38 @@ import React from 'react';
 
 const cards = [
   {
-    title: 'End to End Content',
-    description: "We've got everything you need from start to finish – the best places to stay, cool guides, smooth rides, and more. Your trip's in good hands!",
+    title: 'Full Spectrum Services',
+    description: "Everything You Need for a Flawless Experience – premier stays, insightful guides, effortless travel, and more. Relax and let us handle the details!",
     bgColor: 'bg-red-300',
     icon: '🌍',
   },
   {
-    title: 'No Visa Worries',
-    description: "You focus on fun planning, and we'll handle all the boring visa stuff.",
+    title: 'Hassle-Free Passports',
+    description: "Plan your journey, and leave the passport hassles to us!",
     bgColor: 'bg-blue-300',
     icon: '🛂',
   },
   {
-    title: 'Dreamy Stays & Flights',
-    description: "Getting to your dream spots is a breeze. We'll make sure you stay in awesome places and catch your flights without a hitch.",
+    title: 'Luxurious Escapes & Air Travel',
+    description: "Reaching your dream destinations is effortless. We’ll ensure you enjoy lavish accommodations and seamless flights!",
     bgColor: 'bg-teal-300',
     icon: '✈️',
   },
   {
-    title: 'Local Buddies',
-    description: 'Our buddies on the ground will help you explore the heart of every place you visit.',
+    title: 'Friendly Locals',
+    description: 'Your friendly locals are ready to take you on an unforgettable journey through each unique locale.',
     bgColor: 'bg-orange-300',
     icon: '👥',
   },
   {
-    title: 'Picture-Perfect Moments',
+    title: 'Frame-Worthy Experiences',
     description: "We've got a team that can help you snap those amazing pics you'll cherish forever.",
     bgColor: 'bg-green-300',
     icon: '📸',
   },
   {
-    title: 'Travel Magic Makers',
-    description: 'We make sure your adventure is not just hassle-free but sprinkled with the pixie dust of unforgettable memories.',
+    title: 'Timeless Memories',
+    description: 'We guarantee a seamless adventure, enriched with lasting memories that you’ll hold close to your heart.',
     bgColor: 'bg-purple-300',
     icon: '✨',
   },
@@ -45,10 +45,10 @@ const BeyondOrdinary = () => {
       {/* Title Section */}
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold">
-          Beyond <span className="text-blue-600">Ordinary?</span>
+        Extraordinary  <span className="text-blue-600">Experiences</span>
         </h1>
         <p className="text-xl mt-4 text-gray-600">
-          We're firm believers that business trips should be anything but ordinary.
+        We believe that business travels should always be extraordinary experiences.
         </p>
       </div>
 
@@ -60,7 +60,7 @@ const BeyondOrdinary = () => {
             className={`${card.bgColor} p-6 rounded-lg shadow-lg flex flex-col items-start min-h-[250px]`} 
           >
             {/* Icon */}
-            <div className="text-5xl mb-4">
+            <div className="text-5xl mb-4 ml-20  ">
               {card.icon}
             </div>
 

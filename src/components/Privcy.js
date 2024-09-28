@@ -3,11 +3,13 @@ import "./Privcy.css";
 import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
+import Dropnav from "../components/Dropnav"
 
 const Privcy = () => {
   return (
     <>
     <Nav/>
+    <Dropnav/>
     <div className="privacy-container">
       <div className="privacy-section">
         <h1 className="privacy-title">PRIVACY POLICY</h1>

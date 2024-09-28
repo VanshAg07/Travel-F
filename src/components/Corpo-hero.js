@@ -7,7 +7,7 @@ const HighLevelCorporateTour = () => {
       <div className="text-center py-8">
       <header className="w-full bg-white p-6 shadow-md text-center">
         <h1 className="text-4xl font-bold">
-          Clients We've <span className="text-blue-500">WoWed</span>
+        Partners We've  <span className="text-blue-500">Thrilled</span>
         </h1>
       </header>
       </div>

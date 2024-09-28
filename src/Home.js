@@ -20,8 +20,7 @@ import Forms from "./components/Forms.js";
 import Explore from "./components/Explore.js";
 import FooterSection from "./components/Footersection.js";
 import Homeglry from "./components/Homeglry.js";
-
-
+import Dropnav from "./components/Dropnav.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -36,18 +35,19 @@ const Home = () => {
 
 
       <Nav />
+      <Dropnav />
       <Videopage />
       <Videopg2 />
       <Videopg3 />
       <Explore/>
-      <Gallery />
+      {/* <Gallery /> */}
       
       <Homeglry />
       <Videopg4 />
       <Whyuss />
       <Review />
       <div className="marquee-wrapper">
-        <Marquee />
+        {/* <Marquee /> */}
       </div>
       <Forms />
       <FooterSection/>

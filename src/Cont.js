@@ -7,6 +7,7 @@ import Footer from "./Footer.js";
 import cont from "./img/cont-button.json";
 import Lottie from "lottie-react";
 import FooterSection from './components/Footersection.js';
+import Dropnav from "./components/Dropnav.js"
 
 const Cont = () => {
     const [formData, setFormData] = useState({
@@ -46,6 +47,7 @@ const Cont = () => {
     return (
         <div>
             <Nav />
+            <Dropnav/>
             <div className="heading-section">
                 <h1>Get In Touch With Us</h1>
             </div>

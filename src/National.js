@@ -32,12 +32,12 @@ import axios from "axios";
 import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 import FooterSection from "./components/Footersection";
-
+import Dropnav from "./components/Dropnav.js"
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -112,11 +112,12 @@ const National = () => {
   return (
     <div className="wrpper-inter">
       <Nav />
+      <Dropnav/>
       <div className="hero-section-left-1">
         <img className="hero-img" src={intern} alt="International" />
         <h1 className="hero-heading">
           India's Majestic Adventures
-          <br /> Unveil the Wonders
+          <br /> <span>Unveil the Wonders</span>
         </h1>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -188,13 +189,15 @@ const National = () => {
       </div>
 
       <h1 className="ind-h">Destinations</h1>
-      <div className="ind-div">
-        {linkedPlaces.map((place) => (
-          <Link to={`/place/${place.name}`} key={place.id}>
-            <img className="ind-img" src={place.img} alt={place.name} />
-          </Link>
-        ))}
-      </div>
+      <div className=" w-full flex justify-center items-center">
+      <div className="grid grid-cols-3 w-[80%] gap-4">
+  {linkedPlaces.map((place) => (
+    <Link to={`/place/${place.name}`} key={place.id}>
+      <img className="h-[90%] w-[100%]" src={place.img} alt={place.name} />
+    </Link>
+  ))}
+</div>
+</div>
       <h1 className="all-packages-heading">All Packages</h1>
       <p className="all-packages-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages

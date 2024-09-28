@@ -10,7 +10,7 @@
 
 .videopg-h1 {
   position: absolute;
-  top: 40%; /* Adjust this value if needed */
+  top: 50%; /* Adjust this value if needed */
   left: 50%;
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   color: white;
@@ -26,11 +26,11 @@
 }
 
 .line1 {
-  font-size: 5rem; /* Adjust size as needed */
+  font-size: 4.5rem; /* Adjust size as needed */
 }
 
 .line2 {
-  font-size: 5rem; /* Adjust size as needed */
+  font-size: 4.5rem; /* Adjust size as needed */
 }
 
 .sp-1 {
@@ -39,7 +39,7 @@
 
 .videopg-p {
   position: absolute;
-  top: calc(42% + 6rem); /* Adjust based on the height of your h1 */
+  top: calc(50% + 6rem); /* Adjust based on the height of your h1 */
   left: 50%;
   transform: translateX(-50%); /* Center horizontally */
   color: white;

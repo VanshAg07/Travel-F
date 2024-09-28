@@ -55,8 +55,8 @@ const FooterSection = () => {
               <li><Link to="/Cancellation" className="hover:text-yellow-300">Cancellation Policy</Link></li>
               <li><Link to="/Termcondition" className="hover:text-yellow-300">Terms & Conditions</Link></li>
               <li><Link to="/Disclaimer" className="hover:text-yellow-300">Disclaimer</Link></li>
-              <li><Link to="#" className="hover:text-yellow-300">About Us</Link></li>
-              <li><Link to="#" className="hover:text-yellow-300">Payments</Link></li>
+              <li><Link to="/Aboutus" className="hover:text-yellow-300">About Us</Link></li>
+              <li><Link to="/Payments" className="hover:text-yellow-300">Payments</Link></li>
             </ul>
           </div>
         </div>

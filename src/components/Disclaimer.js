@@ -3,11 +3,13 @@ import "./Disclaimer.css"; // You may not need this if you're using Tailwind CSS
 import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
+import Dropnav from "../components/Dropnav"
 
 const Disclaimer = () => {
   return (
     <>
       <Nav />
+      <Dropnav />
       <div className="disclaimer-container px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-6 text-center">DISCLAIMER</h1>

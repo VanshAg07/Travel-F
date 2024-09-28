@@ -13,6 +13,7 @@ import image10 from './img/kerala.jpg';
 import Nav from './components/Nav';
 import Footer from './Footer';
 import FooterSection from './components/Footersection';
+import Dropnav from "./components/Dropnav"
 
 const images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10];
 
@@ -20,6 +21,7 @@ const Glry = () => {
     return (
         <div className='glry-wr'>
             <Nav />
+            <Dropnav />
             <h2 className="gallery-heading">Our Stunning Gallery</h2>
             <div className="gallery-container">
                 {images.map((image, index) => (

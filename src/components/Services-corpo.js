@@ -3,23 +3,23 @@ import React from 'react';
 const services = [
   {
     id: 1,
-    icon: '🌍', // You can replace this with an actual icon image or use an icon library
-    title: 'Customized experiences tailored to your organization’s needs and preferences',
+    icon: '🌍',
+    title: 'Personalized solutions designed to fit your organization’s unique requirements.',
   },
   {
     id: 2,
     icon: '💼',
-    title: 'Dedicated event planners to ensure smooth execution',
+    title: 'Professional event organizers to ensure everything runs smoothly.',
   },
   {
     id: 3,
     icon: '🗺️',
-    title: 'Personalized itineraries and activities to align with your goals and objectives',
+    title: 'Unique itineraries and experiences crafted to support your objectives.',
   },
   {
     id: 4,
     icon: '📋',
-    title: 'Attention to detail and commitment to delivering exceptional experiences',
+    title: 'Thorough attention and devotion to creating outstanding experiences.',
   },
 ];
 
@@ -29,8 +29,8 @@ function App() {
       {/* Heading Section */}
       <header className="w-[80%] text-center mt-10">
         <h1 className="text-4xl font-bold">
-          Our Way of <span className="text-blue-500">Making</span>{' '}
-          <span className="text-blue-500">Magic</span>
+        Our Secret to  <span className="text-blue-500">Spellbinding</span>{' '}
+          <span className="text-blue-500"> Moments</span>
         </h1>
       </header>
 

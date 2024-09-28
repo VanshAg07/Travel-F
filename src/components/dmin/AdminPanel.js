@@ -126,7 +126,7 @@ const AdminPanel = () => {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
 
-    fetch(`https://travel-server-iley.onrender.com/api/trip/state/${selectedState}/trip`, {
+    fetch(`http://localhost:5000/api/trip/state/${selectedState}/trip`, {
       method: "POST",
       body: formData,
     })

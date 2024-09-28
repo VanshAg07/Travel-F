@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav from "../Nav";
 import axios from "axios"; // Add Axios to handle API requests
+import Dropnav from "../../components/Dropnav"
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -49,7 +50,7 @@ const BookingOptions = () => {
     setIsLoading(true);
     try {
       const orderId = `order_${Date.now()}`; // Generate a unique order ID
-      const response = await axios.post("https://travel-server-iley.onrender.com/api/payment/phonepe", {
+      const response = await axios.post("http://localhost:5000/api/payment/phonepe", {
         amount: totalPrice,
         orderId,
         customerPhone: "9876543210", // Customer phone number, can be dynamic
@@ -72,6 +73,7 @@ const BookingOptions = () => {
   return (
     <div>
       <Nav />
+      <Dropnav/>
       <div className="flex justify-center items-center bg-gray-100 w-full">
         <div className="min-h-screen p-6 flex justify-center items-center">
           <div className="w-full mx-auto bg-white shadow-lg rounded-lg p-8">

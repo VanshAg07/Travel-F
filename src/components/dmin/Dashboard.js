@@ -95,7 +95,7 @@ const Dashboard = () => {
     };
 
     try {
-      await axios.post("https://travel-server-iley.onrender.com/api/admin/addTrip", tripData);
+      await axios.post("http://localhost:5000/api/admin/addTrip", tripData);
       toast.success("Trip added successfully!");
 
       // Reset form

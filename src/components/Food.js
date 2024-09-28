@@ -15,7 +15,7 @@ const Food = () => {
       console.log("Fetching activities..."); 
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/getRichFlavour/${name}`
+          `http://localhost:5000/api/user/getRichFlavour/${name}`
         );
         console.log(response.data); 
         setActivities(response.data.activities || []); 

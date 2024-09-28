@@ -3,16 +3,18 @@ import "./T&c.css";
 import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
+import Dropnav from "../components/Dropnav"
 
 const Termcondition = () => {
   return (
     <>
     <Nav/>
+    <Dropnav/>
     <div>
-      <h1 className="terms-title">Terms & Conditions</h1>
-      <div className="terms-section">
-        <h2 className="section-title">Introduction</h2>
-        <p className="section-content">
+      <h1>Terms & Conditions</h1>
+      <div>
+        <h2>Introduction</h2>
+        <p>
           These Terms and Conditions ("Terms") govern the relationship between
           you ("Client" or "you") and WanderOn Experiences Pvt. Ltd.
           ("WanderOn," "company," "we," or "us"). By booking any tour or service
@@ -291,67 +293,67 @@ const Termcondition = () => {
       </div>
 
 
-      <div class="table-container">
+      <div>
             <h1>SHORT HAUL PACKAGES</h1>
             <p>Payment Policy</p>
 			<table>
-				<tr><th>
-                Number Of Days Prior To Tour Date</th><th>Amount need to be paid</th></tr>
-				<tr><td>At the time of booking</td><td>25% of the full tour cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-				<tr><td>Within 45 Days from Departure Date</td><td>50% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-				<tr><td>Within 30 Days from Date of Departure</td><td>75% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-        <tr><td>20 Days from Date of Departure</td><td>100% of the full Tour cost</td></tr>
-				<tr><td>Please Note: For Issuance of the Flight Tickets, we require Full Payment of Airfare</td></tr>
-				<tr><td>Please Note: Non-Refundable Services in the tour package have to be paid in full at the time of Booking</td></tr>
-				<tr><td>Please Note: Payment Policy is non-negotiable and have to be paid accordingly.</td></tr>
+				<tr className="bg-gray-200 text-gray-700"><th className="border p-3">
+                Number Of Days Prior To Tour Date</th><th className="border p-3">Amount need to be paid</th></tr>
+				<tr><td className="border p-3">At the time of booking</td><td className="border p-3">25% of the full tour cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+				<tr><td className="border p-3">Within 45 Days from Departure Date</td><td className="border p-3">50% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+				<tr><td className="border p-3">Within 30 Days from Date of Departure</td><td className="border p-3">75% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+        <tr><td className="border p-3">20 Days from Date of Departure</td><td className="border p-3">100% of the full Tour cost</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: For Issuance of the Flight Tickets, we require Full Payment of Airfare</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: Non-Refundable Services in the tour package have to be paid in full at the time of Booking</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: Payment Policy is non-negotiable and have to be paid accordingly.</td></tr>
 			</table>
 		</div>
 
 
-    <div class="table-container">
+    <div>
             <p>Cancellation Policy</p>
             <table>
-				<tr><th>
-                Number Of Days Prior To Tour Date</th><th>Cancellation Amount</th></tr>
-				<tr><td>31 and More Days prior to the Departure Date</td><td>The Booking Amount is Non-Refundable, for balance amount credit note will be given.</td></tr>
-				<tr><td>30 to 16 Days prior to the Departure Date</td><td>50% of the full Tour cost, for balance amount credit note will be given.</td></tr>
-				<tr><td>15 Days prior to the Departure Date</td><td>100% of the full Tour cost</td></tr>
-				<tr><td>Please Note : Actual Airfare Cancellation will be applicable in case of Cancellation</td></tr>
-				<tr><td>Please Note : No Refund will be made against Non-Refundable Services in the Tour Package</td></tr>
-				<tr><td>Please Note : Cancellation Policy is non-negotiable and 5% GST will be applicable on Total Cancellation Amount.</td></tr>
+				<tr className="bg-gray-200 text-gray-700"><th className="border p-3">
+                Number Of Days Prior To Tour Date</th><th className="border p-3">Cancellation Amount</th></tr>
+				<tr><td className="border p-3">31 and More Days prior to the Departure Date</td><td className="border p-3">The Booking Amount is Non-Refundable, for balance amount credit note will be given.</td></tr>
+				<tr><td className="border p-3">30 to 16 Days prior to the Departure Date</td><td className="border p-3">50% of the full Tour cost, for balance amount credit note will be given.</td></tr>
+				<tr><td className="border p-3">15 Days prior to the Departure Date</td><td className="border p-3">100% of the full Tour cost</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : Actual Airfare Cancellation will be applicable in case of Cancellation</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : No Refund will be made against Non-Refundable Services in the Tour Package</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : Cancellation Policy is non-negotiable and 5% GST will be applicable on Total Cancellation Amount.</td></tr>
 			</table>
 		</div>
 
 
-    <div class="table-container">
+    <div>
             <h1>Long HAUL PACKAGES</h1>
             <p>Payment Policy</p>
 			<table>
-				<tr><th>
-                Number Of Days Prior To Tour Date</th><th>Amount need to be paid</th></tr>
-				<tr><td>At the time of booking</td><td>INR 40,000 Per Person or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-				<tr><td>Within 60 Days from Departure Date</td><td>50% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-				<tr><td>Within 45 Days from Departure Date</td><td>75% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
-        <tr><td>Within 30 Days from Date of Departure</td><td>100% of the full Tour cost</td></tr>
-				<tr><td>Please Note: For Issuance of the Flight Tickets, we require Full Payment of Airfare</td></tr>
-				<tr><td>Please Note: Non-Refundable Services in the tour package have to be paid in full at the time of Booking</td></tr>
-				<tr><td>Please Note: Payment Policy is non-negotiable and have to be paid accordingly.</td></tr>
+				<tr className="bg-gray-200 text-gray-700"><th className="border p-3">
+                Number Of Days Prior To Tour Date</th><th className="border p-3">Amount need to be paid</th></tr>
+				<tr><td className="border p-3">At the time of booking</td><td className="border p-3">INR 40,000 Per Person or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+				<tr><td className="border p-3">Within 60 Days from Departure Date</td><td className="border p-3">50% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+				<tr><td className="border p-3">Within 45 Days from Departure Date</td><td className="border p-3">75% of the Full Tour Cost or cancellation charges whichever is higher (non-refundable and non-transferable)</td></tr>
+        <tr><td className="border p-3">Within 30 Days from Date of Departure</td><td className="border p-3">100% of the full Tour cost</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: For Issuance of the Flight Tickets, we require Full Payment of Airfare</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: Non-Refundable Services in the tour package have to be paid in full at the time of Booking</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note: Payment Policy is non-negotiable and have to be paid accordingly.</td></tr>
 			</table>
 		</div>
 
 
-    <div class="table-container">
+    <div>
             <p>Cancellation Policy</p>
             <table>
-				<tr><th>
-                Number Of Days Prior To Tour Date</th><th>Cancellation Amount</th></tr>
-				<tr><td>46 and More Days prior to the Departure Date</td><td>The Booking Amount is Non-Refundable, for balance amount credit note will be given.</td></tr>
-				<tr><td>45 to 31 Days prior to the Departure Date</td><td>60% of the full Tour cost, for balance amount credit note will be given.</td></tr>
-				<tr><td>30 to 21 Days prior to the Departure Date</td><td>80% of the full Tour cost, for balance amount credit note will be given.</td></tr>
-        <tr><td>20 Days prior to the Departure Date</td><td>100% of the full Tour cost</td></tr>
-				<tr><td>Please Note : Actual Airfare Cancellation will be applicable in case of Cancellation</td></tr>
-				<tr><td>Please Note : No Refund will be made against Non-Refundable Services in the Tour Package</td></tr>
-				<tr><td>Please Note : Cancellation Policy is non-negotiable and 5% GST will be applicable on Total Cancellation Amount.</td></tr>
+				<tr className="bg-gray-200 text-gray-700"><th className="border p-3">
+                Number Of Days Prior To Tour Date</th><th className="border p-3">Cancellation Amount</th></tr>
+				<tr><td className="border p-3">46 and More Days prior to the Departure Date</td><td className="border p-3">The Booking Amount is Non-Refundable, for balance amount credit note will be given.</td></tr>
+				<tr><td className="border p-3">45 to 31 Days prior to the Departure Date</td><td className="border p-3">60% of the full Tour cost, for balance amount credit note will be given.</td></tr>
+				<tr><td className="border p-3">30 to 21 Days prior to the Departure Date</td><td className="border p-3">80% of the full Tour cost, for balance amount credit note will be given.</td></tr>
+        <tr><td className="border p-3">20 Days prior to the Departure Date</td><td className="border p-3">100% of the full Tour cost</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : Actual Airfare Cancellation will be applicable in case of Cancellation</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : No Refund will be made against Non-Refundable Services in the Tour Package</td></tr>
+				<tr><td  colSpan="2" className="border p-3 bg-gray-50">Please Note : Cancellation Policy is non-negotiable and 5% GST will be applicable on Total Cancellation Amount.</td></tr>
 			</table>
 		</div>
 

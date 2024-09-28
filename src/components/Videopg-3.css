@@ -1,7 +1,7 @@
 .wrpper-2 {
   position: relative;
   background-color: #fffadb;
-  height: 105vh; /* Ensure it covers the full height of the page */
+  height: 100vh; /* Ensure it covers the full height of the page */
 }
 
 .video-div-2 {
@@ -17,7 +17,7 @@
   margin: auto;
   overflow: visible;
   padding: 20px 0;
-  top: 50vh;
+  top: 35vh;
   left: 10vw;
 }
 
@@ -36,7 +36,7 @@
 
 .slide-2 img {
   width: 100%;
-  height: 280px; /* Adjust height for different screens */
+  height: 275px; /* Adjust height for different screens */
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -82,7 +82,7 @@
   width: 90%;
   margin-left: 5%;
   border-radius: 10px;
-  height: 60vh;
+  height: 55vh;
   object-fit: cover;
   position: relative;
 }

@@ -35,10 +35,12 @@ import Newsignin from "./components/Newsignin.js";
 import Explore from "./components/Explore.js";
 import Homeglry from "./components/Homeglry.js";
 import Corporate from "./components/Corporate.js";
+import Aboutus from "./components/About-us.js";
 import Superpower from "./components/Superpower.js";
 import Corpohero from "./components/Corpo-hero.js";
 import SignUp from "./components/Login/SignUp.js";
 import Login from "./components/Login/Login.js";
+import Corpoform from "./components/Corpo-form.js";
 import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 
@@ -83,6 +85,8 @@ const App = () => {
         <Route path="/Corporate" element={<Corporate />} />
         <Route path="/Corpohero" element={<Corpohero />} />
         <Route path="/Superpower" element={<Superpower />} />
+        <Route path="/Corpoform" element={<Corpoform />} />
+        <Route path="/Aboutus" element={<Aboutus />} />
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

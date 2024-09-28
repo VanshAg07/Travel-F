@@ -43,7 +43,7 @@
 
 .slide-5 img {
     width: 130%; 
-    height: 450px; /* Fixed height for uniformity */
+    height: 400px; /* Fixed height for uniformity */
     object-fit: cover; /* Maintain aspect ratio */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,13 +59,13 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin: 0;
     text-align: center; /* Center text alignment */
-    padding: 50px 20px; /* Add padding for the circular effect */
+    padding: 40px 20px; /* Add padding for the circular effect */
     border-radius: 50%; /* Make it circular */
     background: #e5e5e52c; /* Semi-transparent background */
     backdrop-filter: blur(2px); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
-    height: 40%;
-    width: 60%;
+    height: 35%;
+    width: 53%;
 }   
 
 .arrow-5 {

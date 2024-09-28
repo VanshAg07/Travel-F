@@ -4,40 +4,40 @@ const SuperpowerZone = () => {
   const superpowers = [
     {
       icon: '🤝', // Replace with your icons
-      title: 'Team Outings',
-      description: 'Bring your work crew together for a day of bonding and enjoyment outside the office.',
+      title: 'Team Escapades',
+      description: 'Bring your team together for an exciting day of shared experiences and laughter outside the workplace.',
     },
     {
       icon: '💼',
-      title: 'Corporate Trips',
-      description: 'Elevate team spirit and performance with incentive trips that turn dreams into reality.',
+      title: 'Corporate Adventures',
+      description: 'Enhance team dynamics and productivity through adventures that transform aspirations into achievements.',
     },
     {
       icon: '🏆',
-      title: 'Incentive Tour',
-      description: 'Bring your work crew together for a day of bonding and enjoyment outside the office.',
+      title: 'Inspiration Expedition',
+      description: 'Join your work crew for an exciting day that fuels inspiration and teamwork in a fresh setting.',
     },
     {
       icon: '🏖️',
-      title: 'Workcations',
-      description: 'Why work in the same old way when you can do the same in your favorite destinations with our Workations?',
+      title: 'Work Retreats',
+      description: 'Why work from the same place when you can achieve your goals in inspiring environments with our Work Retreats?',
     },
     {
       icon: '📅',
-      title: 'Conferences',
-      description: 'Transform ordinary conferences into extraordinary journeys combined with innovation, networking, and adventure.',
+      title: 'Workshops',
+      description: 'Turn typical workshops into inspiring adventures that blend skill-building, networking, and real-world applications.',
     },
     {
       icon: '🏛️',
       title: 'Exhibition',
-      description: 'Discover, connect, and inspire, elevate your brand at global exhibitions.',
+      description: 'Uncover opportunities, network, and ignite creativity while enhancing your brand at global exhibitions.',
     },
   ];
 
   return (
     <div className="p-8">
       <h1 className="text-4xl font-bold text-center">
-        Our <span className="text-gray-700">Superpower</span> Zone
+      Our <span className="text-gray-700">Strengths</span> Hub 
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {superpowers.map((power, index) => (

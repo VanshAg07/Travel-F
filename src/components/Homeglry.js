@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./Homeglry.css";
-import Image1 from "../img/dubai.jpg"; // Replace with actual images
+import Image1 from "../img/dubai.jpg"; 
 
 const images = [
   { src: Image1, alt: "Image 1" },
@@ -47,41 +47,44 @@ const Gallery = () => {
 
   return (
     <div className="gallery-wrap" onWheel={handleWheel}>
-      {/* Left Arrow */}
-      <div className="arrow arrow-left" onClick={handlePrevious}>
-        &#9664;
-      </div>
-
+     {/* Heading */}
+     <h1 className="text-center text-4xl font-bold mb-4 pt-8 text-gray-800">
+        Journey in Frames
+      </h1>
+      <p className="text-center text-xl font-bold mb-2 text-gray-800">Pictures Perfect Moments</p>
+  {/* Left Arrow - positioned outside the div */}
+  <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
+    &#9664;
+  </div>
+  
+  <div
+    className="gallery-center"
+    ref={galleryCenterRef}
+    style={{
+      transform: `translate(-50%, -50%) perspective(2500px) rotateY(${rotation}deg)`,
+    }}
+  >
+    {images.map((image, index) => (
       <div
-        className="gallery-center"
-        ref={galleryCenterRef}
+        className="gallery-box"
+        key={index}
         style={{
-          transform: `translate(-50%, -50%) perspective(2500px) rotateY(${rotation}deg)`,
+          transform: `translate(-50%, -50%) rotateY(${index * -30}deg) translateZ(-1000px)`,
         }}
+        onClick={handleClick}
       >
-        {images.map((image, index) => (
-          <div
-            className="gallery-box"
-            key={index}
-            style={{
-              transform: `translate(-50%, -50%) rotateY(${
-                index * -30
-              }deg) translateZ(-1000px)`,
-            }}
-            onClick={handleClick}
-          >
-            <a>
-              <img src={image.src} alt={image.alt} />
-            </a>
-          </div>
-        ))}
+        <a>
+          <img className="img-glry" src={image.src} alt={image.alt} />
+        </a>
       </div>
+    ))}
+  </div>
 
-      {/* Right Arrow */}
-      <div className="arrow arrow-right" onClick={handleNext}>
-        &#9654;
-      </div>
-    </div>
+  {/* Right Arrow - positioned outside the div */}
+  <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
+    &#9654;
+  </div>
+</div>
   );
 };
 

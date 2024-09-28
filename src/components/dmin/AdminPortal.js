@@ -14,7 +14,7 @@ const AdminPortal = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    axios.post('https://travel-server-iley.onrender.com/api/admin/logout')
+    axios.post('http://localhost:5000/api/admin/logout')
       .then(() => {
         navigate('/');
       })
