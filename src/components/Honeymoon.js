@@ -14,8 +14,8 @@ import cont from "../img/cont-button.json";
 import Review from "../components/Review";
 import Faq from "./Faq.js";
 import FooterSection from "./Footersection";
-import Gallery from "../Gallery.js";
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
+import Homeglry from "../components/Homeglry.js"
 
 // import Lottie from "lottie-react";
 
@@ -66,10 +66,12 @@ const Honeymoon = () => {
       <Dropnav />
       <div className="hero-section-left-1">
         
-        <img className="hero-img" src={intern} alt="India" />
-        <h1 className="hero-heading">
-        Honeymoon Tour Packages <br /> Where Forever Begins...Together!
-        </h1>
+      <div className=' weekend-hero w-[100%] h-[100%]'>
+    <img className='h-[750px] w-[100%]' src={intern} alt="India" />
+        <h1 className='top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center'>
+        Honeymoon Tour Packages</h1>
+        <p className='text-[1.7rem] transform -translate-x-1/2 -translate-y-1/2  top-[52%] left-[25%]  absolute bg-[yellow] text-black pt-[15px] pb-[15px] pl-[15px] pr-[15px] '> Where Forever Begins...Together!</p>
+    </div>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
             <h2 className="hero-section-h2">
@@ -159,20 +161,24 @@ const Honeymoon = () => {
       <div>
         <Card />
       </div>
-      <Gallery/>
+      <Homeglry />
       <Whyuss/>
       <Review/>
       <Faq/>
       <Form/>
       <FooterSection/>
       <Footer />
-      <div className="fixed-button">
-                <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <Lottie loop={true} animationData={cont}/>
-                </a>
-            </div>
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </div>
 
   );

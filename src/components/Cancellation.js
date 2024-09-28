@@ -18,9 +18,9 @@ const Cancellation = () => {
         <p className="cancellation-intro">
           For Short Haul Destination refer to the Short Haul payment and cancellation policy, and for long haul destination refer to the Long Haul payment and cancellation policy.
           <br />
-          Short Haul Packages: Domestic Trips, Sri Lanka, Thailand, Singapore, Bali, Dubai, Kazakhstan, Azerbaijan, Vietnam, Malaysia, Maldives, Mauritius.
+          <span>Short Haul Packages:</span> Domestic Trips, Sri Lanka, Thailand, Singapore, Bali, Dubai, Kazakhstan, Azerbaijan, Vietnam, Malaysia, Maldives, Mauritius.
           <br />
-          Long Haul Packages: Europe, UK, Turkey, Egypt, Australia, New Zealand, South Africa.
+          <span> Long Haul Packages:</span> Europe, UK, Turkey, Egypt, Australia, New Zealand, South Africa.
         </p>
       </div>
 

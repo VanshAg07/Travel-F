@@ -9,7 +9,7 @@ const Navbar = () => {
   const dropdownLinks = {
     indiaPackages: ["Goa", "Kerala", "Rajasthan", "Himachal Pradesh", "Uttarakhand", "Maharashtra", "Tamil Nadu", "Punjab"],
     internationalPackage: ["USA", "Canada", "Australia", "France", "Germany", "Spain", "Italy", "Japan"],
-    weekendTrips: [],
+    weekendTrips: ["Weekend Getaways"],
     groupsTours: [],
     corporatePackages: [],
     honeymoonPackages: []
@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-1">
-      <ul className="nav-links-1">
+      <ul className="nav-links-1 ">
         {Object.keys(dropdownLinks).map((key) => (
           <li
             key={key}
@@ -33,9 +33,7 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(key)}
             onMouseLeave={handleMouseLeave}
           >
-           
-            <Link to={key === 'indiaPackages' ? "/national" : key === 'internationalPackage' ? "/intern" : key === 'honeymoonPackages' ? "/Honeymoon" : key === 'corporatePackages' ? "/Corporate" :"#" }>
-              {/* Displaying the dropdown arrow icon for all except "Honeymoon Packages" and "Corporate Packages" */}
+            <Link to={key === 'indiaPackages' ? "/national" : key === 'internationalPackage' ? "/intern" : key === 'honeymoonPackages' ? "/Honeymoon" : key === 'corporatePackages' ? "/Corporate" : key === 'groupsTours' ? "/Grouptours" : key === 'weekendTrips' ? "/Weekends" : "#" }>
               {key === 'indiaPackages' ? "India Packages" : 
               key === 'internationalPackage' ? "International Package" : 
               key === 'weekendTrips' ? "Weekend Trips" : 
@@ -47,12 +45,13 @@ const Navbar = () => {
             {key !== 'honeymoonPackages' && key !== 'corporatePackages' && (
               <FaChevronDown className="dropdown-icon" />
             )}
-            {/* Only display the dropdown if there are links available */}
             {activeDropdown === key && dropdownLinks[key].length > 0 && (
               <ul className="dropdown">
                 {dropdownLinks[key].map((link, index) => (
                   <li key={index} className="dropdown-item">
-                    <Link to={`/place/${link}`}>{link}</Link>
+                    <Link to={link === 'Weekend Getaways' ? "/Weekends" : `/place/${link}`}>
+                      {link}
+                    </Link>
                   </li>
                 ))}
               </ul>

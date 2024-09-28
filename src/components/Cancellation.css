@@ -5,7 +5,7 @@
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding-top: 90px;
+  padding-top: 140px;
 }
 
 .cancellation-header {
@@ -25,6 +25,11 @@
   line-height: 1.5;
 }
 
+.cancellation-intro>span{
+  color: #000;
+  font-weight: bold;
+}
+
 .table-container {
   margin-bottom: 40px;
   background: white;
@@ -37,12 +42,14 @@
   font-size: 24px;
   color: #333;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .policy-text {
   font-size: 16px;
   color: #666;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .cancellation-table {

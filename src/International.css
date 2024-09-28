@@ -31,6 +31,12 @@
     z-index: 1;
 }
 
+.hero-heading>span{
+  background-color: yellow;
+  padding: 20px 10px;
+  font-size: 2.3rem;
+}
+
 .hero-section-right-1{
     position: absolute;
     left: 70%;

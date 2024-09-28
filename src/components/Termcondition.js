@@ -10,7 +10,8 @@ const Termcondition = () => {
     <>
     <Nav/>
     <Dropnav/>
-    <div>
+    <div  className="tc-container">
+
       <h1>Terms & Conditions</h1>
       <div>
         <h2>Introduction</h2>

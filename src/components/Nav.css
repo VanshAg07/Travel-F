@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.mob-no{
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 5px 15px;
+}
+
 /* Logo Styling */
 .logo {
   padding-left: 20px; /* Padding for spacing on larger screens */

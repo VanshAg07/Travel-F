@@ -43,6 +43,8 @@ import Login from "./components/Login/Login.js";
 import Corpoform from "./components/Corpo-form.js";
 import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
+import Grouptours from "./components/Grouptours.js"
+import Weekends from "./components/Weekends.js"
 
 const App = () => {
   return (
@@ -87,6 +89,8 @@ const App = () => {
         <Route path="/Superpower" element={<Superpower />} />
         <Route path="/Corpoform" element={<Corpoform />} />
         <Route path="/Aboutus" element={<Aboutus />} />
+        <Route path="/Grouptours" element={<Grouptours />} />
+        <Route path="/Weekends" element={<Weekends />} />
         <Route path="/place/:name" element={<Places />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

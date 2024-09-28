@@ -15,10 +15,13 @@ import Food from "./Food";
 import Shop from "./Shop";
 import Form from "./Form";
 import Dropnav from "../components/Dropnav"
+import cont from "../img/cont-button.json";
+import Lottie from "lottie-react";
 
 const Place = () => {
   const { name } = useParams();
   console.log(name);
+  const whatsappMessage = "Hello, I need assistance with my issue.";
   return (
     <>
       <Nav />
@@ -113,6 +116,17 @@ const Place = () => {
       </div>
       <FooterSection />
       <Footer />
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </>
   );
 };
