@@ -218,7 +218,7 @@ const National = () => {
       <FooterSection/>
       <Footer />
 
-      <div className="fixed-button">
+      <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(
             whatsappMessage

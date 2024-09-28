@@ -110,13 +110,17 @@ const Cont = () => {
             <Footer />
 
 
-            <div className="fixed-button">
-                <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <Lottie loop={true} animationData={cont}/>
-                </a>
-            </div>
+            <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
         </div>
     );
 };

@@ -15,8 +15,11 @@ import Whyuss from "./Whyuss";
 import FooterSection from "./Footersection";
 import { LuCircleDotDashed } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
+import cont from "../img/cont-button.json";
+import Lottie from "lottie-react";
 const Packagedetails = () => {
+  const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
 
   const [activeSection, setActiveSection] = useState("overview");
@@ -106,7 +109,7 @@ const Packagedetails = () => {
         </button>
       )}
 
-      <div className="flex gap-0 w-full justify-center m-2">
+      <div className="flex w-[100%] gap-0 justify-center m-2">
         <div className="max-w-[50%]">
           <div className="mt-10 ">
             <p className="text-4xl font-bold">{name} Road Trip</p>
@@ -520,6 +523,17 @@ const Packagedetails = () => {
       <Review />
       <FooterSection />
       <Footer />
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </div>
   );
 };

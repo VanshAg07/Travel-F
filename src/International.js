@@ -66,7 +66,7 @@ const International = () => {
         
         <img className="hero-img" src={intern} alt="India" />
         <h1 className="hero-heading">
-          Luxury Getaways Abroad - Book <br /> Your Dream Vacation
+          Luxury Getaways Abroad - Book <br /> <span>Your Dream Vacation</span>
         </h1>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -163,13 +163,17 @@ const International = () => {
       <Form/>
       <FooterSection/>
       <Footer />
-      <div className="fixed-button">
-                <a href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`} 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                    <Lottie loop={true} animationData={cont}/>
-                </a>
-            </div>
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </div>
 
   );

@@ -1,0 +1,10 @@
+.weekend-hero h1::before {
+    content: ""; /* Create an empty pseudo-element */
+    position: absolute; /* Position it absolutely within the h1 */
+    left: -30px; /* Adjust this value based on the desired distance from the text */
+    top: 50%; /* Center the line vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 5px; /* Line width */
+    height: 80%; /* Line height should match the height of the h1 */
+    background-color: yellow; /* Line color */
+  }

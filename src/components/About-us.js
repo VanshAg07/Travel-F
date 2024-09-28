@@ -6,9 +6,12 @@ import Footer from "../Footer";
 import { FaLinkedin } from "react-icons/fa";
 import { FaUserTie, FaHandshake, FaShuttleVan } from "react-icons/fa";
 import InstaIcon from '../img/icons8-insta.svg';
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
+import cont from "../img/cont-button.json";
+import Lottie from "lottie-react";
 
 const Aboutus = () => {
+  const whatsappMessage = "Hello, I need assistance with my issue.";
   const teamMembers = [
     {
       name: "Govind Gaur",
@@ -71,7 +74,7 @@ const Aboutus = () => {
         </div>
 
         {/* Introduction Section */}
-        <div className="py-10 px-4 text-center">
+        <div className="py-10 px-4 w-[80%] mx-auto text-center">
           <h1 className="text-3xl font-bold mb-4">
             What Do We Strive for and What Fuels Our Ambition?
           </h1>
@@ -147,6 +150,17 @@ const Aboutus = () => {
 
       <FooterSection />
       <Footer />
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </>
   );
 };

@@ -4,16 +4,19 @@ import icon1 from "../img/payment.svg";
 import icon2 from "../img/sbi.svg";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
+import cont from "../img/cont-button.json";
+import Lottie from "lottie-react";
 
 const Payments = () => {
+  const whatsappMessage = "Hello, I need assistance with my issue.";
   return (
     <>
       <Nav />
       <Dropnav/>
       <div className="payment-section bg-gray-100 min-h-screen pt-28 py-10">
         {/* Header Section */}
-        <div className="payment-section__header flex items-center justify-center mb-10">
+        <div className="payment-section__header flex items-center pt-10 justify-center mb-10">
           <img src={icon1} alt="Payment Icon" className="w-12 h-12 mr-4" />
           <h1 className="text-4xl font-semibold text-gray-800">Pay Us At</h1>
         </div>
@@ -173,6 +176,17 @@ const Payments = () => {
 
       <FooterSection />
       <Footer />
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </>
   );
 };

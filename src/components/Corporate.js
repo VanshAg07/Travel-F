@@ -16,12 +16,15 @@ import ClienteleHallOfFame from "./Clients-corpo";
 import Corpoform from "./Corpo-form"
 import Image1 from "../images/corporateImage.jpg";
 import Dropnav from "../components/Dropnav";
+import cont from "../img/cont-button.json";
+import Lottie from "lottie-react";
 const Corporate = () => {
   const [expandedMore, setExpandedMore] = useState(false);
 
   const toggleReadMoreText = () => {
     setExpandedMore(!expandedMore);
   };
+  const whatsappMessage = "Hello, I need assistance with my issue.";
 
   return (
     <>
@@ -345,6 +348,17 @@ const Corporate = () => {
       </div>
       <FooterSection />
       <Footer />
+      <div className="fixed-button-1">
+        <a
+          href={`https://wa.me/918287804197?text=${encodeURIComponent(
+            whatsappMessage
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Lottie loop={true} animationData={cont} />
+        </a>
+      </div>
     </>
   );
 };

@@ -43,7 +43,6 @@ const Nav = () => {
       <div className={`nav-links  ${isMenuOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <RiHome4Line />
             <p>Home</p>
           </div>
         </Link>
@@ -68,34 +67,34 @@ const Nav = () => {
         </Link> */}
          <Link to="/Aboutus" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <MdOutlineAirplanemodeActive />
             <p>About Us</p>
           </div>
         </Link>
         <Link to="/Payments" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <MdOutlineAirplanemodeActive />
             <p>Payments</p>
           </div>
         </Link>
         <Link to="/Cont" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <RiContactsBook3Line />
             <p>Contact</p>
           </div>
         </Link>
         <Link to="/Blog" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-          <FaBloggerB/>
-            <p>Blog</p>
+            <p>Blogs</p>
           </div>
         </Link>
         <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <GrGallery />
             <p>Gallery</p>
           </div>
         </Link>
+        <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex mob-no flex-row justify-center mr-10 items-center gap-1 ">
+            <p>+91-8287804197</p>
+          </div>
+        </a>
         {username ? (
           <>
             <div className="username-display">Welcome, <strong>{username}!</strong></div>
