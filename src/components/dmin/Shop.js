@@ -51,7 +51,7 @@ const Shop = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/addShop",
+        "https://travel-server-iley.onrender.com/api/admin/addShop",
         formData,
         {
           headers: {

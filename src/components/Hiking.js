@@ -15,7 +15,7 @@ const Hiking = () => {
       console.log("Fetching activities...");
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getBestActivities/${name}`
+          `https://travel-server-iley.onrender.com/api/user/getBestActivities/${name}`
         );
         console.log(response.data);
         setActivities(response.data.activities || []);
@@ -39,7 +39,7 @@ const Hiking = () => {
           <div key={index} className="hiking-card">
             {/* Construct the image URL using the base URL and the image filename */}
             <img
-              src={`http://localhost:5000/uploads/${activity.img}`} // Assuming activity.img contains the filename
+              src={`https://travel-server-iley.onrender.com/uploads/${activity.img}`} // Assuming activity.img contains the filename
               alt={activity.title}
               className="hiking-card-img"
             />

@@ -50,7 +50,7 @@ const BookingOptions = () => {
     setIsLoading(true);
     try {
       const orderId = `order_${Date.now()}`; // Generate a unique order ID
-      const response = await axios.post("http://localhost:5000/api/payment/phonepe", {
+      const response = await axios.post("https://travel-server-iley.onrender.com/api/payment/phonepe", {
         amount: totalPrice,
         orderId,
         customerPhone: "9876543210", // Customer phone number, can be dynamic

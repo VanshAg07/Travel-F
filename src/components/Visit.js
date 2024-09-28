@@ -14,7 +14,7 @@ const Visit = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getBeautifulPlaces/${name}`
+          `https://travel-server-iley.onrender.com/api/user/getBeautifulPlaces/${name}`
         );
         console.log(response.data);
         setPlaces(response.data.activities || []);
@@ -38,7 +38,7 @@ const Visit = () => {
           <div key={index} className="visiting-card">
             {/* Construct the full image URL using the base URL and the image filename */}
             <img
-              src={`http://localhost:5000/uploads/${place.img}`}
+              src={`https://travel-server-iley.onrender.com/uploads/${place.img}`}
               alt={place.title}
               className="food-card-img"
             />
