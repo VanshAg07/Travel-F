@@ -65,7 +65,7 @@ const Packagedetails = () => {
         const response = await axios.get(
           `https://travel-server-iley.onrender.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
-        setTrip(response.data.trips);
+        setTrip(response.data.trip);
         console.log(trips);
       } catch (error) {
         console.error("Error fetching trip details:", error);
