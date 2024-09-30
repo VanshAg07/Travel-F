@@ -53,7 +53,7 @@ const BestActivities = () => {
 
     try {
       const response = await axios.post(
-        "https://travel-server-iley.onrender.com/api/admin/addActivity",
+        "http://localhost:5000/api/admin/addActivity",
         formData,
         {
           headers: {

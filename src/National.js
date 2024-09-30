@@ -37,7 +37,7 @@ import Dropnav from "./components/Dropnav.js";
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });

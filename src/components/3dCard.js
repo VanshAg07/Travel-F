@@ -14,7 +14,7 @@ const Card = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/getTripDetails/${name}`
+          `http://localhost:5000/api/user/getTripDetails/${name}`
         );
         setTrips(response.data);
         console.log(response.data);
@@ -60,7 +60,7 @@ const Card = () => {
               className="h-[450px] relative shadow-lg rounded-lg mb-20 flex justify-center items-center cursor-pointer"
             >
               <img
-                src={`https://travel-server-iley.onrender.com/uploads/${trip.tripImages}`}
+                src={`http://localhost:5000/uploads/${trip.tripImages}`}
                 alt={trip.tripName}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />

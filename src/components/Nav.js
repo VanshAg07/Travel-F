@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import travel_img from "../img/logo_cropped.png";
+import travel_img from "../img/logo.png";
 import "./Nav.css";
 import { RiHome4Line } from "react-icons/ri";
 import { BsSuitcaseFill } from "react-icons/bs";

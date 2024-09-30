@@ -51,7 +51,7 @@ const RichFlavour = () => {
 
     try {
       const response = await axios.post(
-        "https://travel-server-iley.onrender.com/api/admin/addRichFlavour",
+        "http://localhost:5000/api/admin/addRichFlavour",
         formData,
         {
           headers: {

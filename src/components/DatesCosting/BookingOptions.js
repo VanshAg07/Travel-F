@@ -98,7 +98,7 @@ const BookingOptions = () => {
     try {
       const orderId = `order_${Date.now()}`;
       const response = await axios.post(
-        "https://travel-server-iley.onrender.com/api/payment/razorpay",
+        "http://localhost:5000/api/payment/razorpay",
         {
           amount: totalPrice,
           orderId,
@@ -135,7 +135,7 @@ const BookingOptions = () => {
 
             // Verify payment on the server
             const result = await axios.post(
-              "https://travel-server-iley.onrender.com/api/payment/verify",
+              "http://localhost:5000/api/payment/verify",
               data
             );
 

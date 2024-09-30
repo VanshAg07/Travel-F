@@ -35,7 +35,7 @@ const Packagedetails = () => {
 
   const handleDownload = () => {
     if (trips.pdf) {
-      const fileUrl = `https://travel-server-iley.onrender.com/uploads/${trips.pdf}`;
+      const fileUrl = `http://localhost:5000/uploads/${trips.pdf}`;
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
@@ -64,7 +64,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://travel-server-iley.onrender.com/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -115,7 +115,7 @@ const Packagedetails = () => {
     }
   };
   const imageUrl = trips.tripBackgroundImg
-    ? `https://travel-server-iley.onrender.com/uploads/${trips.tripBackgroundImg}`
+    ? `http://localhost:5000/uploads/${trips.tripBackgroundImg}`
     : bg;
   return (
     <div>
