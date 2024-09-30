@@ -4,37 +4,37 @@ const cards = [
   {
     title: 'Full Spectrum Services',
     description: "Everything You Need for a Flawless Experience – premier stays, insightful guides, effortless travel, and more. Relax and let us handle the details!",
-    bgColor: 'bg-red-300',
+    bgColor: 'white',
     icon: '🌍',
   },
   {
     title: 'Hassle-Free Passports',
     description: "Plan your journey, and leave the passport hassles to us!",
-    bgColor: 'bg-blue-300',
+    bgColor: 'white',
     icon: '🛂',
   },
   {
     title: 'Luxurious Escapes & Air Travel',
     description: "Reaching your dream destinations is effortless. We’ll ensure you enjoy lavish accommodations and seamless flights!",
-    bgColor: 'bg-teal-300',
+    bgColor: 'white',
     icon: '✈️',
   },
   {
     title: 'Friendly Locals',
     description: 'Your friendly locals are ready to take you on an unforgettable journey through each unique locale.',
-    bgColor: 'bg-orange-300',
+    bgColor: 'white',
     icon: '👥',
   },
   {
     title: 'Frame-Worthy Experiences',
     description: "We've got a team that can help you snap those amazing pics you'll cherish forever.",
-    bgColor: 'bg-green-300',
+    bgColor: 'white',
     icon: '📸',
   },
   {
     title: 'Timeless Memories',
     description: 'We guarantee a seamless adventure, enriched with lasting memories that you’ll hold close to your heart.',
-    bgColor: 'bg-purple-300',
+    bgColor: 'white',
     icon: '✨',
   },
 ];
@@ -65,12 +65,12 @@ const BeyondOrdinary = () => {
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-black mb-4">
               {card.title}
             </h2>
 
             {/* Description */}
-            <p className="text-white">
+            <p className="text-gray-600">
               {card.description}
             </p>
           </div>
