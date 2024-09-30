@@ -14,7 +14,7 @@ import shi5 from "./img/5.png";
 import shi6 from "./img/6.png";
 import shi7 from "./img/7.png";
 import shi8 from "./img/8.png";
-import shi9 from "./img/9.png"; 
+import shi9 from "./img/9.png";
 import shi10 from "./img/10.png";
 import shi11 from "./img/11.png";
 import shi12 from "./img/12.png";
@@ -32,12 +32,12 @@ import axios from "axios";
 import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 import FooterSection from "./components/Footersection";
-import Dropnav from "./components/Dropnav.js"
+import Dropnav from "./components/Dropnav.js";
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
+    const response = axios.get("https://travel-server-iley.onrender.com/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -112,7 +112,7 @@ const National = () => {
   return (
     <div className="wrpper-inter">
       <Nav />
-      <Dropnav/>
+      <Dropnav />
       <div className="hero-section-left-1">
         <img className="hero-img" src={intern} alt="International" />
         <h1 className="hero-heading">
@@ -190,14 +190,18 @@ const National = () => {
 
       <h1 className="ind-h">Destinations</h1>
       <div className=" w-full flex justify-center items-center">
-      <div className="grid grid-cols-3 w-[80%] gap-4">
-  {linkedPlaces.map((place) => (
-    <Link to={`/place/${place.name}`} key={place.id}>
-      <img className="h-[90%] w-[100%]" src={place.img} alt={place.name} />
-    </Link>
-  ))}
-</div>
-</div>
+        <div className="grid grid-cols-3 w-[80%] gap-4">
+          {linkedPlaces.map((place) => (
+            <Link to={`/place/${place.name}`} key={place.id}>
+              <img
+                className="h-[90%] w-[100%]"
+                src={place.img}
+                alt={place.name}
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
       <h1 className="all-packages-heading">All Packages</h1>
       <p className="all-packages-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
@@ -212,10 +216,10 @@ const National = () => {
       </div>
 
       <Whyuss />
-      <Review/>
+      <Review />
       <Guide />
       <Form />
-      <FooterSection/>
+      <FooterSection />
       <Footer />
 
       <div className="fixed-button-1">

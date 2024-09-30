@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { GiClockwork } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate
 import img1 from "../../img/goa.png";
 
 function AllPackagesCard() {
   const [packages, setPackages] = useState([]);
   const [visiblePackages, setVisiblePackages] = useState(6);
+  const navigate = useNavigate(); // Initializing useNavigate
 
   useEffect(() => {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/user/getTripDetails"
+          "https://travel-server-iley.onrender.com/api/user/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);
@@ -24,7 +26,13 @@ function AllPackagesCard() {
   }, []);
 
   const loadMorePackages = () => {
-    setVisiblePackages(prevVisible => prevVisible + 6);
+    setVisiblePackages((prevVisible) => prevVisible + 6);
+  };
+
+  const handlePackageClick = (stateName, tripName) => {
+    const encodedState = encodeURIComponent(stateName);
+    const encodedTrip = encodeURIComponent(tripName);
+    navigate(`/trip/${encodedTrip}/${encodedState}`);
   };
 
   return (
@@ -36,6 +44,7 @@ function AllPackagesCard() {
               <div
                 key={`${index}-${tripIndex}`}
                 className="h-[450px] relative shadow-lg rounded-lg mb-20 flex justify-center items-center cursor-pointer"
+                onClick={() => handlePackageClick(pkg.stateName, trip.tripName)}
               >
                 <img
                   src={img1}
@@ -80,7 +89,6 @@ function AllPackagesCard() {
         )}
       </div>
 
-      {/* Load More button */}
       {visiblePackages < packages.length && (
         <div className="flex justify-center mb-6">
           <button

@@ -18,28 +18,18 @@ const AdminPanel = () => {
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",
-    tripQuantity: "",
     tripDate: [""],
     tripLocation: "",
     tripDuration: "",
-    tripAccommodation: "",
-    tripActivities: "",
-    tripTransportation: "",
-    tripFood: "",
-    tripBeverages: "",
-    tripSpecialRequests: "",
-    tripCancellations: "",
     tripInclusions: [""],
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
-    tripAdditionalServices: "",
-    tripCancellationPolicy: "",
-    tripPaymentMethods: "",
-    tripAmenities: "",
-    tripRules: "",
     tripImages: [],
     pdf: null,
-    tripDescription: "",
+    tripDescription: [""],
+    pickAndDrop: "",
+    sharing: [{ title: "", price: "" }],
+    tripBackgroundImg: "",
   });
 
   const handleInputChange = (e) => {
@@ -66,11 +56,23 @@ const AdminPanel = () => {
     }
     setTripData({ ...tripData, tripItinerary: updatedItinerary });
   };
-
+  const handleSharingChange = (e, index, fieldName) => {
+    const updatedSharing = [...tripData.sharing];
+    const sharingObject = updatedSharing[index];
+    sharingObject[fieldName] = e.target.value;
+    updatedSharing[index] = sharingObject;
+    setTripData({ ...tripData, sharing: updatedSharing });
+  };
   const addItineraryField = () => {
     setTripData({
       ...tripData,
       tripItinerary: [...tripData.tripItinerary, { title: "", points: [""] }],
+    });
+  };
+  const addSharingField = () => {
+    setTripData({
+      ...tripData,
+      sharing: [...tripData.sharing, { title: "", price: "" }],
     });
   };
 
@@ -84,6 +86,10 @@ const AdminPanel = () => {
     const images = Array.from(e.target.files);
     setTripData({ ...tripData, tripImages: images });
   };
+  const handlePackageChange = (e) => {
+    const image = e.target.files[0];
+    setTripData({ ...tripData, tripBackgroundImg: image });
+  };
 
   const handlePdfChange = (e) => {
     setTripData({ ...tripData, pdf: e.target.files[0] });
@@ -96,7 +102,7 @@ const AdminPanel = () => {
       alert("Please select a state before submitting the form.");
       return;
     }
-
+    console.log(selectedState);
     const formData = new FormData();
     Object.keys(tripData).forEach((key) => {
       if (key === "tripImages") {
@@ -105,17 +111,26 @@ const AdminPanel = () => {
         });
       } else if (key === "pdf" && tripData.pdf) {
         formData.append("pdf", tripData.pdf);
+      } else if (key === "tripBackgroundImg" && tripData.tripBackgroundImg) {
+        formData.append("tripBackgroundImg", tripData.tripBackgroundImg);
       } else if (Array.isArray(tripData[key])) {
-        tripData[key].forEach((item, index) => {
-          if (key === "tripItinerary") {
+        if (key === "tripItinerary") {
+          tripData.tripItinerary.forEach((item, index) => {
             formData.append(`${key}[${index}][title]`, item.title);
             item.points.forEach((point, pointIndex) => {
               formData.append(`${key}[${index}][points][${pointIndex}]`, point);
             });
-          } else {
+          });
+        } else if (key === "sharing") {
+          tripData.sharing.forEach((item, index) => {
+            formData.append(`${key}[${index}][title]`, item.title);
+            formData.append(`${key}[${index}][price]`, item.price);
+          });
+        } else {
+          tripData[key].forEach((item, index) => {
             formData.append(`${key}[${index}]`, item);
-          }
-        });
+          });
+        }
       } else {
         formData.append(key, tripData[key]);
       }
@@ -126,7 +141,7 @@ const AdminPanel = () => {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
 
-    fetch(`http://localhost:5000/api/trip/state/${selectedState}/trip`, {
+    fetch(`https://travel-server-iley.onrender.com/api/trip/state/${selectedState}/trip`, {
       method: "POST",
       body: formData,
     })
@@ -148,17 +163,17 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="max-w-full mx-auto p-8 bg-white shadow-lg ">
-      <h2 className="text-2xl font-bold mb-4">Add Trip Details</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-full p-6 bg-white shadow-lg justify-center flex flex-col mb-10 ">
+      <h2 className="text-xl font-bold">Add Trip Details</h2>
+      <form onSubmit={handleSubmit} className="space-y-2">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-lg font-medium">Trip Location</label>
+            <label className="block text-l font-medium">Trip Location</label>
             <select
               name="tripLocation"
               value={tripData.tripLocation}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             >
               <option value="">Select a Location</option>
               {states.map((state) => (
@@ -169,11 +184,11 @@ const AdminPanel = () => {
             </select>
           </div>
           <div>
-            <label className="block text-lg font-medium">Select State</label>
+            <label className="block text-l font-medium">Select State</label>
             <select
               value={selectedState}
               onChange={(e) => setSelectedState(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             >
               <option value="">Select a State</option>
               {states.map((state) => (
@@ -184,44 +199,34 @@ const AdminPanel = () => {
             </select>
           </div>
           <div>
-            <label className="block text-lg font-medium">Trip Name</label>
+            <label className="block text-l font-medium">Trip Name</label>
             <input
               type="text"
               name="tripName"
               value={tripData.tripName}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Trip Price</label>
+            <label className="block text-l font-medium">Trip Price</label>
             <input
               type="number"
               name="tripPrice"
               value={tripData.tripPrice}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Trip Quantity</label>
-            <input
-              type="number"
-              name="tripQuantity"
-              value={tripData.tripQuantity}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Trip Dates</label>
+            <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (
               <div key={index} className="flex items-center">
                 <input
                   type="date"
                   value={date}
                   onChange={(e) => handleArrayChange(e, index, "tripDate")}
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 />
                 <button
                   type="button"
@@ -234,93 +239,19 @@ const AdminPanel = () => {
             ))}
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Duration (in days)
+            <label className="block text-l font-medium">
+              Trip Duration (in days eg. 3D - 2N)
             </label>
             <input
               type="text"
               name="tripDuration"
               value={tripData.tripDuration}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Accommodation</label>
-            <input
-              type="text"
-              name="tripAccommodation"
-              value={tripData.tripAccommodation}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Activities</label>
-            <input
-              type="text"
-              name="tripActivities"
-              value={tripData.tripActivities}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Transportation</label>
-            <input
-              type="text"
-              name="tripTransportation"
-              value={tripData.tripTransportation}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Food</label>
-            <input
-              type="text"
-              name="tripFood"
-              value={tripData.tripFood}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Beverages</label>
-            <input
-              type="text"
-              name="tripBeverages"
-              value={tripData.tripBeverages}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">
-              Special Requests
-            </label>
-            <input
-              type="text"
-              name="tripSpecialRequests"
-              value={tripData.tripSpecialRequests}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Cancellations</label>
-            <input
-              type="text"
-              name="tripCancellations"
-              value={tripData.tripCancellations}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-
-          {/* Trip Inclusions */}
-          <div>
-            <label className="block text-lg font-medium">Trip Inclusions</label>
+            <label className="block text-l font-medium">Trip Inclusions</label>
             {tripData.tripInclusions.map((inclusion, index) => (
               <div key={index} className="flex items-center">
                 <input
@@ -329,7 +260,7 @@ const AdminPanel = () => {
                   onChange={(e) =>
                     handleArrayChange(e, index, "tripInclusions")
                   }
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 />
                 <button
                   type="button"
@@ -341,10 +272,8 @@ const AdminPanel = () => {
               </div>
             ))}
           </div>
-
-          {/* Trip Exclusions */}
           <div>
-            <label className="block text-lg font-medium">Trip Exclusions</label>
+            <label className="block text-l font-medium">Trip Exclusions</label>
             {tripData.tripExclusions.map((exclusion, index) => (
               <div key={index} className="flex items-center">
                 <input
@@ -353,7 +282,7 @@ const AdminPanel = () => {
                   onChange={(e) =>
                     handleArrayChange(e, index, "tripExclusions")
                   }
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 />
                 <button
                   type="button"
@@ -365,10 +294,8 @@ const AdminPanel = () => {
               </div>
             ))}
           </div>
-
-          {/* Trip Itinerary */}
           <div>
-            <label className="block text-lg font-medium">Trip Itinerary</label>
+            <label className="block text-l font-medium">Trip Itinerary</label>
             {tripData.tripItinerary.map((item, index) => (
               <div key={index}>
                 <input
@@ -376,7 +303,7 @@ const AdminPanel = () => {
                   value={item.title}
                   onChange={(e) => handleItineraryChange(e, index, "title")}
                   placeholder="Itinerary Title"
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 />
                 {item.points.map((point, pointIndex) => (
                   <input
@@ -387,7 +314,7 @@ const AdminPanel = () => {
                       handleItineraryChange(e, index, "point", pointIndex)
                     }
                     placeholder="Point"
-                    className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+                    className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                   />
                 ))}
                 <button
@@ -407,77 +334,103 @@ const AdminPanel = () => {
               Add Itinerary
             </button>
           </div>
-
           <div>
-            <label className="block text-lg font-medium">
-              Trip Cancellation Policy
+            <label className="block text-l font-medium">Trip Description</label>
+            {tripData.tripDescription.map((inclusion, index) => (
+              <div key={index} className="flex items-center">
+                <textarea
+                  name="tripDescription"
+                  value={tripData.tripDescription}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "tripDescription")
+                  }
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                />
+                <button
+                  type="button"
+                  onClick={() => addField("tripDescription")}
+                  className="ml-2 p-1 text-white bg-green-600 rounded"
+                >
+                  +
+                </button>
+              </div>
+            ))}
+          </div>
+          <div>
+            <label className="block text-l font-medium">Sharing Options</label>
+            {tripData.sharing.map((share, index) => (
+              <div key={index}>
+                <select
+                  name="title"
+                  value={share.title}
+                  placeholder="Sharing Type"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  onChange={(e) => handleSharingChange(e, index, "title")}
+                >
+                  <option value="">Select Sharing Type</option>
+                  <option value="Double">Double</option>
+                  <option value="Triple">Triple</option>
+                  <option value="Quad">Quad</option>
+                </select>
+                <input
+                  type="number"
+                  name="price"
+                  value={share.price}
+                  placeholder="Price"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  onChange={(e) => handleSharingChange(e, index, "price")}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={addSharingField}
+              className="mt-2 p-1 text-white bg-green-600 rounded"
+            >
+              Add Sharing Options
+            </button>
+          </div>
+          <div>
+            <label className="block text-l font-medium">
+              Pick and Drop (eg. Guwahati - Guwahati)
             </label>
             <input
               type="text"
-              name="tripCancellationPolicy"
-              value={tripData.tripCancellationPolicy}
+              name="pickAndDrop"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              value={tripData.pickAndDrop}
               onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">
-              Trip Payment Methods
+            <label className="block text-l font-medium">
+              Trip Images (i.e. Card Image)
             </label>
-            <input
-              type="text"
-              name="tripPaymentMethods"
-              value={tripData.tripPaymentMethods}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Trip Amenities</label>
-            <input
-              type="text"
-              name="tripAmenities"
-              value={tripData.tripAmenities}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Trip Rules</label>
-            <input
-              type="text"
-              name="tripRules"
-              value={tripData.tripRules}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">
-              Trip Description
-            </label>
-            <textarea
-              name="tripDescription"
-              value={tripData.tripDescription}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Trip Images</label>
             <input
               type="file"
               multiple
               onChange={handleImageChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Upload PDF</label>
+            <label className="block text-l font-medium">
+              Package Image ( i.e. Background Image )
+            </label>
+            <input
+              type="file"
+              onChange={handlePackageChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-l font-medium">
+              Upload PDF ( i.e. Itinerary )
+            </label>
             <input
               type="file"
               onChange={handlePdfChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-2 mb-2"
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
         </div>

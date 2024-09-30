@@ -10,12 +10,18 @@ const DateCosting = () => {
     tripPrice = 0,
     costingDetails,
     tripName,
+    doubleSharing,
+    tripleSharing,
+    quadSharing,
   } = location.state || {};
 
   const tripDates = tripDatesFromState.map((date) => ({
     date,
     price: tripPrice,
     tripName,
+    doubleSharing,
+    tripleSharing,
+    quadSharing,
     status: "Available",
   }));
 
@@ -68,18 +74,16 @@ const DateCosting = () => {
     setOpenMonth(openMonth === month ? "" : month);
   };
 
-  const finalCostingDetails = costingDetails || {
-    doubleSharing: "₹26,999/-",
-    tripleSharing: "₹24,999/-",
-  };
-
   const handleBooking = () => {
     navigate("/booking-options", {
       state: {
         selectedDate,
         tripPrice,
         tripName,
-        finalCostingDetails,
+
+        doubleSharing,
+        tripleSharing,
+        quadSharing,
       },
     });
   };
@@ -129,7 +133,7 @@ const DateCosting = () => {
                             </span>
                           </div>
                           <div className="text-right text-blue-500 font-bold">
-                            Starting Price: {tripPrice}
+                            Starting Price: {doubleSharing}
                           </div>
                         </div>
                       ))}
@@ -153,21 +157,21 @@ const DateCosting = () => {
                 </div>
                 <div className="flex justify-between items-center p-4">
                   <span>Double Sharing</span>
-                  <span className="text-gray-800">
-                    {finalCostingDetails.doubleSharing}
-                  </span>
+                  <span className="text-gray-800">{doubleSharing}</span>
                 </div>
                 <div className="flex justify-between items-center p-4">
                   <span>Triple Sharing</span>
-                  <span className="text-gray-800">
-                    {finalCostingDetails.tripleSharing}
-                  </span>
+                  <span className="text-gray-800">{tripleSharing}</span>
+                </div>
+                <div className="flex justify-between items-center p-4">
+                  <span>Quad Sharing</span>
+                  <span className="text-gray-800">{quadSharing}</span>
                 </div>
               </div>
             </div>
             <div className="flex justify-between items-center w-full max-w-4xl mt-6 p-4 bg-white shadow-lg ml-4 rounded-lg">
               <div className="text-xl font-bold text-blue-600">
-                Starting Price: ₹{tripPrice} per person
+                Starting Price: ₹{doubleSharing} per person
               </div>
               <button
                 onClick={handleBooking} // Handle booking

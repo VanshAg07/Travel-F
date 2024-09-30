@@ -1,6 +1,7 @@
 .nav-wrapper {
+  color: #fff;
   width: 100vw;
-  background-color: #d3d332;
+  background-color: #16423c;
   position: fixed;
   z-index: 9999;
   height: 60px;
@@ -9,8 +10,8 @@
   align-items: center;
 }
 
-.mob-no{
-  border: 2px solid black;
+.mob-no {
+  border: 2px solid #6a9c89;
   border-radius: 25px;
   padding: 5px 15px;
 }
@@ -32,6 +33,7 @@
   display: inline-flex; /* Use inline-flex to ensure elements align horizontally */
   align-items: center; /* Align items vertically centered */
   gap: 8px; /* Add space between the text and the icon */
+  color: #fff;
 }
 
 .cta:before {
@@ -51,9 +53,9 @@
   position: relative;
   font-family: "Ubuntu", sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: 0.05em;
-  color: #234567;
+  color: #fff;
 }
 
 .cta svg {
@@ -61,7 +63,7 @@
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: #234567;
+  stroke: #fff;
   stroke-width: 2;
   transition: all 0.3s ease;
 }
@@ -179,7 +181,7 @@
     right: 0;
     width: 30%; /* Menu takes up 30% of the screen on larger mobile screens */
     height: 100vh;
-    background-color: #d3d332a8;
+    background-color: #16423ca8;
     transition: all 0.3s ease;
     align-items: flex-start;
     justify-content: flex-start;
@@ -273,9 +275,7 @@
   }
 }
 
-
-
-@media (max-width:677px) {
+@media (max-width: 677px) {
   .menu-icon {
     font-size: 22px; /* Adjust menu icon size for very small screens */
     padding-right: 10px;
@@ -313,16 +313,14 @@
 }
 
 @media (max-width: 460px) {
-
-  .nav-links{
+  .nav-links {
     width: 60%;
-    
   }
-  
+
   .cta {
-    margin-right: 5px; 
+    margin-right: 5px;
     padding: 4px 8px;
-    gap: 2px; 
+    gap: 2px;
   }
 
   .cta span {

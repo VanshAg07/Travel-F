@@ -12,7 +12,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/login-user", {
+      const response = await fetch("https://travel-server-iley.onrender.com/login-user", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -53,58 +53,59 @@ function Login() {
 
   return (
     <div
-      className="bg-cover bg-center h-screen w-full flex justify-center items-center"
+      className="bg-cover bg-center bg-[#16423C] h-screen w-full flex justify-center items-center"
       // style={{ backgroundImage: `url(${bg2})` }}
     >
-      <div className="w-[80%] max-w-[50%] h-[75%] bg-white shadow-lg rounded-2xl flex">
+      <div className="w-[80%] max-w-[70%] h-[75%] bg-[#C4DAD2] shadow-lg rounded-2xl flex">
         <div
           className="w-[50%] h-full bg-cover bg-center rounded-l-2xl"
           style={{ backgroundImage: `url(${bg})` }}
         ></div>
-
         <div className="w-[50%] h-full flex flex-col justify-center items-center bg-white p-10 rounded-r-2xl">
-          <h1 className="text-3xl font-bold text-blue-600 mb-4">
+          <h1 className="text-2xl font-bold text-[#16423C] mb-4">
             Welcome Back!
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-gray-500 mb-4 text-sm">
             Login to your account using email
           </p>
 
           <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="flex flex-col">
-              <label className="text-gray-600 mb-1">Email Address</label>
+              <label className="text-gray-600 mb-1 text-sm">
+                Email Address
+              </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-gray-600 mb-1">Password</label>
+              <label className="text-gray-600 mb-1 text-sm">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              className="w-full py-2 bg-[#16423C] text-white rounded-lg hover:scale-95 transition duration-300"
             >
               Login
             </button>
           </form>
 
-          <p className="mt-6 text-gray-500">-------------- OR --------------</p>
+          <p className="mt-3 text-gray-500 text-sm">-------------- OR --------------</p>
 
-          <p className="mt-4 text-gray-600">
+          <p className="mt-2 text-gray-600 text-sm">
             Don't have an account?
-            <span className="text-blue-600 cursor-pointer hover:underline ml-1">
+            <span className="text-[#16423C] cursor-pointer hover:underline ml-1">
               <Link to="/Signup">Register Now</Link>
             </span>
           </p>

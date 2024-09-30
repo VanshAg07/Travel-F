@@ -6,7 +6,7 @@ import "./Places.css"; // Ensure this file has the styles defined above
 import bg from "../img/india.jpg";
 import Card from "./3dCard";
 import Whyuss from "./Whyuss";
-import Review from "./Review"
+import Review from "./Review";
 import FooterSection from "./Footersection";
 import review from "../img/reviews.png";
 import Hiking from "./Hiking";
@@ -14,9 +14,10 @@ import Visit from "./Visit";
 import Food from "./Food";
 import Shop from "./Shop";
 import Form from "./Form";
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
+import MainFooter from "./Footer/MainFooter";
 
 const Place = () => {
   const { name } = useParams();
@@ -111,11 +112,10 @@ const Place = () => {
         <div className="why">
           <Whyuss />
         </div>
-        <Review/>
+        <Review />
         <Form />
       </div>
-      <FooterSection />
-      <Footer />
+      <MainFooter />
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(

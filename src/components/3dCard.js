@@ -14,7 +14,7 @@ const Card = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getTripDetails/${name}`
+          `https://travel-server-iley.onrender.com/api/user/getTripDetails/${name}`
         );
         setTrips(response.data);
         console.log(response.data);
@@ -29,15 +29,12 @@ const Card = () => {
   const getValidDate = (tripDates) => {
     if (!tripDates) return null;
     const today = new Date();
-
     // Filter out past dates
     const validDates = tripDates
       .map((date) => new Date(date))
       .filter((date) => date >= today);
-
     // Sort dates to get the nearest upcoming date
     validDates.sort((a, b) => a - b);
-
     // Return the first valid date or null if no future dates
     return validDates.length > 0 ? validDates[0] : null;
   };
@@ -54,10 +51,8 @@ const Card = () => {
       {filteredTrips.length > 0 ? (
         filteredTrips?.map((trip, index) => {
           const nextDate = getValidDate(trip.tripDate); // Get the next valid trip date
-
           // Skip trips with no future dates
           if (!nextDate) return null;
-
           return (
             <Link
               key={index}
@@ -65,7 +60,7 @@ const Card = () => {
               className="h-[450px] relative shadow-lg rounded-lg mb-20 flex justify-center items-center cursor-pointer"
             >
               <img
-                src={`http://localhost:5000/uploads/${trip.tripImages}`} // Ensure this path is correct
+                src={`https://travel-server-iley.onrender.com/uploads/${trip.tripImages}`}
                 alt={trip.tripName}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
@@ -94,7 +89,7 @@ const Card = () => {
                   <div className="flex items-center text-gray-600 mb-2">
                     <MdLocationOn className="mr-2 text-blue-500" />
                     <span className="text-white text-xs">
-                      {trip.tripLocation}
+                      {trip.pickAndDrop}
                     </span>
                   </div>
                 </div>
