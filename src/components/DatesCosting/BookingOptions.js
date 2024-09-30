@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Nav from "../Nav";
-import axios from "axios"; // Add Axios to handle API requests
-import Dropnav from "../../components/Dropnav"
+import axios from "axios";
+import Dropnav from "../../components/Dropnav";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -14,13 +14,19 @@ const BookingOptions = () => {
   const location = useLocation();
   const {
     selectedDate,
-    tripName,
     tripPrice,
-    finalCostingDetails = {},
+    tripName,
+    doubleSharing,
+    tripleSharing,
+    quadSharing,
   } = location.state || {};
   const formattedDate = formatDate(selectedDate);
+
+  // State hooks
   const [selectedSharing, setSelectedSharing] = useState("");
   const [peopleCount, setPeopleCount] = useState(1);
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSharingSelect = (type) => {
@@ -28,42 +34,141 @@ const BookingOptions = () => {
     setPeopleCount(1);
   };
 
-  const calculatePrice = (pricePerPerson, count) => {
-    return pricePerPerson * count;
+  const validatePhoneNumber = (number) => {
+    const regex = /^[0-9]{10}$/;
+    return regex.test(number);
   };
+
+  const handlePhoneChange = (e) => {
+    setCustomerPhone(e.target.value);
+    if (!validatePhoneNumber(e.target.value)) {
+      setPhoneError("Please enter a valid 10-digit phone number.");
+    } else {
+      setPhoneError("");
+    }
+  };
+
+  // Calculate price based on sharing and people count
+  const calculatePrice = (pricePerPerson, count) => pricePerPerson * count;
 
   const selectedPrice =
     selectedSharing === "double"
-      ? tripPrice
+      ? doubleSharing
       : selectedSharing === "triple"
-      ? tripPrice
+      ? tripleSharing
       : selectedSharing === "quad"
-      ? tripPrice
+      ? quadSharing
       : 0;
 
   const basePrice = calculatePrice(selectedPrice, peopleCount);
-  const gst = basePrice * 0.05;
+  const gst = basePrice * 0.08;
   const totalPrice = basePrice + gst;
+  console.log(totalPrice);
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
 
-  // Function to initiate PhonePe payment
   const handlePayment = async () => {
+    if (!validatePhoneNumber(customerPhone)) {
+      setPhoneError("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     setIsLoading(true);
+    const res = await loadRazorpayScript();
+
+    if (!res) {
+      alert(
+        "Failed to load Razorpay SDK. Please check your internet connection."
+      );
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const orderId = `order_${Date.now()}`; // Generate a unique order ID
-      const response = await axios.post("https://travel-server-iley.onrender.com/api/payment/phonepe", {
-        amount: totalPrice,
-        orderId,
-        customerPhone: "9876543210", // Customer phone number, can be dynamic
-      });
+      const orderId = `order_${Date.now()}`;
+      const response = await axios.post(
+        "https://travel-server-iley.onrender.com/api/payment/razorpay",
+        {
+          amount: totalPrice,
+          orderId,
+          customerPhone,
+        }
+      );
 
       if (response.data.success) {
-        // Redirect to PhonePe payment page
-        window.location.href = response.data.paymentUrl;
+        const { amount, currency, orderId: razorpayOrderId } = response.data;
+
+        // Calculate 3% additional tax on the amount
+        const additionalTax = amount * 0.03;
+        const totalAmountWithTax = amount + additionalTax; // Total amount including the 3% tax
+        console.log(totalAmountWithTax);
+        const options = {
+          key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Your Razorpay Key ID
+          amount: totalAmountWithTax.toString(), // Update amount to include tax
+          currency: currency,
+          name: "TRAVELLOTEN",
+          description: `Booking for ${tripName}`,
+          order_id: razorpayOrderId,
+          handler: async (response) => {
+            const data = {
+              orderId: razorpayOrderId,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpaySignature: response.razorpay_signature,
+              customerPhone,
+              tripName,
+              tripPrice,
+              selectedDate,
+              selectedSharing,
+            };
+
+            // Verify payment on the server
+            const result = await axios.post(
+              "https://travel-server-iley.onrender.com/api/payment/verify",
+              data
+            );
+
+            if (result.data.success) {
+              alert("Payment successful!");
+              // Redirect or update UI after successful payment
+            } else {
+              alert("Payment verification failed. Please contact support.");
+            }
+          },
+          prefill: {
+            name: "Your Customer Name",
+            email: "customer@example.com",
+            contact: customerPhone,
+          },
+          notes: {
+            address: "Customer Address",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
       } else {
         alert("Payment initiation failed!");
       }
     } catch (error) {
-      console.error("Payment error:", error);
+      console.error(
+        "Payment error:",
+        error.response ? error.response.data : error
+      );
       alert("Payment initiation failed. Please try again.");
     } finally {
       setIsLoading(false);
@@ -73,7 +178,7 @@ const BookingOptions = () => {
   return (
     <div>
       <Nav />
-      <Dropnav/>
+      <Dropnav />
       <div className="flex justify-center items-center bg-gray-100 w-full">
         <div className="min-h-screen p-6 flex justify-center items-center">
           <div className="w-full mx-auto bg-white shadow-lg rounded-lg p-8">
@@ -100,7 +205,7 @@ const BookingOptions = () => {
                   Double Sharing
                 </h2>
                 <p className="text-lg text-gray-800">
-                  Price per person: ₹{tripPrice}
+                  Price per person: ₹{doubleSharing}
                 </p>
               </div>
 
@@ -115,11 +220,9 @@ const BookingOptions = () => {
                   Triple Sharing
                 </h2>
                 <p className="text-lg text-gray-800">
-                  Price per person: ₹{tripPrice}
+                  Price per person: ₹{tripleSharing}
                 </p>
               </div>
-
-              {/* Quad Sharing */}
               <div
                 onClick={() => handleSharingSelect("quad")}
                 className={`p-6 rounded-lg shadow-sm cursor-pointer transition-all duration-200 ${
@@ -130,11 +233,11 @@ const BookingOptions = () => {
                   Quad Sharing
                 </h2>
                 <p className="text-lg text-gray-800">
-                  Price per person: ₹{tripPrice}
+                  Price per person: ₹{quadSharing}
                 </p>
               </div>
             </div>
-
+            {/* People Count */}
             {selectedSharing && (
               <div className="mt-6 flex justify-center items-center">
                 <h3 className="text-lg font-semibold text-gray-700 mr-6">
@@ -161,7 +264,25 @@ const BookingOptions = () => {
                 </div>
               </div>
             )}
-
+            {/* Phone Number Input */}
+            <div className="mt-6">
+              <label className="block text-lg font-semibold text-gray-700">
+                Enter Your Phone Number:
+              </label>
+              <input
+                type="text"
+                value={customerPhone}
+                onChange={handlePhoneChange}
+                className={`w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none ${
+                  phoneError ? "border-red-500" : "focus:border-blue-500"
+                }`}
+                maxLength="10"
+                placeholder="9876543210"
+              />
+              {phoneError && (
+                <p className="text-red-500 text-sm mt-2">{phoneError}</p>
+              )}
+            </div>
             {/* Price Breakdown */}
             {selectedSharing && (
               <div className="mt-8 p-6 bg-blue-50 rounded-lg shadow-md">
@@ -182,18 +303,22 @@ const BookingOptions = () => {
               </div>
             )}
 
-            {/* Payment Button */}
-            {selectedSharing && (
-              <div className="mt-8 flex justify-center">
-                <button
-                  onClick={handlePayment}
-                  className="px-8 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg transition-all duration-200 hover:bg-green-600"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Processing..." : "Proceed to Payment"}
-                </button>
-              </div>
-            )}
+            {/* Proceed Button */}
+            <button
+              onClick={handlePayment}
+              disabled={
+                !validatePhoneNumber(customerPhone) ||
+                !selectedSharing ||
+                isLoading
+              }
+              className={`mt-8 w-full py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md ${
+                isLoading || !selectedSharing || !customerPhone
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-blue-600"
+              }`}
+            >
+              {isLoading ? "Processing..." : "Proceed to Payment"}
+            </button>
           </div>
         </div>
       </div>

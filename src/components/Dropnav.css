@@ -1,5 +1,5 @@
 .navbar-1 {
-    background-color: #333;
+    background-color: #C4DAD2;
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 5px;
@@ -19,7 +19,7 @@
   
   .nav-item-1 {
     position: relative;
-    color: #fff;
+    color: #16423C;
     padding: 10px 5px;
     cursor: pointer;
     display: inline-flex; /* Ensures horizontal alignment of text and icon */
@@ -42,7 +42,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #444;
+    background-color: #16423C;
     list-style: none;
     padding: 10px 0;
     margin: 0;
@@ -56,13 +56,13 @@
   .dropdown-item {
     padding: 10px 20px;
     color: #fff;
-    background-color: #444;
+    background-color: #16423C;
     text-align: left;
     cursor: pointer;
   }
   
   .dropdown-item:hover {
-    background-color: #555;
+    background-color: #6A9C89;
   }
   
   .nav-item-1:hover .dropdown {

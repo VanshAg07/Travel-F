@@ -42,14 +42,14 @@ function Signup() {
   };
 
   return (
-    <div className="bg-cover bg-center h-screen w-full flex justify-center items-center">
-      <div className="w-[80%] max-w-[50%] h-[75%] bg-white shadow-lg rounded-xl flex">
+    <div className="bg-cover bg-center bg-[#16423C] h-screen w-full flex justify-center items-center">
+      <div className="w-[80%] max-w-[70%] h-[85%] bg-white shadow-lg rounded-xl flex">
         <div
           className="w-[50%] h-full bg-cover bg-center rounded-l-2xl"
           style={{ backgroundImage: `url(${bg})` }}
         ></div>
-        <div className="w-[50%] h-full flex flex-col justify-center items-center bg-white p-10 rounded-r-2xl">
-          <h1 className="text-2xl font-bold text-blue-600 mb-4">
+        <div className="w-[50%] h-full flex flex-col justify-center items-center bg-[#E9EFEC] p-10 rounded-r-2xl">
+          <h1 className="text-2xl font-bold text-[#16423C] mb-4">
             Create an Account
           </h1>
           <p className="text-gray-500 mb-8">Sign up to create a new account</p>
@@ -61,7 +61,7 @@ function Signup() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your username"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C"
                 autoComplete="off"
               />
             </div>
@@ -72,7 +72,7 @@ function Signup() {
                 value={phoneNo}
                 onChange={(e) => setPhoneNo(e.target.value)}
                 placeholder="Enter phone number"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C"
                 autoComplete="off"
               />
             </div>
@@ -85,7 +85,7 @@ function Signup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C"
               />
             </div>
             <div className="flex flex-col">
@@ -95,12 +95,12 @@ function Signup() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              className="w-full py-3 bg-[#16423C] text-white rounded-lg hover:scale-95 transition duration-300"
             >
               Sign Up
             </button>

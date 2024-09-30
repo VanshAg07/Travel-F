@@ -91,7 +91,7 @@ const Nav = () => {
           </div>
         </Link>
         <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex mob-no flex-row justify-center mr-10 items-center gap-1 ">
+          <div className="flex mob-no border-0 flex-row justify-center mr-10 items-center gap-1 ">
             <p>+91-8287804197</p>
           </div>
         </a>

@@ -18,31 +18,17 @@ const AdminPanel = () => {
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",
-    tripQuantity: "",
     tripDate: [""],
     tripLocation: "",
     tripDuration: "",
-    tripAccommodation: "",
-    tripActivities: "",
-    transport: "",
-    tripFood: "",
-    tripBeverages: "",
-    tripSpecialRequests: "",
-    tripCancellations: "",
     tripInclusions: [""],
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
-    tripAdditionalServices: "",
-    tripCancellationPolicy: "",
-    tripPaymentMethods: "",
-    tripAmenities: "",
-    tripRules: "",
     tripImages: [],
     pdf: null,
     tripDescription: [""],
     pickAndDrop: "",
     sharing: [{ title: "", price: "" }],
-    transport: [{ title: "", price: "" }],
     tripBackgroundImg: "",
   });
 
@@ -70,33 +56,17 @@ const AdminPanel = () => {
     }
     setTripData({ ...tripData, tripItinerary: updatedItinerary });
   };
-  const handleTransportChange = (e, index, fieldName) => {
-    const updatedTransport = [...tripData.transport];
-    updatedTransport[index] = {
-      ...updatedTransport[index],
-      [fieldName]: e.target.value,
-    }; // Ensure to spread the object
-    setTripData({ ...tripData, transport: updatedTransport });
-  };
-
   const handleSharingChange = (e, index, fieldName) => {
     const updatedSharing = [...tripData.sharing];
-    updatedSharing[index] = {
-      ...updatedSharing[index],
-      [fieldName]: e.target.value,
-    }; // Ensure to spread the object
+    const sharingObject = updatedSharing[index];
+    sharingObject[fieldName] = e.target.value;
+    updatedSharing[index] = sharingObject;
     setTripData({ ...tripData, sharing: updatedSharing });
   };
   const addItineraryField = () => {
     setTripData({
       ...tripData,
       tripItinerary: [...tripData.tripItinerary, { title: "", points: [""] }],
-    });
-  };
-  const addTransportField = () => {
-    setTripData({
-      ...tripData,
-      transport: [...tripData.transport, { title: "", price: "" }],
     });
   };
   const addSharingField = () => {
@@ -144,16 +114,23 @@ const AdminPanel = () => {
       } else if (key === "tripBackgroundImg" && tripData.tripBackgroundImg) {
         formData.append("tripBackgroundImg", tripData.tripBackgroundImg);
       } else if (Array.isArray(tripData[key])) {
-        tripData[key].forEach((item, index) => {
-          if (key === "tripItinerary") {
+        if (key === "tripItinerary") {
+          tripData.tripItinerary.forEach((item, index) => {
             formData.append(`${key}[${index}][title]`, item.title);
             item.points.forEach((point, pointIndex) => {
               formData.append(`${key}[${index}][points][${pointIndex}]`, point);
             });
-          } else {
+          });
+        } else if (key === "sharing") {
+          tripData.sharing.forEach((item, index) => {
+            formData.append(`${key}[${index}][title]`, item.title);
+            formData.append(`${key}[${index}][price]`, item.price);
+          });
+        } else {
+          tripData[key].forEach((item, index) => {
             formData.append(`${key}[${index}]`, item);
-          }
-        });
+          });
+        }
       } else {
         formData.append(key, tripData[key]);
       }
@@ -242,16 +219,6 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-l font-medium">Trip Quantity</label>
-            <input
-              type="number"
-              name="tripQuantity"
-              value={tripData.tripQuantity}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (
               <div key={index} className="flex items-center">
@@ -273,72 +240,12 @@ const AdminPanel = () => {
           </div>
           <div>
             <label className="block text-l font-medium">
-              Trip Duration (in days)
+              Trip Duration (in days eg. 3D - 2N)
             </label>
             <input
               type="text"
               name="tripDuration"
               value={tripData.tripDuration}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Accommodation</label>
-            <input
-              type="text"
-              name="tripAccommodation"
-              value={tripData.tripAccommodation}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Activities</label>
-            <input
-              type="text"
-              name="tripActivities"
-              value={tripData.tripActivities}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Food</label>
-            <input
-              type="text"
-              name="tripFood"
-              value={tripData.tripFood}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Beverages</label>
-            <input
-              type="text"
-              name="tripBeverages"
-              value={tripData.tripBeverages}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Special Requests</label>
-            <input
-              type="text"
-              name="tripSpecialRequests"
-              value={tripData.tripSpecialRequests}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Cancellations</label>
-            <input
-              type="text"
-              name="tripCancellations"
-              value={tripData.tripCancellations}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
@@ -428,50 +335,6 @@ const AdminPanel = () => {
             </button>
           </div>
           <div>
-            <label className="block text-l font-medium">
-              Trip Cancellation Policy
-            </label>
-            <input
-              type="text"
-              name="tripCancellationPolicy"
-              value={tripData.tripCancellationPolicy}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">
-              Trip Payment Methods
-            </label>
-            <input
-              type="text"
-              name="tripPaymentMethods"
-              value={tripData.tripPaymentMethods}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Trip Amenities</label>
-            <input
-              type="text"
-              name="tripAmenities"
-              value={tripData.tripAmenities}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Trip Rules</label>
-            <input
-              type="text"
-              name="tripRules"
-              value={tripData.tripRules}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-            />
-          </div>
-          <div>
             <label className="block text-l font-medium">Trip Description</label>
             {tripData.tripDescription.map((inclusion, index) => (
               <div key={index} className="flex items-center">
@@ -493,42 +356,6 @@ const AdminPanel = () => {
               </div>
             ))}
           </div>
-          {/* <div>
-            <label className="block text-l font-medium">
-              Transport Options
-            </label>
-            {tripData.transport.map((transport, index) => (
-              <div key={index}>
-                <select
-                  name="title"
-                  value={transport.title}
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-                  onChange={(e) => handleTransportChange(e, index, "title")}
-                >
-                  <option value="">Select Transport Type</option>
-                  <option value="Tempo">Tempo</option>
-                  <option value="XUV">XUV</option>
-                  <option value="Sedan">Sedan</option>
-                </select>
-                <input
-                  type="number"
-                  name="price"
-                  value={transport.price}
-                  placeholder="Price"
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-                  onChange={(e) => handleTransportChange(e, index, "price")}
-                />
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addTransportField}
-              className="mt-2 p-1 text-white bg-green-600 rounded"
-            >
-              Add Transport Options
-            </button>
-          </div>
-
           <div>
             <label className="block text-l font-medium">Sharing Options</label>
             {tripData.sharing.map((share, index) => (
@@ -562,7 +389,7 @@ const AdminPanel = () => {
             >
               Add Sharing Options
             </button>
-          </div> */}
+          </div>
           <div>
             <label className="block text-l font-medium">
               Pick and Drop (eg. Guwahati - Guwahati)
@@ -576,7 +403,9 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-l font-medium">Trip Images</label>
+            <label className="block text-l font-medium">
+              Trip Images (i.e. Card Image)
+            </label>
             <input
               type="file"
               multiple
@@ -585,16 +414,19 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-l font-medium">Package Image</label>
+            <label className="block text-l font-medium">
+              Package Image ( i.e. Background Image )
+            </label>
             <input
               type="file"
-              // multiple
               onChange={handlePackageChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
           <div>
-            <label className="block text-l font-medium">Upload PDF</label>
+            <label className="block text-l font-medium">
+              Upload PDF ( i.e. Itinerary )
+            </label>
             <input
               type="file"
               onChange={handlePdfChange}

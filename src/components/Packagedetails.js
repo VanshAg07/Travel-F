@@ -29,6 +29,7 @@ const Packagedetails = () => {
   const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
+  const [sharing, setSharing] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -66,6 +67,7 @@ const Packagedetails = () => {
           `https://travel-server-iley.onrender.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
+        setSharing(response.data.trip.sharing);
         console.log(trips);
       } catch (error) {
         console.error("Error fetching trip details:", error);
@@ -76,20 +78,54 @@ const Packagedetails = () => {
     };
     fetchTripDetails();
   }, [name, tripName]);
+
+  console.log(sharing);
+  let doubleSharing;
+  let tripleSharing;
+  let quadSharing;
+  // console.log(doubleSharing)
+  if (
+    sharing &&
+    sharing.length > 0 &&
+    sharing[0].price &&
+    sharing[1].price &&
+    sharing[2].price
+  ) {
+    doubleSharing = sharing[0].price;
+    tripleSharing = sharing[1].price;
+    quadSharing = sharing[2].price;
+    console.log(doubleSharing, tripleSharing, quadSharing);
+  } else {
+    console.log("Error: sharing array is empty or title property is missing");
+  }
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
-        state: { tripDates: trips.tripDate, tripPrice: trips.tripPrice, tripName: trips.tripName },
+        state: {
+          tripDates: trips.tripDate,
+          tripPrice: trips.tripPrice,
+          tripName: trips.tripName,
+          doubleSharing,
+          tripleSharing,
+          quadSharing
+        },
       });
     } else {
       console.error("Trip dates not available");
     }
   };
+  const imageUrl = trips.tripBackgroundImg
+    ? `https://travel-server-iley.onrender.com/uploads/${trips.tripBackgroundImg}`
+    : bg;
   return (
     <div>
       <Nav />
-      <Dropnav/>
-      <img src={bg} alt="Descriptive Alt Text" className="full-width-image" />
+      <Dropnav />
+      <img
+        src={imageUrl}
+        alt="Descriptive Alt Text"
+        className="h-screen w-full"
+      />
       {trips.pdf && (
         <button className="cssbuttons-io-button" onClick={handleDownload}>
           <svg
@@ -111,14 +147,14 @@ const Packagedetails = () => {
       <div className="flex w-[100%] gap-0 justify-center m-2">
         <div className="max-w-[50%]">
           <div className="mt-10 ">
-            <p className="text-4xl font-bold">{name} Road Trip</p>
+            <p className="text-4xl font-bold">{trips.tripName}</p>
           </div>
           <div className="flex flex-row gap-10 mt-5">
             <div className="flex flex-row items-center gap-5 bg-gray-700 rounded-lg border-2 p-4 ">
               <FaMapMarkerAlt className="text-white" />
               <div className="flex flex-col">
                 <span className="text-white">Pickup & Drop:</span>
-                <span className="text-white">Guwahati - Guwahati</span>
+                <span className="text-white">{trips.pickAndDrop}</span>
               </div>
             </div>
             <div className="flex flex-row items-center gap-5 bg-gray-700 rounded-lg border-2 p-4 ">
@@ -454,8 +490,10 @@ const Packagedetails = () => {
             <div className="bg-white shadow-lg p-4 rounded-2xl">
               <p className="text-2xl">Starting From</p>
               <p className="text-2xl text-blue-500">
-                <span className="font-bold text-3xl">Rs.{trips.tripPrice}/- </span>per
-                person
+                <span className="font-bold text-3xl">
+                  Rs.{trips.tripPrice}/-{" "}
+                </span>
+                per person
               </p>
               <div className="bg-blue-500 items-center justify-center flex p-4 rounded-xl mt-5">
                 <button onClick={handleDatesAndCostingClick}>
