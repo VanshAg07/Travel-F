@@ -70,7 +70,7 @@ const Payments = () => {
           </div>
           <div>
             <p className="text-gray-700">
-              <span className="font-semibold">Note:</span> A payment getaway charge 3% will be levied on using above given payment link.
+              <span className="font-semibold">Note:</span>  Payment getaway charges will be levied on using above given payment link.
             </p>
           </div>
         </div>
