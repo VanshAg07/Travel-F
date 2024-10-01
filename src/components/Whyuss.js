@@ -1,8 +1,8 @@
 import React from "react";
-import icon1 from "../img/sauceBg1.svg";
-import icon2 from "../img/sauceBg2.svg";
-import icon3 from "../img/sauceBg3.svg";
-import icon4 from "../img/sauceBg4.svg";
+import icon1 from "../img/1why.png";
+import icon2 from "../img/2why.png";
+import icon3 from "../img/3why.png";
+import icon4 from "../img/4why.png";
 
 const WhyWanderOn = () => {
   return (
@@ -15,7 +15,7 @@ const WhyWanderOn = () => {
     >
       {/* Card 1 */}
       <div
-        className="bg-white border rounded-lg p-6 shadow-md h-auto bg-cover bg-center"
+        className="bg-white border rounded-lg p-6 shadow-md h-96 bg-cover bg-center"
         style={{
           backgroundImage: `url(${icon1})`,
         }}
@@ -44,7 +44,7 @@ const WhyWanderOn = () => {
 
         {/* Card 3 */}
         <div
-          className="bg-white border rounded-lg p-6 shadow-md h-96 bg-cover bg-center"
+          className="bg-white border rounded-lg p-6 shadow-md  bg-cover "
           style={{
             backgroundImage: `url(${icon3})`,
           }}

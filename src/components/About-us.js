@@ -79,20 +79,27 @@ const Aboutus = () => {
             What Do We Strive for and What Fuels Our Ambition?
           </h1>
           <p className="mb-4">
-            Do you remember the joy of flipping through travel magazines,
-            dreaming of exotic destinations and adventures that seemed worlds
-            away? Fast forward to today, and those dreams have transformed into
-            a vibrant reality for many. The rise of digital nomadism and travel
-            entrepreneurship has unlocked endless possibilities, proving that
-            the world is not just a place to visit but a canvas for exploration
-            and creation.
+          TravelloTen India Private Limited is a specialist for Travel & Transport  serving exclusively the academic sector by arranging educational & fun tours for 
+          students of every age all over India.
           </p>
           <p>
-            Years ago, the idea of turning a passion for travel into a career
-            seemed like a far-fetched dream. But for us, that dream became
-            reality. What started as a group of friends chasing new experiences
-            soon evolved into something bigger—a movement to reshape the way
-            people explore the world.
+          We are different as we educate and inform students about historical/geographical/cultural values etc. wherever the tour takes place. 
+We also doing school tour , colleges tour , corporate tour & Family's tour for all place in India. 
+          </p>
+          <p>
+          We have over many years combined experience in providing the almost in quality, authenticity and service in the group travel industry.
+          </p>
+          <p>
+          We have strong hold in the domestic market as well. We believe in “Service with quality & Smile”.  
+          </p>
+          <p>
+          We use the best system for operations which adds “Valued Efficiency” to our teamwork thus making hospitality not a business affair 
+          but a “Commitment & Pledge” towards client’s satisfaction. 
+          </p>
+          <p>
+         
+At TravelloTen India Private Limited understand that planning a group trip can be a lot of work and that is why we believe in providing 
+value every step of the way.
           </p>
         </div>
 

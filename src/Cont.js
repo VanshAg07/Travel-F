@@ -1,25 +1,27 @@
 import React from 'react';
-import icon1 from "./img/illust.png";
+import icon1 from "./img/con-bg.png";
 import Nav from './components/Nav';
 import FooterSection from './components/Footersection';
 import Footer from './Footer';
+import Dropnav from "./components/Dropnav"
 
 const Forms = () => {
   return (
     <>
     <Nav/>
-    <h1 className=" pt-32 text-4xl font-bold text-center text-gray-800">
+    <Dropnav/>
+    <h1 className=" pt-40 text-4xl font-bold text-center text-gray-800">
   Get In Touch With Our Support Team
 </h1>
-    <div className="min-h-screen  flex items-center justify-center ">
+    <div className="h-screen  flex items-center justify-center ">
       {/* Container for form and image */}
       <div className="flex flex-row items-center justify-center space-x-8">
         {/* Left side image */}
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-2">
           <img
             src={icon1}
             alt="Illustration"
-            className="w-[500px] h-[500px] rounded-lg"
+            className="w-[800px] h-[1200px] rounded-lg"
           />
         </div>
 
