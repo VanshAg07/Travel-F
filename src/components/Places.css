@@ -4,7 +4,7 @@
   
   .place-hero {
     position: relative; /* Ensure positioning context for absolutely positioned content */
-    height: 100vh; /* Ensure it takes up the full height of the viewport */
+    height: 83vh; /* Ensure it takes up the full height of the viewport */
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     justify-content: flex-start; /* Align items to the top */

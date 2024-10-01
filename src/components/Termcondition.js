@@ -12,7 +12,7 @@ const Termcondition = () => {
       <Dropnav />
       <div className="terms-container">
         <div className="terms-section">
-          <h1 className="terms-title">Terms & Conditions</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">Terms & Conditions</h1>
           <p className="terms-text">
             TravelloTen and its organizers strictly prohibit the utilization of
             any Narcotics and Banned Substances during the tours and would not

@@ -20,8 +20,8 @@ const WhyWanderOn = () => {
           backgroundImage: `url(${icon1})`,
         }}
       >
-        <h3 className="text-cyan-500 font-bold text-xl mb-4">No Unnecessary Add-ons</h3>
-        <p className="text-gray-600 mb-4">
+        <h3 className="text-[#03346E] font-bold text-xl mb-4">No Unnecessary Add-ons</h3>
+        <p className="text-[#021526] mb-4">
         100% In-House Expertise on Every Adventure! No Outsiders, Just Quality!
         </p>
       </div>
@@ -33,10 +33,10 @@ const WhyWanderOn = () => {
             backgroundImage: `url(${icon2})`,
           }}
         >
-          <h3 className="text-cyan-500 font-bold text-xl mb-4">
+          <h3 className="text-[#03346E] font-bold text-xl mb-4">
           Clarity & Trust
                     </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-[#021526] mb-4">
           Live Monitoring of All Trips—Stay Informed with Up-to-Date Routes and Weather Conditions!
 
           </p>
@@ -49,10 +49,10 @@ const WhyWanderOn = () => {
             backgroundImage: `url(${icon3})`,
           }}
         >
-          <h3 className="text-cyan-500 font-bold text-xl mb-4">
+          <h3 className="text-[#03346E] font-bold text-xl mb-4">
           Custom Co-Travelers Selection
           </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-[#021526] mb-4">
           Bringing the Right People Together with Precision Filtering—For the Perfect Trip!
           </p>
         </div>
@@ -64,10 +64,10 @@ const WhyWanderOn = () => {
             backgroundImage: `url(${icon4})`,
           }}
         >
-          <h3 className="text-cyan-500 font-bold text-xl mb-4">
+          <h3 className="text-[#03346E] font-bold text-xl mb-4">
           Your Stress-Free Travel Solution
           </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-[#021526] mb-4">
           Luxury Stays, Trained Drivers, Friendly Crew, and Experienced Trip Leaders—Crafting Unforgettable Memories!
           </p>
         </div>

@@ -9,11 +9,11 @@ import img6 from "../img/thailand.jpg";
 
 const images = [
   { src: img1, text: "Romantic Escapes", link: "/Honeymoon" },
-  { src: img2, text: "Corporate Trips", link: "/corporate-trips" },
+  { src: img2, text: "Corporate Trips", link: "/corporate" },
   { src: img3, text: "Experience India", link: "/National" },
   { src: img4, text: "International Trips", link: "/intern" },
-  { src: img5, text: "Team Adventures", link: "/team-adventures" },
-  { src: img6, text: "Weekend Trips", link: "/weekend-trips" },
+  { src: img5, text: "Team Adventures", link: "/Grouptours" },
+  { src: img6, text: "Weekend Trips", link: "/weekends" },
 ];
 
 const ImageSlider = () => {

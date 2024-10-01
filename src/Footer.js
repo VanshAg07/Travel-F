@@ -25,7 +25,7 @@ const Footer = () => {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            <img src={FacebookIcon} alt="Facebook" className="h-9 w-9" />
+            <img src={FacebookIcon} alt="Facebook" className="h-8 w-8" />
           </a>
           <a 
             className="footer-anchors" 

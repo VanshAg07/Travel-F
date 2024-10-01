@@ -15,7 +15,8 @@ import Review from "../components/Review";
 import Faq from "./Faq.js";
 import FooterSection from "./Footersection";
 import Dropnav from "../components/Dropnav";
-import Homeglry from "../components/Homeglry.js"
+import Homeglry from "../components/Homeglry.js";
+import Mainreview from "../components/Mainreview.js"
 
 // import Lottie from "lottie-react";
 
@@ -131,6 +132,7 @@ const Honeymoon = () => {
           </form>
         </div>
       </div>
+      <Mainreview/>
 
       <div className="lottie-wr">
         <Lottie 

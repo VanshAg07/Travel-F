@@ -12,7 +12,7 @@ const Privacy = () => {
       <Dropnav />
       <div className="privacy-container">
         <div className="privacy-section">
-          <h1 className="privacy-title">Privacy Policy</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">Privacy Policy</h1>
           <p className="privacy-text">
             Welcome to TravelloTen India Pvt. Ltd ("we," "us," or "our"). We are
             dedicated to protecting your personal information and your right to

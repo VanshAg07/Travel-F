@@ -33,6 +33,7 @@ import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 import FooterSection from "./components/Footersection";
 import Dropnav from "./components/Dropnav.js";
+import Mainreview from "./components/Mainreview.js";
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
@@ -178,6 +179,7 @@ const National = () => {
           </form>
         </div>
       </div>
+      <Mainreview />
 
       <div className="lottie-wr">
         <Lottie
@@ -206,6 +208,7 @@ const National = () => {
       <p className="all-packages-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
+     
       {/* <div>
         <Card />
       </div> */}

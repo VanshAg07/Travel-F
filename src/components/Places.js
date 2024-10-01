@@ -18,6 +18,7 @@ import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
+import Mainreview from "./Mainreview"
 
 const Place = () => {
   const { name } = useParams();
@@ -30,12 +31,12 @@ const Place = () => {
       <div className="place-container">
         <div className="place-hero">
           <img className="pl-img" src={bg} alt="Background" />
-          <img src={review} className="review-img" alt="Review" />
           <div>
             <h1>{name} Tour Packages</h1>
             <p>The Perfect Blend of Serenity and Adventure</p>
           </div>
         </div>
+        <Mainreview/>
         <div>
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>

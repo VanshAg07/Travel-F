@@ -15,7 +15,7 @@ const Cancellation = () => {
     <div className="cancellation-container">
 
       <div className="cancellation-header">
-        <h1 className="cancellation-title">Cancellation Policy</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Cancellation Policy</h1>
         <p className="cancellation-intro">
         NO REFUND SHALL BE MADE WITH RESPECT TO THE INITIAL BOOKING AMOUNT FOR ANY OF THE CANCELLATIONS. HOWEVER,
         </p>

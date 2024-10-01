@@ -1,7 +1,7 @@
 .footer-wrapper {
-  background-color: #c4dad2;
+  background-color: #fff;
   padding-top: 100px;
-  color: #16423c;
+  color: #000;
   height: 100%;
   overflow: visible;
   --mask: radial-gradient(67.08px at 50% 90px, #000 99%, #0000 101%)

@@ -13,6 +13,7 @@ import "./Weekends.css";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
+import  Mainreview from "../components/Mainreview";
 // import "./Grouptours.css"
 
 const Weekends = () => {
@@ -23,7 +24,7 @@ const Weekends = () => {
       <Nav />
       <Dropnav />
       <div className=" weekend-hero w-[100%] h-[100%]">
-        <img className="h-[750px] w-[100%]" src={intern} alt="India" />
+        <img className="h-[740px] w-[100%]" src={intern} alt="India" />
         <h1 className="top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center">
           Weekend Getaways
         </h1>
@@ -32,12 +33,14 @@ const Weekends = () => {
           Weekend Trips from Delhi{" "}
         </p>
       </div>
+      <Mainreview />
       <div className="py-12 bg-gray-50">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4 text-gray-800 pt-10">
             Weekend Getaways from Delhi
           </h1>
         </div>
+       
 
         {/* Icon section */}
         <div className="w-4/5 mx-auto flex pr-48  space-x-16 mt-8">

@@ -1,7 +1,7 @@
 .nav-wrapper {
-  color: #fff;
+  color: #FFF;
   width: 100vw;
-  background-color: #16423c;
+  background-color: #03346E;
   position: fixed;
   z-index: 9999;
   height: 60px;
@@ -11,7 +11,7 @@
 }
 
 .mob-no {
-  border: 2px solid #6a9c89;
+  border: 2px solid #FFF;
   border-radius: 25px;
   padding: 5px 15px;
 }
@@ -19,7 +19,7 @@
 /* Logo Styling */
 .logo {
   padding-left: 20px; /* Padding for spacing on larger screens */
-  height: 60px; /* Adjust logo size */
+  height: 90px; /* Adjust logo size */
 }
 
 .cta {
