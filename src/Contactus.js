@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Contactus.css";
-import Con from "./img/C-2.png";
+import Con from "./img/con-bg.png";
 import { Link } from "react-router-dom";
 
 const ContactForm = () => {

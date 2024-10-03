@@ -8,10 +8,9 @@ import img4 from "../img/bali.jpg";
 import img5 from "../img/HimachalPradesh.png";
 import img6 from "../img/Uttarakhand.png";
 import "./Blog.css";
-import Footer from "../Footer";
 import { Link } from "react-router-dom";
-import FooterSection from "./Footersection";
-import Dropnav from "../components/Dropnav"
+import Dropnav from "../components/Dropnav";
+import MainFooter from "./Footer/MainFooter";
 
 const Data = [
   {
@@ -49,7 +48,7 @@ const Data = [
   {
     image: img6,
     title: "himachalpradesh",
-  }
+  },
 ];
 
 const Blog = () => {
@@ -59,7 +58,6 @@ const Blog = () => {
       <Dropnav />
       <div className="blog-container">
         <img className="blog-img" src={Blog1} alt="Blog Cover" />
-
         <h1 className="blog-heading-bottom">
           From Beaches to Mountains: What Travel Communities Are Excited About!
         </h1>
@@ -71,17 +69,21 @@ const Blog = () => {
         {Data.map((item, index) => (
           <Link key={index} to={`/blogdetails/${item.title}`}>
             <div className="bg-blue-100 p-4 flex flex-col items-center justify-between ">
-              <img src={item.image} alt="Card" className=" object-fill w-full h-[300px] rounded-md " />
+              <img
+                src={item.image}
+                alt="Card"
+                className=" object-fill w-full h-[300px] rounded-md "
+              />
               <div className="">
-                <h3 className="py-4 capitalize font-bold text-xl">{item.title}</h3>
+                <h3 className="py-4 capitalize font-bold text-xl">
+                  {item.title}
+                </h3>
               </div>
             </div>
           </Link>
         ))}
-
       </div>
-      <FooterSection/>
-      <Footer />
+      <MainFooter />
     </>
   );
 };

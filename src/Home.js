@@ -33,7 +33,6 @@ const Home = () => {
         <Videopg2 />
         <Videopg3 />
         <Explore />
-        {/* <Gallery /> */}
 
         <Homeglry />
         <Videopg4 />

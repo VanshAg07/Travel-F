@@ -7,7 +7,7 @@ import img1 from "../../img/goa.png";
 
 function AllPackagesCard() {
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(6);
+  const [visiblePackages, setVisiblePackages] = useState(1);
   const navigate = useNavigate(); // Initializing useNavigate
 
   useEffect(() => {

@@ -49,9 +49,9 @@ const Gallery = () => {
     <div className="gallery-wrap" onWheel={handleWheel}>
      {/* Heading */}
      <h1 className="text-center text-4xl font-bold mb-4 pt-8 text-gray-800">
-        Journey in Frames
+     Frames of Exploration
       </h1>
-      <p className="text-center text-xl font-bold mb-2 text-gray-800">Pictures Perfect Moments</p>
+      <p className="text-center text-xl font-bold mb-2 text-gray-800">Moments in Motion</p>
   {/* Left Arrow - positioned outside the div */}
   <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
     &#9664;

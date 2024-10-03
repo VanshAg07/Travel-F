@@ -5,7 +5,6 @@ import Nav from "./components/Nav";
 import intern from "./img/international.jpg";
 import Lottie from "lottie-react";
 import animationData from "./img/India.json";
-import Footer from "./Footer.js";
 import shi1 from "./img/1.png";
 import shi2 from "./img/2.png";
 import shi3 from "./img/3.png";
@@ -31,8 +30,9 @@ import cont from "./img/cont-button.json";
 import axios from "axios";
 import Review from "./components/Review";
 import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
-import FooterSection from "./components/Footersection";
 import Dropnav from "./components/Dropnav.js";
+import Mainreview from "./components/Mainreview.js";
+import MainFooter from "./components/Footer/MainFooter.js";
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
@@ -178,6 +178,7 @@ const National = () => {
           </form>
         </div>
       </div>
+      <Mainreview />
 
       <div className="lottie-wr">
         <Lottie
@@ -206,21 +207,16 @@ const National = () => {
       <p className="all-packages-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
-      {/* <div>
-        <Card />
-      </div> */}
       <div className="flex justify-center mt-28">
         <div className="w-[80%]">
           <AllPackagesCard />
         </div>
       </div>
-
       <Whyuss />
       <Review />
       <Guide />
       <Form />
-      <FooterSection />
-      <Footer />
+      <MainFooter />
 
       <div className="fixed-button-1">
         <a

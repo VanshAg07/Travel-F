@@ -1,5 +1,5 @@
 .navbar-1 {
-  background-color: #C4DAD2;
+  background-color: #FFF;
   padding-left: 2px;
   padding-right: 2px;
   padding-bottom: 5px;
@@ -21,7 +21,7 @@
 
 .nav-item-1 {
   position: relative;
-  color: #16423C;
+  color: #000;
   padding: 10px 5px;
   cursor: pointer;
   display: inline-flex; /* Ensures horizontal alignment of text and icon */
@@ -45,7 +45,7 @@
   top: 100%;
   left: 50%; /* Centers dropdown horizontally */
   transform: translateX(-50%); /* Centers the dropdown relative to the nav item */
-  background-color: #16423C;
+  background-color: #fff;
   list-style: none;
   padding: 10px 0;
   margin: 0;
@@ -58,14 +58,14 @@
 
 .dropdown-item {
   padding: 10px 20px;
-  color: #fff;
-  background-color: #16423C;
+  color: #000;
+  background-color: #fff;
   text-align: left;
   cursor: pointer;
 }
 
 .dropdown-item:hover {
-  background-color: #6A9C89;
+  background-color: #8cc6f2;
 }
 
 .nav-item-1:hover .dropdown {

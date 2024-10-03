@@ -13,7 +13,8 @@ import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
 import FooterSection from "./components/Footersection.js";
-import Dropnav from "./components/Dropnav.js"
+import Dropnav from "./components/Dropnav.js";
+import Mainreview from "./components/Mainreview.js"
 
 // import Lottie from "lottie-react";
 
@@ -127,6 +128,7 @@ const International = () => {
           </form>
         </div>
       </div>
+      <Mainreview />
 
       <div className="lottie-wr">
         <Lottie 

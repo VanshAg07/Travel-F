@@ -1,9 +1,9 @@
 import React from 'react';
-import icon1 from "../img/illust.png";
+import icon1 from "../img/con-bg.png";
 
 const Forms = () => {
   return (
-    <div className="min-h-screen  flex items-center justify-center ">
+    <div className="h-screen  flex items-center justify-center ">
       {/* Container for form and image */}
       <div className="flex flex-row items-center justify-center space-x-8">
         {/* Left side image */}
@@ -11,7 +11,7 @@ const Forms = () => {
           <img
             src={icon1}
             alt="Illustration"
-            className="w-[500px] h-[500px] rounded-lg"
+            className="w-[800px] h-[1200px] rounded-lg"
           />
         </div>
 

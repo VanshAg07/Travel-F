@@ -13,11 +13,10 @@ import Guide from "../components/Interguide.js";
 import cont from "../img/cont-button.json";
 import Review from "../components/Review";
 import Faq from "./Faq.js";
-import FooterSection from "./Footersection";
 import Dropnav from "../components/Dropnav";
 import Homeglry from "../components/Homeglry.js";
-import MainFooter from "./Footer/MainFooter.js";
-
+import Mainreview from "../components/Mainreview.js"
+import MainFooter from '../components/Footer/MainFooter.js'
 // import Lottie from "lottie-react";
 
 const Honeymoon = () => {
@@ -135,6 +134,7 @@ const Honeymoon = () => {
           </form>
         </div>
       </div>
+      <Mainreview/>
 
       <div className="lottie-wr">
         <Lottie
