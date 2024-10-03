@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./Honeymoon.css";
 import Nav from "../components/Nav";
 import intern from "../img/india.jpg";
-import Lottie  from 'lottie-react';
-import animationData from '../img/intern.json';
-import Footer from "../Footer.js"; 
+import Lottie from "lottie-react";
+import animationData from "../img/intern.json";
+import Footer from "../Footer.js";
 import Card from "../components/3dCard.js";
 import shi from "../img/crd-shi.png";
 import Whyuss from "./Whyuss.js";
@@ -15,7 +15,8 @@ import Review from "../components/Review";
 import Faq from "./Faq.js";
 import FooterSection from "./Footersection";
 import Dropnav from "../components/Dropnav";
-import Homeglry from "../components/Homeglry.js"
+import Homeglry from "../components/Homeglry.js";
+import MainFooter from "./Footer/MainFooter.js";
 
 // import Lottie from "lottie-react";
 
@@ -65,13 +66,16 @@ const Honeymoon = () => {
       <Nav />
       <Dropnav />
       <div className="hero-section-left-1">
-        
-      <div className=' weekend-hero w-[100%] h-[100%]'>
-    <img className='h-[750px] w-[100%]' src={intern} alt="India" />
-        <h1 className='top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center'>
-        Honeymoon Tour Packages</h1>
-        <p className='text-[1.7rem] transform -translate-x-1/2 -translate-y-1/2  top-[52%] left-[25%]  absolute bg-[yellow] text-black pt-[15px] pb-[15px] pl-[15px] pr-[15px] '> Where Forever Begins...Together!</p>
-    </div>
+        <div className=" weekend-hero w-[100%] h-[100%]">
+          <img className="h-[750px] w-[100%]" src={intern} alt="India" />
+          <h1 className="top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center">
+            Honeymoon Tour Packages
+          </h1>
+          <p className="text-[1.7rem] transform -translate-x-1/2 -translate-y-1/2  top-[52%] left-[25%]  absolute bg-[yellow] text-black pt-[15px] pb-[15px] pl-[15px] pr-[15px] ">
+            {" "}
+            Where Forever Begins...Together!
+          </p>
+        </div>
         <div className="hero-section-right-1">
           <form className="contact-form" onSubmit={handleSubmit}>
             <h2 className="hero-section-h2">
@@ -133,12 +137,12 @@ const Honeymoon = () => {
       </div>
 
       <div className="lottie-wr">
-        <Lottie 
-          animationData={animationData} 
-          loop={true} 
+        <Lottie
+          animationData={animationData}
+          loop={true}
           autoplay={true}
-          speed={0.5} 
-           className="hero-lottie"
+          speed={0.5}
+          className="hero-lottie"
         />
       </div>
       <h1 className="ind-h">Your Love Story, Our Destinations!</h1>
@@ -162,12 +166,11 @@ const Honeymoon = () => {
         <Card />
       </div>
       <Homeglry />
-      <Whyuss/>
-      <Review/>
-      <Faq/>
-      <Form/>
-      <FooterSection/>
-      <Footer />
+      <Whyuss />
+      <Review />
+      <Faq />
+      <Form />
+      <MainFooter />
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(
@@ -180,7 +183,6 @@ const Honeymoon = () => {
         </a>
       </div>
     </div>
-
   );
 };
 

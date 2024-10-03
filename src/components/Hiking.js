@@ -37,9 +37,8 @@ const Hiking = () => {
       {activities.length > 0 ? (
         activities.map((activity, index) => (
           <div key={index} className="hiking-card">
-            {/* Construct the image URL using the base URL and the image filename */}
             <img
-              src={`http://localhost:5000/uploads/${activity.img}`} // Assuming activity.img contains the filename
+              src={`http://localhost:5000/uploads/${activity.img}`}
               alt={activity.title}
               className="hiking-card-img"
             />
