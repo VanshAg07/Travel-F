@@ -78,7 +78,7 @@ const product_card_1 = [
         offerPrice: "12,999/-", 
         currency: "Starting Price Rs.",
         image: kerala,
-        label: "new",
+        label: "12,999/-",
         url: "#"
     },
     {
