@@ -2,7 +2,7 @@
     position: relative;
     background-color: #FDFFE2;
     height: 100vh;
-    padding-top: 30px; 
+    padding-top: 30px;
     width: 100%;
 }
   
@@ -32,36 +32,36 @@
 }
   
 .slider-heading {
-    text-align: left; /* Center the heading */
-    font-size: 2rem; /* Adjust font size as needed */
-    margin-bottom: 20px; /* Space below the heading */
+    text-align: left;
+    font-size: 2rem; 
+    margin-bottom: 20px;
     margin-left: 180px;
-    color: #333; /* Change text color */
-    font-weight: bold; /* Make it bold */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+    color: #333;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .slide-5 img {
     width: 130%; 
-    height: 400px; /* Fixed height for uniformity */
-    object-fit: cover; /* Maintain aspect ratio */
+    height: 400px; 
+    object-fit: cover; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
   
 .slide-5 h1 {
     position: absolute;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center the text */
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
     color: white;
     font-size: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin: 0;
-    text-align: center; /* Center text alignment */
-    padding: 40px 20px; /* Add padding for the circular effect */
-    border-radius: 50%; /* Make it circular */
-    background: #e5e5e52c; /* Semi-transparent background */
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 50%;
+    background: #e5e5e52c;
     backdrop-filter: blur(2px); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
     height: 35%;
@@ -77,123 +77,90 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 100; 
+    z-index: 100;
     color: #333;
 }
   
 .arrow-5.left-5 {
-    left: -40px; 
+    left: -40px;
 }
   
 .arrow-5.right-5 {
-    right: -40px; /* Adjust right position */
+    right: -40px;
 }
   
 .arrow-5:hover {
     color: #000;
 }
 
-  
-  /* Media Queries */
-  @media (max-width: 1024px) {
-    .video-heading {
-      padding-left: 80px;
-      cursor: pointer;
-      z-index: 1000;
-    }
-  
-    .fa-circle-right {
-      padding-top: 32px;
-    }
-  
-    .fa-circle-left {
-      padding-top: 32px;
-    }
+/* Media Queries for Responsive Design */
+
+@media (max-width: 1024px) {
+  .slider-5 {
+    width: 90%;
+    left: 5vw;
   }
-  
-  @media (max-width: 768px) {
-    .video-heading {
-      font-size: 2rem;
-      padding-left: 80px;
-      cursor: pointer;
-      z-index: 1000;
-      top: 50px;
-    }
-  
-    .fa-circle-right {
-      margin-top: -10px;
-      margin-right: 20px;
-    }
-  
-    .fa-circle-left {
-      margin-top: -10px;
-      margin-left: 20px;
-    }
-  
-    .slide-1 img {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-  
-    .slide-1 h1 {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 1.1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      margin: 0;
-    }
+
+  .slide-5 {
+    width: 33.33%;
   }
-  
-  @media (max-width: 426px) {
-    .video-1 {
-      height: 60vh;
-    }
-  
-    .slider-1 {
-      top: 10vh; /* Adjust this value as needed */
-    }
-  
-    .slide-1 img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-  
-    .slider-wrapper-1 {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-      width: 100%;
-      justify-content: center; /* Center the images */
-    }
-  
-    .slide-1 {
-      min-width: 33.33%; /* Adjust width to display 3 images */
-      box-sizing: border-box;
-      padding: 5px;
-      position: relative;
-    }
-  
-    .fa-circle-left {
-      font-size: 1rem;
-      padding-left: 15px;
-      padding-top: 10px;
-    }
-  
-    .fa-circle-right {
-      font-size: 1rem;
-      padding-right: 15px;
-    }
-  
-    .wrpper-1 {
-      height: 85vh;
-    }
+
+  .slide-5 img {
+    height: 300px;
   }
-  
+
+  .slider-heading {
+    text-align: center;
+    margin-left: 0;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-5 {
+    width: 50%;
+  }
+
+  .slide-5 img {
+    height: 250px;
+  }
+
+  .slider-heading {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .slide-5 {
+    width: 100%;
+  }
+
+  .slide-5 img {
+    height: 200px;
+  }
+
+  .slider-heading {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .arrow-5.left-5 {
+    left: -20px;
+  }
+
+  .arrow-5.right-5 {
+    right: -20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .slide-5 img {
+    height: 150px;
+  }
+
+  .slider-heading {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+}

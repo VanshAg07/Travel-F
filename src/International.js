@@ -15,6 +15,7 @@ import cont from "./img/cont-button.json";
 import FooterSection from "./components/Footersection.js";
 import Dropnav from "./components/Dropnav.js";
 import Mainreview from "./components/Mainreview.js"
+import MainFooter from "./components/Footer/MainFooter.js";
 
 // import Lottie from "lottie-react";
 
@@ -163,8 +164,7 @@ const International = () => {
       <Review/>
       <Guide/>
       <Form/>
-      <FooterSection/>
-      <Footer />
+      <MainFooter />
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(

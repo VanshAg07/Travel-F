@@ -12,6 +12,7 @@ import intern from "../img/india.jpg";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import  Mainreview from "../components/Mainreview";
+import MainFooter from './Footer/MainFooter';
 // import "./Grouptours.css"
 
 const BackpackingTrips = () => {
@@ -61,8 +62,7 @@ const BackpackingTrips = () => {
     </div>
     <Whyuss />
     <Homeglry />
-    <FooterSection/>
-    <Footer/>
+    <MainFooter />
     <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(

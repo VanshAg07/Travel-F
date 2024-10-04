@@ -1,8 +1,8 @@
-import React from "react";
-import icon1 from "./img/con-bg.png";
-import Nav from "./components/Nav";
-import Dropnav from "./components/Dropnav";
-import MainFooter from "./components/Footer/MainFooter";
+import React from 'react';
+import Nav from './components/Nav'; 
+import Dropnav from './components/Dropnav';
+import icon1 from "./img/icon-bg.svg";
+import MainFooter from './components/Footer/MainFooter';
 
 const Forms = () => {
   return (
@@ -20,7 +20,7 @@ const Forms = () => {
             <img
               src={icon1}
               alt="Illustration"
-              className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto rounded-lg"
+              className="w-[300px] h-[400px] md:w-[500px] md:h-[600px] lg:w-[850px] lg:h-[800px] rounded-lg"
             />
           </div>
 
@@ -32,14 +32,10 @@ const Forms = () => {
             <h3 className="text-lg font-semibold mb-6">
               Allow Us to Call You Back!
             </h3>
-
             <form>
               {/* Name */}
               <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="name"
-                >
+                <label className="block text-sm font-medium mb-1" htmlFor="name">
                   Name *
                 </label>
                 <input
@@ -52,10 +48,7 @@ const Forms = () => {
 
               {/* Phone Number */}
               <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="phone"
-                >
+                <label className="block text-sm font-medium mb-1" htmlFor="phone">
                   Phone Number *
                 </label>
                 <input
@@ -68,10 +61,7 @@ const Forms = () => {
 
               {/* Email */}
               <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="email"
-                >
+                <label className="block text-sm font-medium mb-1" htmlFor="email">
                   Email ID *
                 </label>
                 <input
@@ -84,10 +74,7 @@ const Forms = () => {
 
               {/* Message */}
               <div className="mb-6">
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="message"
-                >
+                <label className="block text-sm font-medium mb-1" htmlFor="message">
                   Message
                 </label>
                 <textarea

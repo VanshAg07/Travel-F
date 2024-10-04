@@ -11,7 +11,7 @@ const Forms = () => {
           <img
             src={icon1}
             alt="Illustration"
-            className="w-[800px] h-[1200px] rounded-lg"
+            className="w-[800px] h-[1000px] rounded-lg"
           />
         </div>
 

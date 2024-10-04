@@ -29,10 +29,10 @@ const Payments = () => {
           </div>
 
           {/* Payment Methods Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Bank Transfer Section */}
-            <div className="bg-white p-8 shadow-md rounded-lg">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
+              <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
                 Bank Transfer
               </h2>
               <div className="flex items-center mb-4">
@@ -61,8 +61,8 @@ const Payments = () => {
             </div>
 
             {/* UPI Payment Section */}
-            <div className="bg-white p-8 shadow-md rounded-lg">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
+              <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
                 UPI Payment
               </h2>
               <div className="mb-4">
@@ -80,37 +80,36 @@ const Payments = () => {
                 </p>
               </div>
             </div>
-            <div className="lg:justify-center lg:max-w-full lg:items-center">
-              {/* Razorpay Section */}
-              <div className="bg-white p-8 shadow-md rounded-lg md:col-span-2 ">
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">
-                  Razorpay Link
-                </h2>
-                <p className="text-gray-700 mb-4">
-                  <span className="font-semibold">Payment via Razorpay: </span>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#01afd1] underline"
-                    href="https://razorpay.me/@travellotenindiaprivatelimite"
-                  >
-                    https://razorpay.me/@travellotenindiaprivatelimite
-                  </a>
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-semibold">Note:</span> Payment gateway
-                  charges will be levied on using the above payment link.
-                </p>
-              </div>
+
+            {/* Razorpay Section */}
+            <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
+              <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
+                Razorpay Link
+              </h2>
+              <p className="text-gray-700 text-sm md:text-base mb-4">
+                <span className="font-semibold">Payment via Razorpay: </span>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#01afd1] underline break-words whitespace-normal"
+                  href="https://razorpay.me/@travellotenindiaprivatelimite"
+                >
+                  https://razorpay.me/@travellotenindiaprivatelimite
+                </a>
+              </p>
+              <p className="text-gray-700 text-sm md:text-base">
+                <span className="font-semibold">Note:</span> Payment gateway
+                charges will be levied on using the above payment link.
+              </p>
             </div>
           </div>
 
           {/* Payment Policy Section */}
-          <div className="max-w-5xl mx-auto bg-white p-6 sm:p-10 rounded-lg mt-10">
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">
+          <div className=" mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-lg mt-10">
+            <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
               Payment Policy
             </h1>
-            <p className="text-gray-700 mb-6 leading-relaxed">
+            <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
               For Short Haul Destination refer to Short Haul payment and
               cancellation policy and for Long Haul destination refer to Long
               Haul payment and cancellation policy.
@@ -123,7 +122,7 @@ const Payments = () => {
             </p>
 
             {/* Short Haul Table */}
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
               SHORT HAUL PACKAGES
             </h2>
             <p className="text-lg font-semibold text-gray-700 mb-4">
@@ -133,10 +132,10 @@ const Payments = () => {
               <table className="min-w-full border border-gray-200 text-left">
                 <thead className="bg-gray-100">
                   <tr>
-                    <th className="p-4 border text-gray-700">
+                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
                       Number Of Days Prior To Tour Date
                     </th>
-                    <th className="p-4 border text-gray-700">
+                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
                       Amount to be Paid
                     </th>
                   </tr>
@@ -146,7 +145,7 @@ const Payments = () => {
             </div>
 
             {/* Long Haul Table */}
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
               LONG HAUL PACKAGES
             </h2>
             <p className="text-lg font-semibold text-gray-700 mb-4">
@@ -156,10 +155,10 @@ const Payments = () => {
               <table className="min-w-full border border-gray-200 text-left">
                 <thead className="bg-gray-100">
                   <tr>
-                    <th className="p-4 border text-gray-700">
+                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
                       Number Of Days Prior To Tour Date
                     </th>
-                    <th className="p-4 border text-gray-700">
+                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
                       Amount to be Paid
                     </th>
                   </tr>
@@ -182,7 +181,11 @@ const Payments = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Lottie loop={true} animationData={cont} className="w-16 h-16" />
+          <Lottie
+            loop={true}
+            animationData={cont}
+            className="w-12 h-12 sm:w-16 sm:h-16"
+          />
         </a>
       </div>
     </>

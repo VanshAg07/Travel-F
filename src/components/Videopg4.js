@@ -3,22 +3,24 @@ import { Link} from 'react-router-dom';
 import './Videopg4.css';
 import img1 from "../img/bali.jpg";
 import img2 from '../img/Uttarakhand.png';
-import img3 from "../img/singapore.jpg";
+import img3 from '../img/Manalis.png';
 import img4 from "../img/thailand.jpg";
 import img5 from '../img/Kashmir.png';
 import img6 from '../img/rishikesh.png';
 import img7 from '../img/kerala.png';
 import video from '../img/india.mp4';
+import img8 from '../img/Maldivess.png';
 import FooterSection from "./Footersection";
 
 const images = [
   { src: img1, text: "Bali" },
   { src: img2, text: "Vietnam" },
-  { src: img3, text: "Singapore" },
+  { src: img3, text: "Manali" },//
   { src: img4, text: "Thailand" },
   { src: img5, text: "Kashmir" },
   { src: img6, text: "Andaman" },
   { src: img7, text: "Kerala" },
+  { src: img8, text: "Maldives" },
 ];
 
 const ImageSlider = () => {

@@ -34,3 +34,50 @@
     color: #555;
     margin: 10px 0;
 }
+
+@media (max-width: 1024px) {
+    .privacy-title {
+        font-size: 22px;
+    }
+    .privacy-text {
+        font-size: 15px;
+    }
+    .privacy-contact-title,
+    .privacy-contact-details {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .privacy-container {
+        padding: 20px;
+        padding-top: 100px;
+    }
+    .privacy-title {
+        font-size: 20px;
+    }
+    .privacy-text {
+        font-size: 14px;
+    }
+    .privacy-contact-title,
+    .privacy-contact-details {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .privacy-container {
+        padding: 15px;
+        padding-top: 100px;
+    }
+    .privacy-title {
+        font-size: 18px;
+    }
+    .privacy-text {
+        font-size: 13px;
+    }
+    .privacy-contact-title,
+    .privacy-contact-details {
+        font-size: 14px;
+    }
+}

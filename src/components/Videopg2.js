@@ -12,7 +12,7 @@ import video from "../img/intern1.mp4";
 const images = [
   { src: img1, text: "Dubai" },
   { src: img2, text: "Maldives" },
-  { src: img3, text: "Europe" },
+  { src: img3, text: "Vietnam" },
   { src: img4, text: "Bali" },
   { src: img5, text: "Singapore" },
   { src: img6, text: "Thailand" },

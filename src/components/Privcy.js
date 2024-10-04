@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
 import Dropnav from "../components/Dropnav";
+import MainFooter from "./Footer/MainFooter";
 
 const Privacy = () => {
   return (
@@ -101,7 +102,7 @@ when a cookie is being sent.
           The security of your data is important to us, and we strive to implement and maintain reasonable security procedures and practices appropriate to the nature 
           of the information we store to protect it from unauthorized access, destruction, use, modification, or disclosure.
           </p>
-          <p>
+          <p className="privacy-text">
           However, please remember that no method of transmission over the Internet or method of electronic storage is 100% secure, and we cannot guarantee its absolute security.
           </p>
         </div>
@@ -111,7 +112,7 @@ when a cookie is being sent.
           <p className="privacy-text">
           Under Indian law, you have certain rights regarding your personal information:
           </p>
-          <ul>
+          <ul className="privacy-text">
               <li>1) Right to Access: You can request copies of your personal information.</li>
               <li>2) Right to Rectification: You can request correction of any inaccurate or incomplete information we hold about you.</li>
               <li>3) Right to Erasure: You can request deletion of your personal information under certain circumstances.</li>
@@ -126,7 +127,8 @@ when a cookie is being sent.
 responsible in a way for your use of such sites.
           </p>
         </div>
-          <h4 className="privacy-contact-title">Contact Us</h4>
+        
+        <h2 className="privacy-title"> Contact Us</h2>
           <p className="privacy-text">
           If you have any questions or concerns about this privacy policy, please contact us at:
           </p>
@@ -142,8 +144,7 @@ responsible in a way for your use of such sites.
           </address>
         </div>
       </div>
-      <FooterSection />
-      <Footer />
+      <MainFooter />
     </>
   );
 };

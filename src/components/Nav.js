@@ -46,25 +46,7 @@ const Nav = () => {
             <p>Home</p>
           </div>
         </Link>
-        {/* <Link to="/National" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center items-center mr-10 gap-1">
-            <BsSuitcaseFill />
-            <p>India</p>
-          </div>
-        </Link> */}
-        {/* <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <MdOutlineAirplanemodeActive />
-            <p>International</p>
-          </div>
-        </Link> */}
 
-        {/* <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <MdOutlineAirplanemodeActive />
-            <p>Corporate Tours</p>
-          </div>
-        </Link> */}
          <Link to="/Aboutus" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <p>About Us</p>

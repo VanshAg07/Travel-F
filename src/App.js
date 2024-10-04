@@ -30,6 +30,8 @@ import Whyuss from "./components/Whyuss.js";
 import Forms from "./components/Forms.js";
 import Mainreview from "./components/Mainreview.js";
 import Mobcard from "./components/Mobcard.js";
+import Mobcardinter from "./components/Mobcardinter.js";
+import Mobcardhoney from "./components/Mobcardhoney.js";
 import Reflection from "./components/Reflection.js";
 import Newsignin from "./components/Newsignin.js";
 import Explore from "./components/Explore.js";
@@ -83,6 +85,8 @@ const App = () => {
         <Route path="/Forms" element={<Forms />} />
         <Route path="/Mainreview" element={<Mainreview />} />
         <Route path="/Mobcard" element={<Mobcard />} />
+        <Route path="/Mobcardinter" element={<Mobcardinter />} />
+        <Route path="/Mobcardhoney" element={<Mobcardhoney />} />
         <Route path="/Explore" element={<Explore />} />
         <Route path="/Corporate" element={<Corporate />} />
         <Route path="/Corpohero" element={<Corpohero />} />

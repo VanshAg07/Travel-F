@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import FooterSection from "./Footersection";
 import Footer from "../Footer";
 import Dropnav from "../components/Dropnav";
+import MainFooter from "./Footer/MainFooter";
 
 const Termcondition = () => {
   return (
@@ -96,8 +97,7 @@ const Termcondition = () => {
           </p>
         </div>
       </div>
-      <FooterSection />
-      <Footer />
+      <MainFooter />
     </>
   );
 };

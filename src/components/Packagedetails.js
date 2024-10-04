@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
+import MainFooter from "./Footer/MainFooter";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -558,8 +559,7 @@ const Packagedetails = () => {
       </div>
 
       <Review />
-      <FooterSection />
-      <Footer />
+      <MainFooter />
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(

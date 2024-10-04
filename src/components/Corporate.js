@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import Nav from "./Nav";
-import Footer from "../Footer";
 import "./Places.css";
 import bg from "../img/india.jpg";
 import Whyuss from "./Whyuss";
-import FooterSection from "./Footersection";
-import review from "../img/reviews.png";
-import Form from "./Form";
 import Superpower from "./Superpower";
 import Beyondordinary from "./Beyondordinary";
 import Corpohero from "./Corpo-hero";
 import Servicecorpo from "./Services-corpo";
 import ClienteleHallOfFame from "./Clients-corpo";
-import Corpoform from "./Corpo-form"
 import Image1 from "../images/corporateImage.jpg";
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import  Mainreview from "../components/Mainreview";
+import MainFooter from "./Footer/MainFooter";
+import Forms from "./Forms";
 const Corporate = () => {
   const [expandedMore, setExpandedMore] = useState(false);
 
@@ -41,7 +37,7 @@ const Corporate = () => {
         </div>
       <Mainreview/>
 
-        <div className="justify-center items-center flex flex-col w-full ">
+        {/* <div className="justify-center items-center flex flex-col w-full ">
           <h1 className="all-packages-heading">
             Unleash the Excitement in Corporate Tours
           </h1>
@@ -337,19 +333,18 @@ const Corporate = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mx-48">
           <Superpower />
           <Beyondordinary />
         </div>
         <Corpohero />
-        <Corpoform/>
+        {/* <Forms /> */}
         <Servicecorpo />
         <ClienteleHallOfFame />
         <Whyuss />
       </div>
-      <FooterSection />
-      <Footer />
+      <MainFooter />
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(

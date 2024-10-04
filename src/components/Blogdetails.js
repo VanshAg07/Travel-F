@@ -4,6 +4,7 @@ import "./Blogdetails.css";
 import Nav from "./Nav";
 import Footer from "../Footer";
 import Dropnav from "../components/Dropnav"
+import MainFooter from "./Footer/MainFooter";
 
 const Blogdetails = () => {
   const { blogId } = useParams();
@@ -1216,7 +1217,7 @@ Respect Local Traditions:
           <h1>Blog Not Found</h1>
         )}
       </div>
-      <Footer />
+      <MainFooter />
     </>
   );
 };

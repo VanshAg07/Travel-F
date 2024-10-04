@@ -7,12 +7,13 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const dropdownLinks = {
-    indiaPackages: ["Goa", "Kerala", "Rajasthan", "Himachal Pradesh", "Uttarakhand", "Maharashtra", "Tamil Nadu", "Punjab"],
-    internationalPackage: ["USA", "Canada", "Australia", "France", "Germany", "Spain", "Italy", "Japan"],
+    indiaPackages: ["Spiti", "Kerala", "Rajasthan", "Himachal Pradesh", "Uttarakhand", "Andaman", "Sikkim", "Kashmir", "Ladakh", "Meghalaya",],
+    internationalPackage: ["Dubai", "Maldives", "Bali", "Thailand", "Vietnam", "Singapore"],
+    honeymoonPackages: ["Kashmir", "Andaman", "Kerala", "Manali", "Bali", "Thailand", "Maldives", "Vietnam"],
     weekendTrips: ["Weekend Getaways"],
     groupsTours: [],
     corporatePackages: [],
-    honeymoonPackages: []
+   
   };
 
   const handleMouseEnter = (dropdown) => {
@@ -36,13 +37,13 @@ const Navbar = () => {
             <Link to={key === 'indiaPackages' ? "/national" : key === 'internationalPackage' ? "/intern" : key === 'honeymoonPackages' ? "/Honeymoon" : key === 'corporatePackages' ? "/Corporate" : key === 'groupsTours' ? "/Grouptours" : key === 'weekendTrips' ? "/Weekends" : "#" }>
               {key === 'indiaPackages' ? "India Packages" : 
               key === 'internationalPackage' ? "International Package" : 
+              key === 'honeymoonPackages' ? "Honeymoon Packages" :
               key === 'weekendTrips' ? "Weekend Trips" : 
               key === 'groupsTours' ? "Groups Tours" :
               key === 'corporatePackages' ? "Corporate Packages" :
-              key === 'honeymoonPackages' ? "Honeymoon Packages" :
               key.charAt(0).toUpperCase() + key.replace(/([A-Z])/g, ' $1').toLowerCase()}
             </Link>
-            {key !== 'honeymoonPackages' && key !== 'corporatePackages' && (
+            {key !== 'corporatePackages' && (
               <FaChevronDown className="dropdown-icon" />
             )}
             {activeDropdown === key && dropdownLinks[key].length > 0 && (

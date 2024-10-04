@@ -5,15 +5,12 @@ import img1 from '../img/HimachalPradesh.png';
 import img2 from '../img/Uttarakhand.png';
 import img3 from '../img/Kashmir.png';
 import img4 from '../img/kerala.png';
-import img5 from '../img/goa.png';
-import img6 from '../img/karnataka.png';
-import img7 from '../img/manali.png';
-import img8 from '../img/ladakh.png';
-import img9 from '../img/kedarnath.png';
-import img10 from '../img/badrinath.png';
-import img11 from '../img/rishikesh.png';
-import img12 from '../img/meghalaya.png';
-import img13 from '../img/rajasthan.png';
+import img5 from '../img/ladakh.png';
+import img6 from '../img/kedarnath.png';
+import img7 from '../img/badrinath.png';
+import img8 from '../img/sikkim.jpg';
+import img9 from '../img/meghalaya.png';
+import img10 from '../img/rajasthan.png';
 import video from '../img/india.mp4';
 
 const images = [
@@ -21,15 +18,12 @@ const images = [
   { src: img2, text: "Uttarakhand" },
   { src: img3, text: "Kashmir" },
   { src: img4, text: "kerala" },
-  { src: img5, text: "Goa" },
-  { src: img6, text: "Karnataka" },
-  { src: img7, text: "Manali" },
-  { src: img8, text: "Ladakh" },
-  { src: img9, text: "Kedarnath" },
-  { src: img10, text: "Badrinath" },
-  { src: img11, text: "Rishikesh" },
-  { src: img12, text: "Meghalaya" },
-  { src: img13, text: "Rajasthan" },
+  { src: img5, text: "Ladakh" },
+  { src: img6, text: "Kedarnath" },
+  { src: img7, text: "Badrinath" },
+  { src: img8, text: "Sikkim" },
+  { src: img9, text: "Meghalaya" },
+  { src: img10, text: "Rajasthan" },
 ];
 
 const ImageSlider = () => {

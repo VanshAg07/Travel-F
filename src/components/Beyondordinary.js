@@ -1,6 +1,7 @@
+
 import React from 'react';
 
-const cards = [
+const services = [
   {
     title: 'Full Spectrum Services',
     description: "Everything You Need for a Flawless Experience – premier stays, insightful guides, effortless travel, and more. Relax and let us handle the details!",
@@ -39,45 +40,33 @@ const cards = [
   },
 ];
 
-const BeyondOrdinary = () => {
+function App() {
   return (
-    <div className="p-8">
-      {/* Title Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold">
-        Extraordinary  <span className="text-blue-600">Experiences</span>
+    <div className="bg-gray-50 flex flex-col items-center px-4 sm:px-8">
+      {/* Heading Section */}
+      <header className="w-full max-w-screen-md text-center mt-10">
+        <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+        Extraordinary <span className="text-blue-500">Experiences</span>{' '}
+         <p  className="text-lg sm:text-xl mt-2 sm:mt-4 text-gray-600">We believe that business travels should always be extraordinary experiences.</p>
         </h1>
-        <p className="text-xl mt-4 text-gray-600">
-        We believe that business travels should always be extraordinary experiences.
-        </p>
-      </div>
+      </header>
 
-      {/* Card Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className={`${card.bgColor} p-6 rounded-lg shadow-lg flex flex-col items-start min-h-[250px]`} 
-          >
+      {/* Services Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 mt-10 w-full max-w-screen-lg text-center mb-20">
+        {services.map(service => (
+          <div key={service.id} className="flex flex-col items-center p-4 sm:p-6 bg-white shadow-md rounded-lg">
             {/* Icon */}
-            <div className="text-5xl mb-4 ml-20  ">
-              {card.icon}
-            </div>
-
-            {/* Title */}
-            <h2 className="text-2xl font-bold text-black mb-4">
-              {card.title}
-            </h2>
+            <div className="text-5xl sm:text-6xl mb-4">{service.icon}</div>
 
             {/* Description */}
-            <p className="text-gray-600">
-              {card.description}
+            <p className="text-gray-600 text-base sm:text-lg">
+              {service.title}
             </p>
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
-export default BeyondOrdinary;
+export default App;

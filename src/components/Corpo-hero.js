@@ -5,16 +5,16 @@ const HighLevelCorporateTour = () => {
     <div className="bg-white mb-48">
       {/* Title */}
       <div className="text-center py-8">
-      <header className="w-full bg-white p-6 shadow-md text-center">
-        <h1 className="text-4xl font-bold">
-        Partners We've  <span className="text-blue-500">Thrilled</span>
-        </h1>
-      </header>
+        <header className="w-full bg-white p-6 shadow-md text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold">
+            Partners We've <span className="text-blue-500">Thrilled</span>
+          </h1>
+        </header>
       </div>
 
       {/* Main Content Section */}
-      <div className="relative bg-blue-900 text-white py-16 top-10 max-h-[120vh]">
-        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-8 lg:px-16">
+      <div className="relative bg-blue-900 text-white py-10 sm:py-16 top-10 max-h-[120vh]">
+        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
           {/* Left Content */}
           <div className="flex-1">
             <div className="mb-4">
@@ -22,9 +22,9 @@ const HighLevelCorporateTour = () => {
               <img 
                 src="/path-to-logo.png" 
                 alt="HighLevel Logo" 
-                className="h-12 mb-4"
+                className="h-10 sm:h-12 mb-4"
               />
-              <h2 className="text-2xl font-bold">HighLevel</h2>
+              <h2 className="text-xl sm:text-2xl font-bold">HighLevel</h2>
               <p className="mt-2 text-gray-300">
                 A white-labeled marketing app that empowers entrepreneurs with powerful tools for marketing, sales, and automation.
               </p>
@@ -32,7 +32,7 @@ const HighLevelCorporateTour = () => {
 
             {/* Details */}
             <div className="mt-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                 <div className="flex items-center">
                   <span className="material-icons">place</span>
                   <span className="ml-2">Japan</span>
@@ -46,10 +46,10 @@ const HighLevelCorporateTour = () => {
           </div>
 
           {/* Right Content (Video Embed) */}
-          <div className="flex-1 mt-8 lg:mt-0 lg:max-w-lg">
+          <div className="flex-1 mt-8 lg:mt-0 lg:max-w-lg w-full">
             <iframe
               width="100%"
-              height="315"
+              height="250"
               src="https://www.youtube.com/embed/your-video-id"
               title="YouTube video player"
               frameBorder="0"
@@ -61,8 +61,8 @@ const HighLevelCorporateTour = () => {
         </div>
 
         {/* Overlay Card */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-44 bg-white text-blue-900 p-6 rounded-lg shadow-lg max-w-2xl">
-          <h3 className="text-xl font-bold">Corporate Tour: High Level</h3>
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-36 lg:translate-y-44 bg-white text-blue-900 p-4 sm:p-6 rounded-lg shadow-lg max-w-lg sm:max-w-2xl w-[90%]">
+          <h3 className="text-lg sm:text-xl font-bold">Corporate Tour: High Level</h3>
           <p className="text-gray-700 font-light">High Level's Unforgettable Journey To Japan</p>
           <p className="mt-2 text-gray-600">
             In a world where distances are measured in clicks and screens, the power of a face-to-face connection is immeasurable...

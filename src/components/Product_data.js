@@ -3,8 +3,21 @@ import Meghalaya from "../img/meghalaya-mob.png"
 import Spitivalley from "../img/spitivalley-mob.png"
 import Ladakh from "../img/ladakh-mob.png"
 import HimachalPradesh from "../img/HimachalPradesh-mob.png"
+import andaman from "../img/andaman-mob.png"
+import Rajasthan from "../img/rajasthan-mob.png"
+import Kashmir from "../img/kashmir-mob.png"
+import Uttrakhand from "../img/uttrakhand-mob.png"
+import Sikkim from "../img/sikkim-mob.png"
+import Bali from "../img/bali-mob.png"
+import Thailand from "../img/thailand-mob.png"
+import Maldives from "../img/Maldives-mob.png"
+import vietnam from "../img/vietnam-mob.png"
+import Manali from "../img/manali-mob.png"
+import Dubai from "../img/dubai-mob.png"
+import Singapore from "../img/singapore-mob.png"
 
-const product_card = [
+// First set of data (product_card_1)
+const product_card_1 = [
     {
         id: 1,
         title: "Meghalaya",
@@ -25,29 +38,29 @@ const product_card = [
     },
     {
         id: 3,
-        title: "Round Neck T-shirt",
-        offerPrice: 300,
-        currency: "$",
-        image: kerala,
-        label: "sale",
+        title: "Andaman",
+        offerPrice: "12,999/-",
+        currency: "Starting Price Rs.",
+        image: andaman,
+        label: "12,999/-",
         url: "#"
     },
     {
         id: 4,
-        title: "Pack of 3 Round Neck T-Shirts",
-        offerPrice: 350,
-        currency: "Rs.",
-        image: kerala,
-        label: "new",
+        title: "Rajasthan",
+        offerPrice: "12,999/-",
+        currency: "Starting Price Rs.",
+        image: Rajasthan,
+        label: "12,999/-",
         url: "#"
     },
     {
         id: 5,
-        title: "Printed A-Line Top",
-        offerPrice: 550,
-        currency: "$",
-        image: kerala,
-        label: "new",
+        title: "Kashmir",
+        offerPrice: "12,999/-",
+        currency: "Starting Price Rs.",
+        image: Kashmir,
+        label: "12,999/-",
         url: "#"
     },
     {
@@ -70,19 +83,19 @@ const product_card = [
     },
     {
         id: 8,
-        title: "Printed Crop Lounge Top",
-        offerPrice: 1000,
-        currency: "Rs.",
-        image: kerala,
-        label: "new",
+        title: "Uttrakhand",
+        offerPrice: "12,999/-",
+        currency: "Starting Price Rs.",
+        image: Uttrakhand,
+        label: "12,999/-",
         url: "#"
     },
     {
         id: 9,
-        title: "Meghalaya",
+        title: "Sikkim",
         offerPrice: "12,999/-",
         currency: "Starting Price Rs.",
-        image: Meghalaya,
+        image: Sikkim,
         label: "12,999/-",
         url: "#"
     },
@@ -97,4 +110,138 @@ const product_card = [
     },
 ];
 
-export default product_card;
+// Second set of data (product_card_2) with changes
+const product_card_2 = [
+  {
+    id: 1,
+    title: "Dubai",
+    offerPrice: "15,499/-",
+    currency: "Starting Price Rs.",
+    image: Dubai,
+    label: "15,499/-",
+    url: "#",
+  },
+  {
+    id: 2,
+    title: "Maldives",
+    offerPrice: "13,499/-",
+    currency: "Starting Price Rs.",
+    image: Maldives,
+    label: "13,499/-",
+    url: "#",
+  },
+  {
+    id: 3,
+    title: "Bali",
+    offerPrice: "14,999/-",
+    currency: "Starting Price Rs.",
+    image: Bali,
+    label: "14,999/-",
+    url: "#",
+  },
+  {
+    id: 4,
+    title: "Thailand",
+    offerPrice: "12,499/-",
+    currency: "Starting Price Rs.",
+    image: Thailand,
+    label: "12,499/-",
+    url: "#",
+  },
+  {
+    id: 5,
+    title: "Vietnam",
+    offerPrice: "13,999/-",
+    currency: "Starting Price Rs.",
+    image: vietnam,
+    label: "13,999/-",
+    url: "#",
+  },
+  {
+    id: 6,
+    title: "Singapore",
+    offerPrice: "13,999/-",
+    currency: "Starting Price Rs.",
+    image: Singapore,
+    label: "13,999/-",
+    url: "#",
+  },
+];
+
+const product_card_3 = [
+  {
+      id: 1,
+      title: "Kashmir",
+      offerPrice: "12,999/-",
+      currency: "Starting Price Rs.",
+      image: Kashmir,
+      label: "12,999/-",
+      url: "#"
+  },
+  {
+    id: 2,
+    title: "Andaman",
+    offerPrice: "12,999/-",
+    currency: "Starting Price Rs.",
+    image: andaman,
+    label: "12,999/-",
+    url: "#"
+},
+{
+  id: 3,
+  title: "Kerala",
+  offerPrice: "12,999/-", 
+  currency: "Starting Price Rs.",
+  image: kerala,
+  label: "12,999/-",
+  url: "#"
+},
+  {
+      id: 4,
+      title: "Manali",
+      offerPrice: "12,999/-",
+      currency: "Starting Price Rs.",
+      image: Manali,
+      label: "12,999/-",
+      url: "#"
+  },
+  {
+      id: 5,
+      title: "Bali",
+      offerPrice: "12,999/-",
+      currency: "Starting Price Rs.",
+      image: Bali,
+      label: "12,999/-",
+      url: "#"
+  },
+  {
+      id: 6,
+      title: "Maldives",
+      offerPrice: "12,999/-",
+      currency: "Starting Price Rs.",
+      image: Maldives,
+      label: "12,999/-",
+      url: "#"
+  },
+ 
+  {
+      id: 7,
+      title: "Vietnam",
+      offerPrice: "12,999/-",
+      currency: "Starting Price Rs.",
+      image: vietnam,
+      label: "12,999/-",
+      url: "#"
+  },
+  {
+    id: 8,
+    title: "Thailand",
+    offerPrice: "12,999/-",
+    currency: "Starting Price Rs.",
+    image: Thailand,
+    label: "12,999/-",
+    url: "#"
+},
+];
+
+export { product_card_1, product_card_2, product_card_3 };
