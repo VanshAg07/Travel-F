@@ -33,7 +33,7 @@ export default function Card() {
 
     return (
         <div className="card_slider_container">
-            <p className="list_title">Product Card Slider</p>
+            <p className="list_title">International Packages</p>
             <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]} className="mySwiper">
                 {cardData}
             </Swiper>
