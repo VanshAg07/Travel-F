@@ -9,7 +9,6 @@ import Gallery from "./Gallery.js";
 import Whyuss from "./components/Whyuss.js";
 import Lottie from "lottie-react";
 import cont from "./img/cont-button.json";
-import PhoneFooter from "./components/PhoneFooter.js";
 import { useMediaQuery } from "react-responsive";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Review from "./components/Review.js";
@@ -21,9 +20,13 @@ import MainFooter from "./components/Footer/MainFooter.js";
 import Mobcard from "./components/Mobcard.js"; 
 import Mobcardinter from "./components/Mobcardinter.js"; 
 import Mobcardhoney from "./components/Mobcardhoney.js"; 
+import PhoneFooter from "./components/PhoneFooter.js";
+
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" }); // Check for mobile size
+  const isPhone = useMediaQuery({ query: "(max-width: 375px)" }); // Check for phone size less than 375px
+
   return (
     <div className="home-wr">
       <GoogleOAuthProvider clientId="296927192780-60h36sne2alsb0pnhm89kbnt4pst0eqk.apps.googleusercontent.com">
@@ -39,7 +42,7 @@ const Home = () => {
         )}
         {isMobile ? (
           <div style={{ margin: '130px 30px 55px 30px' }}>
-          <Mobcardinter />
+            <Mobcardinter />
           </div>
         ) : (
           <Videopg3 />
@@ -48,7 +51,7 @@ const Home = () => {
         <Homeglry />
         {isMobile ? (
           <div style={{ margin: '130px 30px 55px 30px' }}>
-          <Mobcardhoney />
+            <Mobcardhoney />
           </div>
         ) : (
           <Videopg4 />
@@ -59,7 +62,8 @@ const Home = () => {
         <Forms />
         <MainFooter />
 
-        {isMobile && <PhoneFooter />}
+        {isPhone && <PhoneFooter />} {/* Display PhoneFooter only if screen width is less than 375px */}
+
         <div className="fixed-button-1">
           <a
             href={`https://wa.me/918287804197?text=${encodeURIComponent(

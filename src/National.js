@@ -10,19 +10,11 @@ import shi2 from "./img/2.png";
 import shi3 from "./img/3.png";
 import shi4 from "./img/4.png";
 import shi5 from "./img/5.png";
-import shi6 from "./img/6.png";
 import shi7 from "./img/7.png";
 import shi8 from "./img/8.png";
-import shi9 from "./img/9.png";
-import shi10 from "./img/10.png";
-import shi11 from "./img/11.png";
 import shi12 from "./img/12.png";
 import shi13 from "./img/13.png";
-import shi14 from "./img/14.png";
 import shi15 from "./img/15.png";
-import shi16 from "./img/16.png";
-import shi17 from "./img/17.png";
-import shi18 from "./img/18.png";
 import Whyuss from "./components/Whyuss.js";
 import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
@@ -119,64 +111,6 @@ const National = () => {
           India's Majestic Adventures
           <br /> <span>Unveil the Wonders</span>
         </h1>
-        <div className="hero-section-right-1">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <h2 className="hero-section-h2">
-              Not sure what to do? <br /> We’ll give you a call back!
-            </h2>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="contactNo">Contact No.:</label>
-            <input
-              type="tel"
-              id="contactNo"
-              name="contactNo"
-              placeholder="Enter Your Phone Number"
-              value={formData.contactNo}
-              onChange={handleChange}
-              required
-              pattern="[0-9]{10}"
-              title="Contact number should be exactly 10 digits"
-            />
-            <button className="hero-button" type="submit">
-              <div className="svg-wrapper-1">
-                <div className="svg-wrapper">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path
-                      fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <span>Submit</span>
-            </button>
-          </form>
-        </div>
       </div>
       <Mainreview />
 
@@ -215,7 +149,86 @@ const National = () => {
       <Whyuss />
       <Review />
       <Guide />
-      <Form />
+      <h1 className="pt-14 md:pt-20 text-2xl md:text-4xl font-bold text-center text-gray-800">
+  Contact Form
+</h1>
+<div className="min-h-screen flex items-center justify-center px-4">
+
+  {/* Outer div with 80% width */}
+  <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+    
+    {/* Inner form container with 60% width */}
+    <div className="w-full md:w-3/5 mx-auto">
+      <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+        Travello10 Calling?
+      </h2>
+      <h3 className="text-lg font-semibold mb-6">
+        Allow Us to Call You Back!
+      </h3>
+      <form>
+        {/* Name */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="name">
+            Name *
+          </label>
+          <input
+            type="text"
+            id="name"
+            placeholder="e.g. John Smith"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Phone Number */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="phone">
+            Phone Number *
+          </label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Enter your 10 digit number"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Email */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="email">
+            Email ID *
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="john@example.com"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Message */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-1" htmlFor="message">
+            Message
+          </label>
+          <textarea
+            id="message"
+            placeholder="Any Message"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
       <MainFooter />
 
       <div className="fixed-button-1">

@@ -32,7 +32,6 @@ import Mainreview from "./components/Mainreview.js";
 import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
-import Reflection from "./components/Reflection.js";
 import Newsignin from "./components/Newsignin.js";
 import Explore from "./components/Explore.js";
 import Homeglry from "./components/Homeglry.js";
@@ -75,7 +74,6 @@ const App = () => {
         <Route path="/Termcondition" element={<Termcondition />} />
         <Route path="/Disclaimer" element={<Disclaimer />} />
         <Route path="/Whyuss" element={<Whyuss />} />
-        <Route path="/Reflection" element={<Reflection />} />
         <Route path="/Newsignin" element={<Newsignin />} />
         <Route path="/Homeglry" element={<Homeglry />} />
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />

@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .hero-img {
@@ -17,18 +18,67 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; 
+  z-index: -1;
 }
 
 .hero-heading {
   position: absolute;
   top: 40vh;
-  left: 30vw;
-  transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
   font-size: 2.7rem;
   text-align: center;
   z-index: 1;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 1024px) {
+  .hero-heading {
+    font-size: 2.2rem; /* Reduce heading size */
+    top: 35vh;
+  }
+
+  .hero-heading > span {
+    font-size: 1.8rem; /* Reduce span size */
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 1.8rem;
+    top: 30vh;
+  }
+
+  .hero-heading > span {
+    font-size: 1.6rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-heading {
+    font-size: 1.5rem;
+    top: 25vh;
+  }
+
+  .hero-heading > span {
+    font-size: 1.4rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-heading {
+    font-size: 1.2rem;
+    top: 20vh;
+  }
+
+  .hero-heading > span {
+    font-size: 1.2rem;
+    padding: 4px 8px;
+  }
 }
 
 .hero-heading::after {
@@ -36,20 +86,21 @@
   position: absolute;
   left: 0%;
   transform: translateX(-50%);
-  top: 4px;  
-  width: 7px;  
-  height: 50%;  
-  background-color: yellow;  
-  border-radius: 2px; 
+  top: 4px;
+  width: 7px;
+  height: 50%;
+  background-color: yellow;
+  border-radius: 2px;
   margin-left: -20px;
 }
 
-.hero-heading>span{
+.hero-heading > span {
   background-color: yellow;
   color: black;
   padding: 10px 20px;
   font-size: 2rem;
 }
+
 
 .hero-section-right-1{
   position: absolute;
@@ -119,7 +170,6 @@
   flex-wrap: wrap;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-
 }
 
 .ind-h{
@@ -131,7 +181,6 @@
   font-weight: bold;
   font-family: 'Arial', sans-serif;
   position: relative; 
-
 }
 
 .ind-h::after {
@@ -150,22 +199,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 20px; 
-  /* margin: 0 auto; */
-  /* padding: 20px;  */
   width: 100%;
   justify-content: center;
   align-items: center;
-  
 }
 
 .ind-img {
   width: 80%; 
-  height: 60vh; /* Adjust the percentage as needed */
+  height: 60vh;
   object-fit: cover; 
   border-radius: 10px; 
 }
-
-
 
 .all-packages-heading {
   font-size: 2.5rem;

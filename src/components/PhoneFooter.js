@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FaHome, FaPlane, FaSearch, FaPhoneAlt } from 'react-icons/fa'; // Importing icons
 import './Phonefooter.css'; // Ensure you have the CSS in this file
 
 const PhoneFooterr = () => {
@@ -24,17 +25,21 @@ const PhoneFooterr = () => {
   return (
     <div className="sc-bottom-bar" ref={menuRef} style={{ backgroundPosition: `${menuPosition - 8}px` }}>
       <a className={`sc-menu-item ${activeIndex === 0 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(0)}>
-        <i className="fas fa-list"></i>
+         <FaPlane />{/* Home Icon */}
+        <span className="sc-menu-label">Trips</span> {/* Label for Home */}
       </a>
       <a className={`sc-menu-item ${activeIndex === 1 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(1)}>
-        <i className="fas fa-plus"></i>
+      <FaHome /> {/* Trip Icon */}
+        <span className="sc-menu-label">Home</span> {/* Label for Trips */}
       </a>
       <a className={`sc-menu-item ${activeIndex === 2 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(2)}>
-        <i className="fas fa-plus"></i>
+        <FaSearch /> {/* Search Icon */}
+        <span className="sc-menu-label">Search</span> {/* Label for Search */}
       </a>
       <div className="sc-nav-indicator" style={{ left: `${menuPosition}px` }}></div>
       <a className={`sc-menu-item ${activeIndex === 3 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(3)}>
-        <i className="fas fa-calendar-alt"></i>
+        <FaPhoneAlt /> {/* Contact Icon */}
+        <span className="sc-menu-label">Contact</span> {/* Label for Contact */}
       </a>
     </div>
   );
