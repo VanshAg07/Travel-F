@@ -57,7 +57,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <IoIosMail className="email-icon-size gmail-color" />
+            <IoIosMail className=" h-8 w-8 email-icon-size gmail-color" />
           </a>
         </div>
 
