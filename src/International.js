@@ -4,19 +4,20 @@ import Nav from "./components/Nav";
 import intern from "./img/india.jpg";
 import Lottie  from 'lottie-react';
 import animationData from './img/intern.json';
-import Footer from "./Footer.js"; 
 import Card from "./components/3dCard.js";
-import shi from "./img/crd-shi.png";
 import Whyuss from "./components/Whyuss.js";
-import Form from "./components/Form.js";
 import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
-import FooterSection from "./components/Footersection.js";
 import Dropnav from "./components/Dropnav.js";
 import Mainreview from "./components/Mainreview.js"
 import MainFooter from "./components/Footer/MainFooter.js";
-
+import shi16 from "./img/16.png";
+import shi17 from "./img/17.png";
+import shi18 from "./img/18.png";
+import shi20 from "./img/20.png";
+import shi21 from "./img/21.png";
+import shi19 from "./img/19.png";
 // import Lottie from "lottie-react";
 
 const International = () => {
@@ -62,29 +63,23 @@ const International = () => {
 
   const places = [
     {
-      name:"ABC",img:shi
+      id: 16, name: "Dubai", img: shi16
     },
     {
-      name:"ABC",img:shi
+      id: 17, name: "Maldives", img: shi17
     },
     {
-      name:"ABC",img:shi
+      id: 18, name: "Maldives", img: shi18
     },
     {
-      name:"ABC",img:shi
+     id: 19, name: "Maldives", img: shi19
     },
     {
-      name:"ABC",img:shi
+      id: 20, name: "Maldives", img: shi20
     },
     {
-      name:"ABC",img:shi
-    },
-    {
-      name:"ABC",img:shi
-    },
-    {
-      name:"ABC",img:shi
-    },
+      id: 21, name: "Maldives", img: shi21 
+    }
   ]
   return (
     <div className="wrpper-inter">
@@ -96,64 +91,6 @@ const International = () => {
         <h1 className="hero-heading">
           Luxury Getaways Abroad - Book <br /> <span>Your Dream Vacation</span>
         </h1>
-        <div className="hero-section-right-1">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <h2 className="hero-section-h2">
-              Not sure what to do? <br /> We’ll give you a call back!
-            </h2>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="contactNo">Contact No.:</label>
-            <input
-              type="tel"
-              id="contactNo"
-              name="contactNo"
-              placeholder="Enter Your Phone Number"
-              value={formData.contactNo}
-              onChange={handleChange}
-              required
-              pattern="[0-9]{10}"
-              title="Contact number should be exactly 10 digits"
-            />
-            <button className="hero-button" type="submit">
-              <div className="svg-wrapper-1">
-                <div className="svg-wrapper">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path
-                      fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <span>Submit</span>
-            </button>
-          </form>
-        </div>
       </div>
       <Mainreview />
 
@@ -192,7 +129,85 @@ const International = () => {
       <Whyuss/>
       <Review/>
       <Guide/>
-      <Form/>
+      <h1 className="pt-14 md:pt-20 text-2xl md:text-4xl font-bold text-center text-gray-800">
+  Contact Form
+</h1>
+<div className="min-h-screen flex items-center justify-center px-4">
+
+  {/* Outer div with 80% width */}
+  <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+    
+    {/* Inner form container with 60% width */}
+    <div className="w-full md:w-3/5 mx-auto">
+      <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+        Travello10 Calling?
+      </h2>
+      <h3 className="text-lg font-semibold mb-6">
+        Allow Us to Call You Back!
+      </h3>
+      <form>
+        {/* Name */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="name">
+            Name *
+          </label>
+          <input
+            type="text"
+            id="name"
+            placeholder="e.g. John Smith"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Phone Number */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="phone">
+            Phone Number *
+          </label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Enter your 10 digit number"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Email */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1" htmlFor="email">
+            Email ID *
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="john@example.com"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        {/* Message */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-1" htmlFor="message">
+            Message
+          </label>
+          <textarea
+            id="message"
+            placeholder="Any Message"
+            className="w-full border border-gray-300 p-2 rounded-md"
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
       <MainFooter />
       <div className="fixed-button-1">
         <a
