@@ -125,7 +125,7 @@ const Packagedetails = () => {
       <img
         src={imageUrl}
         alt="Descriptive Alt Text"
-        className="h-screen w-full"
+        className="h-screen w-[100%]"
       />
       {trips.pdf && (
         <button className="cssbuttons-io-button" onClick={handleDownload}>
@@ -145,7 +145,7 @@ const Packagedetails = () => {
         </button>
       )}
 
-      <div className="flex w-[100%] gap-0 justify-center m-2">
+      <div className="flex  gap-0 justify-center m-2">
         <div className="max-w-[50%]">
           <div className="mt-10 ">
             <p className="text-4xl font-bold">{trips.tripName}</p>
