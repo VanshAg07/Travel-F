@@ -4,19 +4,20 @@ import Nav from "./components/Nav";
 import intern from "./img/india.jpg";
 import Lottie  from 'lottie-react';
 import animationData from './img/intern.json';
-import Footer from "./Footer.js"; 
 import Card from "./components/3dCard.js";
-import shi from "./img/crd-shi.png";
 import Whyuss from "./components/Whyuss.js";
-import Form from "./components/Form.js";
 import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
-import FooterSection from "./components/Footersection.js";
 import Dropnav from "./components/Dropnav.js";
 import Mainreview from "./components/Mainreview.js"
 import MainFooter from "./components/Footer/MainFooter.js";
-
+import shi16 from "./img/16.png";
+import shi17 from "./img/17.png";
+import shi18 from "./img/18.png";
+import shi20 from "./img/20.png";
+import shi21 from "./img/21.png";
+import shi19 from "./img/19.png";
 // import Lottie from "lottie-react";
 
 const International = () => {
@@ -62,29 +63,23 @@ const International = () => {
 
   const places = [
     {
-      name:"ABC",img:shi
+      id: 16, name: "Dubai", img: shi16
     },
     {
-      name:"ABC",img:shi
+      id: 17, name: "Maldives", img: shi17
     },
     {
-      name:"ABC",img:shi
+      id: 18, name: "Maldives", img: shi18
     },
     {
-      name:"ABC",img:shi
+     id: 19, name: "Maldives", img: shi19
     },
     {
-      name:"ABC",img:shi
+      id: 20, name: "Maldives", img: shi20
     },
     {
-      name:"ABC",img:shi
-    },
-    {
-      name:"ABC",img:shi
-    },
-    {
-      name:"ABC",img:shi
-    },
+      id: 21, name: "Maldives", img: shi21 
+    }
   ]
   return (
     <div className="wrpper-inter">

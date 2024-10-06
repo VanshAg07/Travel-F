@@ -4,20 +4,23 @@ import Nav from "../components/Nav";
 import intern from "../img/india.jpg";
 import Lottie from "lottie-react";
 import animationData from "../img/intern.json";
-import Footer from "../Footer.js";
 import Card from "../components/3dCard.js";
 import shi from "../img/crd-shi.png";
 import Whyuss from "./Whyuss.js";
-import Form from "../components/Form.js";
-import Guide from "../components/Interguide.js";
 import cont from "../img/cont-button.json";
 import Review from "../components/Review";
-import Faq from "./Faq.js";
 import Dropnav from "../components/Dropnav";
 import Homeglry from "../components/Homeglry.js";
 import Mainreview from "../components/Mainreview.js"
 import MainFooter from '../components/Footer/MainFooter.js'
-// import Lottie from "lottie-react";
+import shi1 from "../img/3.png";
+import shi2 from "../img/7.png";
+import shi3 from "../img/4.png";
+import shi4 from "../img/22.png";
+import shi5 from "../img/18.png";
+import shi6 from "../img/19.png";
+import shi7 from "../img/17.png";
+import shi8 from "../img/20.png";
 
 const Honeymoon = () => {
   const [formData, setFormData] = useState({
@@ -60,6 +63,32 @@ const Honeymoon = () => {
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
+  const places = [
+    {
+      id: 1, name: "Dubai", img: shi1
+    },
+    {
+      id: 2, name: "Maldives", img: shi2
+    },
+    {
+      id: 3, name: "Maldives", img: shi3
+    },
+    {
+     id: 4, name: "Maldives", img: shi4
+    },
+    {
+      id: 5, name: "Maldives", img: shi5
+    },
+    {
+      id: 6, name: "Maldives", img: shi6
+    },
+    {
+      id: 7, name: "Maldives", img: shi7
+    },
+    {
+      id: 8, name: "Maldives", img: shi8
+    }
+  ]
   return (
     <div className="wrpper-inter">
       <Nav />
@@ -88,15 +117,18 @@ const Honeymoon = () => {
         />
       </div>
       <h1 className="ind-h">Your Love Story, Our Destinations!</h1>
-      <div className="ind-div">
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
+      <div className=" w-full flex justify-center items-center">
+        <div className="grid grid-cols-3 w-[80%] gap-4">
+          {places.map((place) => (
+            // <Link to={`/place/${place.name}`} key={place.id}>
+              <img
+                className="h-[90%] w-[100%]"
+                src={place.img}
+                alt={place.name}
+              />
+            // </Link>
+          ))}
+        </div>
       </div>
 
       <h1 className="all-packages-heading">All Packages</h1>
