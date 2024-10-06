@@ -60,6 +60,32 @@ const International = () => {
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
+  const places = [
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+    {
+      name:"ABC",img:shi
+    },
+  ]
   return (
     <div className="wrpper-inter">
       <Nav />
@@ -83,15 +109,18 @@ const International = () => {
         />
       </div>
       <h1 className="ind-h">Destinations</h1>
-      <div className="ind-div">
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
-        <img className="ind-img" src={shi} alt="India" />
+      <div className=" w-full flex justify-center items-center">
+        <div className="grid grid-cols-3 w-[80%] gap-4">
+          {places.map((place) => (
+            // <Link to={`/place/${place.name}`} key={place.id}>
+              <img
+                className="h-[90%] w-[100%]"
+                src={place.img}
+                alt={place.name}
+              />
+            // </Link>
+          ))}
+        </div>
       </div>
 
       <h1 className="all-packages-heading">All Packages</h1>
