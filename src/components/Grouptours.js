@@ -4,8 +4,6 @@ import { MdHotel } from 'react-icons/md';
 import { FaUserFriends } from 'react-icons/fa'; 
 import Whyuss from "../components/Whyuss"
 import Homeglry from '../components/Homeglry';
-import Footer from '../Footer';
-import FooterSection from './Footersection';
 import Nav from './Nav';
 import Dropnav from "../components/Dropnav";
 import intern from "../img/india.jpg";
@@ -13,7 +11,7 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import  Mainreview from "../components/Mainreview";
 import MainFooter from './Footer/MainFooter';
-// import "./Grouptours.css"
+import weekend from "../img/weekend.json";
 
 const BackpackingTrips = () => {
     const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -22,12 +20,23 @@ const BackpackingTrips = () => {
     <Nav/>
     <Dropnav/>
     <div className='w-[100%] h-[100%] text-center justify-center items-center  '>
-    <img className='h-[730px] w-[100%]' src={intern} alt="India" />
+    <img className='h-[660px] w-[100%]' src={intern} alt="India" />
         <h1 className='top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[2.7rem]  absolute text-white text-center'>
         Backpacking Trips 2024 <br /> <span className='text-[2rem]'>Venture Into the Heart of Uncharted Backpacking Paradises</span>
         </h1>
     </div>
     <Mainreview />
+
+    <div className="lottie-wr">
+        <Lottie
+          animationData={weekend}
+          loop={true}
+          autoplay={true}
+          speed={0.5}
+          className="hero-lottie"
+        />
+        </div>
+        
     <div className="py-12 bg-gray-50">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gray-800 pt-20">Backpacking Trips</h1>

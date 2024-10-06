@@ -4,8 +4,6 @@ import { MdHotel } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import Whyuss from "../components/Whyuss";
 import Homeglry from "../components/Homeglry";
-import Footer from "../Footer";
-import FooterSection from "./Footersection";
 import Nav from "./Nav";
 import Dropnav from "../components/Dropnav";
 import intern from "../img/india.jpg";
@@ -14,61 +12,72 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 import Mainreview from "../components/Mainreview";
+import weekend from "../img/weekend.json";
 
 const Weekends = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
   return (
-  <>
-    <Nav/>
-    <Dropnav/>
-    <div className='w-[100%] h-[100%] weekend-hero text-center justify-center items-center  '>
-    <img className='h-[660px] w-[100%]' src={intern} alt="India" />
-    <h1 className="top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center">
+    <>
+      <Nav/>
+      <Dropnav/>
+      <div className='w-[100%] h-[100%] weekend-hero text-center justify-center items-center  '>
+        <img className='h-[660px] w-[100%]' src={intern} alt="India" />
+        <h1 className="top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center">
           Weekend Getaways
         </h1>
         <p className="text-[1.7rem] transform -translate-x-1/2 -translate-y-1/2  top-[52%] left-[29%]  absolute bg-[yellow] text-black pt-[15px] pb-[15px] pl-[15px] pr-[15px] ">
           {" "}
           Weekend Trips from Delhi{" "}
         </p>
-    </div>
+      </div>
       
       <Mainreview />
 
-      <div className="py-12 bg-gray-50">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4 text-gray-800 pt-10">
-            Weekend Getaways from Delhi
-          </h1>
+      <div className="lottie-wr">
+        <Lottie
+          animationData={weekend}
+          loop={true}
+          autoplay={true}
+          speed={0.5}
+          className="hero-lottie"
+        />
         </div>
 
-        {/* Icon section */}
-        <div className="w-[70%] mx-auto flex mt-8">
-        {/* First item */}
-        <div className="flex flex-col pr-72 items-center">
-          <FaHandHoldingHeart className="text-6xl text-blue-500 mb-4" />
-          <p className="text-lg font-semibold text-gray-800 text-center">
-            Top Notch <br /> Hospitality
-          </p>
-        </div>
+        <div className="py-12 bg-gray-50">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4 text-gray-800 pt-10">
+              Weekend Getaways from Delhi
+            </h1>
+          </div>
 
-        {/* Second item */}
-        <div className="flex flex-col pr-72 items-center">
-          <MdHotel className="text-6xl text-yellow-500 mb-4" />
-          <p className="text-lg font-semibold text-gray-800 text-center">
-            Beautiful <br /> Handpicked Stays
-          </p>
-        </div>
+          {/* Icon section */}
+          <div className="w-[70%] mx-auto flex mt-8">
+            {/* First item */}
+            <div className="flex flex-col pr-72 items-center">
+              <FaHandHoldingHeart className="text-6xl text-blue-500 mb-4" />
+              <p className="text-lg font-semibold text-gray-800 text-center">
+                Top Notch <br /> Hospitality
+              </p>
+            </div>
 
-        {/* Third item */}
-        <div className="flex flex-col items-center">
-          <FaUserFriends className="text-6xl text-red-500 mb-4" />
-          <p className="text-lg font-semibold text-gray-800 text-center">
-            Fun <br /> Team Captains
-          </p>
+            {/* Second item */}
+            <div className="flex flex-col pr-72 items-center">
+              <MdHotel className="text-6xl text-yellow-500 mb-4" />
+              <p className="text-lg font-semibold text-gray-800 text-center">
+                Beautiful <br /> Handpicked Stays
+              </p>
+            </div>
+
+            {/* Third item */}
+            <div className="flex flex-col items-center">
+              <FaUserFriends Friends className="text-6xl text-red-500 mb-4" />
+              <p className="text-lg font-semibold text-gray-800 text-center">
+                Fun <br /> Team Captains
+              </p>
+            </div>
+          </div>
         </div>
-        </div>
-      </div>
 
       <Whyuss />
       <Homeglry />
