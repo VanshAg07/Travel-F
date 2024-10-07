@@ -36,7 +36,7 @@ const Packagedetails = () => {
 
   const handleDownload = () => {
     if (trips.pdf) {
-      const fileUrl = `http://localhost:5000/uploads/${trips.pdf}`;
+      const fileUrl = `http://localhost:5000/upload/${trips.pdf}`;
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
@@ -70,6 +70,7 @@ const Packagedetails = () => {
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
         console.log(trips);
+        console.log(sharing);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -86,11 +87,13 @@ const Packagedetails = () => {
   let quadSharing;
   // console.log(doubleSharing)
   if (sharing && sharing.length >= 3) {
-    doubleSharing = sharing[0].price;
-    tripleSharing = sharing[1].price;
-    quadSharing = sharing[2].price;
+    doubleSharing = sharing[0]?.price;
+    tripleSharing = sharing[1]?.price;
+    quadSharing = sharing[2]?.price;
   } else {
-    console.log("Error: sharing array is empty or does not have enough elements");
+    console.log(
+      "Error: sharing array is empty or does not have enough elements"
+    );
   }
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
@@ -101,7 +104,7 @@ const Packagedetails = () => {
           tripName: trips.tripName,
           doubleSharing,
           tripleSharing,
-          quadSharing
+          quadSharing,
         },
       });
     } else {
@@ -109,7 +112,7 @@ const Packagedetails = () => {
     }
   };
   const imageUrl = trips.tripBackgroundImg
-    ? `http://localhost:5000/uploads/${trips.tripBackgroundImg}`
+    ? `http://localhost:5000/upload/${trips.tripBackgroundImg}`
     : bg;
   return (
     <div>
@@ -204,8 +207,7 @@ const Packagedetails = () => {
           <div id="overview" className="overview-container">
             <h1>Overview & Highlights</h1>
             <div className="p-4 border-2 items-center text-center flex w-[75%] justify-center mb-2 font-bold bg-blue-100 border-blue-300">
-              Guwahati - Shillong - Cherrapunjee - Shnongpdeng - Shillong -
-              Guwahati
+              {trips.overView}
             </div>
             <div className="">
               <p>
@@ -485,7 +487,7 @@ const Packagedetails = () => {
               <p className="text-2xl">Starting From</p>
               <p className="text-2xl text-blue-500">
                 <span className="font-bold text-3xl">
-                  Rs.{trips.tripPrice}/-{" "}
+                  Rs.{sharing[0]?.price}/-{" "}
                 </span>
                 per person
               </p>

@@ -30,6 +30,7 @@ const AdminPanel = () => {
     pickAndDrop: "",
     sharing: [{ title: "", price: "" }],
     tripBackgroundImg: "",
+    overView: "",
   });
 
   const handleInputChange = (e) => {
@@ -218,6 +219,20 @@ const AdminPanel = () => {
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
+          <div>
+            <label className="block text-l font-medium">
+              Trip OverView(Guwahati - Shillong - Cherrapunjee - Shnongpdeng -
+              Shillong - Guwahati)
+            </label>
+            <input
+              type="text"
+              name="overView"
+              value={tripData.overView}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            />
+          </div>
+
           <div>
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (
