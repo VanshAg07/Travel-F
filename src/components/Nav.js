@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import travel_img from "../img/logo.png";
 import "./Nav.css";
-import { RiHome4Line } from "react-icons/ri";
-import { BsSuitcaseFill } from "react-icons/bs";
-import { MdOutlineAirplanemodeActive } from "react-icons/md";
-import { RiContactsBook3Line } from "react-icons/ri";
-import { GrGallery } from "react-icons/gr";
-import { FaBloggerB } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Nav = () => {

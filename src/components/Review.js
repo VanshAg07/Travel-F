@@ -26,11 +26,22 @@ const TravelerTestimonials = () => {
   return (
     <div className="testimonials-section">
       <h2 className="testimonials-heading">Hear From Travelers Like You</h2>
-      <div className="flex flex-wrap mx-32 justify-center gap-10 ">
+      <div className=" img-review flex flex-wrap mx-32 justify-center gap-10">
         {images.map((image, index) => (
           <div key={index} className="testimonial-image-container">
-            <img src={image} alt={`Traveler ${index + 1}`} className="testimonial-image" />
-            <a href={links[index]} target="_blank" rel="noopener noreferrer" className="continue-reading-link">Continue Reading</a>
+            <img
+              src={image}
+              alt={`Traveler ${index + 1}`}
+              className="testimonial-image"
+            />
+            <a
+              href={links[index]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="continue-reading-link"
+            >
+              Continue Reading
+            </a>
           </div>
         ))}
       </div>
