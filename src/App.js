@@ -52,7 +52,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/admin" element={<AdminPortal />} />
@@ -98,9 +98,9 @@ const App = () => {
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
-        <Route path="/booking-options" element={<BookingOptions />} /> */}
+        <Route path="/booking-options" element={<BookingOptions />} />
 
-        <Route path='/' element={<ComingSoon />} />
+        {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
   );
