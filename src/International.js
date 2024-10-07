@@ -103,9 +103,9 @@ const International = () => {
            className="hero-lottie"
         />
       </div>
-      <h1 className="ind-h">Destinations</h1>
+      <h1 className="inter-h">Destinations</h1>
       <div className=" w-full flex justify-center items-center">
-        <div className="grid grid-cols-3 w-[80%] gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
           {places.map((place) => (
             // <Link to={`/place/${place.name}`} key={place.id}>
               <img
@@ -118,8 +118,8 @@ const International = () => {
         </div>
       </div>
 
-      <h1 className="all-packages-heading">All Packages</h1>
-      <p className="all-packages-description">
+      <h1 className="inter-heading">All Packages</h1>
+      <p className="inter-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
 

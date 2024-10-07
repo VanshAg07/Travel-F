@@ -16,7 +16,6 @@ import shi12 from "./img/12.png";
 import shi13 from "./img/13.png";
 import shi15 from "./img/15.png";
 import Whyuss from "./components/Whyuss.js";
-import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
@@ -125,15 +124,15 @@ const National = () => {
 
       <h1 className="ind-h">Destinations</h1>
       <div className=" w-full flex justify-center items-center">
-        <div className="grid grid-cols-3 w-[80%] gap-4">
-          {linkedPlaces.map((place) => (
-            <Link to={`/place/${place.name}`} key={place.id}>
+        <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
+          {places.map((place) => (
+            // <Link to={`/place/${place.name}`} key={place.id}>
               <img
                 className="h-[90%] w-[100%]"
                 src={place.img}
                 alt={place.name}
               />
-            </Link>
+            // </Link>
           ))}
         </div>
       </div>

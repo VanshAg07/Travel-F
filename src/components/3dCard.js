@@ -17,7 +17,6 @@ const Card = () => {
           `http://localhost:5000/api/user/getTripDetails/${name}`
         );
         setTrips(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching trips:", error);
       }
@@ -29,13 +28,10 @@ const Card = () => {
   const getValidDate = (tripDates) => {
     if (!tripDates) return null;
     const today = new Date();
-    // Filter out past dates
     const validDates = tripDates
       .map((date) => new Date(date))
       .filter((date) => date >= today);
-    // Sort dates to get the nearest upcoming date
     validDates.sort((a, b) => a - b);
-    // Return the first valid date or null if no future dates
     return validDates.length > 0 ? validDates[0] : null;
   };
 
@@ -43,55 +39,49 @@ const Card = () => {
     .filter((trip) => trip.stateName === name)
     .flatMap((trip) => trip.trips);
 
-  const nextDate = Array.isArray(trips.tripDate)
-    ? getValidDate(trips.tripDate)
-    : null;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-24 mx-40">
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24 mx-10 md:mx-20 lg:mx-40">
       {filteredTrips.length > 0 ? (
-        filteredTrips?.map((trip, index) => {
-          const nextDate = getValidDate(trip.tripDate); // Get the next valid trip date
-          // Skip trips with no future dates
+        filteredTrips.map((trip, index) => {
+          const nextDate = getValidDate(trip.tripDate);
           if (!nextDate) return null;
           return (
             <Link
               key={index}
               to={`/trip/${trip.tripName}/${name}`}
-              className="h-[450px] relative shadow-lg rounded-lg mb-20 flex justify-center items-center cursor-pointer"
+              className="h-[400px] sm:h-[450px] relative shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
             >
               <img
-                src={`http://localhost:5000/uploads/${trip.tripImages}`}
+                src={`http://localhost:5000/upload/${trip.tripImages}`}
                 alt={trip.tripName}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
-              <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
+              <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
                 <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
               </div>
-              <div className="w-full p-2 rounded-lg flex flex-col md:flex-row absolute bottom-0 bg-black">
-                <div className="w-full">
-                  <h2 className="text-xs font-bold text-white mb-10">
-                    {trip.tripName}
-                  </h2>
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex items-center text-gray-600 mb-2">
-                      <GiClockwork className="mr-2 text-blue-500" />
-                      <span className="text-white text-xs">
-                        {trip.tripDuration}
-                      </span>
-                    </div>
-                    <div className="flex items-center text-gray-600">
-                      <FaCalendarAlt className="mr-2 text-blue-500" />
-                      <span className="text-white text-xs">
-                        {nextDate.toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-600 mb-2">
-                    <MdLocationOn className="mr-2 text-blue-500" />
-                    <span className="text-white text-xs">
-                      {trip.pickAndDrop}
+              <div className="w-full p-3 rounded-lg flex flex-col absolute bottom-0 bg-black bg-opacity-75">
+                <h2 className="text-xs md:text-sm lg:text-base font-bold text-white mb-2">
+                  {trip.tripName}
+                </h2>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="flex items-center text-gray-600">
+                    <GiClockwork className="mr-2 text-blue-500" />
+                    <span className="text-xs md:text-sm text-white">
+                      {trip.tripDuration}
                     </span>
                   </div>
+                  <div className="flex items-center text-gray-600">
+                    <FaCalendarAlt className="mr-2 text-blue-500" />
+                    <span className="text-xs md:text-sm text-white">
+                      {nextDate.toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <MdLocationOn className="mr-2 text-blue-500" />
+                  <span className="text-xs md:text-sm text-white">
+                    {trip.pickAndDrop}
+                  </span>
                 </div>
               </div>
             </Link>

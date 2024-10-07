@@ -40,7 +40,7 @@ const Aboutus = () => {
   const warriors = [
     {
       title: "Adventure Coordinators",
-      icon: <FaUserTie size={50} className="mb-4" style={{ color: "#FDFFE2" }} />,
+      icon: <FaUserTie size={50} className="mb-4  text-yellow-500 "  />,
      description: "Our trip captains are truly remarkable individuals. Fearless, adaptable, and exceptional leaders, they are the driving force behind our community adventures. Carefully selected from India’s premier travel institutes, they possess a wealth of knowledge and expertise, mastering the art of guiding diverse journeys—from thrilling biking escapades to challenging trekking expeditions. Their passion for exploration and commitment to safety ensure that every trip is not only memorable but also expertly managed, allowing our travelers to fully immerse themselves in the experience.",
     },
     {

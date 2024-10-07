@@ -99,7 +99,6 @@ const App = () => {
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
         <Route path="/booking-options" element={<BookingOptions />} />
-
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
