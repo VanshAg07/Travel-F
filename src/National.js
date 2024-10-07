@@ -16,7 +16,6 @@ import shi12 from "./img/12.png";
 import shi13 from "./img/13.png";
 import shi15 from "./img/15.png";
 import Whyuss from "./components/Whyuss.js";
-import Form from "./components/Form.js";
 import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
