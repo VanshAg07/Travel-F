@@ -33,6 +33,7 @@ const Home = () => {
         <Nav />
         <Dropnav />
         <Videopage />
+        
         {isMobile ? (
           <div style={{ margin: '130px 30px 55px 30px' }}>
             <Mobcard />
