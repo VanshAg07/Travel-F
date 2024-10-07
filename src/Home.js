@@ -17,9 +17,9 @@ import Explore from "./components/Explore.js";
 import Homeglry from "./components/Homeglry.js";
 import Dropnav from "./components/Dropnav.js";
 import MainFooter from "./components/Footer/MainFooter.js";
-import Mobcard from "./components/Mobcard.js"; 
-import Mobcardinter from "./components/Mobcardinter.js"; 
-import Mobcardhoney from "./components/Mobcardhoney.js"; 
+import Mobcard from "./components/Mobcard.js";
+import Mobcardinter from "./components/Mobcardinter.js";
+import Mobcardhoney from "./components/Mobcardhoney.js";
 import PhoneFooter from "./components/PhoneFooter.js";
 
 const Home = () => {
@@ -33,16 +33,16 @@ const Home = () => {
         <Nav />
         <Dropnav />
         <Videopage />
-        
+
         {isMobile ? (
-          <div style={{ margin: '130px 30px 55px 30px' }}>
+          <div style={{ margin: "130px 30px 55px 30px" }}>
             <Mobcard />
           </div>
         ) : (
           <Videopg2 />
         )}
         {isMobile ? (
-          <div style={{ margin: '130px 30px 55px 30px' }}>
+          <div style={{ margin: "130px 30px 55px 30px" }}>
             <Mobcardinter />
           </div>
         ) : (
@@ -51,19 +51,19 @@ const Home = () => {
         <Explore />
         <Homeglry />
         {isMobile ? (
-          <div style={{ margin: '130px 30px 55px 30px' }}>
+          <div style={{ margin: "130px 30px 55px 30px" }}>
             <Mobcardhoney />
           </div>
         ) : (
           <Videopg4 />
         )}
         <Whyuss />
-        <Review />
+        {!isMobile ? <Review /> : <></>}
         <div className="marquee-wrapper">{/* <Marquee /> */}</div>
         <Forms />
         <MainFooter />
 
-        {isPhone && <PhoneFooter />} {/* Display PhoneFooter only if screen width is less than 375px */}
+        {/* {isPhone && <PhoneFooter />} Display PhoneFooter only if screen width is less than 375px */}
 
         <div className="fixed-button-1">
           <a

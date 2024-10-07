@@ -42,19 +42,11 @@ const National = () => {
     { id: 3, name: "Spiti Valley", img: shi12 },
     { id: 4, name: "Kerala", img: shi4 },
     { id: 5, name: "Himachal Pradesh", img: shi1 },
-    { id: 6, name: "Rajasthan", img: shi15 },
+    { id: 6, name: "Sikkim", img: shi15 },
     { id: 7, name: "Uttarakhand", img: shi2 },
     { id: 8, name: "Ladakh", img: shi8 },
-    { id: 9, name: "Sikkim", img: shi5 },
+    { id: 9, name: "Rajasthan", img: shi5 },
     { id: 10, name: "Andaman", img: shi7 },
-    // { id: 6, name: "Place 6", img: shi6 },
-    // { id: 9, name: "Place 9", img: shi9 },
-    // { id: 11, name: "Place 11", img: shi11 },
-    // { id: 10, name: "Place 10", img: shi10 },
-    // { id: 14, name: "Place 14", img: shi14 },
-    // { id: 16, name: "Place 16", img: shi16 },
-    // { id: 17, name: "Place 17", img: shi17 },
-    // { id: 18, name: "Place 18", img: shi18 },
   ];
   const linkedPlaces = places.map((place) => {
     const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
@@ -126,13 +118,13 @@ const National = () => {
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
           {places.map((place) => (
-            // <Link to={`/place/${place.name}`} key={place.id}>
+            <Link to={`/place/${place.name}`} key={place.id}>
               <img
                 className="h-[90%] w-[100%]"
                 src={place.img}
                 alt={place.name}
               />
-            // </Link>
+             </Link>
           ))}
         </div>
       </div>

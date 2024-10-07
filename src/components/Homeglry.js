@@ -66,7 +66,7 @@ const Gallery = () => {
         Moments In Motion
       </p>
 
-      <div className="arrow-wrapper">
+      <div className="arrow-wrapper ">
         <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
           &#9664;
         </div>
@@ -87,7 +87,9 @@ const Gallery = () => {
             className="gallery-box"
             key={index}
             style={{
-              transform: `translate(-50%, -50%) rotateY(${index * -28}deg) translateZ(-1000px)`,
+              transform: `translate(-50%, -50%) rotateY(${
+                index * -28
+              }deg) translateZ(-1000px)`,
             }}
             onClick={handleClick}
           >

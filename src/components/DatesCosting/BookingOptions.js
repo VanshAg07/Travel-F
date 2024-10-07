@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav from "../Nav";
 import axios from "axios";
@@ -19,6 +19,7 @@ const BookingOptions = () => {
     doubleSharing,
     tripleSharing,
     quadSharing,
+    stateName,
   } = location.state || {};
   const formattedDate = formatDate(selectedDate);
 
@@ -26,18 +27,23 @@ const BookingOptions = () => {
   const [selectedSharing, setSelectedSharing] = useState("");
   const [peopleCount, setPeopleCount] = useState(1);
   const [customerPhone, setCustomerPhone] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentType, setPaymentType] = useState("full");
 
   const handleSharingSelect = (type) => {
     setSelectedSharing(type);
-    setPeopleCount(1);
+    setPeopleCount(1); // Reset people count when changing sharing option
   };
 
-  const validatePhoneNumber = (number) => {
-    const regex = /^[0-9]{10}$/;
-    return regex.test(number);
-  };
+  const validatePhoneNumber = (number) => /^[0-9]{10}$/.test(number);
+  const validateEmail = (email) =>
+    /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email);
+  const validateName = (name) => /^[a-zA-Z\s]+$/.test(name);
 
   const handlePhoneChange = (e) => {
     setCustomerPhone(e.target.value);
@@ -47,8 +53,24 @@ const BookingOptions = () => {
       setPhoneError("");
     }
   };
+  const handleEmailChange = (e) => {
+    setCustomerEmail(e.target.value);
+    if (!validateEmail(e.target.value)) {
+      setEmailError("Please enter a valid email.");
+    } else {
+      setEmailError("");
+    }
+  };
 
-  // Calculate price based on sharing and people count
+  const handleNameChange = (e) => {
+    setCustomerName(e.target.value);
+    if (!validateName(e.target.value)) {
+      setNameError("Please enter a valid name (letters only).");
+    } else {
+      setNameError("");
+    }
+  };
+
   const calculatePrice = (pricePerPerson, count) => pricePerPerson * count;
 
   const selectedPrice =
@@ -61,19 +83,23 @@ const BookingOptions = () => {
       : 0;
 
   const basePrice = calculatePrice(selectedPrice, peopleCount);
-  const gst = basePrice * 0.08;
+
+  // Calculate GST based on payment type
+  const gst = paymentType === "full" ? basePrice * 0.08 : 0; // 8% GST for full payment
   const totalPrice = basePrice + gst;
-  console.log(totalPrice);
+
+  // Calculate booking amount with 3% charge
+  const bookingAmount = basePrice * 1.03; // 3% charge
+
+  const paymentAmount =
+    paymentType === "bookingAmount" ? bookingAmount : totalPrice;
+
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
       document.body.appendChild(script);
     });
   };
@@ -81,6 +107,14 @@ const BookingOptions = () => {
   const handlePayment = async () => {
     if (!validatePhoneNumber(customerPhone)) {
       setPhoneError("Please enter a valid 10-digit phone number.");
+      return;
+    }
+    if (!validateEmail(customerEmail)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+    if (!validateName(customerName)) {
+      setNameError("Please enter a valid name.");
       return;
     }
 
@@ -96,26 +130,22 @@ const BookingOptions = () => {
     }
 
     try {
-      const orderId = `order_${Date.now()}`;
       const response = await axios.post(
         "http://localhost:5000/api/payment/razorpay",
         {
-          amount: totalPrice,
-          orderId,
+          amount: paymentAmount,
           customerPhone,
+          customerName,
+          customerEmail,
         }
       );
 
       if (response.data.success) {
         const { amount, currency, orderId: razorpayOrderId } = response.data;
 
-        // Calculate 3% additional tax on the amount
-        const additionalTax = amount * 0.03;
-        const totalAmountWithTax = amount + additionalTax; // Total amount including the 3% tax
-        console.log(totalAmountWithTax);
         const options = {
-          key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Your Razorpay Key ID
-          amount: totalAmountWithTax.toString(), // Update amount to include tax
+          key: "rzp_live_YO962mKh3iUw71",
+          amount: paymentAmount,
           currency: currency,
           name: "TRAVELLOTEN",
           description: `Booking for ${tripName}`,
@@ -127,38 +157,34 @@ const BookingOptions = () => {
               razorpayOrderId: response.razorpay_order_id,
               razorpaySignature: response.razorpay_signature,
               customerPhone,
+              customerName,
+              customerEmail,
               tripName,
               tripPrice,
               selectedDate,
               selectedSharing,
+              stateName,
             };
-
-            // Verify payment on the server
             const result = await axios.post(
               "http://localhost:5000/api/payment/verify",
               data
             );
-
             if (result.data.success) {
               alert("Payment successful!");
-              // Redirect or update UI after successful payment
+              window.location.href = "/";
             } else {
               alert("Payment verification failed. Please contact support.");
             }
           },
           prefill: {
-            name: "Your Customer Name",
-            email: "customer@example.com",
+            name: customerName,
+            email: customerEmail,
             contact: customerPhone,
-          },
-          notes: {
-            address: "Customer Address",
           },
           theme: {
             color: "#3399cc",
           },
         };
-
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
       } else {
@@ -175,147 +201,170 @@ const BookingOptions = () => {
     }
   };
 
+  const incrementPeopleCount = () => setPeopleCount(peopleCount + 1);
+  const decrementPeopleCount = () => {
+    if (peopleCount > 1) setPeopleCount(peopleCount - 1);
+  };
+
   return (
     <div>
       <Nav />
       <Dropnav />
-      <div className="flex justify-center items-center bg-gray-100 w-full">
-        <div className="min-h-screen p-6 flex justify-center items-center">
-          <div className="w-full mx-auto bg-white shadow-lg rounded-lg p-8">
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+      <div className="flex justify-center items-center bg-gray-100 w-full min-h-screen">
+        <div className="flex flex-col md:flex-row w-full mx-auto bg-white shadow-lg rounded-lg mt-28 max-w-4xl">
+          {/* Left Section */}
+          <div className="w-full md:w-1/2 p-6 md:p-8 bg-white rounded-lg shadow-md">
+            <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
               Booking Details for {tripName}
             </h1>
-            <p className="text-xl text-center text-gray-600 mb-8">
+            <p className="text-lg md:text-xl text-center text-gray-600 mb-8">
               Selected Date:{" "}
-              <span className="text-blue-500 font-semibold">
+              <span className="text-[#03346E] font-semibold">
                 {formattedDate}
               </span>
             </p>
 
-            {/* Sharing Options */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Double Sharing */}
-              <div
-                onClick={() => handleSharingSelect("double")}
-                className={`p-6 rounded-lg shadow-sm cursor-pointer transition-all duration-200 ${
-                  selectedSharing === "double" ? "bg-blue-200" : "bg-blue-100"
+            {/* Sharing Options with Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <SharingOption
+                type="double"
+                price={doubleSharing}
+                selected={selectedSharing}
+                onClick={handleSharingSelect}
+                className={`transition-transform duration-300 transform ₹{
+                  selectedSharing === "double"
+                    ? "scale-105 border border-[#03346E] bg-gray-100"
+                    : ""
                 }`}
-              >
-                <h2 className="text-lg font-bold text-blue-600 mb-4">
-                  Double Sharing
-                </h2>
-                <p className="text-lg text-gray-800">
-                  Price per person: ₹{doubleSharing}
-                </p>
-              </div>
-
-              {/* Triple Sharing */}
-              <div
-                onClick={() => handleSharingSelect("triple")}
-                className={`p-6 rounded-lg shadow-sm cursor-pointer transition-all duration-200 ${
-                  selectedSharing === "triple" ? "bg-green-200" : "bg-green-100"
+              />
+              <SharingOption
+                type="triple"
+                price={tripleSharing}
+                selected={selectedSharing}
+                onClick={handleSharingSelect}
+                className={`transition-transform duration-300 transform ₹{
+                  selectedSharing === "triple"
+                    ? "scale-105 border border-[#03346E] bg-gray-100"
+                    : ""
                 }`}
-              >
-                <h2 className="text-lg font-bold text-green-600 mb-4">
-                  Triple Sharing
-                </h2>
-                <p className="text-lg text-gray-800">
-                  Price per person: ₹{tripleSharing}
-                </p>
-              </div>
-              <div
-                onClick={() => handleSharingSelect("quad")}
-                className={`p-6 rounded-lg shadow-sm cursor-pointer transition-all duration-200 ${
-                  selectedSharing === "quad" ? "bg-yellow-200" : "bg-yellow-100"
+              />
+              <SharingOption
+                type="quad"
+                price={quadSharing}
+                selected={selectedSharing}
+                onClick={handleSharingSelect}
+                className={`transition-transform duration-300 transform ₹{
+                  selectedSharing === "quad"
+                    ? "scale-105 border border-[#03346E] bg-gray-100"
+                    : ""
                 }`}
-              >
-                <h2 className="text-lg font-bold text-yellow-600 mb-4">
-                  Quad Sharing
-                </h2>
-                <p className="text-lg text-gray-800">
-                  Price per person: ₹{quadSharing}
-                </p>
-              </div>
+              />
             </div>
-            {/* People Count */}
-            {selectedSharing && (
-              <div className="mt-6 flex justify-center items-center">
-                <h3 className="text-lg font-semibold text-gray-700 mr-6">
-                  Number of People:
-                </h3>
-                <div className="flex items-center">
-                  <button
-                    onClick={() =>
-                      setPeopleCount((prev) => Math.max(prev - 1, 1))
-                    }
-                    className="bg-gray-300 px-3 py-1 rounded-l-lg text-lg font-semibold"
-                  >
-                    -
-                  </button>
-                  <div className="px-6 py-1 bg-white border-t border-b text-lg font-semibold">
-                    {peopleCount}
-                  </div>
-                  <button
-                    onClick={() => setPeopleCount((prev) => prev + 1)}
-                    className="bg-gray-300 px-3 py-1 rounded-r-lg text-lg font-semibold"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            )}
-            {/* Phone Number Input */}
-            <div className="mt-6">
-              <label className="block text-lg font-semibold text-gray-700">
-                Enter Your Phone Number:
-              </label>
+
+            <PeopleInput
+              peopleCount={peopleCount}
+              incrementPeopleCount={incrementPeopleCount}
+              decrementPeopleCount={decrementPeopleCount}
+            />
+
+            {/* Displaying the selected sharing option and price details */}
+            <div className="bg-gray-50 rounded-lg p-4 mt-6 border border-gray-200">
+              <h2 className="text-xl mb-2 font-semibold text-gray-700">
+                Booking Details
+              </h2>
+              <p className="text-lg text-gray-600 w-full flex justify-between">
+                Sharing Type:{" "}
+                <span className="text-[#03346E] font-semibold">
+                  {selectedSharing.charAt(0).toUpperCase() +
+                    selectedSharing.slice(1)}{" "}
+                  Sharing
+                </span>
+              </p>
+              <p className="text-lg text-gray-600 w-full flex justify-between">
+                Price per Person:
+                <span>
+                  ₹
+                  {selectedSharing === "double"
+                    ? doubleSharing
+                    : selectedSharing === "triple"
+                    ? tripleSharing
+                    : quadSharing}
+                </span>
+              </p>
+              <p className="text-lg text-gray-600 w-full flex justify-between">
+                Total Price for {peopleCount} people:
+                <span>
+                  ₹
+                  {(
+                    (selectedSharing === "double"
+                      ? doubleSharing
+                      : selectedSharing === "triple"
+                      ? tripleSharing
+                      : quadSharing) * peopleCount
+                  ).toFixed(2)}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          {/* Right Section */}
+          <div className="w-full md:w-1/2 p-6 md:p-8 bg-gray-50 rounded-lg">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Payment</h2>
+            <div className="flex flex-col mb-4">
+              <label className="text-gray-700 mb-2">Payment Type:</label>
+              <select
+                className="border rounded p-2"
+                value={paymentType}
+                onChange={(e) => setPaymentType(e.target.value)}
+              >
+                <option value="full">Full Payment</option>
+                <option value="bookingAmount">Booking Amount</option>
+              </select>
+              <p className="w-full justify-end flex">+ convience fees</p>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              Total Amount: ₹{paymentAmount.toFixed(2)}
+            </h3>
+            <div className="flex flex-col mb-4">
+              <label className="text-gray-700 mb-2">Name:</label>
               <input
                 type="text"
+                className="border rounded p-2"
+                value={customerName}
+                onChange={handleNameChange}
+                placeholder="Enter your name"
+              />
+              {nameError && <p className="text-red-500">{nameError}</p>}
+            </div>
+            <div className="flex flex-col mb-4">
+              <label className="text-gray-700 mb-2">Email:</label>
+              <input
+                type="email"
+                className="border rounded p-2"
+                value={customerEmail}
+                onChange={handleEmailChange}
+                placeholder="Enter your email"
+              />
+              {emailError && <p className="text-red-500">{emailError}</p>}
+            </div>
+            <div className="flex flex-col mb-6">
+              <label className="text-gray-700 mb-2">Phone:</label>
+              <input
+                type="text"
+                className="border rounded p-2"
                 value={customerPhone}
                 onChange={handlePhoneChange}
-                className={`w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none ${
-                  phoneError ? "border-red-500" : "focus:border-blue-500"
-                }`}
-                maxLength="10"
-                placeholder="9876543210"
+                placeholder="Enter your phone number"
               />
-              {phoneError && (
-                <p className="text-red-500 text-sm mt-2">{phoneError}</p>
-              )}
+              {phoneError && <p className="text-red-500">{phoneError}</p>}
             </div>
-            {/* Price Breakdown */}
-            {selectedSharing && (
-              <div className="mt-8 p-6 bg-blue-50 rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-blue-600">
-                  Price Breakdown
-                </h2>
-                <div className="mt-4">
-                  <p className="text-lg text-gray-700">
-                    Base Price: ₹{basePrice.toFixed(2)}
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    GST (5%): ₹{gst.toFixed(2)}
-                  </p>
-                  <p className="text-xl font-bold text-gray-800 mt-4">
-                    Total: ₹{totalPrice.toFixed(2)}
-                  </p>
-                </div>
-              </div>
-            )}
 
-            {/* Proceed Button */}
             <button
-              onClick={handlePayment}
-              disabled={
-                !validatePhoneNumber(customerPhone) ||
-                !selectedSharing ||
-                isLoading
-              }
-              className={`mt-8 w-full py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md ${
-                isLoading || !selectedSharing || !customerPhone
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-600"
+              className={`bg-[#03346E] text-white font-bold py-2 rounded w-full ₹{
+                isLoading ? "opacity-50 cursor-not-allowed" : ""
               }`}
+              onClick={handlePayment}
+              disabled={isLoading}
             >
               {isLoading ? "Processing..." : "Proceed to Payment"}
             </button>
@@ -325,5 +374,43 @@ const BookingOptions = () => {
     </div>
   );
 };
+
+const SharingOption = ({ type, price, selected, onClick, className }) => (
+  <div
+    className={`border rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 ${className}`}
+    onClick={() => onClick(type)}
+  >
+    <h3 className="text-lg font-bold text-gray-800 capitalize">
+      {type} Sharing
+    </h3>
+    <p className="text-xl font-semibold text-[#03346E]">₹{price}</p>
+  </div>
+);
+
+const PeopleInput = ({
+  peopleCount,
+  incrementPeopleCount,
+  decrementPeopleCount,
+}) => (
+  <div className="flex justify-between items-center mt-4">
+    <h3 className="text-lg font-semibold">Number of People:</h3>
+    <div className="flex items-center">
+      <button
+        className="bg-gray-200 p-2 rounded-l"
+        onClick={decrementPeopleCount}
+        disabled={peopleCount <= 1}
+      >
+        -
+      </button>
+      <span className="border-t border-b px-4">{peopleCount}</span>
+      <button
+        className="bg-gray-200 p-2 rounded-r"
+        onClick={incrementPeopleCount}
+      >
+        +
+      </button>
+    </div>
+  </div>
+);
 
 export default BookingOptions;

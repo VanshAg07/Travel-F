@@ -44,8 +44,8 @@ const SuperpowerZone = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-screen-lg text-center mb-20">
         {superpowers.map((power, index) => (
-          <div key={index} className="flex flex-col items-center p-4 sm:p-6 bg-white shadow-lg rounded-lg">
-            <div className="text-4xl sm:text-5xl mb-4">{power.icon}</div> {/* Icon */}
+          <div key={index} className="flex flex-col items-center p-4 sm:p-6 bg-white shadow-lg rounded-lg transition-transform transform hover:scale-105">
+            <div className="text-5xl mb-4">{power.icon}</div> {/* Icon */}
             <h2 className="text-lg sm:text-xl font-semibold mb-2">{power.title}</h2>
             <p className="text-gray-600 text-sm sm:text-base">{power.description}</p>
           </div>

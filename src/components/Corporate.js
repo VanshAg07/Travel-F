@@ -12,7 +12,7 @@ import Image1 from "../images/corporateImage.jpg";
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
-import  Mainreview from "../components/Mainreview";
+import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
 import Forms from "./Forms";
 const Corporate = () => {
@@ -28,14 +28,24 @@ const Corporate = () => {
       <Nav />
       <Dropnav />
       <div className="place-container">
-        <div className="place-hero">
-          <img className="pl-img" src={bg} alt="Background" />
-          <div>
-            <h1>Corporate Tours</h1>
-            <p>Elevate Your Team: Uniting Business and Adventure</p>
+        <div className="relative h-[83vh] flex flex-col justify-start text-left text-white px-4 sm:px-8">
+          <img
+            className="absolute top-0 left-0 w-full h-full object-cover z-1"
+            src={bg}
+            alt="Background"
+          />
+          <div className="relative z-10 flex flex-col justify-center items-start h-full p-4 sm:p-8">
+            <h1 className="text-3xl sm:text-5xl font-bold mb-4">
+              Corporate Tours
+            </h1>
+            <div className="bg-[yellow] p-3 ">
+              <p className="text-lg sm:text-xl text-black font-semibold">
+                Elevate Your Team: Uniting Business and Adventure
+              </p>
+            </div>
           </div>
         </div>
-      <Mainreview/>
+        <Mainreview />
 
         {/* <div className="justify-center items-center flex flex-col w-full ">
           <h1 className="all-packages-heading">
@@ -334,7 +344,7 @@ const Corporate = () => {
             </div>
           </div>
         </div> */}
-        <div className="mx-48">
+        <div className="">
           <Superpower />
           <Beyondordinary />
         </div>

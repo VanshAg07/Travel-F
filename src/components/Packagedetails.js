@@ -33,7 +33,7 @@ const Packagedetails = () => {
   const [sharing, setSharing] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [stateNames, setstateNames] = useState("");
   const handleDownload = () => {
     if (trips.pdf) {
       const fileUrl = `http://localhost:5000/upload/${trips.pdf}`;
@@ -69,8 +69,10 @@ const Packagedetails = () => {
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
+        setstateNames(response.data.state);
         console.log(trips);
         console.log(sharing);
+        console.log(stateNames.stateName);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -105,6 +107,7 @@ const Packagedetails = () => {
           doubleSharing,
           tripleSharing,
           quadSharing,
+          stateName: stateNames.stateName,
         },
       });
     } else {

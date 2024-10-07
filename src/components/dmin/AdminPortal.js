@@ -9,6 +9,7 @@ import BestActivities from "./BestActivities";
 import RichFlavour from "./RichFlavour";
 import Shop from "./Shop";
 import National from "./National";
+import Bookings from "./Bookings/Bookings";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("user-details");
@@ -65,48 +66,14 @@ const AdminPortal = () => {
           </li>
           <li>
             <button
-              onClick={() => setActiveTab("beautiful-places")}
+              onClick={() => setActiveTab("bookings")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "beautiful-places"
+                activeTab === "bookings"
                   ? "bg-red-600"
                   : "hover:bg-gray-700"
               }`}
             >
-              Add BeautiFul Places
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("best-activities")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "best-activities"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              Add Best Activities
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("rich-flavour")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "rich-flavour"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              Add Rich Flavour
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("shop")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "shop" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              Add Shops
+              Bookings
             </button>
           </li>
         </ul>
@@ -119,14 +86,10 @@ const AdminPortal = () => {
           Logout
         </button>
       </nav>
-
       <div className="ml-[25%] w-[75%] p-8">
         {activeTab === "user-details" && <UserDetails />}
         {activeTab === "national-packages" && <National />}
-        {activeTab === "beautiful-places" && <BeautifulPlaces />}
-        {activeTab === "best-activities" && <BestActivities />}
-        {activeTab === "rich-flavour" && <RichFlavour />}
-        {activeTab === "shop" && <Shop />}
+        {activeTab === "bookings" && <Bookings />}
         {activeTab === "add-user" && <div>Add User Content</div>}
       </div>
     </div>

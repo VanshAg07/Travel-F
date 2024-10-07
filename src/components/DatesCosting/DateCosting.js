@@ -13,6 +13,7 @@ const DateCosting = () => {
     doubleSharing,
     tripleSharing,
     quadSharing,
+    stateName
   } = location.state || {};
 
   const tripDates = tripDatesFromState.map((date) => ({
@@ -22,6 +23,7 @@ const DateCosting = () => {
     doubleSharing,
     tripleSharing,
     quadSharing,
+    stateName,
     status: "Available",
   }));
 
@@ -80,33 +82,35 @@ const DateCosting = () => {
         selectedDate,
         tripPrice,
         tripName,
-
         doubleSharing,
         tripleSharing,
         quadSharing,
+        stateName
       },
     });
   };
+
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <Nav />
-      <div className=" flex flex-col items-center p-4">
-        <div className=" flex w-full max-w-4xl mt-16 items-center justify-center flex-col">
-          <h1 className="text-2xl font-semibold mb-4 text-gray-800">
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col items-center">
+          <h1 className="text-3xl font-semibold text-gray-800 mt-14">
             Dates and Costing
           </h1>
-          <div className="bg-blue-400 p-3 rounded-bl-lg rounded-br-lg">
-            <p className="text-white font-semibold text-2xl">{tripName}</p>
+          <div className="mt-4 bg-blue-500 p-4 rounded-lg text-white font-bold text-2xl text-center w-full max-w-2xl">
+            {tripName}
           </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center p-4">
-        <div className="flex w-[70%] mt-10">
-          <div className="w-1/2 p-4 bg-white shadow-lg rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center border-b-2 border-gray-500">
+
+        {/* Main Content */}
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center">
+          {/* Available Dates Section */}
+          <div className="bg-white shadow-lg rounded-lg p-6 lg:w-[85%] flex flex-col">
+            <h2 className="text-2xl font-bold text-gray-800 text-center border-b pb-4">
               Available Dates
             </h2>
-            <div className="space-y-4">
+            <div className="mt-4 space-y-4">
               {Object.keys(datesByMonth).map((month, monthIndex) => (
                 <div key={monthIndex} className="mb-6">
                   <div
@@ -133,7 +137,7 @@ const DateCosting = () => {
                             </span>
                           </div>
                           <div className="text-right text-blue-500 font-bold">
-                            Starting Price: {doubleSharing}
+                            Starting Price: ₹{doubleSharing}/-
                           </div>
                         </div>
                       ))}
@@ -143,45 +147,44 @@ const DateCosting = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col">
-            <div className=" p-4 ml-4 bg-white shadow-lg rounded-lg">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">Costing</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
-                  <span className="font-semibold text-gray-700">
-                    Room Sharing
-                  </span>
-                  <span className="font-semibold text-gray-700">
-                    Cost (Per Person)
-                  </span>
-                </div>
-                <div className="flex justify-between items-center p-4">
-                  <span>Double Sharing</span>
-                  <span className="text-gray-800">{doubleSharing}</span>
-                </div>
-                <div className="flex justify-between items-center p-4">
-                  <span>Triple Sharing</span>
-                  <span className="text-gray-800">{tripleSharing}</span>
-                </div>
-                <div className="flex justify-between items-center p-4">
-                  <span>Quad Sharing</span>
-                  <span className="text-gray-800">{quadSharing}</span>
-                </div>
+
+          {/* Costing Section */}
+          <div className="bg-white shadow-lg rounded-lg p-6 lg:w-[85%]">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+              Costing
+            </h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
+                <span className=" text-gray-700 font-bold">Room Sharing</span>
+                <span className=" text-gray-700 font-bold">
+                  Cost (Per Person)
+                </span>
+              </div>
+              <div className="flex justify-between items-center p-4">
+                <span className="font-semibold">Double Sharing</span>
+                <span className="text-gray-800 font-semibold">₹{doubleSharing} /-</span>
+              </div>
+              <div className="flex justify-between items-center p-4">
+                <span className="font-semibold">Triple Sharing</span>
+                <span className="text-gray-800 font-semibold">₹{tripleSharing} /-</span>
+              </div>
+              <div className="flex justify-between items-center p-4">
+                <span className="font-semibold">Quad Sharing</span>
+                <span className="text-gray-800 font-semibold">₹{quadSharing} /-</span>
               </div>
             </div>
-            <div className="flex justify-between items-center w-full max-w-4xl mt-6 p-4 bg-white shadow-lg ml-4 rounded-lg">
+            <div className="flex justify-between items-center w-full max-w-4xl mt-6 p-4 bg-white shadow-lg rounded-lg">
               <div className="text-xl font-bold text-blue-600">
                 Starting Price: ₹{doubleSharing} per person
               </div>
               <button
-                onClick={handleBooking} // Handle booking
+                onClick={handleBooking}
                 className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
               >
                 Book Now
               </button>
             </div>
           </div>
-          {/* Right Section: Costing */}
         </div>
       </div>
     </div>
