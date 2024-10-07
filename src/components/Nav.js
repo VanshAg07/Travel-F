@@ -7,6 +7,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 const Nav = () => {
   const [username, setUsername] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // State to track if the device is mobile
 
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("loggedIn");
@@ -14,6 +15,16 @@ const Nav = () => {
     if (loggedIn) {
       setUsername(storedUsername);
     }
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Check if window is resized to mobile width
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up listener
+    };
   }, []);
 
   const handleLogout = () => {
@@ -21,7 +32,7 @@ const Nav = () => {
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("loggedIn");
     setUsername(null);
-    window.location.href = "/"; // Redirect to home after logout
+    window.location.href = "/";
   };
 
   return (
@@ -40,40 +51,84 @@ const Nav = () => {
             <p>Home</p>
           </div>
         </Link>
-
-         <Link to="/Aboutus" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/Aboutus" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <p>About Us</p>
           </div>
         </Link>
-        <Link to="/Payments" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>Payments</p>
-          </div>
-        </Link>
-        <Link to="/Cont" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>Contact</p>
-          </div>
-        </Link>
-        <Link to="/Blog" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>Blogs</p>
-          </div>
-        </Link>
-        <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>Gallery</p>
-          </div>
-        </Link>
-        <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
-          <div className="flex mob-no border-0 flex-row justify-center mr-10 items-center gap-1 ">
-            <p>+91-8287804197</p>
-          </div>
-        </a>
+
+        {/* Conditionally render the links based on screen size */}
+        {!isMobile && (
+          <>
+            <Link to="/Payments" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Payments</p>
+              </div>
+            </Link>
+            <Link to="/Cont" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Contact</p>
+              </div>
+            </Link>
+            <Link to="/Blog" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Blogs</p>
+              </div>
+            </Link>
+            <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Gallery</p>
+              </div>
+            </Link>
+          </>
+        )}
+
+        {isMobile && (
+          <>
+            <Link to="/national" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>National</p>
+              </div>
+            </Link>
+            <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>International</p>
+              </div>
+            </Link>
+            <Link to="/Honeymoon" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Honeymoon</p>
+              </div>
+            </Link>
+            <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Corporate</p>
+              </div>
+            </Link>
+          </>
+        )}
+        <div
+          className={`flex justify-center ${
+            isMobile ? "-mt-4" : ""
+          }`}
+        >
+          <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
+            <div
+              className={`flex flex-row justify-center items-center gap-2 ${
+                isMobile
+                  ? "mr-0 font-semibold text-lg text-blue-600"
+                  : "mr-10 text-md"
+              }`}
+            >
+              <p>{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>
+            </div>
+          </a>
+        </div>
         {username ? (
           <>
-            <div className="username-display">Welcome, <strong>{username}!</strong></div>
+            <div className="username-display">
+              Welcome, <strong>{username}!</strong>
+            </div>
             <button className="Btn-n" onClick={handleLogout}>
               <div className="sign-n">
                 <svg viewBox="0 0 512 512">
