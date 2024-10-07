@@ -46,12 +46,13 @@ import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js"
 import Weekends from "./components/Weekends.js"
+import ComingSoon from "./components/coming/ComingSoon.jsx";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/admin" element={<AdminPortal />} />
@@ -97,7 +98,9 @@ const App = () => {
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
-        <Route path="/booking-options" element={<BookingOptions />} />
+        <Route path="/booking-options" element={<BookingOptions />} /> */}
+
+        <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );

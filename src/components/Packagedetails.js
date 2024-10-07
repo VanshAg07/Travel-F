@@ -85,19 +85,12 @@ const Packagedetails = () => {
   let tripleSharing;
   let quadSharing;
   // console.log(doubleSharing)
-  if (
-    sharing &&
-    sharing.length > 0 &&
-    sharing[0].price &&
-    sharing[1].price &&
-    sharing[2].price
-  ) {
+  if (sharing && sharing.length >= 3) {
     doubleSharing = sharing[0].price;
     tripleSharing = sharing[1].price;
     quadSharing = sharing[2].price;
-    console.log(doubleSharing, tripleSharing, quadSharing);
   } else {
-    console.log("Error: sharing array is empty or title property is missing");
+    console.log("Error: sharing array is empty or does not have enough elements");
   }
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
