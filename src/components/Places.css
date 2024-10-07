@@ -42,34 +42,134 @@
   }
   
   .place-hero h1 {
-    font-size: 3rem; /* Adjust font size for the heading */
-    font-weight: bold; /* Make the heading bold */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
-    margin-bottom: 20px; /* Add space below the heading for separation from the paragraph */
-    position: relative; /* Set position relative to create a positioning context for the ::before pseudo-element */
-    margin-top: 150px;
+    font-size: 3rem; /* Default size for large screens */
+    font-weight: bold; /* Bold text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+    margin-bottom: 20px; /* Space below the heading */
+    position: relative; /* Relative positioning */
+    margin-top: 150px; /* Top margin */
   }
   
+  /* For medium screens (tablets, small laptops) */
+  @media (max-width: 1024px) {
+    .place-hero h1 {
+      font-size: 2.5rem; /* Decrease font size slightly */
+      margin-top: 100px; /* Adjust margin as well */
+    }
+  }
+  
+  /* For small screens (mobile devices, phones) */
+  @media (max-width: 768px) {
+    .place-hero h1 {
+      font-size: 2rem; /* Further decrease font size */
+      margin-top: 80px;
+    }
+  }
+  
+  /* For extra small screens (small mobile devices) */
+  @media (max-width: 480px) {
+    .place-hero h1 {
+      font-size: 1.5rem; /* Smallest size for small mobile devices */
+      margin-top: 60px;
+    }
+  }
+  
+  
+/* For the h1 element */
+.place-hero h1 {
+  font-size: 3rem; /* Default size for large screens */
+  font-weight: bold; /* Bold text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow */
+  margin-bottom: 20px; /* Space below the heading */
+  position: relative; /* Relative positioning */
+  margin-top: 150px; /* Top margin */
+}
+
+/* Add line before the h1 */
+.place-hero h1::before {
+  content: ""; /* Create an empty pseudo-element */
+  position: absolute; /* Position it absolutely within the h1 */
+  left: 40px; /* Adjust this value based on the desired distance from the text */
+  top: 50%; /* Center the line vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  width: 5px; /* Line width */
+  height: 80%; /* Line height should match the height of the h1 */
+  background-color: yellow; /* Line color */
+}
+
+/* Responsive styling for the paragraph */
+.place-hero p {
+  font-size: 1.5rem; /* Default font size */
+  line-height: 1.6; /* Line height for readability */
+  background-color: yellow; /* Background color */
+  display: inline; /* Ensure background color extends only to text */
+  padding: 10px 20px; /* Padding around the text */
+  color: black; /* Text color */
+  margin-left: 60px; /* Left margin for positioning */
+}
+
+/* For medium screens (tablets, small laptops) */
+@media (max-width: 1024px) {
+  .place-hero h1 {
+    font-size: 2.5rem; /* Decrease heading size */
+    margin-top: 100px; /* Adjust top margin */
+  }
   .place-hero h1::before {
-    content: ""; /* Create an empty pseudo-element */
-    position: absolute; /* Position it absolutely within the h1 */
-    left: 40px; /* Adjust this value based on the desired distance from the text */
-    top: 50%; /* Center the line vertically */
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    width: 5px; /* Line width */
-    height: 80%; /* Line height should match the height of the h1 */
-    background-color: yellow; /* Line color */
+    left: 30px; /* Adjust the line position */
   }
-  
   .place-hero p {
-    font-size: 1.5rem; /* Adjust font size for the paragraph */
-    line-height: 1.6; /* Adjust line height for readability */
-    background-color: yellow; /* Background color */
-    display: inline; /* Ensure background color extends only to text */
-    padding: 10px 20px; /* Optional: Add padding if needed */
-    color:black;
-    margin-left: 60px;
+    font-size: 1.3rem; /* Adjust paragraph font size */
+    margin-left: 40px; /* Adjust margin for smaller screens */
   }
+}
+
+/* For small screens (mobile devices) */
+@media (max-width: 768px) {
+  .place-hero h1 {
+    font-size: 2rem; /* Further decrease heading size */
+    margin-top: 80px;
+  }
+  .place-hero h1::before {
+    left: 25px; /* Adjust the line position */
+  }
+  .place-hero p {
+    font-size: 1.1rem; /* Smaller paragraph font size */
+    margin-left: 30px; /* Adjust margin */
+  }
+}
+
+/* For extra small screens (small mobile devices) */
+@media (max-width: 480px) {
+  .place-hero h1 {
+    font-size: 1.5rem; /* Smallest heading size */
+    margin-top: 60px;
+  }
+  .place-hero h1::before {
+    left: 20px; /* Adjust the line position */
+  }
+  .place-hero p {
+    font-size: 1rem; /* Smallest paragraph font size */
+    margin-left: 20px; /* Further adjust margin */
+    padding: 8px 15px; /* Reduce padding for small screens */
+  }
+}
+
+/* For extra small screens (small mobile devices) */
+@media (max-width: 406px) {
+  .place-hero h1 {
+    font-size: 1.5rem; /* Smallest heading size */
+    margin-top: 60px;
+  }
+  .place-hero h1::before {
+    left: 20px; /* Adjust the line position */
+  }
+  .place-hero p {
+    font-size: 0.7rem; /* Smallest paragraph font size */
+    margin-left: 20px; /* Further adjust margin */
+    padding: 6px 8px; /* Reduce padding for small screens */
+  }
+}
+
   
   .hiking-container {
     margin: 0 auto;
