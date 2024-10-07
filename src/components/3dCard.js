@@ -52,7 +52,7 @@ const Card = () => {
               className="h-[400px] sm:h-[450px] relative shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
             >
               <img
-                src={`http://localhost:5000/uploads/${trip.tripImages}`}
+                src={`http://localhost:5000/upload/${trip.tripImages}`}
                 alt={trip.tripName}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
