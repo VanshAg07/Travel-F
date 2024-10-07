@@ -46,6 +46,7 @@ import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js"
 import Weekends from "./components/Weekends.js"
+import ComingSoon from "./components/coming/ComingSoon.jsx";
 
 const App = () => {
   return (
@@ -98,6 +99,8 @@ const App = () => {
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
         <Route path="/booking-options" element={<BookingOptions />} />
+
+        {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
   );
