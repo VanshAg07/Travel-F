@@ -96,13 +96,10 @@ const Honeymoon = () => {
       <div className="hero-section-left-1">
         <div className=" weekend-hero w-[100%] h-[100%]">
           <img className="h-[750px] w-[100%]" src={intern} alt="India" />
-          <h1 className="top-[40%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 text-[3.5rem]  absolute text-white text-center">
-            Honeymoon Tour Packages
-          </h1>
-          <p className="text-[1.7rem] transform -translate-x-1/2 -translate-y-1/2  top-[52%] left-[25%]  absolute bg-[yellow] text-black pt-[15px] pb-[15px] pl-[15px] pr-[15px] ">
-            {" "}
-            Where Forever Begins...Together!
-          </p>
+          <h1 class="honeymoon-heading">Honeymoon Tour Packages</h1>
+<p class="honeymoon-paragraph">Where Forever Begins...Together!</p>
+
+
         </div>
       </div>
       <Mainreview/>
@@ -116,23 +113,25 @@ const Honeymoon = () => {
           className="hero-lottie"
         />
       </div>
-      <h1 className="ind-h">Your Love Story, Our Destinations!</h1>
+      <h1 className="honey-h">Your Love Story, Our Destinations!</h1>
       <div className=" w-full flex justify-center items-center">
-        <div className="grid grid-cols-3 w-[80%] gap-4">
-          {places.map((place) => (
-            // <Link to={`/place/${place.name}`} key={place.id}>
-              <img
-                className="h-[90%] w-[100%]"
-                src={place.img}
-                alt={place.name}
-              />
-            // </Link>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
+  {places.map((place) => (
+    // <Link to={`/place/${place.name}`} key={place.id}>
+      <img
+        className="h-[90%] w-[100%]"
+        src={place.img}
+        alt={place.name}
+      />
+    // </Link>
+  ))}
+</div>
+
+
       </div>
 
-      <h1 className="all-packages-heading">All Packages</h1>
-      <p className="all-packages-description">
+      <h1 className="honey-heading">All Packages</h1>
+      <p className="honey-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
 

@@ -9,7 +9,7 @@ const Forms = () => {
     <>
       <Nav />
       <Dropnav />
-      <h1 className="pt-24 md:pt-40 text-2xl md:text-4xl font-bold text-center text-gray-800">
+      <h1 className="pt-24 pr-8 md:pt-40 text-2xl md:text-4xl font-bold text-center text-gray-800">
         Get In Touch With Our Support Team
       </h1>
       <div className="min-h-screen flex items-center justify-center px-4">
