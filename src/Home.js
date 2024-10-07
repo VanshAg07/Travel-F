@@ -63,7 +63,7 @@ const Home = () => {
         <Forms />
         <MainFooter />
 
-        {isPhone && <PhoneFooter />} {/* Display PhoneFooter only if screen width is less than 375px */}
+        {/* {isPhone && <PhoneFooter />} Display PhoneFooter only if screen width is less than 375px */}
 
         <div className="fixed-button-1">
           <a

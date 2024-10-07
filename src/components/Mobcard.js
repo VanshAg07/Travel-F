@@ -32,7 +32,7 @@ export default function Card() {
   ));
 
   return (
-    <div className="card_slider_container">
+    <div className="-mt-24">
       <p className="w-full text-center flex font-bold text-xl mb-4 items-center justify-center">
         National Packages
       </p>
