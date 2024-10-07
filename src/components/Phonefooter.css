@@ -20,11 +20,11 @@
 }
 
 .sc-bottom-bar {
-  position: fixed;
   display: flex;
   justify-content: space-between;
   width: 100%;
   max-width: 375px;
+  z-index: 10000;
   bottom: 0;
   height: 60px; /* Adjusted height for icons and labels */
   background-image: radial-gradient(circle at 36px -2px, transparent 36px, #ffffff 37px);

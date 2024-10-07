@@ -7,7 +7,7 @@ import Star from '../img/icons8-star-48.png';
 
 const FooterBanner = () => {
   return (
-    <div className="bg-[#f2fdff] text-black py-5 text-center">
+    <div className="bg-[#f2fdff] text-black py-8 text-center">
       {/* Container for the review and traveler information */}
       <div className="flex justify-center items-center space-x-2 sm:space-x-4">
         {/* Google review with custom icon */}
