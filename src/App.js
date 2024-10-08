@@ -47,7 +47,7 @@ import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js"
 import Weekends from "./components/Weekends.js"
 import ComingSoon from "./components/coming/ComingSoon.jsx";
-import Exploremob from "./components/Explore-mob.js"
+import Exploremob from "./components/explore-mob.js"
 
 const App = () => {
   return (

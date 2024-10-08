@@ -13,7 +13,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Review from "./components/Review.js";
 import Forms from "./components/Forms.js";
 import Explore from "./components/Explore.js";
-import ExploreMobile from "./components/Explore-mob.js"; 
+import ExploreMobile from "./components/explore-mob.js"; 
 import Homeglry from "./components/Homeglry.js";
 import Dropnav from "./components/Dropnav.js";
 import MainFooter from "./components/Footer/MainFooter.js";
