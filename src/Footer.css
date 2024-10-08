@@ -159,7 +159,7 @@
 
 @media (max-width: 375px) {
   .footer-wrapper {
-    height: 65vh;
+    height: 55vh;
   }
 
   .footer-info h1 {
@@ -188,4 +188,6 @@
     font-size: 12px;
   }
 }
+
+
 

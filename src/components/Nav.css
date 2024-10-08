@@ -26,15 +26,15 @@
 
 .cta {
   position: relative;
-  padding: 12px 18px;
+  padding: 10px 14px;
   transition: all 0.2s ease;
   border: none;
   background: none;
   cursor: pointer;
   margin-right: 40px;
-  display: inline-flex; /* Use inline-flex to ensure elements align horizontally */
-  align-items: center; /* Align items vertically centered */
-  gap: 8px; /* Add space between the text and the icon */
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
   color: #fff;
 }
 
@@ -58,6 +58,7 @@
   font-weight: 300;
   letter-spacing: 0.05em;
   color: #fff;
+  font-weight: 500;
 }
 
 .cta svg {
@@ -179,11 +180,11 @@
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 80px;
+    top: 60px;
     right: 0;
     width: 30%; /* Menu takes up 30% of the screen on larger mobile screens */
     height: 100vh;
-    background-color: #16423ca8;
+    background-color: #fff;
     transition: all 0.3s ease;
     align-items: flex-start;
     justify-content: flex-start;
@@ -313,9 +314,15 @@
   }
 }
 
+@media (max-width: 593px) {
+  .nav-links {
+    width: 40%; 
+  }
+}
+
 @media (max-width: 460px) {
   .nav-links {
-    width: 60%;
+    width: 50%;
   }
 
   .cta {
@@ -347,5 +354,11 @@
   .cta svg {
     width: 12px; /* Adjust the size of the SVG */
     height: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .nav-links {
+    width: 60%;
   }
 }

@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper/modules";
-import nationalSlider from "../img/nationalSlider.jpg";
 export default function Card() {
   const cardData = product_card_1.map((item) => (
     <SwiperSlide key={item.id}>
@@ -32,8 +31,8 @@ export default function Card() {
   ));
 
   return (
-    <div className="-mt-24">
-      <p className="w-full text-center flex font-bold text-xl mb-4 items-center justify-center">
+    <div className="-mt-20">
+      <p className="w-full text-center flex font-bold text-2xl mb-14 items-center justify-center">
         National Packages
       </p>
       <Swiper

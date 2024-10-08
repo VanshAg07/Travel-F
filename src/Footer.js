@@ -4,7 +4,7 @@ import GoogleIcon from "./img/icons8.svg";
 import FacebookIcon from "./img/icons8-facebook.svg";
 import YouTubeIcon from "./img/icons8-youtube.svg";
 import WhatsAppIcon from "./img/icons8-whatsapp.svg";
-import { IoIosMail } from "react-icons/io";
+import GmailIcon from "./img/icons8-gmail.svg";
 
 const Footer = () => {
   return (
@@ -57,7 +57,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <IoIosMail className=" h-8 w-8 email-icon-size gmail-color" />
+            <img src={GmailIcon} alt="WhatsApp" className="h-8 w-8" />
           </a>
         </div>
 

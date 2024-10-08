@@ -25,7 +25,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Meghalaya,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Meghalaya"
     },
     {
         id: 2,
@@ -34,7 +34,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Spitivalley,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Spiti"
     },
     {
         id: 3,
@@ -43,7 +43,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: andaman,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Andaman"
     },
     {
         id: 4,
@@ -52,7 +52,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Rajasthan,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Rajasthan"
     },
     {
         id: 5,
@@ -61,7 +61,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Kashmir,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Kashmir"
     },
     {
         id: 6,
@@ -70,7 +70,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: HimachalPradesh,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Himachal%20Pradesh"
     },
     {
         id: 7,
@@ -79,7 +79,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: kerala,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Kerala"
     },
     {
         id: 8,
@@ -88,7 +88,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Uttrakhand,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Uttarakhand"
     },
     {
         id: 9,
@@ -97,7 +97,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Sikkim,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Sikkim"
     },
     {
         id: 10,
@@ -106,7 +106,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Ladakh,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Ladakh"
     },
 ];
 
@@ -119,7 +119,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: Dubai,
     label: "15,499/-",
-    url: "#",
+    url: "/place/Dubai",
   },
   {
     id: 2,
@@ -128,7 +128,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: Maldives,
     label: "13,499/-",
-    url: "#",
+    url: "/place/Maldives",
   },
   {
     id: 3,
@@ -137,7 +137,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: Bali,
     label: "14,999/-",
-    url: "#",
+    url: "/place/Bali",
   },
   {
     id: 4,
@@ -146,7 +146,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: Thailand,
     label: "12,499/-",
-    url: "#",
+    url: "/place/Thailand",
   },
   {
     id: 5,
@@ -155,7 +155,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: vietnam,
     label: "13,999/-",
-    url: "#",
+    url: "/place/Vietnam",
   },
   {
     id: 6,
@@ -164,7 +164,7 @@ const product_card_2 = [
     currency: "Starting Price Rs.",
     image: Singapore,
     label: "13,999/-",
-    url: "#",
+    url: "/place/Singapore",
   },
 ];
 
@@ -176,7 +176,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Kashmir,
       label: "12,999/-",
-      url: "#"
+      url: "/place/Kashmir"
   },
   {
     id: 2,
@@ -185,7 +185,7 @@ const product_card_3 = [
     currency: "Starting Price Rs.",
     image: andaman,
     label: "12,999/-",
-    url: "#"
+    url: "/place/Andaman"
 },
 {
   id: 3,
@@ -194,7 +194,7 @@ const product_card_3 = [
   currency: "Starting Price Rs.",
   image: kerala,
   label: "12,999/-",
-  url: "#"
+  url: "/place/Kerala"
 },
   {
       id: 4,
@@ -203,7 +203,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Manali,
       label: "12,999/-",
-      url: "#"
+      url: "/place/Manali"
   },
   {
       id: 5,
@@ -212,7 +212,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Bali,
       label: "12,999/-",
-      url: "#"
+      url: "/place/Bali",
   },
   {
       id: 6,
@@ -221,7 +221,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Maldives,
       label: "12,999/-",
-      url: "#"
+      url: "/place/Maldives",
   },
  
   {
@@ -231,7 +231,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: vietnam,
       label: "12,999/-",
-      url: "#"
+      url: "/place/Vietnam",
   },
   {
     id: 8,
@@ -240,7 +240,7 @@ const product_card_3 = [
     currency: "Starting Price Rs.",
     image: Thailand,
     label: "12,999/-",
-    url: "#"
+    url: "/place/Thailand",
 },
 ];
 

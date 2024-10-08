@@ -107,17 +107,13 @@ const Nav = () => {
             </Link>
           </>
         )}
-        <div
-          className={`flex justify-center ${
-            isMobile ? "-mt-4" : ""
-          }`}
-        >
+        <div className={`flex justify-center ${isMobile ? "-mt-4" : ""}`}>
           <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
             <div
-              className={`flex flex-row justify-center items-center gap-2 ${
+              className={`flex flex-row justify-center items-center gap-2 border border-blue-600 rounded-full px-4 py-2 ${
                 isMobile
-                  ? "mr-0 font-semibold text-lg text-blue-600"
-                  : "mr-10 text-md"
+                  ? "mr-0 font-semibold text-sm text-blue-600" // Changed to text-sm for smaller text on mobile
+                  : "mr-10 text-xs" // Changed to text-xs for smaller text on larger screens
               }`}
             >
               <p>{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>

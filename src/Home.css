@@ -13,14 +13,14 @@
 
 @media (max-width: 1024px) {
     .fixed-button-1 {
-        width: 18%;
+        width: 10%;
     }
 }
 
 @media (max-width: 768px) {
 
     .fixed-button-1 {
-        width: 20%;
+        width: 10%;
     }
 }
 
@@ -32,13 +32,19 @@
         bottom: 15px;
         
     }
-
-
 }
 
-@media (max-width: 425px) {
-    
+@media (max-width: 425px) { 
     .fixed-button-1 {
-        top: 450px;
-        
+        top: 460px; 
     }}
+
+    @media (max-width: 375px) { 
+        .fixed-button-1 {
+            top: 500px; 
+        }}
+
+        @media (max-width: 320px) { 
+            .fixed-button-1 {
+                top: 520px; 
+            }}
