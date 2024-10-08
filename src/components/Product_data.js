@@ -25,7 +25,7 @@ const product_card_1 = [
         currency: "Starting Price Rs.",
         image: Meghalaya,
         label: "12,999/-",
-        url: "#"
+        url: "/place/Meghalaya"
     },
     {
         id: 2,

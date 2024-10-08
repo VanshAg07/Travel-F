@@ -42,22 +42,22 @@ const Place = () => {
           </div>
         </div>
         <div className="hiking-container p-4 md:p-6 lg:p-8">
-  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-    Best activities to do in {name} for a thrilling adventure
-  </h1>
-  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-    {name} is an excellent place to create cherished memories with loved ones
-    through its various breathtaking activities like trekking, river canyoning,
-    hiking, and more. You can also enjoy the breathtaking views of nature here.
-  </p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+            Best activities to do in {name} for a thrilling adventure
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+            {name} is an excellent place to create cherished memories with loved
+            ones through its various breathtaking activities like trekking,
+            river canyoning, hiking, and more. You can also enjoy the
+            breathtaking views of nature here.
+          </p>
 
-  <Hiking />
-</div>
-
+          <Hiking />
+        </div>
 
         <div className=" hiking-container p-4 md:p-6 lg:p-8 Visiting-container">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-          Beautiful Places To Visit In {name} For A Blissful Vacay
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+            Beautiful Places To Visit In {name} For A Blissful Vacay
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
             Whether you're looking for an adrenaline rush or simply want to
@@ -67,8 +67,9 @@ const Place = () => {
           <Visit />
         </div>
         <div className="food-container p-4 md:p-6 lg:p-8 Visiting-container">
-          <h1  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-          Places to Enjoy The Rich Flavors Of {name}</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+            Places to Enjoy The Rich Flavors Of {name}
+          </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
             {name}, known as the abode of clouds, offers a diverse culinary
             experience with a range of traditional and modern food options. From
@@ -78,8 +79,8 @@ const Place = () => {
           <Food />
         </div>
         <div className="shop-container p-4 md:p-6 lg:p-8 Visiting-container ">
-        <h1  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-          Best Places to shop in {name}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+            Best Places to shop in {name}
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
             {name}, a northeastern state of India, offers a unique shopping
@@ -91,27 +92,32 @@ const Place = () => {
         </div>
 
         <div className="travel-guidelines1-container p-4 md:p-6 lg:p-8">
-  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-    {name} Travel Guidelines
-  </h1>
-  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4">
-    The following are the travel guidelines for {name} as announced by the {name} Government latest on 04-08-2021.
-  </p>
-  <ol className="list-decimal ml-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed space-y-2">
-    <li>
-      All tourists entering the territory of {name} need to have Aarogya Setu on their phones.
-    </li>
-    <li>
-      Social Distancing should be maintained at all times in public places.
-    </li>
-    <li>
-      Travellers need to have face masks on when travelling in public places.
-    </li>
-    <li>
-      Washing of hands and the use of sanitizers is highly recommended by the government.
-    </li>
-  </ol>
-</div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+            {name} Travel Guidelines
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4">
+            The following are the travel guidelines for {name} as announced by
+            the {name} Government latest on 04-08-2021.
+          </p>
+          <ol className="list-decimal ml-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed space-y-2">
+            <li>
+              All tourists entering the territory of {name} need to have Aarogya
+              Setu on their phones.
+            </li>
+            <li>
+              Social Distancing should be maintained at all times in public
+              places.
+            </li>
+            <li>
+              Travellers need to have face masks on when travelling in public
+              places.
+            </li>
+            <li>
+              Washing of hands and the use of sanitizers is highly recommended
+              by the government.
+            </li>
+          </ol>
+        </div>
 
         <div className="why">
           <Whyuss />
