@@ -1,52 +1,89 @@
 import React from "react";
-import "./Review.css"; // This file will contain our styles
+import image1 from '../img/homeglry1.png';  
+import image2 from '../img/homeglry2.png';
+import image3 from '../img/homeglry3.png';
+import image4 from '../img/homeglry4.png';
+import image5 from '../img/homeglry5.png';
+import image6 from '../img/homeglry6.png';
 
-// Import images from your local img folder
-import img1 from "../img/review1.png";
-import img2 from "../img/review2.png";
-import img3 from "../img/review3.png";
-import img4 from "../img/review4.png";
-import img5 from "../img/review5.png";
-import img6 from "../img/review6.png";
 
-// Array of links for each image
-const links = [
-  "https://www.google.com/maps/contrib/111246981183817513719/reviews/@28.5199695,77.03285,12z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
-  "https://www.google.com/maps/contrib/108265947728680746954/reviews/@20.0107679,80.9364856,5z/data=!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
-  "https://www.google.com/maps/contrib/107576252700218379342/reviews/@28.6149537,77.024253,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
-  "https://www.google.com/maps/contrib/114415328720423695195/reviews/@29.7642616,75.5116957,7z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
-  "https://www.google.com/maps/contrib/100009953611017844363/reviews/@27.3923992,73.9578336,8z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
-  "https://www.google.com/maps/contrib/111179409308480648836/reviews/@29.4442085,77.5167109,9z/data=!4m3!8m2!3m1!1e1?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D"
+const testimonials = [
+  {
+    name: "Suganddha Srivastava",
+    image: image1, 
+    text: "It was a great experience. It was my 1st trip and i am totally satisfied with the trip. From day-0 to last day. Each and everything was upto mark...",
+    link: "https://www.google.com/maps/contrib/111246981183817513719?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
+  {
+    name: "Sourabh Kumar",
+    image: image2,
+    text: "The trip was nicely organised. Well executed and the tour agency keeps us updated regarding our stay and weather conditions.the trip was exciting and full of fun...",
+    link: "https://www.google.com/maps/contrib/108265947728680746954?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
+  {
+    name: "Archana Awati",
+    image: image3,
+    text: "It was really a good experience🙌 Every arrangements was too good to stay Mr. Dhurv and Imran  is very supportive, looking forward for same in future as well...",
+    link: "https://www.google.com/maps/contrib/107576252700218379342?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
+  {
+    name: "Durgesh shrama",
+    image: image4,
+    text: "This was my first experience of traveling through any travel agent And I'm glad he's a traveler TRAVELLO10. Our entire group had very good hotel and food facilities...",
+    link: "https://www.google.com/maps/contrib/100009953611017844363?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
+  {
+    name: "shakeel ahmed",
+    image: image5,
+    text: "Trip was awesome, Thank you for making my trip absolute perfection! This trip was amazing because of you.trip was awesome & memorable. I will join you once again...",
+    link: "https://www.google.com/maps/contrib/102821257312318355982?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
+  {
+    name: "Pavan Karri",
+    image: image6,
+    text: "Good Travel Agency with multiple travel package options. Hotel bookings are very nice, all hotels are hygienic and well maintained along with good food.Thanks for...", 
+    link: "https://www.google.com/maps/contrib/116307069423064573360?hl=en-GB&ved=1t:31294&ictx=111", 
+  },
 ];
 
-const TravelerTestimonials = () => {
-  // Array of imported images
-  const images = [img1, img2, img3, img4, img5, img6];
-
+const TestimonialCard = ({ name, image, text, link }) => {
   return (
-    <div className="testimonials-section">
-      <h2 className="testimonials-heading">Hear From Travelers Like You</h2>
-      <div className=" img-review flex flex-wrap mx-32 justify-center gap-10">
-        {images.map((image, index) => (
-          <div key={index} className="testimonial-image-container">
-            <img
-              src={image}
-              alt={`Traveler ${index + 1}`}
-              className="testimonial-image"
-            />
-            <a
-              href={links[index]}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="continue-reading-link"
-            >
-              Continue Reading
-            </a>
+    <div className="bg-white rounded-lg shadow-lg p-4 text-sm sm:text-base lg:text-lg transition-all duration-300">
+      <div className="flex items-center mb-2">
+        <img src={image} alt={name} className="w-10 h-10 rounded-full mr-4" />
+        <div>
+          <h3 className="font-bold text-gray-800">{name}</h3>
+          <div className="text-yellow-400 text-xs sm:text-sm">
+            ★★★★★
           </div>
+        </div>
+      </div>
+      <p className="text-gray-600">{text}</p>
+      <div className="text-right">  {/* Align the button to the right */}
+        <a 
+          href={link} 
+          className="mt-4 inline-block text-blue-500 hover:text-blue-700 font-semibold text-sm sm:text-base transition duration-200"
+        >
+          Continue Reading
+        </a>
+      </div>
+    </div>
+  );
+};
+
+const Testimonials = () => {
+  return (
+    <div className="py-8 px-4 sm:px-6 lg:px-8 w-4/5 mx-auto">
+      <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
+      Tales from the Wanderers
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        {testimonials.map((testimonial, index) => (
+          <TestimonialCard key={index} {...testimonial} />
         ))}
       </div>
     </div>
   );
 };
 
-export default TravelerTestimonials;
+export default Testimonials;

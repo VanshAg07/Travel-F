@@ -17,22 +17,29 @@ const TravelOptions = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex flex-nowrap justify-start items-center space-x-6">
-        {options.map((option, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <img 
-              src={option.imgSrc} 
-              alt={option.name} 
-              className="w-24 h-24 rounded-full object-cover"
-            />
-            <span className="mt-2 text-center text-sm font-medium">{option.name}</span>
-          </div>
-        ))}
+    <div className="w-full px-4 md:px-20">
+      {/* Heading for the Travel Options */}
+      <h1 className="text-center text-2xl font-bold mb-6">Explore Your Adventure</h1>
+
+      {/* Scrollable area */}
+      <div className="overflow-x-auto scrollbar-hidden">
+        <div className="flex flex-nowrap justify-start items-center space-x-6">
+          {options.map((option, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className="w-24 h-24 flex justify-center items-center overflow-hidden rounded-full">
+                <img 
+                  src={option.imgSrc} 
+                  alt={option.name} 
+                  className="object-cover w-full h-full" // Ensure image covers the full area without being cut
+                />
+              </div>
+              <span className="mt-2 text-center text-sm font-medium">{option.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default TravelOptions;
-
