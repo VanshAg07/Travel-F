@@ -5,7 +5,6 @@ import Videopage from "./components/Videopage.js";
 import Videopg2 from "./components/Videopg2.js";
 import Videopg3 from "./components/Videopg3.js";
 import Videopg4 from "./components/Videopg4.js";
-import Gallery from "./Gallery.js";
 import Whyuss from "./components/Whyuss.js";
 import Lottie from "lottie-react";
 import cont from "./img/cont-button.json";
@@ -14,13 +13,13 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Review from "./components/Review.js";
 import Forms from "./components/Forms.js";
 import Explore from "./components/Explore.js";
+import ExploreMobile from "./components/Explore-mob.js"; 
 import Homeglry from "./components/Homeglry.js";
 import Dropnav from "./components/Dropnav.js";
 import MainFooter from "./components/Footer/MainFooter.js";
 import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
-import PhoneFooter from "./components/PhoneFooter.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -41,6 +40,7 @@ const Home = () => {
         ) : (
           <Videopg2 />
         )}
+
         {isMobile ? (
           <div style={{ margin: "130px 30px 55px 30px" }}>
             <Mobcardinter />
@@ -48,8 +48,11 @@ const Home = () => {
         ) : (
           <Videopg3 />
         )}
-        <Explore />
+
+        {isMobile ? <ExploreMobile /> : <Explore />}
+
         <Homeglry />
+
         {isMobile ? (
           <div style={{ margin: "130px 30px 55px 30px" }}>
             <Mobcardhoney />
@@ -57,13 +60,11 @@ const Home = () => {
         ) : (
           <Videopg4 />
         )}
+
         <Whyuss />
-        {!isMobile ? <Review /> : <></>}
-        <div className="marquee-wrapper">{/* <Marquee /> */}</div>
+        <Review />
         <Forms />
         <MainFooter />
-
-        {/* {isPhone && <PhoneFooter />} Display PhoneFooter only if screen width is less than 375px */}
 
         <div className="fixed-button-1">
           <a

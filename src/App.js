@@ -47,6 +47,7 @@ import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js"
 import Weekends from "./components/Weekends.js"
 import ComingSoon from "./components/coming/ComingSoon.jsx";
+import Exploremob from "./components/Explore-mob.js"
 
 const App = () => {
   return (
@@ -80,6 +81,7 @@ const App = () => {
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/Footersection" element={<FooterSection />} />
         <Route path="/Faq" element={<Faq />} />
+        <Route path="/exploremob" element={<Exploremob />} />
         <Route path="/Payments" element={<Payments />} />
         <Route path="/Forms" element={<Forms />} />
         <Route path="/Mainreview" element={<Mainreview />} />
