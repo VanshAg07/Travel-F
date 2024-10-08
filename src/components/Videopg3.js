@@ -14,16 +14,16 @@ import img10 from '../img/rajasthan.png';
 import video from '../img/india.mp4';
 
 const images = [
-  { src: img1, text: "Himachal Pradesh" },
-  { src: img2, text: "Uttarakhand" },
-  { src: img3, text: "Kashmir" },
-  { src: img4, text: "kerala" },
-  { src: img5, text: "Ladakh" },
-  { src: img6, text: "Kedarnath" },
-  { src: img7, text: "Badrinath" },
-  { src: img8, text: "Sikkim" },
-  { src: img9, text: "Meghalaya" },
-  { src: img10, text: "Rajasthan" },
+  { src: img1, text: "Himachal Pradesh", route: "/place/Himachal%20Pradesh" },
+  { src: img2, text: "Uttarakhand", route: "/place/Uttarakhand" },
+  { src: img3, text: "Kashmir" , route: "/place/Kashmir"},
+  { src: img4, text: "kerala", route: "/place/Kerala" },
+  { src: img5, text: "Ladakh", route: "/place/Ladakh" },
+  { src: img6, text: "Andaman", route: "/place/Andaman" },
+  { src: img7, text: "Spiti" , route: "/place/Spiti"},
+  { src: img8, text: "Sikkim", route: "/place/Sikkim" },
+  { src: img9, text: "Meghalaya", route: "/place/Meghalaya" },
+  { src: img10, text: "Rajasthan", route: "/place/Rajasthan" },
 ];
 
 const ImageSlider = () => {

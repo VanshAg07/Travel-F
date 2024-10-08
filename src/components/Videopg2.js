@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Videopg2.css";
 import img1 from "../img/dubai.jpg";
 import img2 from "../img/Maldives.jpg";
@@ -10,12 +10,12 @@ import img6 from "../img/thailand.jpg";
 import video from "../img/intern1.mp4";
 
 const images = [
-  { src: img1, text: "Dubai" },
-  { src: img2, text: "Maldives" },
-  { src: img3, text: "Vietnam" },
-  { src: img4, text: "Bali" },
-  { src: img5, text: "Singapore" },
-  { src: img6, text: "Thailand" },
+  { src: img1, text: "Dubai", route: "/place/Dubai" },
+  { src: img2, text: "Maldives", route: "/place/Maldives" },
+  { src: img3, text: "Vietnam", route: "/place/Vietnam" },
+  { src: img4, text: "Bali", route: "/place/Bali" },
+  { src: img5, text: "Singapore", route: "/place/Singapore" },
+  { src: img6, text: "Thailand", route: "/place/Thailand" },
 ];
 
 const ImageSlider = () => {
@@ -43,28 +43,32 @@ const ImageSlider = () => {
 
   return (
     <div className="wr-1">
-    <div className="wrpper-1">
-      <div className="video-div-1">
-      <Link to="/intern"> <video className="video-1" src={video} autoPlay loop muted></video> </Link> 
-        <h1 className="video-heading">International Trips</h1>
-      </div>
-      <div className="slider-1">
-        <button onClick={prevSlide} className="arrow-1 left-1">
-          <i className="fa-solid fa-circle-left"></i>
-        </button>
-        <div className="slider-wrapper-1">
-          {images.slice(index, index + getNumberOfImages()).map((img, i) => (
-            <div key={i} className="slide-1">
-              <img src={img.src} alt={`Slide ${i}`} />
-              <h1>{img.text}</h1> {/* Display the corresponding text */}
-            </div>
-          ))}
+      <div className="wrpper-1">
+        <div className="video-div-1">
+          <Link to="/intern">
+            <video className="video-1" src={video} autoPlay loop muted></video>
+          </Link>
+          <h1 className="video-heading">International Trips</h1>
         </div>
-        <button onClick={nextSlide} className="arrow-1 right-1">
-          <i className="fa-solid fa-circle-right"></i>
-        </button>
+        <div className="slider-1">
+          <button onClick={prevSlide} className="arrow-1 left-1">
+            <i className="fa-solid fa-circle-left"></i>
+          </button>
+          <div className="slider-wrapper-1">
+            {images.slice(index, index + getNumberOfImages()).map((img, i) => (
+              <div key={i} className="slide-1">
+                <Link to={img.route}>
+                  <img src={img.src} alt={`Slide ${i}`} />
+                  <h1>{img.text}</h1> {/* Display the corresponding text */}
+                </Link>
+              </div>
+            ))}
+          </div>
+          <button onClick={nextSlide} className="arrow-1 right-1">
+            <i className="fa-solid fa-circle-right"></i>
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

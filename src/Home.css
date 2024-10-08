@@ -13,38 +13,41 @@
 
 @media (max-width: 1024px) {
     .fixed-button-1 {
-        width: 10%;
+        right: -10px;
     }
 }
 
 @media (max-width: 768px) {
-
     .fixed-button-1 {
         width: 10%;
+        right: -10px;
     }
 }
 
-@media (max-width: 480px) {
-    
+@media (max-width: 640px) {
     .fixed-button-1 {
-        width: 25%;
-        right: -15px;
-        bottom: 15px;
-        
+        width: 13%;
+        right: -10px;
     }
 }
 
-@media (max-width: 425px) { 
+@media (max-width: 620px) {
     .fixed-button-1 {
-        top: 460px; 
-    }}
+        width: 15%;
+        right: -10px;
+    }
+}
 
-    @media (max-width: 375px) { 
-        .fixed-button-1 {
-            top: 500px; 
-        }}
+@media (max-width: 425px) {
+    .fixed-button-1 {
+        width: 20%;
+        right: -10px;
+    }
+}
 
-        @media (max-width: 320px) { 
-            .fixed-button-1 {
-                top: 520px; 
-            }}
+@media (max-width:375px) {
+    .fixed-button-1 {
+        width: 24%;
+        right: -10px;
+    }
+}
