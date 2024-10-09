@@ -10,17 +10,16 @@ import img6 from '../img/rishikesh.png';
 import img7 from '../img/kerala.png';
 import video from '../img/india.mp4';
 import img8 from '../img/Maldivess.png';
-import FooterSection from "./Footersection";
 
 const images = [
-  { src: img1, text: "Bali" },
-  { src: img2, text: "Vietnam" },
-  { src: img3, text: "Manali" },//
-  { src: img4, text: "Thailand" },
-  { src: img5, text: "Kashmir" },
-  { src: img6, text: "Andaman" },
-  { src: img7, text: "Kerala" },
-  { src: img8, text: "Maldives" },
+  { src: img1, text: "Bali" , route: "/place/Bali" },
+  { src: img2, text: "Vietnam" , route: "/place/Vietnam" },
+  { src: img3, text: "Manali" , route: "/place/Manali" },
+  { src: img4, text: "Thailand" , route: "/place/Thailand" },
+  { src: img5, text: "Kashmir" , route: "/place/Kashmir" },
+  { src: img6, text: "Andaman" , route: "/place/Andaman" },
+  { src: img7, text: "Kerala" , route: "/place/Kerala" },
+  { src: img8, text: "Maldives" , route: "/place/Maldives" },
 ];
 
 const ImageSlider = () => {

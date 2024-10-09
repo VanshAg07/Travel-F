@@ -33,7 +33,7 @@ export default function Card() {
 
   return (
     <div className="-mt-16">
-      <p className="w-full text-center flex font-bold text-xl mb-4 items-center justify-center">
+      <p className="w-full text-center flex font-bold text-xl mb-14 items-center justify-center">
         International Packages
       </p>
       <Swiper

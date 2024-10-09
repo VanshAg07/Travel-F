@@ -1,0 +1,12 @@
+
+@media (max-width: 425px) {
+    .footer-text-small {
+      font-size: 8px; /* Decrease the font size for smaller screens */
+    }
+  
+    .star-small {
+      width: 0.6rem; /* Adjust the star size */
+      height: 0.6rem;
+    }
+  }
+  

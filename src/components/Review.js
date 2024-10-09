@@ -12,7 +12,7 @@ const testimonials = [
     name: "Suganddha Srivastava",
     image: image1, 
     text: "It was a great experience. It was my 1st trip and i am totally satisfied with the trip. From day-0 to last day. Each and everything was upto mark...",
-    link: "https://www.google.com/maps/contrib/111246981183817513719?hl=en-GB&ved=1t:31294&ictx=111", 
+    link: "https://www.google.com/maps/contrib/111246981183817513719?hl=en-GB&ved=1t:31294&ictx=111 ", 
   },
   {
     name: "Sourabh Kumar",
@@ -59,9 +59,11 @@ const TestimonialCard = ({ name, image, text, link }) => {
         </div>
       </div>
       <p className="text-gray-600">{text}</p>
-      <div className="text-right">  {/* Align the button to the right */}
+      <div className="text-right"> {/* Align the button to the right */}
         <a 
           href={link} 
+          target="_blank" // Open link in a new tab
+          rel="noopener noreferrer" // Security best practice
           className="mt-4 inline-block text-blue-500 hover:text-blue-700 font-semibold text-sm sm:text-base transition duration-200"
         >
           Continue Reading
@@ -70,6 +72,7 @@ const TestimonialCard = ({ name, image, text, link }) => {
     </div>
   );
 };
+
 
 const Testimonials = () => {
   return (

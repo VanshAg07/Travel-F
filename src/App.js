@@ -50,6 +50,7 @@ import ComingSoon from "./components/coming/ComingSoon.jsx";
 import InternationalPlaces from "./components/International/InternationalPlace.js";
 import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
 import HoneymoonCard from "./components/User/Honeymoon/HoneymoonCard.js";
+import Exploremob from "./components/explore-mob.js"
 const App = () => {
   return (
     <BrowserRouter>
