@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Packagedetails.css";
 import Nav from "./Nav";
-import bg from "../img/india.jpg";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
 import { GoDot } from "react-icons/go";
-import Footer from "../Footer";
 import { GoDotFill } from "react-icons/go";
 import { useParams } from "react-router-dom";
 import Review from "./Review";
 import Whyuss from "./Whyuss";
-import FooterSection from "./Footersection";
 import { LuCircleDotDashed } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import Dropnav from "../components/Dropnav";
@@ -36,7 +33,7 @@ const Packagedetails = () => {
   const [stateNames, setstateNames] = useState("");
   const handleDownload = () => {
     if (trips.pdf) {
-      const fileUrl = `http://localhost:5000/upload/${trips.pdf}`;
+      const fileUrl = `${trips.pdf}`;
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
@@ -114,15 +111,13 @@ const Packagedetails = () => {
       console.error("Trip dates not available");
     }
   };
-  const imageUrl = trips.tripBackgroundImg
-    ? `http://localhost:5000/upload/${trips.tripBackgroundImg}`
-    : bg;
+
   return (
     <div>
       <Nav />
       <Dropnav />
       <img
-        src={imageUrl}
+        src={trips.tripBackgroundImg}
         alt="Descriptive Alt Text"
         className="h-screen w-[100%]"
       />

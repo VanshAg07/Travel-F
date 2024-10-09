@@ -10,6 +10,8 @@ import RichFlavour from "./RichFlavour";
 import Shop from "./Shop";
 import National from "./National";
 import Bookings from "./Bookings/Bookings";
+import HomeIntern from "./AddInternational/HomeIntern";
+import AddHoneymoon from "./Honeymoon/AddHoneymoon";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("user-details");
@@ -56,6 +58,30 @@ const AdminPortal = () => {
           </li>
           <li>
             <button
+              onClick={() => setActiveTab("internnational-packages")}
+              className={`block w-full text-left py-4 px-4 ${
+                activeTab === "internnational-packages"
+                  ? "bg-red-600"
+                  : "hover:bg-gray-700"
+              }`}
+            >
+              Internnational Packages
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setActiveTab("honeymoon")}
+              className={`block w-full text-left py-4 px-4 ${
+                activeTab === "honeymoon"
+                  ? "bg-red-600"
+                  : "hover:bg-gray-700"
+              }`}
+            >
+              Honeymoon Packages
+            </button>
+          </li>
+          <li>
+            <button
               onClick={() => setActiveTab("add-user")}
               className={`block w-full text-left py-4 px-4 ${
                 activeTab === "add-user" ? "bg-red-600" : "hover:bg-gray-700"
@@ -68,9 +94,7 @@ const AdminPortal = () => {
             <button
               onClick={() => setActiveTab("bookings")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "bookings"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
+                activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"
               }`}
             >
               Bookings
@@ -89,7 +113,9 @@ const AdminPortal = () => {
       <div className="ml-[25%] w-[75%] p-8">
         {activeTab === "user-details" && <UserDetails />}
         {activeTab === "national-packages" && <National />}
+        {activeTab === "internnational-packages" && <HomeIntern />}
         {activeTab === "bookings" && <Bookings />}
+        {activeTab === "honeymoon" && <AddHoneymoon />}
         {activeTab === "add-user" && <div>Add User Content</div>}
       </div>
     </div>

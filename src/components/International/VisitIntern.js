@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Visit.css";
+import "../Visit.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-const Visit = () => {
+const VisitIntern = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ const Visit = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getBeautifulPlaces/${name}`
+          `http://localhost:5000/api/user/getInternPlaces/${name}`
         );
         console.log(response.data);
         // Make sure to access response.data.places, not activities
@@ -55,4 +55,4 @@ const Visit = () => {
   );
 };
 
-export default Visit;
+export default VisitIntern;

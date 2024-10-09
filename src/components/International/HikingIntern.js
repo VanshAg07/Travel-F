@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Hiking.css";
+import "../Hiking.css";
 import { FaClock } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-const Hiking = () => {
+const HikingIntern = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const Hiking = () => {
       console.log("Fetching activities...");
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getBestActivities/${name}`
+          `http://localhost:5000/api/user/getInternActivities/${name}`
         );
         console.log(response.data);
         setActivities(response.data.activities || []);
@@ -33,12 +33,12 @@ const Hiking = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="hiking-cards-grid grid-cols-3">
+    <div className="Intern-cards-grid grid-cols-3">
       {activities.length > 0 ? (
         activities.map((activity, index) => (
           <div key={index} className="hiking-card">
             <img
-              src={activity.img}
+              src={`http://localhost:5000/uploads/${activity.img}`}
               alt={activity.title}
               className="hiking-card-img"
             />
@@ -59,4 +59,4 @@ const Hiking = () => {
   );
 };
 
-export default Hiking;
+export default HikingIntern;

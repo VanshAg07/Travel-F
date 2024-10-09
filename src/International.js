@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import "./International.css";
 import Nav from "./components/Nav";
 import intern from "./img/india.jpg";
-import Lottie  from 'lottie-react';
-import animationData from './img/intern.json';
+import Lottie from "lottie-react";
+import animationData from "./img/intern.json";
 import Card from "./components/3dCard.js";
 import Whyuss from "./components/Whyuss.js";
 import Guide from "./components/Interguide.js";
 import Review from "./components/Review";
 import cont from "./img/cont-button.json";
 import Dropnav from "./components/Dropnav.js";
-import Mainreview from "./components/Mainreview.js"
+import Mainreview from "./components/Mainreview.js";
 import MainFooter from "./components/Footer/MainFooter.js";
 import shi16 from "./img/16.png";
 import shi17 from "./img/17.png";
@@ -18,6 +18,7 @@ import shi18 from "./img/18.png";
 import shi20 from "./img/20.png";
 import shi21 from "./img/21.png";
 import shi19 from "./img/19.png";
+import { Link } from "react-router-dom";
 // import Lottie from "lottie-react";
 
 const International = () => {
@@ -63,30 +64,41 @@ const International = () => {
 
   const places = [
     {
-      id: 16, name: "Dubai", img: shi16
+      id: 16,
+      name: "Dubai",
+      img: shi16,
     },
     {
-      id: 17, name: "Maldives", img: shi17
+      id: 17,
+      name: "Maldives",
+      img: shi17,
     },
     {
-      id: 18, name: "Maldives", img: shi18
+      id: 18,
+      name: "Maldives",
+      img: shi18,
     },
     {
-     id: 19, name: "Maldives", img: shi19
+      id: 19,
+      name: "Maldives",
+      img: shi19,
     },
     {
-      id: 20, name: "Maldives", img: shi20
+      id: 20,
+      name: "Maldives",
+      img: shi20,
     },
     {
-      id: 21, name: "Maldives", img: shi21 
-    }
-  ]
+      id: 21,
+      name: "Maldives",
+      img: shi21,
+    },
+  ];
   return (
     <div className="wrpper-inter">
       <Nav />
-      <Dropnav/>
+      <Dropnav />
       <div className="hero-section-left-1">
-        
         <img className="hero-img" src={intern} alt="India" />
         <h1 className="hero-heading">
           Luxury Getaways Abroad - Book <br /> <span>Your Dream Vacation</span>
@@ -95,25 +107,25 @@ const International = () => {
       <Mainreview />
 
       <div className="lottie-wr">
-        <Lottie 
-          animationData={animationData} 
-          loop={true} 
+        <Lottie
+          animationData={animationData}
+          loop={true}
           autoplay={true}
-          speed={0.5} 
-           className="hero-lottie"
+          speed={0.5}
+          className="hero-lottie"
         />
       </div>
       <h1 className="inter-h">Destinations</h1>
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
           {places.map((place) => (
-            // <Link to={`/place/${place.name}`} key={place.id}>
+            <Link to={`/places/${place.name}`} key={place.id}>
               <img
                 className="h-[90%] w-[100%]"
                 src={place.img}
                 alt={place.name}
               />
-            // </Link>
+            </Link>
           ))}
         </div>
       </div>
@@ -126,88 +138,98 @@ const International = () => {
       <div>
         <Card />
       </div>
-      <Whyuss/>
-      <Review/>
-      <Guide/>
+      <Whyuss />
+      <Review />
+      <Guide />
       <h1 className="pt-14 md:pt-20 text-2xl md:text-4xl font-bold text-center text-gray-800">
-  Contact Form
-</h1>
-<div className="min-h-screen flex items-center justify-center px-4">
+        Contact Form
+      </h1>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        {/* Outer div with 80% width */}
+        <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+          {/* Inner form container with 60% width */}
+          <div className="w-full md:w-3/5 mx-auto">
+            <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+              Travello10 Calling?
+            </h2>
+            <h3 className="text-lg font-semibold mb-6">
+              Allow Us to Call You Back!
+            </h3>
+            <form>
+              {/* Name */}
+              <div className="mb-4">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="name"
+                >
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="e.g. John Smith"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                />
+              </div>
 
-  {/* Outer div with 80% width */}
-  <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
-    
-    {/* Inner form container with 60% width */}
-    <div className="w-full md:w-3/5 mx-auto">
-      <h2 className="text-cyan-500 text-lg font-semibold mb-1">
-        Travello10 Calling?
-      </h2>
-      <h3 className="text-lg font-semibold mb-6">
-        Allow Us to Call You Back!
-      </h3>
-      <form>
-        {/* Name */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="name">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="e.g. John Smith"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
+              {/* Phone Number */}
+              <div className="mb-4">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="phone"
+                >
+                  Phone Number *
+                </label>
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="Enter your 10 digit number"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="mb-4">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="email"
+                >
+                  Email ID *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="john@example.com"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                />
+              </div>
+
+              {/* Message */}
+              <div className="mb-6">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="message"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  placeholder="Any Message"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-
-        {/* Phone Number */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="phone">
-            Phone Number *
-          </label>
-          <input
-            type="text"
-            id="phone"
-            placeholder="Enter your 10 digit number"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="email">
-            Email ID *
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="john@example.com"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
-        </div>
-
-        {/* Message */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-1" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            placeholder="Any Message"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          ></textarea>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
       <MainFooter />
       <div className="fixed-button-1">
         <a
@@ -221,7 +243,6 @@ const International = () => {
         </a>
       </div>
     </div>
-
   );
 };
 

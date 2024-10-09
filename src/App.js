@@ -44,11 +44,12 @@ import Login from "./components/Login/Login.js";
 import Corpoform from "./components/Corpo-form.js";
 import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
-import Grouptours from "./components/Grouptours.js"
-import Weekends from "./components/Weekends.js"
+import Grouptours from "./components/Grouptours.js";
+import Weekends from "./components/Weekends.js";
 import ComingSoon from "./components/coming/ComingSoon.jsx";
-import Exploremob from "./components/Explore-mob.js"
-
+import InternationalPlaces from "./components/International/InternationalPlace.js";
+import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
+import HoneymoonCard from "./components/User/Honeymoon/HoneymoonCard.js";
 const App = () => {
   return (
     <BrowserRouter>
@@ -81,7 +82,6 @@ const App = () => {
         <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
         <Route path="/Footersection" element={<FooterSection />} />
         <Route path="/Faq" element={<Faq />} />
-        <Route path="/exploremob" element={<Exploremob />} />
         <Route path="/Payments" element={<Payments />} />
         <Route path="/Forms" element={<Forms />} />
         <Route path="/Mainreview" element={<Mainreview />} />
@@ -97,7 +97,14 @@ const App = () => {
         <Route path="/Grouptours" element={<Grouptours />} />
         <Route path="/Weekends" element={<Weekends />} />
         <Route path="/place/:name" element={<Places />} />
+        <Route path="/places/:name" element={<InternationalPlaces />} />
         <Route path="/Packagedetails/:name" element={<Packagedetails />} />
+        <Route
+          path="/International/Packages/:name"
+          element={<Packagedetails />}
+        />
+        <Route path="/Honeymoon/Packages/:name" element={<HoneymoonCard />} />
+        <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
         <Route path="/booking-options" element={<BookingOptions />} />

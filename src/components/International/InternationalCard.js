@@ -4,9 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { GiClockwork } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
-import "./3dCard.css"; // Ensure you have relevant styles here
+import "../3dCard.css"; // Ensure you have relevant styles here
 
-const Card = () => {
+const InternatioanlCard = () => {
   const [trips, setTrips] = useState([]);
   const { name } = useParams();
 
@@ -94,4 +94,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default InternatioanlCard;

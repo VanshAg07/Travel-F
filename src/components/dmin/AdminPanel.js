@@ -136,12 +136,6 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-
-    // Log FormData for debugging
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
-
     fetch(`http://localhost:5000/api/trip/state/${selectedState}/trip`, {
       method: "POST",
       body: formData,
@@ -232,7 +226,6 @@ const AdminPanel = () => {
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
           </div>
-
           <div>
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (

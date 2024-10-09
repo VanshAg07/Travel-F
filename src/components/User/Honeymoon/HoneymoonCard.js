@@ -4,9 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { GiClockwork } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
-import "./3dCard.css"; // Ensure you have relevant styles here
+import "../../3dCard.css";
 
-const Card = () => {
+const HoneymoonCard = () => {
   const [trips, setTrips] = useState([]);
   const { name } = useParams();
 
@@ -21,7 +21,6 @@ const Card = () => {
         console.error("Error fetching trips:", error);
       }
     };
-
     fetchTrips();
   }, [name]);
 
@@ -52,22 +51,22 @@ const Card = () => {
               className="h-[400px] sm:h-[450px] relative shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
             >
               <img
-                src={`${trip.tripImages}`}
-                alt={trip.tripName}
+                src={`${trips.tripImages}`}
+                alt={trips.tripName}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
               <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
-                <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
+                <span className="font-bold text-sm">₹ {trips.tripPrice}</span>
               </div>
               <div className="w-full p-3 rounded-lg flex flex-col absolute bottom-0 bg-black bg-opacity-75">
                 <h2 className="text-xs md:text-sm lg:text-base font-bold text-white mb-2">
-                  {trip.tripName}
+                  {trips.tripName}
                 </h2>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center text-gray-600">
                     <GiClockwork className="mr-2 text-blue-500" />
                     <span className="text-xs md:text-sm text-white">
-                      {trip.tripDuration}
+                      {trips.tripDuration}
                     </span>
                   </div>
                   <div className="flex items-center text-gray-600">
@@ -80,7 +79,7 @@ const Card = () => {
                 <div className="flex items-center text-gray-600">
                   <MdLocationOn className="mr-2 text-blue-500" />
                   <span className="text-xs md:text-sm text-white">
-                    {trip.pickAndDrop}
+                    {trips.pickAndDrop}
                   </span>
                 </div>
               </div>
@@ -94,4 +93,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default HoneymoonCard;
