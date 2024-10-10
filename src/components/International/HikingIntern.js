@@ -25,7 +25,6 @@ const HikingIntern = () => {
         setLoading(false);
       }
     };
-
     fetchActivities();
   }, [name]);
 
@@ -33,12 +32,12 @@ const HikingIntern = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="Intern-cards-grid grid-cols-3">
+    <div className="hiking-cards-grid grid-cols-3">
       {activities.length > 0 ? (
         activities.map((activity, index) => (
           <div key={index} className="hiking-card">
             <img
-              src={`http://localhost:5000/uploads/${activity.img}`}
+              src={`${activity.img}`}
               alt={activity.title}
               className="hiking-card-img"
             />

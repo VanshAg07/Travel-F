@@ -52,6 +52,7 @@ import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
 import HoneymoonCard from "./components/User/Honeymoon/HoneymoonCard.js";
 import Exploremob from "./components/explore-mob.js"
 import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
+import PackageInternatioanl from "./components/International/PackageInternational.js";
 const App = () => {
   return (
     <BrowserRouter>
@@ -105,6 +106,7 @@ const App = () => {
           path="/International/Packages/:name"
           element={<Packagedetails />}
         />
+        <Route path="/international/:tripName/:name" element={<PackageInternatioanl />} />
         <Route path="/honeymoon/:tripName/:name" element={<PackageHoneymoon />} />
         <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />

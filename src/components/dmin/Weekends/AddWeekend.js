@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 const states = [
-  { _id: "670761bd420661605be02fb1", stateName: "Dubai" },
-  { _id: "670761cb420661605be02fb3", stateName: "Maldives" },
-  { _id: "670761d0420661605be02fb5", stateName: "Bali" },
-  { _id: "670761d9420661605be02fb7", stateName: "Thailand" },
-  { _id: "670761de420661605be02fb9", stateName: "Vietnam" },
-  { _id: "670761e4420661605be02fbb", stateName: "Singapore" },
+  { _id: "6706e79d4bb9ec346681ea57", stateName: "Kasol" },
+  { _id: "6706e7a74bb9ec346681ea59", stateName: "Manikaran" },
+  { _id: "6706e7b24bb9ec346681ea5b", stateName: "Solang" },
+  { _id: "6706e7984bb9ec346681ea55", stateName: "Manali" },
+  { _id: "6706e7bb4bb9ec346681ea5d", stateName: "Sissu" },
+  { _id: "6706e7c74bb9ec346681ea5f", stateName: "Atal Tunnel" },
 ];
 
-const AddInternPackage = () => {
+const AddWeekend = () => {
   const [selectedState, setSelectedState] = useState("");
+
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -97,7 +99,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/admin/international-package/${selectedState}`,
+      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState}`,
       {
         method: "POST",
         body: formData,
@@ -177,32 +179,6 @@ const AddInternPackage = () => {
             value={tripDetails.tripName}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripName: e.target.value })
-            }
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Location</label>
-          <input
-            type="text"
-            name="tripLocation"
-            value={tripDetails.tripLocation}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripLocation: e.target.value })
-            }
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Price</label>
-          <input
-            type="text"
-            name="tripPrice"
-            value={tripDetails.tripPrice}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"
@@ -506,4 +482,4 @@ const AddInternPackage = () => {
   );
 };
 
-export default AddInternPackage;
+export default AddWeekend;

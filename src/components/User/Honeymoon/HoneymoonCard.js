@@ -33,7 +33,7 @@ function AllPackagesCard() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto w-[80%]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {packages.length > 0 ? (
           packages.slice(0, visiblePackages).map((pkg, index) =>

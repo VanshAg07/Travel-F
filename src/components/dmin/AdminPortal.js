@@ -12,6 +12,7 @@ import National from "./National";
 import Bookings from "./Bookings/Bookings";
 import HomeIntern from "./AddInternational/HomeIntern";
 import AddHoneymoon from "./Honeymoon/AddHoneymoon";
+import AddWeekend from "./Weekends/AddWeekend";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("user-details");
@@ -82,6 +83,18 @@ const AdminPortal = () => {
           </li>
           <li>
             <button
+              onClick={() => setActiveTab("weekends")}
+              className={`block w-full text-left py-4 px-4 ${
+                activeTab === "weekends"
+                  ? "bg-red-600"
+                  : "hover:bg-gray-700"
+              }`}
+            >
+              Weekends Trips
+            </button>
+          </li>
+          <li>
+            <button
               onClick={() => setActiveTab("add-user")}
               className={`block w-full text-left py-4 px-4 ${
                 activeTab === "add-user" ? "bg-red-600" : "hover:bg-gray-700"
@@ -116,6 +129,7 @@ const AdminPortal = () => {
         {activeTab === "internnational-packages" && <HomeIntern />}
         {activeTab === "bookings" && <Bookings />}
         {activeTab === "honeymoon" && <AddHoneymoon />}
+        {activeTab === "weekends" && <AddWeekend />}
         {activeTab === "add-user" && <div>Add User Content</div>}
       </div>
     </div>

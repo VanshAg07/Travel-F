@@ -15,6 +15,7 @@ import HikingIntern from "./HikingIntern";
 import VisitIntern from "./VisitIntern";
 import FoodInern from "./FoodIntern";
 import ShopIntern from "./ShopIntern";
+import StateInternational from "./StateInternatioanl";
 
 const InernationalPlaces = () => {
   const { name } = useParams();
@@ -37,7 +38,7 @@ const InernationalPlaces = () => {
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>
             <Link to={`/International/Packages/${name}`}>
-              <InternatioanlCard />
+              <StateInternational />
             </Link>
           </div>
         </div>
