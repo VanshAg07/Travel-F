@@ -2,29 +2,28 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 const states = [
-  { stateName: "Kashmir" },
-  { stateName: "Andaman" },
-  { stateName: "Kerala" },
-  { stateName: "Manali" },
-  { stateName: "Bali" },
-  { stateName: "Thailand" },
-  { stateName: "Vietnam" },
-  { stateName: "Maldives" },
+  { _id: "6706c7a5eb3b4434e45d8bc9", stateName: "Kashmir" },
+  { _id: "6706c7aceb3b4434e45d8bcb", stateName: "Andaman" },
+  { _id: "6706c7b0eb3b4434e45d8bcd", stateName: "Kerala" },
+  { _id: "6706c7c1eb3b4434e45d8bcf", stateName: "Manali" },
+  { _id: "6706c7c6eb3b4434e45d8bd1", stateName: "Bali" },
+  { _id: "6706c7cbeb3b4434e45d8bd3", stateName: "Thailand" },
+  { _id: "6706c7dceb3b4434e45d8bd7", stateName: "Vietnam" },
+  { _id: "6706c7d7eb3b4434e45d8bd5", stateName: "Maldives" },
 ];
 
 const AddHoneymoon = () => {
   const [stateName, setStateName] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
-    tripDate: [""],
     tripLocation: "",
     tripDuration: "",
     tripInclusions: [""],
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
-    sharing: [{ title: "Double", price: 0 }],
-    otherInfo: [{ title: "", points: [""] }],
     tripImages: [""],
     pdf: null,
     tripDescription: "",
@@ -59,61 +58,76 @@ const AddHoneymoon = () => {
     updatedArray.splice(index, 1);
     setTripDetails({ ...tripDetails, [arrayName]: updatedArray });
   };
-
-  // Handle adding a new trip date
-  const addTripDate = () => {
-    setTripDetails({
-      ...tripDetails,
-      tripDate: [...tripDetails.tripDate, ""],
-    });
-  };
-
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (
-        tripDetails.tripImages.length > 0 &&
-        typeof tripDetails.tripImages[0] === "object"
-      ) {
-        throw new Error("Invalid tripImages");
-      }
-      if (
-        tripDetails.pdf.length > 0 &&
-        typeof tripDetails.pdf[0] === "object"
-      ) {
-        throw new Error("Invalid pdf");
-      }
-      if (typeof tripDetails.tripBackgroundImg === "object") {
-        throw new Error("Invalid tripBackgroundImg");
-      }
-      const response = await axios.post(
-        "http://localhost:5000/api/honeymoon/add-honeymoon-package",
-        {
-          stateName,
-          trips: [tripDetails],
-        }
-      );
-
-      if (response.status === 200) {
-        alert("Honeymoon package added successfully!");
-      }
-    } catch (error) {
-      console.error("Error adding honeymoon package:", error);
+    if (!selectedState) {
+      alert("Please select a state before submitting the form.");
+      return;
     }
+    console.log(selectedState);
+    e.preventDefault();
+
+    const formData = new FormData();
+    Object.keys(tripDetails).forEach((key) => {
+      if (key === "tripImages") {
+        tripDetails.tripImages.forEach((image) => {
+          formData.append("tripImages", image);
+        });
+      } else if (key === "pdf" && tripDetails.pdf) {
+        formData.append("pdf", tripDetails.pdf);
+      } else if (key === "tripBackgroundImg" && tripDetails.tripBackgroundImg) {
+        formData.append("tripBackgroundImg", tripDetails.tripBackgroundImg);
+      } else if (Array.isArray(tripDetails[key])) {
+        if (key === "tripItinerary") {
+          tripDetails.tripItinerary.forEach((item, index) => {
+            formData.append(`${key}[${index}][title]`, item.title);
+            item.points.forEach((point, pointIndex) => {
+              formData.append(`${key}[${index}][points][${pointIndex}]`, point);
+            });
+          });
+        } else {
+          tripDetails[key].forEach((item, index) => {
+            formData.append(`${key}[${index}]`, item);
+          });
+        }
+      } else {
+        formData.append(key, tripDetails[key]);
+      }
+    });
+    fetch(
+      `http://localhost:5000/api/honeymoon/add-honeymoon-package/${selectedState}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(text || "Network response was not ok");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Trip submitted successfully", data);
+        alert("Trip submitted successfully!");
+      })
+      .catch((error) => {
+        console.error("Error submitting trip", error);
+      });
   };
 
   const handleImageChange = (e) => {
-    const images = Array.from(e.target.files).map((file) => file.name);
+    const images = Array.from(e.target.files);
     setTripDetails({ ...tripDetails, tripImages: images });
   };
   const handlePackageChange = (e) => {
-    const image = e.target.files[0].name;
+    const image = e.target.files[0];
     setTripDetails({ ...tripDetails, tripBackgroundImg: image });
   };
   const handlePdfChange = (e) => {
-    const pdf = e.target.files[0].name;
-    setTripDetails({ ...tripDetails, pdf: pdf });
+    setTripDetails({ ...tripDetails, pdf: e.target.files[0] });
   };
 
   return (
@@ -126,14 +140,16 @@ const AddHoneymoon = () => {
           <select
             type="text"
             name="stateName"
-            value={stateName}
-            onChange={(e) => setStateName(e.target.value)}
+            value={selectedState}
+            onChange={(e) => setSelectedState(e.target.value)}
             required
             className="w-full p-2 border border-gray-300 rounded"
           >
             <option value="">Select Place</option>
             {states?.map((state) => (
-              <option value={state.stateName}>{state.stateName}</option>
+              <option key={state._id} value={state._id}>
+                {state.stateName}
+              </option>
             ))}
           </select>
         </div>
@@ -145,19 +161,6 @@ const AddHoneymoon = () => {
             value={tripDetails.tripName}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripName: e.target.value })
-            }
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Price:</label>
-          <input
-            type="text"
-            name="tripPrice"
-            value={tripDetails.tripPrice}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"
@@ -178,7 +181,6 @@ const AddHoneymoon = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-
         {/* Trip Overview */}
         <div className="mb-4">
           <label className="block text-gray-700">
@@ -224,78 +226,6 @@ const AddHoneymoon = () => {
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
-        {/* Trip Dates */}
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Dates:</label>
-          {tripDetails.tripDate.map((date, index) => (
-            <div key={index} className="flex items-center">
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => handleArrayChange(e, index, "tripDate")}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-              <button
-                type="button"
-                onClick={addTripDate}
-                className="ml-2 p-1 text-white bg-green-600 rounded"
-              >
-                +
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Dynamic inputs Sharing Options */}
-        <div className="mb-4">
-          <label className="block text-gray-700">Sharing Options</label>
-          {tripDetails.sharing.map((option, index) => (
-            <div key={index} className="flex items-center mb-2">
-              {/* Dropdown for Sharing Type */}
-              <select
-                value={option.title}
-                onChange={(e) =>
-                  handleArrayChange(e, index, "sharing", "title")
-                }
-                className="w-1/3 p-2 border border-gray-300 rounded"
-              >
-                <option value="">Select Sharing Type</option>
-                <option value="Double">Double</option>
-                <option value="Triple">Triple</option>
-                <option value="Quad">Quad</option>
-              </select>
-
-              {/* Input for Price */}
-              <input
-                type="number"
-                value={option.price}
-                onChange={(e) =>
-                  handleArrayChange(e, index, "sharing", "price")
-                }
-                placeholder="Price"
-                className="w-1/3 p-2 border border-gray-300 rounded ml-2"
-              />
-
-              {/* Remove Button */}
-              <button
-                type="button"
-                onClick={() => handleRemoveItem(index, "sharing")}
-                className="ml-2 text-red-600"
-              >
-                <FaTrash />
-              </button>
-            </div>
-          ))}
-          {/* Add New Sharing Option */}
-          <button
-            type="button"
-            onClick={() => handleAddItem("sharing", { title: "", price: "" })}
-            className="text-green-600 mt-2"
-          >
-            <FaPlus /> Add Sharing Option
-          </button>
-        </div>
-
         {/* Dynamic Inputs: Trip Inclusions */}
         <div className="mb-4">
           <label className="block text-gray-700">Trip Inclusions:</label>

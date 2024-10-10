@@ -51,7 +51,6 @@ const Place = () => {
             river canyoning, hiking, and more. You can also enjoy the
             breathtaking views of nature here.
           </p>
-
           <Hiking />
         </div>
 

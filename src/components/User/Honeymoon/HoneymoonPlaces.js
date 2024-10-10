@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Nav from "../../Nav";
-import "../../Places.css"; // Ensure this file has the styles defined above
+import "../../Places.css";
 import bg from "../../../img/india.jpg";
+import Card from "../../3dCard";
 import Whyuss from "../../Whyuss";
 import Review from "../../Review";
 import Dropnav from "../../../components/Dropnav";
@@ -10,10 +11,8 @@ import cont from "../../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import Mainreview from "../../Mainreview";
-import HoneymoonCard from "./HoneymoonCard";
-import StateHoneymoon from "./StateHoneymoon";
 
-const HomeHoneymoon = () => {
+const HoneymoonPlaces = () => {
   const { name } = useParams();
   console.log(name);
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -33,39 +32,11 @@ const HomeHoneymoon = () => {
         <div>
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>
-            <Link to={`/Honeymoon/Packages/${name}`}>
-              <StateHoneymoon />
+            <Link to={`/Packagedetails/${name}`}>
+              <Card />
             </Link>
           </div>
         </div>
-        <div className="travel-guidelines1-container p-4 md:p-6 lg:p-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-            {name} Travel Guidelines
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4">
-            The following are the travel guidelines for {name} as announced by
-            the {name} Government latest on 04-08-2021.
-          </p>
-          <ol className="list-decimal ml-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed space-y-2">
-            <li>
-              All tourists entering the territory of {name} need to have Aarogya
-              Setu on their phones.
-            </li>
-            <li>
-              Social Distancing should be maintained at all times in public
-              places.
-            </li>
-            <li>
-              Travellers need to have face masks on when travelling in public
-              places.
-            </li>
-            <li>
-              Washing of hands and the use of sanitizers is highly recommended
-              by the government.
-            </li>
-          </ol>
-        </div>
-
         <div className="why">
           <Whyuss />
         </div>
@@ -176,4 +147,4 @@ const HomeHoneymoon = () => {
   );
 };
 
-export default HomeHoneymoon;
+export default HoneymoonPlaces;

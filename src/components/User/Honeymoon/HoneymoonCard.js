@@ -1,96 +1,97 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { GiClockwork } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
-import { FaCalendarAlt } from "react-icons/fa";
-import "../../3dCard.css";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate
 
-const HoneymoonCard = () => {
-  const [trips, setTrips] = useState([]);
-  const { name } = useParams();
+function AllPackagesCard() {
+  const [packages, setPackages] = useState([]);
+  const [visiblePackages, setVisiblePackages] = useState(6);
+  const navigate = useNavigate(); // Initializing useNavigate
 
   useEffect(() => {
-    const fetchTrips = async () => {
+    const fetchAllPackages = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/user/getTripDetails/${name}`
+        const response = await fetch(
+          "http://localhost:5000/api/honeymoon/get-all-honeymoon"
         );
-        setTrips(response.data);
+        const data = await response.json();
+        setPackages(data);
       } catch (error) {
-        console.error("Error fetching trips:", error);
+        console.error("Error fetching packages:", error);
       }
     };
-    fetchTrips();
-  }, [name]);
+    fetchAllPackages();
+  }, []);
 
-  const getValidDate = (tripDates) => {
-    if (!tripDates) return null;
-    const today = new Date();
-    const validDates = tripDates
-      .map((date) => new Date(date))
-      .filter((date) => date >= today);
-    validDates.sort((a, b) => a - b);
-    return validDates.length > 0 ? validDates[0] : null;
+  const loadMorePackages = () => {
+    setVisiblePackages((prevVisible) => prevVisible + 6);
   };
 
-  const filteredTrips = trips
-    .filter((trip) => trip.stateName === name)
-    .flatMap((trip) => trip.trips);
+  const handlePackageClick = (stateName, tripName) => {
+    const name = encodeURIComponent(stateName);
+    navigate(`/honeymoon/${tripName}/${name}`);
+  };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24 mx-10 md:mx-20 lg:mx-40">
-      {filteredTrips.length > 0 ? (
-        filteredTrips.map((trip, index) => {
-          const nextDate = getValidDate(trip.tripDate);
-          if (!nextDate) return null;
-          return (
-            <Link
-              key={index}
-              to={`/trip/${trip.tripName}/${name}`}
-              className="h-[400px] sm:h-[450px] relative shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
-            >
-              <img
-                src={`${trips.tripImages}`}
-                alt={trips.tripName}
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-              />
-              <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
-                <span className="font-bold text-sm">₹ {trips.tripPrice}</span>
-              </div>
-              <div className="w-full p-3 rounded-lg flex flex-col absolute bottom-0 bg-black bg-opacity-75">
-                <h2 className="text-xs md:text-sm lg:text-base font-bold text-white mb-2">
-                  {trips.tripName}
-                </h2>
-                <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center text-gray-600">
-                    <GiClockwork className="mr-2 text-blue-500" />
-                    <span className="text-xs md:text-sm text-white">
-                      {trips.tripDuration}
-                    </span>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <FaCalendarAlt className="mr-2 text-blue-500" />
-                    <span className="text-xs md:text-sm text-white">
-                      {nextDate.toLocaleDateString()}
-                    </span>
+    <div className="container mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {packages.length > 0 ? (
+          packages.slice(0, visiblePackages).map((pkg, index) =>
+            pkg.trips.map((trip, tripIndex) => (
+              <div
+                key={`${index}-${tripIndex}`}
+                className="h-[450px] relative shadow-lg rounded-lg mb-20 flex justify-center items-center cursor-pointer"
+                onClick={() => handlePackageClick(pkg.stateName, trip.tripName)}
+              >
+                <img
+                  src={trip.tripImages?.length > 0 ? trip.tripImages[0] : 'fallback-image-url'} // Handle image mapping
+                  alt={trip.tripName}
+                  className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                />
+                <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
+                  <span className="font-bold text-sm">Customised</span>
+                </div>
+                <div className="w-full p-2 rounded-lg flex flex-col md:flex-row absolute bottom-0 bg-black">
+                  <div className="w-full">
+                    <h2 className="text-xs font-bold text-white mb-10">
+                      {pkg.stateName} - {trip.tripName}
+                    </h2>
+                    <div className="flex flex-row justify-between items-center w-full">
+                      <div className="flex items-center text-gray-600 mb-2">
+                        <GiClockwork className="mr-2 text-blue-500" />
+                        <span className="text-white text-xs">
+                          {`${trip.tripDuration} Days`}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center text-gray-600 mb-2">
+                      <MdLocationOn className="mr-2 text-blue-500" />
+                      <span className="text-white text-xs">
+                        {pkg.stateName}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <MdLocationOn className="mr-2 text-blue-500" />
-                  <span className="text-xs md:text-sm text-white">
-                    {trips.pickAndDrop}
-                  </span>
-                </div>
               </div>
-            </Link>
-          );
-        })
-      ) : (
-        <p>No trips found for the selected state.</p>
+            ))
+          )
+        ) : (
+          <p>No packages available</p>
+        )}
+      </div>
+
+      {visiblePackages < packages.length && (
+        <div className="flex justify-center mb-6">
+          <button
+            onClick={loadMorePackages}
+            className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg"
+          >
+            Load More
+          </button>
+        </div>
       )}
     </div>
   );
-};
+}
 
-export default HoneymoonCard;
+export default AllPackagesCard;

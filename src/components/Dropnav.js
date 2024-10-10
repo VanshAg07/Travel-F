@@ -67,13 +67,13 @@ const Navbar = () => {
                   : key === "internationalPackage"
                   ? "/intern"
                   : key === "honeymoonPackages"
-                  ? "/Honeymoon"
+                  ? "/honeymoon"
                   : key === "corporatePackages"
-                  ? "/Corporate"
+                  ? "/corporate"
                   : key === "groupsTours"
-                  ? "/Grouptours"
+                  ? "/grouptours"
                   : key === "weekendTrips"
-                  ? "/Weekends"
+                  ? "/weekends"
                   : "#"
               }
             >
@@ -101,7 +101,9 @@ const Navbar = () => {
                   <li key={index} className="dropdown-item">
                     <Link
                       to={
-                        key === "indiaPackages"
+                        key === "honeymoonPackages"
+                          ? `/honeymoon-packages/${link}`
+                          : key === "indiaPackages"
                           ? `/place/${link}`
                           : key === "internationalPackage"
                           ? `/places/${link}`

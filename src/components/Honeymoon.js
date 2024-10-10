@@ -4,7 +4,6 @@ import Nav from "../components/Nav";
 import intern from "../img/india.jpg";
 import Lottie from "lottie-react";
 import animationData from "../img/intern.json";
-import Card from "../components/3dCard.js";
 import shi from "../img/crd-shi.png";
 import Whyuss from "./Whyuss.js";
 import cont from "../img/cont-button.json";
@@ -22,6 +21,7 @@ import shi6 from "../img/19.png";
 import shi7 from "../img/17.png";
 import shi8 from "../img/20.png";
 import { Link } from "react-router-dom";
+import HoneymoonCard from "./User/Honeymoon/HoneymoonCard.js";
 
 const Honeymoon = () => {
   const [formData, setFormData] = useState({
@@ -149,7 +149,7 @@ const Honeymoon = () => {
       </p>
 
       <div>
-        <Card />
+        <HoneymoonCard />
       </div>
       <Homeglry />
       <Whyuss />
