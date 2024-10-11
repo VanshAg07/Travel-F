@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 const states = [
-  { _id: "6706e79d4bb9ec346681ea57", stateName: "Kasol" },
-  { _id: "6706e7a74bb9ec346681ea59", stateName: "Manikaran" },
-  { _id: "6706e7b24bb9ec346681ea5b", stateName: "Solang" },
-  { _id: "6706e7984bb9ec346681ea55", stateName: "Manali" },
-  { _id: "6706e7bb4bb9ec346681ea5d", stateName: "Sissu" },
-  { _id: "6706e7c74bb9ec346681ea5f", stateName: "Atal Tunnel" },
+  { _id: "6707ce4042f18b18911cdd7b", stateName: "Manali Kasol Kheerganga" },
+  { _id: "6707ccdb42f18b18911cdd69", stateName: "Manali Solang Kasol" },
+  { _id: "6707ce5f42f18b18911cdd7d", stateName: "Kasol Kheerganga" },
+  { _id: "6707cd0142f18b18911cdd6d", stateName: "Manali Kasol Kalga" },
+  { _id: "6707ce8a42f18b18911cdd7f", stateName: "Jibhi Tirthanvalley" },
+  { _id: "6707cd6542f18b18911cdd73", stateName: "Udaipur" },
+  { _id: "6707cd9342f18b18911cdd75", stateName: "Chopta Tungnath" },
+  { _id: "6707cdc242f18b18911cdd77", stateName: "Spiti Valley" },
+  { _id: "6707cddf42f18b18911cdd79", stateName: "Shimla Manali" },
 ];
 
 const AddWeekend = () => {
@@ -57,6 +60,7 @@ const AddWeekend = () => {
     updatedArray.splice(index, 1);
     setTripDetails({ ...tripDetails, [arrayName]: updatedArray });
   };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     if (!selectedState) {
@@ -150,7 +154,7 @@ const AddWeekend = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-6">Add Honeymoon Package</h2>
+      <h2 className="text-2xl font-bold mb-6">Add Weekend Packages</h2>
       <form onSubmit={handleSubmit}>
         {/* State Name */}
         <div className="mb-4">
@@ -179,6 +183,19 @@ const AddWeekend = () => {
             value={tripDetails.tripName}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripName: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Price</label>
+          <input
+            type="text"
+            name="tripPrice"
+            value={tripDetails.tripPrice}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

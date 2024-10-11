@@ -37,7 +37,17 @@ const Navbar = () => {
       "Maldives",
       "Vietnam",
     ],
-    weekendTrips: ["Weekend Getaways"],
+    weekendTrips: [
+      "Manali Kasol Kheerganga",
+      "Manali Solang Kasol",
+      "Kasol Kheerganga",
+      "Manali Kasol Kalga",
+      "Jibhi Tirthanvalley",
+      "Udaipur",
+      "Chopta Tungnath",
+      "Spiti Valley",
+      "Shimla Manali",
+    ],
     groupsTours: [],
     corporatePackages: [],
   };
@@ -107,6 +117,8 @@ const Navbar = () => {
                           ? `/place/${link}`
                           : key === "internationalPackage"
                           ? `/places/${link}`
+                          : key === "weekendTrips"
+                          ? `/weekends`
                           : `/place/${link}`
                       }
                     >

@@ -13,8 +13,10 @@ const DateCosting = () => {
     doubleSharing,
     tripleSharing,
     quadSharing,
-    stateName
+    stateName,
   } = location.state || {};
+
+  console.log(doubleSharing, tripleSharing, quadSharing);
 
   const tripDates = tripDatesFromState.map((date) => ({
     date,
@@ -85,7 +87,7 @@ const DateCosting = () => {
         doubleSharing,
         tripleSharing,
         quadSharing,
-        stateName
+        stateName,
       },
     });
   };
@@ -160,22 +162,37 @@ const DateCosting = () => {
                   Cost (Per Person)
                 </span>
               </div>
-              <div className="flex justify-between items-center p-4">
-                <span className="font-semibold">Double Sharing</span>
-                <span className="text-gray-800 font-semibold">₹{doubleSharing} /-</span>
-              </div>
-              <div className="flex justify-between items-center p-4">
-                <span className="font-semibold">Triple Sharing</span>
-                <span className="text-gray-800 font-semibold">₹{tripleSharing} /-</span>
-              </div>
-              <div className="flex justify-between items-center p-4">
-                <span className="font-semibold">Quad Sharing</span>
-                <span className="text-gray-800 font-semibold">₹{quadSharing} /-</span>
-              </div>
+
+              {doubleSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Double Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{doubleSharing} /-
+                  </span>
+                </div>
+              )}
+
+              {tripleSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Triple Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{tripleSharing} /-
+                  </span>
+                </div>
+              )}
+
+              {quadSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Quad Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{quadSharing} /-
+                  </span>
+                </div>
+              )}
             </div>
             <div className="flex justify-between items-center w-full max-w-4xl mt-6 p-4 bg-white shadow-lg rounded-lg">
               <div className="text-xl font-bold text-blue-600">
-                Starting Price: ₹{doubleSharing} per person
+                Starting Price: ₹{doubleSharing || "N/A"} per person
               </div>
               <button
                 onClick={handleBooking}

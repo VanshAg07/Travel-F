@@ -122,9 +122,7 @@ const BookingOptions = () => {
     const res = await loadRazorpayScript();
 
     if (!res) {
-      alert(
-        "Failed to load Razorpay SDK. Please check your internet connection."
-      );
+      alert("Failed to load Razorpay SDK. Please check your internet connection.");
       setIsLoading(false);
       return;
     }
@@ -191,10 +189,7 @@ const BookingOptions = () => {
         alert("Payment initiation failed!");
       }
     } catch (error) {
-      console.error(
-        "Payment error:",
-        error.response ? error.response.data : error
-      );
+      console.error("Payment error:", error.response ? error.response.data : error);
       alert("Payment initiation failed. Please try again.");
     } finally {
       setIsLoading(false);
@@ -226,39 +221,45 @@ const BookingOptions = () => {
 
             {/* Sharing Options with Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <SharingOption
-                type="double"
-                price={doubleSharing}
-                selected={selectedSharing}
-                onClick={handleSharingSelect}
-                className={`transition-transform duration-300 transform ₹{
-                  selectedSharing === "double"
-                    ? "scale-105 border border-[#03346E] bg-gray-100"
-                    : ""
-                }`}
-              />
-              <SharingOption
-                type="triple"
-                price={tripleSharing}
-                selected={selectedSharing}
-                onClick={handleSharingSelect}
-                className={`transition-transform duration-300 transform ₹{
-                  selectedSharing === "triple"
-                    ? "scale-105 border border-[#03346E] bg-gray-100"
-                    : ""
-                }`}
-              />
-              <SharingOption
-                type="quad"
-                price={quadSharing}
-                selected={selectedSharing}
-                onClick={handleSharingSelect}
-                className={`transition-transform duration-300 transform ₹{
-                  selectedSharing === "quad"
-                    ? "scale-105 border border-[#03346E] bg-gray-100"
-                    : ""
-                }`}
-              />
+              {doubleSharing && (
+                <SharingOption
+                  type="double"
+                  price={doubleSharing}
+                  selected={selectedSharing}
+                  onClick={handleSharingSelect}
+                  className={`transition-transform duration-300 transform ${
+                    selectedSharing === "double"
+                      ? "scale-105 border border-[#03346E] bg-gray-100"
+                      : ""
+                  }`}
+                />
+              )}
+              {tripleSharing && (
+                <SharingOption
+                  type="triple"
+                  price={tripleSharing}
+                  selected={selectedSharing}
+                  onClick={handleSharingSelect}
+                  className={`transition-transform duration-300 transform ${
+                    selectedSharing === "triple"
+                      ? "scale-105 border border-[#03346E] bg-gray-100"
+                      : ""
+                  }`}
+                />
+              )}
+              {quadSharing && (
+                <SharingOption
+                  type="quad"
+                  price={quadSharing}
+                  selected={selectedSharing}
+                  onClick={handleSharingSelect}
+                  className={`transition-transform duration-300 transform ${
+                    selectedSharing === "quad"
+                      ? "scale-105 border border-[#03346E] bg-gray-100"
+                      : ""
+                  }`}
+                />
+              )}
             </div>
 
             <PeopleInput
@@ -288,7 +289,9 @@ const BookingOptions = () => {
                     ? doubleSharing
                     : selectedSharing === "triple"
                     ? tripleSharing
-                    : quadSharing}
+                    : selectedSharing === "quad"
+                    ? quadSharing
+                    : 0}
                 </span>
               </p>
               <p className="text-lg text-gray-600 w-full flex justify-between">
@@ -300,7 +303,9 @@ const BookingOptions = () => {
                       ? doubleSharing
                       : selectedSharing === "triple"
                       ? tripleSharing
-                      : quadSharing) * peopleCount
+                      : selectedSharing === "quad"
+                      ? quadSharing
+                      : 0) * peopleCount
                   ).toFixed(2)}
                 </span>
               </p>
@@ -320,7 +325,7 @@ const BookingOptions = () => {
                 <option value="full">Full Payment</option>
                 <option value="bookingAmount">Booking Amount</option>
               </select>
-              <p className="w-full justify-end flex">+ convience fees</p>
+              <p className="w-full justify-end flex">+ convenience fees</p>
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
               Total Amount: ₹{paymentAmount.toFixed(2)}
@@ -360,7 +365,7 @@ const BookingOptions = () => {
             </div>
 
             <button
-              className={`bg-[#03346E] text-white font-bold py-2 rounded w-full ₹{
+              className={`bg-[#03346E] text-white font-bold py-2 rounded w-full ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onClick={handlePayment}

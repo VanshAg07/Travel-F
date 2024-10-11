@@ -19,6 +19,7 @@ import shi20 from "./img/20.png";
 import shi21 from "./img/21.png";
 import shi19 from "./img/19.png";
 import { Link } from "react-router-dom";
+import AllInternational from "./components/International/AllInternational.js";
 // import Lottie from "lottie-react";
 
 const International = () => {
@@ -75,22 +76,22 @@ const International = () => {
     },
     {
       id: 18,
-      name: "Maldives",
+      name: "Bali",
       img: shi18,
     },
     {
       id: 19,
-      name: "Maldives",
+      name: "Thailand",
       img: shi19,
     },
     {
       id: 20,
-      name: "Maldives",
+      name: "Vietnam",
       img: shi20,
     },
     {
       id: 21,
-      name: "Maldives",
+      name: "Singapore",
       img: shi21,
     },
   ];
@@ -136,7 +137,7 @@ const International = () => {
       </p>
 
       <div>
-        <Card />
+        <AllInternational />
       </div>
       <Whyuss />
       <Review />
