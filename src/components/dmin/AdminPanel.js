@@ -136,7 +136,7 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(`http://localhost:5000/api/trip/state/${selectedState}/trip`, {
+    fetch(`https://api.travello10.com/api/trip/state/${selectedState}/trip`, {
       method: "POST",
       body: formData,
     })
