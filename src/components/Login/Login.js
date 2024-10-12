@@ -3,16 +3,18 @@ import bg from "../../images/LoginImg.png";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
+import { setUser } from "../../Slices/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const dispatch=useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://api.travello10.com/login-user", {
+      const response = await fetch("http://localhost:5000/login-user", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -32,8 +34,9 @@ function Login() {
         window.localStorage.setItem("token", data.data.token);
         window.localStorage.setItem("username", data.data.username);
         window.localStorage.setItem("loggedIn", true);
-
         const decodedToken = jwtDecode(data.data.token);
+        dispatch(setUser(data.data));
+        console.log(data.data)
         const role = decodedToken.role;
 
         if (role === "admin") {
@@ -49,8 +52,7 @@ function Login() {
       setError("An error occurred");
       toast.error("An error occurred");
     }
-  };
-
+  };  
   return (
     <div
       className="bg-cover bg-center bg-[#16423C] h-screen w-full flex justify-center items-center"
@@ -101,7 +103,9 @@ function Login() {
             </button>
           </form>
 
-          <p className="mt-3 text-gray-500 text-sm">-------------- OR --------------</p>
+          <p className="mt-3 text-gray-500 text-sm">
+            -------------- OR --------------
+          </p>
 
           <p className="mt-2 text-gray-600 text-sm">
             Don't have an account?

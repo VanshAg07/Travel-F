@@ -64,7 +64,7 @@ const Dashboard = () => {
       tripImage: imageUrl,
     };
     try {
-      await axios.post("https://api.travello10.com/api/admin/addTrip", tripData);
+      await axios.post("http://localhost:5000/api/admin/addTrip", tripData);
       toast.success("Trip added successfully!");
       setTripDetails({
         stateName: "",

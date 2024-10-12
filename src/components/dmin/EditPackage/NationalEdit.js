@@ -6,6 +6,7 @@ function NationalEdit() {
   const [selectedState, setSelectedState] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [showPdf, setShowPdf] = useState(false);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -22,15 +23,24 @@ function NationalEdit() {
     sharing: [{ title: "", price: "" }],
     tripBackgroundImg: "",
     overView: "",
+    status: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-national-packages")
       .then((response) => {
         if (response.data) {
-          setPackages(response.data.states || []);
+          const packages = response.data.states || [];
+          packages.forEach((pkg) => {
+            pkg.trips.forEach((trip) => {
+              if (!Array.isArray(trip.tripDate)) {
+                trip.tripDate = [trip.tripDate];
+              }
+            });
+          });
+          setPackages(packages);
         }
       })
       .catch((error) => {
@@ -49,17 +59,14 @@ function NationalEdit() {
       tripExclusions: trip.tripExclusions || [""],
       tripItinerary: trip.tripItinerary || [{ title: "", points: [""] }],
       sharing: trip.sharing || [{ title: "", price: "" }],
-      tripBackgroundImg: trip.tripBackgroundImg ? trip.tripBackgroundImg.replace(/^http:\/\/localhost:5000\/upload\//, '') : "",
       overView: trip.overView || "",
-      pdf: trip.pdf || null,
-      tripDate: trip.tripDate || [""],
+      tripDate: trip.tripDate || [], // Set tripDate to an array if it's not already
       tripLocation: trip.tripLocation || "",
       pickAndDrop: trip.pickAndDrop || "",
-      tripImages: trip.tripImages || [],
+      status: trip.status || "",
     });
     setIsModalOpen(true);
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTripDetails((prevDetails) => ({
@@ -97,7 +104,7 @@ function NationalEdit() {
     if (selectedTrip) {
       axios
         .patch(
-          `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -118,7 +125,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -151,6 +158,26 @@ function NationalEdit() {
     }
   };
 
+  const handleDateChange = (index, newDate) => {
+    setTripDetails((prevDetails) => {
+      const newDates = [...prevDetails.tripDate];
+      newDates[index] = newDate;
+      return { ...prevDetails, tripDate: newDates };
+    });
+  };
+  const handleDeleteDate = (index) => {
+    setTripDetails((prevDetails) => {
+      const newDates = prevDetails.tripDate.filter((_, i) => i !== index);
+      return { ...prevDetails, tripDate: newDates };
+    });
+  };
+
+  const handleAddDate = () => {
+    setTripDetails((prevDetails) => ({
+      ...prevDetails,
+      tripDate: [...prevDetails.tripDate, ""],
+    }));
+  };
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
@@ -227,6 +254,25 @@ function NationalEdit() {
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
+                  Status:
+                </label>
+                <select
+                  name="status"
+                  value={tripDetails.status}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                >
+                  <option value="">Select a status</option>
+                  {statusOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
                   Trip Name:
                 </label>
                 <input
@@ -291,15 +337,32 @@ function NationalEdit() {
               </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
-                  TripDates:
+                  Trip Dates:
                 </label>
-                <textarea
-                  name="tripDate"
-                  value={tripDetails.tripDate}
-                  onChange={handleInputChange}
-                  required
-                  className="mt-1 p-2 w-full border rounded-lg"
-                />
+                {tripDetails.tripDate.map((date, index) => (
+                  <div key={index} className="flex items-center mb-2">
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={(e) => handleDateChange(index, e.target.value)}
+                      className="mt-1 p-2 flex-grow border rounded-lg mr-2"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteDate(index)}
+                      className="bg-red-500 text-white px-2 py-1 rounded-lg"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleAddDate}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg mt-2"
+                >
+                  Add Date
+                </button>
               </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
@@ -325,6 +388,7 @@ function NationalEdit() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
+
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Inclusions:
@@ -477,24 +541,6 @@ function NationalEdit() {
                 </button>
               </div>
 
-              <div className="mb-4">
-                <label className="block font-medium text-gray-700">
-                  Background Image:
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="mt-1 p-2 w-full border rounded-lg"
-                />
-                <div className="mt-2">
-                  <img
-                    src={tripDetails.tripBackgroundImg}
-                    alt="Trip Background"
-                    className="max-w-full h-auto max-h-48 object-cover rounded-lg"
-                  />
-                </div>
-              </div>
               <div className="flex justify-end space-x-4">
                 <button
                   type="button"

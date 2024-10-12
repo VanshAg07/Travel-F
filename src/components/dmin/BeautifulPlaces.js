@@ -51,7 +51,7 @@ const BeautifulPlaces = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/addBeautifulPlaces",
+        "http://localhost:5000/api/admin/addBeautifulPlaces",
         formData,
         {
           headers: {

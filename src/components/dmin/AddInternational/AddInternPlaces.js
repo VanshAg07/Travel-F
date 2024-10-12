@@ -47,7 +47,7 @@ const AddInternPlaces = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/international/addBeautifulPlaces",
+        "http://localhost:5000/api/admin/international/addBeautifulPlaces",
         formData,
         {
           headers: {

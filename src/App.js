@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.scss";
 import Home from "./Home.js";
 import Contactus from "./Contactus.js";
@@ -49,15 +55,30 @@ import Weekends from "./components/Weekends.js";
 import ComingSoon from "./components/coming/ComingSoon.jsx";
 import InternationalPlaces from "./components/International/InternationalPlace.js";
 import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
-import Exploremob from "./components/explore-mob.js"
+import Exploremob from "./components/explore-mob.js";
 import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
 import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
+import { useSelector } from "react-redux";
+
 const App = () => {
+  const { user } = useSelector((state) => state.profile);
+  const roleMiddleware = (roles) => {
+    if (!user || !roles.includes(user.role)) {
+      return <Navigate to="/" replace />;
+    }
+    return <Outlet />;
+  };
+
+  const adminMiddleware = roleMiddleware(["admin"]);
+  const userMiddleware = roleMiddleware(["user"]);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin" element={<AdminPortal />} />
+        <Route path="/admin" element={adminMiddleware}>
+          <Route path="/admin" element={<AdminPortal />} />
+        </Route>
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
@@ -106,8 +127,14 @@ const App = () => {
           path="/International/Packages/:name"
           element={<Packagedetails />}
         />
-        <Route path="/international/:tripName/:name" element={<PackageInternatioanl />} />
-        <Route path="/honeymoon/:tripName/:name" element={<PackageHoneymoon />} />
+        <Route
+          path="/international/:tripName/:name"
+          element={<PackageInternatioanl />}
+        />
+        <Route
+          path="/honeymoon/:tripName/:name"
+          element={<PackageHoneymoon />}
+        />
         <Route path="/weekends/:tripName/:name" element={<PackageWeekend />} />
         <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
