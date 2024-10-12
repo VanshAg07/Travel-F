@@ -27,7 +27,7 @@ function NationalEdit() {
 
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-national-packages")
       .then((response) => {
         if (response.data) {
           setPackages(response.data.states || []);
@@ -97,7 +97,7 @@ function NationalEdit() {
     if (selectedTrip) {
       axios
         .patch(
-          `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -118,7 +118,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");

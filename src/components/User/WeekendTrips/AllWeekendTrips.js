@@ -12,7 +12,7 @@ function AllWeekendTrips() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/weekends/get-all-weekend"
+          "http://localhost:5000/api/weekends/get-all-weekend"
         );
         const data = await response.json();
         setPackages(data);

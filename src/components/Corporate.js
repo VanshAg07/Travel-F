@@ -14,7 +14,8 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
-import Forms from "./Forms";
+import Grouptourform from "../components/Groupform";
+
 const Corporate = () => {
   const [expandedMore, setExpandedMore] = useState(false);
 
@@ -353,6 +354,7 @@ const Corporate = () => {
         <Servicecorpo />
         <ClienteleHallOfFame />
         <Whyuss />
+        <Grouptourform />
       </div>
       <MainFooter />
       <div className="fixed-button-1">

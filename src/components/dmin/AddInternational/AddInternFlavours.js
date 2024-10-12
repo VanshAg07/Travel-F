@@ -46,7 +46,7 @@ const AddInternFlavours = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/international/addRichFlavour",
+        "http://localhost:5000/api/admin/international/addRichFlavour",
         formData,
         {
           headers: {

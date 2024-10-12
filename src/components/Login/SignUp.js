@@ -12,7 +12,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://api.travello10.com/register", {
+      const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         crossDomain: true,
         headers: {

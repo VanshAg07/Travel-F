@@ -129,7 +129,7 @@ const BookingOptions = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/payment/razorpay",
+        "http://localhost:5000/api/payment/razorpay",
         {
           amount: paymentAmount,
           customerPhone,
@@ -164,7 +164,7 @@ const BookingOptions = () => {
               stateName,
             };
             const result = await axios.post(
-              "https://api.travello10.com/api/payment/verify",
+              "http://localhost:5000/api/payment/verify",
               data
             );
             if (result.data.success) {
