@@ -58,10 +58,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminPortal />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/admin" element={<AdminPortal />} />
         <Route path="/Contactus" element={<Contactus />} />
         <Route path="/Glry" element={<Glry />} />
         <Route path="/Cont" element={<Cont />} />
@@ -113,8 +113,8 @@ const App = () => {
         <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
-        <Route path="/booking-options" element={<BookingOptions />} />
-        {/* <Route path='/' element={<ComingSoon />} /> */}
+        <Route path="/booking-options" element={<BookingOptions />} /> */}
+        <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );
