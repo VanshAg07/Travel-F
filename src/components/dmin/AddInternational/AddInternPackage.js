@@ -97,7 +97,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/admin/international-package/${selectedState}`,
+      `https://api.travello10.com/api/admin/international-package/${selectedState}`,
       {
         method: "POST",
         body: formData,
@@ -148,7 +148,7 @@ const AddInternPackage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-6">Add Honeymoon Package</h2>
+      <h2 className="text-2xl font-bold mb-6">Add International Package</h2>
       <form onSubmit={handleSubmit}>
         {/* State Name */}
         <div className="mb-4">

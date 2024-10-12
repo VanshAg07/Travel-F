@@ -49,18 +49,18 @@ import Weekends from "./components/Weekends.js";
 import ComingSoon from "./components/coming/ComingSoon.jsx";
 import InternationalPlaces from "./components/International/InternationalPlace.js";
 import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
-import HoneymoonCard from "./components/User/Honeymoon/HoneymoonCard.js";
 import Exploremob from "./components/explore-mob.js"
 import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
+import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/admin" element={<AdminPortal />} />
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/admin" element={<AdminPortal />} />
         <Route path="/Contactus" element={<Contactus />} />
         <Route path="/Glry" element={<Glry />} />
         <Route path="/Cont" element={<Cont />} />
@@ -108,6 +108,7 @@ const App = () => {
         />
         <Route path="/international/:tripName/:name" element={<PackageInternatioanl />} />
         <Route path="/honeymoon/:tripName/:name" element={<PackageHoneymoon />} />
+        <Route path="/weekends/:tripName/:name" element={<PackageWeekend />} />
         <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />

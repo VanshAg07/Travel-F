@@ -13,6 +13,7 @@ import Bookings from "./Bookings/Bookings";
 import HomeIntern from "./AddInternational/HomeIntern";
 import AddHoneymoon from "./Honeymoon/AddHoneymoon";
 import AddWeekend from "./Weekends/AddWeekend";
+import NationalEdit from "./EditPackage/NationalEdit";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("user-details");
@@ -20,7 +21,7 @@ const AdminPortal = () => {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:5000/api/admin/logout")
+      .post("https://api.travello10.com/api/admin/logout")
       .then(() => {
         navigate("/");
       })
@@ -95,6 +96,18 @@ const AdminPortal = () => {
           </li>
           <li>
             <button
+              onClick={() => setActiveTab("edit-national")}
+              className={`block w-full text-left py-4 px-4 ${
+                activeTab === "weekends"
+                  ? "bg-red-600"
+                  : "hover:bg-gray-700"
+              }`}
+            >
+              National Edit
+            </button>
+          </li>
+          <li>
+            <button
               onClick={() => setActiveTab("add-user")}
               className={`block w-full text-left py-4 px-4 ${
                 activeTab === "add-user" ? "bg-red-600" : "hover:bg-gray-700"
@@ -123,13 +136,14 @@ const AdminPortal = () => {
           Logout
         </button>
       </nav>
-      <div className="ml-[25%] w-[75%] p-8">
+      <div className="ml-[20%] w-[75%] p-8">
         {activeTab === "user-details" && <UserDetails />}
         {activeTab === "national-packages" && <National />}
         {activeTab === "internnational-packages" && <HomeIntern />}
         {activeTab === "bookings" && <Bookings />}
         {activeTab === "honeymoon" && <AddHoneymoon />}
         {activeTab === "weekends" && <AddWeekend />}
+        {activeTab === "edit-national" && <NationalEdit />}
         {activeTab === "add-user" && <div>Add User Content</div>}
       </div>
     </div>

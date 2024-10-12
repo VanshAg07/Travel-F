@@ -53,7 +53,7 @@ const PackageInternatioanl = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/international/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/international/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
       } catch (error) {

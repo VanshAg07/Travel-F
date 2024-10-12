@@ -15,7 +15,7 @@ import Dropnav from "../../../components/Dropnav";
 import cont from "../../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
-const PackageHoneymoon = () => {
+const PackageWeekend = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
@@ -53,9 +53,10 @@ const PackageHoneymoon = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/honeymoon/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/weekends/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
+        setSharing(response.data.sharing);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -65,8 +66,35 @@ const PackageHoneymoon = () => {
     };
     fetchTripDetails();
   }, [name, tripName]);
+  console.log(sharing);
+  let doubleSharing;
+  let tripleSharing;
+  let quadSharing;
+  if (sharing && sharing.length >= 1) {
+    doubleSharing = sharing[0]?.price;
+    tripleSharing = sharing[1]?.price;
+    quadSharing = sharing[2]?.price;
+  } else {
+    console.log(
+      "Error: sharing array is empty or does not have enough elements"
+    );
+  }
   const handleDatesAndCostingClick = () => {
-    
+    if (trips && trips.tripDate) {
+      navigate("/dates-and-costing", {
+        state: {
+          tripDates: trips.tripDate,
+          tripPrice: trips.tripPrice,
+          tripName: trips.tripName,
+          doubleSharing,
+          tripleSharing,
+          quadSharing,
+          stateName: stateNames.stateName,
+        },
+      });
+    } else {
+      console.error("Trip dates not available");
+    }
   };
 
   return (
@@ -373,11 +401,17 @@ const PackageHoneymoon = () => {
         <div className="relative w-[25%] top-10 mb-20">
           <div className=" ml-10 mt-20 sticky top-10">
             <div className="bg-white shadow-lg p-4 rounded-2xl">
-              <p className="text-2xl text-blue-500">Customised</p>
-              <p className="text-l">Want Quotes</p>
+              <p className="text-2xl text-blue-500">
+                <span className="font-bold text-3xl">
+                  Rs.{trips.tripPrice}/-{" "}
+                </span>
+                per person
+              </p>
               <div className="bg-blue-500 items-center justify-center flex p-4 rounded-xl mt-5">
                 <button onClick={handleDatesAndCostingClick}>
-                  <p className="text-white text-xl font-bold">Get Quotes</p>
+                  <p className="text-white text-xl font-bold">
+                    Dates & Costing
+                  </p>
                 </button>
               </div>
             </div>
@@ -452,4 +486,4 @@ const PackageHoneymoon = () => {
   );
 };
 
-export default PackageHoneymoon;
+export default PackageWeekend;

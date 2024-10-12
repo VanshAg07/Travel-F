@@ -11,6 +11,7 @@ import cont from "../../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import Mainreview from "../../Mainreview";
+import PackageHoneymoon from "./PackageHoneymoon";
 
 const HoneymoonPlaces = () => {
   const { name } = useParams();
@@ -33,7 +34,7 @@ const HoneymoonPlaces = () => {
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>
             <Link to={`/Packagedetails/${name}`}>
-              <Card />
+              <PackageHoneymoon />
             </Link>
           </div>
         </div>
