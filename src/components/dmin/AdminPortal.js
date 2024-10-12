@@ -136,7 +136,7 @@ const AdminPortal = () => {
           Logout
         </button>
       </nav>
-      <div className="ml-[25%] w-[75%] p-8">
+      <div className="ml-[20%] w-[75%] p-8">
         {activeTab === "user-details" && <UserDetails />}
         {activeTab === "national-packages" && <National />}
         {activeTab === "internnational-packages" && <HomeIntern />}
