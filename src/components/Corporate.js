@@ -14,7 +14,8 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
-import Forms from "./Forms";
+import Grouptourform from "../components/Groupform";
+
 const Corporate = () => {
   const [expandedMore, setExpandedMore] = useState(false);
 
@@ -47,7 +48,7 @@ const Corporate = () => {
         </div>
         <Mainreview />
 
-        {/* <div className="justify-center items-center flex flex-col w-full ">
+         <div className="justify-center items-center flex flex-col w-full ">
           <h1 className="all-packages-heading">
             Unleash the Excitement in Corporate Tours
           </h1>
@@ -343,7 +344,7 @@ const Corporate = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
         <div className="">
           <Superpower />
           <Beyondordinary />
@@ -353,6 +354,7 @@ const Corporate = () => {
         <Servicecorpo />
         <ClienteleHallOfFame />
         <Whyuss />
+        <Grouptourform />
       </div>
       <MainFooter />
       <div className="fixed-button-1">

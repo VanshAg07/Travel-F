@@ -60,7 +60,8 @@ import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
 import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
 import { useSelector } from "react-redux";
-
+import Grouptourhero from "./components/Grouptour-hero.js"
+import Grouptourform from "./components/Groupform.js"
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   const roleMiddleware = (roles) => {
@@ -140,6 +141,8 @@ const App = () => {
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
         <Route path="/booking-options" element={<BookingOptions />} />
+        <Route path="/grouptour-hero" element={<Grouptourhero />} />
+        <Route path="/groupform" element={<Grouptourform />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>

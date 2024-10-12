@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const services = [
@@ -46,21 +45,31 @@ function App() {
       {/* Heading Section */}
       <header className="w-full max-w-screen-md text-center mt-10">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-        Extraordinary <span className="text-blue-500">Experiences</span>{' '}
-         <p  className="text-lg sm:text-xl mt-2 sm:mt-4 text-gray-600">We believe that business travels should always be extraordinary experiences.</p>
+          Extraordinary <span className="text-blue-500">Experiences</span>
         </h1>
+        <p className="text-lg sm:text-xl mt-2 sm:mt-4 text-gray-600">
+          We believe that business travels should always be extraordinary experiences.
+        </p>
       </header>
 
       {/* Services Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 mt-10 w-full max-w-screen-lg text-center mb-20">
-        {services.map(service => (
-          <div key={service.id} className="flex flex-col items-center p-4 sm:p-6 bg-white shadow-md rounded-lg">
+        {services.map((service, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center p-4 sm:p-6 bg-white shadow-md rounded-lg"
+          >
             {/* Icon */}
             <div className="text-5xl sm:text-6xl mb-4">{service.icon}</div>
 
-            {/* Description */}
-            <p className="text-gray-600 text-base sm:text-lg">
+            {/* Title */}
+            <p className="text-gray-800 font-semibold text-lg sm:text-xl mb-2">
               {service.title}
+            </p>
+
+            {/* Description */}
+            <p className="text-gray-600 text-sm sm:text-base">
+              {service.description}
             </p>
           </div>
         ))}
