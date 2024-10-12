@@ -58,7 +58,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin" element={<AdminPortal />} />
+        {/* <Route path="/admin" element={<AdminPortal />} /> */}
         {/* <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
