@@ -47,7 +47,7 @@ const Corporate = () => {
         </div>
         <Mainreview />
 
-        {/* <div className="justify-center items-center flex flex-col w-full ">
+         <div className="justify-center items-center flex flex-col w-full ">
           <h1 className="all-packages-heading">
             Unleash the Excitement in Corporate Tours
           </h1>
@@ -343,7 +343,7 @@ const Corporate = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
         <div className="">
           <Superpower />
           <Beyondordinary />

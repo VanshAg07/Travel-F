@@ -38,7 +38,7 @@ const Navbar = () => {
       "Vietnam",
     ],
     weekendTrips: ["Weekend Getaways"],
-    groupsTours: [],
+    groupsTours: ["School Tours","University Tours", "Sports Tours", "Adventure Tours"],
     corporatePackages: [],
   };
 

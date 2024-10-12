@@ -47,9 +47,9 @@ const FooterBanner = () => {
             <img src={InstaIcon} alt="Instagram Reviews" className="mr-1 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
             <div className="flex flex-col items-start">
               <span className="flex items-center text-[10px] sm:text-xs md:text-sm lg:text-base footer-text-small">
-                4.9 <img src={Star} alt="Star" className="inline w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 star-small ml-1" />
+                2k+
               </span>
-              <span className="text-[10px] sm:text-xs md:text-sm lg:text-base footer-text-small">Instagram Reviews</span>
+              <span className="text-[10px] sm:text-xs md:text-sm lg:text-base footer-text-small">Followers</span>
             </div>
           </span>
         </Link>
