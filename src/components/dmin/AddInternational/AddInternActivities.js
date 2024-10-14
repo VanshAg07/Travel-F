@@ -49,7 +49,7 @@ const AddInternActivities = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/international/addActivity",
+        "https://api.travello10.com/api/admin/international/addActivity",
         formData,
         {
           headers: {

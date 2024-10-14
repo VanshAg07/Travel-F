@@ -62,6 +62,7 @@ import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
 import { useSelector } from "react-redux";
 import Grouptourhero from "./components/Grouptour-hero.js"
 import Grouptourform from "./components/Groupform.js"
+import Socialmedia from "./components/Socialmedia.js"
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   const roleMiddleware = (roles) => {
@@ -143,6 +144,7 @@ const App = () => {
         <Route path="/booking-options" element={<BookingOptions />} />
         <Route path="/grouptour-hero" element={<Grouptourhero />} />
         <Route path="/groupform" element={<Grouptourform />} />
+        <Route path="/socialmedia" element={<Socialmedia />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>

@@ -20,6 +20,7 @@ import MainFooter from "./components/Footer/MainFooter.js";
 import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
+import Socialmedia from "./components/Socialmedia.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -65,7 +66,7 @@ const Home = () => {
         <Review />
         <Forms />
         <MainFooter />
-
+        <Socialmedia />
         <div className="fixed-button-1">
           <a
             href={`https://wa.me/918287804197?text=${encodeURIComponent(

@@ -38,7 +38,12 @@ const Navbar = () => {
       "Vietnam",
     ],
     weekendTrips: ["Weekend Getaways"],
-    groupsTours: ["School Tours","University Tours", "Sports Tours", "Adventure Tours"],
+    groupsTours: [
+      { name: "School Tours", route: "/grouptours" },
+      { name: "University Tours", route: "/grouptours" },
+      { name: "Sports Tours", route: "/grouptours" },
+      { name: "Adventure Tours", route: "/grouptours" },
+    ],
     corporatePackages: [],
   };
 
@@ -71,7 +76,7 @@ const Navbar = () => {
                   : key === "corporatePackages"
                   ? "/corporate"
                   : key === "groupsTours"
-                  ? "/grouptours"
+                  ? "/grouptours" // Main link for Groups Tours
                   : key === "weekendTrips"
                   ? "/weekends"
                   : "#"
@@ -96,28 +101,31 @@ const Navbar = () => {
               <FaChevronDown className="dropdown-icon" />
             )}
             {activeDropdown === key && dropdownLinks[key].length > 0 && (
-              <ul className="dropdown">
-                {dropdownLinks[key].map((link, index) => (
-                  <li key={index} className="dropdown-item">
-                    <Link
-                      to={
-                        key === "honeymoonPackages"
-                          ? `/honeymoon-packages/${link}`
-                          : key === "indiaPackages"
-                          ? `/place/${link}`
-                          : key === "internationalPackage"
-                          ? `/places/${link}`
-                          : key === "weekendTrips"
-                          ? `/weekends`
-                          : `/place/${link}`
-                      }
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+  <ul className="dropdown">
+    {dropdownLinks[key].map((link, index) => (
+      <li key={index} className="dropdown-item">
+        <Link
+          to={
+            key === "groupsTours"
+              ? link.route // Use the route for groupsTours
+              : key === "honeymoonPackages"
+              ? `/honeymoon-packages/${link}`
+              : key === "indiaPackages"
+              ? `/place/${link}`
+              : key === "internationalPackage"
+              ? `/places/${link}`
+              : key === "weekendTrips"
+              ? `/weekends`
+              : `/place/${link}`
+          }
+        >
+          {key === "groupsTours" ? link.name : link}
+        </Link>
+      </li>
+    ))}
+  </ul>
+)}
+
           </li>
         ))}
       </ul>
