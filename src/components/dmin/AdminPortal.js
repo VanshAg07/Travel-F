@@ -104,7 +104,7 @@ const AdminPortal = () => {
             <button
               onClick={() => setActiveTab("edit-national")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "weekends" ? "bg-red-600" : "hover:bg-gray-700"
+                activeTab === "edit-national" ? "bg-red-600" : "hover:bg-gray-700"
               }`}
             >
               National Edit
