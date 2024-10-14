@@ -60,11 +60,9 @@ import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
 import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
 import { useSelector } from "react-redux";
-import Grouptourhero from "./components/Grouptour-hero.js"
 import Grouptourform from "./components/Groupform.js"
 import Socialmedia from "./components/Socialmedia.js"
 import Grouptourhero from "./components/Grouptour-hero.js";
-import Grouptourform from "./components/Groupform.js";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.js";
 const App = () => {
   const { user } = useSelector((state) => state.profile);
