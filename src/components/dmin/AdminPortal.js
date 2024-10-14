@@ -16,12 +16,12 @@ import AddWeekend from "./Weekends/AddWeekend";
 import NationalEdit from "./EditPackage/NationalEdit";
 
 const AdminPortal = () => {
-  const [activeTab, setActiveTab] = useState("user-details");
+  const [activeTab, setActiveTab] = useState("bookings");
   const navigate = useNavigate();
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:5000/api/admin/logout")
+      .post("https://api.travello10.com/api/admin/logout")
       .then(() => {
         navigate("/");
       })
@@ -34,6 +34,16 @@ const AdminPortal = () => {
     <div className="flex h-screen">
       <nav className="w-1/6 h-full bg-black text-white fixed top-0 left-0 flex flex-col">
         <ul className="flex-1 space-y-4 p-4">
+          <li>
+            <button
+              onClick={() => setActiveTab("bookings")}
+              className={`block w-full text-left py-4 px-4 ${
+                activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"
+              }`}
+            >
+              My Bookings
+            </button>
+          </li>
           <li>
             <button
               onClick={() => setActiveTab("user-details")}
@@ -74,9 +84,7 @@ const AdminPortal = () => {
             <button
               onClick={() => setActiveTab("honeymoon")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "honeymoon"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
+                activeTab === "honeymoon" ? "bg-red-600" : "hover:bg-gray-700"
               }`}
             >
               Honeymoon Packages
@@ -86,9 +94,7 @@ const AdminPortal = () => {
             <button
               onClick={() => setActiveTab("weekends")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "weekends"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
+                activeTab === "weekends" ? "bg-red-600" : "hover:bg-gray-700"
               }`}
             >
               Weekends Trips
@@ -98,9 +104,7 @@ const AdminPortal = () => {
             <button
               onClick={() => setActiveTab("edit-national")}
               className={`block w-full text-left py-4 px-4 ${
-                activeTab === "weekends"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
+                activeTab === "weekends" ? "bg-red-600" : "hover:bg-gray-700"
               }`}
             >
               National Edit
@@ -114,16 +118,6 @@ const AdminPortal = () => {
               }`}
             >
               Add User
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("bookings")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              Bookings
             </button>
           </li>
         </ul>

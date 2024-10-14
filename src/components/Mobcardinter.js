@@ -32,10 +32,13 @@ export default function Card() {
   ));
 
   return (
-    <div className="-mt-16">
-      <p className="w-full text-center flex font-bold text-xl mb-14 items-center justify-center">
-        International Packages
-      </p>
+    <div className="">
+      <div className="mb-10 pt-4">
+        <p className="w-full text-center flex font-semibold text-xl mb-14 items-center justify-center">
+          International Deals
+        </p>
+      </div>
+
       <Swiper
         effect={"cards"}
         grabCursor={true}

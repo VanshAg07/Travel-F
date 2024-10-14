@@ -13,7 +13,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Review from "./components/Review.js";
 import Forms from "./components/Forms.js";
 import Explore from "./components/Explore.js";
-import ExploreMobile from "./components/explore-mob.js"; 
+import ExploreMobile from "./components/explore-mob.js";
 import Homeglry from "./components/Homeglry.js";
 import Dropnav from "./components/Dropnav.js";
 import MainFooter from "./components/Footer/MainFooter.js";
@@ -32,35 +32,43 @@ const Home = () => {
         <Nav />
         <Dropnav />
         <Videopage />
+        <div className="mt-14">
+          {isMobile ? <ExploreMobile /> : <Explore />}
+        </div>
 
         {isMobile ? (
-          <div style={{ margin: "130px 30px 55px 30px" }}>
-            <Mobcard />
+          <div className="from-yellow-50 to-yellow-100 bg-gradient-to-br pb-1">
+            <div style={{ margin: "90px 30px 55px 30px" }}>
+              <Mobcard />
+            </div>
           </div>
         ) : (
           <Videopg2 />
         )}
 
         {isMobile ? (
-          <div style={{ margin: "130px 30px 55px 30px" }}>
-            <Mobcardinter />
+          <div className="from-red-100 to-red-200 bg-gradient-to-br pb-1">
+            <div style={{ margin: "90px 30px 55px 30px" }}>
+              <Mobcardinter />
+            </div>
           </div>
         ) : (
           <Videopg3 />
         )}
 
-        {isMobile ? <ExploreMobile /> : <Explore />}
-
-        <Homeglry />
+        {!isMobile && <Explore />}
 
         {isMobile ? (
-          <div style={{ margin: "130px 30px 55px 30px" }}>
-            <Mobcardhoney />
+          <div className="from-green-50 to-green-200 bg-gradient-to-br pb-1">
+            <div style={{ margin: "90px 30px 50px 30px" }}>
+              <Mobcardhoney />
+            </div>
           </div>
         ) : (
           <Videopg4 />
         )}
 
+        <Homeglry />
         <Whyuss />
         <Review />
         <Forms />

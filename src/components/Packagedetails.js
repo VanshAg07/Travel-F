@@ -62,14 +62,13 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
         setstateNames(response.data.state);
         console.log(trips);
         console.log(sharing);
-        console.log(stateNames.stateName);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -85,7 +84,7 @@ const Packagedetails = () => {
   let tripleSharing;
   let quadSharing;
   // console.log(doubleSharing)
-  if (sharing && sharing.length >= 3) {
+  if (sharing && sharing.length >= 1) {
     doubleSharing = sharing[0]?.price;
     tripleSharing = sharing[1]?.price;
     quadSharing = sharing[2]?.price;
@@ -94,6 +93,7 @@ const Packagedetails = () => {
       "Error: sharing array is empty or does not have enough elements"
     );
   }
+  console.log(doubleSharing, tripleSharing, quadSharing,trips.tripBookingAmount,trips.tripSeats);
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
@@ -105,6 +105,8 @@ const Packagedetails = () => {
           tripleSharing,
           quadSharing,
           stateName: stateNames.stateName,
+          tripBookingAmount: trips.tripBookingAmount,
+          tripSeats: trips.tripSeats,
         },
       });
     } else {
@@ -485,7 +487,7 @@ const Packagedetails = () => {
               <p className="text-2xl">Starting From</p>
               <p className="text-2xl text-blue-500">
                 <span className="font-bold text-3xl">
-                  Rs.{sharing[0]?.price}/-{" "}
+                  Rs.{trips.tripPrice}/-{" "}
                 </span>
                 per person
               </p>

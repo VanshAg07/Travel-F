@@ -14,9 +14,9 @@ const DateCosting = () => {
     tripleSharing,
     quadSharing,
     stateName,
+    tripBookingAmount,
+    tripSeats,
   } = location.state || {};
-
-  console.log(doubleSharing, tripleSharing, quadSharing);
 
   const tripDates = tripDatesFromState.map((date) => ({
     date,
@@ -26,6 +26,8 @@ const DateCosting = () => {
     tripleSharing,
     quadSharing,
     stateName,
+    tripBookingAmount,
+    tripSeats,
     status: "Available",
   }));
 
@@ -88,6 +90,8 @@ const DateCosting = () => {
         tripleSharing,
         quadSharing,
         stateName,
+        tripBookingAmount,
+        tripSeats,
       },
     });
   };
@@ -104,11 +108,10 @@ const DateCosting = () => {
             {tripName}
           </div>
         </div>
-
         {/* Main Content */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center">
+        <div className="mt-10 flex flex-col md:flex-row gap-8 justify-center items-center w-full">
           {/* Available Dates Section */}
-          <div className="bg-white shadow-lg rounded-lg p-6 lg:w-[85%] flex flex-col">
+          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col h-96 w-full">
             <h2 className="text-2xl font-bold text-gray-800 text-center border-b pb-4">
               Available Dates
             </h2>
@@ -132,14 +135,18 @@ const DateCosting = () => {
                           }`}
                           onClick={() => setSelectedDate(dateObj.date)}
                         >
-                          <div className="flex justify-between items-center">
-                            <span>{formatDate(dateObj.date)}</span>
-                            <span className="text-sm text-gray-500">
-                              {dateObj.status}
-                            </span>
-                          </div>
-                          <div className="text-right text-blue-500 font-bold">
-                            Starting Price: ₹{doubleSharing}/-
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <div className="flex flex-col sm:flex-row sm:space-x-4 mt-2 sm:mt-0">
+                              <span className="text-lg font-medium">
+                                {formatDate(dateObj.date)}
+                              </span>
+                              <span className="text-gray-700">
+                                {tripSeats || "N/A"} Seats Left
+                              </span>
+                              <span className="text-blue-500 font-bold">
+                                Starting Price: ₹{tripPrice}/-
+                              </span>
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -149,54 +156,52 @@ const DateCosting = () => {
               ))}
             </div>
           </div>
-
           {/* Costing Section */}
-          <div className="bg-white shadow-lg rounded-lg p-6 lg:w-[85%]">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
-              Costing
-            </h2>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
-                <span className=" text-gray-700 font-bold">Room Sharing</span>
-                <span className=" text-gray-700 font-bold">
-                  Cost (Per Person)
-                </span>
+          <div className="bg-white shadow-lg rounded-lg p-6 h-96 justify-between flex flex-col">
+            <div>
+              <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+                Costing
+              </h2>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
+                  <span className="text-gray-700 font-bold">Room Sharing</span>
+                  <span className="text-gray-700 font-bold">
+                    Cost (Per Person)
+                  </span>
+                </div>
+                {doubleSharing && (
+                  <div className="flex justify-between items-center p-4">
+                    <span className="font-semibold">Double Sharing</span>
+                    <span className="text-gray-800 font-semibold">
+                      ₹{doubleSharing} /-
+                    </span>
+                  </div>
+                )}
+                {tripleSharing && (
+                  <div className="flex justify-between items-center p-4">
+                    <span className="font-semibold">Triple Sharing</span>
+                    <span className="text-gray-800 font-semibold">
+                      ₹{tripleSharing} /-
+                    </span>
+                  </div>
+                )}
+                {quadSharing && (
+                  <div className="flex justify-between items-center p-4">
+                    <span className="font-semibold">Quad Sharing</span>
+                    <span className="text-gray-800 font-semibold">
+                      ₹{quadSharing} /-
+                    </span>
+                  </div>
+                )}
               </div>
-
-              {doubleSharing && (
-                <div className="flex justify-between items-center p-4">
-                  <span className="font-semibold">Double Sharing</span>
-                  <span className="text-gray-800 font-semibold">
-                    ₹{doubleSharing} /-
-                  </span>
-                </div>
-              )}
-
-              {tripleSharing && (
-                <div className="flex justify-between items-center p-4">
-                  <span className="font-semibold">Triple Sharing</span>
-                  <span className="text-gray-800 font-semibold">
-                    ₹{tripleSharing} /-
-                  </span>
-                </div>
-              )}
-
-              {quadSharing && (
-                <div className="flex justify-between items-center p-4">
-                  <span className="font-semibold">Quad Sharing</span>
-                  <span className="text-gray-800 font-semibold">
-                    ₹{quadSharing} /-
-                  </span>
-                </div>
-              )}
             </div>
-            <div className="flex justify-between items-center w-full max-w-4xl mt-6 p-4 bg-white shadow-lg rounded-lg">
-              <div className="text-xl font-bold text-blue-600">
-                Starting Price: ₹{doubleSharing || "N/A"} per person
+            <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl mt-6 p-4 gap-4 bg-white shadow-lg rounded-lg">
+              <div className="md:text-xl font-bold text-blue-600 text-sm">
+                Starting Price: ₹{tripPrice || "N/A"} per person
               </div>
               <button
                 onClick={handleBooking}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
               >
                 Book Now
               </button>

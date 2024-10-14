@@ -1,5 +1,5 @@
 import React from "react";
-import { product_card_1} from "./Product_data"; // Use named imports
+import { product_card_1 } from "./Product_data"; // Use named imports
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -31,10 +31,12 @@ export default function Card() {
   ));
 
   return (
-    <div className="-mt-20">
-      <p className="w-full text-center flex font-bold text-2xl mb-14 items-center justify-center">
-        National Packages
-      </p>
+    <div className="">
+      <div className=" mb-10 pt-4">
+        <p className="w-full flex font-semibold text-xl items-center justify-center">
+          Nationwide Packages
+        </p>
+      </div>
       <Swiper
         effect={"cards"}
         grabCursor={true}

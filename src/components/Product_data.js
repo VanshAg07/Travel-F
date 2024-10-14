@@ -176,7 +176,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Kashmir,
       label: "12,999/-",
-      url: "/place/Kashmir"
+      url: "/honeymoon-packages/Kashmir"
   },
   {
     id: 2,
@@ -185,7 +185,7 @@ const product_card_3 = [
     currency: "Starting Price Rs.",
     image: andaman,
     label: "12,999/-",
-    url: "/place/Andaman"
+    url: "/honeymoon-packages/Andaman"
 },
 {
   id: 3,
@@ -194,7 +194,7 @@ const product_card_3 = [
   currency: "Starting Price Rs.",
   image: kerala,
   label: "12,999/-",
-  url: "/place/Kerala"
+  url: "/honeymoon-packages/Kerala"
 },
   {
       id: 4,
@@ -203,7 +203,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Manali,
       label: "12,999/-",
-      url: "/place/Manali"
+      url: "/honeymoon-packages/Manali"
   },
   {
       id: 5,
@@ -212,7 +212,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Bali,
       label: "12,999/-",
-      url: "/place/Bali",
+      url: "/honeymoon-packages/Bali",
   },
   {
       id: 6,
@@ -221,7 +221,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: Maldives,
       label: "12,999/-",
-      url: "/place/Maldives",
+      url: "/honeymoon-packages/Maldives",
   },
  
   {
@@ -231,7 +231,7 @@ const product_card_3 = [
       currency: "Starting Price Rs.",
       image: vietnam,
       label: "12,999/-",
-      url: "/place/Vietnam",
+      url: "/honeymoon-packages/Vietnam",
   },
   {
     id: 8,
@@ -240,7 +240,7 @@ const product_card_3 = [
     currency: "Starting Price Rs.",
     image: Thailand,
     label: "12,999/-",
-    url: "/place/Thailand",
+    url: "/honeymoon-packages/Thailand",
 },
 ];
 

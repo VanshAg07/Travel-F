@@ -10,10 +10,10 @@ import './Explore-mob.css';
 const TravelOptions = () => {
   const options = [
     { name: 'India Trips', imgSrc: IndiaTrips, link: '/national' },
-    { name: 'International Trips', imgSrc: InternationalTrips, link: '/intern' },
-    { name: 'Honeymoon Trips', imgSrc: HoneymoonTrips, link: '/Honeymoon' },
     { name: 'Weekend Trips', imgSrc: WeekendTrips, link: '/Weekends' },
     { name: 'Group Trips', imgSrc: GroupTrips, link: '/Grouptours' },
+    { name: 'International Trips', imgSrc: InternationalTrips, link: '/intern' },
+    { name: 'Honeymoon Trips', imgSrc: HoneymoonTrips, link: '/Honeymoon' },
     { name: 'Corporate Trips', imgSrc: CorporateTrips, link: '/Corporate' },
   ];
 
