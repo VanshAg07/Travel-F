@@ -31,6 +31,8 @@ const AdminPanel = () => {
     sharing: [{ title: "", price: "" }],
     tripBackgroundImg: "",
     overView: "",
+    tripBookingAmount:"",
+    tripSeats: "",
   });
 
   const handleInputChange = (e) => {
@@ -206,9 +208,29 @@ const AdminPanel = () => {
           <div>
             <label className="block text-l font-medium">Trip Price</label>
             <input
-              type="number"
+              type="text"
               name="tripPrice"
               value={tripData.tripPrice}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-l font-medium">Trip Booking Amount</label>
+            <input
+              type="number"
+              name="tripBookingAmount"
+              value={tripData.tripBookingAmount}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-l font-medium">Trip Seats</label>
+            <input
+              type="number"
+              name="tripSeats"
+              value={tripData.tripSeats}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />

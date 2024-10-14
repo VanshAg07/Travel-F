@@ -28,6 +28,8 @@ const AddInternPackage = () => {
     status: "active",
     overView: "",
     sharing: [{ title: "", price: "" }],
+    tripBookingAmount: "",
+    tripSeats: "",
   });
 
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
@@ -201,6 +203,32 @@ const AddInternPackage = () => {
             type="text"
             name="tripPrice"
             value={tripDetails.tripPrice}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Booking Amount</label>
+          <input
+            type="text"
+            name="tripBookingAmount"
+            value={tripDetails.tripBookingAmount}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Seats</label>
+          <input
+            type="text"
+            name="tripSeats"
+            value={tripDetails.tripSeats}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripPrice: e.target.value })
             }

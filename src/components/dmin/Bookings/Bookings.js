@@ -61,19 +61,18 @@ function Bookings() {
             <tbody>
               {tickets.map((ticket) => (
                 <tr key={ticket._id} className="hover:bg-gray-50">
-                  <td className="py-2 px-4 border-b">{ticket.stateName}</td>
-                  <td className="py-2 px-4 border-b">{ticket.packageTitle}</td>
-                  <td className="py-2 px-4 border-b">
+                  <td className="py-2 px-4 border-b text-center">{ticket.stateName}</td>
+                  <td className="py-2 px-4 border-b text-center">{ticket.packageTitle}</td>
+                  <td className="py-2 px-4 border-b text-center">
                     {new Date(ticket.bookingDate).toLocaleDateString()}
                   </td>
-                  <td className="py-2 px-4 border-b">{ticket.phoneNumber}</td>
-                  <td className="py-2 px-4 border-b">${ticket.totalPrice}</td>
-                  <td className="py-2 px-4 border-b">{ticket.sharingType}</td>
-                  <td className="py-2 px-4 border-b">{ticket.status}</td>
-                  <td className="py-2 px-4 border-b">
+                  <td className="py-2 px-4 border-b text-center">{ticket.customerPhone}</td>
+                  <td className="py-2 px-4 border-b text-center">${ticket.totalPrice}</td>
+                  <td className="py-2 px-4 border-b text-center">{ticket.sharingType}</td>
+                  <td className="py-2 px-4 border-b text-center">{ticket.status}</td>
+                  <td className="py-2 px-4 border-b text-center">
                     {ticket.razorpayOrderId}
                   </td>
-                  
                 </tr>
               ))}
             </tbody>

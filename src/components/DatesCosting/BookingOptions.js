@@ -20,6 +20,8 @@ const BookingOptions = () => {
     tripleSharing,
     quadSharing,
     stateName,
+    tripBookingAmount,
+    tripSeats,
   } = location.state || {};
   const formattedDate = formatDate(selectedDate);
 
@@ -89,7 +91,8 @@ const BookingOptions = () => {
   const totalPrice = basePrice + gst;
 
   // Calculate booking amount with 3% charge
-  const bookingAmount = basePrice * 1.03; // 3% charge
+  const tripBook = calculatePrice(tripBookingAmount, peopleCount) * 1.03;
+  const bookingAmount = tripBook; // 3% charge
 
   const paymentAmount =
     paymentType === "bookingAmount" ? bookingAmount : totalPrice;
@@ -122,7 +125,9 @@ const BookingOptions = () => {
     const res = await loadRazorpayScript();
 
     if (!res) {
-      alert("Failed to load Razorpay SDK. Please check your internet connection.");
+      alert(
+        "Failed to load Razorpay SDK. Please check your internet connection."
+      );
       setIsLoading(false);
       return;
     }
@@ -135,6 +140,7 @@ const BookingOptions = () => {
           customerPhone,
           customerName,
           customerEmail,
+          paymentType: paymentType === "bookingAmount" ? "bookingAmount" : "fullPayment",
         }
       );
 
@@ -162,6 +168,7 @@ const BookingOptions = () => {
               selectedDate,
               selectedSharing,
               stateName,
+              paymentType: paymentType === "bookingAmount" ? "bookingAmount" : "fullPayment",
             };
             const result = await axios.post(
               "https://api.travello10.com/api/payment/verify",
@@ -189,7 +196,10 @@ const BookingOptions = () => {
         alert("Payment initiation failed!");
       }
     } catch (error) {
-      console.error("Payment error:", error.response ? error.response.data : error);
+      console.error(
+        "Payment error:",
+        error.response ? error.response.data : error
+      );
       alert("Payment initiation failed. Please try again.");
     } finally {
       setIsLoading(false);

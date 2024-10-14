@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const dropdownLinks = {
     indiaPackages: [
-      "Spiti",
+      "Spiti Valley",
       "Kerala",
       "Rajasthan",
       "Himachal Pradesh",
