@@ -414,7 +414,6 @@ const Packagedetails = () => {
                 </ul>
             </div>
         </div>
-<<<<<<< HEAD
 
         {/* Form div with a width of 40% */}
         <div className="max-w-full md:max-w-[40%] w-full"> {/* Form div with full width on small screens */}
@@ -423,16 +422,7 @@ const Packagedetails = () => {
             <p className="text-xl md:text-2xl">Starting From</p> {/* Responsive text size */}
             <p className="text-xl md:text-2xl text-blue-500">
                 <span className="font-bold text-2xl md:text-3xl">
-                    Rs.{sharing[0]?.price}/-{" "}
-=======
-        <div className="relative w-[25%] top-10 mb-20">
-          <div className=" ml-10 mt-20 sticky top-10">
-            <div className="bg-white shadow-lg p-4 rounded-2xl">
-              <p className="text-2xl">Starting From</p>
-              <p className="text-2xl text-blue-500">
-                <span className="font-bold text-3xl">
-                  Rs.{trips.tripPrice}/-{" "}
->>>>>>> 7f24ea93ffe70bf1d51938e2923962d162670205
+                    Rs.{trips.tripPrice}/-{" "}
                 </span>
                 per person
             </p>
