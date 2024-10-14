@@ -60,15 +60,12 @@ import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
 import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
 import { useSelector } from "react-redux";
-<<<<<<< HEAD
 import Grouptourhero from "./components/Grouptour-hero.js"
 import Grouptourform from "./components/Groupform.js"
 import Socialmedia from "./components/Socialmedia.js"
-=======
 import Grouptourhero from "./components/Grouptour-hero.js";
 import Grouptourform from "./components/Groupform.js";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.js";
->>>>>>> 7f24ea93ffe70bf1d51938e2923962d162670205
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   const roleMiddleware = (roles) => {
@@ -83,7 +80,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       <Routes>
         <Route path="/admin" element={adminMiddleware}>
           <Route path="/admin" element={<AdminPortal />} />
@@ -154,7 +150,6 @@ const App = () => {
         <Route path="/socialmedia" element={<Socialmedia />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
-=======
       <ScrollToTop/>
         <Routes>
           <Route path="/admin" element={adminMiddleware}>
@@ -228,7 +223,6 @@ const App = () => {
           <Route path="/groupform" element={<Grouptourform />} />
           {/* <Route path='/' element={<ComingSoon />} /> */}
         </Routes>
->>>>>>> 7f24ea93ffe70bf1d51938e2923962d162670205
     </BrowserRouter>
   );
 };
