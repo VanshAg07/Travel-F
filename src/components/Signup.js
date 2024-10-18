@@ -17,7 +17,7 @@ export default function Signup() {
             return;
         }
 
-        fetch("https://api.travello10.com/register", {
+        fetch("http://localhost:5000/register", {
             method: "POST",
             crossDomain: true,
             headers: {

@@ -1,20 +1,11 @@
-import React, { useState } from "react";
-
-const states = [
-  { _id: "66f05385d87823fc7b98f371", stateName: "Kashmir" },
-  { _id: "66f2f0ecad7a7846f232e147", stateName: "Sikkim" },
-  { _id: "66f0538fd87823fc7b98f375", stateName: "Meghalaya" },
-  { _id: "66f05395d87823fc7b98f377", stateName: "Rajasthan" },
-  { _id: "66f053a6d87823fc7b98f379", stateName: "Spiti Valley" },
-  { _id: "66f053afd87823fc7b98f37b", stateName: "Kerala" },
-  { _id: "66f053b6d87823fc7b98f37d", stateName: "Himachal Pradesh" },
-  { _id: "66f053bdd87823fc7b98f37f", stateName: "Uttarakhand" },
-  { _id: "66f053c3d87823fc7b98f381", stateName: "Ladakh" },
-  { _id: "66f2f117ad7a7846f232ea78", stateName: "Andaman" },
-];
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const AdminPanel = () => {
+  const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [newState, setNewState] = useState([]);
+
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",
@@ -31,9 +22,32 @@ const AdminPanel = () => {
     sharing: [{ title: "", price: "" }],
     tripBackgroundImg: "",
     overView: "",
-    tripBookingAmount:"",
+    tripBookingAmount: "",
     tripSeats: "",
   });
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/trip/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -105,6 +119,7 @@ const AdminPanel = () => {
       alert("Please select a state before submitting the form.");
       return;
     }
+    setLoading(true);
     console.log(selectedState);
     const formData = new FormData();
     Object.keys(tripData).forEach((key) => {
@@ -138,7 +153,7 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(`https://api.travello10.com/api/trip/state/${selectedState}/trip`, {
+    fetch(`http://localhost:5000/api/trip/state/${selectedState.id}/trip`, {
       method: "POST",
       body: formData,
     })
@@ -153,9 +168,11 @@ const AdminPanel = () => {
       .then((data) => {
         console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error submitting trip", error);
+        setLoading(false);
       });
   };
 
@@ -174,8 +191,8 @@ const AdminPanel = () => {
             >
               <option value="">Select a Location</option>
               {states.map((state) => (
-                <option key={state._id} value={state.stateName}>
-                  {state.stateName}
+                <option key={state.id} value={state.name}>
+                  {state.name}
                 </option>
               ))}
             </select>
@@ -183,14 +200,19 @@ const AdminPanel = () => {
           <div>
             <label className="block text-l font-medium">Select State</label>
             <select
-              value={selectedState}
-              onChange={(e) => setSelectedState(e.target.value)}
+              value={selectedState ? selectedState.name : ""}
+              onChange={(e) => {
+                const selectedStateObject = states.find(
+                  (state) => state.name === e.target.value
+                );
+                setSelectedState(selectedStateObject || "");
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             >
               <option value="">Select a State</option>
               {states.map((state) => (
-                <option key={state._id} value={state._id}>
-                  {state.stateName}
+                <option key={state.id} value={state.name}>
+                  {state.name}
                 </option>
               ))}
             </select>
@@ -216,7 +238,9 @@ const AdminPanel = () => {
             />
           </div>
           <div>
-            <label className="block text-l font-medium">Trip Booking Amount</label>
+            <label className="block text-l font-medium">
+              Trip Booking Amount
+            </label>
             <input
               type="number"
               name="tripBookingAmount"
@@ -376,13 +400,6 @@ const AdminPanel = () => {
                   }
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 />
-                <button
-                  type="button"
-                  onClick={() => addField("tripDescription")}
-                  className="ml-2 p-1 text-white bg-green-600 rounded"
-                >
-                  +
-                </button>
               </div>
             ))}
           </div>
@@ -462,13 +479,48 @@ const AdminPanel = () => {
               onChange={handlePdfChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
+            {/* <button
+              type="button"
+              onClick={() => addField("pdf")}
+              className="ml-2 p-1 text-white bg-green-600 rounded"
+            >
+              +
+            </button> */}
           </div>
         </div>
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded"
+          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={loading}
         >
-          Submit
+          {loading ? (
+            <div className="flex justify-center">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

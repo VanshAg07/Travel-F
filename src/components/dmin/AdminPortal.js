@@ -2,26 +2,23 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import AddDetails from "./AddDetails";
 import UserDetails from "./UserDetails";
-import BeautifulPlaces from "./BeautifulPlaces";
-import BestActivities from "./BestActivities";
-import RichFlavour from "./RichFlavour";
-import Shop from "./Shop";
 import National from "./National";
 import Bookings from "./Bookings/Bookings";
 import HomeIntern from "./AddInternational/HomeIntern";
 import AddHoneymoon from "./Honeymoon/AddHoneymoon";
 import AddWeekend from "./Weekends/AddWeekend";
 import NationalEdit from "./EditPackage/NationalEdit";
+import Dashboard from "./Dashboard";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("bookings");
+  const [openSubmenu, setOpenSubmenu] = useState("");
   const navigate = useNavigate();
 
   const handleLogout = () => {
     axios
-      .post("https://api.travello10.com/api/admin/logout")
+      .post("http://localhost:5000/api/admin/logout")
       .then(() => {
         navigate("/");
       })
@@ -30,115 +27,182 @@ const AdminPortal = () => {
       });
   };
 
+  const handleMainTabClick = (tabName) => {
+    setActiveTab(tabName);
+    setOpenSubmenu(""); // Close any open submenu when a main tab is clicked
+  };
+
+  const handleSubmenuToggle = (submenuName) => {
+    // Toggle the submenu or open it if not already open
+    setOpenSubmenu((prev) => (prev === submenuName ? "" : submenuName));
+  };
+
   return (
     <div className="flex h-screen">
-      <nav className="w-1/6 h-full bg-black text-white fixed top-0 left-0 flex flex-col">
-        <ul className="flex-1 space-y-4 p-4">
-          <li>
-            <button
-              onClick={() => setActiveTab("bookings")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              My Bookings
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("user-details")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "user-details"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              User Details
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("national-packages")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "national-packages"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              National Packages
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("internnational-packages")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "internnational-packages"
-                  ? "bg-red-600"
-                  : "hover:bg-gray-700"
-              }`}
-            >
-              Internnational Packages
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("honeymoon")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "honeymoon" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              Honeymoon Packages
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("weekends")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "weekends" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              Weekends Trips
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("edit-national")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "weekends" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              National Edit
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setActiveTab("add-user")}
-              className={`block w-full text-left py-4 px-4 ${
-                activeTab === "add-user" ? "bg-red-600" : "hover:bg-gray-700"
-              }`}
-            >
-              Add User
-            </button>
-          </li>
-        </ul>
+      {/* Sidebar Navigation */}
+      <nav className="w-1/6 h-full bg-gray-900 text-white fixed top-0 left-0 flex flex-col">
+        <div className="flex-1 overflow-y-auto">
+          <ul className="space-y-2 p-4">
+            <li>
+              <button
+                onClick={() => handleMainTabClick("home")}
+                className={`block w-full text-left py-3 px-4 rounded-lg ${
+                  activeTab === "home" ? "bg-red-600" : "hover:bg-gray-700"
+                }`}
+              >
+                Home
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => handleMainTabClick("bookings")}
+                className={`block w-full text-left py-3 px-4 rounded-lg ${
+                  activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"
+                }`}
+              >
+                My Bookings
+              </button>
+            </li>
+            <li>
+              <div>
+                <button
+                  onClick={() => handleSubmenuToggle("add-packages")}
+                  className={`block w-full text-left py-3 px-4 rounded-lg ${
+                    activeTab.startsWith("add")
+                      ? "bg-red-600"
+                      : "hover:bg-gray-700"
+                  }`}
+                >
+                  Add Packages
+                </button>
+                {openSubmenu === "add-packages" && (
+                  <ul className="pl-6 mt-2 space-y-2">
+                    <li
+                      onClick={() => setActiveTab("add-national")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-national"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      National
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("add-international")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-international"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      International
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("add-weekend")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-weekend"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Weekend
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("add-honeymoon")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-honeymoon"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Honeymoon
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </li>
+            <li>
+              <div>
+                <button
+                  onClick={() => handleSubmenuToggle("edit-packages")}
+                  className={`block w-full text-left py-3 px-4 rounded-lg ${
+                    activeTab.startsWith("edit")
+                      ? "bg-red-600"
+                      : "hover:bg-gray-700"
+                  }`}
+                >
+                  Edit Packages
+                </button>
+                {openSubmenu === "edit-packages" && (
+                  <ul className="pl-6 mt-2 space-y-2">
+                    <li
+                      onClick={() => setActiveTab("edit-national")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-national"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      National
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("edit-international")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-international"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      International
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("edit-weekend")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-weekend"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Weekend
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("edit-honeymoon")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-honeymoon"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Honeymoon
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="w-full flex justify-center items-center">
         <button
           onClick={handleLogout}
-          className={`block w-full text-left mt-auto mb-4 py-4 px-4 ${
-            activeTab === "logout" ? "bg-red-600" : "hover:bg-gray-700"
-          }`}
+          className="block w-[85%] text-center py-4 px-4 bg-red-600 hover:bg-red-700 mt-auto mb-4 rounded-lg"
         >
           Logout
         </button>
+        </div>
+        
       </nav>
-      <div className="ml-[20%] w-[75%] p-8">
+
+      {/* Main Content Area */}
+      <div className="ml-[17%] w-[80%] p-8">
         {activeTab === "user-details" && <UserDetails />}
-        {activeTab === "national-packages" && <National />}
-        {activeTab === "internnational-packages" && <HomeIntern />}
+        {activeTab === "home" && <Dashboard />}
+        {activeTab === "add-national" && <National />}
+        {activeTab === "add-international" && <HomeIntern />}
         {activeTab === "bookings" && <Bookings />}
-        {activeTab === "honeymoon" && <AddHoneymoon />}
-        {activeTab === "weekends" && <AddWeekend />}
+        {activeTab === "add-honeymoon" && <AddHoneymoon />}
+        {activeTab === "add-weekend" && <AddWeekend />}
         {activeTab === "edit-national" && <NationalEdit />}
-        {activeTab === "add-user" && <div>Add User Content</div>}
+        {/* Add additional content components as needed */}
       </div>
     </div>
   );

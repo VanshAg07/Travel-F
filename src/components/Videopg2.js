@@ -84,7 +84,7 @@ const packages = [
 ];
 
 const TravelPackageCard = ({ pkg }) => (
-  <div className="border w-80 mr-10 rounded-lg shadow-lg overflow-hidden">
+  <div className="border w-80 mr-2 mb-2 ml-4 rounded-md shadow-lg shadow-black overflow-hidden">
     <img
       src={pkg.image}
       alt={pkg.destination}
@@ -156,15 +156,14 @@ const TravelPackages = () => {
       </div>
 
       {/* Packages Section */}
-      <div className="w-[80%] h-[60%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
+      <div className="w-[80%] h-[80%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
         {/* Heading and "See All" */}
         <div className="flex justify-between items-center mt-4">
-          <h2 className="text-3xl font-bold">International Packages</h2>
+          <h2 className="text-2xl font-semibold">International Packages</h2>
           <a href="#" className="text-red-500 mr-12 font-bold  text-sm">
             See All
           </a>
         </div>
-
         {/* Packages Navigation */}
         <div className="flex items-center mt-4">
           <FaChevronCircleLeft
@@ -181,7 +180,7 @@ const TravelPackages = () => {
           </div>
           <FaChevronCircleRight
             size={30}
-            className={`absolute right-[205px] text-black cursor-pointer ${
+            className={`absolute right-[155px] text-black cursor-pointer ${
               startIndex + 4 >= packages.length ? "invisible" : ""
             }`}
             onClick={handleNext}

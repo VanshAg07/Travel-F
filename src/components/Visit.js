@@ -14,7 +14,7 @@ const Visit = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/getBeautifulPlaces/${name}`
+          `http://localhost:5000/api/user/getBeautifulPlaces/${name}`
         );
         console.log(response.data);
         // Make sure to access response.data.places, not activities
