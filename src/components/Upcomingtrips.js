@@ -61,6 +61,7 @@ const trips = [
     departure: "Delhi to Delhi",
     image: img5,
   },
+  
   {
     id: 6,
     location: "Kedarnath",
