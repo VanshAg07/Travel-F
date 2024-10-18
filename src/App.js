@@ -64,6 +64,10 @@ import Grouptourform from "./components/Groupform.js"
 import Socialmedia from "./components/Socialmedia.js"
 import Grouptourhero from "./components/Grouptour-hero.js";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.js";
+import Homecrd from "./components/Homecrd.js"
+import Homeyt from "./components/Homeyt.js"
+import Upcomingtrip from "./components/Upcomingtrips.js"
+
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   const roleMiddleware = (roles) => {
@@ -146,6 +150,9 @@ const App = () => {
         <Route path="/grouptour-hero" element={<Grouptourhero />} />
         <Route path="/groupform" element={<Grouptourform />} />
         <Route path="/socialmedia" element={<Socialmedia />} />
+        <Route path="/homecrd" element={<Homecrd />} />
+        <Route path="/Homeyt" element={<Homeyt />} />
+        <Route path="/upcomingtrips" element={<Upcomingtrip />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from 'react';
-import icon1 from "../img/illust.png";
+import icon1 from "../img/con-bg.png";
 
 const Forms = () => {
   return (

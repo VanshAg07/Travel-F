@@ -13,7 +13,7 @@ const Footer = () => {
         <h1>TRAVELLOTEN INDIA PRIVATE LIMITED</h1>
         <p>
           3rd Floor Plot, Kakarola Housing Complex, 103, Kakrola Rd, Opposite
-          DDA Park, Raju Enclave, Sector 15 Dwarka, Dwarka, Delhi, 110078 New
+          DDA Park, Raju Enclave, Sector 15 <br/>Dwarka, Dwarka, Delhi, 110078 New
           Delhi Delhi, 110078
         </p>
         <p>+91 8287804197</p>
@@ -29,7 +29,7 @@ const Footer = () => {
           </a>
           <a
             className="footer-anchors"
-            href="https://www.instagram.com/travello10/"
+            href="https://www.google.com/search?q=travello10&oq=tr&gs_lcrp=EgZjaHJvbWUqBggCEEUYOzIGCAAQRRg5MgYIARBFGDwyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQkyNzk0ajBqMTWoAgiwAgE&sourceid=chrome&ie=UTF-8"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -4,6 +4,7 @@ import GoogleIcon from '../img/icons8.svg';
 import FacebookIcon from '../img/icons8-facebook.svg';
 import InstaIcon from '../img/icons8-insta.svg';
 import Star from '../img/icons8-star-48.png';
+import { GiTakeMyMoney } from "react-icons/gi";
 import "./Mainreview.css"
 
 const FooterBanner = () => {
@@ -52,9 +53,24 @@ const FooterBanner = () => {
             </div>
           </span>
         </Link>
+
+        {/* React Icon - GiTakeMyMoney */}
+        <Link target="_blank" rel="noopener noreferrer" to="https://www.example.com">
+          <span className="flex items-center">
+            <GiTakeMyMoney className="mr-1 text-black w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
+            <div className="flex flex-col items-start">
+              <span className="flex items-center text-[10px] sm:text-xs md:text-sm lg:text-base footer-text-small">
+                No Cost
+              </span>
+              <span className="text-[10px] sm:text-xs md:text-sm lg:text-base footer-text-small">EMI</span>
+            </div>
+          </span>
+        </Link>
+
       </div>
     </div>
   );
 };
 
 export default FooterBanner;
+
