@@ -6,14 +6,14 @@ import icon4 from "../img/4why.png";
 
 const WhyWanderOn = () => {
   return (
-    <div className="bg-[#ffffe6] py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#ffffe6]  py-8 px-4 sm:px-6 lg:px-8">
       <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mb-8 sm:mb-12">
         Why Travello10?
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Card 1 */}
         <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]" // Adjust heights for different screens
+          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]" // Adjust heights for different screens
         >
           <div>
             <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
@@ -34,7 +34,7 @@ const WhyWanderOn = () => {
 
         {/* Card 2 */}
         <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
+          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
         >
           <div>
             <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
@@ -55,7 +55,7 @@ const WhyWanderOn = () => {
 
         {/* Card 3 */}
         <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
+          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
         >
           <div>
             <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
@@ -76,7 +76,7 @@ const WhyWanderOn = () => {
 
         {/* Card 4 */}
         <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
+          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
         >
           <div>
             <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">

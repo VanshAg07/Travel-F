@@ -1,38 +1,38 @@
-import React, { useState } from "react";
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // Importing the icons
-import Logo from "../img/Travello10logo.png"; // Import your logo image here
+import React, { useState } from 'react';
+import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
+import Logo from '../img/Travello10logo.png';
 
 const videoUrls = [
-  "https://www.youtube.com/embed/lh67NT0vfnQ?controls=0&modestbranding=1&rel=0", // Video 1
-  "https://www.youtube.com/embed/92d-oIsNm-Q?controls=0&modestbranding=1&rel=0", // Video 2
-  "https://www.youtube.com/embed/744ptyIyNzI?controls=0&modestbranding=1&rel=0", // Video 3
-  // Add more video URLs as needed
+  'https://www.youtube.com/embed/92d-oIsNm-Q?controls=0&modestbranding=1&rel=0', // Video 1
+  'https://www.youtube.com/embed/lh67NT0vfnQ?controls=0&modestbranding=1&rel=0', // Video 2
+  'https://www.youtube.com/embed/744ptyIyNzI?controls=0&modestbranding=1&rel=0', // Video 3
 ];
 
-function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const YoutubeComponent = () => {
+  const [currentIndex, setCurrentVideoIndex] = useState(0);
 
   const nextVideo = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % videoUrls.length);
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoUrls.length);
   };
 
   const prevVideo = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + videoUrls.length) % videoUrls.length);
+    setCurrentVideoIndex((prevIndex) =>
+      prevIndex === 0 ? videoUrls.length - 1 : prevIndex - 1
+    );
   };
 
   return (
-    <div className="h-[90vh] flex flex-col pb-7 justify-center items-center bg-[#ffffe6]">
-      {/* Heading Section outside of the inner container */}
-      <div className="text-center mb-4">
-        <h2 className="text-xl lg:text-4xl font-bold">Visit Our Youtube Channel</h2>
+    <div className="relative flex flex-col mb-20 items-center justify-between h-[90vh] w-[100vw] mx-auto">
+      {/* Heading - No extra space */}
+      <div className="h-[5vh] w-[80vw] flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Visit Our Youtube Channel</h1>
       </div>
 
-      {/* Outer Container with responsive padding */}
-      <div className="bg-white h-[75vh] border-2 border-black rounded-md p-4 sm:px-6 md:px-8 lg:px-10 w-full max-w-5xl relative">
-        {/* YouTube Video Section */}
-        <div className="mb-4 h-full">
+      {/* white bg div with black border, equal margin, rounded corners, and 2px border */}
+      <div className="m-4 w-[80vw] h-[80vh] bg-white border-2 border-black rounded-lg relative">
+        <div className="mb-4 h-[65vh] mt-4">
           <iframe
-            className="w-full h-full" // Make the iframe responsive
+            className="w-[78vw] pl-5 h-full rounded-lg" // Added rounded-lg here for curved edges
             src={videoUrls[currentIndex]} // Use the current video URL
             title="YouTube video player"
             frameBorder="0"
@@ -41,22 +41,30 @@ function App() {
           ></iframe>
         </div>
 
-        {/* Navigation Arrows with Icons */}
-        <button
-          onClick={prevVideo}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-md flex items-center sm:left-4 md:left-6 lg:left-8"
-        >
-          <FaChevronCircleLeft size={24} className="sm:size-30" /> {/* Left Icon */}
-        </button>
-        <button
-          onClick={nextVideo}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-md flex items-center sm:right-4 md:right-6 lg:right-8"
-        >
-          <FaChevronCircleRight size={24} className="sm:size-30" /> {/* Right Icon */}
-        </button>
+        {/* Footer with Logo and Text - Match width of the video */}
+        <div className="h-[7vh] mt-4 w-full flex items-center justify-center bg-white space-x-4 mb-0">
+          <img src={Logo} alt="Travello10 Logo" className="h-14 w-14 rounded-full" />
+          <p className="text-lg">
+            Let's go to Do Dham Yatra with Travello10 | TravelloTen India Pvt. Ltd.
+          </p>
+        </div>
       </div>
+
+      {/* Navigation Arrows with Icons */}
+      <button
+        onClick={prevVideo}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-md flex items-center sm:left-4 md:left-6 lg:left-8"
+      >
+        <FaChevronCircleLeft size={30} className="ml-16" /> {/* Left Icon */}
+      </button>
+      <button
+        onClick={nextVideo}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-md flex items-center sm:right-4 md:right-6 lg:right-8"
+      >
+        <FaChevronCircleRight size={30} className="mr-16" /> {/* Right Icon */}
+      </button>
     </div>
   );
-}
+};
 
-export default App;
+export default YoutubeComponent;

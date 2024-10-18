@@ -48,7 +48,7 @@ const testimonials = [
 
 const TestimonialCard = ({ name, image, text, link }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 text-sm sm:text-base lg:text-lg transition-all duration-300">
+    <div className="bg-white rounded-lg shadow-black shadow-md p-4 text-sm sm:text-base lg:text-lg transition-all duration-300">
       <div className="flex items-center mb-2">
         <img src={image} alt={name} className="w-10 h-10 rounded-full mr-4" />
         <div>

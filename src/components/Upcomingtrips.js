@@ -61,7 +61,7 @@ const trips = [
     departure: "Delhi to Delhi",
     image: img5,
   },
-  
+
   {
     id: 6,
     location: "Kedarnath",
@@ -93,7 +93,7 @@ const trips = [
 
 const TripCard = ({ trip }) => {
   return (
-    <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
+    <div className="bg-white h-[60vh]  shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
         src={trip.image}
         alt="Trip"

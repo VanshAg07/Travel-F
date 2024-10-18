@@ -4,12 +4,12 @@ import icon1 from "../img/con-bg.png";
 const Forms = () => {
   return (
     <div className='bg-[#ffffe6]'>
-      <h1 className="pt-7 pb-1 text-2xl md:text-4xl font-bold text-center text-gray-800">
+      <h1 className="pt-7 pb-1 text-4xl  font-bold text-center text-gray-800">
         Need Assistance
       </h1>
       <div className="flex items-center mb-10 justify-center px-4 h-[80%]">
-        {/* Container for form and image with shadow on all sides */}
-        <div className="shadow-lg rounded-lg flex flex-col md:flex-row items-stretch justify-center mt-4">
+        {/* Container for form and image with black shadow */}
+        <div className="shadow-[0_10px_15px_rgba(0,0,0,0.5)] rounded-lg flex flex-col md:flex-row items-stretch justify-center mt-4">
           {/* Left side image */}
           <div className="flex-1">
             <img
