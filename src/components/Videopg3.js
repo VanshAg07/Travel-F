@@ -21,7 +21,7 @@ const packages = [
     destination: "Maldives",
     image: img1,
     duration: "7N/8D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -29,7 +29,7 @@ const packages = [
     destination: "Bali",
     image: img2,
     duration: "4N/5D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -37,7 +37,7 @@ const packages = [
     destination: "Singapore",
     image: img3,
     duration: "5N/6D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -45,7 +45,7 @@ const packages = [
     destination: "Dubai",
     image: img4,
     duration: "10N/11D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -53,7 +53,7 @@ const packages = [
     destination: "Kedarnath",
     image: img5,
     duration: "7N/8D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -61,7 +61,7 @@ const packages = [
     destination: "Ladakh",
     image: img6,
     duration: "4N/5D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -69,7 +69,7 @@ const packages = [
     destination: "Kerala",
     image: img7,
     duration: "5N/6D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -77,7 +77,7 @@ const packages = [
     destination: "Kashmir",
     image: img8,
     duration: "10N/11D",
-    dates: "14 Oct, 21 Oct, 28 Oct",
+    dates: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     location: "Delhi to Delhi",
   },
@@ -88,7 +88,7 @@ const TravelPackageCard = ({ pkg }) => (
     <img
       src={pkg.image}
       alt={pkg.destination}
-      className="w-full h-[255px] object-cover"
+      className="w-full h-[200px] object-cover"
     />
     <div className="p-4">
       <div className="flex justify-between items-center">
@@ -160,7 +160,7 @@ const TravelPackages = () => {
         <div className="flex items-center mt-4">
           <FaChevronCircleLeft
             size={30}
-            className={`absolute left-[180px] text-black cursor-pointer ${
+            className={`absolute left-[165px] text-black cursor-pointer ${
               startIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={handlePrev}
@@ -172,7 +172,7 @@ const TravelPackages = () => {
           </div>
           <FaChevronCircleRight
             size={30}
-            className={`absolute right-[220px] text-black cursor-pointer ${
+            className={`absolute right-[205px] text-black cursor-pointer ${
               startIndex + 4 >= packages.length ? "invisible" : ""
             }`}
             onClick={handleNext}

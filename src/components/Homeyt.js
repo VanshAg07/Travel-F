@@ -21,7 +21,7 @@ function App() {
   };
 
   return (
-    <div className="h-[90vh] flex flex-col justify-center items-center bg-[#ffffe6]">
+    <div className="h-[90vh] flex flex-col pb-7 justify-center items-center bg-[#ffffe6]">
       {/* Heading Section outside of the inner container */}
       <div className="text-center mb-4">
         <h2 className="text-xl lg:text-4xl font-bold">Visit Our Youtube Channel</h2>
@@ -55,18 +55,6 @@ function App() {
         >
           <FaChevronCircleRight size={30} /> {/* Right Icon */}
         </button>
-
-        {/* Logo and Footer */}
-        <div className="flex items-center justify-center mt-4">
-          <img
-            src={Logo}
-            alt="Travello10 Logo"
-            className="h-16 w-16 rounded-full object-cover mr-4"
-          />
-          <p className="text-gray-700 text-center">
-            Let's go to Do Dham Yatra with Travello10 | TravelloTen India Pvt. Ltd.
-          </p>
-        </div>
       </div>
     </div>
   );

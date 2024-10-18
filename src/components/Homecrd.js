@@ -3,13 +3,13 @@ import tripImage from "../img/cloud.jpg";
 
 const TripCard = () => {
   return (
-    <div className="flex space-x-8 ml-[720px] ">
+    <div className="flex space-x-8 ml-[650px] ">
       {/* First Card */}
-      <div className="bg-white h-[400px] border-4 border-white rounded-lg shadow-xl shadow-black overflow-hidden w-60">
+      <div className="bg-white h-[300px] border-4 border-white rounded-lg shadow-xl shadow-black overflow-hidden w-56">
         <img
           src={tripImage}
           alt="Trip Destination"
-          className="w-full h-52 object-cover"
+          className="w-full h-32 object-cover"
         />
         <div className="p-4 text-center">
           <h2 className="text-red-600 font-bold text-lg mb-2">
@@ -23,11 +23,11 @@ const TripCard = () => {
       </div>
 
       {/* Second Card */}
-      <div className="bg-white border-4 -mt-10 border-white rounded-lg shadow-xl mb-6 shadow-black overflow-hidden w-72">
+      <div className="bg-white border-4 -mt-10 border-white rounded-lg shadow-xl mb-6 shadow-black overflow-hidden w-64">
         <img
           src={tripImage}
           alt="Trip Destination"
-          className="w-full h-72 object-cover"
+          className="w-full h-52 object-cover"
         />
         <div className="p-4 text-center">
           <h2 className="text-red-600 font-bold text-lg mb-2">
@@ -41,11 +41,11 @@ const TripCard = () => {
       </div>
 
       {/* Third Card */}
-      <div className="bg-white h-[400px] border-4 border-white rounded-lg shadow-xl shadow-black overflow-hidden w-60">
+      <div className="bg-white h-[300px] border-4 border-white rounded-lg shadow-xl shadow-black overflow-hidden w-56">
         <img
           src={tripImage}
           alt="Trip Destination"
-          className="w-full h-52 object-cover"
+          className="w-full h-32 object-cover"
         />
         <div className="p-4 text-center">
           <h2 className="text-red-600 font-bold text-lg mb-2">

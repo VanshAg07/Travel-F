@@ -5,7 +5,7 @@ const Forms = () => {
   return (
     <>
       <div className='bg-[#ffffe6]'>
-        <h1 className="pt-7 pb-7 text-2xl md:text-4xl font-bold text-center text-gray-800">
+        <h1 className="pt-7 pb-1 text-2xl md:text-4xl font-bold text-center text-gray-800">
           Need Assistance
         </h1>
         <div className="h-[80%] flex items-center mb-10 justify-center px-4">

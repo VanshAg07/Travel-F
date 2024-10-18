@@ -12,7 +12,7 @@ const Videopage = () => {
         autoPlay
         loop
         muted
-        className="video-background absolute top-0 left-0 object-cover w-full h-full" // Make video cover the full height
+        className="video-background absolute top-0 left-0 object-cover w-full h-full" 
       ></video>
 
       {/* Text content */}

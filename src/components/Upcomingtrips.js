@@ -19,7 +19,7 @@ const trips = [
   {
     id: 1,
     location: "Himachal Pradesh",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -28,7 +28,7 @@ const trips = [
   {
     id: 2,
     location: "Uttarakhand",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -37,7 +37,7 @@ const trips = [
   {
     id: 3,
     location: "Kashmir",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -46,7 +46,7 @@ const trips = [
   {
     id: 4,
     location: "Kerala",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -55,7 +55,7 @@ const trips = [
   {
     id: 5,
     location: "Ladakh",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -64,7 +64,7 @@ const trips = [
   {
     id: 6,
     location: "Kedarnath",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -73,7 +73,7 @@ const trips = [
   {
     id: 7,
     location: "Badrinath",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -82,7 +82,7 @@ const trips = [
   {
     id: 8,
     location: "Sikkim",
-    date: "14 Oct, 21 Oct, 28 Oct",
+    date: "14 Oct, 21 Oct",
     batches: "+6 Batches",
     duration: "4N/5D",
     departure: "Delhi to Delhi",
@@ -92,8 +92,8 @@ const trips = [
 
 const TripCard = ({ trip }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
-      <img src={trip.image} alt="Trip" className="w-[80vw] h-[380px] object-cover" />
+    <div className="bg-white h-[60vh] shadow-md rounded-lg overflow-hidden">
+      <img src={trip.image} alt="Trip" className="w-[100vw] h-[300px] object-cover" />
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl font-semibold">{trip.location}</h3>
@@ -106,7 +106,7 @@ const TripCard = ({ trip }) => {
           <div className="flex items-center">
             <FaCalendarAlt className="mr-1" />
             <p className="text-sm text-black">{trip.date}</p>
-            <span className="ml-1 text-red-500 ">{trip.batches}</span>
+            <span className="ml-1 text-sm text-red-500 ">{trip.batches}</span>
           </div>
         </div>
         <div className="flex items-center">
@@ -171,7 +171,7 @@ const App = () => {
                 ))}
             </div>
           </div>
-          <button onClick={nextTrips} className="p-2">
+          <button onClick={nextTrips} className="p-2 ">
             <FaChevronCircleRight size={30} />
           </button>
         </div>

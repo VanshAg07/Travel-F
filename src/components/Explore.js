@@ -57,7 +57,7 @@ const ImageSlider = () => {
         <div className="flex items-center justify-center relative py-5">
           <button 
             onClick={prevSlide} 
-            className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute left-[-40px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
+            className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
           >
             <FaChevronCircleLeft size={30} />
           </button>
@@ -68,7 +68,7 @@ const ImageSlider = () => {
                   <video 
                     src={video.src} 
                     alt={`Slide ${i}`} 
-                    className="w-full h-[550px] object-cover rounded-lg shadow-md transition-opacity duration-300" 
+                    className="w-full h-[480px] object-cover rounded-lg shadow-md transition-opacity duration-300" 
                     loop 
                     muted
                     style={{ opacity: 0.8 }} // Set initial opacity
@@ -90,20 +90,20 @@ const ImageSlider = () => {
           </div>
           <button 
             onClick={nextSlide} 
-            className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute right-[-40px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
+            className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
           >
             <FaChevronCircleRight size={30} />
           </button>
         </div>
 
         {/* Navigation Dots */}
-        <div className="flex justify-center mt-3">
+        <div className="flex justify-center mt-1">
           {Array.from({ length: getNumberOfDots() }).map((_, dotIndex) => (
             <span
               key={dotIndex}
               onClick={() => goToSlide(dotIndex)}
               className={`h-2 w-2 mx-2 cursor-pointer rounded-full ${
-                index === dotIndex ? "bg-gray-800" : "bg-gray-400"
+                index === dotIndex ? "bg-black" : "bg-gray-300"
               }`}
             />
           ))}
