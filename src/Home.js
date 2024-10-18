@@ -20,6 +20,9 @@ import MainFooter from "./components/Footer/MainFooter.js";
 import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
+import Socialmedia from "./components/Socialmedia.js";
+import Homeyt from "./components/Homeyt.js"
+import Upcomingtrip from "./components/Upcomingtrips.js"
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -32,9 +35,9 @@ const Home = () => {
         <Nav />
         <Dropnav />
         <Videopage />
-        <div className="mt-14">
+        {/* <div className="mt-14">
           {isMobile ? <ExploreMobile /> : <Explore />}
-        </div>
+        </div> */}
 
         {isMobile ? (
           <div className="from-yellow-50 to-yellow-100 bg-gradient-to-br pb-1">
@@ -56,8 +59,6 @@ const Home = () => {
           <Videopg3 />
         )}
 
-        {!isMobile && <Explore />}
-
         {isMobile ? (
           <div className="from-green-50 to-green-200 bg-gradient-to-br pb-1">
             <div style={{ margin: "90px 30px 50px 30px" }}>
@@ -68,12 +69,17 @@ const Home = () => {
           <Videopg4 />
         )}
 
+        <Upcomingtrip />
+
+        {!isMobile && <Explore />}
+
         <Homeglry />
         <Whyuss />
         <Review />
         <Forms />
+        <Homeyt />
         <MainFooter />
-
+        <Socialmedia />
         <div className="fixed-button-1">
           <a
             href={`https://wa.me/918287804197?text=${encodeURIComponent(

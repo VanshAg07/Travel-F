@@ -22,7 +22,7 @@ const BackpackingTrips = () => {
       <Nav />
       <Dropnav />
       <div className="w-[100%] h-[100%] text-center justify-center items-center  ">
-        <img className="h-[660px] w-[100%]" src={intern} alt="India" />
+        <img className="h-[730px] w-[100%]" src={intern} alt="India" />
         <h1
           className="top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute text-white text-center
             text-4xl sm:text-5xl md:text-[2.7rem] leading-tight pb-3"

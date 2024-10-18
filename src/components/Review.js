@@ -76,7 +76,7 @@ const TestimonialCard = ({ name, image, text, link }) => {
 
 const Testimonials = () => {
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8 w-4/5 mx-auto">
+    <div className="py-8 px-4 sm:px-6 lg:px-8 bg-[#ffffe6] w-4/5 mx-auto">
       <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
       Tales from the Wanderers
       </h2>

@@ -6,7 +6,7 @@ import icon4 from "../img/4why.png";
 
 const WhyWanderOn = () => {
   return (
-    <div className="bg-white py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#ffffe6] py-8 px-4 sm:px-6 lg:px-8">
       <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mb-8 sm:mb-12">
         Why Travello10?
       </h2>
