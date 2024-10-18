@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const states = [
-  "Dubai",
-  "Maldives",
-  "Bali",
-  "Thailand",
-  "Vietnam",
-  "Singapore",
-];
-
 const AddInternPlaces = () => {
+  const [states, setStates] = useState([]); // State for storing the list of states
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     stateName: "",
     location: "",
@@ -18,6 +11,28 @@ const AddInternPlaces = () => {
     description: "",
     img: null, // Store image file directly
   });
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/admin/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -36,6 +51,7 @@ const AddInternPlaces = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(false);
 
     // Create a FormData object to handle file and other data
     const formData = new FormData();
@@ -47,7 +63,7 @@ const AddInternPlaces = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/international/addBeautifulPlaces",
+        "http://localhost:5000/api/admin/international/addBeautifulPlaces",
         formData,
         {
           headers: {
@@ -63,12 +79,14 @@ const AddInternPlaces = () => {
         description: "",
         img: null,
       });
+      setLoading(true);
     } catch (error) {
       console.error(
         "Error adding place:",
         error.response ? error.response.data : error.message
       );
       alert("Failed to add place. Please try again.");
+      setLoading(true);
     }
   };
 
@@ -94,9 +112,9 @@ const AddInternPlaces = () => {
             required
           >
             <option value="">Select State</option>
-            {states.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
           </select>
@@ -136,9 +154,37 @@ const AddInternPlaces = () => {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-lg"
+          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={loading}
         >
-          Add Beautiful Place
+          {loading ? (
+            <div className="flex justify-center">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

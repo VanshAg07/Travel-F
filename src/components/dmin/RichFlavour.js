@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const states = [
-  "Meghalaya",
-  "Kashmir",
-  "Spiti Valley",
-  "Kerala",
-  "Himachal Pradesh",
-  "Rajasthan",
-  "Uttrakhand",
-  "Ladakh",
-  "Goa",
-  "Manali",
-];
-
 const RichFlavour = () => {
+  const [states, setStates] = useState([]); // State for storing the list of states
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     stateName: "",
     title: "",
@@ -37,10 +26,33 @@ const RichFlavour = () => {
     }
   };
 
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/trip/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
-    // Create a FormData object to send the form data as multipart/form-data
     const formData = new FormData();
     formData.append("stateName", form.stateName);
     formData.append("title", form.title);
@@ -51,7 +63,7 @@ const RichFlavour = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/addRichFlavour",
+        "http://localhost:5000/api/admin/addRichFlavour",
         formData,
         {
           headers: {
@@ -64,14 +76,18 @@ const RichFlavour = () => {
         stateName: "",
         title: "",
         foodType: "",
-        img: null, // Reset the image field
+        img: null,
       });
+      setLoading(false)
+
     } catch (error) {
       console.error(
         "Error adding flavour:",
         error.response ? error.response.data : error.message
       );
       alert("Failed to add flavour. Please try again.");
+      setLoading(false)
+
     }
   };
 
@@ -97,9 +113,9 @@ const RichFlavour = () => {
             required
           >
             <option value="">Select State</option>
-            {states.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
           </select>
@@ -131,9 +147,37 @@ const RichFlavour = () => {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-lg"
+          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={loading}
         >
-          Add Rich Flavour
+          {loading ? (
+            <div className="flex justify-center">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

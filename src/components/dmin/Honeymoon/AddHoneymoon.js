@@ -95,7 +95,7 @@ const AddHoneymoon = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/honeymoon/add-honeymoon-package/${selectedState}`,
+      `http://localhost:5000/api/honeymoon/add-honeymoon-package/${selectedState}`,
       {
         method: "POST",
         body: formData,
