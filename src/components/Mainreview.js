@@ -9,7 +9,7 @@ import "./Mainreview.css"
 
 const FooterBanner = () => {
   return (
-    <div className="bg-[#f2fdff] text-black py-8 text-center">
+    <div className="bg-[#f2fdff] text-black py-3 text-center">
       {/* Container for the review and traveler information */}
       <div className="flex justify-center items-center space-x-2 sm:space-x-4">
         {/* Google review with custom icon */}

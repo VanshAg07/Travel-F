@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import img1 from "../img/HimachalPradesh.png";
 import img2 from "../img/Uttarakhand.png";
 import img3 from "../img/Kashmir.png";
@@ -14,7 +14,7 @@ import {
   FaMapMarkerAlt,
   FaChevronCircleLeft,
   FaChevronCircleRight,
-} from "react-icons/fa"; 
+} from "react-icons/fa";
 
 const packages = [
   {
@@ -84,7 +84,7 @@ const packages = [
 ];
 
 const TravelPackageCard = ({ pkg }) => (
-  <div className="border w-80 mr-10 rounded-lg shadow-lg overflow-hidden">
+  <div className="border w-80 mr-2 mb-2 ml-4 rounded-md shadow-lg shadow-black overflow-hidden">
     <img
       src={pkg.image}
       alt={pkg.destination}
@@ -102,7 +102,8 @@ const TravelPackageCard = ({ pkg }) => (
         <div className="flex items-center text-black text-xs">
           <FaCalendarAlt className="mr-1" />
           {pkg.dates}
-          <span className="ml-1 text-red-600">{pkg.batches}</span> {/* Added the batches here */}
+          <span className="ml-1 text-red-600">{pkg.batches}</span>{" "}
+          {/* Added the batches here */}
         </div>
       </div>
       <div className="flex items-center text-black text-sm mt-2">
@@ -129,7 +130,7 @@ const TravelPackages = () => {
   };
 
   return (
-    <div className="h-screen bg-white -mt-10 flex flex-col">
+    <div className="h-screen bg-white -mt-6 flex flex-col">
       {/* Video Section */}
       <div className="relative w-full h-[32%]">
         <video
@@ -141,8 +142,14 @@ const TravelPackages = () => {
         />
         {/* Text Overlay */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-          <h1 className="text-4xl uppercase font-bold">Explore <span className="text-yellow-400"> India</span></h1>
-          <h3 className="text-lg mt-2">A Vibrant <span className="text-yellow-400">Tapestry</span> of Culture,<span className="text-yellow-400"> Heritage</span>, and <span className="text-yellow-400">Adventure Awaits!</span></h3>
+          <h1 className="text-4xl uppercase font-bold">
+            Explore <span className="text-yellow-400"> International Trip</span>{" "}
+          </h1>
+          <h3 className="text-lg mt-2">
+            A Vibrant <span className="text-yellow-400">Tapestry</span> of
+            Culture,<span className="text-yellow-400"> Heritage</span>, and{" "}
+            <span className="text-yellow-400">Adventure Awaits!</span>
+          </h3>
         </div>
       </div>
 
@@ -150,12 +157,14 @@ const TravelPackages = () => {
       <div className="w-[80%] h-[60%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
         {/* Heading and "See All" */}
         <div className="flex justify-between items-center mt-4">
-          <h2 className="text-3xl font-bold">Indian Packages</h2>
-          <a href="#" className="text-red-500 mr-12 font-bold hover:text-red-700 text-sm">
+          <h2 className="text-2xl font-semibold">Indian Packages</h2>
+          <a
+            href="#"
+            className="text-red-500 mr-12 font-bold hover:text-red-700 text-sm"
+          >
             See All
           </a>
         </div>
-
         {/* Packages Navigation */}
         <div className="flex items-center mt-4">
           <FaChevronCircleLeft
@@ -172,7 +181,7 @@ const TravelPackages = () => {
           </div>
           <FaChevronCircleRight
             size={30}
-            className={`absolute right-[205px] text-black cursor-pointer ${
+            className={`absolute right-[155px] text-black cursor-pointer ${
               startIndex + 4 >= packages.length ? "invisible" : ""
             }`}
             onClick={handleNext}

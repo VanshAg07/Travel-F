@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import img1 from "../img/HimachalPradesh.png";
 import img2 from "../img/Uttarakhand.png";
 import img3 from "../img/Kashmir.png";
@@ -8,11 +8,11 @@ import img6 from "../img/kedarnath.png";
 import img7 from "../img/badrinath.png";
 import img8 from "../img/sikkim.jpg";
 import {
-    FaClock,
-    FaCalendarAlt,
-    FaMapMarkerAlt,
-    FaChevronCircleLeft,
-    FaChevronCircleRight,
+  FaClock,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaChevronCircleLeft,
+  FaChevronCircleRight,
 } from "react-icons/fa";
 
 const trips = [
@@ -92,8 +92,12 @@ const trips = [
 
 const TripCard = ({ trip }) => {
   return (
-    <div className="bg-white h-[60vh] shadow-md rounded-lg overflow-hidden">
-      <img src={trip.image} alt="Trip" className="w-[100vw] h-[300px] object-cover" />
+    <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
+      <img
+        src={trip.image}
+        alt="Trip"
+        className="w-[100vw] h-[300px] object-cover"
+      />
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl font-semibold">{trip.location}</h3>
@@ -138,19 +142,33 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#ffffe6] p-8 flex justify-center">
+    <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
       <div className="w-[80%]">
         <h1 className="text-3xl pl-12 font-bold mb-6">Upcoming Trips</h1>
-
-        <div className="flex pl-10 mb-6">
-          <div className="flex space-x-4 flex-grow">
-            <button className="px-4  py-2 bg-white  border-2 border-black rounded">OCT</button>
-            <button className="px-4 py-2 bg-white border-2 border-black rounded">NOV</button>
-            <button className="px-4  py-2 bg-white border-2 border-black  rounded">DEC</button>
-            <button className="px-4  py-2 bg-white border-2 border-black  rounded">JAN</button>
-            <button className="px-4  py-2 bg-white border-2 border-black  rounded">FEB</button>
+        <div className="flex pl-10 mb-6 w-full justify-between">
+          <div className="flex flex-row w-[85%] justify-between">
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              OCT
+            </button>
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              NOV
+            </button>
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              DEC
+            </button>
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              JAN
+            </button>
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              FEB
+            </button>
+            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+              MAR
+            </button>
           </div>
-          <button className="text-right font-bold py-2 mr-12 text-red-500 ">See All</button>
+          <button className="text-right font-bold py-2 mr-12 text-red-500 ">
+            See All
+          </button>
         </div>
 
         {/* Slider container */}
@@ -166,9 +184,9 @@ const App = () => {
                 <TripCard key={trip.id} trip={trip} />
               ))}
               {startIndex + tripsToShow >= trips.length &&
-                trips.slice(0, (startIndex + tripsToShow) % trips.length).map((trip) => (
-                  <TripCard key={trip.id} trip={trip} />
-                ))}
+                trips
+                  .slice(0, (startIndex + tripsToShow) % trips.length)
+                  .map((trip) => <TripCard key={trip.id} trip={trip} />)}
             </div>
           </div>
           <button onClick={nextTrips} className="p-2 ">
