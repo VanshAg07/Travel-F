@@ -27,13 +27,12 @@ function App() {
         <h2 className="text-xl lg:text-4xl font-bold">Visit Our Youtube Channel</h2>
       </div>
 
-      {/* Outer Container */}
-      <div className="bg-white h-[75vh] border-2 border-black rounded-md p-4 w-full max-w-5xl relative">
+      {/* Outer Container with responsive padding */}
+      <div className="bg-white h-[75vh] border-2 border-black rounded-md p-4 sm:px-6 md:px-8 lg:px-10 w-full max-w-5xl relative">
         {/* YouTube Video Section */}
-        <div className="mb-4">
+        <div className="mb-4 h-full">
           <iframe
-            width="100%" // Make the iframe responsive
-            height="500" // Increased height of the video
+            className="w-full h-full" // Make the iframe responsive
             src={videoUrls[currentIndex]} // Use the current video URL
             title="YouTube video player"
             frameBorder="0"
@@ -45,15 +44,15 @@ function App() {
         {/* Navigation Arrows with Icons */}
         <button
           onClick={prevVideo}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-l-md flex items-center"
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-md flex items-center sm:left-4 md:left-6 lg:left-8"
         >
-          <FaChevronCircleLeft size={30} /> {/* Left Icon */}
+          <FaChevronCircleLeft size={24} className="sm:size-30" /> {/* Left Icon */}
         </button>
         <button
           onClick={nextVideo}
-          className="absolute -ml-40 right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-r-md flex items-center"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-md flex items-center sm:right-4 md:right-6 lg:right-8"
         >
-          <FaChevronCircleRight size={30} /> {/* Right Icon */}
+          <FaChevronCircleRight size={24} className="sm:size-30" /> {/* Right Icon */}
         </button>
       </div>
     </div>
