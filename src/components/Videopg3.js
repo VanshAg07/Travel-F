@@ -103,7 +103,6 @@ const TravelPackageCard = ({ pkg }) => (
           <FaCalendarAlt className="mr-1" />
           {pkg.dates}
           <span className="ml-1 text-red-600">{pkg.batches}</span>{" "}
-          {/* Added the batches here */}
         </div>
       </div>
       <div className="flex items-center text-black text-sm mt-2">
@@ -118,7 +117,7 @@ const TravelPackages = () => {
   const [startIndex, setStartIndex] = useState(0);
 
   const handleNext = () => {
-    if (startIndex + 4 < packages.length) {
+    if (startIndex + visiblePackages < packages.length) {
       setStartIndex(startIndex + 1);
     }
   };
@@ -129,8 +128,11 @@ const TravelPackages = () => {
     }
   };
 
+  // Determine how many packages to show based on screen width
+  const visiblePackages = window.innerWidth >= 1280 ? 5 : window.innerWidth >= 1024 ? 4 : 3;
+
   return (
-    <div className="h-screen bg-white -mt-6 flex flex-col">
+    <div className="h-screen pt-10 bg-white flex flex-col">
       {/* Video Section */}
       <div className="relative w-full h-[32%]">
         <video
@@ -143,46 +145,45 @@ const TravelPackages = () => {
         {/* Text Overlay */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h1 className="text-4xl uppercase font-bold">
-            Explore <span className="text-yellow-400"> International Trip</span>{" "}
+            Explore <span className="text-yellow-400"> India</span>{" "}
           </h1>
-          <h3 className="text-lg mt-2">
-            A Vibrant <span className="text-yellow-400">Tapestry</span> of
-            Culture,<span className="text-yellow-400"> Heritage</span>, and{" "}
-            <span className="text-yellow-400">Adventure Awaits!</span>
+
+          <h3 className="text-lg mt-2">      
+          A Vibrant<span className="text-yellow-400"> Tapestry </span>{" "}
+          of Culture,{" "}
+            <span className="text-yellow-400"> Heritage, </span> and Adventure{" "}
+            <span className="text-yellow-400">Awaits!</span>
           </h3>
         </div>
       </div>
 
       {/* Packages Section */}
-      <div className="w-[80%] h-[60%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
+      <div className="w-[95vw] h-[80%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
         {/* Heading and "See All" */}
         <div className="flex justify-between items-center mt-4">
-          <h2 className="text-2xl font-semibold">Indian Packages</h2>
-          <a
-            href="#"
-            className="text-red-500 mr-12 font-bold hover:text-red-700 text-sm"
-          >
+          <h2 className="text-2xl pl-10 font-semibold">Indian Packages</h2>
+          <a href="#" className="text-red-500 mr-12 font-bold  text-sm">
             See All
           </a>
         </div>
         {/* Packages Navigation */}
-        <div className="flex items-center mt-4">
+        <div className="flex items-center mt-4 relative">
           <FaChevronCircleLeft
             size={30}
-            className={`absolute left-[165px] text-black cursor-pointer ${
+            className={`absolute -left-[5px] text-black cursor-pointer ${
               startIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={handlePrev}
           />
           <div className="flex overflow-x-auto">
-            {packages.slice(startIndex, startIndex + 4).map((pkg, index) => (
+            {packages.slice(startIndex, startIndex + visiblePackages).map((pkg, index) => (
               <TravelPackageCard key={index} pkg={pkg} />
             ))}
           </div>
           <FaChevronCircleRight
             size={30}
-            className={`absolute right-[155px] text-black cursor-pointer ${
-              startIndex + 4 >= packages.length ? "invisible" : ""
+            className={`absolute -right-[10px] text-black cursor-pointer ${
+              startIndex + visiblePackages >= packages.length ? "invisible" : ""
             }`}
             onClick={handleNext}
           />

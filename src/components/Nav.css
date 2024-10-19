@@ -18,10 +18,10 @@
 
 .logo {
   padding: 3px;
-  height: 60px;
   padding-left: 12px;
   padding-left: 20px; /* Padding for spacing on larger screens */
   height: 90px; /* Adjust logo size */
+  width: 150px;
 }
 
 .cta {

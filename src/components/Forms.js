@@ -4,23 +4,23 @@ import icon1 from "../img/con-bg.png";
 const Forms = () => {
   return (
     <div className='bg-[#ffffe6]'>
-      <h1 className="pt-7 pb-1 text-4xl  font-bold text-center text-gray-800">
+      <h1 className="pt-7 pb-1 text-4xl font-bold text-center text-gray-800">
         Need Assistance
       </h1>
       <div className="flex items-center mb-10 justify-center px-4 h-[80%]">
         {/* Container for form and image with black shadow */}
-        <div className="shadow-[0_10px_15px_rgba(0,0,0,0.5)] rounded-lg flex flex-col md:flex-row items-stretch justify-center mt-4">
+        <div className="shadow-[0_10px_15px_rgba(0,0,0,0.5)] rounded-lg flex flex-col md:flex-row items-stretch justify-center w-[80vw] mt-4">
           {/* Left side image */}
-          <div className="flex-1">
+          <div className="md:w-[40vw] flex-shrink-0 bg-white flex items-center justify-center rounded-lg hidden md:flex"> {/* Hide on mobile screens */}
             <img
               src={icon1}
               alt="Illustration"
-              className="w-[300px] h-[400px] md:w-[500px] md:h-[630px] lg:w-[800px] lg:h-[550px] rounded-lg"
+              className="w-[90%] h-auto"
             />
           </div>
 
           {/* Right side form */}
-          <div className="bg-[#e1feff] rounded-lg shadow-lg p-6 md:p-8 w-full max-w-md md:max-w-lg flex-shrink-0">
+          <div className="bg-[#e1feff] rounded-lg shadow-lg p-6 md:p-8 md:w-[40vw] flex-shrink-0">
             <h2 className="text-cyan-500 text-lg font-semibold mb-1">
               Travello10 Calling?
             </h2>

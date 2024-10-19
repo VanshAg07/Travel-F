@@ -144,28 +144,16 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
-      <div className="w-[80%]">
+      <div className="w-[90vw]"> {/* Change from w-[80%] to w-[90vw] */}
         <h1 className="text-3xl pl-12 font-bold mb-6">Upcoming Trips</h1>
         <div className="flex pl-10 mb-6 w-full justify-between">
-          <div className="flex flex-row w-[85%] justify-between">
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              OCT
-            </button>
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              NOV
-            </button>
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              DEC
-            </button>
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              JAN
-            </button>
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              FEB
-            </button>
-            <button className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-              MAR
-            </button>
+          <div className="flex flex-row w-[70%] justify-between">
+            {/* Month buttons */}
+            {["OCT", "NOV", "DEC", "JAN", "FEB", "MAR"].map((month) => (
+              <button key={month} className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+                {month}
+              </button>
+            ))}
           </div>
           <button className="text-right font-bold py-2 mr-12 text-red-500 ">
             See All

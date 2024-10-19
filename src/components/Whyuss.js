@@ -4,99 +4,56 @@ import icon2 from "../img/2why.png";
 import icon3 from "../img/3why.png";
 import icon4 from "../img/4why.png";
 
-const WhyWanderOn = () => {
+const WhyTravello = () => {
+  const reasons = [
+    {
+      title: "No Unnecessary Add-ons",
+      description: "100% In-House Expertise on Every Adventure! No Outsiders, Just Quality!",
+      image: icon1,
+    },
+    {
+      title: "Clarity & Trust",
+      description: "Live Monitoring of All Trips—Stay Informed with Up-to-Date Routes and Weather Conditions!",
+      image: icon2,
+    },
+    {
+      title: "Custom Co-Travelers Selection",
+      description: "Bringing the Right People Together with Precision Filtering—For the Perfect Trip!",
+      image: icon3,
+      marginTop: "-25px",
+    },
+    {
+      title: "Your Stress-Free Travel Solution",
+      description: "Luxury Stays, Trained Drivers, Friendly Crew, and Experienced Trip Leaders—Crafting Unforgettable Memories!",
+      image: icon4,
+      marginTop: "-30px",
+    },
+  ];
+
   return (
-    <div className="bg-[#ffffe6]  py-8 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mb-8 sm:mb-12">
-        Why Travello10?
-      </h2>
-      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Card 1 */}
-        <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]" // Adjust heights for different screens
-        >
-          <div>
-            <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
-              No Unnecessary Add-ons
-            </h3>
-            <p className="text-[#021526] text-sm sm:text-base lg:text-lg">
-              100% In-House Expertise on Every Adventure! No Outsiders, Just Quality!
-            </p>
-          </div>
+    <div className="why-travello-container py-10 px-4 w-[90vw] mx-auto"> {/* Set width to 90vw and center */}
+      <h2 className="text-center text-3xl font-bold mb-8">Why Travello10?</h2>
+      <div className="flex justify-between flex-wrap lg:flex-nowrap gap-4">
+        {reasons.map((reason, index) => (
           <div
-            className="bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${icon1})`,
-              height: '50%', // Manually control image height
-            }}
-          ></div>
-        </div>
-
-        {/* Card 2 */}
-        <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
-        >
-          <div>
-            <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
-              Clarity & Trust
-            </h3>
-            <p className="text-[#021526] text-sm sm:text-base lg:text-lg">
-              Live Monitoring of All Trips—Stay Informed with Up-to-Date Routes and Weather Conditions!
-            </p>
+            key={index}
+            className="w-full lg:w-1/4 h-[60vh] bg-white p-6 rounded-lg shadow-lg shadow-black flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-2xl text-[#03346e] font-bold mb-2">{reason.title}</h3>
+              <p className="text-base mb-4">{reason.description}</p>
+            </div>
+            <img
+              src={reason.image}
+              alt={reason.title}
+              className="w-full whyuss-img h-auto object-contain mt-auto"
+              style={{ marginTop: reason.marginTop }} // Apply custom margin
+            />
           </div>
-          <div
-            className="bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${icon2})`,
-              height: '50%', // Manually control image height
-            }}
-          ></div>
-        </div>
-
-        {/* Card 3 */}
-        <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
-        >
-          <div>
-            <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
-              Custom Co-Travelers Selection
-            </h3>
-            <p className="text-[#021526] text-sm sm:text-base lg:text-lg">
-              Bringing the Right People Together with Precision Filtering—For the Perfect Trip!
-            </p>
-          </div>
-          <div
-            className="bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${icon3})`,
-              height: '50%', // Manually control image height
-            }}
-          ></div>
-        </div>
-
-        {/* Card 4 */}
-        <div
-          className="bg-white border rounded-lg p-4 sm:p-6 shadow-slate-600 shadow-md flex flex-col justify-between h-80 sm:h-[450px] lg:h-[500px]"
-        >
-          <div>
-            <h3 className="text-[#03346E] font-bold text-lg sm:text-xl lg:text-2xl">
-              Your Stress-Free Travel Solution
-            </h3>
-            <p className="text-[#021526] text-sm sm:text-base lg:text-lg">
-              Luxury Stays, Trained Drivers, Friendly Crew, and Experienced Trip Leaders—Crafting Unforgettable Memories!
-            </p>
-          </div>
-          <div
-            className="bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${icon4})`,
-              height: '50%', // Manually control image height
-            }}
-          ></div>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default WhyWanderOn;
+export default WhyTravello;

@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import travel_img from "../img/logo.png";
 import "./Nav.css";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { FaPhoneAlt, FaSearch } from "react-icons/fa"; // Import FaSearch for the search icon
 
 const Nav = () => {
   const [username, setUsername] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // State to track if the device is mobile
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("loggedIn");
@@ -17,13 +18,13 @@ const Nav = () => {
     }
 
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Check if window is resized to mobile width
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Clean up listener
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -37,15 +38,26 @@ const Nav = () => {
 
   return (
     <div className="nav-wrapper">
-      <div>
-        <Link to="/">
-          <img src={travel_img} alt="Logo" className="logo" />
-        </Link>
-      </div>
+    <div className="flex items-center">
+      <Link to="/">
+        <img src={travel_img} alt="Logo" className="logo" />
+      </Link>
+      {/* Search Bar Icon */}
+      <div className="relative flex items-center ml-4 mr-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
+  <FaSearch className="absolute left-2 text-black z-10" />
+  <input
+    type="text"
+    placeholder="Search..."
+    className="pl-10 pr-2 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full transition-all duration-200 text-black" // Added text-black class
+  />
+</div>
+
+
+    </div>
       <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
-      <div className={`nav-links  ${isMenuOpen ? "open" : ""}`}>
+      <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setIsMenuOpen(false)}>
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <p>Home</p>
@@ -57,7 +69,6 @@ const Nav = () => {
           </div>
         </Link>
 
-        {/* Conditionally render the links based on screen size */}
         {!isMobile && (
           <>
             <Link to="/Payments" onClick={() => setIsMenuOpen(false)}>
@@ -110,12 +121,13 @@ const Nav = () => {
         <div className={`flex justify-center ${isMobile ? "-mt-4" : ""}`}>
           <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
             <div
-              className={`flex flex-row justify-center items-center gap-2 border border-blue-600 rounded-full px-4 py-2 ${
+              className={`flex flex-row justify-center items-center gap-2 border border-white rounded-full px-4 py-2 ${
                 isMobile
-                  ? "mr-0 font-semibold text-sm text-blue-600" // Changed to text-sm for smaller text on mobile
-                  : "mr-10 text-xs" // Changed to text-xs for smaller text on larger screens
+                  ? "mr-0 font-semibold text-sm text-blue-600"
+                  : "mr-10 text-xs"
               }`}
             >
+              <FaPhoneAlt className="transform text-lg" />
               <p>{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>
             </div>
           </a>

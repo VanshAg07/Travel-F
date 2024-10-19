@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const SocialLinks = () => {
   return (
-    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 flex flex-col z-50 ">
+    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 flex flex-col z-50 ">
       {/* Instagram Link */}
       <Link
         target="_blank"
