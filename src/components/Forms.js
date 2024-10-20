@@ -4,7 +4,7 @@ import icon1 from "../img/con-bg.png";
 const Forms = () => {
   return (
     <div className='bg-[#ffffe6]'>
-      <h1 className="pt-7 pb-1 text-4xl font-bold text-center text-gray-800">
+      <h1 className="text-center text-2xl pt-4 sm:text-3xl lg:text-4xl font-bold mb-8">
         Need Assistance
       </h1>
       <div className="flex items-center mb-10 justify-center px-4 h-[80%]">
@@ -21,10 +21,10 @@ const Forms = () => {
 
           {/* Right side form */}
           <div className="bg-[#e1feff] rounded-lg shadow-lg p-6 md:p-8 md:w-[40vw] flex-shrink-0">
-            <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+            <h2 className="text-cyan-500 text-lg font-bold mb-1">
               Travello10 Calling?
             </h2>
-            <h3 className="text-lg font-semibold mb-6">
+            <h3 className="text-base font-semibold mb-6">
               Allow Us to Call You Back!
             </h3>
             <form>

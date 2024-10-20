@@ -16,34 +16,42 @@ const Data = [
   {
     image: img1,
     title: "kedarnath",
+    description: "Beautiful Places to Visit in Kedarnath",
   },
   {
     image: img2,
     title: "kashmir",
+    description: "Beautiful Places to Visit in Kashmir",
   },
   {
     image: img3,
     title: "ladakh",
+    description: "Beautiful Places to Visit in Ladakh",
   },
   {
     image: img4,
     title: "udaipur",
+    description: "Beautiful Places to Visit in Udaipur",
   },
   {
     image: img5,
     title: "kerala",
+    description: "Beautiful Places to Visit in Kerala",
   },
   {
     image: img6,
     title: "meghalaya",
+    description: "Beautiful Places to Visit in Meghalaya",
   },
   {
     image: img6,
     title: "choptatungnath",
+    description: "Beautiful Places to Visit in Choptatungnath",
   },
   {
     image: img6,
     title: "himachalpradesh",
+    description: "Beautiful Places to Visit in HimachalPradesh",
   },
 ];
 
@@ -59,7 +67,7 @@ const Blog = () => {
         </h1>
       </div>
       <div>
-        <h2 className=" blog-h2 pt-2 text-center text-2xl font-bold">Blog</h2>
+        <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">Blog</h2>
       </div>
       <div className="card-grid">
         {Data.map((item, index) => (
@@ -72,7 +80,7 @@ const Blog = () => {
               />
               <div className="w-full text-center">
                 <h3 className=" blog-h3 py-4 capitalize font-bold text-xl md:text-2xl">
-                  {item.title}
+                  {item.description}
                 </h3>
               </div>
             </div>

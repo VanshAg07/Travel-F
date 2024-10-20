@@ -99,13 +99,13 @@ const TravelOptions = () => {
   return (
     <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-12">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
-        <div className="flex flex-col">
+        <div className="flex ml-4 flex-col">
           <h1 className="text-lg font-bold">Upcoming Trips</h1>
           <div className="w-32 border-b-4 border-blue-400 mt-1" />
         </div>
         <a
           href="/all-packages"
-          className="text-red-500 text-sm"
+          className="text-red-500 mr-4 text-sm"
         >
           See All
         </a>

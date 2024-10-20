@@ -24,7 +24,7 @@ const ClienteleHallOfFame = () => {
 
   return (
     <div className="p-8 bg-white text-center">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+      <h2 className="text-xl md:text-3xl mb-8 lg:text-4xl font-bold text-center leading-tight sm:text-xl">
         Our Clientele <span className="text-gray-800">Hall of Fame</span>
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">

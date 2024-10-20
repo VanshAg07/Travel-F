@@ -3,7 +3,6 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import { MdHotel } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import Whyuss from "../components/Whyuss";
-import Homeglry from "../components/Homeglry";
 import Nav from "./Nav";
 import Dropnav from "../components/Dropnav";
 import intern from "../img/india.jpg";
@@ -14,6 +13,7 @@ import MainFooter from "./Footer/MainFooter";
 import Mainreview from "../components/Mainreview";
 import weekend from "../img/weekend.json";
 import AllWeekendTrips from "./User/WeekendTrips/AllWeekendTrips";
+import Review from "../components/Review";
 
 const Weekends = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -70,12 +70,113 @@ const Weekends = () => {
             </p>
           </div>
         </div>
+        <div className="relative pt-10 mb-8">
+          <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+            All Packages
+          </h1>
+          {/* Responsive yellow underline with adjusted spacing */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] h-2 bg-yellow w-2/4 sm:w-1/3 lg:w-[7vw]"></div>
+        </div>
+        <p className="inter-description">
+          Discover Your Dream Journey with Our Best-Selling Travel Packages
+        </p>
         <div>
           <AllWeekendTrips />
         </div>
       </div>
-      <Whyuss />
-      <Homeglry />
+      <div className="bg-[#ffffe6]">
+        <Whyuss />
+        <Review />
+        <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
+          Contact Form
+        </h1>
+        <div className=" flex items-center pb-14 justify-center px-4">
+          {/* Outer div with 80% width */}
+          <div className="bg-[#e1feff] rounded-lg shadow-md shadow-black p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+            {/* Inner form container with 60% width */}
+            <div className="w-full md:w-3/5 mx-auto">
+              <h2 className="text-cyan-500 text-lg font-bold mb-1">
+                Travello10 Calling?
+              </h2>
+              <h3 className="text-base font-semibold mb-6">
+                Allow Us to Call You Back!
+              </h3>
+              <form>
+                {/* Name */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="name"
+                  >
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="e.g. John Smith"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Phone Number */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="phone"
+                  >
+                    Phone Number *
+                  </label>
+                  <input
+                    type="text"
+                    id="phone"
+                    placeholder="Enter your 10 digit number"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="email"
+                  >
+                    Email ID *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="john@example.com"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="mb-6">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    placeholder="Any Message"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  ></textarea>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-cyan-500 text-white font-bold py-2 rounded-md transition duration-300"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <MainFooter />
       <div className="fixed-button-1">
         <a

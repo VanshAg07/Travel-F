@@ -32,7 +32,7 @@ const WhyTravello = () => {
 
   return (
     <div className="why-travello-container py-10 px-4 w-[90vw] mx-auto"> {/* Set width to 90vw and center */}
-      <h2 className="text-center text-3xl font-bold mb-8">Why Travello10?</h2>
+      <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">Why Travello10?</h2>
       <div className="flex justify-between flex-wrap lg:flex-nowrap gap-4">
         {reasons.map((reason, index) => (
           <div

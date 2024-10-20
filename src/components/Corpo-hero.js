@@ -8,18 +8,19 @@ import imgcloud from "../img/cloud.jpg";
 const HighLevelCorporateTour = () => {
   return (
     <>
-      <div className="bg-white mb-40">
+      <div className="bg-white">
         {/* Title */}
         <div className="text-center py-8">
-          <header className="w-full bg-white p-6 shadow-md text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold">
+          <header className="w-full bg-white text-center">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
               Partners We've <span className="text-blue-500">Thrilled</span>
             </h1>
           </header>
         </div>
+        </div>
 
         {/* Main Content Section */}
-        <div className="relative bg-blue-900 text-white py-10 sm:py-16 top-10 max-h-[120vh]">
+        <div className="relative bg-[#03346e] mb-20 text-white py-10 sm:py-16 top-10 max-h-[120vh]">
           <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
             {/* Left Content */}
             <div className="flex-1">
@@ -70,13 +71,13 @@ const HighLevelCorporateTour = () => {
             </div>
           </div>
         </div>
-      </div>
+      
 
-      <div className="bg-white mb-40">
+      <div className="bg-white mb-20">
         {/* Title */}
 
         {/* Main Content Section */}
-        <div className="relative bg-blue-900 text-white py-10 sm:py-16 top-10 max-h-[120vh]">
+        <div className="relative bg-[#03346e] text-white py-10 sm:py-16 top-10 max-h-[120vh]">
           <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
             {/* Left Content */}
             <div className="flex-1">
@@ -130,11 +131,11 @@ const HighLevelCorporateTour = () => {
         </div>
       </div>
 
-      <div className="bg-white mb-40">
+      <div className="bg-white mb-20">
         {/* Title */}
 
         {/* Main Content Section */}
-        <div className="relative bg-blue-900 text-white py-10 sm:py-16 top-10 max-h-[120vh]">
+        <div className="relative bg-[#03346e] text-white py-10 sm:py-16 top-10 max-h-[120vh]">
           <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
             {/* Left Content */}
             <div className="flex-1">
@@ -188,9 +189,9 @@ const HighLevelCorporateTour = () => {
         </div>
       </div>
 
-      <div className="bg-white mb-40">
+      <div className="bg-white mb-20">
   {/* Main Content Section */}
-  <div className="relative bg-blue-900 text-white py-10 sm:py-16 top-10 h-[950px] sm:h-[850px] lg:h-[600px] overflow-hidden">
+  <div className="relative bg-[#03346e] text-white py-10 sm:py-16 top-10 h-[950px] sm:h-[850px] lg:h-[600px] overflow-hidden">
     <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
       {/* Left Content */}
       <div className="flex-1">
