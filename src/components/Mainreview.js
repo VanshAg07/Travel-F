@@ -9,7 +9,7 @@ import "./Mainreview.css"
 
 const FooterBanner = () => {
   return (
-    <div className="bg-[#f2fdff] text-black py-3 text-center">
+    <div className="bg-[#e1feff] mainreview-wrapper text-black py-3 text-center">
       {/* Container for the review and traveler information */}
       <div className="flex justify-center items-center space-x-2 sm:space-x-4">
         {/* Google review with custom icon */}
@@ -55,7 +55,7 @@ const FooterBanner = () => {
         </Link>
 
         {/* React Icon - GiTakeMyMoney */}
-        <Link target="_blank" rel="noopener noreferrer" to="https://www.example.com">
+        <Link>
           <span className="flex items-center">
             <GiTakeMyMoney className="mr-1 text-black w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
             <div className="flex flex-col items-start">
@@ -66,7 +66,6 @@ const FooterBanner = () => {
             </div>
           </span>
         </Link>
-
       </div>
     </div>
   );

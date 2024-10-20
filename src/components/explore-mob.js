@@ -18,27 +18,27 @@ const TravelOptions = () => {
   ];
 
   return (
-    <div className="w-full h-[30vh] px-4 md:px-20 mb-20">
+    <div className="w-full bg-white h-[20vh] px-4 mb-12">
       {/* Heading for the Travel Options */}
-      <h1 className="text-center text-2xl font-bold mb-12">Explore Your Adventure</h1>
+      <h1 className="text-center  text-lg font-bold mb-6">Explore Your Adventure</h1>
 
       {/* Scrollable area with hidden scrollbar */}
       <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex flex-nowrap justify-start items-center space-x-6">
+        <div className="flex flex-nowrap justify-start items-center space-x-4">
           {options.map((option, index) => (
             <a 
               key={index} 
               href={option.link} 
-              className="flex flex-col items-center hover:scale-105 transition-transform duration-300"
+              className="flex flex-col items-center"
             >
-              <div className="w-24 h-24 flex justify-center items-center overflow-hidden rounded-full">
+              <div className="w-20 h-20 flex justify-center items-center overflow-hidden rounded-full">
                 <img 
                   src={option.imgSrc} 
                   alt={option.name} 
                   className="object-cover w-full h-full"
                 />
               </div>
-              <span className="mt-2 text-center text-sm font-medium">{option.name}</span>
+              <span className="mt-1 text-center text-xs font-semibold">{option.name}</span>
             </a>
           ))}
         </div>

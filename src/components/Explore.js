@@ -68,7 +68,7 @@ const ImageSlider = () => {
                   <video 
                     src={video.src} 
                     alt={`Slide ${i}`} 
-                    className="w-full h-[480px] object-cover rounded-lg shadow-md transition-opacity duration-300" 
+                    className="w-full h-[480px] object-cover rounded-lg shadow-lg shadow-black transition-opacity duration-300" 
                     loop 
                     muted
                     style={{ opacity: 0.8 }} // Set initial opacity

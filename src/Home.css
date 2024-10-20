@@ -23,6 +23,10 @@
         width: 10%;
         right: -10px;
     }
+    .home-wr{
+        overflow-x: hidden;
+        background-color: #ffffff;
+    }
 }
 
 @media (max-width: 640px) {
@@ -43,6 +47,10 @@
     .fixed-button-1 {
         width: 20%;
         right: -10px;
+    }
+    .home-wr{
+        overflow-x: hidden;
+        background-color: #ffffff;
     }
 }
 

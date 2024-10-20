@@ -33,10 +33,17 @@ export default function Card() {
 
   return (
     <div className="">
-      <div className=" mb-10 pt-4">
-        <p className="w-full flex font-semibold text-xl items-center justify-center">
-          Love Escapes
-        </p>
+      <div className="flex justify-between items-center mb-4 h-[10vh]">
+        <div className="flex flex-col">
+          <h1 className="text-lg font-bold">Honeymoon Packages</h1>
+          <div className="w-32 border-b-4 border-blue-400 mt-1" />
+        </div>
+        <a
+          href="/all-packages"
+          className="text-red-500 text-sm"
+        >
+          See All
+        </a>
       </div>
 
       <Swiper

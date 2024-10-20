@@ -26,3 +26,30 @@
     height: 95vh; /* For extra small screens (mobile) */
   }
 }
+@media (max-width: 426px) {
+  .videopg-wrpper{
+    height: 80vh;
+  }
+  .video-background {
+    height: 70vh; /* For extra small screens (mobile) */
+  }
+  .gradient-bg{
+    height:70vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.433);
+  }
+  .videopg-p{
+    margin-top: -50px;
+  }
+
+  .videopg-btn{
+    margin-top: -80px;
+  }
+}
+/* styles.css */
+.gradient-bg {
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+
+

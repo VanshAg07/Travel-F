@@ -21,70 +21,76 @@ import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
 import Socialmedia from "./components/Socialmedia.js";
-import Homeyt from "./components/Homeyt.js"
-import Upcomingtrip from "./components/Upcomingtrips.js"
+import Homeyt from "./components/Homeyt.js";
+import Upcomingtrip from "./components/Upcomingtrips.js";
+import UpcomingtripMobile from "./components/Upcomingtripmobile.js"; // Import Mobile version
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" }); // Check for mobile size
-  const isPhone = useMediaQuery({ query: "(max-width: 375px)" }); // Check for phone size less than 375px
+  
+  // Media queries
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isLargeMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isSmallMobile = useMediaQuery({ query: "(max-width: 426px)" }); // Media query for small mobile
 
   return (
     <div className="home-wr">
-      <GoogleOAuthProvider clientId="296927192780-60h36sne2alsb0pnhm89kbnt4pst0eqk.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId="your_client_id_here">
         <Nav />
         <Dropnav />
         <Videopage />
-        {/* <div className="mt-14">
-          {isMobile ? <ExploreMobile /> : <Explore />}
-        </div> */}
 
-        {isMobile ? (
-          <div className="from-yellow-50 to-yellow-100 bg-gradient-to-br pb-1">
-            <div style={{ margin: "90px 30px 55px 30px" }}>
+        {/* Show ExploreMobile only on small mobile screens (less than 426px) */}
+        {isSmallMobile && <ExploreMobile />}
+
+        {isSmallMobile ? (
+          <div style={{ margin: "0px 10px 0px 10px" }}>
               <Mobcard />
-            </div>
           </div>
         ) : (
           <Videopg2 />
         )}
 
-        {isMobile ? (
-          <div className="from-red-100 to-red-200 bg-gradient-to-br pb-1">
-            <div style={{ margin: "90px 30px 55px 30px" }}>
+        {isSmallMobile ? (
+            <div style={{ margin: "0px 10px 0px 10px" }}>
               <Mobcardinter />
             </div>
-          </div>
         ) : (
           <Videopg3 />
         )}
 
-        {isMobile ? (
-          <div className="from-green-50 to-green-200 bg-gradient-to-br pb-1">
-            <div style={{ margin: "90px 30px 50px 30px" }}>
+        {isSmallMobile ? (
+          <div style={{ margin: "0px 10px 0px 10px" }}>
               <Mobcardhoney />
             </div>
-          </div>
         ) : (
           <Videopg4 />
         )}
 
-        <Upcomingtrip />
+        {/* Conditionally render Upcomingtrip for larger screens and UpcomingtripMobile for smaller screens */}
+        <div className="bg-[#ffffe6]">
+        {isSmallMobile ? (
+          <div style={{ margin: "0px 10px 0px 10px" }}>
+          <UpcomingtripMobile />
+            </div>
+        ) : (
+          <Upcomingtrip />
+        )}
 
-        {!isMobile && <Explore />}
+        {/* Show Explore component only when screen size is greater than 426px */}
+        {!isSmallMobile && <Explore />}
 
         <Homeglry />
         <Whyuss />
         <Review />
         <Forms />
         <Homeyt />
+        </div>
         <MainFooter />
         <Socialmedia />
         <div className="fixed-button-1">
           <a
-            href={`https://wa.me/918287804197?text=${encodeURIComponent(
-              whatsappMessage
-            )}`}
+            href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

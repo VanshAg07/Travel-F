@@ -48,7 +48,7 @@ const testimonials = [
 
 const TestimonialCard = ({ name, image, text, link }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 text-sm sm:text-base lg:text-lg transition-all duration-300">
+    <div className="bg-white rounded-lg shadow-[#0a0a0a] shadow-md p-4 text-sm sm:text-base lg:text-lg transition-all duration-300">
       <div className="flex items-center mb-2">
         <img src={image} alt={name} className="w-10 h-10 rounded-full mr-4" />
         <div>
@@ -64,7 +64,7 @@ const TestimonialCard = ({ name, image, text, link }) => {
           href={link} 
           target="_blank" // Open link in a new tab
           rel="noopener noreferrer" // Security best practice
-          className="mt-4 inline-block text-blue-500 hover:text-blue-700 font-semibold text-sm sm:text-base transition duration-200"
+          className="mt-4 inline-block text-red-600 font-semibold text-sm sm:text-base transition duration-200"
         >
           Continue Reading
         </a>
@@ -78,7 +78,7 @@ const Testimonials = () => {
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8 bg-[#ffffe6] w-4/5 mx-auto">
       <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
-      Tales from the Wanderers
+      Narratives of the Travelers
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
         {testimonials.map((testimonial, index) => (
