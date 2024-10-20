@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import { GiClockwork } from "react-icons/gi";
-import { MdLocationOn } from "react-icons/md";
-import { FaCalendarAlt } from "react-icons/fa";
-import "./3dCard.css"; // Ensure you have relevant styles here
+import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+// import "./3dCard.css";
 
 const Card = () => {
   const [trips, setTrips] = useState([]);
@@ -45,43 +43,37 @@ const Card = () => {
         filteredTrips.map((trip, index) => {
           const nextDate = getValidDate(trip.tripDate);
           if (!nextDate) return null;
+
           return (
             <Link
               key={index}
               to={`/trip/${trip.tripName}/${name}`}
-              className="h-[400px] sm:h-[450px] relative shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
+              className="w-80 bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
             >
               <img
-                src={`${trip.tripImages}`}
+                src={trip.tripImages}
                 alt={trip.tripName}
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                className="w-full h-[200px] object-cover"
               />
-              <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
-                <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
-              </div>
-              <div className="w-full p-3 rounded-lg flex flex-col absolute bottom-0 bg-black bg-opacity-75">
-                <h2 className="text-xs md:text-sm lg:text-base font-bold text-white mb-2">
-                  {trip.tripName}
-                </h2>
-                <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center text-gray-600">
-                    <GiClockwork className="mr-2 text-blue-500" />
-                    <span className="text-xs md:text-sm text-white">
-                      {trip.tripDuration}
-                    </span>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <FaCalendarAlt className="mr-2 text-blue-500" />
-                    <span className="text-xs md:text-sm text-white">
-                      {nextDate.toLocaleDateString()}
-                    </span>
+              <div className="p-4 relative">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-xl font-semibold text-black">{trip.tripName}</h3>
+                  <div className="flex items-center text-black text-sm">
+                    <FaClock className="mr-1" />
+                    {trip.tripDuration}
                   </div>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <MdLocationOn className="mr-2 text-blue-500" />
-                  <span className="text-xs md:text-sm text-white">
-                    {trip.pickAndDrop}
-                  </span>
+                <div className="flex items-center text-black text-sm mt-2">
+                  <FaCalendarAlt className="mr-1" />
+                  {nextDate.toLocaleDateString()}
+                  <span className="ml-2 text-red-500">+6 Batches</span>
+                </div>
+                <div className="flex items-center text-black text-sm mt-2">
+                  <FaMapMarkerAlt className="mr-1" />
+                  {trip.pickAndDrop}
+                </div>
+                <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
+                  <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
                 </div>
               </div>
             </Link>

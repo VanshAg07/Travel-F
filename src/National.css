@@ -79,6 +79,9 @@
     font-size: 1.2rem;
     padding: 4px 8px;
   }
+  .all-packages-description {
+    font-size: 0.9rem;     
+  }
 }
 
 .hero-heading::after {
@@ -211,17 +214,6 @@
   border-radius: 10px; 
 }
 
-.all-packages-heading {
-  font-size: 2.5rem;
-  color: #2C3E50;
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  position: relative;  
-}
-
 .all-packages-heading::after {
   content: "";
   position: absolute;
@@ -236,9 +228,8 @@
 
 .all-packages-description {
   font-size: 1.2rem;     
-  color: #34495E;        
-  text-align: center;  
-  margin-bottom: 30px;   
+  color: #000;        
+  text-align: center;    
   line-height: 1.5;      
   font-family: 'Arial', sans-serif; 
 }

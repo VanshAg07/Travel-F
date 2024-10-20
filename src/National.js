@@ -16,7 +16,6 @@ import shi12 from "./img/12.png";
 import shi13 from "./img/13.png";
 import shi15 from "./img/15.png";
 import Whyuss from "./components/Whyuss.js";
-import Guide from "./components/Indguide.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
 import Review from "./components/Review";
@@ -24,6 +23,8 @@ import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
 import Dropnav from "./components/Dropnav.js";
 import Mainreview from "./components/Mainreview.js";
 import MainFooter from "./components/Footer/MainFooter.js";
+import Homeglry from "./components/Homeglry.js";
+
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
@@ -113,8 +114,10 @@ const National = () => {
           className="hero-lottie"
         />
       </div>
-
-      <h1 className="ind-h">Destinations</h1>
+<div className="justify-center items-center mb-4 flex flex-col w-full">
+      <h1 className="text-center text-black text-2xl mt-8 sm:text-3xl lg:text-4xl font-bold">Destinations</h1>
+      <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+      </div>
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
           {places.map((place) => (
@@ -128,32 +131,42 @@ const National = () => {
           ))}
         </div>
       </div>
-      <h1 className="all-packages-heading">All Packages</h1>
-      <p className="all-packages-description">
+      <div className="justify-center pt-10 items-center flex flex-col w-full ">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+          All Packages
+          </h1>
+          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+          <div>
+          <p className=" pt-2 inter-description">
         Discover Your Dream Journey with Our Best-Selling Travel Packages
       </p>
-      <div className="flex justify-center mt-28">
+          </div>
+        </div>
+      <div className="flex justify-center mt-10">
         <div className="w-[80%]">
           <AllPackagesCard />
         </div>
       </div>
+      <div className="bg-[#ffffe6]">
+      <Homeglry />
       <Whyuss />
       <Review />
-      <Guide />
-      <h1 className="pt-14 md:pt-20 text-2xl md:text-4xl font-bold text-center text-gray-800">
+      {/* <Guide /> */}
+      
+      <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
   Contact Form
 </h1>
-<div className="min-h-screen flex items-center justify-center px-4">
+<div className=" flex items-center pb-14 justify-center px-4">
 
   {/* Outer div with 80% width */}
-  <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+  <div className="bg-[#e1feff] rounded-lg shadow-md shadow-black p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
     
     {/* Inner form container with 60% width */}
     <div className="w-full md:w-3/5 mx-auto">
-      <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+      <h2 className="text-cyan-500 text-lg font-bold mb-1">
         Travello10 Calling?
       </h2>
-      <h3 className="text-lg font-semibold mb-6">
+      <h3 className="text-base font-semibold mb-6">
         Allow Us to Call You Back!
       </h3>
       <form>
@@ -211,7 +224,7 @@ const National = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
+          className="w-full bg-cyan-500 text-white font-bold py-2 rounded-md transition duration-300"
         >
           Submit
         </button>
@@ -219,7 +232,7 @@ const National = () => {
     </div>
   </div>
 </div>
-
+</div>
       <MainFooter />
 
       <div className="fixed-button-1">

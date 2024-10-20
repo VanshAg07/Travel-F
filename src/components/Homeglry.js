@@ -59,7 +59,7 @@ const Gallery = () => {
   return (
     <div className="gallery-wrap" onWheel={handleWheel}>
       {/* Heading */}
-      <h1 className="text-center text-3xl font-bold mb-4 pt-8 homeglry-h text-gray-800">
+      <h1 className="text-center text-2xl pt-4 sm:text-3xl lg:text-4xl font-bold mb-4">
         PORTALS TO ADVENTURE
       </h1>
       <p className="text-center text-xl homeglry-p font-bold mb-2 text-gray-800">

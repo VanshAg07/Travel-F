@@ -48,15 +48,15 @@ const Corporate = () => {
         </div>
         <Mainreview />
 
-        <div className="justify-center items-center flex flex-col w-full ">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center leading-tight sm:text-2xl">
+        <div className="justify-center pt-10 items-center flex flex-col w-full ">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             Unleash the Excitement in Corporate Tours
           </h1>
           <div className="bg-[#ffff00] h-1 w-16 md:w-24 lg:w-60 mt-2"></div>
         </div>
 
         <div className="w-[80%] mx-auto pt-10 flex flex-col md:flex-row justify-between md:space-x-8">
-          <div className="w-full md:w-[50%] mt-16 md:mt-0 md:ml-0">
+          <div className="w-full md:w-[50%] md:mt-0 md:ml-0">
             <img
               src={Image1}
               alt="Descriptive text here"
@@ -356,8 +356,10 @@ const Corporate = () => {
         {/* <Forms /> */}
         <Servicecorpo />
         <ClienteleHallOfFame />
+        <div className="bg-[#ffffe6]">
         <Whyuss />
         <Grouptourform />
+        </div>
       </div>
       <MainFooter />
       <div className="fixed-button-1">

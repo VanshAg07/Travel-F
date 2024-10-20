@@ -25,12 +25,12 @@ const EuropeTripEnquiryForm = () => {
   };
 
   return (
-    <div className="flex pt-10 pb-10 justify-center items-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-50 px-4 sm:px-6 lg:px-8">
+    <div className="flex pt-10 pb-10 justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8">
       <form 
         onSubmit={handleSubmit} 
         className="bg-white p-6 sm:p-8 rounded-lg shadow-xl w-full max-w-lg"
       >
-        <h2 className="text-2xl font-bold text-blue-600 mb-6 text-center">Travello10 Enquiry Form</h2>
+        <h2 className="text-2xl font-bold text-cyan-600 mb-6 text-center">Travello10 Enquiry Form</h2>
         
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2" htmlFor="fullName">Full Name</label>
@@ -198,7 +198,7 @@ const EuropeTripEnquiryForm = () => {
         
         <button 
           type="submit" 
-          className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+          className="w-full bg-cyan-500 text-white p-3 rounded-lg"
         >
           Submit
         </button>

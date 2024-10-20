@@ -48,13 +48,11 @@
   
   .honey-description {
     font-size: 1.2rem; /* Default font size */
-    color: #34495E;
+    color: black;
     text-align: center;
-    margin-bottom: 30px;
     line-height: 1.5;
     font-family: 'Arial', sans-serif;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-bottom: 30px;
   }
   
   /* Responsive styles */

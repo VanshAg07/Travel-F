@@ -33,14 +33,14 @@ export default function Card() {
 
   return (
     <div className="">
-      <div className="flex justify-between items-center mb-4 h-[10vh]">
-        <div className="flex flex-col">
+      <div className="flex justify-between mt-7 items-center mb-4 h-[10vh]">
+        <div className="flex flex-col ml-4">
           <h1 className="text-lg font-bold">Honeymoon Packages</h1>
           <div className="w-32 border-b-4 border-blue-400 mt-1" />
         </div>
         <a
           href="/all-packages"
-          className="text-red-500 text-sm"
+          className="text-red-500 text-sm mr-4"
         >
           See All
         </a>

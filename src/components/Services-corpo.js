@@ -28,7 +28,7 @@ function App() {
     <div className="bg-gray-50 flex flex-col items-center px-4 sm:px-8">
       {/* Heading Section */}
       <header className="w-full max-w-screen-md text-center mt-10">
-        <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
           Our Secret to <span className="text-blue-500">Spellbinding</span>{' '}
           <span className="text-blue-500">Moments</span>
         </h1>
