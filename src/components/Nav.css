@@ -9,7 +9,23 @@
   justify-content: space-between;
   align-items: center;
 }
+.active-link {
+  position: relative;
+  color: #fff; /* Ensure the text is visible against your navbar background */
+}
 
+.active-link::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 2px; /* Adjust thickness of underline */
+  background-color: #fff; /* Color of the underline */
+  bottom: -5px; /* Adjust distance of underline from text */
+  left: 3px;
+  transition: width 0.3s ease; /* Smooth transition effect */
+  justify-content: center;
+  align-items: center;
+}
 .mob-no {
   border: 2px solid #fff;
   border-radius: 25px;
@@ -32,9 +48,9 @@
   background: none;
   cursor: pointer;
   margin-right: 40px;
-  display: inline-flex; 
-  align-items: center; 
-  gap: 8px; 
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: #fff;
 }
 
@@ -194,6 +210,8 @@
 
   .nav-links.open {
     display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow effect */
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-links a {
@@ -219,6 +237,7 @@
 
   .nav-wrapper {
     height: 60px; /* Reduced navbar height for smaller screens */
+     z-index: 1001;
   }
 
   .logo {
@@ -240,10 +259,12 @@
     justify-content: flex-start;
     padding: 20px;
     font-size: 1rem;
+    transform: translateX(100%);
   }
 
   .nav-links.open {
     display: flex;
+    transform: translateX(0);
   }
 
   .nav-links a {
@@ -316,7 +337,7 @@
 
 @media (max-width: 593px) {
   .nav-links {
-    width: 40%; 
+    width: 40%;
   }
 }
 

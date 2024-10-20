@@ -1,7 +1,5 @@
-import React from "react";
-import { product_card_2 } from "./Product_data";
-
 import React, { useState } from "react";
+import { product_card_2 } from "./Product_data";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import Bali from "../img/bali-mob.png";
 import Thailand from "../img/thailand-mob.png";
