@@ -217,7 +217,7 @@ const AddInternPackage = () => {
             name="tripBookingAmount"
             value={tripDetails.tripBookingAmount}
             onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+              setTripDetails({ ...tripDetails, tripBookingAmount: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"
@@ -230,7 +230,7 @@ const AddInternPackage = () => {
             name="tripSeats"
             value={tripDetails.tripSeats}
             onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+              setTripDetails({ ...tripDetails, tripSeats: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

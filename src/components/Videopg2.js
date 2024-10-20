@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import video from "../img/intern1.mp4";
 import {
   FaClock,
@@ -39,22 +39,22 @@ const TravelPackageCard = ({ pkg }) => {
       className="border w-80 mr-2 mb-2 ml-4 rounded-md shadow-lg shadow-black overflow-hidden cursor-pointer"
     >
       <img
-        src={pkg.tripImages[0]} // Use the first image from the tripImages array
+        src={pkg.tripImages}
         alt={pkg.tripName}
         className="w-full h-[200px] object-cover"
       />
       <div className="p-4">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold">{pkg.tripName}</h3>
-          <div className="flex items-center text-black text-sm">
-            <FaClock className="mr-1" />
-            {pkg.tripDuration}
-          </div>
         </div>
         <div className="flex justify-between items-center mt-2">
           <div className="flex items-center text-black text-xs">
             <FaCalendarAlt className="mr-1" />
-            {displayedDates} {/* Display formatted trip dates */}
+            {displayedDates}
+          </div>
+          <div className="flex items-center text-black text-sm">
+            <FaClock className="mr-1" />
+            {pkg.tripDuration}
           </div>
         </div>
         <div className="flex items-center text-black text-sm mt-2">

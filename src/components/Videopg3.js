@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-import img1 from "../img/HimachalPradesh.png";
-import img2 from "../img/Uttarakhand.png";
-import img3 from "../img/Kashmir.png";
-import img4 from "../img/kerala.png";
-import img5 from "../img/ladakh.png";
-import img6 from "../img/kedarnath.png";
-import img7 from "../img/badrinath.png";
-import img8 from "../img/sikkim.jpg";
+import React, { useState, useEffect } from "react";
 import video from "../img/intern1.mp4";
 import {
   FaClock,
@@ -15,106 +7,81 @@ import {
   FaChevronCircleLeft,
   FaChevronCircleRight,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+const TravelPackageCard = ({ pkg }) => {
+  const navigate = useNavigate();
 
-const packages = [
-  {
-    destination: "Maldives",
-    image: img1,
-    duration: "7N/8D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Bali",
-    image: img2,
-    duration: "4N/5D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Singapore",
-    image: img3,
-    duration: "5N/6D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Dubai",
-    image: img4,
-    duration: "10N/11D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Kedarnath",
-    image: img5,
-    duration: "7N/8D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Ladakh",
-    image: img6,
-    duration: "4N/5D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Kerala",
-    image: img7,
-    duration: "5N/6D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-  {
-    destination: "Kashmir",
-    image: img8,
-    duration: "10N/11D",
-    dates: "14 Oct, 21 Oct",
-    batches: "+6 Batches",
-    location: "Delhi to Delhi",
-  },
-];
+  // Format the trip dates
+  const formattedDates = pkg.tripDate.map((date) =>
+    new Date(date).toLocaleDateString()
+  );
 
-const TravelPackageCard = ({ pkg }) => (
-  <div className="border w-80 mr-2 mb-2 ml-4 rounded-md shadow-lg shadow-black overflow-hidden">
-    <img
-      src={pkg.image}
-      alt={pkg.destination}
-      className="w-full h-[200px] object-cover"
-    />
-    <div className="p-4">
-      <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold">{pkg.destination}</h3>
-        <div className="flex items-center text-black text-sm">
-          <FaClock className="mr-1" />
-          {pkg.duration}
+  // Display first two dates and count the remaining dates
+  const displayedDates =
+    formattedDates.length > 2
+      ? `${formattedDates.slice(0, 2).join(", ")} +${
+          formattedDates.length - 2
+        } more`
+      : formattedDates.join(", ");
+
+  // Function to handle navigation
+  const handleNavigate = () => {
+    navigate(`/trip/${pkg.tripName}/${pkg.stateName}`, {
+      state: { stateName: pkg.stateName, tripName: pkg.tripName },
+    });
+  };
+  return (
+    <div
+      onClick={handleNavigate}
+      className="border w-80 mr-2 mb-2 ml-4 rounded-md shadow-lg shadow-black overflow-hidden cursor-pointer"
+    >
+      <img
+        src={pkg.tripImages}
+        alt={pkg.tripName}
+        className="w-full h-[200px] object-cover"
+      />
+      <div className="p-4">
+        <div className="flex justify-between items-center">
+          <h3 className="text-xl font-semibold">{pkg.tripName}</h3>
         </div>
-      </div>
-      <div className="flex justify-between items-center mt-2">
-        <div className="flex items-center text-black text-xs">
-          <FaCalendarAlt className="mr-1" />
-          {pkg.dates}
-          <span className="ml-1 text-red-600">{pkg.batches}</span>{" "}
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex items-center text-black text-xs">
+            <FaCalendarAlt className="mr-1" />
+            {displayedDates}
+          </div>
+          <div className="flex items-center text-black text-sm">
+            <FaClock className="mr-1" />
+            {pkg.tripDuration}
+          </div>
         </div>
-      </div>
-      <div className="flex items-center text-black text-sm mt-2">
-        <FaMapMarkerAlt className="mr-1" />
-        {pkg.location}
+        <div className="flex items-center text-black text-sm mt-2">
+          <FaMapMarkerAlt className="mr-1" />
+          {pkg.tripLocation}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const TravelPackages = () => {
+  const [packages, setPackages] = useState([]); // State to store fetched packages
   const [startIndex, setStartIndex] = useState(0);
+
+  const fetchInternationalPackages = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/homepage-choosen-national-display"
+      );
+      setPackages(res.data.chosenPackages); // Update state with fetched data
+    } catch (error) {
+      console.error("Error fetching international packages:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchInternationalPackages();
+  }, []);
 
   const handleNext = () => {
     if (startIndex + visiblePackages < packages.length) {
@@ -129,7 +96,8 @@ const TravelPackages = () => {
   };
 
   // Determine how many packages to show based on screen width
-  const visiblePackages = window.innerWidth >= 1280 ? 5 : window.innerWidth >= 1024 ? 4 : 3;
+  const visiblePackages =
+    window.innerWidth >= 1280 ? 5 : window.innerWidth >= 1024 ? 4 : 3;
 
   return (
     <div className="h-screen pt-10 bg-white flex flex-col">
@@ -148,11 +116,10 @@ const TravelPackages = () => {
             Explore <span className="text-yellow-400"> India</span>{" "}
           </h1>
 
-          <h3 className="text-lg mt-2">      
-          A Vibrant<span className="text-yellow-400"> Tapestry </span>{" "}
-          of Culture,{" "}
-            <span className="text-yellow-400"> Heritage, </span> and Adventure{" "}
-            <span className="text-yellow-400">Awaits!</span>
+          <h3 className="text-lg mt-2">
+            A Vibrant<span className="text-yellow-400"> Tapestry </span> of
+            Culture, <span className="text-yellow-400"> Heritage, </span> and
+            Adventure <span className="text-yellow-400">Awaits!</span>
           </h3>
         </div>
       </div>
@@ -176,9 +143,11 @@ const TravelPackages = () => {
             onClick={handlePrev}
           />
           <div className="flex overflow-x-auto">
-            {packages.slice(startIndex, startIndex + visiblePackages).map((pkg, index) => (
-              <TravelPackageCard key={index} pkg={pkg} />
-            ))}
+            {packages
+              .slice(startIndex, startIndex + visiblePackages)
+              .map((pkg, index) => (
+                <TravelPackageCard key={index} pkg={pkg} />
+              ))}
           </div>
           <FaChevronCircleRight
             size={30}
