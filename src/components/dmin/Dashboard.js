@@ -9,6 +9,8 @@ import HomeInternationalComponent from "./Dashboard/HomeInternationalComponent";
 import HomeNationalComponent from "./Dashboard/HomeNationalComponent";
 import HomeHoneymoon from "./Dashboard/HomeHoneymoon";
 import OfferHomePage from "./Dashboard/OfferHomePage";
+import GroupTours from "./Dashboard/GroupTours/GroupTours";
+import NavOfferComponent from "./Dashboard/NavOffer";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -38,7 +40,11 @@ function Dashboard() {
     {
       name: "HomePage Honeymoon Details",
       component: <HomeHoneymoon />,
-    }, // Replace with actual component
+    },
+    {
+      name: "Nav Bar Details",
+      component: <NavOfferComponent />,
+    },
   ];
   const handleCardClick = (component) => {
     setSelectedComponent(component);
@@ -46,7 +52,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <h1 className="text-2xl font-bold mb-4 text-center">Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {items.map((item, index) => (
           <div
             key={index}

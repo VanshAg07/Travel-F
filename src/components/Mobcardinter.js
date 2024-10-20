@@ -1,5 +1,5 @@
 import React from "react";
-import { product_card_1, product_card_2 } from "./Product_data"; // Use named imports
+import { product_card_2 } from "./Product_data";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
