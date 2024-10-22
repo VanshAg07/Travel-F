@@ -62,7 +62,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);

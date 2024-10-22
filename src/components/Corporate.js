@@ -43,7 +43,7 @@ const Corporate = () => {
   const fetchCorporate = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/corporate/create-corporate-landing"
+        "https://api.travello10.com/api/corporate/create-corporate-landing"
       );
       setCorporateData(res.data.data);
     } catch (error) {
