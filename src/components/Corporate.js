@@ -15,6 +15,8 @@ import Lottie from "lottie-react";
 import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
 import Corpoform from "../components/Corpo-form";
+import axios from 'axios'
+
 
 const Corporate = () => {
   const [corporateData, setCorporateData] = useState([]);
@@ -148,13 +150,8 @@ const Corporate = () => {
         <Servicecorpo />
         <ClienteleHallOfFame />
         <div className="bg-[#ffffe6]">
-<<<<<<< HEAD
         <Whyuss />
         <Corpoform />
-=======
-          <Whyuss />
-          <Grouptourform />
->>>>>>> 20f2b6d3d4a64ec541dc5871edf687dcccf22430
         </div>
       </div>
       <MainFooter />
