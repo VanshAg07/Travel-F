@@ -3,13 +3,15 @@ import logo1 from "../img/sh-uni-logo.png";
 import imgcloud from "../img/cloud.jpg";
 import logo2 from "../img/ut-uni-logo.png";
 import logo3 from "../img/mir-hou-logo.png";
+import { MdLocationPin } from "react-icons/md";
+import { MdPeople } from "react-icons/md"; // Importing MdPeople icon
 
 const HighLevelCorporateTour = () => {
   return (
     <>
       <div className="bg-white mb-40">
       <div className="text-center py-8">
-          <header className="w-full bg-white p-6 shadow-md text-center">
+          <header className="w-full bg-white p-6 text-center">
             <h1 className="text-3xl sm:text-4xl font-bold">
             Organizations We've  <span className="text-blue-500">Empowered</span>
             </h1>
@@ -25,7 +27,7 @@ const HighLevelCorporateTour = () => {
                 <img
                   src={logo3}
                   alt="HighLevel Logo"
-                  className="h-20 sm:h-12 mb-4"
+                  className="h-24 sm:h-20 mb-4"
                 />
                 <h2 className="text-xl sm:text-2xl font-bold">
                   Miranda House(DU)
@@ -44,12 +46,12 @@ const HighLevelCorporateTour = () => {
               <div className="mt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center">
-                    <span className="material-icons">Place</span>
-                    <span className="ml-2">Delhi</span>
+                  <MdLocationPin />
+                    <span className="ml-1">Delhi</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="material-icons">Peoples</span>
-                    <span className="ml-2"> 100+ People</span>
+                    <MdPeople className="text-xl" />
+                    <span className="ml-1">100+ People</span>
                   </div>
                 </div>
               </div>
@@ -77,7 +79,7 @@ const HighLevelCorporateTour = () => {
                 <img
                   src={logo2}
                   alt="HighLevel Logo"
-                  className="h-20 sm:h-12 mb-4"
+                  className="h-24 sm:h-20 mb-4"
                 />
                 <h2 className="text-xl sm:text-2xl font-bold">
                   Utkal University
@@ -95,12 +97,12 @@ const HighLevelCorporateTour = () => {
               <div className="mt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center">
-                    <span className="material-icons">Place</span>
-                    <span className="ml-2"> Rajasthan</span>
+                  <MdLocationPin />
+                    <span className="ml-1">Delhi</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="material-icons">Peoples</span>
-                    <span className="ml-2">70+ People</span>
+                    <MdPeople className="text-xl" />
+                    <span className="ml-1">100+ People</span>
                   </div>
                 </div>
               </div>
@@ -128,7 +130,7 @@ const HighLevelCorporateTour = () => {
                 <img
                   src={logo1}
                   alt="HighLevel Logo"
-                  className="h-20 sm:h-12 mb-4"
+                  className="h-24 sm:h-18 mb-4"
                 />
                 <h2 className="text-xl sm:text-2xl font-bold">
                   Sharda University
@@ -148,12 +150,12 @@ const HighLevelCorporateTour = () => {
               <div className="mt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center">
-                    <span className="material-icons">Place</span>
-                    <span className="ml-2">Jibhi-Tirthan Valley</span>
+                  <MdLocationPin />
+                    <span className="ml-1">Delhi</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="material-icons">Peoples</span>
-                    <span className="ml-2">85+ People</span>
+                    <MdPeople className="text-xl" />
+                    <span className="ml-1">100+ People</span>
                   </div>
                 </div>
               </div>

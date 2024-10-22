@@ -39,10 +39,10 @@ const Navbar = () => {
     ],
     weekendTrips: ["Weekend Getaways"],
     groupsTours: [
-      { name: "School Tours", route: "/grouptours" },
-      { name: "University Tours", route: "/grouptours" },
-      { name: "Sports Tours", route: "/grouptours" },
-      { name: "Adventure Tours", route: "/grouptours" },
+      { name: "School Tours", route: "/schooltour" },
+      { name: "University Tours", route: "/universitytour" },
+      { name: "Sports Tours", route: "/sportstour" },
+      { name: "Adventure Tours", route: "/adventuretour" },
     ],
     corporatePackages: [],
   };

@@ -14,7 +14,7 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
-import Grouptourform from "../components/Groupform";
+import Corpoform from "../components/Corpo-form";
 
 const Corporate = () => {
   const [expandedMore, setExpandedMore] = useState(false);
@@ -358,7 +358,7 @@ const Corporate = () => {
         <ClienteleHallOfFame />
         <div className="bg-[#ffffe6]">
         <Whyuss />
-        <Grouptourform />
+        <Corpoform />
         </div>
       </div>
       <MainFooter />

@@ -67,19 +67,19 @@ const Blog = () => {
         </h1>
       </div>
       <div>
-        <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">Blog</h2>
+        <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">Blogs</h2>
       </div>
       <div className="card-grid">
         {Data.map((item, index) => (
           <Link key={index} to={`/blogdetails/${item.title}`}>
-            <div className="bg-blue-100 p-4 flex flex-col items-center justify-between rounded-lg shadow-md transition-transform transform hover:translate-y-[-10px]">
+            <div className="bg-white p-1 flex flex-col border-black border-2 items-center justify-between rounded-lg shadow-black shadow-lg transition-transform transform hover:translate-y-[-10px]">
               <img
                 src={item.image}
                 alt="Card"
                 className="object-cover w-full h-[200px] sm:h-[250px] md:h-[300px] rounded-md"
               />
               <div className="w-full text-center">
-                <h3 className=" blog-h3 py-4 capitalize font-bold text-xl md:text-2xl">
+                <h3 className=" blog-h3 py-4 capitalize font-medium text-lg md:text-xl">
                   {item.description}
                 </h3>
               </div>

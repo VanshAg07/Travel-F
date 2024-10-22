@@ -9,7 +9,7 @@ const Videopage = () => {
     <div className="w-full h-screen videopg-wrpper relative overflow-hidden">
       {/* Gradient overlay from black to transparent */}
       <div
-  className="absolute top-0 left-0 w-[60vw] h-full z-10 gradient-bg">
+  className="absolute top-0 left-0 w-[50vw] h-full z-10 gradient-bg">
   </div>
 
       {/* Video background */}

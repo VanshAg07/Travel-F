@@ -96,31 +96,11 @@ const EuropeTripEnquiryForm = () => {
               <input 
                 type="radio" 
                 name="peopleCount" 
-                value="Solo" 
-                className="form-radio text-blue-600 focus:ring-blue-500" 
-                onChange={handleChange}
-              />
-              <span className="ml-2 text-gray-600">I am planning Solo</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input 
-                type="radio" 
-                name="peopleCount" 
-                value="Couple" 
-                className="form-radio text-blue-600 focus:ring-blue-500" 
-                onChange={handleChange}
-              />
-              <span className="ml-2 text-gray-600">Looking for a Honeymoon/Couple Trip</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input 
-                type="radio" 
-                name="peopleCount" 
                 value="2-4 Pax" 
                 className="form-radio text-blue-600 focus:ring-blue-500" 
                 onChange={handleChange}
               />
-              <span className="ml-2 text-gray-600">2-4 Pax</span>
+              <span className="ml-2 text-gray-600">20-40 Pax</span>
             </label>
             <label className="inline-flex items-center">
               <input 
@@ -130,7 +110,7 @@ const EuropeTripEnquiryForm = () => {
                 className="form-radio text-blue-600 focus:ring-blue-500" 
                 onChange={handleChange}
               />
-              <span className="ml-2 text-gray-600">5-8 Pax</span>
+              <span className="ml-2 text-gray-600">40-60 Pax</span>
             </label>
             <label className="inline-flex items-center">
               <input 
@@ -140,7 +120,27 @@ const EuropeTripEnquiryForm = () => {
                 className="form-radio text-blue-600 focus:ring-blue-500" 
                 onChange={handleChange}
               />
-              <span className="ml-2 text-gray-600">8+ Pax</span>
+              <span className="ml-2 text-gray-600">60-80 Pax</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input 
+                type="radio" 
+                name="peopleCount" 
+                value="8+ Pax" 
+                className="form-radio text-blue-600 focus:ring-blue-500" 
+                onChange={handleChange}
+              />
+              <span className="ml-2 text-gray-600">80-100 Pax</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input 
+                type="radio" 
+                name="peopleCount" 
+                value="8+ Pax" 
+                className="form-radio text-blue-600 focus:ring-blue-500" 
+                onChange={handleChange}
+              />
+              <span className="ml-2 text-gray-600">100+ Pax</span>
             </label>
           </div>
         </div>
