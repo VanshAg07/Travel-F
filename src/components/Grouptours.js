@@ -2,6 +2,7 @@ import React from "react";
 import { FaHandHoldingHeart } from "react-icons/fa";
 import { MdHotel } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
+import { LuCircleDotDashed } from "react-icons/lu";
 import Whyuss from "../components/Whyuss";
 import Homeglry from "../components/Homeglry";
 import Nav from "./Nav";
@@ -17,6 +18,7 @@ import Grouptourform from "../components/Groupform";
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
+  
   return (
     <>
       <Nav />

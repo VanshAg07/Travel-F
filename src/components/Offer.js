@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./National.css";
-import Nav from "./components/Nav";
-import intern from "./img/international.jpg";
+import "../National.css";
+import Nav from "../components/Nav";
+import intern from "../img/international.jpg";
 import Lottie from "lottie-react";
-import animationData from "./img/India.json";
-import shi1 from "./img/1.png";
-import shi2 from "./img/2.png";
-import shi3 from "./img/3.png";
-import shi4 from "./img/4.png";
-import shi5 from "./img/5.png";
-import shi7 from "./img/7.png";
-import shi8 from "./img/8.png";
-import shi12 from "./img/12.png";
-import shi13 from "./img/13.png";
-import shi15 from "./img/15.png";
-import Whyuss from "./components/Whyuss.js";
-import cont from "./img/cont-button.json";
+import animationData from "../img/India.json";
+import Whyuss from "../components/Whyuss.js";
+import cont from "../img/cont-button.json";
 import axios from "axios";
-import Review from "./components/Review";
-import AllPackagesCard from "./components/Cards/AllPackagesCard.js";
-import Dropnav from "./components/Dropnav.js";
-import Mainreview from "./components/Mainreview.js";
-import MainFooter from "./components/Footer/MainFooter.js";
-import Homeglry from "./components/Homeglry.js";
+import Review from "../components/Review";
+import AllPackagesCard from "../components/Cards/AllPackagesCard.js";
+import Dropnav from "../components/Dropnav.js";
+import Mainreview from "../components/Mainreview.js";
+import MainFooter from "../components/Footer/MainFooter.js";
+import Homeglry from "../components/Homeglry.js";
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
@@ -37,16 +27,16 @@ const National = () => {
     tripDetails();
   }, []);
   const places = [
-    { id: 1, name: "Meghalaya", img: shi13 },
-    { id: 2, name: "Kashmir", img: shi3 },
-    { id: 3, name: "Spiti Valley", img: shi12 },
-    { id: 4, name: "Kerala", img: shi4 },
-    { id: 5, name: "Himachal Pradesh", img: shi1 },
-    { id: 6, name: "Sikkim", img: shi15 },
-    { id: 7, name: "Uttarakhand", img: shi2 },
-    { id: 8, name: "Ladakh", img: shi8 },
-    { id: 9, name: "Rajasthan", img: shi5 },
-    { id: 10, name: "Andaman", img: shi7 },
+    { id: 1, name: "Meghalaya",  },
+    { id: 2, name: "Kashmir",  },
+    { id: 3, name: "Spiti Valley",  },
+    { id: 4, name: "Kerala", },
+    { id: 5, name: "Himachal Pradesh",  },
+    { id: 6, name: "Sikkim", },
+    { id: 7, name: "Uttarakhand",  },
+    { id: 8, name: "Ladakh",  },
+    { id: 9, name: "Rajasthan",  },
+    { id: 10, name: "Andaman",  },
   ];
   const linkedPlaces = places.map((place) => {
     const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
@@ -98,50 +88,28 @@ const National = () => {
       <Dropnav />
       <div className="hero-section-left-1">
         <img className="hero-img" src={intern} alt="International" />
-        <h1 className="hero-heading">
-          India's Majestic Adventures
-          <br /> <span>Unveil the Wonders</span>
-        </h1>
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-white text-center leading-tight sm:text-xl flex flex-row-reverse items-center">
+  Diwali Special Offers
+  <div className="bg-[#ffff00] h-12 w-1 mr-3 ml-2"></div>
+</h1>
+
+        
       </div>
       <Mainreview />
 
-      <div className="lottie-wr">
+      {/* <div className="lottie-wr">
         <Lottie
           animationData={animationData}
           loop={true}
           autoplay={true}
           className="hero-lottie"
         />
-      </div>
-      <div className="justify-center items-center mb-4 flex flex-col w-full">
-        <h1 className="text-center text-black text-2xl mt-8 sm:text-3xl lg:text-4xl font-bold">
-          Destinations
-        </h1>
-        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-      </div>
-      <div className=" w-full flex justify-center items-center">
-        <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
-          {places.map((place) => (
-            <Link to={`/place/${place.name}`} key={place.id}>
-              <img
-                className="h-[90%] w-[100%]"
-                src={place.img}
-                alt={place.name}
-              />
-            </Link>
-          ))}
-        </div>
-      </div>
+      </div> */}
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
         <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
-          All Packages
+        Discover Diwali Packages
         </h1>
         <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-        <div>
-          <p className=" pt-2 inter-description">
-            Discover Your Dream Journey with Our Best-Selling Travel Packages
-          </p>
-        </div>
       </div>
       <div className="flex justify-center mt-10">
         <div className="w-[80%]">
@@ -262,3 +230,4 @@ const National = () => {
 };
 
 export default National;
+

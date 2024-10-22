@@ -62,7 +62,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -295,8 +295,8 @@ const Packagedetails = () => {
                 </ul>
             </div>
 
-            <div id="other-info" className="Other-info-container">
-                <h1 className="text-lg md:text-2xl">Other Info</h1> {/* Responsive text size */}
+            {/* <div id="other-info" className="Other-info-container">
+                <h1 className="text-lg md:text-2xl">Other Info</h1>
                 <ul className="Other-info-list">
                     <p className="text-md md:text-lg">Must Carry</p>
                     <li className="text-sm md:text-base">
@@ -407,12 +407,12 @@ const Packagedetails = () => {
                 </>
               )}
 
-              {/* Toggle button */}
+              
               <button onClick={handleToggle} className="toggle-button">
                 {isExpanded ? "Read Less" : "Read More"}
               </button>
                 </ul>
-            </div>
+            </div> */}
         </div>
 
         {/* Form div with a width of 40% */}

@@ -42,7 +42,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("https://api.travello10.com/api/home/nav-offer", {
+    fetch("http://localhost:5000/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -104,11 +104,15 @@ const Nav = () => {
         </Link>
         {!isMobile && (
           <>
+          <Link to="/offer"
+          onClick={() => setIsMenuOpen(false)}
+          className={isActive("/offer")}>
             {navOffer && (
               <div className="mr-10">
                 <p>{navOffer}</p>
               </div>
             )}
+            </Link>
             <Link
               to="/Payments"
               onClick={() => setIsMenuOpen(false)}

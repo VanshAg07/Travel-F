@@ -71,6 +71,7 @@ import Schooltour from "./components/Grouptours/Schooltour.js";
 import Universitytour from "./components/Grouptours/Universitytour.js"
 import Sportstour from "./components/Grouptours/Sportstour.js"
 import Adventuretour from "./components/Grouptours/Adventuretour"
+import Offer from "./components/Offer.js"
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -161,6 +162,7 @@ const App = () => {
         <Route path="/sportstour" element={<Sportstour />} />
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
+        <Route path="/offer" element={<Offer />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
