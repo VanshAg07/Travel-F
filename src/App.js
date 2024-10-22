@@ -64,9 +64,13 @@ import Grouptourform from "./components/Groupform.js";
 import Socialmedia from "./components/Socialmedia.js";
 import Grouptourhero from "./components/Grouptour-hero.js";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.js";
-import Homecrd from "./components/Homecrd.js";
-import Homeyt from "./components/Homeyt.js";
-import Upcomingtrip from "./components/Upcomingtrips.js";
+import Homecrd from "./components/Homecrd.js"
+import Homeyt from "./components/Homeyt.js"
+import Upcomingtrip from "./components/Upcomingtrips.js"
+import Schooltour from "./components/Grouptours/Schooltour.js";
+import Universitytour from "./components/Grouptours/Universitytour.js"
+import Sportstour from "./components/Grouptours/Sportstour.js"
+import Adventuretour from "./components/Grouptours/Adventuretour"
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -178,6 +182,10 @@ const App = () => {
         <Route path="/socialmedia" element={<Socialmedia />} />
         <Route path="/homecrd" element={<Homecrd />} />
         <Route path="/Homeyt" element={<Homeyt />} />
+        <Route path="/schooltour" element={<Schooltour />} />
+        <Route path="/universitytour" element={<Universitytour />} />
+        <Route path="/sportstour" element={<Sportstour />} />
+        <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>

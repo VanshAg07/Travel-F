@@ -14,8 +14,9 @@ import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import Mainreview from "../components/Mainreview";
 import MainFooter from "./Footer/MainFooter";
-import Grouptourform from "../components/Groupform";
-import axios from "axios";
+import Corpoform from "../components/Corpo-form";
+import axios from 'axios'
+
 
 const Corporate = () => {
   const [corporateData, setCorporateData] = useState([]);
@@ -44,7 +45,7 @@ const Corporate = () => {
   const fetchCorporate = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/corporate/create-corporate-landing"
+        "https://api.travello10.com/api/corporate/create-corporate-landing"
       );
       setCorporateData(res.data.data);
     } catch (error) {
@@ -148,8 +149,8 @@ const Corporate = () => {
         <Servicecorpo />
         <ClienteleHallOfFame />
         <div className="bg-[#ffffe6]">
-          <Whyuss />
-          <Grouptourform />
+        <Whyuss />
+        <Corpoform />
         </div>
       </div>
       <MainFooter />

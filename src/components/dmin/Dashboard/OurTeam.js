@@ -16,7 +16,7 @@ const OurTeam = () => {
   const fetchTeamMembers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/get-team-member"
+        "https://api.travello10.com/api/home/get-team-member"
       );
       setTeamMembers(response.data.data);
     } catch (error) {
@@ -84,13 +84,13 @@ const OurTeam = () => {
       if (currentMember) {
         // Update existing member
         await axios.put(
-          `http://localhost:5000/api/home/add-team-member/${currentMember._id}`,
+          `https://api.travello10.com/api/home/add-team-member/${currentMember._id}`,
           data,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } else {
         await axios.post(
-          "http://localhost:5000/api/home/add-team-member",
+          "https://api.travello10.com/api/home/add-team-member",
           data,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
@@ -130,7 +130,7 @@ const OurTeam = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/home/add-team-member/${id}`
+        `https://api.travello10.com/api/home/add-team-member/${id}`
       );
       fetchTeamMembers();
     } catch (error) {

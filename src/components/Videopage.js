@@ -14,7 +14,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
@@ -25,7 +25,7 @@ const Videopage = () => {
   return (
     <div className="w-full h-screen videopg-wrpper relative overflow-hidden">
       {/* Gradient overlay from black to transparent */}
-      <div className="absolute top-0 left-0 w-[60vw] h-full z-10 gradient-bg"></div>
+      <div className="absolute top-0 left-0 w-[50vw] h-full z-10 gradient-bg"></div>
 
       {/* Video background */}
       {videos.length > 0 && (

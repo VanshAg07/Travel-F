@@ -115,7 +115,7 @@ const AddWeekend = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState}`,
+      `https://api.travello10.com/api/weekends/add-weekend-package/${selectedState}`,
       {
         method: "POST",
         body: formData,

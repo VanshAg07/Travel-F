@@ -117,7 +117,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/admin/international-package/${selectedState}`,
+      `https://api.travello10.com/api/admin/international-package/${selectedState}`,
       {
         method: "POST",
         body: formData,

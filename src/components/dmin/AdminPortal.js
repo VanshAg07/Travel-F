@@ -20,7 +20,7 @@ const AdminPortal = () => {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:5000/api/admin/logout")
+      .post("https://api.travello10.com/api/admin/logout")
       .then(() => {
         navigate("/");
       })

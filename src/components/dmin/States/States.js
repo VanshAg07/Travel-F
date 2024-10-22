@@ -18,10 +18,10 @@ const States = () => {
     try {
       const [weekendsRes, internationalRes, nationalRes, honeymoonRes] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/weekends/states"),
-          axios.get("http://localhost:5000/api/admin/states"),
-          axios.get("http://localhost:5000/api/trip/states"),
-          axios.get("http://localhost:5000/api/honeymoon/states"),
+          axios.get("https://api.travello10.com/api/weekends/states"),
+          axios.get("https://api.travello10.com/api/admin/states"),
+          axios.get("https://api.travello10.com/api/trip/states"),
+          axios.get("https://api.travello10.com/api/honeymoon/states"),
         ]);
       setWeekendStates(weekendsRes.data);
       setInternationalStates(internationalRes.data);
@@ -40,7 +40,7 @@ const States = () => {
   const addWeekendState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/weekends/states`,
+        `https://api.travello10.com/api/weekends/states`,
         { stateName: newWeekendState.name }
       );
       if (response.status === 201) {
@@ -55,7 +55,7 @@ const States = () => {
   const addInternationalState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/international-state`,
+        `https://api.travello10.com/api/admin/international-state`,
         { stateName: newInternationalState.name }
       );
       if (response.status === 201) {
@@ -70,7 +70,7 @@ const States = () => {
   const addNationalState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/trip/state`,
+        `https://api.travello10.com/api/trip/state`,
         { stateName: newNationalState.name }
       );
       if (response.status === 201) {
@@ -85,7 +85,7 @@ const States = () => {
   const addHoneymoonState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/honeymoon/states`,
+        `https://api.travello10.com/api/honeymoon/states`,
         { stateName: newHoneymoonState.name }
       );
       if (response.status === 201) {
@@ -100,7 +100,7 @@ const States = () => {
   // Delete state functions for each category
   const deleteWeekendState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/weekends/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/weekends/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -109,7 +109,7 @@ const States = () => {
 
   const deleteInternationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/admin/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -118,7 +118,7 @@ const States = () => {
 
   const deleteNationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/trip/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/trip/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -127,7 +127,7 @@ const States = () => {
 
   const deleteHoneymoonState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/honeymoon/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/honeymoon/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);

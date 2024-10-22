@@ -30,7 +30,7 @@ const Blogdetails = () => {
     </div>
     {/* Dark Label */}
     <div className="absolute -bottom-6 w-full flex items-center justify-center">
-    <div className=" rounded-br-3xl rounded-tl-3xl text-2xl fond-semibold  w-[60vw] bg-[#021526ef] text-white text-center py-3 px-5">
+    <div className=" rounded-br-3xl rounded-tl-3xl text-2xl fond-semibold  w-[60vw] bg-[#021526f8] text-white text-center py-3 px-5">
   Explore the Enchanting Beauty of Kerala with Travello10
 </div>
 </div>

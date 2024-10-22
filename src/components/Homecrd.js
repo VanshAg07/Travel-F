@@ -14,7 +14,7 @@ const TripCard = () => {
   const fetchBanners = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/homepage-banner"
+        "https://api.travello10.com/api/home/homepage-banner"
       );
       setBanners(response.data); // Assuming response.data is an array of banner objects
     } catch (error) {
@@ -43,10 +43,10 @@ const TripCard = () => {
             key={banner._id}
             className={`bg-white border-4 border-white mt-10 rounded-3xl shadow-lg shadow-black overflow-hidden ${getCardSizeClasses()} relative ${
               index === 1
-                ? "h-[450px]"
+                ? "h-[430px]"
                 : index === 0
                 ? "h-[380px]"
-                : "h-[400px]"
+                : "h-[380px]"
             }`}
           >
             <img
