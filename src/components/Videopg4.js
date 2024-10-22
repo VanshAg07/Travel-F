@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import video from "../img/intern1.mp4";
 import {
   FaClock,
   FaCalendarAlt,
@@ -13,12 +12,10 @@ import { useNavigate } from "react-router-dom";
 const TravelPackageCard = ({ pkg }) => {
   const navigate = useNavigate();
 
-  // Check if tripDate is defined and format the trip dates
   const formattedDates = pkg.tripDate
     ? pkg.tripDate.map((date) => new Date(date).toLocaleDateString())
     : [];
 
-  // Display first two dates and count the remaining dates
   const displayedDates =
     formattedDates.length > 2
       ? `${formattedDates.slice(0, 2).join(", ")} +${
@@ -26,7 +23,6 @@ const TravelPackageCard = ({ pkg }) => {
         } more`
       : formattedDates.join(", ");
 
-  // Function to handle navigation
   const handleNavigate = () => {
     navigate(`/honeymoon/${pkg.tripName}/${pkg.stateName}`, {
       state: { stateName: pkg.stateName, tripName: pkg.tripName },
@@ -67,16 +63,35 @@ const TravelPackageCard = ({ pkg }) => {
 };
 
 const TravelPackages = () => {
-  const [packages, setPackages] = useState([]); // State to store fetched packages
+  const [packages, setPackages] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
-  const [visiblePackages, setVisiblePackages] = useState(3); // Default visible packages
+  const [visiblePackages, setVisiblePackages] = useState(3);
+  const [videoSrc, setVideoSrc] = useState("");
+
+  const fetchVideoPages = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/video-page"
+      );
+      const internationalVideo = response.data.find(
+        (video) => video.type === "Honeymoon"
+      );
+      if (internationalVideo) {
+        setVideoSrc(internationalVideo.backgroundVideo); // Set video source
+      } else {
+        console.error("No video found");
+      }
+    } catch (error) {
+      console.error("Error fetching video pages:", error);
+    }
+  };
 
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
         "http://localhost:5000/api/home/homepage-choosen-honeymoon-display"
       );
-      setPackages(res.data.chosenPackages); // Update state with fetched data
+      setPackages(res.data.chosenPackages);
     } catch (error) {
       console.error("Error fetching international packages:", error);
     }
@@ -84,6 +99,8 @@ const TravelPackages = () => {
 
   useEffect(() => {
     fetchInternationalPackages();
+    fetchVideoPages();
+
     const updateVisiblePackages = () => {
       if (window.innerWidth >= 1280) {
         setVisiblePackages(5);
@@ -120,19 +137,24 @@ const TravelPackages = () => {
     <div className="h-screen pt-10 bg-white flex flex-col">
       {/* Video Section */}
       <div className="relative w-full h-[32%]">
-        <video
-          className="w-full h-full object-cover"
-          src={video}
-          autoPlay
-          loop
-          muted
-        />
-        {/* Text Overlay */}
+        {videoSrc ? (
+          <video
+            className="w-full h-full object-cover"
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            onError={() => console.error("Error loading video")}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-300">
+            <span className="text-gray-600">Video not available</span>
+          </div>
+        )}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h1 className="text-4xl uppercase font-bold">
             Explore <span className="text-yellow-400"> Honeymoon places</span>{" "}
           </h1>
-
           <h3 className="text-lg mt-2">
             Discover the
             <span className="text-yellow-400"> Perfect Destination </span> for
@@ -145,14 +167,12 @@ const TravelPackages = () => {
 
       {/* Packages Section */}
       <div className="w-[95vw] h-[80%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
-        {/* Heading and "See All" */}
         <div className="flex justify-between items-center mt-4">
           <h2 className="text-2xl pl-10 font-semibold">Honeymoon Packages</h2>
-          <a href="#" className="text-red-500 mr-12 font-bold text-sm">
+          <a href="/honeymoon" className="text-red-500 mr-12 font-bold text-sm">
             See All
           </a>
         </div>
-        {/* Packages Navigation */}
         <div className="flex items-center mt-4 relative">
           <FaChevronCircleLeft
             size={30}

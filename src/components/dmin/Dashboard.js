@@ -11,6 +11,11 @@ import HomeHoneymoon from "./Dashboard/HomeHoneymoon";
 import OfferHomePage from "./Dashboard/OfferHomePage";
 import GroupTours from "./Dashboard/GroupTours/GroupTours";
 import NavOfferComponent from "./Dashboard/NavOffer";
+import HomeVideo from "./Dashboard/HomeVideo";
+import PackagesVideo from "./Dashboard/PackagesVideo";
+import ExploreAdventure from "./Dashboard/ExploreAdventure";
+import CorporatePartners from "./Dashboard/Corporate/CorporatePartners";
+import CorporateHome from "./Dashboard/Corporate/CorporateHome";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -44,6 +49,26 @@ function Dashboard() {
     {
       name: "Nav Bar Details",
       component: <NavOfferComponent />,
+    },
+    {
+      name: "Home Video",
+      component: <HomeVideo />,
+    },
+    {
+      name: "Packages Video",
+      component: <PackagesVideo />,
+    },
+    {
+      name: "Explore Adventure Details",
+      component: <ExploreAdventure />,
+    },
+    {
+      name: "Corporate Partners",
+      component: <CorporatePartners />,
+    },
+    {
+      name: "Corporate Home",
+      component: <CorporateHome />,
     },
   ];
   const handleCardClick = (component) => {

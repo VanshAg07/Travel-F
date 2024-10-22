@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import video from "../img/intern1.mp4";
 import {
   FaClock,
   FaCalendarAlt,
@@ -69,6 +68,8 @@ const TravelPackageCard = ({ pkg }) => {
 const TravelPackages = () => {
   const [packages, setPackages] = useState([]); // State to store fetched packages
   const [startIndex, setStartIndex] = useState(0);
+  const [videoPages, setVideoPages] = useState([]);
+  const [videoSrc, setVideoSrc] = useState(""); // State for video source
 
   const fetchInternationalPackages = async () => {
     try {
@@ -83,7 +84,29 @@ const TravelPackages = () => {
 
   useEffect(() => {
     fetchInternationalPackages();
+    fetchVideoPages();
   }, []);
+
+  // Fetch video pages
+  const fetchVideoPages = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/video-page"
+      );
+      const internationalVideo = response.data.find(
+        (video) => video.type === "International"
+      );
+      if (internationalVideo) {
+        setVideoSrc(
+          `${internationalVideo.backgroundVideo}`
+        ); // Set video source
+      }
+      setVideoPages(response.data);
+      
+    } catch (error) {
+      console.error("Error fetching video pages:", error);
+    }
+  };
 
   const handleNext = () => {
     if (startIndex + visiblePackages < packages.length) {
@@ -105,13 +128,15 @@ const TravelPackages = () => {
     <div className="h-screen pt-10 bg-white flex flex-col">
       {/* Video Section */}
       <div className="relative w-full h-[32%]">
-        <video
-          className="w-full h-full object-cover"
-          src={video}
-          autoPlay
-          loop
-          muted
-        />
+        {videoSrc && (
+          <video
+            className="w-full h-full object-cover"
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+          />
+        )}
         {/* Text Overlay */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h1 className="text-4xl uppercase font-bold">
@@ -133,7 +158,7 @@ const TravelPackages = () => {
           <h2 className="text-2xl pl-10 font-semibold">
             International Packages
           </h2>
-          <a href="#" className="text-red-500 mr-12 font-bold  text-sm">
+          <a href="/intern" className="text-red-500 mr-12 font-bold  text-sm">
             See All
           </a>
         </div>

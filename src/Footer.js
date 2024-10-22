@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Footer.css";
 import GoogleIcon from "./img/icons8.svg";
 import FacebookIcon from "./img/icons8-facebook.svg";
@@ -7,13 +8,46 @@ import WhatsAppIcon from "./img/icons8-whatsapp.svg";
 import GmailIcon from "./img/icons8-gmail.svg";
 
 const Footer = () => {
+  const [icons, setIcons] = useState([]);
+
+  useEffect(() => {
+    fetchIcons();
+  }, []);
+
+  const fetchIcons = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/footer-icons"
+      );
+      setIcons(response.data);
+    } catch (error) {
+      console.error("Error fetching icons:", error);
+    }
+  };
+
   return (
     <div className="footer-wrapper bg-gray-50 py-10">
       <div className="footer-info text-center">
         <h1 className="text-xl font-bold">TRAVELLOTEN INDIA PRIVATE LIMITED</h1>
         <div className="footer-icons flex justify-center space-x-4 my-4">
+          {icons.map((icon) => (
+            <a
+              key={icon._id} // Use unique key from data
+              className="footer-anchors text-[#3953fe]"
+              href={icon.url} // Use URL from fetched data
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={icon.iconImage[0]} // Use icon image from fetched data
+                alt={icon.name} // Use name for alt text
+                className="h-8 w-8 rounded-full"
+              />
+            </a>
+          ))}
+          {/* Add static links if needed */}
           <a
-            className="footer-anchors text-[#3953fe]"
+            className="footer-anchors"
             href="https://www.facebook.com/Travello10"
             target="_blank"
             rel="noopener noreferrer"
@@ -55,28 +89,25 @@ const Footer = () => {
         </div>
         <p className="footer-p mt-4">
           3rd Floor Plot, Kakarola Housing Complex, 103, Kakrola Rd, Opposite
-          DDA Park, Raju Enclave, Sector 15 <br />Dwarka, Dwarka, Delhi, 110078 New
-          Delhi Delhi, 110078
+          DDA Park, Raju Enclave, Sector 15 <br />
+          Dwarka, Dwarka, Delhi, 110078 New Delhi Delhi, 110078
         </p>
 
-      {/* New Section for Contact Info */}
-<div className="font-semibold md:flex hidden justify-center items-center space-x-8 mt-6 mb-6 text-base w-full">
-  <div className="flex items-center space-x-2">
-    <i className="fa fa-envelope"></i>
-    <span>booking@travello10.com</span>
-  </div>
-  <div className="flex items-center space-x-2">
-    <i className="fa fa-phone"></i>
-    <span>+91 8287804197</span>
-  </div>
-  <div className="flex items-center space-x-2">
-    <i className="fa fa-globe"></i>
-    <span>www.travello10.com</span>
-  </div>
-</div>
-
-
-
+        {/* New Section for Contact Info */}
+        <div className="font-semibold md:flex hidden justify-center items-center space-x-8 mt-6 mb-6 text-base w-full">
+          <div className="flex items-center space-x-2">
+            <i className="fa fa-envelope"></i>
+            <span>booking@travello10.com</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <i className="fa fa-phone"></i>
+            <span>+91 8287804197</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <i className="fa fa-globe"></i>
+            <span>www.travello10.com</span>
+          </div>
+        </div>
 
         <p className="footer-p mt-2">
           <i className="fa-regular fa-copyright icon-large-1"></i>
@@ -88,4 +119,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

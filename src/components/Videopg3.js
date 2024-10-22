@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import video from "../img/intern1.mp4";
 import {
   FaClock,
   FaCalendarAlt,
@@ -8,7 +7,8 @@ import {
   FaChevronCircleRight,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
+
 const TravelPackageCard = ({ pkg }) => {
   const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ const TravelPackageCard = ({ pkg }) => {
       state: { stateName: pkg.stateName, tripName: pkg.tripName },
     });
   };
+
   return (
     <div
       onClick={handleNavigate}
@@ -67,6 +68,28 @@ const TravelPackageCard = ({ pkg }) => {
 const TravelPackages = () => {
   const [packages, setPackages] = useState([]); // State to store fetched packages
   const [startIndex, setStartIndex] = useState(0);
+  const [videoPages, setVideoPages] = useState([]);
+  const [videoSrc, setVideoSrc] = useState(""); // State for video source
+
+  // Fetch video pages
+  const fetchVideoPages = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/video-page"
+      );
+      const internationalVideo = response.data.find(
+        (video) => video.type === "Indian"
+      );
+      if (internationalVideo) {
+        setVideoSrc(internationalVideo.backgroundVideo); // Set video source
+      } else {
+        console.error("No video found");
+      }
+      setVideoPages(response.data);
+    } catch (error) {
+      console.error("Error fetching video pages:", error);
+    }
+  };
 
   const fetchInternationalPackages = async () => {
     try {
@@ -80,6 +103,7 @@ const TravelPackages = () => {
   };
 
   useEffect(() => {
+    fetchVideoPages();
     fetchInternationalPackages();
   }, []);
 
@@ -105,7 +129,7 @@ const TravelPackages = () => {
       <div className="relative w-full h-[32%]">
         <video
           className="w-full h-full object-cover"
-          src={video}
+          src={videoSrc}
           autoPlay
           loop
           muted
@@ -115,7 +139,6 @@ const TravelPackages = () => {
           <h1 className="text-4xl uppercase font-bold">
             Explore <span className="text-yellow-400"> India</span>{" "}
           </h1>
-
           <h3 className="text-lg mt-2">
             A Vibrant<span className="text-yellow-400"> Tapestry </span> of
             Culture, <span className="text-yellow-400"> Heritage, </span> and
@@ -123,13 +146,12 @@ const TravelPackages = () => {
           </h3>
         </div>
       </div>
-
       {/* Packages Section */}
       <div className="w-[95vw] h-[80%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">
         {/* Heading and "See All" */}
         <div className="flex justify-between items-center mt-4">
           <h2 className="text-2xl pl-10 font-semibold">Indian Packages</h2>
-          <a href="#" className="text-red-500 mr-12 font-bold  text-sm">
+          <a href="national" className="text-red-500 mr-12 font-bold text-sm">
             See All
           </a>
         </div>

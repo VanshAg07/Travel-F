@@ -25,7 +25,6 @@ import Mainreview from "./components/Mainreview.js";
 import MainFooter from "./components/Footer/MainFooter.js";
 import Homeglry from "./components/Homeglry.js";
 
-
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
@@ -36,7 +35,7 @@ const National = () => {
   };
   useEffect(() => {
     tripDetails();
-  });
+  }, []);
   const places = [
     { id: 1, name: "Meghalaya", img: shi13 },
     { id: 2, name: "Kashmir", img: shi3 },
@@ -114,9 +113,11 @@ const National = () => {
           className="hero-lottie"
         />
       </div>
-<div className="justify-center items-center mb-4 flex flex-col w-full">
-      <h1 className="text-center text-black text-2xl mt-8 sm:text-3xl lg:text-4xl font-bold">Destinations</h1>
-      <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+      <div className="justify-center items-center mb-4 flex flex-col w-full">
+        <h1 className="text-center text-black text-2xl mt-8 sm:text-3xl lg:text-4xl font-bold">
+          Destinations
+        </h1>
+        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
       </div>
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
@@ -127,112 +128,122 @@ const National = () => {
                 src={place.img}
                 alt={place.name}
               />
-             </Link>
+            </Link>
           ))}
         </div>
       </div>
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
           All Packages
-          </h1>
-          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-          <div>
+        </h1>
+        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+        <div>
           <p className=" pt-2 inter-description">
-        Discover Your Dream Journey with Our Best-Selling Travel Packages
-      </p>
-          </div>
+            Discover Your Dream Journey with Our Best-Selling Travel Packages
+          </p>
         </div>
+      </div>
       <div className="flex justify-center mt-10">
         <div className="w-[80%]">
           <AllPackagesCard />
         </div>
       </div>
       <div className="bg-[#ffffe6]">
-      <Homeglry />
-      <Whyuss />
-      <Review />
-      {/* <Guide /> */}
-      
-      <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
-  Contact Form
-</h1>
-<div className=" flex items-center pb-14 justify-center px-4">
+        <Homeglry />
+        <Whyuss />
+        <Review />
+        {/* <Guide /> */}
 
-  {/* Outer div with 80% width */}
-  <div className="bg-[#e1feff] rounded-lg shadow-md shadow-black p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
-    
-    {/* Inner form container with 60% width */}
-    <div className="w-full md:w-3/5 mx-auto">
-      <h2 className="text-cyan-500 text-lg font-bold mb-1">
-        Travello10 Calling?
-      </h2>
-      <h3 className="text-base font-semibold mb-6">
-        Allow Us to Call You Back!
-      </h3>
-      <form>
-        {/* Name */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="name">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="e.g. John Smith"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
+        <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
+          Contact Form
+        </h1>
+        <div className=" flex items-center pb-14 justify-center px-4">
+          {/* Outer div with 80% width */}
+          <div className="bg-[#e1feff] rounded-lg shadow-md shadow-black p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+            {/* Inner form container with 60% width */}
+            <div className="w-full md:w-3/5 mx-auto">
+              <h2 className="text-cyan-500 text-lg font-bold mb-1">
+                Travello10 Calling?
+              </h2>
+              <h3 className="text-base font-semibold mb-6">
+                Allow Us to Call You Back!
+              </h3>
+              <form>
+                {/* Name */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="name"
+                  >
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="e.g. John Smith"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Phone Number */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="phone"
+                  >
+                    Phone Number *
+                  </label>
+                  <input
+                    type="text"
+                    id="phone"
+                    placeholder="Enter your 10 digit number"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="mb-4">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="email"
+                  >
+                    Email ID *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="john@example.com"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="mb-6">
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    placeholder="Any Message"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                  ></textarea>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-cyan-500 text-white font-bold py-2 rounded-md transition duration-300"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-
-        {/* Phone Number */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="phone">
-            Phone Number *
-          </label>
-          <input
-            type="text"
-            id="phone"
-            placeholder="Enter your 10 digit number"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1" htmlFor="email">
-            Email ID *
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="john@example.com"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          />
-        </div>
-
-        {/* Message */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-1" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            placeholder="Any Message"
-            className="w-full border border-gray-300 p-2 rounded-md"
-          ></textarea>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-cyan-500 text-white font-bold py-2 rounded-md transition duration-300"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
+      </div>
       <MainFooter />
 
       <div className="fixed-button-1">
