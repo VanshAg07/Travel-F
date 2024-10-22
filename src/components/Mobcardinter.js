@@ -38,10 +38,7 @@ export default function Card() {
           <h1 className="text-lg font-bold">International Packages</h1>
           <div className="w-32 border-b-4 border-blue-400 mt-1" />
         </div>
-        <a
-          href="/all-packages"
-          className="text-red-500 text-sm mr-4"
-        >
+        <a href="/all-packages" className="text-red-500 text-sm mr-4">
           See All
         </a>
       </div>

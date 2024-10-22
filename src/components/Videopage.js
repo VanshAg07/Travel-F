@@ -1,25 +1,42 @@
-import React from "react";
-import video from "../img/bg-v.mp4";
+import React, { useEffect, useState } from "react";
 import Mainreview from "./Mainreview";
 import "../components/Videopage.css";
 import Homecrd from "./Homecrd";
+import axios from "axios";
 
 const Videopage = () => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  const fetchVideos = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/home-page-video"
+      );
+      setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  };
+
   return (
     <div className="w-full h-screen videopg-wrpper relative overflow-hidden">
       {/* Gradient overlay from black to transparent */}
-      <div
-  className="absolute top-0 left-0 w-[50vw] h-full z-10 gradient-bg">
-  </div>
+      <div className="absolute top-0 left-0 w-[50vw] h-full z-10 gradient-bg"></div>
 
       {/* Video background */}
-      <video
-        src={video}
-        autoPlay
-        loop
-        muted
-        className="video-background absolute top-0 left-0 object-cover w-full h-full z-0"
-      ></video>
+      {videos.length > 0 && (
+        <video
+          src={videos[0]} // Use the first video URL from the fetched videos
+          autoPlay
+          loop
+          muted
+          className="video-background absolute top-0 left-0 object-cover w-full h-full z-0"
+        ></video>
+      )}
 
       {/* Text content */}
       <div className="z-20 text-white mb-20 md:mb-28 px-4 text-left relative">
@@ -58,7 +75,7 @@ const Videopage = () => {
       <div className="z-20 w-full absolute bottom-0">
         <Mainreview />
       </div>
-      
+
       {/* Homecrd component */}
       <div>
         <Homecrd />

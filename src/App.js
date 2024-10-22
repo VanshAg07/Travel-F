@@ -82,10 +82,10 @@ const App = () => {
   };
 
   const adminMiddleware = roleMiddleware(["admin"]);
-  const userMiddleware = roleMiddleware(["user"]);
 
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route path="/admin" element={adminMiddleware}>
           <Route path="/admin" element={<AdminPortal />} />

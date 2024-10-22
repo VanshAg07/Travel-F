@@ -2,215 +2,131 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function HomeInternationalComponent() {
-  const [internationalData, setInternationalData] = useState([]);
-  const [newEntry, setNewEntry] = useState({
-    state: "",
-    location: "",
-    duration: "",
-    batches: "",
-    image: [],
-  });
+  const [nationalData, setNationalData] = useState([]);
+  const [chosenData, setChosenData] = useState([]);
   const [error, setError] = useState("");
-  const [editing, setEditing] = useState(null);
 
   useEffect(() => {
-    fetchInternationalData();
+    fetchNationalData();
+    fetchChosenInternationalData();
   }, []);
 
-  // Fetch all entries
-  const fetchInternationalData = async () => {
+  // Fetch all national data
+  const fetchNationalData = async () => {
     try {
       const response = await axios.get(
         "http://localhost:5000/api/home/homepage-international"
       );
-      setInternationalData(response.data);
+      setNationalData(response.data.data || []);
     } catch (error) {
-      console.error("Error fetching international data:", error);
-      setError("Failed to fetch data");
+      console.error("Error fetching national data:", error);
+      setNationalData([]);
+      setError("Failed to fetch national data");
     }
   };
 
-  // Handle form input changes
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setNewEntry({ ...newEntry, [name]: value });
-  };
-
-  // Handle image file change
-  const handleImageChange = (event) => {
-    setNewEntry({ ...newEntry, image: Array.from(event.target.files) }); // Updated to 'image'
-  };
-
-  // Add or update an entry
-  const handleSaveEntry = async (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("state", newEntry.state);
-    formData.append("location", newEntry.location);
-    formData.append("duration", newEntry.duration);
-    formData.append("batches", newEntry.batches);
-    newEntry.image.forEach((img) => formData.append("image", img)); // Updated to 'image'
+  // Fetch all chosen packages
+  const fetchChosenInternationalData = async () => {
     try {
-      if (editing) {
-        await axios.put(
-          `http://localhost:5000/api/home/homepage-international/${editing._id}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-        setEditing(null);
-      } else {
-        await axios.post(
-          "http://localhost:5000/api/home/homepage-international",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-      }
-      setNewEntry({
-        state: "",
-        location: "",
-        duration: "",
-        batches: "",
-        image: [],
-      });
-      fetchInternationalData();
+      const response = await axios.get(
+        "http://localhost:5000/api/home/homepage-choosen-international"
+      );
+      setChosenData(response.data.chosenPackages || []); // Correctly accessing the "chosenPackages" field
     } catch (error) {
-      console.error("Error saving entry:", error);
-      setError("Failed to save entry");
+      console.error("Error fetching chosen packages:", error);
+      setChosenData([]);
+      setError("Failed to fetch chosen packages");
     }
   };
 
-  // Delete an entry
-  const handleDeleteEntry = async (id) => {
+  // Handle package selection for a specific trip
+  const handleChoosePackage = async (trip, stateId) => {
+    try {
+      await axios.post("http://localhost:5000/api/home/homepage-international", {
+        entryId: trip._id,
+        stateId: stateId,
+        tripName: trip.tripName,
+      });
+      alert("Package chosen successfully for " + trip.tripName);
+      fetchChosenInternationalData(); // Refresh chosen data
+    } catch (error) {
+      console.error("Error choosing package:", error);
+      setError("Failed to choose package");
+    }
+  };
+
+  // Handle delete chosen package
+  const handleDeletePackage = async (packageId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/home/homepage-international/${id}`
+        `http://localhost:5000/api/home/homepage-international/${packageId}`
       );
-      fetchInternationalData();
+      alert("Package deleted successfully");
+      fetchChosenInternationalData(); // Refresh chosen data
     } catch (error) {
-      console.error("Error deleting entry:", error);
-      setError("Failed to delete entry");
+      console.error("Error deleting package:", error);
+      setError("Failed to delete package");
     }
-  };
-
-  // Set an entry for editing
-  const handleEditEntry = (entry) => {
-    setEditing(entry);
-    setNewEntry({
-      state: entry.state,
-      location: entry.location,
-      duration: entry.duration,
-      batches: entry.batches,
-      image: entry.image || [],
-    });
   };
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4 text-center">
-        Home International Packages
+      <h2 className="text-xl font-bold mb-4 text-center">
+        Home National Packages
       </h2>
-
-      {/* Form to add or update an entry */}
-      <form onSubmit={handleSaveEntry} className="mb-6">
-        <div className="mb-4">
-          <input
-            type="text"
-            name="state"
-            placeholder="State"
-            value={newEntry.state}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            value={newEntry.location}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="text"
-            name="duration"
-            placeholder="Duration"
-            value={newEntry.duration}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="text"
-            name="batches"
-            placeholder="Batches"
-            value={newEntry.batches}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="file"
-            name="image"
-            multiple
-            onChange={handleImageChange}
-            accept="image/*"
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          {editing ? "Update Entry" : "Add Entry"}
-        </button>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-      </form>
-
-      {/* Display list of entries */}
+      {/* Display list of chosen packages */}
+      <h2 className="text-xl font-bold mt-8 mb-4">
+        Chosen Home National Packages
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {internationalData.map((entry) => (
-          <div key={entry._id} className="border border-gray-300 p-4 rounded">
-            <div className="mb-4">
-              {entry.image.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`${entry.state}-${index}`}
-                  className="w-full h-40 object-cover rounded mb-2"
-                />
-              ))}
+        {Array.isArray(chosenData) && chosenData.length > 0 ? (
+          chosenData.map((chosen) => (
+            <div
+              key={chosen._id}
+              className="border border-gray-300 p-4 rounded"
+            >
+              <h3 className="font-bold text-lg">{chosen.tripName}</h3>
+              <div className="flex space-x-2 mt-2">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => handleDeletePackage(chosen._id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <h3 className="font-bold text-lg">{entry.state}</h3>
-            <p className="text-gray-600">{entry.location}</p>
-            <p className="text-gray-600">{entry.duration}</p>
-            <p className="text-gray-600">{entry.batches}</p>
-            <button
-              onClick={() => handleEditEntry(entry)}
-              className="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => handleDeleteEntry(entry._id)}
-              className="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No chosen packages available</p>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
+        {Array.isArray(nationalData) &&
+          nationalData.map((entry) => (
+            <div key={entry._id} className="border border-gray-300 p-4 rounded">
+              <h3 className="font-bold text-lg">{entry.stateName}</h3>
+              <div className="mb-4">
+                {Array.isArray(entry.trips) && entry.trips.length > 0 ? (
+                  entry.trips.map((trip) => (
+                    <div key={trip._id} className="mb-2">
+                      <h4 className="font-bold">
+                        {trip.tripName || "Unnamed Trip"}
+                      </h4>
+                      <button
+                        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+                        onClick={() => handleChoosePackage(trip, entry._id)}
+                      >
+                        Choose Package
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p>No trips available</p>
+                )}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

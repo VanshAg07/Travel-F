@@ -1,49 +1,49 @@
-import React, { useState } from "react";
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; 
-import video1 from "../img/india.mp4"; 
-import video2 from "../img/india.mp4"; 
-import video3 from "../img/india.mp4"; 
-import video4 from "../img/india.mp4"; 
-import video5 from "../img/india.mp4"; 
-import video6 from "../img/india.mp4"; 
-
-const videos = [
-  { src: video1, text: "Romantic Escapes", link: "/Honeymoon" },
-  { src: video2, text: "Corporate Trips", link: "/corporate" },
-  { src: video3, text: "Experience India", link: "/National" },
-  { src: video4, text: "International Trips", link: "/intern" },
-  { src: video5, text: "Team Adventures", link: "/Grouptours" },
-  { src: video6, text: "Weekend Trips", link: "/weekends" },
-];
+import React, { useEffect, useState } from "react";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import axios from "axios";
 
 const ImageSlider = () => {
   const [index, setIndex] = useState(0);
+  const [adventures, setAdventures] = useState([]);
+
+  const fetchAdventures = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/explore-adventure"
+      );
+      setAdventures(res.data);
+    } catch (error) {
+      console.error("Error fetching adventures:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdventures();
+  }, []);
 
   const prevSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : videos.length - getNumberOfVideos()
+      prevIndex > 0 ? prevIndex - 1 : adventures.length - getNumberOfVideos()
     );
   };
 
   const nextSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex < videos.length - getNumberOfVideos() ? prevIndex + 1 : 0
+      prevIndex < adventures.length - getNumberOfVideos() ? prevIndex + 1 : 0
     );
   };
 
   const getNumberOfVideos = () => {
     if (window.innerWidth <= 426) {
-      return 3; // Adjust if necessary
+      return 3; // Adjust if necessary for mobile
     }
-    return 4; // Display 4 videos
+    return 4; // Default number of videos to show
   };
 
-  // Adjust the number of dots to be videos.length - 3
   const getNumberOfDots = () => {
-    return videos.length - 3; // Dots equal to videos minus 3
+    return Math.max(adventures.length - getNumberOfVideos() + 1, 0); // Ensure at least one dot
   };
 
-  // Handler for clicking a dot
   const goToSlide = (dotIndex) => {
     setIndex(dotIndex);
   };
@@ -55,41 +55,48 @@ const ImageSlider = () => {
           Explore Your Adventure
         </h2>
         <div className="flex items-center justify-center relative py-5">
-          <button 
-            onClick={prevSlide} 
+          <button
+            onClick={prevSlide}
             className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
           >
             <FaChevronCircleLeft size={30} />
           </button>
           <div className="flex transition-transform duration-500 ease-in-out w-full">
-            {videos.slice(index, index + getNumberOfVideos()).map((video, i) => (
-              <div key={i} className="w-1/4 box-border p-2 relative">
-                <a href={video.link}>
-                  <video 
-                    src={video.src} 
-                    alt={`Slide ${i}`} 
-                    className="w-full h-[480px] object-cover rounded-lg shadow-lg shadow-black transition-opacity duration-300" 
-                    loop 
-                    muted
-                    style={{ opacity: 0.8 }} // Set initial opacity
-                    onMouseEnter={(e) => {
-                      e.target.play(); // Play video on hover
-                      e.target.style.opacity = 1; // Set full opacity on hover
-                    }} 
-                    onMouseLeave={(e) => {
-                      e.target.pause(); // Pause video when not hovered
-                      e.target.style.opacity = 0.8; // Reduce opacity when not hovered
-                    }} 
-                  />
-                  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 rounded bg-[#000000a1]">
-                    {video.text}
-                  </h1>
-                </a>
-              </div>
-            ))}
+            {adventures
+              .slice(index, index + getNumberOfVideos())
+              .map((adventure, i) => (
+                <div
+                  key={adventure._id}
+                  className="w-1/4 box-border p-2 relative"
+                >
+                  <a
+                    href={`/${adventure.title.toLowerCase().replace(" ", "")}`}
+                  >
+                    <video
+                      src={adventure.video[0]}
+                      alt={`Slide ${i}`}
+                      className="w-full h-[480px] object-cover rounded-lg shadow-lg shadow-black transition-opacity duration-300"
+                      loop
+                      muted
+                      style={{ opacity: 0.8 }}
+                      onMouseEnter={(e) => {
+                        e.target.play();
+                        e.target.style.opacity = 1;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.pause();
+                        e.target.style.opacity = 0.8;
+                      }}
+                    />
+                    <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 rounded bg-[#000000a1]">
+                      {adventure.title}
+                    </h1>
+                  </a>
+                </div>
+              ))}
           </div>
-          <button 
-            onClick={nextSlide} 
+          <button
+            onClick={nextSlide}
             className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
           >
             <FaChevronCircleRight size={30} />

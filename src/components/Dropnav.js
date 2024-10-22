@@ -1,43 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Importing Link for routing
 import { FaChevronDown } from "react-icons/fa"; // Importing the dropdown arrow icon
 import "./Dropnav.css";
+import axios from "axios";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [nationalNav, setNationalNav] = useState([]);
+  const [internationalNav, setInternationalNav] = useState([]);
+  const [honeymoonNav, setHoneymoonNav] = useState([]);
+
+  const fetchNationalNav = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/get-national-nav"
+      );
+      setNationalNav(res.data);
+    } catch (error) {
+      console.error("Error fetching national navigation:", error);
+    }
+  };
+
+  const fetchInternNationalNav = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/get-international-nav"
+      );
+      setInternationalNav(res.data);
+    } catch (error) {
+      console.error("Error fetching international navigation:", error);
+    }
+  };
+
+  const fetchHoneymoonNav = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/get-honeymoon-nav"
+      );
+      setHoneymoonNav(res.data);
+    } catch (error) {
+      console.error("Error fetching honeymoon navigation:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchNationalNav();
+    fetchInternNationalNav();
+    fetchHoneymoonNav();
+  }, []);
 
   const dropdownLinks = {
-    indiaPackages: [
-      "Spiti Valley",
-      "Kerala",
-      "Rajasthan",
-      "Himachal Pradesh",
-      "Uttarakhand",
-      "Andaman",
-      "Sikkim",
-      "Kashmir",
-      "Ladakh",
-      "Meghalaya",
-    ],
-    internationalPackage: [
-      "Dubai",
-      "Maldives",
-      "Bali",
-      "Thailand",
-      "Vietnam",
-      "Singapore",
-    ],
-    honeymoonPackages: [
-      "Kashmir",
-      "Andaman",
-      "Kerala",
-      "Manali",
-      "Bali",
-      "Thailand",
-      "Maldives",
-      "Vietnam",
-    ],
-    weekendTrips: ["Weekend Getaways"],
+    indiaPackages: nationalNav,
+    internationalPackage: internationalNav,
+    honeymoonPackages: honeymoonNav,
+    weekendTrips: [],
     groupsTours: [
       { name: "School Tours", route: "/schooltour" },
       { name: "University Tours", route: "/universitytour" },
@@ -57,7 +73,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-1">
-      <ul className="nav-links-1 ">
+      <ul className="nav-links-1">
         {Object.keys(dropdownLinks).map((key) => (
           <li
             key={key}
@@ -76,7 +92,7 @@ const Navbar = () => {
                   : key === "corporatePackages"
                   ? "/corporate"
                   : key === "groupsTours"
-                  ? "/grouptours" // Main link for Groups Tours
+                  ? "/grouptours"
                   : key === "weekendTrips"
                   ? "/weekends"
                   : "#"
@@ -101,31 +117,31 @@ const Navbar = () => {
               <FaChevronDown className="dropdown-icon" />
             )}
             {activeDropdown === key && dropdownLinks[key].length > 0 && (
-  <ul className="dropdown">
-    {dropdownLinks[key].map((link, index) => (
-      <li key={index} className="dropdown-item">
-        <Link
-          to={
-            key === "groupsTours"
-              ? link.route // Use the route for groupsTours
-              : key === "honeymoonPackages"
-              ? `/honeymoon-packages/${link}`
-              : key === "indiaPackages"
-              ? `/place/${link}`
-              : key === "internationalPackage"
-              ? `/places/${link}`
-              : key === "weekendTrips"
-              ? `/weekends`
-              : `/place/${link}`
-          }
-        >
-          {key === "groupsTours" ? link.name : link}
-        </Link>
-      </li>
-    ))}
-  </ul>
-)}
-
+              <ul className="dropdown">
+                {dropdownLinks[key].map((link, index) => (
+                  <li key={index} className="dropdown-item">
+                    <Link
+                      to={
+                        key === "groupsTours"
+                          ? link.route // Use the route for groupsTours
+                          : key === "honeymoonPackages"
+                          ? `/honeymoon-packages/${link}` // Adjusted as needed
+                          : key === "indiaPackages"
+                          ? `/place/${link.stateName}` // Use stateName for the route
+                          : key === "internationalPackage"
+                          ? `/places/${link.stateName}` // Use stateName for the route
+                          : key === "weekendTrips"
+                          ? `/weekends`
+                          : `/place/${link.stateName}` // Adjust accordingly
+                      }
+                    >
+                      {key === "groupsTours" ? link.name : link.stateName}{" "}
+                      {/* Use stateName for display */}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>

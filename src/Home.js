@@ -23,7 +23,7 @@ import Mobcardhoney from "./components/Mobcardhoney.js";
 import Socialmedia from "./components/Socialmedia.js";
 import Homeyt from "./components/Homeyt.js";
 import Upcomingtrip from "./components/Upcomingtrips.js";
-import UpcomingtripMobile from "./components/Upcomingtripmobile.js"; // Import Mobile version
+import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";

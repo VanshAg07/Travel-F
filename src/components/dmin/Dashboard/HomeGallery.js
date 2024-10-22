@@ -6,7 +6,7 @@ function HomeGallery() {
   const [galleryImages, setGalleryImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
-  const [existingGalleryId, setExistingGalleryId] = useState(null); // Store the existing gallery ID
+  const [existingGalleryId, setExistingGalleryId] = useState(null);
 
   useEffect(() => {
     fetchGalleryImages();
@@ -18,28 +18,24 @@ function HomeGallery() {
         "http://localhost:5000/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images || []);
-      // Assuming you get an ID for the existing gallery to update
       if (response.data.images.length > 0) {
-        setExistingGalleryId(response.data.images[0]._id); // Get the ID of the first gallery item
+        setExistingGalleryId(response.data.images[0]._id);
       }
     } catch (error) {
       console.error("Error fetching gallery images:", error);
     }
   };
 
-  // Handle file selection
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
 
-  // Handle removing an image from the selected files
   const handleRemoveImage = (index) => {
     const updatedFiles = selectedFiles.filter((_, i) => i !== index);
     setSelectedFiles(updatedFiles);
   };
 
-  // Handle image upload
   const handleUpload = async () => {
     if (selectedFiles.length === 0) {
       setError("Please select at least one image to upload.");
@@ -56,19 +52,60 @@ function HomeGallery() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/gallery/home-gallery/${existingGalleryId}`, // Include the existing ID in the URL
+        `http://localhost:5000/api/gallery/home-gallery/${existingGalleryId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
       setSelectedFiles([]);
-      fetchGalleryImages(); // Refresh the gallery
+      fetchGalleryImages();
     } catch (error) {
       console.error("Error uploading images:", error);
       setError("Failed to upload images. Please try again.");
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleDeleteImage = async (galleryId, imageIndex) => {
+    try {
+      // Send request to delete a specific image by its index
+      await axios.delete(
+        `http://localhost:5000/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`
+      );
+      fetchGalleryImages();
+    } catch (error) {
+      console.error("Error deleting image:", error);
+    }
+  };
+
+  const handleDeleteGallery = async (galleryId) => {
+    try {
+      // Send request to delete the entire gallery
+      await axios.delete(
+        `http://localhost:5000/api/gallery/home-gallery/${galleryId}`
+      );
+      fetchGalleryImages();
+    } catch (error) {
+      console.error("Error deleting gallery:", error);
+    }
+  };
+
+  const handleUpdateImage = async (galleryId, newFile, imageIndex) => {
+    const formData = new FormData();
+    formData.append("image", newFile);
+    try {
+      await axios.put(
+        `http://localhost:5000/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      fetchGalleryImages();
+    } catch (error) {
+      console.error("Error updating image:", error);
     }
   };
 
@@ -115,7 +152,6 @@ function HomeGallery() {
         </button>
         {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
-
       <div className="mt-8">
         {galleryImages.length === 0 ? (
           <p className="text-center text-gray-500">
@@ -123,22 +159,40 @@ function HomeGallery() {
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {galleryImages.map((galleryItem, index) => (
-              <div key={index} className="mb-6">
-                <div className="grid grid-cols-1 gap-4">
-                  {galleryItem.images.map((imageUrl, imgIndex) => (
-                    <div
-                      key={imgIndex}
-                      className="overflow-hidden rounded-lg shadow-lg"
-                    >
-                      <img
-                        src={imageUrl}
-                        alt={`Gallery ${index} Image ${imgIndex}`}
-                        className="w-full h-auto object-cover"
+            {galleryImages.map((galleryItem) => (
+              <div key={galleryItem._id} className="mb-6">
+                {galleryItem.images.map((imageUrl, index) => (
+                  <div
+                    key={index}
+                    className="relative overflow-hidden rounded-lg shadow-lg"
+                  >
+                    <img
+                      src={imageUrl}
+                      alt={`Gallery Image ${index}`}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute top-0 right-0 flex space-x-2 p-2">
+                      <input
+                        type="file"
+                        onChange={(e) =>
+                          handleUpdateImage(
+                            galleryItem._id,
+                            e.target.files[0],
+                            index
+                          )
+                        }
+                        className="hidden"
+                        id={`update-${galleryItem._id}-${index}`}
                       />
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+                <button
+                  onClick={() => handleDeleteGallery(galleryItem._id)}
+                  className="bg-red-500 text-white rounded-md mt-4 p-2"
+                >
+                  Delete Gallery
+                </button>
               </div>
             ))}
           </div>

@@ -10,9 +10,11 @@ import AddHoneymoon from "./Honeymoon/AddHoneymoon";
 import AddWeekend from "./Weekends/AddWeekend";
 import NationalEdit from "./EditPackage/NationalEdit";
 import Dashboard from "./Dashboard";
+import GroupTours from "./Dashboard/GroupTours/GroupTours";
+import GroupDashboard from "./Dashboard/GroupTours/GroupDashboard";
 
 const AdminPortal = () => {
-  const [activeTab, setActiveTab] = useState("bookings");
+  const [activeTab, setActiveTab] = useState("home");
   const [openSubmenu, setOpenSubmenu] = useState("");
   const navigate = useNavigate();
 
@@ -117,6 +119,16 @@ const AdminPortal = () => {
                     >
                       Honeymoon
                     </li>
+                    <li
+                      onClick={() => setActiveTab("add-group-tours")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-group-tours"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Group Tour
+                    </li>
                   </ul>
                 )}
               </div>
@@ -182,16 +194,14 @@ const AdminPortal = () => {
           </ul>
         </div>
         <div className="w-full flex justify-center items-center">
-        <button
-          onClick={handleLogout}
-          className="block w-[85%] text-center py-4 px-4 bg-red-600 hover:bg-red-700 mt-auto mb-4 rounded-lg"
-        >
-          Logout
-        </button>
+          <button
+            onClick={handleLogout}
+            className="block w-[85%] text-center py-4 px-4 bg-red-600 hover:bg-red-700 mt-auto mb-4 rounded-lg"
+          >
+            Logout
+          </button>
         </div>
-        
       </nav>
-
       {/* Main Content Area */}
       <div className="ml-[17%] w-[80%] p-8">
         {activeTab === "user-details" && <UserDetails />}
@@ -202,6 +212,7 @@ const AdminPortal = () => {
         {activeTab === "add-honeymoon" && <AddHoneymoon />}
         {activeTab === "add-weekend" && <AddWeekend />}
         {activeTab === "edit-national" && <NationalEdit />}
+        {activeTab === "add-group-tours" && <GroupDashboard />}
         {/* Add additional content components as needed */}
       </div>
     </div>

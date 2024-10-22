@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import travel_img from "../img/logo.png";
 import "./Nav.css";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { FaPhoneAlt, FaSearch } from "react-icons/fa"; // Import FaSearch for the search icon
-
+import { FaPhoneAlt, FaSearch } from "react-icons/fa";
 const Nav = () => {
   const [username, setUsername] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [navOffer, setNavOffer] = useState(null);
 
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path ? "active-link" : "";
+  };
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("loggedIn");
     const storedUsername = window.localStorage.getItem("username");
@@ -36,57 +41,106 @@ const Nav = () => {
     window.location.href = "/";
   };
 
+  const fetchNavBar = () => {
+    fetch("http://localhost:5000/api/home/nav-offer", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.navOffer && data.navOffer.length > 0) {
+          const offer = data.navOffer[0];
+          if (offer.status === "active") {
+            setNavOffer(offer.title);
+          }
+        } else {
+          throw new Error("Failed to fetch navigation bar data");
+        }
+      })
+      .catch((error) =>
+        console.error("Error fetching navigation bar data:", error)
+      );
+  };
+
+  useEffect(() => {
+    fetchNavBar();
+  }, []);
+
   return (
     <div className="nav-wrapper">
-    <div className="flex items-center">
-      <Link to="/">
-        <img src={travel_img} alt="Logo" className="logo" />
-      </Link>
-      {/* Search Bar Icon */}
-      <div className="relative flex items-center ml-4 mr-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
-  <FaSearch className="absolute left-2 text-black z-10" />
-  <input
-    type="text"
-    placeholder="Search..."
-    className="pl-10 pr-2 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full transition-all duration-200 text-black" // Added text-black class
-  />
-</div>
-
-
-    </div>
+      <div className="flex items-center">
+        <Link to="/">
+          <img src={travel_img} alt="Logo" className="logo" />
+        </Link>
+        <div className="relative flex items-center ml-4 mr-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
+          <input
+            type="text"
+            placeholder="Where do you want to go ?"
+            className="pl-6 pr-2 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 w-full transition-all duration-200 text-black"
+          />
+          <FaSearch className="absolute right-5 text-gray-800 z-10" />
+        </div>
+      </div>
       <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
       <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-        <Link to="/" onClick={() => setIsMenuOpen(false)}>
+        <Link
+          to="/"
+          onClick={() => setIsMenuOpen(false)}
+          className={isActive("/")}
+        >
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <p>Home</p>
           </div>
         </Link>
-        <Link to="/Aboutus" onClick={() => setIsMenuOpen(false)}>
+        <Link
+          to="/Aboutus"
+          onClick={() => setIsMenuOpen(false)}
+          className={isActive("/Aboutus")}
+        >
           <div className="flex flex-row justify-center mr-10 items-center gap-1">
             <p>About Us</p>
           </div>
         </Link>
-
         {!isMobile && (
           <>
-            <Link to="/Payments" onClick={() => setIsMenuOpen(false)}>
+            {navOffer && (
+              <div className="mr-10">
+                <p>{navOffer}</p>
+              </div>
+            )}
+            <Link
+              to="/Payments"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Payments")}
+            >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Payments</p>
               </div>
             </Link>
-            <Link to="/Cont" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              to="/Cont"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Cont")}
+            >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Contact</p>
               </div>
             </Link>
-            <Link to="/Blog" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              to="/Blog"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Blog")}
+            >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Blogs</p>
               </div>
             </Link>
-            <Link to="/Glry" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              to="/Glry"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Glry")}
+            >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Gallery</p>
               </div>
@@ -121,14 +175,14 @@ const Nav = () => {
         <div className={`flex justify-center ${isMobile ? "-mt-4" : ""}`}>
           <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
             <div
-              className={`flex flex-row justify-center items-center gap-2 border border-white rounded-full px-4 py-2 ${
+              className={`flex flex-row justify-center items-center gap-2 border-2 border-white rounded-full px-4 py-2 ${
                 isMobile
                   ? "mr-0 font-semibold text-sm text-blue-600"
                   : "mr-10 text-xs"
               }`}
             >
-              <FaPhoneAlt className="transform text-lg" />
-              <p>{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>
+              <FaPhoneAlt className="transform" />
+              <p className="font-semibold">{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>
             </div>
           </a>
         </div>
