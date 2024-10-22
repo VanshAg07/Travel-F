@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const states = [
-  { _id: "6707ce4042f18b18911cdd7b", stateName: "Manali Kasol Kheerganga" },
-  { _id: "6707ccdb42f18b18911cdd69", stateName: "Manali Solang Kasol" },
-  { _id: "6707ce5f42f18b18911cdd7d", stateName: "Kasol Kheerganga" },
-  { _id: "6707cd0142f18b18911cdd6d", stateName: "Manali Kasol Kalga" },
-  { _id: "6707ce8a42f18b18911cdd7f", stateName: "Jibhi Tirthanvalley" },
-  { _id: "6707cd6542f18b18911cdd73", stateName: "Udaipur" },
-  { _id: "6707cd9342f18b18911cdd75", stateName: "Chopta Tungnath" },
-  { _id: "6707cdc242f18b18911cdd77", stateName: "Spiti Valley" },
-  { _id: "6707cddf42f18b18911cdd79", stateName: "Shimla Manali" },
-];
-
 const AddWeekend = () => {
+  const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -34,6 +23,29 @@ const AddWeekend = () => {
     overView: "",
     sharing: [{ title: "", price: "" }],
   });
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/trip/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {

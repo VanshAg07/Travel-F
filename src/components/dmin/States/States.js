@@ -6,15 +6,12 @@ const States = () => {
   const [internationalStates, setInternationalStates] = useState([]);
   const [nationalStates, setNationalStates] = useState([]);
   const [honeymoonStates, setHoneymoonStates] = useState([]);
-
   const [newWeekendState, setNewWeekendState] = useState({ name: "" });
   const [newInternationalState, setNewInternationalState] = useState({
     name: "",
   });
   const [newNationalState, setNewNationalState] = useState({ name: "" });
   const [newHoneymoonState, setNewHoneymoonState] = useState({ name: "" });
-
-  const [newState, setNewState] = useState({ name: "" });
 
   // Fetch states for each category
   const fetchStates = async () => {
@@ -97,22 +94,6 @@ const States = () => {
       }
     } catch (error) {
       console.error(`Error adding international state`, error);
-    }
-  };
-
-  // Common function to add state
-  const addState = async (type, setState) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/api/${type}/states`,
-        { name: newState.name }
-      );
-      if (response.status === 201) {
-        setNewState({ name: "" });
-        fetchStates();
-      }
-    } catch (error) {
-      console.error(`Error adding ${type} state`, error);
     }
   };
 
