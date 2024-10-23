@@ -109,7 +109,7 @@ const AddHoneymoon = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/honeymoon/add-honeymoon-package/${selectedState}`,
+      `http://localhost:5000/api/honeymoon/add-honeymoon-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -152,17 +152,19 @@ const AddHoneymoon = () => {
         <div className="mb-4">
           <label className="block text-gray-700">State Name</label>
           <select
-            type="text"
-            name="stateName"
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
+            value={selectedState ? selectedState.name : ""}
+            onChange={(e) => {
+              const selectedStateObject = states.find(
+                (state) => state.name === e.target.value
+              );
+              setSelectedState(selectedStateObject || "");
+            }}
+            className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           >
-            <option value="">Select Place</option>
-            {states?.map((state) => (
-              <option key={state._id} value={state._id}>
-                {state.stateName}
+            <option value="">Select a State</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
           </select>

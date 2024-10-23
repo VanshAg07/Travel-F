@@ -54,7 +54,6 @@ const InernationalPlaces = () => {
           </p>
           <HikingIntern />
         </div>
-
         <div className=" hiking-container p-4 md:p-6 lg:p-8 Visiting-container">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
             Beautiful Places To Visit In {name} For A Blissful Vacay

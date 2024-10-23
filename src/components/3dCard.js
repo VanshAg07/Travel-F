@@ -12,7 +12,7 @@ const Card = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/getTripDetails/${name}`
+          `http://localhost:5000/api/user/getTripDetails/${name}`
         );
         setTrips(response.data);
       } catch (error) {

@@ -32,7 +32,7 @@ const AdminPanel = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/trip/states")
+      .get("http://localhost:5000/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -106,11 +106,16 @@ const AdminPanel = () => {
     const image = e.target.files[0];
     setTripData({ ...tripData, tripBackgroundImg: image });
   };
-
+  // Handle PDF change function
   const handlePdfChange = (e) => {
-    const pdfs = Array.from(e.target.files); // Convert FileList to an array
-    setTripData({ ...tripData, pdfs: pdfs }); // Update the state with the array of PDFs
+    const pdfFiles = Array.from(e.target.files);
+    const newPdfs = pdfFiles.map((file) => ({
+      file: file,
+      status: "active",
+    }));
+    setTripData({ ...tripData, pdf: [...tripData.pdf, ...newPdfs] });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -119,17 +124,18 @@ const AdminPanel = () => {
       return;
     }
     setLoading(true);
-    console.log(selectedState);
+
     const formData = new FormData();
     Object.keys(tripData).forEach((key) => {
       if (key === "tripImages") {
         tripData.tripImages.forEach((image) => {
           formData.append("tripImages", image);
         });
-      } else if (key === "pdfs") {
-        // Check for the pdfs key
-        tripData.pdf.forEach((pdf) => {
-          formData.append("pdf", pdf); // Append each PDF to FormData
+      } else if (key === "pdf") {
+        // Append each PDF file and its status separately
+        tripData.pdf.forEach((pdf, index) => {
+          formData.append("pdf", pdf.file); // Append the PDF file
+          formData.append(`pdfStatus[${index}]`, pdf.status); // Append the corresponding status
         });
       } else if (key === "tripBackgroundImg" && tripData.tripBackgroundImg) {
         formData.append("tripBackgroundImg", tripData.tripBackgroundImg);
@@ -155,7 +161,9 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(`https://api.travello10.com/api/trip/state/${selectedState.id}/trip`, {
+
+    // Send request to the backend
+    fetch(`http://localhost:5000/api/trip/state/${selectedState.id}/trip`, {
       method: "POST",
       body: formData,
     })
@@ -474,7 +482,7 @@ const AdminPanel = () => {
           </div>
           <div>
             <label className="block text-l font-medium">
-              Upload PDF ( i.e. Itinerary )
+              Upload PDF (i.e. Itinerary)
             </label>
             <input
               type="file"
@@ -482,13 +490,23 @@ const AdminPanel = () => {
               onChange={handlePdfChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
-            <button
-              type="button"
-              onClick={() => addField("pdf")}
-              className="ml-2 p-1 text-white bg-green-600 rounded"
-            >
-              +
-            </button>
+            {tripData.pdf.map((pdf, index) => (
+              <div key={index} className="flex items-center mb-2">
+                <span className="mr-2">{pdf.file.name}</span>
+                <select
+                  value={pdf.status}
+                  onChange={(e) => {
+                    const updatedPdfs = [...tripData.pdf];
+                    updatedPdfs[index].status = e.target.value;
+                    setTripData({ ...tripData, pdf: updatedPdfs });
+                  }}
+                  className="border-gray-300 rounded-md border-2 p-1"
+                >
+                  <option value="active">Active</option>
+                  <option value="non-active">Non-active</option>
+                </select>
+              </div>
+            ))}
           </div>
         </div>
         <button

@@ -41,11 +41,9 @@ function SearchBar() {
     const selectedTrip = tripData.find((item) =>
       item.tripNames.includes(tripName)
     );
-
     if (selectedTrip) {
       const { stateName, source } = selectedTrip;
       let path = "";
-
       if (source === "National") {
         path = `/trip/${tripName}/${stateName}`;
       } else if (source === "International") {
@@ -65,7 +63,7 @@ function SearchBar() {
         type="text"
         value={search}
         onChange={handleInputChange}
-        placeholder="Where do you want to go ?"
+        placeholder="Search Trip"
         className="pl-6 pr-2 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 w-full transition-all duration-200 text-black"
       />
       <FaSearch className="absolute right-5 text-gray-800 z-10" />
