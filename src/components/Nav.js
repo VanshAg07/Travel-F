@@ -4,12 +4,13 @@ import travel_img from "../img/logo.png";
 import "./Nav.css";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { FaPhoneAlt, FaSearch } from "react-icons/fa";
+import SearchBar from "./Search/SearchBar";
 const Nav = () => {
   const [username, setUsername] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [navOffer, setNavOffer] = useState(null);
-
+  const [search, setSearch] = useState([]);
   const location = useLocation();
 
   const isActive = (path) => {
@@ -71,14 +72,7 @@ const Nav = () => {
         <Link to="/">
           <img src={travel_img} alt="Logo" className="logo" />
         </Link>
-        <div className="relative flex items-center ml-4 mr-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
-          <input
-            type="text"
-            placeholder="Where do you want to go ?"
-            className="pl-6 pr-2 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 w-full transition-all duration-200 text-black"
-          />
-          <FaSearch className="absolute right-5 text-gray-800 z-10" />
-        </div>
+        <SearchBar />
       </div>
       <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
@@ -140,15 +134,6 @@ const Nav = () => {
                 <p>Blogs</p>
               </div>
             </Link>
-            <Link
-              to="/Glry"
-              onClick={() => setIsMenuOpen(false)}
-              className={isActive("/Glry")}
-            >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
-                <p>Gallery</p>
-              </div>
-            </Link>
           </>
         )}
 
@@ -186,14 +171,16 @@ const Nav = () => {
               }`}
             >
               <FaPhoneAlt className="transform" />
-              <p className="font-semibold">{isMobile ? "+91-8287804197" : "+91-8287804197"}</p>
+              <p className="font-semibold">
+                {isMobile ? "+91-8287804197" : "+91-8287804197"}
+              </p>
             </div>
           </a>
         </div>
         {username ? (
           <>
             <div className="username-display">
-              Welcome, <strong>{username}!</strong>
+              <strong>{username}!</strong>
             </div>
             <button className="Btn-n" onClick={handleLogout}>
               <div className="sign-n">

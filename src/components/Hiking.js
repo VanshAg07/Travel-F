@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Hiking.css";
+import "./Visit.css";
 import { FaClock } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
@@ -33,28 +33,26 @@ const Hiking = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="hiking-cards-grid grid-cols-3">
-      {activities.length > 0 ? (
-        activities.map((activity, index) => (
-          <div key={index} className="hiking-card">
-            <img
-              src={activity.img}
-              alt={activity.title}
-              className="hiking-card-img"
-            />
-            <div className="hiking-card-content">
-              <div className="clock-text-container">
-                <FaClock className="hiking-card-clock" />
-                <span className="duration-text">{activity.time}</span>{" "}
+    <div className="mx-auto" style={{ width: '90vw' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activities.length > 0 ? (
+          activities.map((activity, index) => (
+            <div key={index} className="visiting-card shadow-lg rounded-lg overflow-hidden flex flex-col">
+              <img src={activity.img} alt={activity.title} className="w-full h-52 object-cover" />
+              <div className="visiting-card-content p-4 flex-grow bg-white">
+                <div className="clock-text-container flex items-center">
+                  <FaClock className="hiking-card-clock text-gray-800 mr-2" />
+                  <span className="duration-text text-sm text-gray-800">{activity.time}</span>
+                </div>
+                <h1 className="text-lg font-semibold">{activity.title}</h1>
+                <p className="text-sm text-gray-800">{activity.description}</p>
               </div>
-              <h1>{activity.title}</h1>
-              <p>{activity.description}</p>
             </div>
-          </div>
-        ))
-      ) : (
-        <p>No activities found</p>
-      )}
+          ))
+        ) : (
+          <p>No activities found</p>
+        )}
+      </div>
     </div>
   );
 };

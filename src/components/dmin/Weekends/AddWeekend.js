@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const states = [
-  { _id: "6707ce4042f18b18911cdd7b", stateName: "Manali Kasol Kheerganga" },
-  { _id: "6707ccdb42f18b18911cdd69", stateName: "Manali Solang Kasol" },
-  { _id: "6707ce5f42f18b18911cdd7d", stateName: "Kasol Kheerganga" },
-  { _id: "6707cd0142f18b18911cdd6d", stateName: "Manali Kasol Kalga" },
-  { _id: "6707ce8a42f18b18911cdd7f", stateName: "Jibhi Tirthanvalley" },
-  { _id: "6707cd6542f18b18911cdd73", stateName: "Udaipur" },
-  { _id: "6707cd9342f18b18911cdd75", stateName: "Chopta Tungnath" },
-  { _id: "6707cdc242f18b18911cdd77", stateName: "Spiti Valley" },
-  { _id: "6707cddf42f18b18911cdd79", stateName: "Shimla Manali" },
-];
-
 const AddWeekend = () => {
+  const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -34,6 +23,29 @@ const AddWeekend = () => {
     overView: "",
     sharing: [{ title: "", price: "" }],
   });
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/trip/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {
@@ -103,7 +115,7 @@ const AddWeekend = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState}`,
+      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -160,20 +172,22 @@ const AddWeekend = () => {
         <div className="mb-4">
           <label className="block text-gray-700">State Name</label>
           <select
-            type="text"
-            name="stateName"
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
+            value={selectedState ? selectedState.name : ""}
+            onChange={(e) => {
+              const selectedStateObject = states.find(
+                (state) => state.name === e.target.value
+              );
+              setSelectedState(selectedStateObject || "");
+            }}
+            className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           >
-            <option value="">Select Place</option>
-            {states?.map((state) => (
-              <option key={state._id} value={state._id}>
-                {state.stateName}
+            <option value="">Select a State</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
-          </select>
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Name</label>

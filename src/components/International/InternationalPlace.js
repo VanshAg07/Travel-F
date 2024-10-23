@@ -16,6 +16,7 @@ import VisitIntern from "./VisitIntern";
 import FoodInern from "./FoodIntern";
 import ShopIntern from "./ShopIntern";
 import StateInternational from "./StateInternatioanl";
+import Homeglry from "../../components/Homeglry.js";
 
 const InernationalPlaces = () => {
   const { name } = useParams();
@@ -34,64 +35,77 @@ const InernationalPlaces = () => {
           </div>
         </div>
         <Mainreview />
-        <div>
-          <h1 className="all-packages-heading">Featured Packages</h1>
-          <div>
-            <Link to={`/International/Packages/${name}`}>
+        <div className="justify-center pt-10 items-center flex flex-col w-full ">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+            Featured Packages
+          </h1>
+          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+        </div>
+        <div className="flex justify-center mt-10">
+          <div className="w-full">
+            <Link to={`/Packagedetails/${name}`}>
               <StateInternational />
             </Link>
           </div>
-        </div>
-        <div className="hiking-container p-4 md:p-6 lg:p-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+          </div>
+        <div className="w-full mx-auto pt-10 flex flex-col">
+       <div className="w-[90%] mx-auto">
+          <h1 className="text-xl text-left md:text-3xl lg:text-4xl pb-4 font-semibold leading-tight sm:text-x">
             Best activities to do in {name} for a thrilling adventure
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+           <p className="text-sm sm:text-base md:text-lg  pb-8 lg:text-xl text-gray-700 leading-relaxed">
             {name} is an excellent place to create cherished memories with loved
             ones through its various breathtaking activities like trekking,
             river canyoning, hiking, and more. You can also enjoy the
             breathtaking views of nature here.
           </p>
+          </div>
           <HikingIntern />
         </div>
 
-        <div className=" hiking-container p-4 md:p-6 lg:p-8 Visiting-container">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+        <div className=" w-full mx-auto pt-10 flex flex-col">
+       <div className="w-[90%] mx-auto">
+          <h1 className="text-xl text-left md:text-3xl lg:text-4xl pb-4 font-semibold leading-tight sm:text-x">
             Beautiful Places To Visit In {name} For A Blissful Vacay
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+           <p className="text-sm sm:text-base md:text-lg  pb-8 lg:text-xl text-gray-700 leading-relaxed">
             Whether you're looking for an adrenaline rush or simply want to
             enjoy natural scenery, {name} is the perfect place for you. It
             should be at the top of your list for your next getaway.
           </p>
+          </div>
           <VisitIntern />
         </div>
-        <div className="food-container p-4 md:p-6 lg:p-8 Visiting-container">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+        <div className="w-full mx-auto pt-10 flex flex-col">
+       <div className="w-[90%] mx-auto">
+          <h1 className="text-xl text-left md:text-3xl lg:text-4xl pb-4 font-semibold leading-tight sm:text-x">
             Places to Enjoy The Rich Flavors Of {name}
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+           <p className="text-sm sm:text-base md:text-lg  pb-8 lg:text-xl text-gray-700 leading-relaxed">
             {name}, known as the abode of clouds, offers a diverse culinary
             experience with a range of traditional and modern food options. From
             local delicacies to global cuisines, the state has plenty of places
             to eat and explore.
           </p>
+          </div>
           <FoodInern />
         </div> 
-        <div className="shop-container p-4 md:p-6 lg:p-8 Visiting-container ">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
+        <div className="w-full mx-auto pb-12 pt-10 flex flex-col ">
+       <div className="w-[90%] mx-auto">
+          <h1 className="text-xl text-left md:text-3xl lg:text-4xl pb-4 font-semibold leading-tight sm:text-x">
             Best Places to shop in {name}
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+           <p className="text-sm sm:text-base md:text-lg  pb-8 lg:text-xl text-gray-700 leading-relaxed">
             {name}, a northeastern state of India, offers a unique shopping
             experience with its vibrant local markets and handicrafts. Visitors
             can explore the bustling bazaars for traditional clothes,
             accessories, bamboo crafts, and food items.
           </p>
+          </div>
           <ShopIntern />
         </div>
 
-        <div className="travel-guidelines1-container p-4 md:p-6 lg:p-8">
+        {/* <div className="travel-guidelines1-container p-4 md:p-6 lg:p-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
             {name} Travel Guidelines
           </h1>
@@ -117,24 +131,28 @@ const InernationalPlaces = () => {
               by the government.
             </li>
           </ol>
-        </div>
+        </div> */}
 
-        <div className="why">
-          <Whyuss />
-        </div>
+        
+         
+        <div className="bg-[#ffffe6]">
+        <Homeglry />
+        <Whyuss />
         <Review />
-        <h1 className="pt-14 md:pt-20 text-2xl md:text-4xl font-bold text-center text-gray-800">
+        {/* <Guide /> */}
+
+        <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
           Contact Form
         </h1>
-        <div className="min-h-screen flex items-center justify-center px-4">
+        <div className=" flex items-center pb-14 justify-center px-4">
           {/* Outer div with 80% width */}
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
+          <div className="bg-[#e1feff] rounded-lg shadow-md shadow-black p-6 md:p-8 w-full max-w-4xl lg:w-4/5">
             {/* Inner form container with 60% width */}
             <div className="w-full md:w-3/5 mx-auto">
-              <h2 className="text-cyan-500 text-lg font-semibold mb-1">
+              <h2 className="text-cyan-500 text-lg font-bold mb-1">
                 Travello10 Calling?
               </h2>
-              <h3 className="text-lg font-semibold mb-6">
+              <h3 className="text-base font-semibold mb-6">
                 Allow Us to Call You Back!
               </h3>
               <form>
@@ -204,7 +222,7 @@ const InernationalPlaces = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded-md transition duration-300"
+                  className="w-full bg-cyan-500 text-white font-bold py-2 rounded-md transition duration-300"
                 >
                   Submit
                 </button>
@@ -212,6 +230,7 @@ const InernationalPlaces = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
       <MainFooter />
       <div className="fixed-button-1">

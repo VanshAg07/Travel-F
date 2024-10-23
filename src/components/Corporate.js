@@ -141,7 +141,6 @@ const Corporate = () => {
             </div>
           </div>
         ))}
-
         <div>
           <Superpower />
           <Beyondordinary />

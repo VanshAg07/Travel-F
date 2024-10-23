@@ -4,7 +4,6 @@ const AdminPanel = () => {
   const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
   const [loading, setLoading] = useState(false);
-  const [newState, setNewState] = useState([]);
 
   const [tripData, setTripData] = useState({
     tripName: "",
@@ -16,7 +15,7 @@ const AdminPanel = () => {
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
     tripImages: [],
-    pdf: null,
+    pdf: [],
     tripDescription: [""],
     pickAndDrop: "",
     sharing: [{ title: "", price: "" }],
@@ -109,9 +108,9 @@ const AdminPanel = () => {
   };
 
   const handlePdfChange = (e) => {
-    setTripData({ ...tripData, pdf: e.target.files[0] });
+    const pdfs = Array.from(e.target.files); // Convert FileList to an array
+    setTripData({ ...tripData, pdfs: pdfs }); // Update the state with the array of PDFs
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -127,8 +126,11 @@ const AdminPanel = () => {
         tripData.tripImages.forEach((image) => {
           formData.append("tripImages", image);
         });
-      } else if (key === "pdf" && tripData.pdf) {
-        formData.append("pdf", tripData.pdf);
+      } else if (key === "pdfs") {
+        // Check for the pdfs key
+        tripData.pdf.forEach((pdf) => {
+          formData.append("pdf", pdf); // Append each PDF to FormData
+        });
       } else if (key === "tripBackgroundImg" && tripData.tripBackgroundImg) {
         formData.append("tripBackgroundImg", tripData.tripBackgroundImg);
       } else if (Array.isArray(tripData[key])) {
@@ -476,16 +478,17 @@ const AdminPanel = () => {
             </label>
             <input
               type="file"
+              multiple
               onChange={handlePdfChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
-            {/* <button
+            <button
               type="button"
               onClick={() => addField("pdf")}
               className="ml-2 p-1 text-white bg-green-600 rounded"
             >
               +
-            </button> */}
+            </button>
           </div>
         </div>
         <button

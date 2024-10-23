@@ -109,9 +109,9 @@ const Shop = () => {
             required
           >
             <option value="">Select State</option>
-            {states.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
           </select>

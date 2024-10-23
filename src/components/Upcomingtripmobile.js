@@ -103,12 +103,12 @@ const TravelOptions = () => {
           <h1 className="text-lg font-bold">Upcoming Trips</h1>
           <div className="w-32 border-b-4 border-blue-400 mt-1" />
         </div>
-        <a
+        {/* <a
           href="/all-packages"
           className="text-red-500 mr-4 text-sm"
         >
           See All
-        </a>
+        </a> */}
       </div>
 
       {/* Month selection section */}

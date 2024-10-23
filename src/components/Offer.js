@@ -112,7 +112,7 @@ const National = () => {
         <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
       </div>
       <div className="flex justify-center mt-10">
-        <div className="w-[80%]">
+        <div className="w-full">
           <AllPackagesCard />
         </div>
       </div>

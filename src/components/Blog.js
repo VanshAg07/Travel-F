@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
-import Blog1 from "../img/Blog1.png";
+import Blog1 from "../img/india.jpg";
 import img1 from "../img/kedarnath.png";
 import img2 from "../img/Maldives.jpg";
 import img3 from "../img/Europe.jpg";
@@ -61,13 +61,29 @@ const Blog = () => {
       <Nav />
       <Dropnav />
       <div className="blog-container">
-        <img className="blog-img" src={Blog1} alt="Blog Cover" />
-        <h1 className=" blog-h1 blog-heading-bottom">
-          From Beaches to Mountains: What Travel Communities Are Excited About!
-        </h1>
+        <div className="relative w-full h-[75vh]">
+          <img
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            src={Blog1}
+            alt="Blog Cover"
+          />
+          {/* Content on the image */}
+          <div className="relative z-10 flex flex-col justify-center items-start h-full p-4 sm:p-8">
+          <h1 className="text-3xl sm:text-5xl text-white font-bold mb-4">
+          Journey Through Stories
+            </h1>
+            <div className="bg-[yellow] p-3">
+              <p className="text-lg sm:text-xl text-black font-semibold">
+              Explore Our Latest Travel Blogs
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
-        <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">Blogs</h2>
+        <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">
+          Blogs
+        </h2>
       </div>
       <div className="card-grid">
         {Data.map((item, index) => (

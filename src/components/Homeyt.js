@@ -1,70 +1,94 @@
-import React, { useState } from 'react';
-import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
-import Logo from '../img/Travello10logo.png';
-
-const videoUrls = [
-  'https://www.youtube.com/embed/92d-oIsNm-Q?controls=0&modestbranding=1&rel=0', // Video 1
-  'https://www.youtube.com/embed/lh67NT0vfnQ?controls=0&modestbranding=1&rel=0', // Video 2
-  'https://www.youtube.com/embed/744ptyIyNzI?controls=0&modestbranding=1&rel=0', // Video 3
+import React, { useState } from "react";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // Importing icons
+import "./Homeyt.css";
+import Logo from "../img/Travello10logo.png";
+const videos = [
+  {
+    id: "1",
+    url: "https://www.youtube.com/embed/92d-oIsNm-Q?controls=0&modestbranding=1&rel=0",
+    title: "Winter Spiti Valley | Capture a Trip",
+  },
+  {
+    id: "2",
+    url: "https://www.youtube.com/embed/lh67NT0vfnQ?controls=0&modestbranding=1&rel=0",
+    title: "Summer Ladakh | Capture a Trip",
+  },
+  {
+    id: "3",
+    url: "https://www.youtube.com/embed/744ptyIyNzI?controls=0&modestbranding=1&rel=0",
+    title: "Autumn Manali | Capture a Trip",
+  },
 ];
 
-const YoutubeComponent = () => {
-  const [currentIndex, setCurrentVideoIndex] = useState(0);
+const VideoSlider = () => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const nextVideo = () => {
-    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoUrls.length);
+  const handleNext = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
 
-  const prevVideo = () => {
-    setCurrentVideoIndex((prevIndex) =>
-      prevIndex === 0 ? videoUrls.length - 1 : prevIndex - 1
+  const handlePrev = () => {
+    setCurrentVideoIndex(
+      (prevIndex) => (prevIndex - 1 + videos.length) % videos.length
     );
   };
 
   return (
-    <div className="relative flex flex-col mb-20 items-center justify-between h-[90vh] w-[100vw] mx-auto">
-      {/* Heading - No extra space */}
-      <div className="h-[5vh] w-[80vw] flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Visit Our Youtube Channel</h1>
-      </div>
+    <div className="flex flex-col pb-14 items-center space-y-4">
+      {/* Title */}
+      <h2 className="text-xl md:text-3xl lg:text-4xl pt-7 font-bold text-center leading-tight sm:text-xl">Visit Our Youtube Channel</h2>
 
-      {/* white bg div with black border, equal margin, rounded corners, and 2px border */}
-      <div className="m-4 w-[80vw] h-[80vh] bg-white border-2 border-black rounded-lg relative">
-        <div className="mb-4 h-[65vh] mt-4">
-          <iframe
-            className="w-[78vw] pl-5 h-full rounded-lg" // Added rounded-lg here for curved edges
-            src={videoUrls[currentIndex]} // Use the current video URL
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+      {/* Container for Video and Buttons */}
+      <div className="flex items-center">
+        {/* Previous Button */}
+        <button
+          onClick={handlePrev}
+          className="p-2 yt-left rounded-full z-10"
+          style={{ zIndex: 10 }}
+        >
+          <FaChevronCircleLeft className=" yt-left text-2xl" />
+        </button>
+
+        {/* Video Display Wrapper */}
+        <div className="relative w-[85vw] max-w-3xl mx-auto bg-white border-2 border-black p-4 rounded-lg overflow-hidden">
+          {/* Video Display */}
+          <div className="relative w-full">
+            <iframe
+              className="w-full h-64 sm:h-80 lg:h-[500px] rounded-md"
+              src={videos[currentVideoIndex].url}
+              title={videos[currentVideoIndex].title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          {/* Video Title with Logo */}
+          <div className="flex items-center justify-center mt-4 space-x-2">
+            {/* Circular logo with responsive sizing */}
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full"
+            />
+
+            {/* Text with responsive font size */}
+            <p className="text-sm md:text-base lg:text-lg font-semibold text-center">
+              {videos[currentVideoIndex].title}
+            </p>
+          </div>
         </div>
 
-        {/* Footer with Logo and Text - Match width of the video */}
-        <div className="h-[7vh] mt-4 w-full flex items-center justify-center bg-white space-x-4 mb-0">
-          <img src={Logo} alt="Travello10 Logo" className="h-14 w-14 rounded-full" />
-          <p className="text-lg">
-            Let's go to Do Dham Yatra with Travello10 | TravelloTen India Pvt. Ltd.
-          </p>
-        </div>
+        {/* Next Button */}
+        <button
+          onClick={handleNext}
+          className="p-2 rounded-full z-10"
+          style={{ zIndex: 10 }}
+        >
+          <FaChevronCircleRight className=" yt-right text-2xl" />
+        </button>
       </div>
-
-      {/* Navigation Arrows with Icons */}
-      <button
-        onClick={prevVideo}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-md flex items-center sm:left-4 md:left-6 lg:left-8"
-      >
-        <FaChevronCircleLeft size={30} className="ml-16" /> {/* Left Icon */}
-      </button>
-      <button
-        onClick={nextVideo}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-md flex items-center sm:right-4 md:right-6 lg:right-8"
-      >
-        <FaChevronCircleRight size={30} className="mr-16" /> {/* Right Icon */}
-      </button>
     </div>
   );
 };
 
-export default YoutubeComponent;
+export default VideoSlider;

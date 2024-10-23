@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const states = [
-  { _id: "670761bd420661605be02fb1", stateName: "Dubai" },
-  { _id: "670761cb420661605be02fb3", stateName: "Maldives" },
-  { _id: "670761d0420661605be02fb5", stateName: "Bali" },
-  { _id: "670761d9420661605be02fb7", stateName: "Thailand" },
-  { _id: "670761de420661605be02fb9", stateName: "Vietnam" },
-  { _id: "670761e4420661605be02fbb", stateName: "Singapore" },
-];
-
+import axios from "axios";
 const AddInternPackage = () => {
+  const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+  const [loading, setLoading] = useState(false);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -31,6 +25,29 @@ const AddInternPackage = () => {
     tripBookingAmount: "",
     tripSeats: "",
   });
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/admin/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {
@@ -57,6 +74,7 @@ const AddInternPackage = () => {
     updatedArray.splice(index, 1);
     setTripDetails({ ...tripDetails, [arrayName]: updatedArray });
   };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     if (!selectedState) {
@@ -99,7 +117,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/admin/international-package/${selectedState}`,
+      `http://localhost:5000/api/admin/international-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -156,20 +174,22 @@ const AddInternPackage = () => {
         <div className="mb-4">
           <label className="block text-gray-700">State Name</label>
           <select
-            type="text"
-            name="stateName"
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
+            value={selectedState ? selectedState.name : ""}
+            onChange={(e) => {
+              const selectedStateObject = states.find(
+                (state) => state.name === e.target.value
+              );
+              setSelectedState(selectedStateObject || "");
+            }}
+            className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           >
-            <option value="">Select Place</option>
-            {states?.map((state) => (
-              <option key={state._id} value={state._id}>
-                {state.stateName}
+            <option value="">Select a State</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
-          </select>
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Name</label>
@@ -217,7 +237,10 @@ const AddInternPackage = () => {
             name="tripBookingAmount"
             value={tripDetails.tripBookingAmount}
             onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripBookingAmount: e.target.value })
+              setTripDetails({
+                ...tripDetails,
+                tripBookingAmount: e.target.value,
+              })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

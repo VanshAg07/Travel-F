@@ -125,7 +125,7 @@ const Navbar = () => {
                         key === "groupsTours"
                           ? link.route // Use the route for groupsTours
                           : key === "honeymoonPackages"
-                          ? `/honeymoon-packages/${link}` // Adjusted as needed
+                          ? `/honeymoon-packages/${link.stateName}` // Adjusted as needed
                           : key === "indiaPackages"
                           ? `/place/${link.stateName}` // Use stateName for the route
                           : key === "internationalPackage"

@@ -1,8 +1,20 @@
+@media (max-width: 1024px) {
+  .mainreview-wrapper{
+      margin-top: -65px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainreview-wrapper{
+      margin-top: -60px;
+  }
+}
 
 @media (max-width: 426px) {
-  .mainreview-wrapper{
- margin-top: -65px;
-  }
+   .mainreview-wrapper{
+    margin-top: -100px;
+}
+ 
     .footer-text-small {
       font-size: 8px; /* Decrease the font size for smaller screens */
     }

@@ -1,20 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const states = [
-  { _id: "6706c7a5eb3b4434e45d8bc9", stateName: "Kashmir" },
-  { _id: "6706c7aceb3b4434e45d8bcb", stateName: "Andaman" },
-  { _id: "6706c7b0eb3b4434e45d8bcd", stateName: "Kerala" },
-  { _id: "6706c7c1eb3b4434e45d8bcf", stateName: "Manali" },
-  { _id: "6706c7c6eb3b4434e45d8bd1", stateName: "Bali" },
-  { _id: "6706c7cbeb3b4434e45d8bd3", stateName: "Thailand" },
-  { _id: "6706c7dceb3b4434e45d8bd7", stateName: "Vietnam" },
-  { _id: "6706c7d7eb3b4434e45d8bd5", stateName: "Maldives" },
-];
 
 const AddHoneymoon = () => {
-  const [stateName, setStateName] = useState("");
+  const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
@@ -32,6 +23,29 @@ const AddHoneymoon = () => {
     status: "active",
     overView: "",
   });
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  const fetchStates = () => {
+    setLoading(true);
+    axios
+      .get("http://localhost:5000/api/honeymoon/states")
+      .then((response) => {
+        const statesList = response.data.map((state) => ({
+          name: state.stateName,
+          id: state._id,
+        }));
+        console.log("States:", statesList);
+        setStates(statesList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  };
 
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {
@@ -95,7 +109,7 @@ const AddHoneymoon = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/honeymoon/add-honeymoon-package/${selectedState}`,
+      `http://localhost:5000/api/honeymoon/add-honeymoon-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -138,20 +152,22 @@ const AddHoneymoon = () => {
         <div className="mb-4">
           <label className="block text-gray-700">State Name</label>
           <select
-            type="text"
-            name="stateName"
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
+            value={selectedState ? selectedState.name : ""}
+            onChange={(e) => {
+              const selectedStateObject = states.find(
+                (state) => state.name === e.target.value
+              );
+              setSelectedState(selectedStateObject || "");
+            }}
+            className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           >
-            <option value="">Select Place</option>
-            {states?.map((state) => (
-              <option key={state._id} value={state._id}>
-                {state.stateName}
+            <option value="">Select a State</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
               </option>
             ))}
-          </select>
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Name</label>

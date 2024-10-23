@@ -4,7 +4,7 @@ import "../Visit.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-const VisitIntern = () => {
+const Visit = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,8 +17,7 @@ const VisitIntern = () => {
           `http://localhost:5000/api/user/getInternPlaces/${name}`
         );
         console.log(response.data);
-        // Make sure to access response.data.places, not activities
-        setPlaces(response.data.places || []);  // <-- Fixed this line
+        setPlaces(response.data.places || []);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -33,26 +32,30 @@ const VisitIntern = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="visiting-cards-grid grid-cols-3">
-      {places.length > 0 ? (
-        places.map((place, index) => (
-          <div key={index} className="visiting-card">
-            <img src={place.img} alt={place.title} className="food-card-img" />
-            <div className="visiting-card-content">
-              <h1>{place.title}</h1>
-              <p>{place.description}</p>
-              <div className="location-info">
-                <FaMapMarkerAlt className="location-icon" />
-                <span className="location-text">{place.location}</span>
+    <div className=" mx-auto" style={{ width: '90vw' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {places.length > 0 ? (
+          places.map((place, index) => (
+            <div key={index} className="visiting-card shadow-lg rounded-lg overflow-hidden flex flex-col">
+              <img src={place.img} alt={place.title} className="w-full h-52 object-cover" />
+              <div className="visiting-card-content p-4 flex-grow bg-white">
+                <h1 className="text-lg font-semibold">{place.title}</h1>
+                <p className="text-sm text-gray-800">{place.description}</p>
+                <div className="location-info flex items-center mt-2">
+                  <FaMapMarkerAlt className="location-icon text-gray-800 mr-2" />
+                  <span className="location-text text-sm text-gray-800">{place.location}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <p>No places found</p>
-      )}
+          ))
+        ) : (
+          <p>No places found</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default VisitIntern;
+export default Visit;
+
+
