@@ -141,7 +141,7 @@ const Packagedetails = () => {
         </button>
       )}
 
-      <div className="flex justify-center m-2">
+      <div className="flex justify-center mb-16 m-2">
     <div className="flex flex-col md:flex-row w-full md:w-[80%] gap-0"> {/* Main div responsive */}
         <div className="max-w-full md:max-w-[60%] w-full"> {/* Text div responsive */}
             <div className="mt-10 ">
@@ -192,13 +192,6 @@ const Packagedetails = () => {
                         onClick={() => setActiveSection("exclusions")}
                     >
                         Exclusion
-                    </a>
-                    <a
-                        href="#other-info"
-                        className={`text-sm md:text-base ${activeSection === "other-info" ? "active" : ""}`}
-                        onClick={() => setActiveSection("other-info")}
-                    >
-                        Other Info
                     </a>
                 </nav>
             </div>
@@ -295,8 +288,8 @@ const Packagedetails = () => {
                 </ul>
             </div>
 
-            <div id="other-info" className="Other-info-container">
-                <h1 className="text-lg md:text-2xl">Other Info</h1> {/* Responsive text size */}
+            {/* <div id="other-info" className="Other-info-container">
+                <h1 className="text-lg md:text-2xl">Other Info</h1>
                 <ul className="Other-info-list">
                     <p className="text-md md:text-lg">Must Carry</p>
                     <li className="text-sm md:text-base">
@@ -407,12 +400,12 @@ const Packagedetails = () => {
                 </>
               )}
 
-              {/* Toggle button */}
+              
               <button onClick={handleToggle} className="toggle-button">
                 {isExpanded ? "Read Less" : "Read More"}
               </button>
                 </ul>
-            </div>
+            </div> */}
         </div>
 
         {/* Form div with a width of 40% */}
@@ -489,8 +482,9 @@ const Packagedetails = () => {
 
     </div>
 </div>
-
+        <div className="pb-7 bg-[#ffffe6]">
       <Review />
+      </div>
       <MainFooter />
       <div className="fixed-button-1">
         <a

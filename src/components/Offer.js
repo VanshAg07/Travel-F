@@ -1,82 +1,123 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import Nav from "../../Nav";
-import "../../Places.css"; // Ensure this file has the styles defined above
-import bg from "../../../img/india.jpg";
-import Whyuss from "../../Whyuss";
-import Review from "../../Review";
-import Dropnav from "../../../components/Dropnav";
-import cont from "../../../img/cont-button.json";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../National.css";
+import Nav from "../components/Nav";
+import intern from "../img/international.jpg";
 import Lottie from "lottie-react";
-import MainFooter from "../../Footer/MainFooter";
-import Mainreview from "../../Mainreview";
-import HoneymoonCard from "./HoneymoonCard";
-import StateHoneymoon from "./StateHoneymoon";
-// import Homeglry from "../../components/Homeglry.js";
+import animationData from "../img/India.json";
+import Whyuss from "../components/Whyuss.js";
+import cont from "../img/cont-button.json";
+import axios from "axios";
+import Review from "../components/Review";
+import AllPackagesCard from "../components/Cards/AllPackagesCard.js";
+import Dropnav from "../components/Dropnav.js";
+import Mainreview from "../components/Mainreview.js";
+import MainFooter from "../components/Footer/MainFooter.js";
+import Homeglry from "../components/Homeglry.js";
 
-const HomeHoneymoon = () => {
-  const { name } = useParams();
-  console.log(name);
+const National = () => {
+  const [getTrip, setGetTrip] = useState([]);
+  const tripDetails = () => {
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
+    response.then((res) => {
+      setGetTrip(res.data);
+    });
+  };
+  useEffect(() => {
+    tripDetails();
+  }, []);
+  const places = [
+    { id: 1, name: "Meghalaya",  },
+    { id: 2, name: "Kashmir",  },
+    { id: 3, name: "Spiti Valley",  },
+    { id: 4, name: "Kerala", },
+    { id: 5, name: "Himachal Pradesh",  },
+    { id: 6, name: "Sikkim", },
+    { id: 7, name: "Uttarakhand",  },
+    { id: 8, name: "Ladakh",  },
+    { id: 9, name: "Rajasthan",  },
+    { id: 10, name: "Andaman",  },
+  ];
+  const linkedPlaces = places.map((place) => {
+    const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
+    return matchingTrip ? { ...place, tripId: matchingTrip._id } : place;
+  });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contactNo: "",
+    message: "",
+  });
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "contactNo") {
+      const re = /^[0-9\b]+$/;
+      if (value === "" || (re.test(value) && value.length <= 10)) {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Add form submission logic here (e.g., API call)
+  };
+
   const whatsappMessage = "Hello, I need assistance with my issue.";
+
   return (
-    <>
+    <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="place-container">
-        <div className="place-hero">
-          <img className="pl-img" src={bg} alt="Background" />
-          <div>
-            <h1>{name} Tour Packages</h1>
-            <p>The Perfect Blend of Serenity and Adventure</p>
-          </div>
-        </div>
-        <Mainreview />
-        <div className="justify-center pt-10 items-center flex flex-col w-full ">
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
-            Featured Packages
-          </h1>
-          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-        </div>
-        <div className="flex justify-center pb-10 mt-10">
-          <div className="w-full">
-            <Link to={`/Packagedetails/${name}`}>
-              <StateHoneymoon />
-            </Link>
-          </div>
-          </div>
-
-          
-        {/* <div className="travel-guidelines1-container p-4 md:p-6 lg:p-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed">
-            {name} Travel Guidelines
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4">
-            The following are the travel guidelines for {name} as announced by
-            the {name} Government latest on 04-08-2021.
-          </p>
-          <ol className="list-decimal ml-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed space-y-2">
-            <li>
-              All tourists entering the territory of {name} need to have Aarogya
-              Setu on their phones.
-            </li>
-            <li>
-              Social Distancing should be maintained at all times in public
-              places.
-            </li>
-            <li>
-              Travellers need to have face masks on when travelling in public
-              places.
-            </li>
-            <li>
-              Washing of hands and the use of sanitizers is highly recommended
-              by the government.
-            </li>
-          </ol>
-        </div> */}
+      <div className="hero-section-left-1">
+        <img className="hero-img" src={intern} alt="International" />
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-white text-center leading-tight sm:text-xl flex flex-row-reverse items-center">
+  Diwali Special Offers
+  <div className="bg-[#ffff00] h-12 w-1 mr-3 ml-2"></div>
+</h1>
 
         
-        <div className="bg-[#ffffe6]">
-        {/* <Homeglry /> */}
+      </div>
+      <Mainreview />
+
+      {/* <div className="lottie-wr">
+        <Lottie
+          animationData={animationData}
+          loop={true}
+          autoplay={true}
+          className="hero-lottie"
+        />
+      </div> */}
+      <div className="justify-center pt-10 items-center flex flex-col w-full ">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+        Discover Diwali Packages
+        </h1>
+        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+      </div>
+      <div className="flex justify-center mt-10">
+        <div className="w-full">
+          <AllPackagesCard />
+        </div>
+      </div>
+      <div className="bg-[#ffffe6]">
+        <Homeglry />
         <Whyuss />
         <Review />
         {/* <Guide /> */}
@@ -171,8 +212,8 @@ const HomeHoneymoon = () => {
           </div>
         </div>
       </div>
-      </div>
       <MainFooter />
+
       <div className="fixed-button-1">
         <a
           href={`https://wa.me/918287804197?text=${encodeURIComponent(
@@ -184,8 +225,9 @@ const HomeHoneymoon = () => {
           <Lottie loop={true} animationData={cont} />
         </a>
       </div>
-    </>
+    </div>
   );
 };
 
-export default HomeHoneymoon;
+export default National;
+

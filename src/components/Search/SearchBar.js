@@ -63,16 +63,16 @@ function SearchBar() {
         type="text"
         value={search}
         onChange={handleInputChange}
-        placeholder="Search Trip"
+        placeholder="Search Places."
         className="pl-6 pr-2 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 w-full transition-all duration-200 text-black"
       />
       <FaSearch className="absolute right-5 text-gray-800 z-10" />
       {search && suggestions.length > 0 && (
-        <ul className="absolute top-full mt-2 w-full bg-black border border-gray-300 rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto">
+        <ul className="absolute top-full mt-2 w-full bg-white text-black border border-gray-300 rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto">
           {suggestions.slice(0, 5).map((item, index) => (
             <li
               key={index}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+              className="px-4 py-2 cursor-pointer hover:bg-[#a6d5f9]"
               onClick={() => handleSuggestionClick(item)}
             >
               {item}

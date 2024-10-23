@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Food.css"; 
+import "./Visit.css";
 import { FaMapMarkerAlt, FaUtensils } from "react-icons/fa"; 
 import { useParams } from "react-router-dom";
 
@@ -29,27 +29,33 @@ const Food = () => {
     fetchActivities();
   }, [name]); 
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="food-cards-grid">
-      {activities.map((food, index) => (
-        <div key={index} className="food-card">
-          <img src={food.img} alt={food.title} className="food-card-img" />
-          <div className="food-card-content">
-            <h1>{food.title}</h1>
-            <div className="location-info">
-              <FaMapMarkerAlt className="location-icon" />
-              <span className="location-text">{food.stateName}</span>
+    <div className="mx-auto" style={{ width: '90vw' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activities.length > 0 ? (
+          activities.map((food, index) => (
+            <div key={index} className="visiting-card shadow-lg rounded-lg overflow-hidden flex flex-col">
+              <img src={food.img} alt={food.title} className="w-full h-52 object-cover" />
+              <div className="food-card-content p-4 flex-grow bg-white">
+                <h1 className="text-lg font-semibold">{food.title}</h1>
+                <div className="location-info flex items-center mt-2">
+                  <FaMapMarkerAlt className="location-icon text-gray-800 mr-2" />
+                  <span className="location-text text-sm text-gray-800">{food.stateName}</span>
+                </div>
+                <div className="food-info flex items-center mt-2">
+                  <FaUtensils className="food-icon text-gray-800 mr-2" />
+                  <span className="food-text text-sm text-gray-800">{food.foodType}</span>
+                </div>
+              </div>
             </div>
-            <div className="food-info">
-              <FaUtensils className="food-icon" />
-              <span className="food-text">{food.foodType}</span>
-            </div>
-          </div>
-        </div>
-      ))}
+          ))
+        ) : (
+          <p>No food items found</p>
+        )}
+      </div>
     </div>
   );
 };

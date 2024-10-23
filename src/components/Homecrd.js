@@ -35,13 +35,13 @@ const TripCard = () => {
   };
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden lg:block">
       {/* Hidden on small screens, visible on medium screens and larger */}
-      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10  ml-[700px]">
+      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10  ml-[600px]">
         {banners.map((banner, index) => (
           <div
             key={banner._id}
-            className={`bg-white border-4 border-white mt-10 rounded-3xl shadow-lg shadow-black overflow-hidden ${getCardSizeClasses()} relative ${
+            className={`bg-white border-4 homecrd-div border-white mt-10 rounded-3xl shadow-lg shadow-black overflow-hidden ${getCardSizeClasses()} relative ${
               index === 1
                 ? "h-[430px]"
                 : index === 0

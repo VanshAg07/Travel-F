@@ -71,6 +71,7 @@ import Schooltour from "./components/Grouptours/Schooltour.js";
 import Universitytour from "./components/Grouptours/Universitytour.js"
 import Sportstour from "./components/Grouptours/Sportstour.js"
 import Adventuretour from "./components/Grouptours/Adventuretour"
+import Offer from "./components/Offer.js"
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -83,32 +84,32 @@ const App = () => {
 
   const adminMiddleware = roleMiddleware(["admin"]);
 
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
+  // useEffect(() => {
+  //   const handleContextMenu = (e) => {
+  //     e.preventDefault();
+  //   };
 
-    document.addEventListener("contextmenu", handleContextMenu);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (
-        e.key === "PrintScreen" ||
-        (e.ctrlKey && e.shiftKey && e.key === "s")
-      ) {
-        e.preventDefault();
-        alert("Screenshots are disabled.");
-      }
-    };
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //   };
+  // }, []);
+  // useEffect(() => {
+  //   const handleKeyDown = (e) => {
+  //     if (
+  //       e.key === "PrintScreen" ||
+  //       (e.ctrlKey && e.shiftKey && e.key === "s")
+  //     ) {
+  //       e.preventDefault();
+  //       alert("Screenshots are disabled.");
+  //     }
+  //   };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -187,6 +188,7 @@ const App = () => {
         <Route path="/sportstour" element={<Sportstour />} />
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
+        <Route path="/offer" element={<Offer />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>

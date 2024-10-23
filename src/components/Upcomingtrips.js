@@ -155,9 +155,9 @@ const App = () => {
               </button>
             ))}
           </div>
-          <button className="text-right font-bold py-2 mr-12 text-red-500 ">
+          {/* <button className="text-right font-bold py-2 mr-12 text-red-500 ">
             See All
-          </button>
+          </button> */}
         </div>
 
         {/* Slider container */}

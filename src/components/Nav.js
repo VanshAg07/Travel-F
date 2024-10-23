@@ -98,11 +98,15 @@ const Nav = () => {
         </Link>
         {!isMobile && (
           <>
+          <Link to="/offer"
+          onClick={() => setIsMenuOpen(false)}
+          className={isActive("/offer")}>
             {navOffer && (
               <div className="mr-10">
                 <p>{navOffer}</p>
               </div>
             )}
+            </Link>
             <Link
               to="/Payments"
               onClick={() => setIsMenuOpen(false)}

@@ -1,89 +1,103 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-// import "./3dCard.css";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate
 
-const Card = () => {
-  const [trips, setTrips] = useState([]);
-  const { name } = useParams();
+function AllPackagesCard() {
+  const [packages, setPackages] = useState([]);
+  const [visiblePackages, setVisiblePackages] = useState(1);
+  const navigate = useNavigate(); // Initializing useNavigate
 
   useEffect(() => {
-    const fetchTrips = async () => {
+    const fetchAllPackages = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/user/getTripDetails/${name}`
+        const response = await fetch(
+          "http://localhost:5000/api/user/getTripDetails"
         );
-        setTrips(response.data);
+        const data = await response.json();
+        setPackages(data);
       } catch (error) {
-        console.error("Error fetching trips:", error);
+        console.error("Error fetching packages:", error);
       }
     };
+    fetchAllPackages();
+  }, []);
 
-    fetchTrips();
-  }, [name]);
-
-  const getValidDate = (tripDates) => {
-    if (!tripDates) return null;
-    const today = new Date();
-    const validDates = tripDates
-      .map((date) => new Date(date))
-      .filter((date) => date >= today);
-    validDates.sort((a, b) => a - b);
-    return validDates.length > 0 ? validDates[0] : null;
+  const loadMorePackages = () => {
+    setVisiblePackages((prevVisible) => prevVisible + 6);
   };
 
-  const filteredTrips = trips
-    .filter((trip) => trip.stateName === name)
-    .flatMap((trip) => trip.trips);
+  const handlePackageClick = (stateName, tripName) => {
+    navigate(`/trip/${tripName}/${stateName}`);
+  };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24 mx-10 md:mx-20 lg:mx-40">
-      {filteredTrips.length > 0 ? (
-        filteredTrips.map((trip, index) => {
-          const nextDate = getValidDate(trip.tripDate);
-          if (!nextDate) return null;
+    <div className="w-[90%] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
+        {packages.length > 0 ? (
+          packages.slice(0, visiblePackages).map((pkg, index) =>
+            pkg.trips.map((trip, tripIndex) => (
+              <div
+                key={`${index}-${tripIndex}`}
+                className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
+                onClick={() => handlePackageClick(pkg.stateName, trip.tripName)}
+              >
+                <img
+                  src={trip.tripImages}
+                  alt={trip.tripName}
+                  className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                />
+                <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
+                  <span className="font-semibold text-sm ">{`₹ ${trip.tripPrice}/- onwards`}</span>
+                </div>
+                <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
+                  <div className="w-full">
+                    <h2 className="text-lg font-semibold text-black pb-4">
+                   {trip.tripName}
+                    </h2>
+                    <div className="flex flex-row mb-4 justify-between items-center w-full">
+                      {/* Duration */}
+                      <div className="flex items-center text-black">
+                        <FaClock className="mr-2 text-black" />
+                        <span className="text-black text-xs">{`${trip.tripDuration} Days`}</span>
+                      </div>
 
-          return (
-            <Link
-              key={index}
-              to={`/trip/${trip.tripName}/${name}`}
-              className="w-80 bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
-            >
-              <img
-                src={trip.tripImages}
-                alt={trip.tripName}
-                className="w-full h-[200px] object-cover"
-              />
-              <div className="p-4 relative">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold text-black">{trip.tripName}</h3>
-                  <div className="flex items-center text-black text-sm">
-                    <FaClock className="mr-1" />
-                    {trip.tripDuration}
+                      {/* Location */}
+                      <div className="flex items-center text-black">
+                        <FaMapMarkerAlt className="mr-1 text-black" />
+                        <span className="text-black text-xs">
+                          {trip.tripLocation}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Dates */}
+                    <div className="flex items-center mb-2 text-black">
+                      <FaCalendarAlt className="mr-2 text-black" />
+                      <span className="text-black text-xs">
+                        {new Date(trip.tripDate).toLocaleDateString()}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center text-black text-sm mt-2">
-                  <FaCalendarAlt className="mr-1" />
-                  {nextDate.toLocaleDateString()}
-                  <span className="ml-2 text-red-500">+6 Batches</span>
-                </div>
-                <div className="flex items-center text-black text-sm mt-2">
-                  <FaMapMarkerAlt className="mr-1" />
-                  {trip.pickAndDrop}
-                </div>
-                <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
-                  <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
-                </div>
               </div>
-            </Link>
-          );
-        })
-      ) : (
-        <p>No trips found for the selected state.</p>
+            ))
+          )
+        ) : (
+          <p>No packages available</p>
+        )}
+      </div>
+
+      {visiblePackages < packages.length && (
+        <div className="flex justify-center mb-6">
+          <button
+            onClick={loadMorePackages}
+            className="px-6 py-2 bg-[#03346e] text-white text-lg font-semibold rounded-lg"
+          >
+            Load More
+          </button>
+        </div>
       )}
     </div>
   );
-};
+}
 
-export default Card;
+export default AllPackagesCard;

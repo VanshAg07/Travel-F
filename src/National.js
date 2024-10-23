@@ -144,7 +144,7 @@ const National = () => {
         </div>
       </div>
       <div className="flex justify-center mt-10">
-        <div className="w-[80%]">
+        <div className="w-full">
           <AllPackagesCard />
         </div>
       </div>
