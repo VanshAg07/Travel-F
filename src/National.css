@@ -164,3 +164,9 @@
     margin-right: 80px;
   }
 }
+
+@media (max-width: 420px) {
+  .hero-img {
+    height: 95vh;
+  }
+}
