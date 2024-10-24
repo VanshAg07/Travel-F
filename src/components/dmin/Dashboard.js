@@ -16,6 +16,7 @@ import PackagesVideo from "./Dashboard/PackagesVideo";
 import ExploreAdventure from "./Dashboard/ExploreAdventure";
 import CorporatePartners from "./Dashboard/Corporate/CorporatePartners";
 import CorporateHome from "./Dashboard/Corporate/CorporateHome";
+import Flipcard from "./FlipCard/Flipcard";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -69,6 +70,10 @@ function Dashboard() {
     {
       name: "Corporate Home",
       component: <CorporateHome />,
+    },
+    {
+      name: "Flipcard",
+      component: <Flipcard />,
     },
   ];
   const handleCardClick = (component) => {

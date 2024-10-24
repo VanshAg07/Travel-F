@@ -254,4 +254,5 @@ const BackpackingTrips = () => {
     </>
   );
 };
+
 export default BackpackingTrips;

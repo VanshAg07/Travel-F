@@ -26,13 +26,13 @@ const TravelOptions = () => {
       <div className="overflow-x-auto scrollbar-hide">
         <div className="flex flex-nowrap justify-start items-center space-x-4">
           {options.map((option, index) => (
-            <a 
+            <a
               key={index} 
               href={option.link} 
               className="flex flex-col items-center"
             >
               <div className="w-20 h-20 flex justify-center items-center overflow-hidden rounded-full">
-                <img 
+                <img
                   src={option.imgSrc} 
                   alt={option.name} 
                   className="object-cover w-full h-full"
