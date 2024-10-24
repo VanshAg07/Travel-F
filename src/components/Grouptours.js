@@ -18,7 +18,7 @@ import Grouptourform from "../components/Groupform";
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  
+
   return (
     <>
       <Nav />
@@ -87,30 +87,29 @@ const BackpackingTrips = () => {
       <div className="bg-gray-100 min-h-screen">
         {/* Navbar */}
         <nav className="bg-[#a6d5f9] text-black p-4 sticky top-0 z-10 shadow-md">
-  <ul className="flex justify-between md:justify-evenly space-x-4 md:space-x-8 text-sm md:text-base">
-    <li>
-      <a href="#school" className="hover:underline">
-        School Tours
-      </a>
-    </li>
-    <li>
-      <a href="#college" className="hover:underline">
-        College/ University Tours
-      </a>
-    </li>
-    <li>
-      <a href="#sports" className="hover:underline">
-        Sports Tours
-      </a>
-    </li>
-    <li>
-      <a href="#adventure" className="hover:underline">
-        Adventure Tours
-      </a>
-    </li>
-  </ul>
-</nav>
-
+          <ul className="flex justify-between md:justify-evenly space-x-4 md:space-x-8 text-sm md:text-base">
+            <li>
+              <a href="#school" className="hover:underline">
+                School Tours
+              </a>
+            </li>
+            <li>
+              <a href="#college" className="hover:underline">
+                College/ University Tours
+              </a>
+            </li>
+            <li>
+              <a href="#sports" className="hover:underline">
+                Sports Tours
+              </a>
+            </li>
+            <li>
+              <a href="#adventure" className="hover:underline">
+                Adventure Tours
+              </a>
+            </li>
+          </ul>
+        </nav>
 
         {/* Sections */}
         <div className="container mx-auto mt-8 p-4 space-y-12">

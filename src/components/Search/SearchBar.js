@@ -41,11 +41,9 @@ function SearchBar() {
     const selectedTrip = tripData.find((item) =>
       item.tripNames.includes(tripName)
     );
-
     if (selectedTrip) {
       const { stateName, source } = selectedTrip;
       let path = "";
-
       if (source === "National") {
         path = `/trip/${tripName}/${stateName}`;
       } else if (source === "International") {

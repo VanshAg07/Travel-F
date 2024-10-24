@@ -15,7 +15,7 @@ const AddWeekend = () => {
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
     tripImages: [""],
-    pdf: null,
+    pdf: [],
     tripDescription: "",
     tripBackgroundImg: "",
     pickAndDrop: "",
@@ -31,7 +31,7 @@ const AddWeekend = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/trip/states")
+      .get("http://localhost:5000/api/weekends/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -88,8 +88,11 @@ const AddWeekend = () => {
         tripDetails.tripImages.forEach((image) => {
           formData.append("tripImages", image);
         });
-      } else if (key === "pdf" && tripDetails.pdf) {
-        formData.append("pdf", tripDetails.pdf);
+      } else if (key === "pdf") {
+        tripDetails.pdf.forEach((pdf, index) => {
+          formData.append("pdf", pdf.file);
+          formData.append(`pdfStatus[${index}]`, pdf.status); // Append the corresponding status
+        });
       } else if (key === "tripBackgroundImg" && tripDetails.tripBackgroundImg) {
         formData.append("tripBackgroundImg", tripDetails.tripBackgroundImg);
       } else if (Array.isArray(tripDetails[key])) {
@@ -147,7 +150,12 @@ const AddWeekend = () => {
     setTripDetails({ ...tripDetails, tripBackgroundImg: image });
   };
   const handlePdfChange = (e) => {
-    setTripDetails({ ...tripDetails, pdf: e.target.files[0] });
+    const pdfFiles = Array.from(e.target.files);
+    const newPdfs = pdfFiles.map((file) => ({
+      file: file,
+      status: "active",
+    }));
+    setTripDetails({ ...tripDetails, pdf: [...tripDetails.pdf, ...newPdfs] });
   };
 
   const handleSharingChange = (e, index, fieldName) => {
@@ -187,7 +195,8 @@ const AddWeekend = () => {
                 {state.name}
               </option>
             ))}
-          </select>
+                   
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Name</label>
@@ -494,19 +503,37 @@ const AddWeekend = () => {
         </div>
         <div>
           <label className="block text-l font-medium">
-            Upload PDF ( i.e. Itinerary )
+            Upload PDF (i.e. Itinerary)
           </label>
           <input
             type="file"
+            multiple
             onChange={handlePdfChange}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
+          {tripDetails.pdf.map((pdf, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <span className="mr-2">{pdf.file.name}</span>
+              <select
+                value={pdf.status}
+                onChange={(e) => {
+                  const updatedPdfs = [...tripDetails.pdf];
+                  updatedPdfs[index].status = e.target.value;
+                  setTripDetails({ ...tripDetails, pdf: updatedPdfs });
+                }}
+                className="border-gray-300 rounded-md border-2 p-1"
+              >
+                <option value="active">Active</option>
+                <option value="non-active">Non-active</option>
+              </select>
+            </div>
+          ))}
         </div>
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded"
         >
-          Submit Honeymoon Package
+          Submit Package
         </button>
       </form>
     </div>

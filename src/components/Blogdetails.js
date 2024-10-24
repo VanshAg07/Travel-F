@@ -15,42 +15,42 @@ const Blogdetails = () => {
       title: "Kedarnath",
       content: (
         <>
-        <div className="w-full mx-auto mt-20 p-0 shadow-none bg-white">
-  {/* Image Section */}
-  <div className="flex justify-center items-center">
-  <div className="relative w-full">
-    <img
-      src={Image1}
-      alt="Kerala Backwaters"
-      className="w-full  object-cover h-[70vh]"
-    />
-    {/* Yellow Label */}
-    <div className="absolute w-[20vw] text-2xl text-center top-0 left-1/2 transform -translate-x-1/2 bg-[#FBE225] text-black mt-20 font-semibold py-1 px-5 rounded-full">
-      Kerala
-    </div>
-    {/* Dark Label */}
-    <div className="absolute -bottom-6 w-full flex items-center justify-center">
-    <div className=" rounded-br-3xl rounded-tl-3xl text-2xl fond-semibold  w-[60vw] bg-[#021526f8] text-white text-center py-3 px-5">
-  Explore the Enchanting Beauty of Kerala with Travello10
-</div>
-</div>
+          <div className="w-full mx-auto mt-20 p-0 shadow-none bg-white">
+            {/* Image Section */}
+            <div className="flex justify-center items-center">
+              <div className="relative w-full">
+                <img
+                  src={Image1}
+                  alt="Kerala Backwaters"
+                  className="w-full  object-cover h-[70vh]"
+                />
+                {/* Yellow Label */}
+                <div className="absolute w-[20vw] text-2xl text-center top-0 left-1/2 transform -translate-x-1/2 bg-[#FBE225] text-black mt-20 font-semibold py-1 px-5 rounded-full">
+                  Kerala
+                </div>
+                {/* Dark Label */}
+                <div className="absolute -bottom-6 w-full flex items-center justify-center">
+                  <div className=" rounded-br-3xl rounded-tl-3xl text-2xl fond-semibold  w-[60vw] bg-[#021526f8] text-white text-center py-3 px-5">
+                    Explore the Enchanting Beauty of Kerala with Travello10
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  </div>
-</div>
-
-  {/* Description Section */}
-  <div className="mt-14 pl-10 pr-10 pt-5 pb-5 rounded-2xl w-[70vw] bg-[#FFF2CD] mx-auto">
-    <p className="text-black font-semibold text-lg w-[100%] leading-relaxed">
-      Kerala, fondly known as "God’s Own Country," is a paradise of lush
-      landscapes, tranquil backwaters, and rich cultural heritage. Nestled
-      between the Arabian Sea and the Western Ghats, Kerala is a haven for
-      travelers seeking rejuvenation, adventure, and a deep connection with
-      nature. Whether you’re a nature lover, a culture enthusiast, or
-      simply looking to unwind, Kerala offers a diverse range of
-      experiences that cater to every kind of traveler.
-    </p>
-  </div>
-</div>
+            {/* Description Section */}
+            <div className="mt-14 pl-10 pr-10 pt-5 pb-5 rounded-2xl w-[70vw] bg-[#FFF2CD] mx-auto">
+              <p className="text-black font-semibold text-lg w-[100%] leading-relaxed">
+                Kerala, fondly known as "God’s Own Country," is a paradise of
+                lush landscapes, tranquil backwaters, and rich cultural
+                heritage. Nestled between the Arabian Sea and the Western Ghats,
+                Kerala is a haven for travelers seeking rejuvenation, adventure,
+                and a deep connection with nature. Whether you’re a nature
+                lover, a culture enthusiast, or simply looking to unwind, Kerala
+                offers a diverse range of experiences that cater to every kind
+                of traveler.
+              </p>
+            </div>
+          </div>
           <div className="w-[80%] mx-auto pt-16 flex flex-col md:flex-row justify-between md:space-x-8">
             <div className="w-full md:w-[50%] mt-16 md:mt-0 md:ml-0">
               <img
@@ -1652,15 +1652,11 @@ const Blogdetails = () => {
       <div className="blog-details">
         {blogData ? (
           <>
-            <h1>
-              {blogData.title}
-            </h1>
+            <h1>{blogData.title}</h1>
             {blogData.content}
           </>
         ) : (
-          <h1>
-            Blog Not Found
-          </h1>
+          <h1>Blog Not Found</h1>
         )}
       </div>
       <MainFooter />

@@ -12,6 +12,7 @@ import NationalEdit from "./EditPackage/NationalEdit";
 import Dashboard from "./Dashboard";
 import GroupTours from "./Dashboard/GroupTours/GroupTours";
 import GroupDashboard from "./Dashboard/GroupTours/GroupDashboard";
+import BlogForm from "./Blogs/BlogForm";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -129,6 +130,16 @@ const AdminPortal = () => {
                     >
                       Group Tour
                     </li>
+                    <li
+                      onClick={() => setActiveTab("add-blogs")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-blogs"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Blogs
+                    </li>
                   </ul>
                 )}
               </div>
@@ -213,6 +224,7 @@ const AdminPortal = () => {
         {activeTab === "add-weekend" && <AddWeekend />}
         {activeTab === "edit-national" && <NationalEdit />}
         {activeTab === "add-group-tours" && <GroupDashboard />}
+        {activeTab === "add-blogs" && <BlogForm />}
         {/* Add additional content components as needed */}
       </div>
     </div>
