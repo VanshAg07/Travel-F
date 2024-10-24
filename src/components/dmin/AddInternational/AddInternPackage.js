@@ -15,7 +15,7 @@ const AddInternPackage = () => {
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
     tripImages: [""],
-    pdf: null,
+    pdf: [],
     tripDescription: "",
     tripBackgroundImg: "",
     pickAndDrop: "",
@@ -578,7 +578,7 @@ const AddInternPackage = () => {
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded"
         >
-          Submit Honeymoon Package
+          Submit Package
         </button>
       </form>
     </div>

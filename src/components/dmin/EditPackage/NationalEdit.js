@@ -7,6 +7,9 @@ function NationalEdit() {
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
+  const [newPdfFile, setNewPdfFile] = useState(null);
+  const [newTripImage, setNewTripImage] = useState(null);
+  const [newBackgroundImg, setNewBackgroundImg] = useState(null);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -17,11 +20,11 @@ function NationalEdit() {
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
     tripImages: [],
-    pdf: null,
+    pdf: [],
     tripDescription: [""],
     pickAndDrop: "",
     sharing: [{ title: "", price: "" }],
-    tripBackgroundImg: "",
+    tripBackgroundImg: [],
     overView: "",
     status: "",
   });
@@ -64,6 +67,9 @@ function NationalEdit() {
       tripLocation: trip.tripLocation || "",
       pickAndDrop: trip.pickAndDrop || "",
       status: trip.status || "",
+      pdf: trip.pdf || [],
+      tripImages: trip.tripImages || [],
+      tripBackgroundImg: trip.tripBackgroundImg || [],
     });
     setIsModalOpen(true);
   };
@@ -103,7 +109,7 @@ function NationalEdit() {
     e.preventDefault();
     if (selectedTrip) {
       axios
-        .patch(
+        .put(
           `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
@@ -141,6 +147,21 @@ function NationalEdit() {
           console.error("Error deleting trip:", error);
         });
     }
+  };
+
+  const handleStatusChange = (index, value) => {
+    const updatedPdf = [...tripDetails.pdf];
+    updatedPdf[index].status = value;
+    setTripDetails((prevDetails) => ({ ...prevDetails, pdf: updatedPdf }));
+  };
+
+  const handleFileChange = (e, type) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (type === "pdf") setNewPdfFile(file);
+    else if (type === "tripImage") setNewTripImage(file);
+    else if (type === "backgroundImage") setNewBackgroundImg(file);
   };
 
   const handleImageChange = (e) => {
@@ -282,6 +303,47 @@ function NationalEdit() {
                   onChange={handleInputChange}
                   required
                   className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div>
+                <h4>PDF Files</h4>
+                {tripDetails.pdf.map((pdf, index) => (
+                  <div key={pdf._id}>
+                    <span>{pdf.filename}</span>
+                    <select
+                      value={pdf.status}
+                      onChange={(e) =>
+                        handleStatusChange(index, e.target.value)
+                      }
+                    >
+                      {statusOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ))}
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "pdf")}
+                  accept=".pdf"
+                />
+              </div>
+              <div>
+                <h4>Trip Images</h4>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripImages")}
+                  accept="image/*"
+                />
+              </div>
+              <div>
+                <h4>Background Image</h4>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
+                  accept="image/*"
                 />
               </div>
               <div className="mb-4">

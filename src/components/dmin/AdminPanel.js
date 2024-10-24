@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const AdminPanel = () => {
-  const [states, setStates] = useState([]); // State for storing the list of states
+  const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -161,10 +161,13 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(`https://api.travello10.com/api/trip/state/${selectedState.id}/trip`, {
-      method: "POST",
-      body: formData,
-    })
+    fetch(
+      `http://localhost:5000/api/trip/state/${selectedState.id}/trip`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           return response.text().then((text) => {
