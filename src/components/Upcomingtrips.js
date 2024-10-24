@@ -93,7 +93,7 @@ const trips = [
 
 const TripCard = ({ trip }) => {
   return (
-    <div className="bg-white h-[60vh]  shadow-md shadow-black rounded-lg overflow-hidden mb-4">
+    <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
         src={trip.image}
         alt="Trip"
@@ -111,7 +111,7 @@ const TripCard = ({ trip }) => {
           <div className="flex items-center">
             <FaCalendarAlt className="mr-1" />
             <p className="text-sm text-black">{trip.date}</p>
-            <span className="ml-1 text-sm text-red-500 ">{trip.batches}</span>
+            <span className="ml-1 text-sm text-red-500">{trip.batches}</span>
           </div>
         </div>
         <div className="flex items-center">
@@ -125,7 +125,7 @@ const TripCard = ({ trip }) => {
 
 const App = () => {
   const [startIndex, setStartIndex] = useState(0);
-  const tripsToShow = 4;
+  const tripsToShow = window.innerWidth < 1024 ? 3 : 4; // Show 3 on small screens, 4 on larger
 
   // Handle next trips
   const nextTrips = () => {
@@ -144,7 +144,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
-      <div className="w-[90vw]"> {/* Change from w-[80%] to w-[90vw] */}
+      <div className="w-[90vw]">
         <h1 className="text-3xl pl-12 font-bold mb-6">Upcoming Trips</h1>
         <div className="flex pl-10 mb-6 w-full justify-between">
           <div className="flex flex-row w-[70%] justify-between">
@@ -155,9 +155,6 @@ const App = () => {
               </button>
             ))}
           </div>
-          {/* <button className="text-right font-bold py-2 mr-12 text-red-500 ">
-            See All
-          </button> */}
         </div>
 
         {/* Slider container */}
@@ -168,7 +165,7 @@ const App = () => {
 
           {/* Displaying the trips */}
           <div className="flex-grow flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6">
               {trips.slice(startIndex, startIndex + tripsToShow).map((trip) => (
                 <TripCard key={trip.id} trip={trip} />
               ))}
@@ -178,7 +175,7 @@ const App = () => {
                   .map((trip) => <TripCard key={trip.id} trip={trip} />)}
             </div>
           </div>
-          <button onClick={nextTrips} className="p-2 ">
+          <button onClick={nextTrips} className="p-2">
             <FaChevronCircleRight size={30} />
           </button>
         </div>
