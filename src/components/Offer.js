@@ -84,19 +84,23 @@ const National = () => {
 
   return (
     <div className="wrpper-inter">
-      <Nav />
-      <Dropnav />
-      <div className="hero-section-left-1">
-        <img className="hero-img" src={intern} alt="International" />
-        <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-white text-center leading-tight sm:text-xl flex flex-row-reverse items-center">
-  Diwali Special Offers
-  <div className="bg-[#ffff00] h-12 w-1 mr-3 ml-2"></div>
-</h1>
+    <Nav />
+    <Dropnav />
+    <div className="hero-section-left-1">
+      <img className="hero-img" src={intern} alt="International" />
+      <div className="relative flex flex-col items-center">
+<div className="relative w-full flex items-start justify-center">
+  <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+    Diwali Special offer
+  </h1>
+</div>
+</div>
 
-        
-      </div>
-      <Mainreview />
 
+    </div>
+    <div className="mt-[100px] md:mt-0">
+<Mainreview />
+</div>
       {/* <div className="lottie-wr">
         <Lottie
           animationData={animationData}
