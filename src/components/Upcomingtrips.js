@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import img1 from "../img/HimachalPradesh.png";
 import img2 from "../img/Uttarakhand.png";
 import img3 from "../img/Kashmir.png";
@@ -61,7 +61,6 @@ const trips = [
     departure: "Delhi to Delhi",
     image: img5,
   },
-
   {
     id: 6,
     location: "Kedarnath",
@@ -125,7 +124,27 @@ const TripCard = ({ trip }) => {
 
 const App = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
   const tripsToShow = window.innerWidth < 1024 ? 3 : 4; // Show 3 on small screens, 4 on larger
+
+  // Check the window size
+  const checkWindowSize = () => {
+    if (window.innerWidth < 768) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  };
+
+  // Event listener for window resize
+  useEffect(() => {
+    window.addEventListener("resize", checkWindowSize);
+    checkWindowSize(); // Check on mount
+
+    return () => {
+      window.removeEventListener("resize", checkWindowSize);
+    };
+  }, []);
 
   // Handle next trips
   const nextTrips = () => {
@@ -142,59 +161,62 @@ const App = () => {
     setStartIndex(tripIndex);
   };
 
+  // Render the component
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
-      <div className="w-[90vw]">
-        <h1 className="text-3xl pl-12 font-bold mb-6">Upcoming Trips</h1>
-        <div className="flex pl-10 mb-6 w-full justify-between">
-          <div className="flex flex-row w-[70%] justify-between">
-            {/* Month buttons */}
-            {["OCT", "NOV", "DEC", "JAN", "FEB", "MAR"].map((month) => (
-              <button key={month} className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
-                {month}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Slider container */}
-        <div className="flex items-center justify-between mb-6">
-          <button onClick={prevTrips} className="p-2">
-            <FaChevronCircleLeft size={30} />
-          </button>
-
-          {/* Displaying the trips */}
-          <div className="flex-grow flex justify-center">
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6">
-              {trips.slice(startIndex, startIndex + tripsToShow).map((trip) => (
-                <TripCard key={trip.id} trip={trip} />
+      {isVisible && ( // Only render if visible
+        <div className="w-[90vw]">
+          <h1 className="text-3xl pl-12 font-bold mb-6">Upcoming Trips</h1>
+          <div className="flex pl-10 mb-6 w-full justify-between">
+            <div className="flex flex-row w-[70%] justify-between">
+              {/* Month buttons */}
+              {["OCT", "NOV", "DEC", "JAN", "FEB", "MAR"].map((month) => (
+                <button key={month} className="p-1 w-24 h-10 flex justify-center items-center text-center bg-white border border-black rounded-xl">
+                  {month}
+                </button>
               ))}
-              {startIndex + tripsToShow >= trips.length &&
-                trips
-                  .slice(0, (startIndex + tripsToShow) % trips.length)
-                  .map((trip) => <TripCard key={trip.id} trip={trip} />)}
             </div>
           </div>
-          <button onClick={nextTrips} className="p-2">
-            <FaChevronCircleRight size={30} />
-          </button>
-        </div>
 
-        {/* Dots navigation based on the number of trips */}
-        <div className="flex justify-center mt-6">
-          <div className="flex space-x-2">
-            {trips.map((_, tripIndex) => (
-              <div
-                key={tripIndex}
-                onClick={() => goToTrip(tripIndex)}
-                className={`w-2 h-2 cursor-pointer rounded-full ${
-                  startIndex === tripIndex ? "bg-black" : "bg-gray-300"
-                }`}
-              />
-            ))}
+          {/* Slider container */}
+          <div className="flex items-center justify-between mb-6">
+            <button onClick={prevTrips} className="p-2">
+              <FaChevronCircleLeft size={30} />
+            </button>
+
+            {/* Displaying the trips */}
+            <div className="flex-grow flex justify-center">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6">
+                {trips.slice(startIndex, startIndex + tripsToShow).map((trip) => (
+                  <TripCard key={trip.id} trip={trip} />
+                ))}
+                {startIndex + tripsToShow >= trips.length &&
+                  trips
+                    .slice(0, (startIndex + tripsToShow) % trips.length)
+                    .map((trip) => <TripCard key={trip.id} trip={trip} />)}
+              </div>
+            </div>
+            <button onClick={nextTrips} className="p-2">
+              <FaChevronCircleRight size={30} />
+            </button>
+          </div>
+
+          {/* Dots navigation based on the number of trips */}
+          <div className="flex justify-center mt-6">
+            <div className="flex space-x-2">
+              {trips.map((_, tripIndex) => (
+                <div
+                  key={tripIndex}
+                  onClick={() => goToTrip(tripIndex)}
+                  className={`w-2 h-2 cursor-pointer rounded-full ${
+                    startIndex === tripIndex ? "bg-black" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

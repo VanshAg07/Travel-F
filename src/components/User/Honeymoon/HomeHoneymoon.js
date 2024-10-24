@@ -20,17 +20,28 @@ const HomeHoneymoon = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   return (
     <>
+      <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="place-container">
-        <div className="place-hero">
-          <img className="pl-img" src={bg} alt="Background" />
-          <div>
-            <h1>{name} Tour Packages</h1>
-            <p>The Perfect Blend of Serenity and Adventure</p>
-          </div>
-        </div>
-        <Mainreview />
+      <div className="hero-section-left-1">
+        <img className="hero-img" src={bg} alt="International" />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+    {name} Tour Packages
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+  The Perfect Blend of Adventure
+  </h1>
+</div>
+
+
+      </div>
+      <div className="mt-[70px] md:mt-0">
+  <Mainreview />
+</div>
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             Featured Packages

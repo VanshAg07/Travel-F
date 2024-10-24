@@ -4,6 +4,7 @@ import "../Packagedetails.css";
 import Nav from "../Nav";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
+import { FaFileDownload } from 'react-icons/fa';
 import { RxCrossCircled } from "react-icons/rx";
 import { GoDot } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
@@ -73,36 +74,26 @@ const PackageInternatioanl = () => {
     <div>
       <Nav />
       <Dropnav />
-      <img
-        src={trips.tripBackgroundImg}
-        alt="Descriptive Alt Text"
-        className="h-screen w-[100%]"
-      />
-      {trips.pdf && (
-        <button 
-    className="cssbuttons-io-button flex items-center justify-center 
-               text-sm sm:text-base md:text-lg lg:text-xl 
-               p-2 sm:p-3 md:p-4 lg:p-5 
-               transition-all duration-300" 
-    onClick={handleDownload}
->
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width="24"
-        height="24"
-        className="mr-2"  // Add some margin to separate the icon from text
+      <div className="relative">
+  <img
+    src={trips.tripBackgroundImg}
+    alt="Descriptive Alt Text"
+    className="h-screen w-full"
+  />
+  {trips.pdf && (
+    <button 
+      className="absolute rounded-3xl bottom-28 left-1/2 transform -translate-x-1/2 
+                 flex items-center justify-center 
+                 text-sm sm:text-base md:text-lg lg:text-xl 
+                 bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
+                 transition-all duration-300" 
+      onClick={handleDownload}
     >
-        <path fill="none" d="M0 0h24v24H0z"></path>
-        <path
-            fill="currentColor"
-            d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
-        ></path>
-    </svg>
-    <span>Download Itinerary</span>
-</button>
-
-      )}
+      <FaFileDownload className="mr-2" /> {/* Updated icon */}
+      <span>Download Itinerary</span>
+    </button>
+  )}
+</div>
 
       <div className="flex w-full justify-center mb-16 m-2">
 

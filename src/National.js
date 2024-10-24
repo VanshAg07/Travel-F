@@ -98,13 +98,23 @@ const National = () => {
       <Dropnav />
       <div className="hero-section-left-1">
         <img className="hero-img" src={intern} alt="International" />
-        <h1 className="hero-heading">
-          India's Majestic Adventures
-          <br /> <span>Unveil the Wonders</span>
-        </h1>
-      </div>
-      <Mainreview />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+      India's Majestic Adventures
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+    Unveil the Wonders
+  </h1>
+</div>
 
+
+      </div>
+      <div className="mt-[70px] md:mt-0">
+  <Mainreview />
+</div>
       <div className="lottie-wr">
         <Lottie
           animationData={animationData}

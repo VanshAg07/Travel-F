@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-import { FaHandHoldingHeart } from "react-icons/fa";
+import { FaHandHoldingHeart, FaUserFriends } from "react-icons/fa";
 import { MdHotel } from "react-icons/md";
-import { FaUserFriends } from "react-icons/fa";
 import Whyuss from "../../components/Whyuss";
 import Homeglry from "../../components/Homeglry";
 import Nav from "../Nav";
@@ -17,7 +15,7 @@ import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
 import { LuCircleDotDashed } from "react-icons/lu";
 
-const BackpackingTrips = () => {
+const Schooltour = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const [expandedDays, setExpandedDays] = useState({});
   const [trips, setTrip] = useState([]);
@@ -29,6 +27,7 @@ const BackpackingTrips = () => {
       [day]: !prevState[day],
     }));
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +36,7 @@ const BackpackingTrips = () => {
         );
         const data = await response.json();
         setTrip(data.data);
-        const schoolData = data.data.find((item) => item.type === "Sports");
+        const schoolData = data.data.find((item) => item.type === "School");
         if (schoolData) {
           setSchoolTrip(schoolData);
         }
@@ -45,29 +44,34 @@ const BackpackingTrips = () => {
         console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
   }, []);
 
   return (
     <>
+       <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="relative w-full h-96">
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          src={intern}
-          alt="A scenic view of India"
-        />
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <h1 className="absolute inset-0 flex flex-col justify-center items-center text-white text-4xl sm:text-5xl md:text-6xl font-bold text-center">
-          Backpacking Trips 2024
-          <span className="mt-4 text-2xl sm:text-3xl md:text-4xl">
-            Venture Into the Heart of Uncharted Backpacking Paradises
-          </span>
-        </h1>
-      </div>
+      <div className="hero-section-left-1">
+        <img className="hero-img" src={intern} alt="International" />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+    Backpacking Trpis
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+    Sports Tour
+  </h1>
+</div>
 
-      <Mainreview />
+
+      </div>
+      <div className="mt-[70px] md:mt-0">
+  <Mainreview />
+</div>
 
       <div className="lottie-wr">
         <Lottie
@@ -107,12 +111,13 @@ const BackpackingTrips = () => {
           </div>
         </div>
       </div>
+
       <div className="bg-gray-100 w-[90%] min-h-screen mx-auto p-6">
         {schoolTrip ? (
           <div className="container mx-auto mt-8 p-4 space-y-12">
             <div id="school" className="bg-white p-6 shadow-lg rounded-lg">
               <h2 className="text-3xl text-center font-bold mb-2">
-                Sports Tours
+                School Tours
               </h2>
               <h3 className="text-2xl font-semibold pt-4 text-gray-800 mb-4">
                 Introduction
@@ -123,6 +128,7 @@ const BackpackingTrips = () => {
                     <li key={index}>{item}</li>
                   ))}
               </ul>
+
               <h3 className="text-2xl font-semibold pt-4 text-gray-800 mb-4">
                 Objectives
               </h3>
@@ -251,7 +257,10 @@ const BackpackingTrips = () => {
       <Grouptourhero />
       <Grouptourform />
       <MainFooter />
+      </div>
     </>
   );
 };
-export default BackpackingTrips;
+
+export default Schooltour;
+
