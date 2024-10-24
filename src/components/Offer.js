@@ -91,7 +91,7 @@ const National = () => {
       <div className="relative flex flex-col items-center">
 <div className="relative w-full flex items-start justify-center">
   <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-    Diwali Special offer
+    Diwali Special Offer
   </h1>
 </div>
 </div>
