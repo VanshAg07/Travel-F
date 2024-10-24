@@ -112,7 +112,7 @@ const National = () => {
 
 
       </div>
-      <div className="mt-[70px] md:mt-0">
+      <div className="mt-[100px] md:mt-0">
   <Mainreview />
 </div>
       <div className="lottie-wr">
