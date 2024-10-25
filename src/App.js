@@ -119,7 +119,7 @@ const App = () => {
           <Route path="/admin" element={<AdminPortal />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Contactus" element={<Contactus />} />
@@ -190,8 +190,8 @@ const App = () => {
         <Route path="/sportstour" element={<Sportstour />} />
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
-        <Route path="/offer" element={<Offer />} />
-        {/* <Route path='/' element={<ComingSoon />} /> */}
+        <Route path="/offer" element={<Offer />} /> */}
+        <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );
