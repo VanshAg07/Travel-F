@@ -64,14 +64,15 @@ import Grouptourform from "./components/Groupform.js";
 import Socialmedia from "./components/Socialmedia.js";
 import Grouptourhero from "./components/Grouptour-hero.js";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.js";
-import Homecrd from "./components/Homecrd.js"
-import Homeyt from "./components/Homeyt.js"
-import Upcomingtrip from "./components/Upcomingtrips.js"
+import Homecrd from "./components/Homecrd.js";
+import Homeyt from "./components/Homeyt.js";
+import Upcomingtrip from "./components/Upcomingtrips.js";
 import Schooltour from "./components/Grouptours/Schooltour.js";
-import Universitytour from "./components/Grouptours/Universitytour.js"
-import Sportstour from "./components/Grouptours/Sportstour.js"
-import Adventuretour from "./components/Grouptours/Adventuretour"
-import Offer from "./components/Offer.js"
+import Universitytour from "./components/Grouptours/Universitytour.js";
+import Sportstour from "./components/Grouptours/Sportstour.js";
+import Adventuretour from "./components/Grouptours/Adventuretour";
+import Offer from "./components/Offer.js";
+import AdminLogin from "./components/dmin/AdminLogin.js";
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -117,6 +118,7 @@ const App = () => {
         <Route path="/admin" element={adminMiddleware}>
           <Route path="/admin" element={<AdminPortal />} />
         </Route>
+        <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />

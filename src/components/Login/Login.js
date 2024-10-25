@@ -46,7 +46,7 @@ function Login() {
         console.log(data.data)
         const role = decodedToken.role;
         if (role === "admin") {
-          window.location.href = "/admin"; // Redirect to admin page
+          window.location.href = "/"; // Redirect to admin page
         } else {
           window.location.href = "/"; // Redirect to home page
         }

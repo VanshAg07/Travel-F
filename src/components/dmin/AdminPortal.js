@@ -10,9 +10,14 @@ import AddHoneymoon from "./Honeymoon/AddHoneymoon";
 import AddWeekend from "./Weekends/AddWeekend";
 import NationalEdit from "./EditPackage/NationalEdit";
 import Dashboard from "./Dashboard";
-import GroupTours from "./Dashboard/GroupTours/GroupTours";
 import GroupDashboard from "./Dashboard/GroupTours/GroupDashboard";
 import BlogForm from "./Blogs/BlogForm";
+import InternationalEdit from "./EditPackage/InternationalEdit";
+import HoneymoonEdit from "./EditPackage/HoneymoonEdit";
+import WeekendEdit from "./EditPackage/WeekendEdit";
+import BlogsEdit from "./EditPackage/BlogsEdit";
+import GroupToursEdit from "./EditPackage/GroupToursEdit";
+import GroupDetailsEdit from "./EditPackage/GroupDetailsEdit";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -198,6 +203,36 @@ const AdminPortal = () => {
                     >
                       Honeymoon
                     </li>
+                    <li
+                      onClick={() => setActiveTab("edit-blogs")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-blogs"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Blogs
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("edit-group-tours")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-group-tours"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Group Tours
+                    </li>
+                    <li
+                      onClick={() => setActiveTab("edit-group-details")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-group-details"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Group Details
+                    </li>
                   </ul>
                 )}
               </div>
@@ -223,6 +258,12 @@ const AdminPortal = () => {
         {activeTab === "add-honeymoon" && <AddHoneymoon />}
         {activeTab === "add-weekend" && <AddWeekend />}
         {activeTab === "edit-national" && <NationalEdit />}
+        {activeTab === "edit-international" && <InternationalEdit />}
+        {activeTab === "edit-honeymoon" && <HoneymoonEdit />}
+        {activeTab === "edit-weekend" && <WeekendEdit />}
+        {activeTab === "edit-group-tours" && <GroupToursEdit />}
+        {activeTab === "edit-group-details" && <GroupDetailsEdit />}
+        {activeTab === "edit-blogs" && <BlogsEdit />}
         {activeTab === "add-group-tours" && <GroupDashboard />}
         {activeTab === "add-blogs" && <BlogForm />}
         {/* Add additional content components as needed */}

@@ -92,7 +92,7 @@ const Navbar = () => {
                   : key === "corporatePackages"
                   ? "/corporate"
                   : key === "groupsTours"
-                  ? "/grouptours"
+                  ? "/schooltour"
                   : key === "weekendTrips"
                   ? "/weekends"
                   : "#"

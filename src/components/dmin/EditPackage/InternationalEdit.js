@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function NationalEdit() {
+function InternationalEdit() {
   const [packages, setPackages] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState(null);
@@ -30,7 +30,7 @@ function NationalEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-intern-national-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -115,7 +115,7 @@ function NationalEdit() {
 
       axios
         .put(
-          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-intern-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -136,7 +136,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-intern-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -190,12 +190,12 @@ function NationalEdit() {
       tripDate: [...prevDetails.tripDate, ""],
     }));
   };
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
-        Edit National Packages
+        Edit Intern National Packages
       </h2>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         {packages.length > 0 ? (
           packages.map((pkg) => (
@@ -628,4 +628,4 @@ function NationalEdit() {
   );
 }
 
-export default NationalEdit;
+export default InternationalEdit;

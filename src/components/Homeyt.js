@@ -6,17 +6,17 @@ const videos = [
   {
     id: "1",
     url: "https://www.youtube.com/embed/92d-oIsNm-Q?controls=0&modestbranding=1&rel=0",
-    title: "Winter Spiti Valley | Capture a Trip",
+    title: "Winter Spiti Valley",
   },
   {
     id: "2",
     url: "https://www.youtube.com/embed/lh67NT0vfnQ?controls=0&modestbranding=1&rel=0",
-    title: "Summer Ladakh | Capture a Trip",
+    title: "Summer Ladakh",
   },
   {
     id: "3",
     url: "https://www.youtube.com/embed/744ptyIyNzI?controls=0&modestbranding=1&rel=0",
-    title: "Autumn Manali | Capture a Trip",
+    title: "Autumn Manali",
   },
 ];
 

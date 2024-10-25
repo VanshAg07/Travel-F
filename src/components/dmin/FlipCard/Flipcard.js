@@ -39,23 +39,25 @@ const Flipcard = () => {
       console.error("Error fetching states", error);
     }
   };
-
   const fetchFlipcards = async () => {
     try {
-        const response = await axios.get(
-            "http://localhost:5000/api/flip-card/flip"
-        );
-        // Assuming response.data is an array with one object
-        const flipcardData = response.data[0]; // Access the first object in the array
-        setFlipcards({
-            national: flipcardData.national,
-            international: flipcardData.international,
-            honeymoon: flipcardData.honeymoon,
-        });
+      const response = await axios.get(
+        "http://localhost:5000/api/flip-card/flip"
+      );
+      const flipcardData = response.data; // Adjust based on the actual structure of the response
+
+      // Check if response contains an array and map it correctly
+      const parsedFlipcards = {
+        national: flipcardData.national || [],
+        international: flipcardData.international || [],
+        honeymoon: flipcardData.honeymoon || [],
+      };
+
+      setFlipcards(parsedFlipcards);
     } catch (error) {
-        console.error("Error fetching flipcards", error);
+      console.error("Error fetching flipcards", error);
     }
-};
+  };
   // Handle file change
   const handleFileChange = (e) => {
     setFlipcardImages([...e.target.files]);
@@ -75,7 +77,8 @@ const Flipcard = () => {
     flipcardImages.forEach((image) => formData.append("flipcardImage", image));
 
     try {
-      if (isEditing) {
+      if (isEditing && editFlipcardId) {
+        // Only proceed with editing if editFlipcardId is not null or undefined
         await axios.put(
           `http://localhost:5000/api/flip-card/flip/${selectedCategory}/${editFlipcardId}`,
           formData
@@ -127,24 +130,35 @@ const Flipcard = () => {
     setStateName(""); // Reset state selection when category changes
   };
 
-  // Edit flipcard
   const handleEdit = (category, flipcard) => {
+    console.log("Editing flipcard ID:", flipcard.id); // Check the ID
+    if (!flipcard._id) {
+      console.error("Flipcard ID is undefined");
+      return;
+    }
     setStateName(flipcard.stateName);
     setFlipPrice(flipcard.flipPrice);
     setSelectedCategory(category);
     setIsEditing(true);
     setEditFlipcardId(flipcard._id);
-    filterStatesByCategory(category); // Filter states when editing
+    filterStatesByCategory(category);
   };
 
-  // Delete flipcard
-  const handleDelete = async (category, flipcardId) => {
+  const handleDelete = async (category, stateName) => {
+    if (!stateName || !category) {
+      console.error("State name or category is undefined");
+      return; // Prevent trying to delete if stateName or category is undefined
+    }
     try {
-      await axios.delete(
-        `http://localhost:5000/api/flip-card/flip/${category}/${flipcardId}`
-      );
-      fetchFlipcards();
-    } catch (error) {   
+      // Send delete request with category and stateName as parameters
+      await axios.delete(`http://localhost:5000/api/flip-card/flip`, {
+        data: {
+          category: category,
+          stateName: stateName,
+        },
+      });
+      fetchFlipcards(); // Refresh the list after deletion
+    } catch (error) {
       console.error("Error deleting flipcard", error);
     }
   };
@@ -238,7 +252,7 @@ const Flipcard = () => {
                   {flipcard.flipcardImage.map((image, index) => (
                     <img
                       key={index}
-                      src={`${image}`}
+                      src={image}
                       alt={`${flipcard.stateName} Flipcard`}
                       className="w-16 h-16 object-cover mr-2"
                     />
@@ -256,7 +270,9 @@ const Flipcard = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(selectedCategory, flipcard._id)}
+                    onClick={() =>
+                      handleDelete(selectedCategory, flipcard.stateName)
+                    }
                     className="bg-red-500 text-white p-1 rounded"
                   >
                     Delete

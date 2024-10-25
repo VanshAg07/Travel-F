@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function NationalEdit() {
+function WeekendEdit() {
   const [packages, setPackages] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState(null);
@@ -30,7 +30,7 @@ function NationalEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-weekends-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -115,7 +115,7 @@ function NationalEdit() {
 
       axios
         .put(
-          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-weekends-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -136,7 +136,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-weekends-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -628,4 +628,4 @@ function NationalEdit() {
   );
 }
 
-export default NationalEdit;
+export default WeekendEdit;
