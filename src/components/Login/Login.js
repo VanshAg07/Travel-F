@@ -16,8 +16,6 @@ function Login() {
   const [error, setError] = useState("");
   const dispatch=useDispatch()
 
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -43,7 +41,7 @@ function Login() {
         window.localStorage.setItem("loggedIn", true);
         const decodedToken = jwtDecode(data.data.token);
         dispatch(setUser(data.data));
-        console.log(data.data)
+        // console.log(data.data)
         const role = decodedToken.role;
         if (role === "admin") {
           window.location.href = "/"; // Redirect to admin page

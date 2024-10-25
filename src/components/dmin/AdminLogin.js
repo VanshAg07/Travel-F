@@ -1,33 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { setUser } from "../../Slices/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const dispatch=useDispatch()
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
 
     try {
-      // Make an API request to the login endpoint
-      const response = await axios.post("https://api.travello10.com/api/admin/login", {
-        email,
-        password,
+      const response = await fetch("https://api.travello10.com/api/admin/login", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer your-token",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
+      const data = await response.json();
 
       // Handle successful login
       if (response.status === 200) {
-        const { token } = response.data;
-
-        // Store the token in localStorage or a cookie
-        localStorage.setItem("adminToken", token);
-
-        // Redirect to the admin dashboard or another protected route
-        window.location.href = "/admin";
+        toast.success("Login Success");
+        window.localStorage.setItem("token", data.data.token);
+        const decodedToken = jwtDecode(data.data.token);
+        dispatch(setUser(data.data));
+        const role = decodedToken.role;
+        // Check if the role is 'admin'
+        if (role === "admin") {
+          // Redirect to the admin dashboard
+          window.location.href = "/admin";
+        } else {
+          // Handle case where the user is not an admin
+          setErrorMessage("You do not have admin access.");
+        }
       }
     } catch (error) {
       // Handle login error
