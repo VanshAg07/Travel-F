@@ -27,6 +27,7 @@ import Homeglry from "./components/Homeglry.js";
 
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
+  const [backgroundImages, setBackgroundImages] = useState([]);
   const tripDetails = () => {
     const response = axios.get("https://api.travello10.com/api/user/getTripDetails");
     response.then((res) => {
@@ -92,29 +93,50 @@ const National = () => {
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
+  const fetchBackgroundImages = async () => {
+    const response = await axios.get(
+      "https://api.travello10.com/api/background-images/images"
+    );
+    setBackgroundImages(response.data);
+  };
+  useEffect(() => {
+    fetchBackgroundImages();
+  }, []);
+  const nationalImages = backgroundImages.filter(
+    (item) => item.type === "National"
+  );
+
   return (
     <div className="wrpper-inter">
       <Nav />
       <Dropnav />
       <div className="hero-section-left-1">
-        <img className="hero-img" src={intern} alt="International" />
-        <div className="relative flex flex-col items-center">
-  <div className="relative w-full flex items-start justify-center">
-    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-      India's Majestic Adventures
-    </h1>
-  </div>
-  
-  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-    Unveil the Wonders
-  </h1>
-</div>
-
-
+        {nationalImages.map((item) => (
+          <>
+            {item.image.map((imgUrl, index) => (
+              <img
+                key={index}
+                src={imgUrl}
+                alt={item.heading}
+                className="hero-img"
+              />
+            ))}
+            <div className="relative flex flex-col items-center">
+              <div className="relative w-full flex items-start justify-center">
+                <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+                  {item.heading}
+                </h1>
+              </div>
+              <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+                Unveil the Wonders
+              </h1>
+            </div>
+          </>
+        ))}
       </div>
       <div className="mt-[100px] md:mt-0">
-  <Mainreview />
-</div>
+        <Mainreview />
+      </div>
       <div className="lottie-wr">
         <Lottie
           animationData={animationData}

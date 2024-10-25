@@ -119,14 +119,14 @@ const App = () => {
           <Route path="/admin" element={<AdminPortal />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
-        {/* <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Contactus" element={<Contactus />} />
         <Route path="/Glry" element={<Glry />} />
         <Route path="/Cont" element={<Cont />} />
         <Route path="/intern" element={<International />} />
-        <Route path="/National" element={<National />} />
+        <Route path="/national" element={<National />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="/Hiking" element={<Hiking />} />
         <Route path="/Visit" element={<Visit />} />
@@ -190,7 +190,7 @@ const App = () => {
         <Route path="/sportstour" element={<Sportstour />} />
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
-        <Route path="/offer" element={<Offer />} /> */}
+        <Route path="/offer" element={<Offer />} />
         <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>

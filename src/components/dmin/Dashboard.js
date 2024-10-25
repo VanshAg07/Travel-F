@@ -17,6 +17,7 @@ import ExploreAdventure from "./Dashboard/ExploreAdventure";
 import CorporatePartners from "./Dashboard/Corporate/CorporatePartners";
 import CorporateHome from "./Dashboard/Corporate/CorporateHome";
 import Flipcard from "./FlipCard/Flipcard";
+import AddBackground from "./AddBackground";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -74,6 +75,10 @@ function Dashboard() {
     {
       name: "Flipcard",
       component: <Flipcard />,
+    },
+    {
+      name: "Main Pages Background Images",
+      component: <AddBackground />,
     },
   ];
   const handleCardClick = (component) => {
