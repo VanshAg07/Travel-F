@@ -1,8 +1,8 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import icon1 from "../img/aboutus.jpg";
 import Nav from "./Nav";
-import FooterSection from "./Footersection";
-import Footer from "../Footer";
 import { FaLinkedin } from "react-icons/fa";
 import { FaUserTie, FaHandshake, FaShuttleVan } from "react-icons/fa";
 import InstaIcon from '../img/icons8-insta.svg';
@@ -12,8 +12,23 @@ import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 
 const Aboutus = () => {
+  useEffect(() => {
+    fetchTeamMembers();
+  }, []);
+  const fetchTeamMembers = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/home/get-team-member"
+      );
+      setTeamMembers(response.data.data);
+    } catch (error) {
+      console.error("Error fetching team members:", error);
+    }
+  };
+
+  const [teamMembers, setTeamMembers] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  const teamMembers = [
+  const Members = [
     {
       name: "Govind Gaur",
       title: "CEO, Founder",
@@ -110,29 +125,22 @@ value every step of the way.
             Meet Our Amazing Team. The Perfect Blend of Talent and Dedication
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <img
-                  src={member.imgSrc}
-                  alt={member.name}
-                  className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
-                />
-                <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
-                <p className="text-gray-600 mb-4">{member.title}</p>
-                <div className="flex justify-center space-x-4 mb-4">
-                  <a href="#" className="text-blue-500 hover:text-blue-700">
-                    <FaLinkedin size={24} />
-                  </a>
-                  <a href="#">
-                    <img src={InstaIcon} className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </a>
-                </div>
-                <hr className="border-t-2 border-yellow-500 w-12 mb-4" />
-                <p className="text-gray-700 text-sm sm:text-base px-4 text-justify">
-                  {member.description}
-                </p>
-              </div>
-            ))}
+          {teamMembers.map((member, index) => (
+  <div key={index} className="flex flex-col items-center">
+    <img
+      src={member.image}  // updated from imgSrc to image
+      alt={member.name}
+      className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
+    />
+    <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
+    <p className="text-gray-600 mb-4">{member.position}</p> {/* updated from title to position */}
+    <hr className="border-t-2 border-yellow-500 w-12 mb-4" />
+    <p className="text-gray-700 text-sm sm:text-base px-4 text-justify">
+      {member.description}
+    </p>
+  </div>
+))}
+
           </div>
         </section>
 

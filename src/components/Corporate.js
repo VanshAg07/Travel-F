@@ -55,27 +55,28 @@ const Corporate = () => {
 
   return (
     <>
+      <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="place-container">
-        <div className="relative h-[83vh] flex flex-col justify-start text-left text-white px-4 sm:px-8">
-          <img
-            className="absolute top-0 left-0 w-full h-full object-cover z-1"
-            src={bg}
-            alt="Background"
-          />
-          <div className="relative z-10 flex flex-col justify-center items-start h-full p-4 sm:p-8">
-            <h1 className="text-3xl sm:text-5xl font-bold mb-4">
-              Corporate Tours
-            </h1>
-            <div className="bg-[yellow] p-3">
-              <p className="text-lg sm:text-xl text-black font-semibold">
-                Elevate Your Team: Uniting Business and Adventure
-              </p>
-            </div>
-          </div>
-        </div>
-        <Mainreview />
+      <div className="hero-section-left-1">
+        <img className="hero-img" src={bg} alt="International" />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+      Corporate Tours
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+  Elevate Your Business
+  </h1>
+</div>
+
+
+      </div>
+      <div className="mt-[100px] md:mt-0">
+  <Mainreview />
+</div>
 
         <div className="justify-center pt-10 items-center flex flex-col w-full">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">

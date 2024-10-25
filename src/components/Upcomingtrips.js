@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   FaClock,
   FaCalendarAlt,
@@ -7,7 +8,6 @@ import {
   FaChevronCircleRight,
 } from "react-icons/fa";
 
-// TripCard component to display each trip's information
 const TripCard = ({ trip }) => {
   return (
     <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
@@ -47,7 +47,6 @@ const App = () => {
   const [upcomingTrips, setUpcomingTrips] = useState({});
   const [selectedMonth, setSelectedMonth] = useState(""); // State to track selected month
   const [startIndex, setStartIndex] = useState(0);
-  const tripsToShow = window.innerWidth < 1024 ? 3 : 4; // Show 3 on small screens, 4 on larger screens
 
   // Fetch upcoming trips from the server
   const fetchUpcomingTrips = async () => {
@@ -71,6 +70,28 @@ const App = () => {
   const tripsForSelectedMonth = upcomingTrips[selectedMonth] || [];
   const allTrips = tripsForSelectedMonth;
 
+  const [isVisible, setIsVisible] = useState(true);
+  const tripsToShow = window.innerWidth < 1024 ? 3 : 4; // Show 3 on small screens, 4 on larger
+
+  // Check the window size
+  const checkWindowSize = () => {
+    if (window.innerWidth < 768) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  };
+
+  // Event listener for window resize
+  useEffect(() => {
+    window.addEventListener("resize", checkWindowSize);
+    checkWindowSize(); // Check on mount
+
+    return () => {
+      window.removeEventListener("resize", checkWindowSize);
+    };
+  }, []);
+
   // Handle next trips
   const nextTrips = () => {
     setStartIndex((prevIndex) => (prevIndex + tripsToShow) % allTrips.length);
@@ -88,7 +109,6 @@ const App = () => {
   const goToTrip = (tripIndex) => {
     setStartIndex(tripIndex);
   };
-
   // Handle month selection
   const handleMonthClick = (month) => {
     setSelectedMonth(month);
@@ -161,6 +181,7 @@ const App = () => {
           </div>
         )}
       </div>
+
     </div>
   );
 };

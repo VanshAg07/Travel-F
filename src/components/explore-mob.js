@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Explore-mob.css";
 
 const TravelOptions = () => {
   const [adventures, setAdventures] = useState([]);
@@ -43,34 +42,31 @@ const TravelOptions = () => {
   };
 
   return (
-    <div className="w-full bg-white h-[20vh] px-4 mb-12">
-      {/* Heading for the Travel Options */}
+    <div className="w-full bg-white h-auto px-4 mb-12 block md:hidden lg:block">
       <h1 className="text-center text-lg font-bold mb-6">
         Explore Your Adventure
       </h1>
 
-      {/* Scrollable area with hidden scrollbar */}
-      <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex flex-nowrap justify-start items-center space-x-4">
-          {adventures.map((adventure) => (
-            <a
-              key={adventure._id}
-              href={getAdventureLink(adventure.title)}
-              className="flex flex-col items-center"
-            >
-              <div className="w-20 h-20 flex justify-center items-center overflow-hidden rounded-full">
-                <img
-                  src={adventure.image[0]}
-                  alt={adventure.title}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <span className="mt-1 text-center text-xs font-semibold">
-                {adventure.title}
-              </span>
-            </a>
-          ))}
-        </div>
+      {/* Flex layout with flex-wrap to wrap content if it overflows */}
+      <div className="flex flex-wrap justify-center gap-4 mx-auto">
+        {adventures.map((adventure) => (
+          <a
+            key={adventure._id}
+            href={getAdventureLink(adventure.title)}
+            className="flex flex-col items-center"
+          >
+            <div className="w-20 h-20 flex justify-center items-center overflow-hidden rounded-full">
+              <img
+                src={adventure.image[0]}
+                alt={adventure.title}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <span className="mt-1 text-center text-xs font-semibold">
+              {adventure.title}
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   );

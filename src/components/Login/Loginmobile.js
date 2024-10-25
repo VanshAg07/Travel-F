@@ -5,7 +5,7 @@ import logo from "../../img/logo.png";
 const Login = () => {
   return (
     <div
-      className="h-screen flex flex-col justify-center items-center bg-cover bg-center"
+      className="h-screen flex flex-col justify-center items-center bg-cover overflow-hidden bg-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Bluish background layer */}

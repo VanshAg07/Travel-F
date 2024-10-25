@@ -41,7 +41,7 @@ const Home = () => {
         <Videopage />
 
         {/* Show ExploreMobile only on small mobile screens (less than 426px) */}
-        {isSmallMobile && <ExploreMobile />}
+        {isLargeMobile && <ExploreMobile />}
 
         {isSmallMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
@@ -69,7 +69,7 @@ const Home = () => {
 
         {/* Conditionally render Upcomingtrip for larger screens and UpcomingtripMobile for smaller screens */}
         <div className="bg-[#ffffe6]">
-        {isSmallMobile ? (
+        {isMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
           <UpcomingtripMobile />
             </div>
@@ -78,8 +78,8 @@ const Home = () => {
         )}
 
         {/* Show Explore component only when screen size is greater than 426px */}
-        {!isSmallMobile && <Explore />}
-
+        {!isMobile && <Explore />}
+        
         <Homeglry />
         <Whyuss />
         <Review />

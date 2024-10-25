@@ -110,13 +110,24 @@ const Honeymoon = () => {
       <Nav />
       <Dropnav />
       <div className="hero-section-left-1">
-        <div className=" weekend-hero w-[100%] h-[100%]">
-          <img className="h-[750px] w-[100%]" src={intern} alt="India" />
-          <h1 class="honeymoon-heading">Honeymoon Tour Packages</h1>
-          <p class="honeymoon-paragraph">Where Forever Begins...Together!</p>
-        </div>
+        <img className="hero-img" src={intern} alt="International" />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+      India's Majestic Adventures
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+  Travel the Globe
+  </h1>
+</div>
+
+
       </div>
-      <Mainreview />
+      <div className="mt-[100px] md:mt-0">
+  <Mainreview />
+</div>
 
       <div className="lottie-wr">
         <Lottie
