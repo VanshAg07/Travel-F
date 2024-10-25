@@ -2,18 +2,38 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const States = () => {
-  const [weekendStates, setWeekendStates] = useState([]);
-  const [internationalStates, setInternationalStates] = useState([]);
-  const [nationalStates, setNationalStates] = useState([]);
-  const [honeymoonStates, setHoneymoonStates] = useState([]);
-  const [offerStates, setOfferStates] = useState([]);
-  const [newWeekendState, setNewWeekendState] = useState({ name: "" });
+  const [refresh, setRefresh] = useState(0);
+  const [weekendStates, setWeekendStates] = useState({ name: "", image: null });
+
+  const [internationalStates, setInternationalStates] = useState({
+    name: "",
+    image: null,
+  });
+  const [nationalStates, setNationalStates] = useState({
+    name: "",
+    image: null,
+  });
+  const [honeymoonStates, setHoneymoonStates] = useState({
+    name: "",
+    image: null,
+  });
+  const [offerStates, setOfferStates] = useState({ name: "", image: null });
+  const [newWeekendState, setNewWeekendState] = useState({
+    name: "",
+    image: null,
+  });
   const [newInternationalState, setNewInternationalState] = useState({
     name: "",
   });
-  const [newNationalState, setNewNationalState] = useState({ name: "" });
-  const [newHoneymoonState, setNewHoneymoonState] = useState({ name: "" });
-  const [newOffer, setNewOffer] = useState({ name: "" });
+  const [newNationalState, setNewNationalState] = useState({
+    name: "",
+    image: null,
+  });
+  const [newHoneymoonState, setNewHoneymoonState] = useState({
+    name: "",
+    image: null,
+  });
+  const [newOffer, setNewOffer] = useState({ name: "", image: null });
 
   // Fetch states for each category
   const fetchStates = async () => {
@@ -43,16 +63,25 @@ const States = () => {
 
   useEffect(() => {
     fetchStates();
-  }, []);
+  }, [refresh]);
   const addWeekendState = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newWeekendState.name);
+    formData.append("stateImage", newWeekendState.image);
     try {
       const response = await axios.post(
         `https://api.travello10.com/api/weekends/states`,
-        { stateName: newWeekendState.name }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
         setNewWeekendState({ name: "" });
         fetchStates();
+        setRefresh((prev) => prev + 1);
       }
     } catch (error) {
       console.error(`Error adding international state`, error);
@@ -60,14 +89,23 @@ const States = () => {
   };
 
   const addInternationalState = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newInternationalState.name);
+    formData.append("stateImage", newInternationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
         `https://api.travello10.com/api/admin/international-state`,
-        { stateName: newInternationalState.name }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
-        setNewInternationalState({ name: "" });
+        setNewInternationalState({ name: "", image: null }); // Reset state after successful upload
         fetchStates();
+        setRefresh((prev) => prev + 1);
       }
     } catch (error) {
       console.error(`Error adding international state`, error);
@@ -75,14 +113,23 @@ const States = () => {
   };
 
   const addOfferState = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newOffer.name);
+    formData.append("stateImage", newOffer.image);
     try {
       const response = await axios.post(
         `https://api.travello10.com/api/offer/states`,
-        { stateName: newOffer.name }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
         setOfferStates({ name: "" });
         fetchStates();
+        setRefresh((prev) => prev + 1);
       }
     } catch (error) {
       console.error(`Error adding international state`, error);
@@ -90,32 +137,49 @@ const States = () => {
   };
 
   const addNationalState = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newNationalState.name);
+    formData.append("stateImage", newNationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
         `https://api.travello10.com/api/trip/state`,
-        { stateName: newNationalState.name }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
-        setNewNationalState({ name: "" });
+        setNewNationalState({ name: "", image: null }); // Reset state after successful upload
         fetchStates();
+        setRefresh((prev) => prev + 1);
       }
     } catch (error) {
-      console.error(`Error adding international state`, error);
+      console.error(`Error adding national state`, error); // Corrected message
     }
   };
-
   const addHoneymoonState = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newHoneymoonState.name);
+    formData.append("stateImage", newHoneymoonState.image); // Ensure this is defined
     try {
       const response = await axios.post(
         `https://api.travello10.com/api/honeymoon/states`,
-        { stateName: newHoneymoonState.name }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 201) {
-        setNewHoneymoonState({ name: "" });
+        setNewHoneymoonState({ name: "", image: null }); // Reset state after successful upload
         fetchStates();
+        setRefresh((prev) => prev + 1);
       }
     } catch (error) {
-      console.error(`Error adding international state`, error);
+      console.error(`Error adding honeymoon state`, error);
     }
   };
 
@@ -164,9 +228,14 @@ const States = () => {
       console.error(`Error deleting international state`, error);
     }
   };
-
+  const handleImageChange = (e, setState) => {
+    const file = e.target.files[0];
+    if (file) {
+      setState((prevState) => ({ ...prevState, image: file }));
+    }
+  };
   return (
-    <div className="p-8 min-h-screen bg-gray-100">
+    <div className="p-8 min-h-screen bg-gray-100" key={refresh}>
       <h1 className="text-3xl font-extrabold mb-8 text-center text-blue-600">
         Manage States
       </h1>
@@ -182,6 +251,12 @@ const States = () => {
             value={newWeekendState.name}
             onChange={(e) => setNewWeekendState({ name: e.target.value })}
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) => handleImageChange(e, setNewWeekendState)}
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
             required
           />
           <button
@@ -224,6 +299,12 @@ const States = () => {
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
+          <input
+            type="file"
+            onChange={(e) => handleImageChange(e, setNewNationalState)} // Ensure correct setter
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
+            required
+          />
           <button
             onClick={addNationalState}
             className="bg-blue-500 text-white font-medium rounded-lg p-3 mb-4 w-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
@@ -262,6 +343,12 @@ const States = () => {
             value={newInternationalState.name}
             onChange={(e) => setNewInternationalState({ name: e.target.value })}
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) => handleImageChange(e, setNewInternationalState)} // Ensure correct setter
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
             required
           />
           <button
@@ -304,6 +391,12 @@ const States = () => {
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
+          <input
+            type="file"
+            onChange={(e) => handleImageChange(e, setNewHoneymoonState)} // Ensure correct setter
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
+            required
+          />
           <button
             onClick={addHoneymoonState}
             className="bg-blue-500 text-white font-medium rounded-lg p-3 mb-4 w-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
@@ -342,6 +435,12 @@ const States = () => {
             value={newOffer.name}
             onChange={(e) => setNewOffer({ name: e.target.value })}
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) => handleImageChange(e, setNewOffer)}
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
             required
           />
           <button
