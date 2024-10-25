@@ -134,7 +134,7 @@ const BlogForm = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/blog/blogs", formData, {
+      const response = await axios.post("https://api.travello10.com/api/blog/blogs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

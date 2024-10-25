@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const AddWeekend = () => {
-  const [states, setStates] = useState([]); // State for storing the list of states
+import axios from "axios";
+const OffersHome = () => {
+  const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [loading, setLoading] = useState(false);
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
-    tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
     tripDuration: "",
@@ -23,6 +22,8 @@ const AddWeekend = () => {
     status: "active",
     overView: "",
     sharing: [{ title: "", price: "" }],
+    tripBookingAmount: "",
+    tripSeats: "",
   });
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const AddWeekend = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/weekends/states")
+      .get("https://api.travello10.com/api/offer/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -119,7 +120,7 @@ const AddWeekend = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/weekends/add-weekend-package/${selectedState.id}`,
+      `https://api.travello10.com/api/offer/add-offer-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -150,6 +151,8 @@ const AddWeekend = () => {
     const image = e.target.files[0];
     setTripDetails({ ...tripDetails, tripBackgroundImg: image });
   };
+
+  // Handle PDF change function
   const handlePdfChange = (e) => {
     const pdfFiles = Array.from(e.target.files);
     const newPdfs = pdfFiles.map((file) => ({
@@ -175,7 +178,7 @@ const AddWeekend = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-6">Add Weekend Packages</h2>
+      <h2 className="text-2xl font-bold mb-6">Add Offers</h2>
       <form onSubmit={handleSubmit}>
         {/* State Name */}
         <div className="mb-4">
@@ -213,6 +216,19 @@ const AddWeekend = () => {
           />
         </div>
         <div className="mb-4">
+          <label className="block text-gray-700">Trip Location</label>
+          <input
+            type="text"
+            name="tripLocation"
+            value={tripDetails.tripLocation}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripLocation: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
           <label className="block text-gray-700">Trip Price</label>
           <input
             type="text"
@@ -226,13 +242,29 @@ const AddWeekend = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Trip Offer Price</label>
+          <label className="block text-gray-700">Trip Booking Amount</label>
           <input
             type="text"
-            name="tripOfferPrice"
-            value={tripDetails.tripOfferPrice}
+            name="tripBookingAmount"
+            value={tripDetails.tripBookingAmount}
             onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripOfferPrice: e.target.value })
+              setTripDetails({
+                ...tripDetails,
+                tripBookingAmount: e.target.value,
+              })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Seats</label>
+          <input
+            type="text"
+            name="tripSeats"
+            value={tripDetails.tripSeats}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripSeats: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"
@@ -554,4 +586,4 @@ const AddWeekend = () => {
   );
 };
 
-export default AddWeekend;
+export default OffersHome;

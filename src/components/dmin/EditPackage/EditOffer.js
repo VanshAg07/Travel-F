@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function HoneymoonEdit() {
+function EditOffer() {
   const [packages, setPackages] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState(null);
@@ -18,6 +18,7 @@ function HoneymoonEdit() {
     tripExclusions: [""],
     tripItinerary: [{ title: "", points: [""] }],
     tripImages: [],
+    pdf: [],
     tripDescription: [""],
     pickAndDrop: "",
     sharing: [{ title: "", price: "" }],
@@ -29,7 +30,7 @@ function HoneymoonEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-honeymoon-packages")
+      .get("https://api.travello10.com/api/edit-packages/get-offers-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -64,6 +65,7 @@ function HoneymoonEdit() {
       tripLocation: trip.tripLocation || "",
       pickAndDrop: trip.pickAndDrop || "",
       status: trip.status || "",
+      pdf: trip.pdf || [],
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
     });
@@ -106,13 +108,14 @@ function HoneymoonEdit() {
     if (selectedTrip) {
       const formData = new FormData();
       formData.append("tripDetails", JSON.stringify(tripDetails));
+      if (newPdfFile) formData.append("pdf", newPdfFile);
       if (newTripImage) formData.append("tripImage", newTripImage);
       if (newBackgroundImg)
         formData.append("tripBackgroundImg", newBackgroundImg);
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-honeymoon-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `https://api.travello10.com/api/edit-packages/edit-offers-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -133,7 +136,7 @@ function HoneymoonEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-honeymoon-package/${pkg.stateName}/${tripId}`
+          `https://api.travello10.com/api/edit-packages/delete-offers-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -190,9 +193,8 @@ function HoneymoonEdit() {
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
-        Edit Honeymoon Packages
+        Edit National Packages
       </h2>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         {packages.length > 0 ? (
           packages.map((pkg) => (
@@ -293,6 +295,58 @@ function HoneymoonEdit() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
+              <div>
+                <h4>PDF Files</h4>
+                {tripDetails.pdf.map((pdf, index) => (
+                  <div key={pdf._id} className="flex items-center mb-2">
+                    <span>{pdf.filename}</span>
+                    <select
+                      value={pdf.status}
+                      onChange={(e) =>
+                        handleStatusChange(index, e.target.value)
+                      }
+                    >
+                      {statusOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `https://api.travello10.com/upload/${pdf.filename}`,
+                          "_blank"
+                        )
+                      }
+                      className="bg-green-500 text-white px-2 py-1 rounded-lg ml-2"
+                    >
+                      Open PDF
+                    </button>
+                  </div>
+                ))}
+                {/* <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "pdf")}
+                  accept=".pdf"
+                /> */}
+              </div>
+              {/* <div>
+                <h4>Trip Images</h4>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripImages")}
+                  accept="image/*"
+                />
+              </div>
+              <div>
+                <h4>Background Image</h4>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
+                  accept="image/*"
+                />
+              </div> */}
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Duration:
@@ -499,6 +553,57 @@ function HoneymoonEdit() {
                   </div>
                 ))}
               </div>
+
+              {/* Sharing Options */}
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Sharing Options:
+                </label>
+                {tripDetails.sharing.map((option, index) => (
+                  <div key={index} className="mb-4 flex space-x-2">
+                    <input
+                      type="text"
+                      value={option.title}
+                      onChange={(e) =>
+                        handleArrayChange("sharing", index, {
+                          ...option,
+                          title: e.target.value,
+                        })
+                      }
+                      placeholder="Option Title"
+                      className="mt-1 p-2 w-full border rounded-lg"
+                    />
+                    <input
+                      type="number"
+                      value={option.price}
+                      onChange={(e) =>
+                        handleArrayChange("sharing", index, {
+                          ...option,
+                          price: e.target.value,
+                        })
+                      }
+                      placeholder="Option Price"
+                      className="mt-1 p-2 w-full border rounded-lg"
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setTripDetails((prevDetails) => ({
+                      ...prevDetails,
+                      sharing: [
+                        ...prevDetails.sharing,
+                        { title: "", price: "" },
+                      ],
+                    }))
+                  }
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Add Sharing Option
+                </button>
+              </div>
+
               <div className="flex justify-end space-x-4">
                 <button
                   type="button"
@@ -522,4 +627,4 @@ function HoneymoonEdit() {
   );
 }
 
-export default HoneymoonEdit;
+export default EditOffer;

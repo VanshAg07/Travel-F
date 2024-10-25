@@ -14,7 +14,7 @@ function AdminLogin() {
 
     try {
       // Make an API request to the login endpoint
-      const response = await axios.post("http://localhost:5000/api/admin/login", {
+      const response = await axios.post("https://api.travello10.com/api/admin/login", {
         email,
         password,
       });

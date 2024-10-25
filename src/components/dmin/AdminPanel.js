@@ -8,6 +8,7 @@ const AdminPanel = () => {
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",
+    tripOfferPrice: "",
     tripDate: [""],
     tripLocation: "",
     tripDuration: "",
@@ -32,7 +33,7 @@ const AdminPanel = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/trip/states")
+      .get("https://api.travello10.com/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -162,7 +163,7 @@ const AdminPanel = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/trip/state/${selectedState.id}/trip`,
+      `https://api.travello10.com/api/trip/state/${selectedState.id}/trip`,
       {
         method: "POST",
         body: formData,
@@ -244,6 +245,16 @@ const AdminPanel = () => {
               type="text"
               name="tripPrice"
               value={tripData.tripPrice}
+              onChange={handleInputChange}
+              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            />
+          </div>
+          <div>
+            <label className="block text-l font-medium">Trip Offer Price</label>
+            <input
+              type="text"
+              name="tripOfferPrice"
+              value={tripData.tripOfferPrice}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />

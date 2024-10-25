@@ -6,27 +6,36 @@ const States = () => {
   const [internationalStates, setInternationalStates] = useState([]);
   const [nationalStates, setNationalStates] = useState([]);
   const [honeymoonStates, setHoneymoonStates] = useState([]);
+  const [offerStates, setOfferStates] = useState([]);
   const [newWeekendState, setNewWeekendState] = useState({ name: "" });
   const [newInternationalState, setNewInternationalState] = useState({
     name: "",
   });
   const [newNationalState, setNewNationalState] = useState({ name: "" });
   const [newHoneymoonState, setNewHoneymoonState] = useState({ name: "" });
+  const [newOffer, setNewOffer] = useState({ name: "" });
 
   // Fetch states for each category
   const fetchStates = async () => {
     try {
-      const [weekendsRes, internationalRes, nationalRes, honeymoonRes] =
-        await Promise.all([
-          axios.get("http://localhost:5000/api/weekends/states"),
-          axios.get("http://localhost:5000/api/admin/states"),
-          axios.get("http://localhost:5000/api/trip/states"),
-          axios.get("http://localhost:5000/api/honeymoon/states"),
-        ]);
+      const [
+        weekendsRes,
+        internationalRes,
+        nationalRes,
+        honeymoonRes,
+        offerRes,
+      ] = await Promise.all([
+        axios.get("https://api.travello10.com/api/weekends/states"),
+        axios.get("https://api.travello10.com/api/admin/states"),
+        axios.get("https://api.travello10.com/api/trip/states"),
+        axios.get("https://api.travello10.com/api/honeymoon/states"),
+        axios.get("https://api.travello10.com/api/offer/states"),
+      ]);
       setWeekendStates(weekendsRes.data);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
       setHoneymoonStates(honeymoonRes.data);
+      setOfferStates(offerRes.data);
     } catch (error) {
       console.error("Error fetching states", error);
     }
@@ -35,12 +44,10 @@ const States = () => {
   useEffect(() => {
     fetchStates();
   }, []);
-
-  // Add state functions for each category
   const addWeekendState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/weekends/states`,
+        `https://api.travello10.com/api/weekends/states`,
         { stateName: newWeekendState.name }
       );
       if (response.status === 201) {
@@ -55,7 +62,7 @@ const States = () => {
   const addInternationalState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/international-state`,
+        `https://api.travello10.com/api/admin/international-state`,
         { stateName: newInternationalState.name }
       );
       if (response.status === 201) {
@@ -67,10 +74,25 @@ const States = () => {
     }
   };
 
+  const addOfferState = async () => {
+    try {
+      const response = await axios.post(
+        `https://api.travello10.com/api/offer/states`,
+        { stateName: newOffer.name }
+      );
+      if (response.status === 201) {
+        setOfferStates({ name: "" });
+        fetchStates();
+      }
+    } catch (error) {
+      console.error(`Error adding international state`, error);
+    }
+  };
+
   const addNationalState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/trip/state`,
+        `https://api.travello10.com/api/trip/state`,
         { stateName: newNationalState.name }
       );
       if (response.status === 201) {
@@ -85,7 +107,7 @@ const States = () => {
   const addHoneymoonState = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/honeymoon/states`,
+        `https://api.travello10.com/api/honeymoon/states`,
         { stateName: newHoneymoonState.name }
       );
       if (response.status === 201) {
@@ -100,7 +122,16 @@ const States = () => {
   // Delete state functions for each category
   const deleteWeekendState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/weekends/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/weekends/state/${_id}`);
+      fetchStates();
+    } catch (error) {
+      console.error(`Error deleting international state`, error);
+    }
+  };
+  // Delete state functions for each category
+  const deleteOfferState = async (_id) => {
+    try {
+      await axios.delete(`https://api.travello10.com/api/offer/states/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -109,7 +140,7 @@ const States = () => {
 
   const deleteInternationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/admin/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -118,7 +149,7 @@ const States = () => {
 
   const deleteNationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/trip/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/trip/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -127,7 +158,7 @@ const States = () => {
 
   const deleteHoneymoonState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/honeymoon/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/honeymoon/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -290,6 +321,46 @@ const States = () => {
                   <span className="text-gray-800">{state.stateName}</span>
                   <button
                     onClick={() => deleteHoneymoonState(state._id)}
+                    className="text-red-500 hover:text-red-600 transition-colors duration-200"
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))
+            ) : (
+              <p className="text-gray-500 text-sm">No states available.</p>
+            )}
+          </ul>
+        </div>
+        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
+            Offers
+          </h2>
+          <input
+            type="text"
+            placeholder="Add Honeymoon Places"
+            value={newOffer.name}
+            onChange={(e) => setNewOffer({ name: e.target.value })}
+            className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <button
+            onClick={addOfferState}
+            className="bg-blue-500 text-white font-medium rounded-lg p-3 mb-4 w-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+          >
+            Add Place
+          </button>
+          <h3 className="font-semibold text-gray-700 mb-2">States:</h3>
+          <ul className="space-y-2">
+            {offerStates.length > 0 ? (
+              offerStates.map((state) => (
+                <li
+                  key={state._id}
+                  className="flex justify-between items-center bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-colors duration-200 shadow-sm"
+                >
+                  <span className="text-gray-800">{state.stateName}</span>
+                  <button
+                    onClick={() => deleteOfferState(state._id)}
                     className="text-red-500 hover:text-red-600 transition-colors duration-200"
                   >
                     Delete

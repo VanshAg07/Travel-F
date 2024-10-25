@@ -4,6 +4,7 @@ import axios from "axios";
 const Flipcard = () => {
   const [stateName, setStateName] = useState("");
   const [flipPrice, setFlipPrice] = useState("");
+  const [offerPrice, setOfferPrice] = useState("");
   const [flipcardImages, setFlipcardImages] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("national");
   const [flipcards, setFlipcards] = useState({
@@ -27,9 +28,9 @@ const Flipcard = () => {
   const fetchStateNames = async () => {
     try {
       const [internationalRes, nationalRes, honeymoonRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/admin/states"),
-        axios.get("http://localhost:5000/api/trip/states"),
-        axios.get("http://localhost:5000/api/honeymoon/states"),
+        axios.get("https://api.travello10.com/api/admin/states"),
+        axios.get("https://api.travello10.com/api/trip/states"),
+        axios.get("https://api.travello10.com/api/honeymoon/states"),
       ]);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
@@ -42,7 +43,7 @@ const Flipcard = () => {
   const fetchFlipcards = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/flip-card/flip"
+        "https://api.travello10.com/api/flip-card/flip"
       );
       const flipcardData = response.data; // Adjust based on the actual structure of the response
 
@@ -73,6 +74,7 @@ const Flipcard = () => {
     const formData = new FormData();
     formData.append("stateName", stateName);
     formData.append("flipPrice", flipPrice);
+    formData.append("flipOfferPrice", offerPrice);
     formData.append("category", selectedCategory);
     flipcardImages.forEach((image) => formData.append("flipcardImage", image));
 
@@ -80,13 +82,13 @@ const Flipcard = () => {
       if (isEditing && editFlipcardId) {
         // Only proceed with editing if editFlipcardId is not null or undefined
         await axios.put(
-          `http://localhost:5000/api/flip-card/flip/${selectedCategory}/${editFlipcardId}`,
+          `https://api.travello10.com/api/flip-card/flip/${selectedCategory}/${editFlipcardId}`,
           formData
         );
         setIsEditing(false);
         setEditFlipcardId(null);
       } else {
-        await axios.post("http://localhost:5000/api/flip-card/flip", formData);
+        await axios.post("https://api.travello10.com/api/flip-card/flip", formData);
       }
       fetchFlipcards(); // Refresh the list
       clearForm();
@@ -99,6 +101,7 @@ const Flipcard = () => {
   const clearForm = () => {
     setStateName("");
     setFlipPrice("");
+    setOfferPrice("");
     setFlipcardImages([]);
     setSelectedCategory("national");
     filterStatesByCategory("national"); // Reset filtered states
@@ -131,13 +134,15 @@ const Flipcard = () => {
   };
 
   const handleEdit = (category, flipcard) => {
-    console.log("Editing flipcard ID:", flipcard.id); // Check the ID
+    console.log("Editing flipcard ID:", flipcard.id);
     if (!flipcard._id) {
       console.error("Flipcard ID is undefined");
       return;
     }
+    console.log(flipcard);
     setStateName(flipcard.stateName);
     setFlipPrice(flipcard.flipPrice);
+    setOfferPrice(flipcard.offerPrice);
     setSelectedCategory(category);
     setIsEditing(true);
     setEditFlipcardId(flipcard._id);
@@ -151,7 +156,7 @@ const Flipcard = () => {
     }
     try {
       // Send delete request with category and stateName as parameters
-      await axios.delete(`http://localhost:5000/api/flip-card/flip`, {
+      await axios.delete(`https://api.travello10.com/api/flip-card/flip`, {
         data: {
           category: category,
           stateName: stateName,
@@ -211,6 +216,17 @@ const Flipcard = () => {
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">
+            Flip OFfer Price:
+          </label>
+          <input
+            type="number"
+            value={offerPrice}
+            onChange={(e) => setOfferPrice(e.target.value)}
+            className="border rounded p-2 w-full"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">
             Flipcard Images:
           </label>
           <input
@@ -258,17 +274,18 @@ const Flipcard = () => {
                     />
                   ))}
                   <div>
-                    <strong>{flipcard.stateName}</strong> - $
+                    <strong>{flipcard.stateName}</strong>-Price- 
                     {flipcard.flipPrice}
                   </div>
+                  <div className="ml-4">Offer-{flipcard.flipOfferPrice}</div>
                 </div>
                 <div className="flex gap-2">
-                  <button
+                  {/* <button
                     onClick={() => handleEdit(selectedCategory, flipcard)}
                     className="bg-yellow-500 text-white p-1 rounded"
                   >
                     Edit
-                  </button>
+                  </button> */}
                   <button
                     onClick={() =>
                       handleDelete(selectedCategory, flipcard.stateName)

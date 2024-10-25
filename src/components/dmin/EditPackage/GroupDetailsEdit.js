@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const GroupDetailsEdit = () => {
   const [groupDetails, setGroupDetails] = useState([]);
@@ -21,9 +23,8 @@ const GroupDetailsEdit = () => {
   const fetchGroupDetails = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/group-tours/group-details"
+        "https://api.travello10.com/api/group-tours/group-details"
       );
-      console.log("API Response:", response.data);
       setGroupDetails(response.data.data);
     } catch (error) {
       console.error("Error fetching group details:", error);
@@ -49,21 +50,36 @@ const GroupDetailsEdit = () => {
     setError(""); // Clear error message on change
   };
 
+  const handleImageChange = (e) => {
+    const filename = e.target.value.split("/").pop(); // Get only the filename
+    setFormData((prevData) => ({
+      ...prevData,
+      image: [filename], // Set only the filename in the state
+    }));
+    setError(""); // Clear error message on change
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`/api/group-details/${editingId}`, formData);
-      } else {
-        await axios.post(
-          "http://localhost:5000/api/group-tours/group-details",
+        await axios.put(
+          `https://api.travello10.com/api/group-tours/group-details/${editingId}`,
           formData
         );
+        toast.success("Group detail updated successfully!"); // Success toast
+      } else {
+        await axios.post(
+          "https://api.travello10.com/api/group-tours/group-details",
+          formData
+        );
+        toast.success("Group detail added successfully!"); // Success toast
       }
       fetchGroupDetails();
       resetForm();
     } catch (error) {
       setError("Error saving group detail. Please try again.");
+      toast.error("Error saving group detail. Please try again."); // Error toast
       console.error("Error saving group detail", error);
     }
   };
@@ -87,14 +103,22 @@ const GroupDetailsEdit = () => {
       description: groupDetail.description,
       duration: groupDetail.duration,
       numberOfPax: groupDetail.numberOfPax,
-      image: groupDetail.image,
+      image: [groupDetail.image[0].split("/").pop()], // Set only the filename for editing
     });
     setEditingId(groupDetail._id);
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/group-tours/group-details/${id}`);
-    fetchGroupDetails();
+    try {
+      await axios.delete(
+        `https://api.travello10.com/api/group-tours/group-details/${id}`
+      );
+      toast.success("Group detail deleted successfully!"); // Success toast
+      fetchGroupDetails(); // Refresh the list after deletion
+    } catch (error) {
+      toast.error("Error deleting group detail. Please try again."); // Error toast
+      console.error("Error deleting group detail", error);
+    }
   };
 
   return (
@@ -152,11 +176,9 @@ const GroupDetailsEdit = () => {
         <input
           type="text"
           name="image"
-          value={formData.image[0]} // Assuming only the first image is editable
-          onChange={(e) =>
-            handleChange({ target: { name: "image", value: [e.target.value] } })
-          }
-          placeholder="Image URL"
+          value={formData.image[0]} // Now this will only show the filename
+          onChange={handleImageChange} // Change this to the new handler
+          placeholder="Image Filename" // Updated placeholder
           required
           className="block w-full p-2 mb-4 border rounded"
         />
@@ -197,6 +219,7 @@ const GroupDetailsEdit = () => {
           </li>
         ))}
       </ul>
+      <ToastContainer /> {/* Add ToastContainer here */}
     </div>
   );
 };
