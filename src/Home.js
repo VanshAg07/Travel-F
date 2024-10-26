@@ -24,6 +24,7 @@ import Socialmedia from "./components/Socialmedia.js";
 import Homeyt from "./components/Homeyt.js";
 import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
+import SignInPopup from "./components/Popup.js"; // Import the SignInPopup component
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -69,22 +70,22 @@ const Home = () => {
 
         {/* Conditionally render Upcomingtrip for larger screens and UpcomingtripMobile for smaller screens */}
         <div className="bg-[#ffffe6]">
-        {isMobile ? (
-          <div style={{ margin: "0px 10px 0px 10px" }}>
-          <UpcomingtripMobile />
+          {isMobile ? (
+            <div style={{ margin: "0px 10px 0px 10px" }}>
+              <UpcomingtripMobile />
             </div>
-        ) : (
-          <Upcomingtrip />
-        )}
+          ) : (
+            <Upcomingtrip />
+          )}
 
-        {/* Show Explore component only when screen size is greater than 426px */}
-        {!isMobile && <Explore />}
-        
-        <Homeglry />
-        <Whyuss />
-        <Review />
-        <Forms />
-        <Homeyt />
+          {/* Show Explore component only when screen size is greater than 426px */}
+          {!isMobile && <Explore />}
+          
+          <Homeglry />
+          <Whyuss />
+          <Review />
+          <Forms />
+          <Homeyt />
         </div>
         <MainFooter />
         <Socialmedia />
@@ -97,6 +98,9 @@ const Home = () => {
             <Lottie loop={true} animationData={cont} />
           </a>
         </div>
+
+        {/* Include the SignInPopup component */}
+        <SignInPopup />
       </GoogleOAuthProvider>
     </div>
   );
