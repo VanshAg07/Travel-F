@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import icon1 from "../img/aboutus.jpg";
 import Nav from "./Nav";
-import { FaLinkedin } from "react-icons/fa";
-import { FaUserTie, FaHandshake, FaShuttleVan } from "react-icons/fa";
-import InstaIcon from '../img/icons8-insta.svg';
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
+import Aboutushero from "./aboutus-hero"
 
 const Aboutus = () => {
   useEffect(() => {
@@ -28,47 +26,6 @@ const Aboutus = () => {
 
   const [teamMembers, setTeamMembers] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  const Members = [
-    {
-      name: "Govind Gaur",
-      title: "CEO, Founder",
-      imgSrc: "path-to-image1",
-      description:
-      "Govind is a visionary travelpreneur with an experience of leading more than 200 community trips. He’s fond of all kinds of voyages, yet his favourite are motorbiking expeditions, hence he accounts for 30000kms of extreme rides. He can hold a conversation around business, human values and almost everything one can think of. The man knows how to get down to work and party, equally well.",
-    },
-    {
-      name: "Madhusudan Jaju",
-      title: "Head of Finance",
-      imgSrc: "path-to-image2",
-      description:
-        "Madusudhan is a passionate learner, and an instinctive marketer. He has led more than 40 trips and has taken his hot wheels on a ride of total 50,000kms. He has a habit of finding a path even where it seems impossible, that is why he has been to over 30 treks, some well known, others unexplored. Being an avid reader, he is the perfect motivational speaker for the team.",
-    },
-    {
-      name: "Chirag Jain",
-      title: "Head of Operations",
-      imgSrc: "path-to-image3",
-      description:
-      "Chirag is a strong analyst of travel operations, and thus heads the responsibility of running the entire show. Just like Sindbad the Sailor, he finds out the most interesting experiences and tests them out before presenting to the community. With so many duties to perform, it is hard to believe that he managed to code the html and css for this website!",
-    },
-  ];
-
-  const warriors = [
-    {
-      title: "Adventure Coordinators",
-      icon: <FaUserTie size={50} className="mb-4  text-yellow-500 "  />,
-     description: "Our trip captains are truly remarkable individuals. Fearless, adaptable, and exceptional leaders, they are the driving force behind our community adventures. Carefully selected from India’s premier travel institutes, they possess a wealth of knowledge and expertise, mastering the art of guiding diverse journeys—from thrilling biking escapades to challenging trekking expeditions. Their passion for exploration and commitment to safety ensure that every trip is not only memorable but also expertly managed, allowing our travelers to fully immerse themselves in the experience.",
-    },
-    {
-      title: "Community Partners",
-      icon: <FaHandshake size={50} className="mb-4 text-yellow-500" />,
-      description: `As the vital link connecting travelers to local vendors, we take great care in selecting the partners we work with. Through extensive scouting and evaluation, we’ve discovered the most welcoming and generous vendors who go above and beyond to ensure that our travelers feel right at home, no matter how far they are from their own. Our commitment to nurturing these family-like relationships allows us to give back to the local community, ensuring that every interaction fosters goodwill and supports sustainable practices that benefit everyone involved.,`,
-    },
-    {
-      title: "Driving Experts",
-      icon: <FaShuttleVan size={50} className="mb-4 text-yellow-500" />,
-      description: ` We recognize the critical role our drivers play in ensuring the safety and comfort of our travelers as they embark on adventures through the most challenging landscapes. The foundation of our journeys rests on the skill and experience of our team. At WanderOn, our drivers are not just professionals; they are local experts with years of hands-on experience. They possess an intimate knowledge of the routes, ensuring that every journey is not only safe but also enriching, as they guide travelers through hidden gems and scenic vistas.,`,
-    },
-  ];
 
   return (
     <>
@@ -119,12 +76,15 @@ value every step of the way.
           </p>
         </div>
 
+        {/* Heroes Section */}
+        <Aboutushero/>
+
         {/* Team Section */}
         <section className="text-center py-12 sm:py-16 bg-gray-50 px-4 sm:px-8 lg:px-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
             Meet Our Amazing Team. The Perfect Blend of Talent and Dedication
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {teamMembers.map((member, index) => (
   <div key={index} className="flex flex-col items-center">
     <img
@@ -133,35 +93,14 @@ value every step of the way.
       className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
     />
     <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
+    <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
     <p className="text-gray-600 mb-4">{member.position}</p> {/* updated from title to position */}
-    <hr className="border-t-2 border-yellow-500 w-12 mb-4" />
-    <p className="text-gray-700 text-sm sm:text-base px-4 text-justify">
+    <p className="text-gray-600 text-left text-sm sm:text-base leading-relaxed">
       {member.description}
     </p>
   </div>
 ))}
 
-          </div>
-        </section>
-
-        {/* Heroes Section */}
-        <section className="py-12 sm:py-16 bg-white px-4 sm:px-8 lg:px-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
-            The HEROES Behind Our Journey Towards Community Excellence
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {warriors.map((warrior, index) => (
-              <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
-                  {warrior.icon}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2">{warrior.title}</h3>
-                <div className="border-t-2 border-yellow-500 w-12 mx-auto mb-4"></div>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  {warrior.description}
-                </p>
-              </div>
-            ))}
           </div>
         </section>
 

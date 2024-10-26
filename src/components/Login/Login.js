@@ -78,7 +78,7 @@ function Login() {
             Welcome Back!
           </h1>
           <p className="text-black font-medium mb-4 text-sm">
-            Login to your account using email
+            Login to your account
           </p>
 
           <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -105,6 +105,10 @@ function Login() {
                 className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
               />
             </div>
+            <p className="mt-2 text-blue-600 font-medium text-right text-sm">
+            
+            <Link to="/forgot">Forgot Your Password?</Link>
+          </p>
             <button
               type="submit"
               className="w-full py-2 font-medium bg-cyan-500 text-white rounded-lg hover:scale-95 transition duration-300"

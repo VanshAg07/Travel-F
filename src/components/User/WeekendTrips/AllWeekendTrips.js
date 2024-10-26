@@ -66,7 +66,7 @@ function AllWeekendTrips() {
                       <div className="flex items-center text-black">
                         <FaClock className="mr-1 text-black" />
                         <span className="text-black text-xs">
-                          {`${trip.tripDuration} Days`}
+                          {`${trip.tripDuration}`}
                         </span>
                       </div>
                       {/* Location */}

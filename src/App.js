@@ -73,6 +73,8 @@ import Sportstour from "./components/Grouptours/Sportstour.js";
 import Adventuretour from "./components/Grouptours/Adventuretour";
 import Offer from "./components/Offer.js";
 import AdminLogin from "./components/dmin/AdminLogin.js";
+import Forgotmob from "./components/Login/Forgotmob.js"
+import Forgot from "./components/Login/Forgot.js"
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -191,7 +193,9 @@ const App = () => {
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
         <Route path="/offer" element={<Offer />} />
-        <Route path="/" element={<ComingSoon />} />
+        <Route path="/forgotmob" element={<Forgotmob />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );

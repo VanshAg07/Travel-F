@@ -140,7 +140,8 @@ const BookingOptions = () => {
           customerPhone,
           customerName,
           customerEmail,
-          paymentType: paymentType === "bookingAmount" ? "bookingAmount" : "fullPayment",
+          paymentType:
+            paymentType === "bookingAmount" ? "bookingAmount" : "fullPayment",
         }
       );
 
@@ -168,7 +169,10 @@ const BookingOptions = () => {
               selectedDate,
               selectedSharing,
               stateName,
-              paymentType: paymentType === "bookingAmount" ? "bookingAmount" : "fullPayment",
+              paymentType:
+                paymentType === "bookingAmount"
+                  ? "bookingAmount"
+                  : "fullPayment",
             };
             const result = await axios.post(
               "http://localhost:5000/api/payment/verify",
@@ -215,177 +219,180 @@ const BookingOptions = () => {
     <div>
       <Nav />
       <Dropnav />
-      <div className="flex justify-center items-center bg-gray-100 w-full min-h-screen">
-        <div className="flex flex-col md:flex-row w-full mx-auto bg-white shadow-lg rounded-lg mt-28 max-w-4xl">
-          {/* Left Section */}
-          <div className="w-full md:w-1/2 p-6 md:p-8 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
-              Booking Details for {tripName}
-            </h1>
-            <p className="text-lg md:text-xl text-center text-gray-600 mb-8">
-              Selected Date:{" "}
-              <span className="text-[#03346E] font-semibold">
-                {formattedDate}
-              </span>
-            </p>
-
-            {/* Sharing Options with Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              {doubleSharing && (
-                <SharingOption
-                  type="double"
-                  price={doubleSharing}
-                  selected={selectedSharing}
-                  onClick={handleSharingSelect}
-                  className={`transition-transform duration-300 transform ${
-                    selectedSharing === "double"
-                      ? "scale-105 border border-[#03346E] bg-gray-100"
-                      : ""
-                  }`}
-                />
-              )}
-              {tripleSharing && (
-                <SharingOption
-                  type="triple"
-                  price={tripleSharing}
-                  selected={selectedSharing}
-                  onClick={handleSharingSelect}
-                  className={`transition-transform duration-300 transform ${
-                    selectedSharing === "triple"
-                      ? "scale-105 border border-[#03346E] bg-gray-100"
-                      : ""
-                  }`}
-                />
-              )}
-              {quadSharing && (
-                <SharingOption
-                  type="quad"
-                  price={quadSharing}
-                  selected={selectedSharing}
-                  onClick={handleSharingSelect}
-                  className={`transition-transform duration-300 transform ${
-                    selectedSharing === "quad"
-                      ? "scale-105 border border-[#03346E] bg-gray-100"
-                      : ""
-                  }`}
-                />
-              )}
-            </div>
-
-            <PeopleInput
-              peopleCount={peopleCount}
-              incrementPeopleCount={incrementPeopleCount}
-              decrementPeopleCount={decrementPeopleCount}
-            />
-
-            {/* Displaying the selected sharing option and price details */}
-            <div className="bg-gray-50 rounded-lg p-4 mt-6 border border-gray-200">
-              <h2 className="text-xl mb-2 font-semibold text-gray-700">
-                Booking Details
-              </h2>
-              <p className="text-lg text-gray-600 w-full flex justify-between">
-                Sharing Type:{" "}
-                <span className="text-[#03346E] font-semibold">
-                  {selectedSharing.charAt(0).toUpperCase() +
-                    selectedSharing.slice(1)}{" "}
-                  Sharing
-                </span>
-              </p>
-              <p className="text-lg text-gray-600 w-full flex justify-between">
-                Price per Person:
-                <span>
-                  ₹
-                  {selectedSharing === "double"
-                    ? doubleSharing
-                    : selectedSharing === "triple"
-                    ? tripleSharing
-                    : selectedSharing === "quad"
-                    ? quadSharing
-                    : 0}
-                </span>
-              </p>
-              <p className="text-lg text-gray-600 w-full flex justify-between">
-                Total Price for {peopleCount} people:
-                <span>
-                  ₹
-                  {(
-                    (selectedSharing === "double"
-                      ? doubleSharing
-                      : selectedSharing === "triple"
-                      ? tripleSharing
-                      : selectedSharing === "quad"
-                      ? quadSharing
-                      : 0) * peopleCount
-                  ).toFixed(2)}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="w-full md:w-1/2 p-6 md:p-8 bg-gray-50 rounded-lg">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Payment</h2>
-            <div className="flex flex-col mb-4">
-              <label className="text-gray-700 mb-2">Payment Type:</label>
-              <select
-                className="border rounded p-2"
-                value={paymentType}
-                onChange={(e) => setPaymentType(e.target.value)}
-              >
-                <option value="full">Full Payment</option>
-                <option value="bookingAmount">Booking Amount</option>
-              </select>
-              <p className="w-full justify-end flex">+ convenience fees</p>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Total Amount: ₹{paymentAmount.toFixed(2)}
-            </h3>
-            <div className="flex flex-col mb-4">
-              <label className="text-gray-700 mb-2">Name:</label>
-              <input
-                type="text"
-                className="border rounded p-2"
-                value={customerName}
-                onChange={handleNameChange}
-                placeholder="Enter your name"
-              />
-              {nameError && <p className="text-red-500">{nameError}</p>}
-            </div>
-            <div className="flex flex-col mb-4">
-              <label className="text-gray-700 mb-2">Email:</label>
-              <input
-                type="email"
-                className="border rounded p-2"
-                value={customerEmail}
-                onChange={handleEmailChange}
-                placeholder="Enter your email"
-              />
-              {emailError && <p className="text-red-500">{emailError}</p>}
-            </div>
-            <div className="flex flex-col mb-6">
-              <label className="text-gray-700 mb-2">Phone:</label>
-              <input
-                type="text"
-                className="border rounded p-2"
-                value={customerPhone}
-                onChange={handlePhoneChange}
-                placeholder="Enter your phone number"
-              />
-              {phoneError && <p className="text-red-500">{phoneError}</p>}
-            </div>
-
-            <button
-              className={`bg-[#03346E] text-white font-bold py-2 rounded w-full ${
-                isLoading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              onClick={handlePayment}
-              disabled={isLoading}
-            >
-              {isLoading ? "Processing..." : "Proceed to Payment"}
-            </button>
-          </div>
-        </div>
+      <div className="flex justify-center items-center pb-16 mx-auto min-h-screen">
+  <div className="flex flex-col md:flex-row w-9/12 mx-auto bg-white shadow-lg rounded-lg mt-28 max-w-6xl">
+    {/* Left Section */}
+    <div className="flex-1 p-4 md:p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
+        Booking Details for
+      </h1>
+      <div className="mt-4 bg-cyan-500 p-3 sm:p-4 rounded-lg text-white font-bold text-lg sm:text-xl text-center">
+        {tripName}
       </div>
+      <p className="text-lg md:text-xl mt-3 text-center text-gray-800 mb-8">
+        Selected Date:{" "}
+        <span className="text-[#03346E] font-semibold">
+          {formattedDate}
+        </span>
+      </p>
+
+      {/* Sharing Options with Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {doubleSharing && (
+          <SharingOption
+            type="double"
+            price={doubleSharing}
+            selected={selectedSharing}
+            onClick={handleSharingSelect}
+            className={`transition-transform duration-300 transform ${
+              selectedSharing === "double"
+                ? "scale-105 border border-[#03346E] bg-gray-100"
+                : ""
+            }`}
+          />
+        )}
+        {tripleSharing && (
+          <SharingOption
+            type="triple"
+            price={tripleSharing}
+            selected={selectedSharing}
+            onClick={handleSharingSelect}
+            className={`transition-transform duration-300 transform ${
+              selectedSharing === "triple"
+                ? "scale-105 border border-[#03346E] bg-gray-100"
+                : ""
+            }`}
+          />
+        )}
+        {quadSharing && (
+          <SharingOption
+            type="quad"
+            price={quadSharing}
+            selected={selectedSharing}
+            onClick={handleSharingSelect}
+            className={`transition-transform duration-300 transform ${
+              selectedSharing === "quad"
+                ? "scale-105 border border-[#03346E] bg-gray-100"
+                : ""
+            }`}
+          />
+        )}
+      </div>
+
+      <PeopleInput
+        peopleCount={peopleCount}
+        incrementPeopleCount={incrementPeopleCount}
+        decrementPeopleCount={decrementPeopleCount}
+      />
+
+      {/* Displaying the selected sharing option and price details */}
+      <div className="bg-gray-50 rounded-lg p-4 mt-6 border border-gray-200">
+        <h2 className="text-xl mb-2 font-semibold text-gray-800">
+          Booking Details
+        </h2>
+        <p className="text-lg text-gray-600 w-full flex justify-between">
+          Sharing Type:{" "}
+          <span className="text-[#03346E] font-semibold">
+            {selectedSharing.charAt(0).toUpperCase() +
+              selectedSharing.slice(1)}{" "}
+            Sharing
+          </span>
+        </p>
+        <p className="text-lg text-gray-600 w-full flex justify-between">
+          Price per Person:
+          <span>
+            ₹
+            {selectedSharing === "double"
+              ? doubleSharing
+              : selectedSharing === "triple"
+              ? tripleSharing
+              : selectedSharing === "quad"
+              ? quadSharing
+              : 0}
+          </span>
+        </p>
+        <p className="text-lg text-gray-600 w-full flex justify-between">
+          Total Price for {peopleCount} people:
+          <span>
+            ₹
+            {(
+              (selectedSharing === "double"
+                ? doubleSharing
+                : selectedSharing === "triple"
+                ? tripleSharing
+                : selectedSharing === "quad"
+                ? quadSharing
+                : 0) * peopleCount
+            ).toFixed(2)}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    {/* Right Section */}
+    <div className="flex-1 p-6 md:p-8 bg-gray-50 rounded-lg">
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Payment</h2>
+      <div className="flex flex-col mb-4">
+        <label className="text-gray-800 mb-2">Payment Type:</label>
+        <select
+          className="border rounded p-2"
+          value={paymentType}
+          onChange={(e) => setPaymentType(e.target.value)}
+        >
+          <option value="full">Full Payment</option>
+          <option value="bookingAmount">Booking Amount</option>
+        </select>
+        <p className="w-full justify-end flex">+ convenience fees</p>
+      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        Total Amount: ₹{paymentAmount.toFixed(2)}
+      </h3>
+      <div className="flex flex-col mb-4">
+        <label className="text-gray-800 mb-2">Name:</label>
+        <input
+          type="text"
+          className="border rounded p-2"
+          value={customerName}
+          onChange={handleNameChange}
+          placeholder="Enter your name"
+        />
+        {nameError && <p className="text-red-500">{nameError}</p>}
+      </div>
+      <div className="flex flex-col mb-4">
+        <label className="text-gray-800 mb-2">Email:</label>
+        <input
+          type="email"
+          className="border rounded p-2"
+          value={customerEmail}
+          onChange={handleEmailChange}
+          placeholder="Enter your email"
+        />
+        {emailError && <p className="text-red-500">{emailError}</p>}
+      </div>
+      <div className="flex flex-col mb-6">
+        <label className="text-gray-800 mb-2">Phone:</label>
+        <input
+          type="text"
+          className="border rounded p-2"
+          value={customerPhone}
+          onChange={handlePhoneChange}
+          placeholder="Enter your phone number"
+        />
+        {phoneError && <p className="text-red-500">{phoneError}</p>}
+      </div>
+
+      <button
+        className={`bg-cyan-500 text-white text-lg font-bold py-4 rounded w-full ${
+          isLoading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+        onClick={handlePayment}
+        disabled={isLoading}
+      >
+        {isLoading ? "Processing..." : "Proceed to Payment"}
+      </button>
+    </div>
+  </div>
+</div>
     </div>
   );
 };
@@ -410,21 +417,22 @@ const PeopleInput = ({
   <div className="flex justify-between items-center mt-4">
     <h3 className="text-lg font-semibold">Number of People:</h3>
     <div className="flex items-center">
-      <button
-        className="bg-gray-200 p-2 rounded-l"
-        onClick={decrementPeopleCount}
-        disabled={peopleCount <= 1}
-      >
-        -
-      </button>
-      <span className="border-t border-b px-4">{peopleCount}</span>
-      <button
-        className="bg-gray-200 p-2 rounded-r"
-        onClick={incrementPeopleCount}
-      >
-        +
-      </button>
-    </div>
+  <button
+    className="bg-gray-200 py-2 px-4 rounded-l h-full"
+    onClick={decrementPeopleCount}
+    disabled={peopleCount <= 1}
+  >
+    -
+  </button>
+  <span className="border-t border-b px-4 py-2 flex items-center h-full">{peopleCount}</span>
+  <button
+    className="bg-gray-200 py-2 px-4 rounded-r h-full"
+    onClick={incrementPeopleCount}
+  >
+    +
+  </button>
+</div>
+
   </div>
 );
 

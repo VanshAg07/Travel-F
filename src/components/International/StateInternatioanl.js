@@ -53,7 +53,7 @@ const StateInternational = () => {
                     {/* Duration */}
                     <div className="flex items-center text-black">
                       <FaClock className="mr-2 text-black" />
-                      <span className="text-black text-xs">{`${trip.tripDuration} Days`}</span>
+                      <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                     </div>
 
                     {/* Location */}

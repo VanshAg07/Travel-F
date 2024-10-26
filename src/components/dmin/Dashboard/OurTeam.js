@@ -196,6 +196,45 @@ const OurTeam = () => {
             className="border border-gray-300 rounded w-full p-2"
           />
         </div>
+
+        {/* <h3 className="text-lg font-semibold mb-2">Social Media</h3>
+        {formData.socialMedia.map((socialMedia, index) => (
+          <div key={index} className="flex mb-2">
+            <input
+              type="file"
+              name="socialMediaImg"
+              onChange={(e) => handleSocialMediaChange(index, e)}
+              className="border border-gray-300 rounded w-full p-2 mr-2"
+            />
+            {socialMedia.socialMediaImg && (
+              <span className="text-gray-500">
+                Selected: {socialMedia.socialMediaImg.name}
+              </span>
+            )}
+            <input
+              type="text"
+              name="link"
+              placeholder="Social Media Link"
+              value={socialMedia.link}
+              onChange={(e) => handleSocialMediaChange(index, e)}
+              className="border border-gray-300 rounded w-full p-2 mr-2"
+            />
+            <button
+              type="button"
+              onClick={() => removeSocialMedia(index)}
+              className="bg-red-500 text-white rounded px-3"
+            >
+              Remove
+            </button>
+          </div>
+        ))} */}
+        {/* <button
+          type="button"
+          onClick={addSocialMedia}
+          className="bg-blue-500 text-white rounded px-3 mb-4"
+        >
+          Add Social Media
+        </button> */}
         <button
           type="submit"
           className="bg-green-500 text-white rounded px-4 py-2"

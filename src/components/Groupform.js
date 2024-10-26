@@ -25,7 +25,7 @@ const EuropeTripEnquiryForm = () => {
   };
 
   return (
-    <div className="flex pt-10 pb-10 justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8">
+    <div className="flex bg-[#ffffe6] pt-10 pb-10 justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8">
       <form 
         onSubmit={handleSubmit} 
         className="bg-white p-6 sm:p-8 rounded-lg shadow-xl w-full max-w-lg"

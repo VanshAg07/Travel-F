@@ -10,6 +10,7 @@ import img6 from "../img/Uttarakhand.png";
 import { Link } from "react-router-dom";
 import Dropnav from "../components/Dropnav";
 import MainFooter from "./Footer/MainFooter";
+import Mainreview from "../components/Mainreview.js";
 import "./Blog.css";
 
 const Data = [
@@ -58,28 +59,25 @@ const Data = [
 const Blog = () => {
   return (
     <>
-      <Nav />
+     <Nav />
       <Dropnav />
-      <div className="blog-container">
-        <div className="relative w-full h-[75vh]">
-          <img
-            className="absolute top-0 left-0 w-full h-full object-cover"
-            src={Blog1}
-            alt="Blog Cover"
-          />
-          {/* Content on the image */}
-          <div className="relative z-10 flex flex-col justify-center items-start h-full p-4 sm:p-8">
-          <h1 className="text-3xl sm:text-5xl text-white font-bold mb-4">
-          Journey Through Stories
-            </h1>
-            <div className="bg-[yellow] p-3">
-              <p className="text-lg sm:text-xl text-black font-semibold">
-              Explore Our Latest Travel Blogs
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="hero-section-left-1">
+        <img className="hero-img" src={Blog1} alt="International" />
+        <div className="relative flex flex-col items-center">
+  <div className="relative w-full flex items-start justify-center">
+    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+      Journey Through Stories
+    </h1>
+  </div>
+  
+  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+   Explore Our Latest Blogs
+  </h1>
+</div>
       </div>
+      <div className="mt-[100px] md:mt-0">
+  <Mainreview />
+</div>
       <div>
         <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">
           Blogs
