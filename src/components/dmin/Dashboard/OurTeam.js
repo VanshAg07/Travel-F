@@ -197,7 +197,7 @@ const OurTeam = () => {
           />
         </div>
 
-        <h3 className="text-lg font-semibold mb-2">Social Media</h3>
+        {/* <h3 className="text-lg font-semibold mb-2">Social Media</h3>
         {formData.socialMedia.map((socialMedia, index) => (
           <div key={index} className="flex mb-2">
             <input
@@ -227,14 +227,14 @@ const OurTeam = () => {
               Remove
             </button>
           </div>
-        ))}
-        <button
+        ))} */}
+        {/* <button
           type="button"
           onClick={addSocialMedia}
           className="bg-blue-500 text-white rounded px-3 mb-4"
         >
           Add Social Media
-        </button>
+        </button> */}
         <button
           type="submit"
           className="bg-green-500 text-white rounded px-4 py-2"

@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import icon1 from "../img/aboutus.jpg";
 import Nav from "./Nav";
-import { FaLinkedin } from "react-icons/fa";
 import { FaUserTie, FaHandshake, FaShuttleVan } from "react-icons/fa";
-import InstaIcon from '../img/icons8-insta.svg';
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
@@ -28,29 +26,6 @@ const Aboutus = () => {
 
   const [teamMembers, setTeamMembers] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  const Members = [
-    {
-      name: "Govind Gaur",
-      title: "CEO, Founder",
-      imgSrc: "path-to-image1",
-      description:
-      "Govind is a visionary travelpreneur with an experience of leading more than 200 community trips. He’s fond of all kinds of voyages, yet his favourite are motorbiking expeditions, hence he accounts for 30000kms of extreme rides. He can hold a conversation around business, human values and almost everything one can think of. The man knows how to get down to work and party, equally well.",
-    },
-    {
-      name: "Madhusudan Jaju",
-      title: "Head of Finance",
-      imgSrc: "path-to-image2",
-      description:
-        "Madusudhan is a passionate learner, and an instinctive marketer. He has led more than 40 trips and has taken his hot wheels on a ride of total 50,000kms. He has a habit of finding a path even where it seems impossible, that is why he has been to over 30 treks, some well known, others unexplored. Being an avid reader, he is the perfect motivational speaker for the team.",
-    },
-    {
-      name: "Chirag Jain",
-      title: "Head of Operations",
-      imgSrc: "path-to-image3",
-      description:
-      "Chirag is a strong analyst of travel operations, and thus heads the responsibility of running the entire show. Just like Sindbad the Sailor, he finds out the most interesting experiences and tests them out before presenting to the community. With so many duties to perform, it is hard to believe that he managed to code the html and css for this website!",
-    },
-  ];
 
   const warriors = [
     {
@@ -124,7 +99,7 @@ value every step of the way.
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
             Meet Our Amazing Team. The Perfect Blend of Talent and Dedication
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {teamMembers.map((member, index) => (
   <div key={index} className="flex flex-col items-center">
     <img
@@ -133,9 +108,9 @@ value every step of the way.
       className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
     />
     <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
+    <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
     <p className="text-gray-600 mb-4">{member.position}</p> {/* updated from title to position */}
-    <hr className="border-t-2 border-yellow-500 w-12 mb-4" />
-    <p className="text-gray-700 text-sm sm:text-base px-4 text-justify">
+    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
       {member.description}
     </p>
   </div>
