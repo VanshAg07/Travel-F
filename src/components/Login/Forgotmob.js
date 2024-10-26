@@ -19,8 +19,8 @@ const Login = () => {
         </div>
 
         {/* Heading */}
-        <h2 className="text-center text-white text-xl font-bold mb-6">
-          Login to your Account
+        <h2 className="text-center -mt-5 text-white text-xl font-bold mb-6">
+          Forgot Your Password
         </h2>
 
         {/* Form Fields */}
@@ -30,22 +30,33 @@ const Login = () => {
             placeholder="Email Address"
             className="w-full p-3 placeholder-black rounded-md border border-gray-300 bg-white"
           />
+          <button
+            type="button"
+            className="w-full p-3 bg-cyan-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+          >
+            Send OTP
+          </button>
           <input
-            type="password"
-            placeholder="Password"
+            type="text"
+            placeholder="Enter OTP"
             className="w-full p-3 placeholder-black rounded-md border border-gray-300 bg-white"
           />
-           {/* Forgot Link */}
-        <p className="mt-4 text-center text-white text-sm">
-        <a href="/forgotmob" className="text-white ml-1 cursor-pointer hover:underline">
-        Forgot Your Password?{" "}
-          </a>
-        </p>
+          <button
+            type="button"
+            className="w-full p-3 bg-cyan-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+          >
+            Verify OTP
+          </button>
+          <input
+            type="password"
+            placeholder="New Password"
+            className="w-full p-3 placeholder-black rounded-md border border-gray-300 bg-white"
+          />
           <button
             type="submit"
             className="w-full p-3 mt-4 bg-cyan-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
           >
-           Login
+            Submit
           </button>
         </form>
 
@@ -63,8 +74,6 @@ const Login = () => {
             Register Now
           </a>
         </p>
-
-       
       </div>
     </div>
   );
