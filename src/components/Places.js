@@ -28,7 +28,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/national/${stateName}`
+        `http://localhost:5000/api/package-image/national/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);

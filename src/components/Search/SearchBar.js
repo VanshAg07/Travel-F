@@ -8,7 +8,7 @@ function SearchBar() {
   const [tripData, setTripData] = useState([]);
   const navigate = useNavigate();
   const fetchSearch = () => {
-    fetch("https://api.travello10.com/api/home/search", {
+    fetch("http://localhost:5000/api/home/search", {
       method: "GET",
     })
       .then((response) => response.json())

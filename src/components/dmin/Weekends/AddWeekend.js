@@ -32,7 +32,7 @@ const AddWeekend = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/weekends/states")
+      .get("http://localhost:5000/api/weekends/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -119,7 +119,7 @@ const AddWeekend = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/weekends/add-weekend-package/${selectedState.id}`,
+      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,

@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import icon1 from "../img/aboutus.jpg";
 import Nav from "./Nav";
-import { FaUserTie, FaHandshake, FaShuttleVan } from "react-icons/fa";
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
+import Aboutushero from "./aboutus-hero"
 
 const Aboutus = () => {
   useEffect(() => {
@@ -16,7 +16,7 @@ const Aboutus = () => {
   const fetchTeamMembers = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/get-team-member"
+        "http://localhost:5000/api/home/get-team-member"
       );
       setTeamMembers(response.data.data);
     } catch (error) {
@@ -26,24 +26,6 @@ const Aboutus = () => {
 
   const [teamMembers, setTeamMembers] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
-
-  const warriors = [
-    {
-      title: "Adventure Coordinators",
-      icon: <FaUserTie size={50} className="mb-4  text-yellow-500 "  />,
-     description: "Our trip captains are truly remarkable individuals. Fearless, adaptable, and exceptional leaders, they are the driving force behind our community adventures. Carefully selected from India’s premier travel institutes, they possess a wealth of knowledge and expertise, mastering the art of guiding diverse journeys—from thrilling biking escapades to challenging trekking expeditions. Their passion for exploration and commitment to safety ensure that every trip is not only memorable but also expertly managed, allowing our travelers to fully immerse themselves in the experience.",
-    },
-    {
-      title: "Community Partners",
-      icon: <FaHandshake size={50} className="mb-4 text-yellow-500" />,
-      description: `As the vital link connecting travelers to local vendors, we take great care in selecting the partners we work with. Through extensive scouting and evaluation, we’ve discovered the most welcoming and generous vendors who go above and beyond to ensure that our travelers feel right at home, no matter how far they are from their own. Our commitment to nurturing these family-like relationships allows us to give back to the local community, ensuring that every interaction fosters goodwill and supports sustainable practices that benefit everyone involved.,`,
-    },
-    {
-      title: "Driving Experts",
-      icon: <FaShuttleVan size={50} className="mb-4 text-yellow-500" />,
-      description: ` We recognize the critical role our drivers play in ensuring the safety and comfort of our travelers as they embark on adventures through the most challenging landscapes. The foundation of our journeys rests on the skill and experience of our team. At WanderOn, our drivers are not just professionals; they are local experts with years of hands-on experience. They possess an intimate knowledge of the routes, ensuring that every journey is not only safe but also enriching, as they guide travelers through hidden gems and scenic vistas.,`,
-    },
-  ];
 
   return (
     <>
@@ -94,6 +76,9 @@ value every step of the way.
           </p>
         </div>
 
+        {/* Heroes Section */}
+        <Aboutushero/>
+
         {/* Team Section */}
         <section className="text-center py-12 sm:py-16 bg-gray-50 px-4 sm:px-8 lg:px-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
@@ -110,33 +95,12 @@ value every step of the way.
     <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
     <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
     <p className="text-gray-600 mb-4">{member.position}</p> {/* updated from title to position */}
-    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+    <p className="text-gray-600 text-left text-sm sm:text-base leading-relaxed">
       {member.description}
     </p>
   </div>
 ))}
 
-          </div>
-        </section>
-
-        {/* Heroes Section */}
-        <section className="py-12 sm:py-16 bg-white px-4 sm:px-8 lg:px-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
-            The HEROES Behind Our Journey Towards Community Excellence
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {warriors.map((warrior, index) => (
-              <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
-                  {warrior.icon}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2">{warrior.title}</h3>
-                <div className="border-t-2 border-yellow-500 w-12 mx-auto mb-4"></div>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  {warrior.description}
-                </p>
-              </div>
-            ))}
           </div>
         </section>
 
