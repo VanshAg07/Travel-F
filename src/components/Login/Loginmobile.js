@@ -1,8 +1,61 @@
-import React from "react";
-import backgroundImage from "../../img/login.jpg"; 
-import logo from "../../img/logo.png"; 
+import React, { useState } from "react";
+import backgroundImage from "../../img/login.jpg";
+import logo from "../../img/logo.png";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Slices/UserSlice";
+import { jwtDecode } from "jwt-decode"; // Correct import
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/login-user", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.status === "ok") {
+        toast.success("Login Success");
+        window.localStorage.setItem("token", data.data.token);
+        window.localStorage.setItem("username", data.data.username);
+        window.localStorage.setItem("loggedIn", true);
+
+        // Decode the token and dispatch the user data
+        const decodedToken = jwtDecode(data.data.token);
+        dispatch(setUser(data.data));
+
+        // Redirect based on the user role
+        const role = decodedToken.role;
+        if (role === "admin") {
+          window.location.href = "/home"; // Redirect to admin page
+        } else {
+          window.location.href = "/home"; // Redirect to home page
+        }
+      } else {
+        setError(data.error || "Login failed");
+        toast.error(data.error || "Login failed");
+      }
+    } catch (error) {
+      setError("An error occurred");
+      toast.error("An error occurred");
+    }
+  };
+
   return (
     <div
       className="h-screen flex flex-col justify-center items-center bg-cover overflow-hidden bg-center"
@@ -15,7 +68,7 @@ const Login = () => {
       <div className="relative w-full max-w-xs p-5 z-10 bg-transparent">
         {/* Logo */}
         <div className="flex justify-center">
-          <img src={logo} alt="Travello10 Logo" className="h-40" /> {/* Increased logo height */}
+          <img src={logo} alt="Travello10 Logo" className="h-40" />
         </div>
 
         {/* Heading */}
@@ -24,28 +77,35 @@ const Login = () => {
         </h2>
 
         {/* Form Fields */}
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email Address"
             className="w-full p-3 placeholder-black rounded-md border border-gray-300 bg-white"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full p-3 placeholder-black rounded-md border border-gray-300 bg-white"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-           {/* Forgot Link */}
-        <p className="mt-4 text-center text-white text-sm">
-        <a href="/forgotmob" className="text-white ml-1 cursor-pointer hover:underline">
-        Forgot Your Password?{" "}
-          </a>
-        </p>
+          {/* Forgot Link */}
+          <p className="mt-2 text-end text-white text-sm">
+            <a
+              href="/forgotmob"
+              className="text-white ml-1 cursor-pointer hover:underline"
+            >
+              Forgot Password?
+            </a>
+          </p>
           <button
             type="submit"
             className="w-full p-3 mt-4 bg-cyan-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
           >
-           Login
+            Login
           </button>
         </form>
 
@@ -59,12 +119,13 @@ const Login = () => {
         {/* Login Link */}
         <p className="mt-4 text-center text-white text-sm">
           Don't have an account?{" "}
-          <a href="/Signup" className="text-white ml-1 cursor-pointer hover:underline">
+          <a
+            href="/Signup"
+            className="text-white ml-1 cursor-pointer hover:underline"
+          >
             Register Now
           </a>
         </p>
-
-       
       </div>
     </div>
   );

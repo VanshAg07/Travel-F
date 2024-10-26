@@ -53,7 +53,7 @@ const StateInternational = () => {
                     {/* Duration */}
                     <div className="flex items-center text-black">
                       <FaClock className="mr-2 text-black" />
-                      <span className="text-black text-xs">{`${trip.tripDuration} Days`}</span>
+                      <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                     </div>
 
                     {/* Location */}
@@ -68,8 +68,18 @@ const StateInternational = () => {
                   <div className="flex items-center mb-2 text-black">
                     <FaCalendarAlt className="mr-2 text-black" />
                     <span className="text-black text-xs">
-                      {new Date(trip.tripDate).toLocaleDateString()}
+                      {/* Format the date */}
+                      {new Date(trip.tripDate).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                      })}
                     </span>
+                    {trip.tripDateCount >= 0 && (
+                      <span className="text-xs ml-4">
+                        +{trip.tripDateCount}
+                        <span className="ml-1">Batches</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -84,4 +94,3 @@ const StateInternational = () => {
 };
 
 export default StateInternational;
-

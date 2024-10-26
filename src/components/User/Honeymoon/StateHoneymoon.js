@@ -53,9 +53,8 @@ const StateHoneymoon = () => {
                     {/* Duration */}
                     <div className="flex items-center text-black">
                       <FaClock className="mr-2 text-black" />
-                    <span className="text-black text-xs">{`${trip.tripDuration} Days`}</span> 
+                    <span className="text-black text-xs">{`${trip.tripDuration}`}</span> 
                     </div>
-
                     {/* Location */}
                     <div className="flex items-center text-black">
                       <FaMapMarkerAlt className="mr-1 text-black" />
@@ -65,12 +64,12 @@ const StateHoneymoon = () => {
                     </div>
                   </div>
                   {/* Dates */}
-                  <div className="flex items-center mb-2 text-black">
+                  {/* <div className="flex items-center mb-2 text-black">
                     <FaCalendarAlt className="mr-2 text-black" />
                     <span className="text-black text-xs">
                       {new Date(trip.tripDate).toLocaleDateString()}
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </Link>

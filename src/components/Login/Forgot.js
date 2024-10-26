@@ -1,63 +1,121 @@
 import React, { useState } from "react";
 import bg from "../../images/LoginImg.png";
-import { jwtDecode } from "jwt-decode";
-import useMediaQuery from "../hooks/UseMediaQuery";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
-import { setUser } from "../../Slices/UserSlice";
-import { useDispatch } from "react-redux";
-import Forgotmob from "./Forgotmob"
+import  useMediaQuery  from "../hooks/UseMediaQuery";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import Forgotmob from "./Forgotmob";
+import axios from "axios";
 
 function Forgot() {
   const isMobile = useMediaQuery("(max-width: 768px)");
-  
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState(""); // New state for OTP
-  const [newPassword, setNewPassword] = useState(""); // New state for new password
-  const [error, setError] = useState("");
-  const dispatch = useDispatch();
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [verifiedOtp, setVerifiedOtp] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSendOtp = async () => {
-    // Add your OTP sending logic here
-    toast.success("OTP sent to your email");
-  };
+    if (!validateEmail(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
 
-  const handleVerifyOtp = async () => {
-    // Add your OTP verification logic here
-    toast.success("OTP verified");
-  };
+    setLoading(true);
+    setErrorMessage("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Add logic to handle new password submission
     try {
-      const response = await fetch("http://localhost:5000/reset-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          newPassword,
-        }),
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/request-password-reset",
+        { email }
+      );
 
-      const data = await response.json();
-
-      if (data.status === "ok") {
-        toast.success("Password reset successful");
-        // Redirect or perform other actions
-      } else {
-        setError(data.error || "Password reset failed");
-        toast.error(data.error || "Password reset failed");
+      if (response.status === 200) {
+        setOtpSent(true);
+        toast.success("OTP sent to your email.");
       }
     } catch (error) {
-      setError("An error occurred");
-      toast.error("An error occurred");
+      setErrorMessage(error.response?.data?.message || "Failed to send OTP.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Conditionally render `Signupmobile` for screens smaller than tablet size
+  const handleVerifyOtp = async () => {
+    if (otp.length !== 6) {
+      setErrorMessage("OTP should be 6 digits.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/verify-otp",
+        { email, otp }
+      );
+
+      if (response.status === 200) {
+        setVerifiedOtp(true);
+        toast.success("OTP verified. You can now reset your password.");
+      }
+    } catch (error) {
+      setErrorMessage(error.response?.data?.message || "Invalid OTP.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+    if (newPassword.length < 6) {
+      setErrorMessage("Password should be at least 6 characters long.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const response = await axios.put(
+        "http://localhost:5000/api/auth/reset-password",
+        { email, password: newPassword }
+      );
+
+      if (response.status === 200) {
+        toast.success("Password reset successfully.");
+        navigate("/login");
+        resetForm();
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.response?.data?.message || "Failed to reset password."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setOtpSent(false);
+    setVerifiedOtp(false);
+    setEmail("");
+    setOtp("");
+    setNewPassword("");
+    setConfirmPassword("");
+  };
+
   if (isMobile) {
     return <Forgotmob />;
   }
@@ -74,7 +132,10 @@ function Forgot() {
             Forgot Your Password
           </h1>
 
-          <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
+          <form
+            className="w-full flex flex-col gap-4"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <div className="flex flex-col">
               <label className="text-black font-medium mb-1 text-sm">
                 Email Address
@@ -88,62 +149,91 @@ function Forgot() {
               />
             </div>
 
+            {otpSent && (
+              <>
+                <div className="flex flex-col">
+                  <label className="text-black font-medium mb-1 text-sm">
+                    Enter OTP
+                  </label>
+                  <input
+                    type="text"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter the OTP"
+                    className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
+                  />
+                </div>
+              </>
+            )}
+
+            {verifiedOtp && (
+              <>
+                <div className="flex flex-col">
+                  <label className="text-black font-medium mb-1 text-sm">
+                    New Password
+                  </label>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Enter your new password"
+                    className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="text-black font-medium mb-1 text-sm">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm your new password"
+                    className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
+                  />
+                </div>
+              </>
+            )}
+
+            {errorMessage && (
+              <p className="text-red-600 text-sm">{errorMessage}</p>
+            )}
+
             <button
               type="button"
-              onClick={handleSendOtp}
-              className="w-full py-2 font-medium bg-cyan-500 text-white rounded-lg hover:scale-95 transition duration-300"
+              onClick={
+                !otpSent
+                  ? handleSendOtp
+                  : !verifiedOtp
+                  ? handleVerifyOtp
+                  : handleResetPassword
+              }
+              className={`w-full py-2 font-medium text-white rounded-lg hover:scale-95 transition duration-300 ${
+                loading ? "bg-gray-500" : "bg-cyan-500"
+              }`}
+              disabled={loading}
             >
-              Send OTP
+              {loading
+                ? "Processing..."
+                : otpSent
+                ? verifiedOtp
+                  ? "Submit"
+                  : "Verify OTP"
+                : "Send OTP"}
             </button>
 
-            <div className="flex flex-col">
-              <label className="text-black font-medium mb-1 text-sm">Enter OTP</label>
-              <input
-                type="text"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                placeholder="Enter the OTP"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
-              />
-            </div>
+            <p className="mt-3 font-medium text-black text-sm">
+              -------------- OR --------------
+            </p>
 
-            <button
-              type="button"
-              onClick={handleVerifyOtp}
-              className="w-full py-2 font-medium bg-cyan-500 text-white rounded-lg hover:scale-95 transition duration-300"
-            >
-              Verify OTP
-            </button>
-
-            <div className="flex flex-col">
-              <label className="text-black font-medium mb-1 text-sm">New Password</label>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="Enter your new password"
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
-              />
-            </div>
-            
-            <button
-              type="submit"
-              className="w-full py-2 font-medium bg-cyan-500 text-white rounded-lg hover:scale-95 transition duration-300"
-            >
-              Submit
-            </button>
+            <p className="mt-2 font-medium text-black text-sm">
+              Don't have an account?
+              <span className="text-blue-600 font-medium cursor-pointer hover:underline ml-1">
+                <Link to="/Signup">Register Now</Link>
+              </span>
+            </p>
           </form>
-
-          <p className="mt-3 font-medium text-black text-sm">
-            -------------- OR --------------
-          </p>
-
-          <p className="mt-2 font-medium text-black text-sm">
-            Don't have an account?
-            <span className="text-blue-600 font-medium cursor-pointer hover:underline ml-1">
-              <Link to="/Signup">Register Now</Link>
-            </span>
-          </p>
         </div>
       </div>
     </div>
