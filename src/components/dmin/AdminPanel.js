@@ -33,7 +33,7 @@ const AdminPanel = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/trip/states")
+      .get("https://api.travello10.com/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -163,7 +163,7 @@ const AdminPanel = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/trip/state/${selectedState.id}/trip`,
+      `https://api.travello10.com/api/trip/state/${selectedState.id}/trip`,
       {
         method: "POST",
         body: formData,

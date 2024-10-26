@@ -15,7 +15,7 @@ function HomeGallery() {
   const fetchGalleryImages = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/gallery/home-galleries"
+        "https://api.travello10.com/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images || []);
       if (response.data.images.length > 0) {
@@ -52,7 +52,7 @@ function HomeGallery() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/gallery/home-gallery/${existingGalleryId}`,
+        `https://api.travello10.com/api/gallery/home-gallery/${existingGalleryId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -72,7 +72,7 @@ function HomeGallery() {
     try {
       // Send request to delete a specific image by its index
       await axios.delete(
-        `http://localhost:5000/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`
+        `https://api.travello10.com/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`
       );
       fetchGalleryImages();
     } catch (error) {
@@ -84,7 +84,7 @@ function HomeGallery() {
     try {
       // Send request to delete the entire gallery
       await axios.delete(
-        `http://localhost:5000/api/gallery/home-gallery/${galleryId}`
+        `https://api.travello10.com/api/gallery/home-gallery/${galleryId}`
       );
       fetchGalleryImages();
     } catch (error) {
@@ -97,7 +97,7 @@ function HomeGallery() {
     formData.append("image", newFile);
     try {
       await axios.put(
-        `http://localhost:5000/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`,
+        `https://api.travello10.com/api/gallery/home-gallery/${galleryId}/image/${imageIndex}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

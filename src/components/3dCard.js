@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AllPackagesCard() {
   const [packages, setPackages] = useState([]);
   const [visiblePackages, setVisiblePackages] = useState(1);
   const navigate = useNavigate();
+  const { name } = useParams();
 
   useEffect(() => {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/user/getTripDetails"
+          `https://api.travello10.com/api/user/getTripDetails/${name}`
         );
         const data = await response.json();
         setPackages(data);
@@ -39,7 +40,9 @@ function AllPackagesCard() {
               <div
                 key={`${index}-${tripIndex}`}
                 className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
-                onClick={() => handlePackageClick(pkg.stateName, trip.tripName)}
+                onClick={() =>
+                  handlePackageClick(pkg.stateName, String(trip.tripName))
+                }
               >
                 <img
                   src={trip.tripImages}

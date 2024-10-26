@@ -66,7 +66,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -83,7 +83,7 @@ const Packagedetails = () => {
     fetchTripDetails();
   }, [name, tripName]);
 
-  console.log(sharing);
+  // console.log(sharing);
   let doubleSharing;
   let tripleSharing;
   let quadSharing;
@@ -97,13 +97,6 @@ const Packagedetails = () => {
       "Error: sharing array is empty or does not have enough elements"
     );
   }
-  console.log(
-    doubleSharing,
-    tripleSharing,
-    quadSharing,
-    trips.tripBookingAmount,
-    trips.tripSeats
-  );
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
@@ -146,7 +139,7 @@ const Packagedetails = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "http://localhost:5000/api/contact/contact-trip",
+        "https://api.travello10.com/api/contact/contact-trip",
         formData
       );
 
