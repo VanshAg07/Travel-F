@@ -18,6 +18,8 @@ import WeekendEdit from "./EditPackage/WeekendEdit";
 import BlogsEdit from "./EditPackage/BlogsEdit";
 import GroupToursEdit from "./EditPackage/GroupToursEdit";
 import GroupDetailsEdit from "./EditPackage/GroupDetailsEdit";
+import OffersHome from "./OffersHome";
+import EditOffer from "./EditPackage/EditOffer";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -26,7 +28,7 @@ const AdminPortal = () => {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:5000/api/admin/logout")
+      .post("https://api.travello10.com/api/admin/logout")
       .then(() => {
         navigate("/");
       })
@@ -126,6 +128,16 @@ const AdminPortal = () => {
                       Honeymoon
                     </li>
                     <li
+                      onClick={() => setActiveTab("add-offers")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "add-offers"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Offers
+                    </li>
+                    <li
                       onClick={() => setActiveTab("add-group-tours")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${
                         activeTab === "add-group-tours"
@@ -214,6 +226,16 @@ const AdminPortal = () => {
                       Blogs
                     </li>
                     <li
+                      onClick={() => setActiveTab("edit-offer")}
+                      className={`py-2 px-4 rounded-lg cursor-pointer ${
+                        activeTab === "edit-offer"
+                          ? "bg-gray-700"
+                          : "hover:bg-gray-600"
+                      }`}
+                    >
+                      Offer
+                    </li>
+                    <li
                       onClick={() => setActiveTab("edit-group-tours")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${
                         activeTab === "edit-group-tours"
@@ -256,11 +278,13 @@ const AdminPortal = () => {
         {activeTab === "add-international" && <HomeIntern />}
         {activeTab === "bookings" && <Bookings />}
         {activeTab === "add-honeymoon" && <AddHoneymoon />}
+        {activeTab === "add-offers" && <OffersHome />}
         {activeTab === "add-weekend" && <AddWeekend />}
         {activeTab === "edit-national" && <NationalEdit />}
         {activeTab === "edit-international" && <InternationalEdit />}
         {activeTab === "edit-honeymoon" && <HoneymoonEdit />}
         {activeTab === "edit-weekend" && <WeekendEdit />}
+        {activeTab === "edit-offer" && <EditOffer />}
         {activeTab === "edit-group-tours" && <GroupToursEdit />}
         {activeTab === "edit-group-details" && <GroupDetailsEdit />}
         {activeTab === "edit-blogs" && <BlogsEdit />}

@@ -8,6 +8,7 @@ const AddInternPackage = () => {
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
+    tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
     tripDuration: "",
@@ -33,7 +34,7 @@ const AddInternPackage = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/admin/states")
+      .get("https://api.travello10.com/api/admin/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -120,7 +121,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/admin/international-package/${selectedState.id}`,
+      `https://api.travello10.com/api/admin/international-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -235,6 +236,19 @@ const AddInternPackage = () => {
             value={tripDetails.tripPrice}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Offer Price</label>
+          <input
+            type="Number"
+            name="tripOfferPrice"
+            value={tripDetails.tripOfferPrice}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripOfferPrice: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

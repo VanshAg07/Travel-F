@@ -16,12 +16,10 @@ function Login() {
   const [error, setError] = useState("");
   const dispatch=useDispatch()
 
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/login-user", {
+      const response = await fetch("https://api.travello10.com/login-user", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -43,7 +41,7 @@ function Login() {
         window.localStorage.setItem("loggedIn", true);
         const decodedToken = jwtDecode(data.data.token);
         dispatch(setUser(data.data));
-        console.log(data.data)
+        // console.log(data.data)
         const role = decodedToken.role;
         if (role === "admin") {
           window.location.href = "/"; // Redirect to admin page

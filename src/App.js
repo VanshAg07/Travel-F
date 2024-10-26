@@ -85,32 +85,32 @@ const App = () => {
 
   const adminMiddleware = roleMiddleware(["admin"]);
 
-  // useEffect(() => {
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //   };
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
 
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //   };
-  // }, []);
-  // useEffect(() => {
-  //   const handleKeyDown = (e) => {
-  //     if (
-  //       e.key === "PrintScreen" ||
-  //       (e.ctrlKey && e.shiftKey && e.key === "s")
-  //     ) {
-  //       e.preventDefault();
-  //       alert("Screenshots are disabled.");
-  //     }
-  //   };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "PrintScreen" ||
+        (e.ctrlKey && e.shiftKey && e.key === "s")
+      ) {
+        e.preventDefault();
+        alert("Screenshots are disabled.");
+      }
+    };
 
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -119,14 +119,14 @@ const App = () => {
           <Route path="/admin" element={<AdminPortal />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Contactus" element={<Contactus />} />
         <Route path="/Glry" element={<Glry />} />
         <Route path="/Cont" element={<Cont />} />
         <Route path="/intern" element={<International />} />
-        <Route path="/National" element={<National />} />
+        <Route path="/national" element={<National />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="/Hiking" element={<Hiking />} />
         <Route path="/Visit" element={<Visit />} />
@@ -191,7 +191,7 @@ const App = () => {
         <Route path="/adventuretour" element={<Adventuretour />} />
         <Route path="/upcomingtrips" element={<Upcomingtrip />} />
         <Route path="/offer" element={<Offer />} />
-        {/* <Route path='/' element={<ComingSoon />} /> */}
+        <Route path='/' element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );

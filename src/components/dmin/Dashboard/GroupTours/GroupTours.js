@@ -18,7 +18,7 @@ const GroupTours = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/group-tours/group-tours",
+        "https://api.travello10.com/api/group-tours/group-tours",
         form
       );
       resetForm();
@@ -220,7 +220,7 @@ const GroupTours = () => {
             Add Logistics Point
           </button>
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700">Testimonials</label>
           {form.testimonials.map((point, index) => (
             <div key={index} className="mb-1 flex">
@@ -248,7 +248,7 @@ const GroupTours = () => {
           >
             Add Testimonials Point
           </button>
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-gray-700">Call To Action</label>
           {form.callToAction.map((point, index) => (

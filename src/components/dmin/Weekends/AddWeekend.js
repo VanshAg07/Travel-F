@@ -8,6 +8,7 @@ const AddWeekend = () => {
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
+    tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
     tripDuration: "",
@@ -31,7 +32,7 @@ const AddWeekend = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/weekends/states")
+      .get("https://api.travello10.com/api/weekends/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -118,7 +119,7 @@ const AddWeekend = () => {
       }
     });
     fetch(
-      `http://localhost:5000/api/weekends/add-weekend-package/${selectedState.id}`,
+      `https://api.travello10.com/api/weekends/add-weekend-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -219,6 +220,19 @@ const AddWeekend = () => {
             value={tripDetails.tripPrice}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripPrice: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Offer Price</label>
+          <input
+            type="text"
+            name="tripOfferPrice"
+            value={tripDetails.tripOfferPrice}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripOfferPrice: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

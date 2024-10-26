@@ -14,7 +14,7 @@ const Shop = () => {
     const fetchShops = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getShops/${name}` 
+          `https://api.travello10.com/api/user/getShops/${name}` 
         );
         console.log(response.data);
         setShops(response.data.shops || []);

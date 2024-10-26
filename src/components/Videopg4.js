@@ -71,7 +71,7 @@ const TravelPackages = () => {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/video-page"
+        "https://api.travello10.com/api/home/video-page"
       );
       const internationalVideo = response.data.find(
         (video) => video.type === "Honeymoon"
@@ -89,7 +89,7 @@ const TravelPackages = () => {
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/home/homepage-choosen-honeymoon-display"
+        "https://api.travello10.com/api/home/homepage-choosen-honeymoon-display"
       );
       setPackages(res.data.chosenPackages);
     } catch (error) {
