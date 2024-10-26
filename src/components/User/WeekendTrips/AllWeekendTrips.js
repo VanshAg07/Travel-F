@@ -11,7 +11,7 @@ function AllWeekendTrips() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/weekends/get-all-weekend"
+          "http://localhost:5000/api/weekends/get-all-weekend"
         );
         const data = await response.json();
         setPackages(data);
@@ -52,7 +52,9 @@ function AllWeekendTrips() {
                   className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 />
                 <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-                  <span className="font-bold text-sm">₹{" "}{trip.tripPrice}/- onwards</span>
+                  <span className="font-bold text-sm">
+                    ₹ {trip.tripPrice}/- onwards
+                  </span>
                 </div>
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                   <div className="w-full">
@@ -60,27 +62,37 @@ function AllWeekendTrips() {
                       {pkg.stateName} - {trip.tripName}
                     </h2>
                     <div className="flex flex-row mb-4 justify-between items-center w-full">
-                    {/* Duration */}
+                      {/* Duration */}
                       <div className="flex items-center text-black">
                         <FaClock className="mr-1 text-black" />
                         <span className="text-black text-xs">
                           {`${trip.tripDuration} Days`}
                         </span>
                       </div>
-                    {/* Location */}
-                    <div className="flex items-center text-black">
-                      <FaMapMarkerAlt className="mr-1 text-black" />
-                      <span className="text-black text-xs">
-                        {pkg.stateName}
-                      </span>
-                    </div>
+                      {/* Location */}
+                      <div className="flex items-center text-black">
+                        <FaMapMarkerAlt className="mr-1 text-black" />
+                        <span className="text-black text-xs">
+                          {pkg.stateName}
+                        </span>
+                      </div>
                     </div>
                     {/* Dates */}
                     <div className="flex items-center mb-2 text-black">
                       <FaCalendarAlt className="mr-2 text-black" />
                       <span className="text-black text-xs">
-                        {new Date(trip.tripDate).toLocaleDateString()}
+                        {/* Format the date */}
+                        {new Date(trip.tripDate).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                        })}
                       </span>
+                      {trip.tripDateCount >= 0 && (
+                        <span className="text-xs ml-4">
+                          +{trip.tripDateCount}
+                          <span className="ml-1">Batches</span>
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -11,7 +11,7 @@ const StateInternational = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/international/get-all-international/${name}`
+          `http://localhost:5000/api/international/get-all-international/${name}`
         );
         setTrips(response.data);
       } catch (error) {
@@ -68,8 +68,18 @@ const StateInternational = () => {
                   <div className="flex items-center mb-2 text-black">
                     <FaCalendarAlt className="mr-2 text-black" />
                     <span className="text-black text-xs">
-                      {new Date(trip.tripDate).toLocaleDateString()}
+                      {/* Format the date */}
+                      {new Date(trip.tripDate).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                      })}
                     </span>
+                    {trip.tripDateCount >= 0 && (
+                      <span className="text-xs ml-4">
+                        +{trip.tripDateCount}
+                        <span className="ml-1">Batches</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -84,4 +94,3 @@ const StateInternational = () => {
 };
 
 export default StateInternational;
-

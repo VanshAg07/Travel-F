@@ -32,7 +32,7 @@ const Schooltour = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/group-tours/group-tours"
+          "http://localhost:5000/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);

@@ -25,7 +25,7 @@ const HomeHoneymoon = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/international/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);

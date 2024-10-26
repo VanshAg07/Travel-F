@@ -17,7 +17,7 @@ const OfferHomePage = () => {
   const fetchOffers = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/home-offers"
+        "http://localhost:5000/api/home/home-offers"
       );
       setOffers(response.data);
     } catch (error) {
@@ -51,12 +51,12 @@ const OfferHomePage = () => {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travello10.com/api/home/home-offers/${editingId}`,
+          `http://localhost:5000/api/home/home-offers/${editingId}`,
           formDataToSubmit
         ); // Update offer
       } else {
         await axios.post(
-          "https://api.travello10.com/api/home/add-home-offer",
+          "http://localhost:5000/api/home/add-home-offer",
           formDataToSubmit
         ); // Create offer
       }
@@ -74,12 +74,12 @@ const OfferHomePage = () => {
     setEditingId(offer._id);
 
     // Set the preview image to the first image of the selected offer
-    setPreviewImage(`https://api.travello10.com/upload/${offer.image[0]}`);
+    setPreviewImage(`http://localhost:5000/upload/${offer.image[0]}`);
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/home/home-offers/${id}`);
+      await axios.delete(`http://localhost:5000/api/home/home-offers/${id}`);
       fetchOffers(); // Refresh the list of offers
     } catch (error) {
       console.error("Error deleting offer:", error);
@@ -144,7 +144,7 @@ const OfferHomePage = () => {
         {offers.map((offer) => (
           <li key={offer._id} className="bg-white shadow-md rounded p-4">
             <img
-              src={`https://api.travello10.com/upload/${offer.image[0]}`}
+              src={`http://localhost:5000/upload/${offer.image[0]}`}
               alt="Offer"
               className="w-full h-32 object-cover rounded"
             />

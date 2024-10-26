@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate
-import img1 from "../../img/goa.png";
+import { useNavigate } from "react-router-dom";
 
 function AllPackagesCard() {
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(1);
-  const navigate = useNavigate(); // Initializing useNavigate
+  const [visiblePackages, setVisiblePackages] = useState(2);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/user/getTripDetails"
+          "http://localhost:5000/api/user/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);
@@ -55,7 +54,7 @@ function AllPackagesCard() {
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                   <div className="w-full">
                     <h2 className="text-lg font-semibold text-black pb-4">
-                   {trip.tripName}
+                      {trip.tripName}
                     </h2>
                     <div className="flex flex-row mb-4 justify-between items-center w-full">
                       {/* Duration */}
@@ -63,7 +62,6 @@ function AllPackagesCard() {
                         <FaClock className="mr-2 text-black" />
                         <span className="text-black text-xs">{`${trip.tripDuration} Days`}</span>
                       </div>
-
                       {/* Location */}
                       <div className="flex items-center text-black">
                         <FaMapMarkerAlt className="mr-1 text-black" />
@@ -76,8 +74,18 @@ function AllPackagesCard() {
                     <div className="flex items-center mb-2 text-black">
                       <FaCalendarAlt className="mr-2 text-black" />
                       <span className="text-black text-xs">
-                        {new Date(trip.tripDate).toLocaleDateString()}
+                        {/* Format the date */}
+                        {new Date(trip.tripDate).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                        })}
                       </span>
+                      {trip.tripDateCount >= 0 && (
+                        <span className="text-xs ml-4">
+                          +{trip.tripDateCount}
+                          <span className="ml-1">Batches</span>
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -88,7 +96,6 @@ function AllPackagesCard() {
           <p>No packages available</p>
         )}
       </div>
-
       {visiblePackages < packages.length && (
         <div className="flex justify-center mb-6">
           <button
