@@ -5,10 +5,12 @@ const OfferHomePage = () => {
   const [offers, setOffers] = useState([]);
   const [formData, setFormData] = useState({
     image: [],
+    phoneImage: [],
     status: false,
   });
   const [editingId, setEditingId] = useState(null);
   const [previewImage, setPreviewImage] = useState(""); // For image preview
+  const [previewPhoneImage, setPreviewPhoneImage] = useState(""); // For phone image preview
 
   useEffect(() => {
     fetchOffers();
@@ -31,12 +33,21 @@ const OfferHomePage = () => {
   };
 
   const handleFileChange = (e) => {
+    const { name } = e.target;
     const files = Array.from(e.target.files);
-    setFormData({ ...formData, image: files });
 
-    // Set the preview image to the first selected file if available
-    if (files.length > 0) {
-      setPreviewImage(URL.createObjectURL(files[0]));
+    if (name === "image") {
+      setFormData({ ...formData, image: files });
+      // Set the preview image to the first selected file if available
+      if (files.length > 0) {
+        setPreviewImage(URL.createObjectURL(files[0]));
+      }
+    } else if (name === "phoneImage") {
+      setFormData({ ...formData, phoneImage: files });
+      // Set the preview phone image to the first selected file if available
+      if (files.length > 0) {
+        setPreviewPhoneImage(URL.createObjectURL(files[0]));
+      }
     }
   };
 
@@ -44,8 +55,15 @@ const OfferHomePage = () => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
     formDataToSubmit.append("status", formData.status);
+
+    // Append image files
     formData.image.forEach((file) => {
       formDataToSubmit.append("image", file);
+    });
+
+    // Append phone image files
+    formData.phoneImage.forEach((file) => {
+      formDataToSubmit.append("phoneImage", file);
     });
 
     try {
@@ -60,9 +78,10 @@ const OfferHomePage = () => {
           formDataToSubmit
         ); // Create offer
       }
-      setFormData({ image: [], status: false });
+      setFormData({ image: [], phoneImage: [], status: false });
       setEditingId(null);
       setPreviewImage(""); // Reset preview image after submission
+      setPreviewPhoneImage(""); // Reset phone image preview after submission
       fetchOffers(); // Refresh the list of offers
     } catch (error) {
       console.error("Error saving offer:", error);
@@ -70,11 +89,22 @@ const OfferHomePage = () => {
   };
 
   const handleEdit = (offer) => {
-    setFormData({ image: offer.image, status: offer.status });
+    setFormData({
+      image: offer.image,
+      status: offer.status,
+      phoneImage: offer.phoneImage,
+    });
     setEditingId(offer._id);
 
     // Set the preview image to the first image of the selected offer
-    setPreviewImage(`https://api.travello10.com/upload/${offer.image[0]}`);
+    if (offer.image.length > 0) {
+      setPreviewImage(`https://api.travello10.com/upload/${offer.image[0]}`);
+    }
+    if (offer.phoneImage.length > 0) {
+      setPreviewPhoneImage(
+        `https://api.travello10.com/upload/${offer.phoneImage[0]}`
+      );
+    }
   };
 
   const handleDelete = async (id) => {
@@ -111,6 +141,30 @@ const OfferHomePage = () => {
           <input
             type="file"
             name="image"
+            multiple
+            onChange={handleFileChange}
+            required
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="phoneImage"
+          >
+            Phone Images:
+          </label>
+          {/* Display the preview phone image if available */}
+          {previewPhoneImage && (
+            <img
+              src={previewPhoneImage}
+              alt="Phone Preview"
+              className="w-full h-32 object-cover rounded mb-2"
+            />
+          )}
+          <input
+            type="file"
+            name="phoneImage"
             multiple
             onChange={handleFileChange}
             required

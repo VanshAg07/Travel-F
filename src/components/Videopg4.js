@@ -28,6 +28,8 @@ const TravelPackageCard = ({ pkg }) => {
       state: { stateName: pkg.stateName, tripName: pkg.tripName },
     });
   };
+  const displayTripName =
+    pkg.tripName.length > 20 ? `${pkg.tripName.slice(0, 18)}...` : pkg.tripName;
 
   return (
     <div
@@ -41,21 +43,17 @@ const TravelPackageCard = ({ pkg }) => {
       />
       <div className="p-4">
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold">{pkg.tripName}</h3>
+          <h3 className="text-xl font-semibold">{displayTripName}</h3>
         </div>
         <div className="flex justify-between items-center mt-2">
-          <div className="flex items-center text-black text-xs">
-            <FaCalendarAlt className="mr-1" />
-            {displayedDates}
-          </div>
           <div className="flex items-center text-black text-sm">
             <FaClock className="mr-1" />
             {pkg.tripDuration}
           </div>
-        </div>
-        <div className="flex items-center text-black text-sm mt-2">
-          <FaMapMarkerAlt className="mr-1" />
-          {pkg.tripLocation}
+          <div className="flex items-center text-black text-sm ">
+            <FaMapMarkerAlt className="mr-1" />
+            {pkg.stateName}
+          </div>
         </div>
       </div>
     </div>
@@ -77,7 +75,7 @@ const TravelPackages = () => {
         (video) => video.type === "Honeymoon"
       );
       if (internationalVideo) {
-        setVideoSrc(internationalVideo.backgroundVideo); // Set video source
+        setVideoSrc(internationalVideo.backgroundVideo);
       } else {
         console.error("No video found");
       }

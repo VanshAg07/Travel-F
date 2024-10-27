@@ -12,26 +12,26 @@ import axios from "axios";
 const TravelPackageCard = ({ pkg }) => {
   const navigate = useNavigate();
 
-  // Format the trip dates
-  const formattedDates = pkg.tripDate.map((date) =>
-    new Date(date).toLocaleDateString()
-  );
-
-  // Display first two dates and count the remaining dates
-  const displayedDates =
-    formattedDates.length > 2
-      ? `${formattedDates.slice(0, 2).join(", ")} +${
-          formattedDates.length - 2
-        } more`
-      : formattedDates.join(", ");
+  // Format the trip dates to local date
+  const formattedDates = pkg.tripDate.map((date) => {
+    const options = {
+      day: "numeric",
+      month: "short",
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Use the user's local timezone
+    };
+    return new Date(date).toLocaleDateString(undefined, options);
+  });
 
   // Function to handle navigation
   const handleNavigate = () => {
-    navigate(`/international/${pkg.tripName}/${pkg.stateName}`, {
+    navigate(`/trip/${pkg.tripName}/${pkg.stateName}`, {
       state: { stateName: pkg.stateName, tripName: pkg.tripName },
     });
   };
 
+  // Check if tripName exceeds 15 characters
+  const displayTripName =
+    pkg.tripName.length > 20 ? `${pkg.tripName.slice(0, 18)}...` : pkg.tripName;
   return (
     <div
       onClick={handleNavigate}
@@ -44,21 +44,22 @@ const TravelPackageCard = ({ pkg }) => {
       />
       <div className="p-4">
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold">{pkg.tripName}</h3>
+          <h3 className="text-xl font-semibold">{displayTripName}</h3>
         </div>
-        <div className="flex justify-between items-center mt-2">
-          <div className="flex items-center text-black text-xs">
-            <FaCalendarAlt className="mr-1" />
-            {displayedDates}
+        <div className="flex justify-between items-center mt-2 mb-2">
+          <div className="flex items-center text-black text-sm ">
+            <FaMapMarkerAlt className="mr-1" />
+            {pkg.tripLocation}
           </div>
           <div className="flex items-center text-black text-sm">
             <FaClock className="mr-1" />
             {pkg.tripDuration}
           </div>
         </div>
-        <div className="flex items-center text-black text-sm mt-2">
-          <FaMapMarkerAlt className="mr-1" />
-          {pkg.tripLocation}
+        <div className="flex items-center text-black text-xs">
+          <FaCalendarAlt className="mr-1" />
+          {formattedDates[0]}{" "}
+          <span className="text-sm text-red-500 ml-2">+{pkg.tripDateCount} batches</span>
         </div>
       </div>
     </div>

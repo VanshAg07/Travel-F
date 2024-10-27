@@ -40,7 +40,7 @@ const Gallery = () => {
 
   // Handle mouse wheel scroll to rotate gallery
   const handleWheel = (event) => {
-    setRotation((prevRotation) => prevRotation + (event.deltaY < 0 ? -1 : 1));
+    setRotation((prevRotation) => prevRotation + (event.deltaY < 0 ? -10 : 10));
   };
 
   return (
@@ -52,19 +52,11 @@ const Gallery = () => {
       <p className="text-center text-xl homeglry-p font-bold mb-2 text-gray-800">
         Moments In Motion
       </p>
-      <div className="arrow-wrapper">
-        <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
-          &#9664;
-        </div>
-        <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
-          &#9654;
-        </div>
-      </div>
       <div
         className="gallery-center"
         ref={galleryCenterRef}
         style={{
-          transform: `translate(-50%, -50%) perspective(3000px) rotateY(${rotation}deg)`,
+          transform: `translate(-50%, -50%) perspective(2800px) rotateY(${rotation}deg)`,
         }}
       >
         {galleryImages.map((image, index) => (
@@ -73,16 +65,28 @@ const Gallery = () => {
             key={index}
             style={{
               transform: `translate(-50%, -50%) rotateY(${
-                index * -28
+                index * -30
               }deg) translateZ(-1000px)`,
             }}
             onClick={handleClick}
           >
             <a>
-              <img className="img-glry" src={image} alt={`Image ${index + 1}`} />
+              <img
+                className="img-glry"
+                src={image}
+                alt={`Image ${index + 1}`}
+              />
             </a>
           </div>
         ))}
+      </div>
+      <div className="arrow-wrapper">
+        <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
+          &#9664;
+        </div>
+        <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
+          &#9654;
+        </div>
       </div>
     </div>
   );

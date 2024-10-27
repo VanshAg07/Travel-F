@@ -65,6 +65,16 @@ const AdminPortal = () => {
             </li>
             <li>
               <button
+                onClick={() => handleMainTabClick("user-details")}
+                className={`block w-full text-left py-3 px-4 rounded-lg ${
+                  activeTab === "user-details" ? "bg-red-600" : "hover:bg-gray-700"
+                }`}
+              >
+                My Users
+              </button>
+            </li>
+            <li>
+              <button
                 onClick={() => handleMainTabClick("bookings")}
                 className={`block w-full text-left py-3 px-4 rounded-lg ${
                   activeTab === "bookings" ? "bg-red-600" : "hover:bg-gray-700"

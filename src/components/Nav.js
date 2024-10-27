@@ -98,14 +98,16 @@ const Nav = () => {
         </Link>
         {!isMobile && (
           <>
-          <Link to="/offer"
-          onClick={() => setIsMenuOpen(false)}
-          className={isActive("/offer")}>
-            {navOffer && (
-              <div className="mr-10">
-                <p>{navOffer}</p>
-              </div>
-            )}
+            <Link
+              to="/offer"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/offer")}
+            >
+              {navOffer && (
+                <div className="mr-10">
+                  <p>{navOffer}</p>
+                </div>
+              )}
             </Link>
             <Link
               to="/Payments"
@@ -180,7 +182,7 @@ const Nav = () => {
         {username ? (
           <>
             <div className="username-display">
-              <strong>{username}!</strong>
+              <strong className="mr-2">{username}!</strong>
             </div>
             <button className="Btn-n" onClick={handleLogout}>
               <div className="sign-n">

@@ -9,6 +9,16 @@ import {
 } from "react-icons/fa";
 
 const TripCard = ({ trip }) => {
+  const formatDate = (dateString) => {
+    const options = { day: "numeric", month: "short" }; // Short month format
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options); // Format the date
+  };
+  const displayTripName =
+    trip.tripName.length > 20
+      ? `${trip.tripName.slice(0, 18)}...`
+      : trip.tripName;
+
   return (
     <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
@@ -20,23 +30,24 @@ const TripCard = ({ trip }) => {
       />
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-xl font-semibold">{trip.tripLocation}</h3>
+          <h3 className="text-xl font-semibold">{displayTripName}</h3>
+        </div>
+        <div className="flex justify-between items-center mb-2">
+          <div className="flex items-center">
+            <FaMapMarkerAlt className="mr-1" />
+            <p className="text-sm text-black">{trip.stateName}</p>
+          </div>
           <div className="flex items-center">
             <FaClock className="mr-1" />
             <p className="text-sm text-black">{trip.tripDuration}</p>
           </div>
         </div>
-        <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center">
-            <FaCalendarAlt className="mr-1" />
-            <p className="text-sm text-black">
-              {new Date(trip.date).toLocaleDateString()}
-            </p>
-          </div>
-        </div>
         <div className="flex items-center">
-          <FaMapMarkerAlt className="mr-1" />
-          <p className="text-sm text-black">{trip.stateName}</p>
+          <FaCalendarAlt className="mr-1" />
+          <p className="text-sm text-black mr-2">{formatDate(trip.date)}</p>
+          <p className="text-sm text-red-500 text-end">
+            +{trip.allTripDatesCount} batches
+          </p>
         </div>
       </div>
     </div>
@@ -173,7 +184,9 @@ const App = () => {
                   key={dotIndex}
                   onClick={() => goToTrip(dotIndex * tripsToShow)} // Navigate to the first trip of the group
                   className={`w-2 h-2 cursor-pointer rounded-full ${
-                    startIndex / tripsToShow === dotIndex ? "bg-black" : "bg-gray-300"
+                    startIndex / tripsToShow === dotIndex
+                      ? "bg-black"
+                      : "bg-gray-300"
                   }`}
                 />
               ))}
@@ -181,7 +194,6 @@ const App = () => {
           </div>
         )}
       </div>
-
     </div>
   );
 };
