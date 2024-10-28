@@ -25,6 +25,7 @@ const AddInternPackage = () => {
     sharing: [{ title: "", price: "" }],
     tripBookingAmount: "",
     tripSeats: "",
+    customised: false,
   });
 
   useEffect(() => {
@@ -49,7 +50,9 @@ const AddInternPackage = () => {
         setLoading(false);
       });
   };
-
+  const handleCustomisedChange = (e) => {
+    setTripDetails({ ...tripDetails, customised: e.target.checked });
+  };
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {
     const updatedArray = [...tripDetails[arrayName]];
@@ -200,7 +203,8 @@ const AddInternPackage = () => {
                 {state.name}
               </option>
             ))}
-          </select>
+                   
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Name</label>
@@ -254,6 +258,16 @@ const AddInternPackage = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
+        <div className="flex flex-row  gap-2">
+          <input
+            type="checkbox"
+            name="customised"
+            value={tripDetails.customised}
+            onChange={handleCustomisedChange}
+            className="block border-gray-300 rounded-md border-2 p-1 "
+          />
+          <label className="block text-l font-medium">Customised</label>
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Booking Amount</label>
           <input
@@ -291,6 +305,7 @@ const AddInternPackage = () => {
                 type="date"
                 value={date}
                 onChange={(e) => handleArrayChange(e, index, "tripDate")}
+                required
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               />
               <button
@@ -332,6 +347,7 @@ const AddInternPackage = () => {
               setTripDetails({ ...tripDetails, overView: e.target.value })
             }
             className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -346,6 +362,7 @@ const AddInternPackage = () => {
               setTripDetails({ ...tripDetails, tripDuration: e.target.value })
             }
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
           />
         </div>
         <div className="mb-4">
@@ -361,6 +378,7 @@ const AddInternPackage = () => {
               })
             }
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
           />
         </div>
         {/* Dynamic Inputs: Trip Inclusions */}
@@ -373,6 +391,7 @@ const AddInternPackage = () => {
                 value={inclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"

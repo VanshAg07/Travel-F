@@ -205,7 +205,7 @@ const AdminPortal = () => {
                     >
                       International
                     </li>
-                    <li
+                    {/* <li
                       onClick={() => setActiveTab("edit-weekend")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${
                         activeTab === "edit-weekend"
@@ -214,7 +214,7 @@ const AdminPortal = () => {
                       }`}
                     >
                       Weekend
-                    </li>
+                    </li> */}
                     <li
                       onClick={() => setActiveTab("edit-honeymoon")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${

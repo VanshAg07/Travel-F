@@ -24,6 +24,7 @@ const AdminPanel = () => {
     overView: "",
     tripBookingAmount: "",
     tripSeats: "",
+    customised: false,
   });
 
   useEffect(() => {
@@ -53,7 +54,9 @@ const AdminPanel = () => {
     const { name, value } = e.target;
     setTripData({ ...tripData, [name]: value });
   };
-
+  const handleCustomisedChange = (e) => {
+    setTripData({ ...tripData, customised: e.target.checked });
+  };
   const handleArrayChange = (e, index, fieldName) => {
     const updatedArray = [...tripData[fieldName]];
     updatedArray[index] = e.target.value;
@@ -162,13 +165,10 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(
-      `http://localhost:5000/api/trip/state/${selectedState.id}/trip`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch(`http://localhost:5000/api/trip/state/${selectedState.id}/trip`, {
+      method: "POST",
+      body: formData,
+    })
       .then((response) => {
         if (!response.ok) {
           return response.text().then((text) => {
@@ -258,6 +258,16 @@ const AdminPanel = () => {
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
+          </div>
+          <div className="flex flex-row justify-center items-center gap-2">
+            <input
+              type="checkbox"
+              name="customised"
+              value={tripData.customised}
+              onChange={handleCustomisedChange}
+              className="block border-gray-300 rounded-md border-2 p-1 "
+            />
+            <label className="block text-l font-medium">Customised</label>
           </div>
           <div>
             <label className="block text-l font-medium">

@@ -25,6 +25,7 @@ function NationalEdit() {
     tripBackgroundImg: [],
     overView: "",
     status: "",
+    customised: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
@@ -68,15 +69,25 @@ function NationalEdit() {
       pdf: trip.pdf || [],
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
+      customised: trip.customised || "",
     });
     setIsModalOpen(true);
   };
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, type, checked, value } = e.target;
     setTripDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
+
+    // Ensure 'customised' is set to false if the checkbox is unchecked
+    if (name === "customised" && !checked) {
+      setTripDetails((prevDetails) => ({
+        ...prevDetails,
+        customised: false,
+      }));
+    }
   };
 
   const handleArrayChange = (name, index, value) => {
@@ -283,6 +294,18 @@ function NationalEdit() {
                   ))}
                 </select>
               </div>
+              <div className="mb-4 flex flex-row gap-2 items-center">
+                <input
+                  type="checkbox"
+                  name="customised"
+                  value={tripDetails.customised}
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 border rounded-lg"
+                />
+                <label className="block font-medium text-gray-700">
+                  Customised
+                </label>
+              </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Trip Name:
@@ -296,6 +319,7 @@ function NationalEdit() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
+
               <div>
                 <h4>PDF Files</h4>
                 {tripDetails.pdf.map((pdf, index) => (

@@ -7,6 +7,7 @@ function SearchBar() {
   const [suggestions, setSuggestions] = useState([]);
   const [tripData, setTripData] = useState([]);
   const navigate = useNavigate();
+
   const fetchSearch = () => {
     fetch("http://localhost:5000/api/home/search", {
       method: "GET",
@@ -14,8 +15,12 @@ function SearchBar() {
       .then((response) => response.json())
       .then((data) => {
         setTripData(data.tripData);
-        const allTripNames = data.tripData.flatMap((item) => item.tripNames);
-        setSuggestions(allTripNames);
+        // Collect all trip names and state names for suggestions
+        const allSuggestions = data.tripData.flatMap((item) => [
+          ...item.tripNames,
+          item.stateName,
+        ]);
+        setSuggestions(allSuggestions);
       })
       .catch((error) => console.error("Error fetching search data:", error));
   };
@@ -28,8 +33,8 @@ function SearchBar() {
     const query = event.target.value;
     setSearch(query);
     if (query.length > 0) {
-      const filteredSuggestions = suggestions.filter((tripName) =>
-        tripName.toLowerCase().includes(query.toLowerCase())
+      const filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion.toLowerCase().includes(query.toLowerCase())
       );
       setSuggestions(filteredSuggestions);
     } else {
@@ -37,23 +42,38 @@ function SearchBar() {
     }
   };
 
-  const handleSuggestionClick = (tripName) => {
-    const selectedTrip = tripData.find((item) =>
-      item.tripNames.includes(tripName)
+  const handleSuggestionClick = (selectedSuggestion) => {
+    const selectedTrip = tripData.find(
+      (item) =>
+        item.tripNames.includes(selectedSuggestion) ||
+        item.stateName.toLowerCase() === selectedSuggestion.toLowerCase()
     );
+
     if (selectedTrip) {
       const { stateName, source } = selectedTrip;
       let path = "";
+
       if (source === "National") {
-        path = `/trip/${tripName}/${stateName}`;
+        // If the suggestion matches the stateName, navigate to /place/:stateName
+        path =
+          selectedSuggestion.toLowerCase() === stateName.toLowerCase()
+            ? `/place/${stateName}`
+            : `/trip/${selectedSuggestion}/${stateName}`;
       } else if (source === "International") {
-        path = `/trips/${tripName}/${stateName}`;
+        path =
+          selectedSuggestion.toLowerCase() === stateName.toLowerCase()
+            ? `/places/${stateName}`
+            : `/trips/${selectedSuggestion}/${stateName}`;
       } else if (source === "Honeymoon") {
-        path = `/honeymoon/${tripName}/${stateName}`;
+        path =
+          selectedSuggestion.toLowerCase() === stateName.toLowerCase()
+            ? `/honeymoon-packages/${stateName}`
+            : `/honeymoon/${selectedSuggestion}/${stateName}`;
       }
       navigate(path);
     }
-    setSearch(tripName);
+
+    setSearch(selectedSuggestion);
     setSuggestions([]);
   };
 

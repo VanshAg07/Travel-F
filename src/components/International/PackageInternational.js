@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Packagedetails.css";
 import Nav from "../Nav";
+import { FaFileDownload } from "react-icons/fa";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
-import { FaFileDownload } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { GoDot } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
@@ -16,16 +16,23 @@ import Dropnav from "../../components/Dropnav";
 import cont from "../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../Footer/MainFooter";
-const PackageInternatioanl = () => {
+const PackageInternational = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const [activeSection, setActiveSection] = useState("overview");
+
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
   const [sharing, setSharing] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [stateNames, setstateNames] = useState("");
   const handleDownload = () => {
     if (trips.pdf) {
@@ -49,6 +56,10 @@ const PackageInternatioanl = () => {
     }));
   };
 
+  const handleToggleDay1 = () => {
+    setIsDay1Expanded(!isDay1Expanded);
+  };
+
   const stateName = name;
   useEffect(() => {
     const fetchTripDetails = async () => {
@@ -56,7 +67,11 @@ const PackageInternatioanl = () => {
         const response = await axios.get(
           `http://localhost:5000/api/international/findStateAndTrip/${stateName}/${tripName}`
         );
-        setTrip(response.data);
+        setTrip(response.data.trip);
+        setSharing(response.data.trip.sharing);
+        setstateNames(response.data.state);
+        console.log(trips);
+        console.log(sharing);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -66,9 +81,88 @@ const PackageInternatioanl = () => {
     };
     fetchTripDetails();
   }, [name, tripName]);
-  const handleDatesAndCostingClick = () => {
 
-    
+  // console.log(sharing);
+  let doubleSharing;
+  let tripleSharing;
+  let quadSharing;
+  // console.log(doubleSharing)
+  if (sharing && sharing.length >= 1) {
+    doubleSharing = sharing[0]?.price;
+    tripleSharing = sharing[1]?.price;
+    quadSharing = sharing[2]?.price;
+  } else {
+    console.log(
+      "Error: sharing array is empty or does not have enough elements"
+    );
+  }
+  const handleDatesAndCostingClick = () => {
+    if (trips && trips.tripDate) {
+      navigate("/dates-and-costing", {
+        state: {
+          tripDates: trips.tripDate,
+          tripPrice: trips.tripPrice,
+          tripName: trips.tripName,
+          doubleSharing,
+          tripleSharing,
+          quadSharing,
+          stateName: stateNames.stateName,
+          tripBookingAmount: trips.tripBookingAmount,
+          tripSeats: trips.tripSeats,
+        },
+      });
+    } else {
+      console.error("Trip dates not available");
+    }
+  };
+
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Validate form data
+    if (!formData.name || !formData.email || !formData.phone) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
+    try {
+      // Send form data to the backend
+      const res = await axios.post(
+        "http://localhost:5000/api/contact/contact-trip",
+        formData
+      );
+
+      // If the request is successful, clear the form and show success message
+      if (res.status === 200) {
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          phone: "",
+        });
+        setSuccess("Your message has been sent successfully.");
+        setError("");
+      }
+    } catch (err) {
+      // Handle error case
+      setError("Failed to send the message. Please try again later.");
+      setSuccess("");
+    }
+  };
+  const handleGetQuotesClick = () => {
+    // Implement the logic for getting quotes
+    console.log("Getting quotes for the customized package.");
+    // You can navigate to a different page or show a modal here.
   };
 
   return (
@@ -330,17 +424,27 @@ const PackageInternatioanl = () => {
             {/* Form div is hidden below lg (1024px) */}
             <div className="ml-10 mt-20 sticky top-10">
               <div className="bg-white shadow-lg p-4 rounded-2xl">
-                <p className="text-xl md:text-2xl">Starting From</p>
+                <p className="text-xl md:text-2xl">
+                  {trips.customised ? "Customised" : `Starting From`}
+                </p>
                 <p className="text-xl md:text-2xl text-blue-500">
                   <span className="font-bold text-2xl md:text-3xl">
-                    Rs.{trips.tripPrice}/-{" "}
+                    {trips.customised
+                      ? "Customise Your Trip"
+                      : `Rs.${trips.tripPrice}/-`}{" "}
                   </span>
-                  per person
+                  {trips.customised ? "" : "per person"}
                 </p>
                 <div className="bg-[#03346E] items-center justify-center flex p-4 rounded-xl mt-5">
-                  <button onClick={handleDatesAndCostingClick}>
+                  <button
+                    onClick={
+                      trips.customised
+                        ? handleGetQuotesClick
+                        : handleDatesAndCostingClick
+                    }
+                  >
                     <p className="text-white text-lg md:text-xl font-bold">
-                      Dates & Costing
+                      {trips.customised ? "Get Quotes" : "Dates & Costing"}
                     </p>
                   </button>
                 </div>
@@ -362,6 +466,9 @@ const PackageInternatioanl = () => {
                       </label>
                       <input
                         type="text"
+                        id="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         placeholder="eg. John Doe"
                         className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base" // Responsive input text size
                       />
@@ -372,6 +479,9 @@ const PackageInternatioanl = () => {
                       </label>
                       <input
                         type="text"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        id="phone"
                         placeholder="eg. 123-456-7890"
                         className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base" // Responsive input text size
                       />
@@ -382,6 +492,9 @@ const PackageInternatioanl = () => {
                       </label>
                       <input
                         type="email"
+                        id="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="eg. johndoe@example.com"
                         className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base" // Responsive input text size
                       />
@@ -389,6 +502,7 @@ const PackageInternatioanl = () => {
                     <button
                       type="submit"
                       className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm md:text-base" // Responsive button text size
+                      onClick={submitForm}
                     >
                       Submit
                     </button>
@@ -402,12 +516,16 @@ const PackageInternatioanl = () => {
         {/* mobile form footer */}
         <div className="fixed bottom-0 w-full z-50 bg-white text-black p-4 flex justify-between items-center lg:hidden">
           {/* First Section: Starting Price */}
-          <div className="text-lg md:text-xl font-bold">
-            Starting from Rs. {trips.tripPrice}/-{" "}
+          <div className="text-lg md:text-xl font-bold flex flex-col">
+            {trips.customised ? "" : `Starting From`}
+            <span className="font-bold text-2xl md:text-3xl">
+              {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
+            </span>{" "}
+            {trips.customised ? "" : "per person"}
           </div>
 
           {/* Second Section: Book Now Button */}
-          <div>
+          <div onClick={handleDatesAndCostingClick}>
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
               Book Now
             </button>
@@ -435,4 +553,4 @@ const PackageInternatioanl = () => {
   );
 };
 
-export default PackageInternatioanl;
+export default PackageInternational;

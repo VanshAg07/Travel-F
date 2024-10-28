@@ -3,8 +3,6 @@ import axios from "axios";
 
 const States = () => {
   const [refresh, setRefresh] = useState(0);
-  const [weekendStates, setWeekendStates] = useState({ name: "", image: null });
-
   const [internationalStates, setInternationalStates] = useState({
     name: "",
     image: null,
@@ -18,10 +16,6 @@ const States = () => {
     image: null,
   });
   const [offerStates, setOfferStates] = useState({ name: "", image: null });
-  const [newWeekendState, setNewWeekendState] = useState({
-    name: "",
-    image: null,
-  });
   const [newInternationalState, setNewInternationalState] = useState({
     name: "",
   });
@@ -39,19 +33,16 @@ const States = () => {
   const fetchStates = async () => {
     try {
       const [
-        weekendsRes,
         internationalRes,
         nationalRes,
         honeymoonRes,
         offerRes,
       ] = await Promise.all([
-        axios.get("http://localhost:5000/api/weekends/states"),
         axios.get("http://localhost:5000/api/admin/states"),
         axios.get("http://localhost:5000/api/trip/states"),
         axios.get("http://localhost:5000/api/honeymoon/states"),
         axios.get("http://localhost:5000/api/offer/states"),
       ]);
-      setWeekendStates(weekendsRes.data);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
       setHoneymoonStates(honeymoonRes.data);
@@ -64,29 +55,7 @@ const States = () => {
   useEffect(() => {
     fetchStates();
   }, [refresh]);
-  const addWeekendState = async () => {
-    const formData = new FormData();
-    formData.append("stateName", newWeekendState.name);
-    formData.append("stateImage", newWeekendState.image);
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/api/weekends/states`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response.status === 201) {
-        setNewWeekendState({ name: "" });
-        fetchStates();
-        setRefresh((prev) => prev + 1);
-      }
-    } catch (error) {
-      console.error(`Error adding international state`, error);
-    }
-  };
+
 
   const addInternationalState = async () => {
     const formData = new FormData();
@@ -183,15 +152,6 @@ const States = () => {
     }
   };
 
-  // Delete state functions for each category
-  const deleteWeekendState = async (_id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/weekends/state/${_id}`);
-      fetchStates();
-    } catch (error) {
-      console.error(`Error deleting international state`, error);
-    }
-  };
   // Delete state functions for each category
   const deleteOfferState = async (_id) => {
     try {

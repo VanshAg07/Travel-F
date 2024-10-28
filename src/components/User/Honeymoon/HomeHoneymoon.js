@@ -29,7 +29,7 @@ const HomeHoneymoon = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/honeymoon/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);

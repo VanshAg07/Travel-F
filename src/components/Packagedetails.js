@@ -17,6 +17,7 @@ import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
+import QuotePopup from "../QuotePopup";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -97,6 +98,16 @@ const Packagedetails = () => {
       "Error: sharing array is empty or does not have enough elements"
     );
   }
+  const [isQuotePopupVisible, setQuotePopupVisible] = useState(false);
+
+  const handleGetQuotesClick = () => {
+    setActiveSection(""); // Reset active section to prevent highlighting
+    setQuotePopupVisible(true); // Show the popup
+  };
+
+  const closeQuotePopup = () => {
+    setQuotePopupVisible(false); // Hide the popup
+  };
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
@@ -163,6 +174,9 @@ const Packagedetails = () => {
 
   return (
     <div>
+      <>
+      {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
+
       <Nav />
       <Dropnav />
       <div className="relative">
@@ -171,6 +185,7 @@ const Packagedetails = () => {
           alt="Descriptive Alt Text"
           className="h-screen w-full"
         />
+
         {trips.pdf && (
           <button
             className="absolute rounded-3xl bottom-28 left-1/2 transform -translate-x-1/2 
@@ -413,24 +428,32 @@ const Packagedetails = () => {
               </ul>
             </div>
           </div>
-
           {/* Form div with a width of 35% */}
           <div className="w-[35vw] hidden lg:block">
-            {" "}
             {/* Form div is hidden below lg (1024px) */}
             <div className="ml-10 mt-20 sticky top-10">
               <div className="bg-white shadow-lg p-4 rounded-2xl">
-                <p className="text-xl md:text-2xl">Starting From</p>
+                <p className="text-xl md:text-2xl">
+                  {trips.customised ? "Customised" : `Starting From`}
+                </p>
                 <p className="text-xl md:text-2xl text-blue-500">
                   <span className="font-bold text-2xl md:text-3xl">
-                    Rs.{trips.tripPrice}/-{" "}
+                    {trips.customised
+                      ? "Customise Your Trip"
+                      : `Rs.${trips.tripPrice}/-`}{" "}
                   </span>
-                  per person
+                  {trips.customised ? "" : "per person"}
                 </p>
                 <div className="bg-[#03346E] items-center justify-center flex p-4 rounded-xl mt-5">
-                  <button onClick={handleDatesAndCostingClick}>
+                  <button
+                    onClick={
+                      trips.customised
+                        ? handleGetQuotesClick
+                        : handleDatesAndCostingClick
+                    }
+                  >
                     <p className="text-white text-lg md:text-xl font-bold">
-                      Dates & Costing
+                      {trips.customised ? "Get Quotes" : "Dates & Costing"}
                     </p>
                   </button>
                 </div>
@@ -498,16 +521,24 @@ const Packagedetails = () => {
             </div>
           </div>
         </div>
-
         {/* mobile form footer */}
         <div className="fixed bottom-0 w-full z-50 bg-white text-black p-4 flex justify-between items-center lg:hidden">
           {/* First Section: Starting Price */}
-          <div className="text-lg md:text-xl font-bold">
-            Starting from Rs. {trips.tripPrice}/-{" "}
+          <div className="text-lg md:text-xl font-bold flex flex-col">
+            {trips.customised ? "" : `Starting From`}
+            <span className="font-bold text-2xl md:text-3xl">
+              {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
+            </span>{" "}
+            {trips.customised ? "" : "per person"}
           </div>
-
           {/* Second Section: Book Now Button */}
-          <div onClick={handleDatesAndCostingClick}>
+          <div
+            onClick={
+              trips.customised
+                ? handleGetQuotesClick
+                : handleDatesAndCostingClick
+            }
+          >
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
               Book Now
             </button>
@@ -531,6 +562,7 @@ const Packagedetails = () => {
           <Lottie loop={true} animationData={cont} />
         </a>
       </div>
+      </>
     </div>
   );
 };
