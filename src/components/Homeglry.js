@@ -12,7 +12,7 @@ const Gallery = () => {
   const fetchGalleryImages = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/gallery/home-galleries"
+        "https://api.travello10.com/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images[0].images || []);
     } catch (error) {
@@ -46,10 +46,10 @@ const Gallery = () => {
   return (
     <div className="gallery-wrap" onWheel={handleWheel}>
       {/* Heading */}
-      <h1 className="text-center text-2xl pt-4 sm:text-3xl lg:text-4xl font-bold mb-4">
+      <h1 className="text-center md:text-2xl pt-4 text-xl lg:text-4xl font-bold mb-4">
         PORTALS TO ADVENTURE
       </h1>
-      <p className="text-center text-xl homeglry-p font-bold mb-2 text-gray-800">
+      <p className="text-center md:text-xl text-lg homeglry-p font-semibold mb-2 text-gray-800">
         Moments In Motion
       </p>
       <div

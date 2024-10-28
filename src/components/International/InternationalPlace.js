@@ -36,7 +36,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/international/${stateName}`
+        `https://api.travello10.com/api/package-image/international/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);
@@ -44,13 +44,13 @@ const InernationalPlaces = () => {
       console.error("Error fetching national images: ", error);
     }
   };
-  
+
   useEffect(() => {
     const stateName = name;
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         console.log("Fetched Packages:", data); // Check if data is correct
@@ -87,6 +87,8 @@ const InernationalPlaces = () => {
           ) : (
             <p>No images available for this location.</p>
           )}
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <div className="relative flex flex-col items-center">
             <div className="relative w-full flex items-start justify-center">
               <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
@@ -173,7 +175,7 @@ const InernationalPlaces = () => {
         </div>
 
         <div className="w-[90%] mx-auto">
-        <p className="font-semibold text-3xl mb-4">Equivalent Getaways</p>
+          <p className="font-semibold text-3xl mb-4">Equivalent Getaways</p>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
             {packages.length > 0 ? (
@@ -197,7 +199,7 @@ const InernationalPlaces = () => {
                       </div>
                       <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                         <div className="w-full">
-                          <h2 className="text-lg font-semibold text-black pb-4">
+                          <h2 className="text-lg uppercase truncate font-semibold text-black pb-4">
                             {trip.tripName}
                           </h2>
                           <div className="flex flex-row mb-4 justify-between items-center w-full">
@@ -229,7 +231,7 @@ const InernationalPlaces = () => {
                               )}
                             </span>
                             {trip.tripDateCount > 0 && ( // Check if tripDateCount is greater than 0
-                              <span className="text-xs ml-4">
+                              <span className="text-xs text-red-500 ml-1">
                                 +{trip.tripDateCount}
                                 <span className="ml-1">Batches</span>
                               </span>

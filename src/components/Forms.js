@@ -35,7 +35,7 @@ const Forms = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "http://localhost:5000/api/contact/contact-home",
+        "https://api.travello10.com/api/contact/contact-home",
         formData
       );
 
@@ -59,7 +59,7 @@ const Forms = () => {
 
   return (
     <div className="bg-[#ffffe6]">
-      <h1 className="text-center text-2xl pt-4 sm:text-3xl lg:text-4xl font-bold mb-8">
+      <h1 className="text-center md:text-2xl pt-4 text-xl lg:text-4xl font-bold md:mb-8 mb-2">
         Need Assistance
       </h1>
       <div className="flex items-center mb-10 justify-center px-4 h-[80%]">

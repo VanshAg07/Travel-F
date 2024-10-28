@@ -30,7 +30,7 @@ function EditOffer() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/edit-packages/get-offers-packages")
+      .get("https://api.travello10.com/api/edit-packages/get-offers-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -115,7 +115,7 @@ function EditOffer() {
 
       axios
         .put(
-          `http://localhost:5000/api/edit-packages/edit-offers-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `https://api.travello10.com/api/edit-packages/edit-offers-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -136,7 +136,7 @@ function EditOffer() {
     if (confirmed) {
       axios
         .delete(
-          `http://localhost:5000/api/edit-packages/delete-offers-package/${pkg.stateName}/${tripId}`
+          `https://api.travello10.com/api/edit-packages/delete-offers-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -315,7 +315,7 @@ function EditOffer() {
                     <button
                       onClick={() =>
                         window.open(
-                          `http://localhost:5000/upload/${pdf.filename}`,
+                          `https://api.travello10.com/upload/${pdf.filename}`,
                           "_blank"
                         )
                       }

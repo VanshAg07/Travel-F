@@ -21,7 +21,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/request-password-reset",
+        "https://api.travello10.com/api/auth/request-password-reset",
         { email }
       );
 
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
+        "https://api.travello10.com/api/auth/verify-otp",
         { email, otp }
       );
 
@@ -68,7 +68,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:5000/api/auth/reset-password",
+        "https://api.travello10.com/api/auth/reset-password",
         { email, password: newPassword }
       );
 

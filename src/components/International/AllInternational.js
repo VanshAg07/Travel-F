@@ -11,7 +11,7 @@ function AllInternational() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/international/get-all-international"
+          "https://api.travello10.com/api/international/get-all-international"
         );
         const data = await response.json();
         setPackages(data);
@@ -56,7 +56,7 @@ function AllInternational() {
                 </div>
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                   <div className="w-full">
-                    <h2 className="text-lg font-semibold text-black pb-6">
+                    <h2 className="text-lg uppercase truncate font-semibold text-black pb-6">
                       {pkg.stateName} - {trip.tripName}
                     </h2>
                     <div className="flex flex-row mb-4 justify-between items-center w-full">
@@ -86,7 +86,7 @@ function AllInternational() {
                         })}
                       </span>
                       {trip.tripDateCount >= 0 && (
-                        <span className="text-xs ml-4">
+                        <span className="text-xs text-red-500 ml-1">
                           +{trip.tripDateCount}
                           <span className="ml-1">Batches</span>
                         </span>

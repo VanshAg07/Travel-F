@@ -15,7 +15,7 @@ const Hiking = () => {
       console.log("Fetching activities...");
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/getBestActivities/${name}`
+          `https://api.travello10.com/api/user/getBestActivities/${name}`
         );
         console.log(response.data);
         setActivities(response.data.activities || []);

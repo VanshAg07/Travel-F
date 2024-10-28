@@ -33,7 +33,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/group-tours/group-tours"
+          "https://api.travello10.com/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -56,6 +56,8 @@ const BackpackingTrips = () => {
         <Dropnav />
         <div className="hero-section-left-1">
           <img className="hero-img" src={intern} alt="International" />
+          {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <div className="relative flex flex-col items-center">
             <div className="relative w-full flex items-start justify-center">
               <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">

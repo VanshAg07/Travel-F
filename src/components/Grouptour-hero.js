@@ -23,7 +23,7 @@ const HighLevelCorporateTour = () => {
 
   const fetchGroupDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/group-tours/group-details`);
+      const response = await fetch(`https://api.travello10.com/api/group-tours/group-details`);
       const result = await response.json();
       if (result.data) {
         setGroupDetails(result.data);

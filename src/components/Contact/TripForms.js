@@ -1,6 +1,5 @@
-import React from "react";
-import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
+import React from "react";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 
 function TripForms() {
@@ -14,7 +13,6 @@ function TripForms() {
 
   const [error, setError] = React.useState("");
   const [success, setSuccess] = React.useState("");
-
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevState) => ({
@@ -63,16 +61,16 @@ function TripForms() {
   };
 
   return (
-    <div className="border-2 border-[#03346e] mt-3 rounded-lg shadow-lg max-w-full mx-2 sm:max-w-lg sm:mx-auto">
-      <div className="bg-[#03346e] p-3 border-b-2 border-[#03346e] rounded-t-md text-center">
-        <p className="font-semibold text-sm md:text-xl text-white">
+    <div className="border-2 border-blue-500 mt-5 rounded-lg shadow-lg max-w-lg mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
+      <div className="bg-blue-500 p-3 border-b-2 border-blue-400 rounded-t-lg text-center">
+        <p className="font-semibold text-xl md:text-2xl text-white">
           Reach Out To Us
         </p>
       </div>
-      <div className="p-4 bg-white rounded-b-lg">
-        <form className="space-y-3" onSubmit={submitForm}>
+      <div className="p-6 bg-white rounded-b-lg">
+        <form className="space-y-5" onSubmit={submitForm}>
           <div className="flex flex-col">
-            <label className="font-semibold text-[#03346e] text-xs md:text-sm">
+            <label className="font-semibold text-blue-700 text-sm md:text-base">
               Full Name
             </label>
             <input
@@ -80,12 +78,12 @@ function TripForms() {
               id="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="e.g., John Doe"
-              className="mt-1 p-2 border border-[#03346e] rounded-lg text-sm md:text-base"
+              placeholder="eg. John Doe"
+              className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base"
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-[#03346e] text-xs md:text-sm">
+            <label className="font-semibold text-blue-700 text-sm md:text-base">
               Phone No
             </label>
             <input
@@ -93,12 +91,12 @@ function TripForms() {
               value={formData.phone}
               onChange={handleChange}
               id="phone"
-              placeholder="e.g., 123-456-7890"
-              className="mt-1 p-2 border border-[#03346e] rounded-lg text-sm md:text-base"
+              placeholder="eg. 123-456-7890"
+              className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base"
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-[#03346e] text-xs md:text-sm">
+            <label className="font-semibold text-blue-700 text-sm md:text-base">
               Email ID
             </label>
             <input
@@ -106,12 +104,12 @@ function TripForms() {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="e.g., johndoe@example.com"
-              className="mt-1 p-2 border border-[#03346e] rounded-lg text-sm md:text-base"
+              placeholder="eg. johndoe@example.com"
+              className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base"
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-[#03346e] text-xs md:text-sm">
+            <label className="font-semibold text-blue-700 text-sm md:text-base">
               Destination
             </label>
             <input
@@ -119,34 +117,34 @@ function TripForms() {
               id="destination"
               value={formData.destination}
               onChange={handleChange}
-              placeholder="e.g., Delhi"
-              className="mt-1 p-2 border border-[#03346e] rounded-lg text-sm md:text-base"
+              placeholder="eg. Delhi"
+              className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm md:text-base"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-[#03346e] text-white font-semibold py-2 rounded-lg  transition-all duration-300 text-sm md:text-base"
+            className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm md:text-base"
           >
             Get Quotes
           </button>
-          <div className="flex flex-col md:flex-row items-center justify-between mt-4 space-y-2 md:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:justify-between mt-4 space-y-4 sm:space-y-0">
             <a
               href={`https://wa.me/918287804197?text=${encodeURIComponent(
                 whatsappMessage
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full md:mr-2 bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-600 transition-all duration-300 text-sm md:text-base"
+              className="flex items-center justify-center flex-1 bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 text-sm md:text-base mr-0 sm:mr-2"
             >
-              <FaWhatsapp className="text-lg md:text-xl mr-2" />
+              <FaWhatsapp className="text-xl mr-2" />
               WhatsApp
             </a>
             <button
               type="button"
-              className="flex items-center justify-center w-full bg-[#03346e] text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm md:text-base"
+              className="flex items-center justify-center flex-1 bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm md:text-base ml-0 sm:ml-2"
               onClick={callNow}
             >
-              <FaPhone className="text-lg md:text-xl mr-2 rotate-90" />
+              <FaPhone className="text-xl transform mr-2 rotate-90" />
               Call Now
             </button>
           </div>
@@ -156,24 +154,4 @@ function TripForms() {
   );
 }
 
-const QuotePopup = ({ onClose }) => {
-  return (
-    <div className="fixed inset-0 flex z-10 items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-sm md:mt-28 sm:max-w-md mx-4 h-[80%] sm:h-auto flex flex-col p-4">
-        <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="text-gray-600 hover:text-gray-900 transition duration-300"
-          >
-            <RxCross2 size={24} />
-          </button>
-        </div>
-        <div className="overflow-y-auto">
-          <TripForms />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default QuotePopup;
+export default TripForms;

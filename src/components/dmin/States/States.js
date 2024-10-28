@@ -38,10 +38,10 @@ const States = () => {
         honeymoonRes,
         offerRes,
       ] = await Promise.all([
-        axios.get("http://localhost:5000/api/admin/states"),
-        axios.get("http://localhost:5000/api/trip/states"),
-        axios.get("http://localhost:5000/api/honeymoon/states"),
-        axios.get("http://localhost:5000/api/offer/states"),
+        axios.get("https://api.travello10.com/api/admin/states"),
+        axios.get("https://api.travello10.com/api/trip/states"),
+        axios.get("https://api.travello10.com/api/honeymoon/states"),
+        axios.get("https://api.travello10.com/api/offer/states"),
       ]);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
@@ -55,15 +55,13 @@ const States = () => {
   useEffect(() => {
     fetchStates();
   }, [refresh]);
-
-
   const addInternationalState = async () => {
     const formData = new FormData();
     formData.append("stateName", newInternationalState.name);
     formData.append("stateImage", newInternationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/international-state`,
+        `https://api.travello10.com/api/admin/international-state`,
         formData,
         {
           headers: {
@@ -87,7 +85,7 @@ const States = () => {
     formData.append("stateImage", newOffer.image);
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/offer/states`,
+        `https://api.travello10.com/api/offer/states`,
         formData,
         {
           headers: {
@@ -111,7 +109,7 @@ const States = () => {
     formData.append("stateImage", newNationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/trip/state`,
+        `https://api.travello10.com/api/trip/state`,
         formData,
         {
           headers: {
@@ -134,7 +132,7 @@ const States = () => {
     formData.append("stateImage", newHoneymoonState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/honeymoon/states`,
+        `https://api.travello10.com/api/honeymoon/states`,
         formData,
         {
           headers: {
@@ -155,7 +153,7 @@ const States = () => {
   // Delete state functions for each category
   const deleteOfferState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/offer/states/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/offer/states/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -164,7 +162,7 @@ const States = () => {
 
   const deleteInternationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/admin/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -173,7 +171,7 @@ const States = () => {
 
   const deleteNationalState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/trip/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/trip/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -182,7 +180,7 @@ const States = () => {
 
   const deleteHoneymoonState = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/honeymoon/state/${_id}`);
+      await axios.delete(`https://api.travello10.com/api/honeymoon/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -201,52 +199,7 @@ const States = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* State Category Cards */}
-        {/* <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
-          <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
-            Weekends
-          </h2>
-          <input
-            type="text"
-            placeholder="Add Weekend State"
-            value={newWeekendState.name}
-            onChange={(e) => setNewWeekendState({ name: e.target.value })}
-            className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
-          <input
-            type="file"
-            onChange={(e) => handleImageChange(e, setNewWeekendState)}
-            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
-            required
-          />
-          <button
-            onClick={addWeekendState}
-            className="bg-blue-500 text-white font-medium rounded-lg p-3 mb-4 w-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
-          >
-            Add Place
-          </button>
-          <h3 className="font-semibold text-gray-700 mb-2">States:</h3>
-          <ul className="space-y-2">
-            {weekendStates.length > 0 ? (
-              weekendStates.map((state) => (
-                <li
-                  key={state._id}
-                  className="flex justify-between items-center bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-colors duration-200 shadow-sm"
-                >
-                  <span className="text-gray-800">{state.stateName}</span>
-                  <button
-                    onClick={() => deleteWeekendState(state._id)}
-                    className="text-red-500 hover:text-red-600 transition-colors duration-200"
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))
-            ) : (
-              <p className="text-gray-500 text-sm">No states available.</p>
-            )}
-          </ul>
-        </div> */}
+        
         <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
           <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
             National

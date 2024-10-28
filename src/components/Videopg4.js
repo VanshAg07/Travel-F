@@ -39,12 +39,12 @@ const TravelPackageCard = ({ pkg }) => {
       <img
         src={pkg.tripImages}
         alt={pkg.tripName}
-        className="w-full h-[200px] object-cover"
+        className="w-full h-[260px] object-cover"
       />
-      <div className="p-4">
-        <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold">{displayTripName}</h3>
-        </div>
+      <div className="pt-2 pl-3 pr-3 pb-2">
+      <div className="flex justify-between items-center">
+  <h3 className="text-lg uppercase font-semibold truncate">{displayTripName}</h3>
+</div>
         <div className="flex justify-between items-center mt-2">
           <div className="flex items-center text-black text-sm">
             <FaClock className="mr-1" />
@@ -69,7 +69,7 @@ const TravelPackages = () => {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/video-page"
+        "https://api.travello10.com/api/home/video-page"
       );
       const internationalVideo = response.data.find(
         (video) => video.type === "Honeymoon"
@@ -87,7 +87,7 @@ const TravelPackages = () => {
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/home/homepage-choosen-honeymoon-display"
+        "https://api.travello10.com/api/home/homepage-choosen-honeymoon-display"
       );
       setPackages(res.data.chosenPackages);
     } catch (error) {
@@ -135,33 +135,37 @@ const TravelPackages = () => {
     <div className="h-screen pt-10 bg-white flex flex-col">
       {/* Video Section */}
       <div className="relative w-full h-[32%]">
-        {videoSrc ? (
-          <video
-            className="w-full h-full object-cover"
-            src={videoSrc}
-            autoPlay
-            loop
-            muted
-            onError={() => console.error("Error loading video")}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-300">
-            <span className="text-gray-600">Video not available</span>
-          </div>
-        )}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-          <h1 className="text-4xl uppercase font-bold">
-            Explore <span className="text-yellow-400"> Honeymoon places</span>{" "}
-          </h1>
-          <h3 className="text-lg mt-2">
-            Discover the
-            <span className="text-yellow-400"> Perfect Destination </span> for
-            Your <span className="text-yellow-400"> Honeymoon: </span> A
-            Romantic Journey to{" "}
-            <span className="text-yellow-400">Cherish Forever!</span>
-          </h3>
-        </div>
-      </div>
+  {videoSrc ? (
+    <video
+      className="w-full h-full object-cover"
+      src={videoSrc}
+      autoPlay
+      loop
+      muted
+      onError={() => console.error("Error loading video")}
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center bg-gray-300">
+      <span className="text-gray-600">Video not available</span>
+    </div>
+  )}
+  
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+
+  {/* Text */}
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
+    <h1 className="text-4xl uppercase font-bold">
+      Explore <span className="text-yellow-400">Honeymoon places</span>
+    </h1>
+    <h3 className="text-lg mt-2">
+      Discover the
+      <span className="text-yellow-400"> Perfect Destination </span> for Your
+      <span className="text-yellow-400"> Honeymoon: </span> A Romantic Journey
+      to <span className="text-yellow-400">Cherish Forever!</span>
+    </h3>
+  </div>
+</div>
 
       {/* Packages Section */}
       <div className="w-[95vw] h-[80%] mx-auto px-4 sm:px-6 lg:px-8 overflow-y-auto">

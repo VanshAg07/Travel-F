@@ -23,7 +23,9 @@ const HoneymoonPlaces = () => {
       <Dropnav />
       <div className="place-container">
         <div className="place-hero">
+                  {/* Gradient Overlay */}
           <img className="pl-img" src={bg} alt="Background" />
+          
           <div>
             <h1>{name} Tour Packages</h1>
             <p>The Perfect Blend of Serenity and Adventure</p>
