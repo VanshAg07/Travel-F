@@ -17,7 +17,7 @@ const AddBackground = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/background-images/images"
+        "http://localhost:5000/api/background-images/images"
       );
       setBackgroundImages(response.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const AddBackground = () => {
       if (editingId) {
         // Update existing background image
         await axios.put(
-          `https://api.travello10.com/api/background-images/images/${editingId}`,
+          `http://localhost:5000/api/background-images/images/${editingId}`,
           formDataToSend,
           {
             headers: {
@@ -67,7 +67,7 @@ const AddBackground = () => {
       } else {
         // Create new background image
         await axios.post(
-          "https://api.travello10.com/api/background-images/images",
+          "http://localhost:5000/api/background-images/images",
           formDataToSend,
           {
             headers: {
@@ -90,7 +90,7 @@ const AddBackground = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com/api/background-images/images/${id}`
+        `http://localhost:5000/api/background-images/images/${id}`
       );
       setSuccessMessage("Background image deleted successfully!");
       await fetchBackgroundImages();
@@ -171,24 +171,31 @@ const AddBackground = () => {
       </form>
 
       <div className="space-y-4">
-        {backgroundImages.map((image) => (
-          <div key={image._id} className="border p-4 rounded shadow">
-            <h3 className="text-lg font-semibold">{image.heading}</h3>
-            <p className="text-gray-600">Type: {image.type}</p>
-            <img
-              src={image.image[0]}
-              alt={image.heading}
-              className="w-[64%] h-64 rounded mt-2"
-            />
+        {backgroundImages.map((media) => (
+          <div key={media._id} className="border p-4 rounded shadow">
+            <h3 className="text-lg font-semibold">{media.heading}</h3>
+            <p className="text-gray-600">Type: {media.type}</p>
+            {media.image[0].endsWith(".mp4") ? (
+              <video controls className="w-[64%] h-64 rounded mt-2">
+                <source src={media.image[0]} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <img
+                src={media.image[0]}
+                alt={media.heading}
+                className="w-[64%] h-64 rounded mt-2"
+              />
+            )}
             <div className="mt-4 space-x-2">
               <button
-                onClick={() => handleEdit(image)}
+                onClick={() => handleEdit(media)}
                 className="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition"
               >
                 Edit
               </button>
               <button
-                onClick={() => handleDelete(image._id)}
+                onClick={() => handleDelete(media._id)}
                 className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
               >
                 Delete

@@ -23,7 +23,7 @@ const Weekends = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -41,26 +41,32 @@ const Weekends = () => {
         <Dropnav />
         <div className="hero-section-left-1">
           {nationalImages.map((item) => (
-            <>
-              {item.image.map((imgUrl, index) => (
-                <img
-                  key={index}
-                  src={imgUrl}
-                  alt={item.heading}
-                  className="hero-img"
-                />
-              ))}
-              <div className="relative flex flex-col items-center">
-                <div className="relative w-full flex items-start justify-center">
-                  <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-                    {item.heading}
-                  </h1>
-                </div>
+            <div key={item._id} className="relative">
+              {item.image.map((imgUrl, index) =>
+                imgUrl.endsWith(".mp4") ? (
+                  <video
+                    key={index}
+                    className="w-full h-auto"
+                    autoPlay
+                    muted
+                    loop
+                  >
+                    <source src={imgUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img key={index} src={imgUrl} alt={`Image ${index}`} />
+                )
+              )}
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                  {item.heading}
+                </h1>
                 <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-                  Weekend Getaways From Delhi
+                  Unveil the Wonders
                 </h1>
               </div>
-            </>
+            </div>
           ))}
         </div>
         <div className="mt-[100px] md:mt-0">

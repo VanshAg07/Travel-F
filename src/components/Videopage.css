@@ -7,9 +7,8 @@
   .video-background {
     height: 95vh; /* For large screens (e.g., laptops) */
   }
-
-  .gradient-bg{
-    height:95vh;
+  .gradient-bg {
+    height: 95vh;
     width: 50vw;
     background: rgba(0, 0, 0, 0.433);
   }
@@ -19,32 +18,41 @@
   .video-background {
     height: 95vh; /* For medium screens (e.g., tablets) */
   }
-  .gradient-bg{
-    height:95vh;
+  .gradient-bg {
+    height: 95vh;
     width: 50vw;
     background: rgba(0, 0, 0, 0.433);
   }
 }
 
 @media (max-width: 426px) {
-  .videopg-wrpper{
-    height: 85vh;
+  .videopg-wrpper {
+    height: 61vh;
   }
-
   .video-background {
-    height: 70vh; /* For medium screens (e.g., tablets) */
+    height: 40vh; /* For medium screens (e.g., tablets) */
   }
-  .gradient-bg{
-    height:70vh;
+  .gradient-bg {
+    height: 70vh;
     width: 100vw;
     background: rgba(0, 0, 0, 0.433);
+    display: none;
   }
-  .videopg-p{
+  .videopg-p {
     margin-top: -50px;
+    display: none;
   }
-
-  .videopg-btn{
+  .videopg-btn {
     margin-top: -80px;
+    display: none;
+  }
+  .line1 .line2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    font-size: 20px;
   }
 }
 /* styles.css */
@@ -53,14 +61,13 @@
 }
 
 @media (max-width: 375px) {
-  .video-hed{
+  .video-hed {
     left: 2rem;
   }
-  .videopg-p{
-     left: 2rem;
-  }
-  .videopg-btn{
+  .videopg-p {
     left: 2rem;
   }
+  .videopg-btn {
+    left: 2rem;
   }
-
+}

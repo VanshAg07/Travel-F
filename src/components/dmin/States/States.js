@@ -45,11 +45,11 @@ const States = () => {
         honeymoonRes,
         offerRes,
       ] = await Promise.all([
-        axios.get("https://api.travello10.com/api/weekends/states"),
-        axios.get("https://api.travello10.com/api/admin/states"),
-        axios.get("https://api.travello10.com/api/trip/states"),
-        axios.get("https://api.travello10.com/api/honeymoon/states"),
-        axios.get("https://api.travello10.com/api/offer/states"),
+        axios.get("http://localhost:5000/api/weekends/states"),
+        axios.get("http://localhost:5000/api/admin/states"),
+        axios.get("http://localhost:5000/api/trip/states"),
+        axios.get("http://localhost:5000/api/honeymoon/states"),
+        axios.get("http://localhost:5000/api/offer/states"),
       ]);
       setWeekendStates(weekendsRes.data);
       setInternationalStates(internationalRes.data);
@@ -70,7 +70,7 @@ const States = () => {
     formData.append("stateImage", newWeekendState.image);
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/weekends/states`,
+        `http://localhost:5000/api/weekends/states`,
         formData,
         {
           headers: {
@@ -94,7 +94,7 @@ const States = () => {
     formData.append("stateImage", newInternationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/admin/international-state`,
+        `http://localhost:5000/api/admin/international-state`,
         formData,
         {
           headers: {
@@ -118,7 +118,7 @@ const States = () => {
     formData.append("stateImage", newOffer.image);
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/offer/states`,
+        `http://localhost:5000/api/offer/states`,
         formData,
         {
           headers: {
@@ -142,7 +142,7 @@ const States = () => {
     formData.append("stateImage", newNationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/trip/state`,
+        `http://localhost:5000/api/trip/state`,
         formData,
         {
           headers: {
@@ -165,7 +165,7 @@ const States = () => {
     formData.append("stateImage", newHoneymoonState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/honeymoon/states`,
+        `http://localhost:5000/api/honeymoon/states`,
         formData,
         {
           headers: {
@@ -186,7 +186,7 @@ const States = () => {
   // Delete state functions for each category
   const deleteWeekendState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/weekends/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/weekends/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -195,7 +195,7 @@ const States = () => {
   // Delete state functions for each category
   const deleteOfferState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/offer/states/${_id}`);
+      await axios.delete(`http://localhost:5000/api/offer/states/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -204,7 +204,7 @@ const States = () => {
 
   const deleteInternationalState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/admin/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/admin/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -213,7 +213,7 @@ const States = () => {
 
   const deleteNationalState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/trip/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/trip/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -222,7 +222,7 @@ const States = () => {
 
   const deleteHoneymoonState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/honeymoon/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/honeymoon/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -241,7 +241,7 @@ const States = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* State Category Cards */}
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
+        {/* <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
           <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
             Weekends
           </h2>
@@ -286,7 +286,7 @@ const States = () => {
               <p className="text-gray-500 text-sm">No states available.</p>
             )}
           </ul>
-        </div>
+        </div> */}
         <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
           <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
             National

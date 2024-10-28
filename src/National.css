@@ -26,6 +26,14 @@
   .all-packages-description {
     font-size: 0.9rem;     
   }
+  .hero-section-left-1 {
+    position: relative;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
 }
 
 
@@ -164,4 +172,3 @@
     margin-right: 80px;
   }
 }
-

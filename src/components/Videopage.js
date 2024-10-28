@@ -14,7 +14,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/home-page-video"
+        "http://localhost:5000/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
@@ -63,7 +63,6 @@ const Videopage = () => {
           anywhere
         </p>
       </div>
-
       {/* Button for booking */}
       <div className="absolute videopg-btn left-20 top-[440px] z-50">
         <button className="bg-white video-btn text-black py-2 px-6 rounded-full text-sm font-bold sm:text-base">
@@ -72,7 +71,7 @@ const Videopage = () => {
       </div>
 
       {/* Mainreview component */}
-      <div className="z-20 w-full absolute bottom-0">
+      <div className="z-20 w-full absolute bottom-0 ">
         <Mainreview />
       </div>
 

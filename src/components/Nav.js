@@ -43,7 +43,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("https://api.travello10.com/api/home/nav-offer", {
+    fetch("http://localhost:5000/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())

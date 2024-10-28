@@ -22,7 +22,7 @@ export default function Card() {
   const fetchStateNames = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/flip-card/flip"
+        "http://localhost:5000/api/flip-card/flip"
       );
       setStateData(response.data); // Assuming the response data is in the expected format
     } catch (error) {
@@ -46,7 +46,7 @@ export default function Card() {
     <div className="">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
         <div className="flex ml-4 flex-col">
-          <h1 className="text-lg font-bold">International Packages</h1>
+          <h1 className="text-lg font-bold">Romantic Escapes</h1>
           <div className="w-32 border-b-4 border-blue-400 mt-1" />
         </div>
         <a href="/national" className="text-red-500 text-sm mr-4">
