@@ -171,24 +171,31 @@ const AddBackground = () => {
       </form>
 
       <div className="space-y-4">
-        {backgroundImages.map((image) => (
-          <div key={image._id} className="border p-4 rounded shadow">
-            <h3 className="text-lg font-semibold">{image.heading}</h3>
-            <p className="text-gray-600">Type: {image.type}</p>
-            <img
-              src={image.image[0]}
-              alt={image.heading}
-              className="w-[64%] h-64 rounded mt-2"
-            />
+        {backgroundImages.map((media) => (
+          <div key={media._id} className="border p-4 rounded shadow">
+            <h3 className="text-lg font-semibold">{media.heading}</h3>
+            <p className="text-gray-600">Type: {media.type}</p>
+            {media.image[0].endsWith(".mp4") ? (
+              <video controls className="w-[64%] h-64 rounded mt-2">
+                <source src={media.image[0]} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <img
+                src={media.image[0]}
+                alt={media.heading}
+                className="w-[64%] h-64 rounded mt-2"
+              />
+            )}
             <div className="mt-4 space-x-2">
               <button
-                onClick={() => handleEdit(image)}
+                onClick={() => handleEdit(media)}
                 className="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition"
               >
                 Edit
               </button>
               <button
-                onClick={() => handleDelete(image._id)}
+                onClick={() => handleDelete(media._id)}
                 className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
               >
                 Delete

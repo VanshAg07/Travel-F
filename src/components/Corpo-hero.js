@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MdLocationPin, MdPeople } from "react-icons/md";
 
 const HighLevelCorporateTour = () => {
   const [partners, setPartners] = useState([]);
@@ -64,13 +65,13 @@ const HighLevelCorporateTour = () => {
                 {/* Details */}
                 <div className="mt-4">
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                    <div className="flex items-center">
-                      <span className="material-icons">Place</span>
-                      <span className="ml-2">{partner.place}</span>
+                    <div className="flex p-2 border border-gray-300 rounded-md items-center">
+                    <MdLocationPin />
+                      <span className="ml-1">{partner.place}</span>
                     </div>
-                    <div className="flex items-center">
-                      <span className="material-icons">People</span>
-                      <span className="ml-2">{partner.people}</span>
+                    <div className="flex p-2 border border-gray-300 rounded-md items-center">
+                    <MdPeople className="text-xl" />
+                      <span className="ml-1">{partner.people}</span>
                     </div>
                   </div>
                 </div>

@@ -196,7 +196,7 @@ const Place = () => {
                       </div>
                       <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                         <div className="w-full">
-                          <h2 className="text-lg font-semibold text-black pb-4">
+                          <h2 className="text-lg uppercase truncate font-semibold text-black pb-4">
                             {trip.tripName}
                           </h2>
                           <div className="flex flex-row mb-4 justify-between items-center w-full">
@@ -228,7 +228,7 @@ const Place = () => {
                               )}
                             </span>
                             {trip.tripDateCount > 0 && ( // Check if tripDateCount is greater than 0
-                              <span className="text-xs ml-4">
+                              <span className="text-xs text-red-500 ml-1">
                                 +{trip.tripDateCount}
                                 <span className="ml-1">Batches</span>
                               </span>

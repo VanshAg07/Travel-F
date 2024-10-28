@@ -3,8 +3,6 @@ import axios from "axios";
 
 const States = () => {
   const [refresh, setRefresh] = useState(0);
-  const [weekendStates, setWeekendStates] = useState({ name: "", image: null });
-
   const [internationalStates, setInternationalStates] = useState({
     name: "",
     image: null,
@@ -18,10 +16,6 @@ const States = () => {
     image: null,
   });
   const [offerStates, setOfferStates] = useState({ name: "", image: null });
-  const [newWeekendState, setNewWeekendState] = useState({
-    name: "",
-    image: null,
-  });
   const [newInternationalState, setNewInternationalState] = useState({
     name: "",
   });
@@ -39,19 +33,16 @@ const States = () => {
   const fetchStates = async () => {
     try {
       const [
-        weekendsRes,
         internationalRes,
         nationalRes,
         honeymoonRes,
         offerRes,
       ] = await Promise.all([
-        axios.get("http://localhost:5000/api/weekends/states"),
         axios.get("http://localhost:5000/api/admin/states"),
         axios.get("http://localhost:5000/api/trip/states"),
         axios.get("http://localhost:5000/api/honeymoon/states"),
         axios.get("http://localhost:5000/api/offer/states"),
       ]);
-      setWeekendStates(weekendsRes.data);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
       setHoneymoonStates(honeymoonRes.data);
@@ -64,29 +55,6 @@ const States = () => {
   useEffect(() => {
     fetchStates();
   }, [refresh]);
-  const addWeekendState = async () => {
-    const formData = new FormData();
-    formData.append("stateName", newWeekendState.name);
-    formData.append("stateImage", newWeekendState.image);
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/api/weekends/states`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response.status === 201) {
-        setNewWeekendState({ name: "" });
-        fetchStates();
-        setRefresh((prev) => prev + 1);
-      }
-    } catch (error) {
-      console.error(`Error adding international state`, error);
-    }
-  };
 
   const addInternationalState = async () => {
     const formData = new FormData();
@@ -184,14 +152,7 @@ const States = () => {
   };
 
   // Delete state functions for each category
-  const deleteWeekendState = async (_id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/weekends/state/${_id}`);
-      fetchStates();
-    } catch (error) {
-      console.error(`Error deleting international state`, error);
-    }
-  };
+
   // Delete state functions for each category
   const deleteOfferState = async (_id) => {
     try {
@@ -241,52 +202,7 @@ const States = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* State Category Cards */}
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
-          <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
-            Weekends
-          </h2>
-          <input
-            type="text"
-            placeholder="Add Weekend State"
-            value={newWeekendState.name}
-            onChange={(e) => setNewWeekendState({ name: e.target.value })}
-            className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
-          <input
-            type="file"
-            onChange={(e) => handleImageChange(e, setNewWeekendState)}
-            className="border border-gray-300 rounded-lg p-3 w-full mb-4"
-            required
-          />
-          <button
-            onClick={addWeekendState}
-            className="bg-blue-500 text-white font-medium rounded-lg p-3 mb-4 w-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
-          >
-            Add Place
-          </button>
-          <h3 className="font-semibold text-gray-700 mb-2">States:</h3>
-          <ul className="space-y-2">
-            {weekendStates.length > 0 ? (
-              weekendStates.map((state) => (
-                <li
-                  key={state._id}
-                  className="flex justify-between items-center bg-green-50 p-3 rounded-lg hover:bg-green-100 transition-colors duration-200 shadow-sm"
-                >
-                  <span className="text-gray-800">{state.stateName}</span>
-                  <button
-                    onClick={() => deleteWeekendState(state._id)}
-                    className="text-red-500 hover:text-red-600 transition-colors duration-200"
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))
-            ) : (
-              <p className="text-gray-500 text-sm">No states available.</p>
-            )}
-          </ul>
-        </div>
+        
         <div className="bg-white shadow-md rounded-xl p-6 border border-gray-200">
           <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
             National

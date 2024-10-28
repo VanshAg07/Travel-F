@@ -65,6 +65,7 @@ const TravelPackageCard = ({ pkg }) => {
     </div>
   );
 };
+
 const TravelPackages = () => {
   const [packages, setPackages] = useState([]); // State to store fetched packages
   const [startIndex, setStartIndex] = useState(0);

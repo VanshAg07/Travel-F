@@ -12,12 +12,14 @@ function CorporatePartners() {
     people: "",
     youtubeLink: "",
     logo: null,
+    image: null,
   });
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     fetchPartners();
   }, []);
+  
   const fetchPartners = async () => {
     try {
       const response = await axios.get(

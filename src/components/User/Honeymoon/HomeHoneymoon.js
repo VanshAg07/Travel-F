@@ -29,7 +29,7 @@ const HomeHoneymoon = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/honeymoon/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);
@@ -81,16 +81,18 @@ const HomeHoneymoon = () => {
           ) : (
             <p>No images available for this location.</p>
           )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <div className="relative flex flex-col items-center">
+          
             <div className="relative w-full flex items-start justify-center">
               <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
                 {name} Tour Packages
               </h1>
             </div>
 
-            <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+            {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
               The Perfect Blend of Adventure
-            </h1>
+            </h1> */}
           </div>
         </div>
         <div className="mt-[100px] md:mt-0">

@@ -7,12 +7,27 @@ import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
-import Aboutushero from "./aboutus-hero"
+import Aboutushero from "./aboutus-hero";
 
 const Aboutus = () => {
+  const [backgroundImages, setBackgroundImages] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     fetchTeamMembers();
+    fetchBackgroundImages();
   }, []);
+  // Fetch all background images
+  const fetchBackgroundImages = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/background-images/images"
+      );
+      setBackgroundImages(response.data);
+    } catch (error) {
+      console.error("Error fetching background images:", error);
+      setErrorMessage("Failed to load images.");
+    }
+  };
   const fetchTeamMembers = async () => {
     try {
       const response = await axios.get(
@@ -30,7 +45,7 @@ const Aboutus = () => {
   return (
     <>
       <Nav />
-      <Dropnav/>
+      <Dropnav />
       <div>
         <div>
           <img
@@ -52,32 +67,38 @@ const Aboutus = () => {
             What Do We Strive for and What Fuels Our Ambition?
           </h1>
           <p className="mb-4 text-sm sm:text-base lg:text-lg">
-          TravelloTen India Private Limited is a specialist for Travel & Transport  serving exclusively the academic sector by arranging educational & fun tours for 
-          students of every age all over India.
+            TravelloTen India Private Limited is a specialist for Travel &
+            Transport serving exclusively the academic sector by arranging
+            educational & fun tours for students of every age all over India.
           </p>
           <p className="text-sm sm:text-base lg:text-lg">
-          We are different as we educate and inform students about historical/geographical/cultural values etc. wherever the tour takes place. 
-We also doing school tour , colleges tour , corporate tour & Family's tour for all place in India. 
+            We are different as we educate and inform students about
+            historical/geographical/cultural values etc. wherever the tour takes
+            place. We also doing school tour , colleges tour , corporate tour &
+            Family's tour for all place in India.
           </p>
           <p className="text-sm sm:text-base lg:text-lg">
-          We have over many years combined experience in providing the almost in quality, authenticity and service in the group travel industry.
+            We have over many years combined experience in providing the almost
+            in quality, authenticity and service in the group travel industry.
           </p>
           <p className="text-sm sm:text-base lg:text-lg">
-          We have strong hold in the domestic market as well. We believe in “Service with quality & Smile”.  
+            We have strong hold in the domestic market as well. We believe in
+            “Service with quality & Smile”.
           </p>
           <p className="text-sm sm:text-base lg:text-lg">
-          We use the best system for operations which adds “Valued Efficiency” to our teamwork thus making hospitality not a business affair 
-          but a “Commitment & Pledge” towards client’s satisfaction. 
+            We use the best system for operations which adds “Valued Efficiency”
+            to our teamwork thus making hospitality not a business affair but a
+            “Commitment & Pledge” towards client’s satisfaction.
           </p>
           <p className="text-sm sm:text-base lg:text-lg">
-         
-At TravelloTen India Private Limited understand that planning a group trip can be a lot of work and that is why we believe in providing 
-value every step of the way.
+            At TravelloTen India Private Limited understand that planning a
+            group trip can be a lot of work and that is why we believe in
+            providing value every step of the way.
           </p>
         </div>
 
         {/* Heroes Section */}
-        <Aboutushero/>
+        <Aboutushero />
 
         {/* Team Section */}
         <section className="text-center py-12 sm:py-16 bg-gray-50 px-4 sm:px-8 lg:px-24">
@@ -85,22 +106,24 @@ value every step of the way.
             Meet Our Amazing Team. The Perfect Blend of Talent and Dedication
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {teamMembers.map((member, index) => (
-  <div key={index} className="flex flex-col items-center">
-    <img
-      src={member.image}  // updated from imgSrc to image
-      alt={member.name}
-      className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
-    />
-    <h3 className="text-xl sm:text-2xl font-semibold">{member.name}</h3>
-    <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
-    <p className="text-gray-600 mb-4">{member.position}</p> {/* updated from title to position */}
-    <p className="text-gray-600 text-left text-sm sm:text-base leading-relaxed">
-      {member.description}
-    </p>
-  </div>
-))}
-
+            {teamMembers.map((member, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <img
+                  src={member.image} // updated from imgSrc to image
+                  alt={member.name}
+                  className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
+                />
+                <h3 className="text-xl sm:text-2xl font-semibold">
+                  {member.name}
+                </h3>
+                <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
+                <p className="text-gray-600 mb-4">{member.position}</p>{" "}
+                {/* updated from title to position */}
+                <p className="text-gray-600 text-left text-sm sm:text-base leading-relaxed">
+                  {member.description}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

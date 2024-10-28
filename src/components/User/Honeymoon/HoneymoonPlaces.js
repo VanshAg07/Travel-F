@@ -24,7 +24,6 @@ const HoneymoonPlaces = () => {
       <div className="place-container">
         <div className="place-hero">
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <img className="pl-img" src={bg} alt="Background" />
           
           <div>

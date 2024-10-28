@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import Blog1 from "../img/india.jpg";
 import img1 from "../img/kedarnath.png";
@@ -12,6 +12,7 @@ import Dropnav from "../components/Dropnav";
 import MainFooter from "./Footer/MainFooter";
 import Mainreview from "../components/Mainreview.js";
 import "./Blog.css";
+import axios from "axios";
 
 const Data = [
   {
@@ -57,29 +58,53 @@ const Data = [
 ];
 
 const Blog = () => {
+  const [getTrip, setGetTrip] = useState([]);
+  const [backgroundImages, setBackgroundImages] = useState([]);
+  const fetchBackgroundImages = async () => {
+    const response = await axios.get(
+      "http://localhost:5000/api/background-images/images"
+    );
+    setBackgroundImages(response.data);
+  };
+  useEffect(() => {
+    fetchBackgroundImages();
+  }, []);
+  const nationalImages = backgroundImages.filter(
+    (item) => item.type === "Blogs"
+  );
+
   return (
     <>
-     <Nav />
+      <Nav />
       <Dropnav />
       <div className="hero-section-left-1">
-        <img className="hero-img" src={Blog1} alt="International" />
-        {/* Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
-        <div className="relative flex flex-col items-center">
-  <div className="relative w-full flex items-start justify-center">
-    <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-      Journey Through Stories
-    </h1>
-  </div>
-  
-  <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-   Explore Our Latest Blogs
-  </h1>
-</div>
+        {nationalImages.map((item) => (
+          <div key={item._id} className="relative">
+            {item.image.map((imgUrl, index) =>
+              imgUrl.endsWith(".mp4") ? (
+                <video key={index} className="w-full h-auto" autoPlay muted loop>
+                  <source src={imgUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img key={index} src={imgUrl} alt={`Image ${index}`} />
+              )
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                {item.heading}
+              </h1>
+              {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+                Explore Our Latest Blogs
+              </h1> */}
+            </div>
+          </div>
+        ))}
       </div>
       <div className="mt-[100px] md:mt-0">
-  <Mainreview />
-</div>
+        <Mainreview />
+      </div>
       <div>
         <h2 className="text-center pb-7 pt-7 text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">
           Blogs
