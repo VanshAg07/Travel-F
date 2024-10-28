@@ -36,7 +36,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/international/${stateName}`
       );
       console.log(res.data);
       setNationalImages([res.data]);
@@ -50,7 +50,7 @@ const InernationalPlaces = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         console.log("Fetched Packages:", data); // Check if data is correct
@@ -87,6 +87,8 @@ const InernationalPlaces = () => {
           ) : (
             <p>No images available for this location.</p>
           )}
+          {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <div className="relative flex flex-col items-center">
             <div className="relative w-full flex items-start justify-center">
               <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">

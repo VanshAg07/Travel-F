@@ -40,14 +40,14 @@ const TravelPackageCard = ({ pkg }) => {
       <img
         src={pkg.tripImages}
         alt={pkg.tripName}
-        className="w-full h-[200px] object-cover"
+        className="w-full h-[240px] object-cover"
       />
-      <div className="p-4">
-        <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold">{displayTripName}</h3>
-        </div>
+      <div className="pt-2 pl-3 pr-3 pb-2 h-[100px] bg-transparent">
+      <div className="flex justify-between items-center">
+  <h3 className="text-lg uppercase font-semibold truncate">{displayTripName}</h3>
+</div>
         <div className="flex justify-between items-center mt-2 mb-2">
-          <div className="flex items-center text-black text-sm ">
+          <div className="flex capitalize items-center text-black text-sm ">
             <FaMapMarkerAlt className="mr-1" />
             {pkg.tripLocation}
           </div>
@@ -75,7 +75,7 @@ const TravelPackages = () => {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/video-page"
+        "http://localhost:5000/api/home/video-page"
       );
       const internationalVideo = response.data.find(
         (video) => video.type === "Indian"
@@ -94,7 +94,7 @@ const TravelPackages = () => {
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/homepage-choosen-national-display"
+        "http://localhost:5000/api/home/homepage-choosen-national-display"
       );
       setPackages(res.data.chosenPackages); // Update state with fetched data
     } catch (error) {
@@ -134,6 +134,10 @@ const TravelPackages = () => {
           loop
           muted
         />
+
+         {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+  
         {/* Text Overlay */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h1 className="text-4xl uppercase font-bold">

@@ -29,7 +29,7 @@ const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const [backgroundImages, setBackgroundImages] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("https://api.travello10.com/api/user/getTripDetails");
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -95,7 +95,7 @@ const National = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -110,7 +110,7 @@ const National = () => {
     <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="hero-section-left-1">
+      <div className=" object-cover hero-section-left-1">
         {nationalImages.map((item) => (
           <>
             {item.image.map((imgUrl, index) => (
@@ -118,9 +118,11 @@ const National = () => {
                 key={index}
                 src={imgUrl}
                 alt={item.heading}
-                className="hero-img"
+                className="hero-img "
               />
             ))}
+            {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
             <div className="relative flex flex-col items-center">
               <div className="relative w-full flex items-start justify-center">
                 <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
@@ -133,6 +135,7 @@ const National = () => {
             </div>
           </>
         ))}
+        
       </div>
       <div className="mt-[100px] md:mt-0">
         <Mainreview />

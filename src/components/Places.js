@@ -33,7 +33,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/national/${stateName}`
+        `http://localhost:5000/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -47,7 +47,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         console.log("Fetched Packages:", data); // Check if data is correct
@@ -72,31 +72,34 @@ const Place = () => {
       <div className="wrpper-inter">
         <Nav />
         <Dropnav />
-        <div className="hero-section-left-1">
-          {nationalImages.length > 0 ? (
-            nationalImages.map((image, index) => (
-              <img
-                className="hero-img"
-                key={index}
-                src={image.imageUrl} // Assuming each image object has a 'url' property
-                alt={image.name || "National Image"} // Assuming each image object has a 'name' property
-              />
-            ))
-          ) : (
-            <p>No images available for this location.</p>
-          )}
-          {/* <img className="hero-img" src={bg} alt="International" /> */}
-          <div className="relative flex flex-col items-center">
-            <div className="relative w-full flex items-start justify-center">
-              <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-                {name} Tour Packages
-              </h1>
-            </div>
-            <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-              The Perfect Blend of Adventure
-            </h1>
-          </div>
-        </div>
+        <div className="hero-section-left-1 relative">
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 z-0"></div>
+
+  {nationalImages.length > 0 ? (
+    nationalImages.map((image, index) => (
+      <img
+        className="hero-img"
+        key={index}
+        src={image.imageUrl} // Assuming each image object has a 'url' property
+        alt={image.name || "National Image"} // Assuming each image object has a 'name' property
+      />
+    ))
+  ) : (
+    <p>No images available for this location.</p>
+  )}
+
+  <div className="relative flex flex-col items-center z-10">
+    <div className="relative w-full flex items-start justify-center">
+      <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
+        {name} Tour Packages
+      </h1>
+    </div>
+    <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+      The Perfect Blend of Adventure
+    </h1>
+  </div>
+</div>
         <div className="mt-[100px] md:mt-0">
           <Mainreview />
         </div>
