@@ -64,8 +64,8 @@ export default function Card() {
             <div className="product-card">
               {item.label ? (
                 <div className="dealTag">
-                  <span className="line-through">₹{item.label}</span>
-                  {item.offerPrice}
+                  <span className="">₹{item.label}</span>
+                  {/* {item.offerPrice}/ */}
                 </div>
               ) : (
                 ""

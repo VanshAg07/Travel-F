@@ -25,6 +25,7 @@ import Homeyt from "./components/Homeyt.js";
 import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popup.js"; // Import the SignInPopup component
+import MobileHomeGallery from "./components/MobileHomeGallery.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -79,8 +80,9 @@ const Home = () => {
 
           {/* Show Explore component only when screen size is greater than 426px */}
           {!isMobile && <Explore />}
-          
-          <Homeglry />
+          {isMobile ? <MobileHomeGallery/> : <Homeglry />
+          }
+          {/* <Homeglry /> */}
           <Whyuss />
           <Review />
           <Forms />
