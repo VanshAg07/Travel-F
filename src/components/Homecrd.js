@@ -43,17 +43,17 @@ const TripCard = () => {
             key={banner._id}
             className={`bg-white border-4 homecrd-div border-white mt-10 rounded-3xl shadow-lg shadow-black overflow-hidden ${getCardSizeClasses()} relative ${
               index === 1
-                ? "h-[430px]"
+                ? "h-[390px]"
                 : index === 0
-                ? "h-[380px]"
-                : "h-[380px]"
+                ? "h-[360px]"
+                : "h-[360px]"
             }`}
           >
             <img
               src={banner.image}
               alt={banner.title}
               className={`w-full ${
-                index === 1 ? "h-60" : "h-52"
+                index === 1 ? "h-64" : "h-56"
               } object-cover rounded-2xl`}
             />
             <div className="p-4 text-center">
