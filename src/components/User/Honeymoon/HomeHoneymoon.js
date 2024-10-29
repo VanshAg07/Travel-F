@@ -95,7 +95,7 @@ const HomeHoneymoon = () => {
             </h1> */}
           </div>
         </div>
-        <div className="mt-[130px] md:mt-0">
+        <div className="mt-[180px] md:mt-0">
         <Mainreview />
       </div>
         <div className="justify-center pt-10 items-center flex flex-col w-full ">

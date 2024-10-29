@@ -96,12 +96,12 @@ const InernationalPlaces = () => {
               </h1>
             </div>
 
-            <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+            {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
               The Perfect Blend of Adventure
-            </h1>
+            </h1> */}
           </div>
         </div>
-        <div className="mt-[130px] md:mt-0">
+        <div className="mt-[180px] md:mt-0">
         <Mainreview />
       </div>
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
