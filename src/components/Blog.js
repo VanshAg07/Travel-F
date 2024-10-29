@@ -18,7 +18,7 @@ const Data = [
   {
     image: img1,
     title: "kedarnath",
-    description: "Beautiful Places to Visit in Kedarnath",
+    description: "Beautiful Places to Visit in Kerala",
   },
   {
     image: img2,
@@ -38,7 +38,7 @@ const Data = [
   {
     image: img5,
     title: "kerala",
-    description: "Beautiful Places to Visit in Kerala",
+    description: "Beautiful Places to Visit in Kedarnath",
   },
   {
     image: img6,
@@ -58,7 +58,6 @@ const Data = [
 ];
 
 const Blog = () => {
-  const [getTrip, setGetTrip] = useState([]);
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
@@ -95,9 +94,6 @@ const Blog = () => {
               <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
                 {item.heading}
               </h1>
-              {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-                Explore Our Latest Blogs
-              </h1> */}
             </div>
           </div>
         ))}

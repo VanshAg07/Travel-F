@@ -64,7 +64,7 @@ export default function Card() {
             <div className="product-card">
               {item.label ? (
                 <div className="dealTag">
-                  <span className="">₹{item.label}</span>
+                  <span className="">Customised</span>
                   {/* {item.offerPrice}/ */}
                 </div>
               ) : (
@@ -82,7 +82,7 @@ export default function Card() {
                     <div className="product_name">{item.title}</div>
                   </a>
                   <div className="new-price">
-                    {item.currency} {item.offerPrice}
+                    {item.currency} {item.label}
                   </div>
                 </div>
               </div>

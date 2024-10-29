@@ -17,6 +17,7 @@ import cont from "../../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import TripForms from "../../Contact/TripForms";
+import QuotePopup from "../../../QuotePopup";
 const PackageHoneymoon = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -80,6 +81,8 @@ const PackageHoneymoon = () => {
   };
   return (
     <div>
+        {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
+
       <Nav />
       <Dropnav />
       <div className="relative">
@@ -330,10 +333,8 @@ const PackageHoneymoon = () => {
               </ul>
             </div>
           </div>
-
           {/* Form div with a width of 35% */}
           <div className="w-[35vw] hidden lg:block">
-            {" "}
             {/* Form div is hidden below lg (1024px) */}
             <div className="ml-10 mt-20 sticky top-10">
               <div className="bg-white shadow-lg p-4 rounded-2xl">
@@ -344,7 +345,7 @@ const PackageHoneymoon = () => {
                   </span>
                 </p>
                 <div className="bg-[#03346E] items-center justify-center flex p-4 rounded-xl mt-5">
-                  <button onClick={handleDatesAndCostingClick}>
+                  <button onClick={handleGetQuotesClick}>
                     <p className="text-white text-lg md:text-xl font-bold">
                       Get Quotes
                     </p>
@@ -355,16 +356,14 @@ const PackageHoneymoon = () => {
             </div>
           </div>
         </div>
-
         {/* mobile form footer */}
-        <div className="fixed bottom-0 w-full z-50 bg-white text-black p-4 flex justify-between items-center lg:hidden">
+        <div className="fixed bottom-0 w-full bg-white text-black p-4 flex justify-between items-center lg:hidden">
           {/* First Section: Starting Price */}
           <div className="text-lg md:text-xl font-bold">
             Customise Your trip
           </div>
-
           {/* Second Section: Book Now Button */}
-          <div>
+          <div onClick={handleGetQuotesClick} >
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
               Get Quotes
             </button>

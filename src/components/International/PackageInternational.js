@@ -463,9 +463,8 @@ const PackageInternational = () => {
               </div>
             </div>
           </div>
-
           {/* mobile form footer */}
-          <div className="fixed bottom-0 w-full z-50 bg-white text-black p-4 flex justify-between items-center lg:hidden">
+          <div className="fixed bottom-0 w-full bg-white text-black p-4 flex justify-between items-center lg:hidden">
             {/* First Section: Starting Price */}
             <div className="text-lg md:text-xl font-bold flex flex-col">
               {trips.customised ? "" : `Starting From`}
@@ -474,9 +473,14 @@ const PackageInternational = () => {
               </span>{" "}
               {trips.customised ? "" : "per person"}
             </div>
-
             {/* Second Section: Book Now Button */}
-            <div onClick={handleDatesAndCostingClick}>
+            <div
+              onClick={
+                trips.customised
+                  ? handleGetQuotesClick
+                  : handleDatesAndCostingClick
+              }
+            >
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                 Book Now
               </button>

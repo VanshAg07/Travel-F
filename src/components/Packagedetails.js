@@ -422,7 +422,7 @@ const Packagedetails = () => {
             </div>
           </div>
           {/* mobile form footer */}
-          <div className="fixed bottom-0 w-full z-50 bg-white text-black p-4 flex justify-between items-center lg:hidden">
+          <div className="fixed bottom-0 w-full bg-white text-black p-4 flex justify-between items-center lg:hidden">
             {/* First Section: Starting Price */}
             <div className="text-lg md:text-xl font-bold flex flex-col">
               {trips.customised ? "" : `Starting From`}
