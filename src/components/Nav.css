@@ -341,10 +341,6 @@
 }
 
 @media (max-width: 460px) {
-  .nav-links {
-    width: 50%;
-  }
-
   .cta {
     margin-right: 5px;
     padding: 4px 8px;
@@ -377,8 +373,27 @@
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 425px) {
+  .nav-links a {
+    margin-bottom: 4px; /* Remove any bottom margin */
+    padding-bottom: 0; /* Remove any bottom padding */
+    margin-top: 2px;
+  }
+
+  
+
   .nav-links {
+    margin-bottom: 0; /* Remove any bottom margin from the nav links container */
     width: 60%;
+  }
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
   }
 }
