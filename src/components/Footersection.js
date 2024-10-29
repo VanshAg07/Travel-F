@@ -7,16 +7,15 @@ const FooterSection = () => {
       <div className="py-12 px-4 md:px-16 flex justify-center items-center">
         {/* Main container with 80vw width */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-[80vw] max-w-screen-xl">
-          {/* About Us Section */}
-          <div className="text-center md:text-left">
+          {/* About Us Section with Right Border */}
+          <div className="text-center md:text-left md:border-r md:border-white md:pr-8">
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">About Us</h2>
             <p className="leading-relaxed text-[#fff] text-sm md:text-base lg:text-lg">
               TravelloTen India Private Limited specializes in Travel & Transport services, exclusively for the academic sector. We arrange educational & fun tours for students all over India, providing insights on history, geography, and culture. Our services extend to school tours, college tours, corporate tours, and family trips across India. With years of experience, we ensure quality, authenticity, and exceptional service. We believe in “Service with Quality & Smile.”
             </p>
           </div>
-          
-          {/* Weekend Trips Section */}
-          <div className="text-center md:text-left">
+          {/* Weekend Trips Section with Right Border */}
+          <div className="text-center md:text-left md:border-r md:border-white md:px-8">
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">Weekend Trips</h2>
             <ul className="text-[#fff] space-y-2 text-sm md:text-base lg:text-lg">
               <li><Link to="#" className="hover:text-[#fffe9] transition-all ease-in-out duration-200">Bir Billing</Link></li>
@@ -35,8 +34,8 @@ const FooterSection = () => {
             </ul>
           </div>
           
-          {/* Quick Links Section */}
-          <div className="text-center md:text-left">
+          {/* Blogs & Quick Links Section */}
+          <div className="text-center md:text-left md:pl-8">
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">Blogs</h2>
             <ul className="text-[#fff] space-y-2 text-sm md:text-base lg:text-lg">
               <li><Link to="#" className="hover:text-[#fffe9] transition-all ease-in-out duration-200">Beautiful Places to Visit in Spring</Link></li>

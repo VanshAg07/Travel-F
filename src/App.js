@@ -145,7 +145,7 @@ const App = () => {
         <Route path="/Whyuss" element={<Whyuss />} />
         <Route path="/Newsignin" element={<Newsignin />} />
         <Route path="/Homeglry" element={<Homeglry />} />
-        <Route path="/blogdetails/:blogId" element={<Blogdetails />} />
+        <Route path="/blogdetails/:blogTitle" element={<Blogdetails />} />
         <Route path="/Footersection" element={<FooterSection />} />
         <Route path="/Faq" element={<Faq />} />
         <Route path="/Payments" element={<Payments />} />
