@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
+import { useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Nav from "../../Nav";
 import "../../Places.css";
@@ -12,7 +13,7 @@ import Mainreview from "../../Mainreview";
 import HoneymoonCard from "./HoneymoonCard";
 import StateHoneymoon from "./StateHoneymoon";
 import axios from "axios";
-import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaClock, FaMapMarkerAlt, FaCalendarAlt, FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 const HomeHoneymoon = () => {
   const { name } = useParams();
@@ -63,6 +64,22 @@ const HomeHoneymoon = () => {
     navigate(`/honeymoon/${tripName}/${stateName}`);
   };
 
+  const containerRef = useRef(null);
+
+  // Function to handle left arrow click
+  const handleScrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -280, behavior: "smooth" });
+    }
+  };
+
+   // Function to handle right arrow click
+   const handleScrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: 280, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <div className="wrpper-inter">
@@ -111,75 +128,99 @@ const HomeHoneymoon = () => {
             </Link>
           </div>
         </div>
-        <div className="w-[90%] mx-auto">
-          <p className="font-semibold text-3xl mb-4">Equivalent Getaways</p>
+        <div className="w-[90%] h-[80vh] pb-7 mx-auto">
+      <p className="font-semibold text-3xl mb-4">Equivalent Getaways</p>
+      <div className="relative">
+        {/* Left Chevron Icon */}
+        <FaChevronCircleLeft
+          onClick={handleScrollLeft}
+          className="absolute -left-5 top-1/2 -mt-20 transform -translate-y-1/2 text-3xl text-black cursor-pointer z-10"
+        />
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
-            {packages.length > 0 ? (
-              packages.slice(0, visiblePackages).map((pkg, index) =>
-                Array.isArray(pkg.trips) && pkg.trips.length > 0 ? (
-                  pkg.trips.map((trip, tripIndex) => (
-                    <div
-                      key={`${index}-${tripIndex}`}
-                      className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
-                      onClick={() =>
-                        handlePackageClick(pkg.stateName, String(trip.tripName))
-                      }
-                    >
-                      <img
-                        src={trip.tripImages[0]}
-                        alt={trip.tripName}
-                        className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                      />
-                      <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-                        <span className="font-semibold text-sm ">{`Customised`}</span>
-                      </div>
-                      <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
-                        <div className="w-full">
-                          <h2 className="text-lg font-semibold text-black pb-4">
-                            {trip.tripName}
-                          </h2>
-                          <div className="flex flex-row mb-4 justify-between items-center w-full">
-                            {/* Duration */}
-                            <div className="flex items-center text-black">
-                              <FaClock className="mr-2 text-black" />
-                              <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
-                            </div>
-
-                            {/* Location */}
-                            <div className="flex items-center text-black">
-                              <FaMapMarkerAlt className="mr-1 text-black" />
-                              <span className="text-black text-xs">
-                                {trip.tripLocation}
-                              </span>
-                            </div>
+        {/* Scrollable Package Container */}
+        <div
+          className="grid grid-flow-col pl-3 auto-cols-[250px] gap-6 h-[80vh] scroll-smooth"
+          ref={containerRef}
+          style={{ overflowX: "hidden" }} // Disable horizontal scroll
+        >
+          {packages.length > 0 ? (
+            packages.map((pkg, index) =>
+              Array.isArray(pkg.trips) && pkg.trips.length > 0 ? (
+                pkg.trips.map((trip, tripIndex) => (
+                  <div
+                    key={`${index}-${tripIndex}`}
+                    className="h-[420px] w-[250px] flex-shrink-0 relative shadow-black shadow-lg rounded-lg flex justify-center items-center cursor-pointer"
+                    onClick={() =>
+                      handlePackageClick(pkg.stateName, String(trip.tripName))
+                    }
+                  >
+                    <img
+                      src={trip.tripImages[0]}
+                      alt={trip.tripName}
+                      className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                    />
+                    <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
+                      <span className="font-semibold text-sm ">{`₹ Customised`}</span>
+                    </div>
+                    <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col absolute bottom-0 bg-white">
+                      <div className="w-full">
+                        <h2 className="text-lg uppercase truncate font-semibold text-black pb-4">
+                          {trip.tripName}
+                        </h2>
+                        <div className="flex flex-row mb-4 justify-between items-center w-full">
+                          {/* Duration */}
+                          <div className="flex items-center text-black">
+                            <FaClock className="mr-2 text-black" />
+                            <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                           </div>
-                          {/* Dates */}
-                          
+
+                          {/* Location */}
+                          <div className="flex items-center text-black">
+                            <FaMapMarkerAlt className="mr-1 text-black" />
+                            <span className="text-black text-xs">
+                              {trip.tripLocation}
+                            </span>
+                          </div>
+                        </div>
+                        {/* Dates */}
+                        <div className="flex items-center mb-2 text-black">
+                          <FaCalendarAlt className="mr-2 text-black" />
+                          <span className="text-black text-xs">
+                            {new Date(trip.tripDate).toLocaleDateString(
+                              "en-US",
+                              {
+                                day: "numeric",
+                                month: "short",
+                              }
+                            )}
+                          </span>
+                          {trip.tripDateCount > 0 && (
+                            <span className="text-xs text-red-500 ml-1">
+                              +{trip.tripDateCount}
+                              <span className="ml-1">Batches</span>
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
-                  ))
-                ) : (
-                  <p>No trips available</p>
-                )
+                  </div>
+                ))
+              ) : (
+                <p>No trips available</p>
               )
-            ) : (
-              <p>No packages available</p>
-            )}
-          </div>
-
-          {visiblePackages < packages.length && (
-            <div className="flex justify-center mb-6">
-              <button
-                onClick={loadMorePackages}
-                className="px-6 py-2 bg-[#03346e] text-white text-lg font-semibold rounded-lg"
-              >
-                Load More
-              </button>
-            </div>
+            )
+          ) : (
+            <p>No packages available</p>
           )}
         </div>
+
+        {/* Right Chevron Icon */}
+        <FaChevronCircleRight
+          onClick={handleScrollRight}
+          className="absolute -right-4 top-1/2 -mt-20 transform -translate-y-1/2 text-3xl text-black cursor-pointer z-10"
+        />
+      </div>
+    </div>
         <div className="bg-[#ffffe6]">
           {/* <Homeglry /> */}
           <Whyuss />
