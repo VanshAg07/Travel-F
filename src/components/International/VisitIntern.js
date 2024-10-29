@@ -14,7 +14,7 @@ const Visit = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/getInternPlaces/${name}`
+          `http://localhost:5000/api/user/getInternPlaces/${name}`
         );
         console.log(response.data);
         setPlaces(response.data.places || []);
@@ -27,10 +27,6 @@ const Visit = () => {
 
     fetchPlaces();
   }, [name]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
     <div className=" mx-auto" style={{ width: '90vw' }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -49,7 +45,7 @@ const Visit = () => {
             </div>
           ))
         ) : (
-          <p>No places found</p>
+          <p></p>
         )}
       </div>
     </div>

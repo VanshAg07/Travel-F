@@ -53,7 +53,7 @@ const PackageWeekend = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/weekends/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/weekends/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
         setSharing(response.data.sharing);
@@ -66,7 +66,7 @@ const PackageWeekend = () => {
     };
     fetchTripDetails();
   }, [name, tripName]);
-  console.log(sharing);
+  // console.log(sharing);
   let doubleSharing;
   let tripleSharing;
   let quadSharing;
@@ -75,7 +75,7 @@ const PackageWeekend = () => {
     tripleSharing = sharing[1]?.price;
     quadSharing = sharing[2]?.price;
   } else {
-    console.log(
+    console.error(
       "Error: sharing array is empty or does not have enough elements"
     );
   }

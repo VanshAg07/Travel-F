@@ -35,13 +35,13 @@ const AddInternPackage = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/admin/states")
+      .get("http://localhost:5000/api/admin/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -85,7 +85,7 @@ const AddInternPackage = () => {
       alert("Please select a state before submitting the form.");
       return;
     }
-    console.log(selectedState);
+    // console.log(selectedState);
     e.preventDefault();
 
     const formData = new FormData();
@@ -124,7 +124,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/admin/international-package/${selectedState.id}`,
+      `http://localhost:5000/api/admin/international-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -139,7 +139,7 @@ const AddInternPackage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Trip submitted successfully", data);
+        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
       })
       .catch((error) => {

@@ -22,7 +22,7 @@ export default function Card() {
   const fetchStateNames = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/flip-card/flip"
+        "http://localhost:5000/api/flip-card/flip"
       );
       setStateData(response.data); // Assuming the response data is in the expected format
     } catch (error) {
@@ -35,7 +35,7 @@ export default function Card() {
     stateData.honeymoon?.map((item) => ({
       id: item.stateName, // Assuming stateName is unique
       title: item.stateName,
-      offerPrice: `${item.flipPrice}/-`, // Adjust price format if necessary
+      offerPrice: `${item.filpOfferPrice}/-`, // Adjust price format if necessary
       currency: "Starting Price Rs.",
       image: item.flipcardImage[0], // Taking the first image
       label: `${item.flipPrice}/-`, // Set label same as offer price
@@ -62,7 +62,14 @@ export default function Card() {
         {cardData.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="product-card">
-              {item.label ? <div className="dealTag">{item.label}</div> : ""}
+              {item.label ? (
+                <div className="dealTag">
+                  <span className="line-through">₹{item.label}</span>
+                  {item.offerPrice}
+                </div>
+              ) : (
+                ""
+              )}
               <div className="product_card_info">
                 <div
                   className="product_image"

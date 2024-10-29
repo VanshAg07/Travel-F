@@ -12,7 +12,7 @@ const Gallery = () => {
   const fetchGalleryImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/gallery/home-galleries"
+        "http://localhost:5000/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images[0].images || []);
     } catch (error) {

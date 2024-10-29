@@ -26,12 +26,13 @@ function NationalEdit() {
     overView: "",
     status: "",
     customised: "",
+    tripOfferPrice: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-national-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -70,6 +71,7 @@ function NationalEdit() {
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
       customised: trip.customised || "",
+      tripOfferPrice: trip.tripOfferPrice || "",
     });
     setIsModalOpen(true);
   };
@@ -126,12 +128,12 @@ function NationalEdit() {
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          console.log("Updated Trip Details:", response.data);
+          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
         })
         .catch((error) => {
@@ -147,7 +149,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -340,7 +342,7 @@ function NationalEdit() {
                     <button
                       onClick={() =>
                         window.open(
-                          `https://api.travello10.com/upload/${pdf.filename}`,
+                          `http://localhost:5000/upload/${pdf.filename}`,
                           "_blank"
                         )
                       }
@@ -393,6 +395,19 @@ function NationalEdit() {
                   type="number"
                   name="tripPrice"
                   value={tripDetails.tripPrice}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Offer Price:
+                </label>
+                <input
+                  type="number"
+                  name="tripOfferPrice"
+                  value={tripDetails.tripOfferPrice}
                   onChange={handleInputChange}
                   required
                   className="mt-1 p-2 w-full border rounded-lg"

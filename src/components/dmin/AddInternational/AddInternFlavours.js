@@ -17,13 +17,13 @@ const AddInternFlavours = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/admin/states")
+      .get("http://localhost:5000/api/admin/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -63,7 +63,7 @@ const AddInternFlavours = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/international/addRichFlavour",
+        "http://localhost:5000/api/admin/international/addRichFlavour",
         formData,
         {
           headers: {

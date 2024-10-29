@@ -60,7 +60,7 @@ const Honeymoon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     // Add form submission logic here (e.g., API call)
   };
 
@@ -111,7 +111,7 @@ const Honeymoon = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

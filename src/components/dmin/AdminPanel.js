@@ -34,13 +34,13 @@ const AdminPanel = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/trip/states")
+      .get("http://localhost:5000/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -165,7 +165,7 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
-    fetch(`https://api.travello10.com/api/trip/state/${selectedState.id}/trip`, {
+    fetch(`http://localhost:5000/api/trip/state/${selectedState.id}/trip`, {
       method: "POST",
       body: formData,
     })
@@ -178,7 +178,7 @@ const AdminPanel = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Trip submitted successfully", data);
+        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
         setLoading(false);
       })

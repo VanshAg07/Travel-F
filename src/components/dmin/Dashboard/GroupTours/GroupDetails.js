@@ -58,7 +58,7 @@ const GroupDetails = () => {
     });
 
     try {
-      await axios.post("https://api.travello10.com/api/group-tours/group-details", formData, {
+      await axios.post("http://localhost:5000/api/group-tours/group-details", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

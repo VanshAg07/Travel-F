@@ -29,7 +29,7 @@ function HoneymoonEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-honeymoon-packages")
+      .get("http://localhost:5000/api/edit-packages/get-honeymoon-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -112,12 +112,12 @@ function HoneymoonEdit() {
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-honeymoon-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-honeymoon-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          console.log("Updated Trip Details:", response.data);
+          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
         })
         .catch((error) => {
@@ -133,7 +133,7 @@ function HoneymoonEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-honeymoon-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-honeymoon-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");

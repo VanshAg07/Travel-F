@@ -12,7 +12,7 @@ function AllPackagesCard() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getTripDetails/${name}`
+          `http://localhost:5000/api/user/getTripDetails/${name}`
         );
         const data = await response.json();
         setPackages(data);
@@ -51,9 +51,16 @@ function AllPackagesCard() {
                 />
                 <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
                   <span className="font-semibold text-sm ">
-                    {trip.customised
-                      ? "Customised"
-                      : `₹ ${trip.tripPrice}/- onwards`}
+                    {trip.customised ? (
+                      "Customised"
+                    ) : (
+                      <>
+                        <span className="relative mr-1 line-through">
+                          {`₹ ${trip.tripPrice}/-`}
+                        </span>
+                        {`₹${trip.tripOfferPrice}/- onwards`}
+                      </>
+                    )}
                   </span>
                 </div>
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
@@ -99,7 +106,7 @@ function AllPackagesCard() {
             ))
           )
         ) : (
-          <p>No packages available</p>
+          <p></p>
         )}
       </div>
 

@@ -20,7 +20,7 @@ const EuropeTripEnquiryForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
+    // console.log('Form Data:', formData);
     // Add form submission logic here
   };
 

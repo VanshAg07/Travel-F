@@ -62,7 +62,7 @@ const Blog = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

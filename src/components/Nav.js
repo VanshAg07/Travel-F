@@ -43,7 +43,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("https://api.travello10.com/api/home/nav-offer", {
+    fetch("http://localhost:5000/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -78,26 +78,26 @@ const Nav = () => {
         {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
       <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-        <Link
-          to="/"
-          onClick={() => setIsMenuOpen(false)}
-          className={isActive("/")}
-        >
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>Home</p>
-          </div>
-        </Link>
-        <Link
-          to="/Aboutus"
-          onClick={() => setIsMenuOpen(false)}
-          className={isActive("/Aboutus")}
-        >
-          <div className="flex flex-row justify-center mr-10 items-center gap-1">
-            <p>About Us</p>
-          </div>
-        </Link>
         {!isMobile && (
           <>
+            <Link
+              to="/"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Home</p>
+              </div>
+            </Link>
+            <Link
+              to="/Aboutus"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Aboutus")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>About Us</p>
+              </div>
+            </Link>
             <Link
               to="/offer"
               onClick={() => setIsMenuOpen(false)}
@@ -141,6 +141,24 @@ const Nav = () => {
 
         {isMobile && (
           <>
+            <Link
+              to="/"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Home</p>
+              </div>
+            </Link>
+            <Link
+              to="/Aboutus"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Aboutus")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>About Us</p>
+              </div>
+            </Link>
             <Link to="/national" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>National</p>
@@ -174,7 +192,7 @@ const Nav = () => {
             >
               <FaPhoneAlt className="transform" />
               <p className="font-semibold">
-                {isMobile ? "+91-8287804197" : "+91-8287804197"}
+                {isMobile ? "8287804197" : "+91-8287804197"}
               </p>
             </div>
           </a>

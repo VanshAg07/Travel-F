@@ -19,12 +19,14 @@ const TripCard = ({ trip }) => {
       ? `${trip.tripName.slice(0, 18)}...`
       : trip.tripName;
 
+  const firstDate = trip.allTripDates[0];
+
   return (
     <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
         src={
           trip.tripImages.length > 0 ? trip.tripImages[0] : "defaultImage.jpg"
-        } // Fallback image if none is provided
+        }
         alt="Trip"
         className="w-[100vw] h-[300px] object-cover"
       />
@@ -44,7 +46,7 @@ const TripCard = ({ trip }) => {
         </div>
         <div className="flex items-center">
           <FaCalendarAlt className="mr-1" />
-          <p className="text-sm text-black mr-2">{formatDate(trip.date)}</p>
+          <p className="text-sm text-black mr-2">{formatDate(firstDate)}</p>
           <p className="text-sm text-red-500 text-end">
             +{trip.allTripDatesCount} batches
           </p>
@@ -62,7 +64,7 @@ const App = () => {
   // Fetch upcoming trips from the server
   const fetchUpcomingTrips = async () => {
     try {
-      const response = await fetch("https://api.travello10.com/api/home/upcoming");
+      const response = await fetch("http://localhost:5000/api/home/upcoming");
       const data = await response.json();
       setUpcomingTrips(data.upcomingTrips);
       if (Object.keys(data.upcomingTrips).length > 0) {
@@ -131,6 +133,7 @@ const App = () => {
 
   // Calculate the number of dots dynamically
   const totalDots = Math.ceil(allTrips.length / tripsToShow); // Total groups of trips
+  const firstDate = allTrips.allTripDates[0];
 
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">

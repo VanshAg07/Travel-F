@@ -107,7 +107,7 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Blog Data:", blogData);
+    // console.log("Blog Data:", blogData);
     const formData = new FormData();
     formData.append("blogName", blogData.blogName);
     formData.append("blogTitle", blogData.blogTitle);
@@ -134,7 +134,7 @@ const BlogForm = () => {
     }
 
     try {
-      const response = await axios.post("https://api.travello10.com/api/blog/blogs", formData, {
+      const response = await axios.post("http://localhost:5000/api/blog/blogs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
