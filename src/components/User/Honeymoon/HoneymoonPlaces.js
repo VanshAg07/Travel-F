@@ -31,7 +31,9 @@ const HoneymoonPlaces = () => {
             <p>The Perfect Blend of Serenity and Adventure</p>
           </div>
         </div>
+        <div className="mt-[130px] md:mt-0">
         <Mainreview />
+      </div>
         <div>
           <h1 className="all-packages-heading">Featured Packages</h1>
           <div>

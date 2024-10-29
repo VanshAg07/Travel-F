@@ -36,7 +36,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/international/${stateName}`
+        `https://api.travello10.com/api/package-image/international/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -50,7 +50,7 @@ const InernationalPlaces = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -96,14 +96,14 @@ const InernationalPlaces = () => {
               </h1>
             </div>
 
-            <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
+            {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
               The Perfect Blend of Adventure
-            </h1>
+            </h1> */}
           </div>
         </div>
-        <div className="mt-[100px] md:mt-0">
-          <Mainreview />
-        </div>
+        <div className="mt-[180px] md:mt-0">
+        <Mainreview />
+      </div>
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             Featured Packages

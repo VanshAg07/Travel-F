@@ -14,7 +14,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
@@ -39,7 +39,7 @@ const Videopage = () => {
       )}
 
       {/* Text content */}
-      <div className="z-20 text-white mb-20 md:mb-28 px-4 text-left relative">
+      <div className="z-20 video-text text-white mb-20 md:mb-28 px-4 text-left relative">
         <h1
           className="absolute video-hed left-20 text-2xl top-40 sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
           style={{
@@ -65,7 +65,7 @@ const Videopage = () => {
       </div>
       {/* Button for booking */}
       <div className="absolute videopg-btn left-20 top-[440px] z-50">
-        <button className="bg-white video-btn text-black py-2 px-6 rounded-full text-sm font-bold sm:text-base">
+        <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-1">
           BOOK NOW
         </button>
       </div>

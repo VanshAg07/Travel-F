@@ -62,7 +62,7 @@ const Blog = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -102,7 +102,7 @@ const Blog = () => {
           </div>
         ))}
       </div>
-      <div className="mt-[100px] md:mt-0">
+      <div className="mt-[130px] md:mt-0">
         <Mainreview />
       </div>
       <div>

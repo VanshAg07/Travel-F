@@ -18,7 +18,7 @@ import Homeglry from "../components/Homeglry.js";
 const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
+    const response = axios.get("https://api.travello10.com/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -100,7 +100,7 @@ const National = () => {
 
 
     </div>
-    <div className="mt-[100px] md:mt-0">
+    <div className="mt-[130px] md:mt-0">
 <Mainreview />
 </div>
       {/* <div className="lottie-wr">

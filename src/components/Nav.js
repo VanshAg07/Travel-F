@@ -43,7 +43,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("http://localhost:5000/api/home/nav-offer", {
+    fetch("https://api.travello10.com/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -127,7 +127,7 @@ const Nav = () => {
                 <p>Contact</p>
               </div>
             </Link>
-            {/* <Link
+            <Link
               to="/Blog"
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Blog")}
@@ -135,12 +135,12 @@ const Nav = () => {
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Blogs</p>
               </div>
-            </Link> */}
+            </Link>
           </>
         )}
 
         {isMobile && (
-          <>
+          <div className="flex flex-col">
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
@@ -179,7 +179,7 @@ const Nav = () => {
                 <p>Corporate</p>
               </div>
             </Link>
-          </>
+          </div>
         )}
         <div className={`flex justify-center ${isMobile ? "-mt-4" : ""}`}>
           <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>

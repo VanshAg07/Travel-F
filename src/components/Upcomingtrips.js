@@ -14,6 +14,7 @@ const TripCard = ({ trip }) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, options); // Format the date
   };
+
   const displayTripName =
     trip.tripName.length > 20
       ? `${trip.tripName.slice(0, 18)}...`
@@ -64,7 +65,9 @@ const App = () => {
   // Fetch upcoming trips from the server
   const fetchUpcomingTrips = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/home/upcoming");
+      const response = await fetch(
+        "https://api.travello10.com/api/home/upcoming"
+      );
       const data = await response.json();
       setUpcomingTrips(data.upcomingTrips);
       if (Object.keys(data.upcomingTrips).length > 0) {
@@ -107,15 +110,16 @@ const App = () => {
 
   // Handle next trips
   const nextTrips = () => {
-    setStartIndex((prevIndex) => (prevIndex + tripsToShow) % allTrips.length);
+    if (startIndex + tripsToShow < allTrips.length) {
+      setStartIndex((prevIndex) => prevIndex + 1);
+    }
   };
 
   // Handle previous trips
   const prevTrips = () => {
-    setStartIndex(
-      (prevIndex) =>
-        (prevIndex - tripsToShow + allTrips.length) % allTrips.length
-    );
+    if (startIndex > 0) {
+      setStartIndex((prevIndex) => prevIndex - 1);
+    }
   };
 
   // Go to a specific trip
@@ -133,7 +137,6 @@ const App = () => {
 
   // Calculate the number of dots dynamically
   const totalDots = Math.ceil(allTrips.length / tripsToShow); // Total groups of trips
-  const firstDate = allTrips.allTripDates[0];
 
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
@@ -157,7 +160,13 @@ const App = () => {
         {/* Slider container */}
         <div className="flex items-center justify-between mb-6">
           {shouldShowArrows && ( // Render arrows conditionally
-            <button onClick={prevTrips} className="p-2">
+            <button
+              onClick={prevTrips}
+              className={`p-2 ${
+                startIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={startIndex === 0}
+            >
               <FaChevronCircleLeft size={30} />
             </button>
           )}
@@ -174,7 +183,15 @@ const App = () => {
           </div>
 
           {shouldShowArrows && ( // Render arrows conditionally
-            <button onClick={nextTrips} className="p-2">
+            <button
+              onClick={nextTrips}
+              className={`p-2 ${
+                startIndex + tripsToShow >= allTrips.length
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+              disabled={startIndex + tripsToShow >= allTrips.length}
+            >
               <FaChevronCircleRight size={30} />
             </button>
           )}
@@ -185,11 +202,9 @@ const App = () => {
               {Array.from({ length: totalDots }).map((_, dotIndex) => (
                 <div
                   key={dotIndex}
-                  onClick={() => goToTrip(dotIndex * tripsToShow)} // Navigate to the first trip of the group
+                  onClick={() => goToTrip(dotIndex)} // Navigate directly to the selected trip
                   className={`w-2 h-2 cursor-pointer rounded-full ${
-                    startIndex / tripsToShow === dotIndex
-                      ? "bg-black"
-                      : "bg-gray-300"
+                    startIndex === dotIndex ? "bg-black" : "bg-gray-300"
                   }`}
                 />
               ))}

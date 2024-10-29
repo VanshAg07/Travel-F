@@ -33,19 +33,24 @@
     height: 40vh; /* For medium screens (e.g., tablets) */
   }
   .gradient-bg {
-    height: 70vh;
+    height: 40vh;
     width: 100vw;
     background: rgba(0, 0, 0, 0.433);
-    display: none;
   }
   .videopg-p {
-    margin-top: -50px;
-    display: none;
+    margin-top: -175px;
+    left: 2rem;
   }
   .videopg-btn {
-    margin-top: -80px;
-    display: none;
+    margin-top: -240px;
+    left: 2rem;
   }
+
+  .video-hed {
+    margin-top: -80px;
+    left: 2rem;
+  }
+
   .line1 .line2 {
     display: flex;
     justify-content: center;
@@ -58,16 +63,4 @@
 /* styles.css */
 .gradient-bg {
   background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-}
-
-@media (max-width: 375px) {
-  .video-hed {
-    left: 2rem;
-  }
-  .videopg-p {
-    left: 2rem;
-  }
-  .videopg-btn {
-    left: 2rem;
-  }
 }
