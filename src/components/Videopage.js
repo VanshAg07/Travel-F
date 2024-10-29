@@ -14,7 +14,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
@@ -41,7 +41,7 @@ const Videopage = () => {
       {/* Text content */}
       <div className="z-20 video-text text-white mb-20 md:mb-28 px-4 text-left relative">
         <h1
-          className="absolute video-hed left-20 text-2xl top-[200px] sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
+          className="absolute video-hed left-20 text-2xl md:top-[200px] top-[180px] sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
           style={{
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
             lineHeight: "1.2",
@@ -56,7 +56,7 @@ const Videopage = () => {
         </h1>
         <div className="h-10 w-full bg-white z-20"></div>
         <p
-          className="videopg-p left-20 absolute uppercase top-[350px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
+          className="videopg-p left-20 absolute uppercase md:top-[350px] top-[340px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
         >
           Book trips and explore new <br /> destinations with ease <br /> from

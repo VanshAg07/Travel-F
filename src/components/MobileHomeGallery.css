@@ -119,11 +119,10 @@
 
 .arrow-left-glry {
   position: absolute;
-  left: -30px;
+  left: -10px;
 }
 
 .arrow-right-glry {
   position: absolute;
-  right: -30px;
+  right: -10px;
 }
-

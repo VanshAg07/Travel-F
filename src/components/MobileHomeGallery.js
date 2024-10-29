@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Homeglry.css";
+import "./MobileHomeGallery.css";
 import axios from "axios";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // Import icons
 
 const MobileHomeGallery = () => {
   const [galleryImages, setGalleryImages] = useState([]);
+  const galleryCenterRef = useRef(null);
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
     fetchGalleryImages();
@@ -12,7 +15,7 @@ const MobileHomeGallery = () => {
   const fetchGalleryImages = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/gallery/home-galleries"
+        "https://api.travello10.com/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images[0].images || []);
     } catch (error) {
@@ -20,30 +23,24 @@ const MobileHomeGallery = () => {
     }
   };
 
-  const galleryCenterRef = useRef(null);
-  const [rotation, setRotation] = useState(0);
-
-  // Rotate left (previous)
   const handlePrevious = () => {
     setRotation((prevRotation) => prevRotation + 30);
   };
 
-  // Rotate right (next)
   const handleNext = () => {
     setRotation((prevRotation) => prevRotation - 30);
   };
 
-  // Handle image click to rotate gallery
-  const handleClick = () => {
-    setRotation((prevRotation) => prevRotation + 30);
-  };
-
-  // Handle mouse wheel scroll to rotate gallery
   const handleWheel = (event) => {
     setRotation((prevRotation) => prevRotation + (event.deltaY < 0 ? -10 : 10));
   };
 
   return (
+    <div className="relative">
+    <div className="flex relative flex-row"><div className="arrow-wrapper">
+        <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
+          <FaChevronCircleLeft className="text-lg" /> {/* Use left icon */}
+        </div>
     <div className="gallery-wrap" onWheel={handleWheel}>
       {/* Heading */}
       <h1 className="text-center md:text-2xl pt-4 text-xl lg:text-4xl font-bold mb-4">
@@ -68,7 +65,6 @@ const MobileHomeGallery = () => {
                 index * -30
               }deg) translateZ(-1000px)`,
             }}
-            onClick={handleClick}
           >
             <a>
               <img
@@ -80,16 +76,24 @@ const MobileHomeGallery = () => {
           </div>
         ))}
       </div>
-      {/* <div className="arrow-wrapper">
-        <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
-          &#9664;
-        </div>
-        <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
-          &#9654;
-        </div>
-      </div> */}
+      
     </div>
+
+ 
+        </div>
+    <div className="arrow-wrapper">
+
+        <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
+          <FaChevronCircleRight className="text-lg" /> {/* Use right icon */}
+        </div>
+      </div>
+      </div>
+      </div>
   );
 };
 
 export default MobileHomeGallery;
+
+
+
+
