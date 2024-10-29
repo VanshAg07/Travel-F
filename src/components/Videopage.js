@@ -41,22 +41,22 @@ const Videopage = () => {
       {/* Text content */}
       <div className="z-20 video-text text-white mb-20 md:mb-28 px-4 text-left relative">
         <h1
-          className="absolute video-hed left-20 text-2xl top-40 sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
+          className="absolute video-hed left-20 text-2xl top-[200px] sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
           style={{
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
             lineHeight: "1.2",
           }}
         >
-          <span className="line1">
+          <span className="">
             <span className="text-[yellow]">EXPLORE</span> THE WORLD <br />
           </span>
-          <span className="line2">
+          <span className="">
             WITH <span className="sp-1 text-[yellow]">TRAVELLO10</span>
           </span>
         </h1>
         <div className="h-10 w-full bg-white z-20"></div>
         <p
-          className="videopg-p left-20 absolute uppercase top-80 text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
+          className="videopg-p left-20 absolute uppercase top-[350px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
         >
           Book trips and explore new <br /> destinations with ease <br /> from
@@ -64,7 +64,7 @@ const Videopage = () => {
         </p>
       </div>
       {/* Button for booking */}
-      <div className="absolute videopg-btn left-20 top-[440px] z-50">
+      <div className="absolute videopg-btn left-20 top-[460px] z-50">
         <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-1">
           BOOK NOW
         </button>
