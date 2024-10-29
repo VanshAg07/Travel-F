@@ -38,7 +38,7 @@ const InernationalPlaces = () => {
       const res = await axios.get(
         `https://api.travello10.com/api/package-image/international/${stateName}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       setNationalImages([res.data]);
     } catch (error) {
       console.error("Error fetching national images: ", error);
@@ -53,7 +53,7 @@ const InernationalPlaces = () => {
           `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
-        console.log("Fetched Packages:", data); // Check if data is correct
+        // console.log("Fetched Packages:", data); // Check if data is correct
         setPackages(data);
       } catch (error) {
         console.error("Error fetching packages:", error);

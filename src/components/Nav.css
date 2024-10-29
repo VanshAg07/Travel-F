@@ -364,7 +364,7 @@
   .cta {
     margin-right: 20px; /* Reduced margin for smaller screens */
     padding: 8px 10px; /* Adjust padding to ensure button stays in one line */
-    gap: 4px; /* Reduce the gap between text and icon */
+    /* gap: 2px; Reduce the gap between text and icon */
   }
 
   .cta span {

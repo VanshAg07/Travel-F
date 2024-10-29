@@ -16,7 +16,7 @@ const Shop = () => {
         const response = await axios.get(
           `https://api.travello10.com/api/user/getShops/${name}` 
         );
-        console.log(response.data);
+        // console.log(response.data);
         setShops(response.data.shops || []);
       } catch (err) {
         setError(err.message);
@@ -24,12 +24,8 @@ const Shop = () => {
         setLoading(false);
       }
     };
-
     fetchShops();
   }, [name]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="mx-auto" style={{ width: '90vw' }}>
@@ -49,7 +45,7 @@ const Shop = () => {
             </div>
           ))
         ) : (
-          <p>No shops found</p>
+          <p></p>
         )}
       </div>
     </div>

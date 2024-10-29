@@ -66,7 +66,7 @@ const PackageWeekend = () => {
     };
     fetchTripDetails();
   }, [name, tripName]);
-  console.log(sharing);
+  // console.log(sharing);
   let doubleSharing;
   let tripleSharing;
   let quadSharing;
@@ -75,7 +75,7 @@ const PackageWeekend = () => {
     tripleSharing = sharing[1]?.price;
     quadSharing = sharing[2]?.price;
   } else {
-    console.log(
+    console.error(
       "Error: sharing array is empty or does not have enough elements"
     );
   }

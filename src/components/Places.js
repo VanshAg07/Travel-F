@@ -50,7 +50,7 @@ const Place = () => {
           `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
-        console.log("Fetched Packages:", data); // Check if data is correct
+        // console.log("Fetched Packages:", data); // Check if data is correct
         setPackages(data);
       } catch (error) {
         console.error("Error fetching packages:", error);
@@ -66,6 +66,7 @@ const Place = () => {
   const handlePackageClick = (stateName, tripName) => {
     navigate(`/trip/${tripName}/${stateName}`);
   };
+  
 
 
   const [visiblePackages, setVisiblePackages] = useState(4); // Number of visible items on large screens
@@ -92,21 +93,21 @@ const Place = () => {
         <Nav />
         <Dropnav />
         <div className="hero-section-left-1 relative">
-  {/* Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 z-0"></div>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 z-0"></div>
 
-  {nationalImages.length > 0 ? (
-    nationalImages.map((image, index) => (
-      <img
-        className="hero-img"
-        key={index}
-        src={image.imageUrl} // Assuming each image object has a 'url' property
-        alt={image.name || "National Image"} // Assuming each image object has a 'name' property
-      />
-    ))
-  ) : (
-    <p>No images available for this location.</p>
-  )}
+          {nationalImages.length > 0 ? (
+            nationalImages.map((image, index) => (
+              <img
+                className="hero-img"
+                key={index}
+                src={image.imageUrl} // Assuming each image object has a 'url' property
+                alt={image.name || "National Image"} // Assuming each image object has a 'name' property
+              />
+            ))
+          ) : (
+            <p>No images available for this location.</p>
+          )}
 
   <div className="relative flex flex-col items-center z-10">
     <div className="relative w-full flex items-start justify-center">

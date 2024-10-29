@@ -90,7 +90,7 @@ const StateInternational = () => {
             </Link>
           ))
         ) : (
-          <p>No trips found for the selected state.</p>
+          <p></p>
         )}
       </div>
     </div>

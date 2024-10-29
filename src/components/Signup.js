@@ -32,7 +32,7 @@ export default function Signup() {
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data, "userRegister");
+            // console.log(data, "userRegister");
             if (data.status === "ok") {
                 navigate("/Login");
             } else {

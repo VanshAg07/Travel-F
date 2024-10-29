@@ -18,6 +18,7 @@ import CorporatePartners from "./Dashboard/Corporate/CorporatePartners";
 import CorporateHome from "./Dashboard/Corporate/CorporateHome";
 import Flipcard from "./FlipCard/Flipcard";
 import AddBackground from "./AddBackground";
+import YoutubeDetails from "./Dashboard/YoutubeDetails";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -79,6 +80,10 @@ function Dashboard() {
     {
       name: "Main Pages Background Images",
       component: <AddBackground />,
+    },
+    {
+      name: "Youtube",
+      component: <YoutubeDetails />,
     },
   ];
   const handleCardClick = (component) => {

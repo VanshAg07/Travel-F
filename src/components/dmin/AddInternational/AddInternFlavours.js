@@ -23,7 +23,7 @@ const AddInternFlavours = () => {
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })

@@ -15,7 +15,7 @@ const SignupForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data); // You can store or display the response URL here if needed
+        // console.log(data); // You can store or display the response URL here if needed
       })
       .catch((err) => console.log(err));
   };

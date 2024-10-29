@@ -107,7 +107,7 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Blog Data:", blogData);
+    // console.log("Blog Data:", blogData);
     const formData = new FormData();
     formData.append("blogName", blogData.blogName);
     formData.append("blogTitle", blogData.blogTitle);

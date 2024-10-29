@@ -74,8 +74,8 @@ const Packagedetails = () => {
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
         setstateNames(response.data.state);
-        console.log(trips);
-        console.log(sharing);
+        // console.log(trips);
+        // console.log(sharing);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");
@@ -96,7 +96,7 @@ const Packagedetails = () => {
     tripleSharing = sharing[1]?.price;
     quadSharing = sharing[2]?.price;
   } else {
-    console.log(
+    console.error(
       "Error: sharing array is empty or does not have enough elements"
     );
   }

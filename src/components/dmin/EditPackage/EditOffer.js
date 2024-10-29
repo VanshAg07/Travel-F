@@ -120,7 +120,7 @@ function EditOffer() {
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          console.log("Updated Trip Details:", response.data);
+          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
         })
         .catch((error) => {

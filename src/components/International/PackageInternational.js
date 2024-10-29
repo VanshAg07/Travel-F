@@ -72,8 +72,8 @@ const PackageInternational = () => {
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
         setstateNames(response.data.state);
-        console.log(trips);
-        console.log(sharing);
+        // console.log(trips);
+        // console.log(sharing);
       } catch (error) {
         console.error("Error fetching trip details:", error);
         setError("Failed to load trip details");

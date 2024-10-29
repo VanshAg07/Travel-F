@@ -17,7 +17,7 @@ import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 const HomeHoneymoon = () => {
   const { name } = useParams();
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(2);
+  const [visiblePackages, setVisiblePackages] = useState(6);
   const navigate = useNavigate();
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const [nationalImages, setNationalImages] = useState([]);
@@ -31,7 +31,7 @@ const HomeHoneymoon = () => {
       const res = await axios.get(
         `https://api.travello10.com/api/package-image/honeymoon/${stateName}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       setNationalImages([res.data]);
     } catch (error) {
       console.error("Error fetching national images: ", error);
@@ -46,7 +46,7 @@ const HomeHoneymoon = () => {
           `https://api.travello10.com/api/honeymoon/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
-        console.log("Fetched Packages:", data); // Check if data is correct
+        // console.log("Fetched Packages:", data); // Check if data is correct
         setPackages(data);
       } catch (error) {
         console.error("Error fetching packages:", error);
@@ -132,7 +132,7 @@ const HomeHoneymoon = () => {
                         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                       />
                       <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-                        <span className="font-semibold text-sm ">{`₹ ${trip.tripPrice}/- onwards`}</span>
+                        <span className="font-semibold text-sm ">{`Customised`}</span>
                       </div>
                       <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                         <div className="w-full">
@@ -155,25 +155,7 @@ const HomeHoneymoon = () => {
                             </div>
                           </div>
                           {/* Dates */}
-                          <div className="flex items-center mb-2 text-black">
-                            <FaCalendarAlt className="mr-2 text-black" />
-                            <span className="text-black text-xs">
-                              {/* Format the date */}
-                              {new Date(trip.tripDate).toLocaleDateString(
-                                "en-US",
-                                {
-                                  day: "numeric",
-                                  month: "short",
-                                }
-                              )}
-                            </span>
-                            {trip.tripDateCount > 0 && ( // Check if tripDateCount is greater than 0
-                              <span className="text-xs ml-4">
-                                +{trip.tripDateCount}
-                                <span className="ml-1">Batches</span>
-                              </span>
-                            )}
-                          </div>
+                          
                         </div>
                       </div>
                     </div>

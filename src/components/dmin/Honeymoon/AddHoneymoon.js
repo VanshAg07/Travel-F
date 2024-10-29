@@ -37,7 +37,7 @@ const AddHoneymoon = () => {
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -78,7 +78,7 @@ const AddHoneymoon = () => {
       alert("Please select a state before submitting the form.");
       return;
     }
-    console.log(selectedState);
+    // console.log(selectedState);
     e.preventDefault();
 
     const formData = new FormData();
@@ -127,7 +127,7 @@ const AddHoneymoon = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Trip submitted successfully", data);
+        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
       })
       .catch((error) => {

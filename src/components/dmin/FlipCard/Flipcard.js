@@ -134,12 +134,12 @@ const Flipcard = () => {
   };
 
   const handleEdit = (category, flipcard) => {
-    console.log("Editing flipcard ID:", flipcard.id);
+    // console.log("Editing flipcard ID:", flipcard.id);
     if (!flipcard._id) {
       console.error("Flipcard ID is undefined");
       return;
     }
-    console.log(flipcard);
+    // console.log(flipcard);
     setStateName(flipcard.stateName);
     setFlipPrice(flipcard.flipPrice);
     setOfferPrice(flipcard.offerPrice);

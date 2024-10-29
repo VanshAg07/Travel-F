@@ -12,12 +12,12 @@ const Hiking = () => {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      console.log("Fetching activities...");
+      // console.log("Fetching activities...");
       try {
         const response = await axios.get(
           `https://api.travello10.com/api/user/getInternActivities/${name}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setActivities(response.data.activities || []);
       } catch (err) {
         setError(err.message);
@@ -28,9 +28,6 @@ const Hiking = () => {
 
     fetchActivities();
   }, [name]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="mx-auto" style={{ width: '90vw' }}>
@@ -50,7 +47,7 @@ const Hiking = () => {
             </div>
           ))
         ) : (
-          <p>No activities found</p>
+          <p></p>
         )}
       </div>
     </div>

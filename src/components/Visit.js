@@ -16,7 +16,7 @@ const Visit = () => {
         const response = await axios.get(
           `https://api.travello10.com/api/user/getBeautifulPlaces/${name}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setPlaces(response.data.places || []);
       } catch (err) {
         setError(err.message);
@@ -28,28 +28,34 @@ const Visit = () => {
     fetchPlaces();
   }, [name]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
-    <div className=" mx-auto" style={{ width: '90vw' }}>
+    <div className=" mx-auto" style={{ width: "90vw" }}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {places.length > 0 ? (
           places.map((place, index) => (
-            <div key={index} className="visiting-card shadow-lg rounded-lg overflow-hidden flex flex-col">
-              <img src={place.img} alt={place.title} className="w-full h-52 object-cover" />
+            <div
+              key={index}
+              className="visiting-card shadow-lg rounded-lg overflow-hidden flex flex-col"
+            >
+              <img
+                src={place.img}
+                alt={place.title}
+                className="w-full h-52 object-cover"
+              />
               <div className="visiting-card-content p-4 flex-grow bg-white">
                 <h1 className="text-lg font-semibold">{place.title}</h1>
                 <p className="text-sm text-gray-800">{place.description}</p>
                 <div className="location-info flex items-center mt-2">
                   <FaMapMarkerAlt className="location-icon text-black mr-2" />
-                  <span className="location-text text-sm text-black">{place.location}</span>
+                  <span className="location-text text-sm text-black">
+                    {place.location}
+                  </span>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p>No places found</p>
+          <p></p>
         )}
       </div>
     </div>

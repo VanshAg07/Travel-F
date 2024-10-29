@@ -40,7 +40,7 @@ const AdminPanel = () => {
           name: state.stateName,
           id: state._id,
         }));
-        console.log("States:", statesList);
+        // console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -178,7 +178,7 @@ const AdminPanel = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Trip submitted successfully", data);
+        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
         setLoading(false);
       })

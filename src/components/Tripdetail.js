@@ -17,6 +17,9 @@ const TripDetailCard = ({ trip }) => {
     navigate(`/trips/${trip.id}`); // Navigate to trip details page
   };
 
+  // Extract the first date from the allTripDates array
+  const firstDate = trip.allTripDates[0];
+
   return (
     <div
       className="bg-white h-[20vh] overflow-hidden rounded-lg shadow-md cursor-pointer"
@@ -32,7 +35,8 @@ const TripDetailCard = ({ trip }) => {
         </div>
         <div className="flex items-center mb-2 ">
           <FaCalendarAlt className="mr-1" />
-          <p className="text-sm text-black mr-1">{formatDate(trip.date)}</p>
+          {/* Use the first date for formatting */}
+          <p className="text-sm text-black mr-1">{formatDate(firstDate)}</p>
           <p className="text-sm text-red-500 text-end">
             + {trip.allTripDatesCount} batches
           </p>

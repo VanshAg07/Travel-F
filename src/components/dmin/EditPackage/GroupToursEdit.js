@@ -28,7 +28,7 @@ const GroupToursEdit = () => {
       const response = await axios.get(
         "https://api.travello10.com/api/group-tours/group-tours"
       );
-      console.log(response.data);
+      // console.log(response.data);
       setGroupTours(response.data.data);
       setMessage("Group tours loaded successfully!");
     } catch (error) {

@@ -14,17 +14,20 @@ const TripCard = ({ trip }) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, options); // Format the date
   };
+
   const displayTripName =
     trip.tripName.length > 20
       ? `${trip.tripName.slice(0, 18)}...`
       : trip.tripName;
+
+  const firstDate = trip.allTripDates[0];
 
   return (
     <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
         src={
           trip.tripImages.length > 0 ? trip.tripImages[0] : "defaultImage.jpg"
-        } // Fallback image if none is provided
+        }
         alt="Trip"
         className="w-[100vw] h-[300px] object-cover"
       />
@@ -44,7 +47,7 @@ const TripCard = ({ trip }) => {
         </div>
         <div className="flex items-center">
           <FaCalendarAlt className="mr-1" />
-          <p className="text-sm text-black mr-2">{formatDate(trip.date)}</p>
+          <p className="text-sm text-black mr-2">{formatDate(firstDate)}</p>
           <p className="text-sm text-red-500 text-end">
             +{trip.allTripDatesCount} batches
           </p>
@@ -133,7 +136,7 @@ const App = () => {
   const shouldShowDots = allTrips.length > tripsToShow; // Show dots if there are more trips than can be shown
 
   // Calculate the number of dots dynamically
-  const totalDots = allTrips.length;
+  const totalDots = Math.ceil(allTrips.length / tripsToShow); // Total groups of trips
 
   return (
     <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">

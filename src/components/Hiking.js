@@ -12,7 +12,7 @@ const Hiking = () => {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      console.log("Fetching activities...");
+      // console.log("Fetching activities...");
       try {
         const response = await axios.get(
           `https://api.travello10.com/api/user/getBestActivities/${name}`
@@ -50,7 +50,7 @@ const Hiking = () => {
             </div>
           ))
         ) : (
-          <p>No activities found</p>
+          <p></p>
         )}
       </div>
     </div>

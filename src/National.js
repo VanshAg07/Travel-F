@@ -87,7 +87,7 @@ const National = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     // Add form submission logic here (e.g., API call)
   };
 
