@@ -29,7 +29,7 @@ const HomeHoneymoon = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/honeymoon/${stateName}`
+        `http://localhost:5000/api/package-image/honeymoon/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -43,7 +43,7 @@ const HomeHoneymoon = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/honeymoon/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/honeymoon/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct

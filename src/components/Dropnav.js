@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Importing Link for routing
-import { FaChevronDown } from "react-icons/fa"; // Importing the dropdown arrow icon
+import { Link } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa";
 import "./Dropnav.css";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const Navbar = () => {
   const fetchNationalNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/get-national-nav"
+        "http://localhost:5000/api/home/get-national-nav"
       );
       setNationalNav(res.data);
     } catch (error) {
@@ -24,7 +24,7 @@ const Navbar = () => {
   const fetchInternNationalNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/get-international-nav"
+        "http://localhost:5000/api/home/get-international-nav"
       );
       setInternationalNav(res.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const Navbar = () => {
   const fetchHoneymoonNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/get-honeymoon-nav"
+        "http://localhost:5000/api/home/get-honeymoon-nav"
       );
       setHoneymoonNav(res.data);
     } catch (error) {
@@ -55,10 +55,10 @@ const Navbar = () => {
     honeymoonPackages: honeymoonNav,
     weekendTrips: [],
     groupsTours: [
-      { name: "School Tours", route: "/schooltour" },
-      { name: "University Tours", route: "/universitytour" },
-      { name: "Sports Tours", route: "/sportstour" },
-      { name: "Adventure Tours", route: "/adventuretour" },
+      { name: "School Tours", route: "/" },
+      { name: "University Tours", route: "/" },
+      { name: "Sports Tours", route: "/" },
+      { name: "Adventure Tours", route: "/" },
     ],
     corporatePackages: [],
   };
@@ -113,7 +113,8 @@ const Navbar = () => {
                 : key.charAt(0).toUpperCase() +
                   key.replace(/([A-Z])/g, " $1").toLowerCase()}
             </Link>
-            {key !== "corporatePackages" && (
+            {/* Only render the down arrow if it's not "weekendTrips" */}
+            {key !== "corporatePackages" && key !== "weekendTrips" && (
               <FaChevronDown className="dropdown-icon" />
             )}
             {activeDropdown === key && dropdownLinks[key].length > 0 && (
@@ -123,20 +124,19 @@ const Navbar = () => {
                     <Link
                       to={
                         key === "groupsTours"
-                          ? link.route // Use the route for groupsTours
+                          ? link.route
                           : key === "honeymoonPackages"
-                          ? `/honeymoon-packages/${link.stateName}` // Adjusted as needed
+                          ? `/honeymoon-packages/${link.stateName}`
                           : key === "indiaPackages"
-                          ? `/place/${link.stateName}` // Use stateName for the route
+                          ? `/place/${link.stateName}`
                           : key === "internationalPackage"
-                          ? `/places/${link.stateName}` // Use stateName for the route
+                          ? `/places/${link.stateName}`
                           : key === "weekendTrips"
                           ? `/weekends`
-                          : `/place/${link.stateName}` // Adjust accordingly
+                          : `/place/${link.stateName}`
                       }
                     >
-                      {key === "groupsTours" ? link.name : link.stateName}{" "}
-                      {/* Use stateName for display */}
+                      {key === "groupsTours" ? link.name : link.stateName}
                     </Link>
                   </li>
                 ))}

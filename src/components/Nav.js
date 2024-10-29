@@ -43,7 +43,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("https://api.travello10.com/api/home/nav-offer", {
+    fetch("http://localhost:5000/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -96,6 +96,15 @@ const Nav = () => {
             >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>About Us</p>
+              </div>
+            </Link>
+            <Link
+              to="/Glry"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Glry")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Gallery</p>
               </div>
             </Link>
             <Link

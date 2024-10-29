@@ -28,7 +28,6 @@ import SignInPopup from "./components/Popup.js"; // Import the SignInPopup compo
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  
   // Media queries
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeMobile = useMediaQuery({ query: "(max-width: 1024px)" });

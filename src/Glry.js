@@ -1,35 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Glry.css";
-import image1 from "./img/india.jpg";
-import image2 from "./img/bali.jpg";
-import image3 from "./img/Europe.jpg";
-import image4 from "./img/kashmir.jpg";
-import image5 from "./img/kerala.jpg";
-import image6 from "./img/india.jpg";
-import image7 from "./img/bali.jpg";
-import image8 from "./img/Europe.jpg";
-import image9 from "./img/kashmir.jpg";
-import image10 from "./img/kerala.jpg";
 import Nav from "./components/Nav";
-import Footer from "./Footer";
-import FooterSection from "./components/Footersection";
 import Dropnav from "./components/Dropnav";
 import MainFooter from "./components/Footer/MainFooter";
 
-const images = [
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-  image7,
-  image8,
-  image9,
-  image10,
-];
-
 const Glry = () => {
+  const [images, setGalleryImages] = useState([]);
+
+  useEffect(() => {
+    fetchGalleryImages();
+  }, []);
+
+  const fetchGalleryImages = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/gallery/home-galleries"
+      );
+      const data = await response.json();
+      setGalleryImages(data.images[0].images || []);
+    } catch (error) {
+      console.error("Error fetching gallery images:", error);
+    }
+  };
+
   return (
     <div className="glry-wr">
       <Nav />

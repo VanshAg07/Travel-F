@@ -32,7 +32,7 @@ function NationalEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-national-packages")
+      .get("http://localhost:5000/api/edit-packages/get-national-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -128,7 +128,7 @@ function NationalEdit() {
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -149,7 +149,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -342,7 +342,7 @@ function NationalEdit() {
                     <button
                       onClick={() =>
                         window.open(
-                          `https://api.travello10.com/upload/${pdf.filename}`,
+                          `http://localhost:5000/upload/${pdf.filename}`,
                           "_blank"
                         )
                       }

@@ -19,6 +19,7 @@ import CorporateHome from "./Dashboard/Corporate/CorporateHome";
 import Flipcard from "./FlipCard/Flipcard";
 import AddBackground from "./AddBackground";
 import YoutubeDetails from "./Dashboard/YoutubeDetails";
+import GalleryPage from "./Dashboard/GalleryPage";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -85,6 +86,10 @@ function Dashboard() {
       name: "Youtube",
       component: <YoutubeDetails />,
     },
+    // {
+    //   name: "Gallery Page",
+    //   component: <GalleryPage />,
+    // },
   ];
   const handleCardClick = (component) => {
     setSelectedComponent(component);
