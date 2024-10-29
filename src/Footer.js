@@ -26,10 +26,10 @@ const Footer = () => {
   };
 
   return (
-    <div className="footer-wrapper bg-gray-50 py-10">
+    <div className="footer-wrapper bg-gray-50 pb-5">
       <div className="footer-info text-center">
         <h1 className="text-xl font-bold">TRAVELLOTEN INDIA PRIVATE LIMITED</h1>
-        <div className="footer-icons flex justify-center space-x-4 my-4">
+        <div className="footer-icons flex justify-center space-x-4">
           {icons.map((icon) => (
             <a
               key={icon._id} // Use unique key from data
