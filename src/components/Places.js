@@ -100,7 +100,7 @@ const Place = () => {
     </h1>
   </div>
 </div>
-        <div className="mt-[100px] md:mt-0">
+        <div className="mt-[170px] md:mt-0">
           <Mainreview />
         </div>
         <div className="justify-center pt-10 items-center flex flex-col w-full ">

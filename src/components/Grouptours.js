@@ -37,7 +37,9 @@ const BackpackingTrips = () => {
         </h1>
       </div>
 
-      <Mainreview />
+      <div className="mt-[130px] md:mt-0">
+        <Mainreview />
+      </div>
 
       <div className="lottie-wr">
         <Lottie

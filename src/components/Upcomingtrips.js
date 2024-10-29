@@ -105,14 +105,14 @@ const App = () => {
 
   // Handle next trips
   const nextTrips = () => {
-    setStartIndex((prevIndex) => (prevIndex + tripsToShow) % allTrips.length);
+    setStartIndex((prevIndex) => (prevIndex + 1) % allTrips.length);
   };
 
   // Handle previous trips
   const prevTrips = () => {
     setStartIndex(
       (prevIndex) =>
-        (prevIndex - tripsToShow + allTrips.length) % allTrips.length
+        (prevIndex - 1 + allTrips.length) % allTrips.length
     );
   };
 

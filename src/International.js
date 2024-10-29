@@ -145,7 +145,7 @@ const International = () => {
         ))}
       </div>
 
-      <div className="mt-[100px] md:mt-0">
+      <div className="mt-[130px] md:mt-0">
         <Mainreview />
       </div>
 

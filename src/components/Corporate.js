@@ -102,9 +102,9 @@ const Corporate = () => {
             </div>
           ))}
         </div>
-        <div className="mt-[100px] md:mt-0">
-          <Mainreview />
-        </div>
+        <div className="mt-[130px] md:mt-0">
+        <Mainreview />
+      </div>
         <div className="justify-center pt-10 items-center flex flex-col w-full">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             Unleash the Excitement in Corporate Tours

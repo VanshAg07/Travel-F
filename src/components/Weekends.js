@@ -70,7 +70,7 @@ const Weekends = () => {
             </div>
           ))}
         </div>
-        <div className="mt-[100px] md:mt-0">
+        <div className="mt-[130px] md:mt-0">
           <Mainreview />
         </div>
         <div className="lottie-wr">
