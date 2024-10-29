@@ -121,7 +121,7 @@ const App = () => {
           <Route path="/admin" element={<AdminPortal />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Contactus" element={<Contactus />} />
@@ -195,7 +195,7 @@ const App = () => {
         <Route path="/offer" element={<Offer />} />
         <Route path="/forgotmob" element={<Forgotmob />} />
         <Route path="/forgot" element={<Forgot />} />
-        <Route path='/' element={<ComingSoon />} />
+        {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
   );
