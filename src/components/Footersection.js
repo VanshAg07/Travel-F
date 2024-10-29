@@ -14,7 +14,6 @@ const FooterSection = () => {
               TravelloTen India Private Limited specializes in Travel & Transport services, exclusively for the academic sector. We arrange educational & fun tours for students all over India, providing insights on history, geography, and culture. Our services extend to school tours, college tours, corporate tours, and family trips across India. With years of experience, we ensure quality, authenticity, and exceptional service. We believe in “Service with Quality & Smile.”
             </p>
           </div>
-        
           {/* Weekend Trips Section with Right Border */}
           <div className="text-center md:text-left md:border-r md:border-white md:px-8">
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">Weekend Trips</h2>

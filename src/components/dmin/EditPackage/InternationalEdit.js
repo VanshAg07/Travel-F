@@ -32,7 +32,7 @@ function InternationalEdit() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/api/edit-packages/get-intern-national-packages"
+        "https://api.travello10.com/api/edit-packages/get-intern-national-packages"
       )
       .then((response) => {
         if (response.data) {
@@ -127,7 +127,7 @@ function InternationalEdit() {
 
       axios
         .put(
-          `http://localhost:5000/api/edit-packages/edit-intern-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `https://api.travello10.com/api/edit-packages/edit-intern-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -148,7 +148,7 @@ function InternationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `http://localhost:5000/api/edit-packages/delete-intern-national-package/${pkg.stateName}/${tripId}`
+          `https://api.travello10.com/api/edit-packages/delete-intern-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -340,7 +340,7 @@ function InternationalEdit() {
                     <button
                       onClick={() =>
                         window.open(
-                          `http://localhost:5000/upload/${pdf.filename}`,
+                          `https://api.travello10.com/upload/${pdf.filename}`,
                           "_blank"
                         )
                       }
