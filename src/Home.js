@@ -46,24 +46,24 @@ const Home = () => {
 
         {isSmallMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
-              <Mobcard />
+            <Mobcard />
           </div>
         ) : (
           <Videopg2 />
         )}
 
         {isSmallMobile ? (
-            <div style={{ margin: "0px 10px 0px 10px" }}>
-              <Mobcardinter />
-            </div>
+          <div style={{ margin: "0px 10px 0px 10px" }}>
+            <Mobcardinter />
+          </div>
         ) : (
           <Videopg3 />
         )}
 
         {isSmallMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
-              <Mobcardhoney />
-            </div>
+            <Mobcardhoney />
+          </div>
         ) : (
           <Videopg4 />
         )}
@@ -80,16 +80,16 @@ const Home = () => {
 
           {/* Show Explore component only when screen size is greater than 426px */}
           {!isMobile && <Explore />}
-{isMobile ? (
-  <div className="px-2 pt-64 pb-44 relative">
-  <MobileHomeGallery />
-  </div>
-) : (
-  <div className="px-28 pt-96 pb-80 relative">
-    <Homeglry />
-  </div>
-)}
-<Whyuss />
+          {isMobile ? (
+            <div className="px-2 pt-72 pb-44 relative">
+              <MobileHomeGallery />
+            </div>
+          ) : (
+            <div className="px-28 pt-96 pb-80 relative">
+              <Homeglry />
+            </div>
+          )}
+          <Whyuss />
 
           <Review />
           <Forms />
@@ -99,7 +99,9 @@ const Home = () => {
         <Socialmedia />
         <div className="fixed-button-1">
           <a
-            href={`https://wa.me/918287804197?text=${encodeURIComponent(whatsappMessage)}`}
+            href={`https://wa.me/918287804197?text=${encodeURIComponent(
+              whatsappMessage
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
           >
