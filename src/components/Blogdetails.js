@@ -6,7 +6,7 @@ import MainFooter from "./Footer/MainFooter";
 const BlogDetails = () => {
   const { blogTitle } = useParams();
   const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   const fetchBlog = async () => {
     try {
@@ -17,7 +17,7 @@ const BlogDetails = () => {
     } catch (error) {
       console.error("Error fetching blog:", error);
     } finally {
-      setLoading(false); // Set loading to false after fetch
+      setLoading(false);
     }
   };
 
@@ -91,7 +91,6 @@ const BlogDetails = () => {
         ))}
       </div>
       <div className="w-full">
-
       <MainFooter />
       </div>
     </div>
