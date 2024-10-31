@@ -152,24 +152,28 @@ const Nav = () => {
           <div className="flex flex-col">
             <Link to="/national" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
-                <p>India Packages</p>
+                <p>Indian Trips</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
-                <p>International Packages</p>
+                <p>International Deals</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Honeymoon" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Honeymoon Packages</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>Corporate Trips</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link
               to="/weekends"
               onClick={() => setIsMenuOpen(false)}
@@ -179,6 +183,7 @@ const Nav = () => {
                 <p>Weekends Trips</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
@@ -188,6 +193,7 @@ const Nav = () => {
                 <p>Group Tours</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link
               to="/Aboutus"
               onClick={() => setIsMenuOpen(false)}
@@ -197,6 +203,7 @@ const Nav = () => {
                 <p>About Us</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link
               to="/Payments"
               onClick={() => setIsMenuOpen(false)}
@@ -206,6 +213,7 @@ const Nav = () => {
                 <p>Payments</p>
               </div>
             </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link
               to="/Blog"
               onClick={() => setIsMenuOpen(false)}
@@ -217,7 +225,9 @@ const Nav = () => {
             </Link>
           </div>
         )}
-        <div className={`flex justify-center ${isMobile ? "" : ""}`}>
+        <div
+          className={`flex justify-center flex-col ${isMobile ? "w-full" : ""}`}
+        >
           <a href="tel:+918287804197" onClick={() => setIsMenuOpen(false)}>
             <div
               className={`flex flex-row justify-center items-center gap-2 border-2 border-white rounded-full md:px-4 py-2 ${
@@ -232,6 +242,15 @@ const Nav = () => {
               </p>
             </div>
           </a>
+          {isMobile ? (
+            <Link to="Login">
+              <button className="bg-[#03346e] text-white w-full p-2 rounded-xl items-center text-center">
+                Sign In
+              </button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <div className="desktop-only">
           {username ? (
@@ -249,7 +268,7 @@ const Nav = () => {
               </button>
             </div>
           ) : (
-            <Link to="/Signup" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/Login" onClick={() => setIsMenuOpen(false)}>
               <a className="cta">
                 <span>Sign In</span>
                 <svg width="15px" height="10px" viewBox="0 0 13 10">

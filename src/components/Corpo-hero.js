@@ -66,29 +66,40 @@ const HighLevelCorporateTour = () => {
                 <div className="mt-4">
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                     <div className="flex p-2 border border-gray-300 rounded-md items-center">
-                    <MdLocationPin />
+                      <MdLocationPin />
                       <span className="ml-1">{partner.place}</span>
                     </div>
                     <div className="flex p-2 border border-gray-300 rounded-md items-center">
-                    <MdPeople className="text-xl" />
+                      <MdPeople className="text-xl" />
                       <span className="ml-1">{partner.people}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Right Content (Video Embed) */}
+              {/* Right Content (Video Embed or Image) */}
               <div className="flex-1 mt-8 lg:mt-0 lg:max-w-lg w-full">
-                <iframe
-                  width="100%"
-                  height="250"
-                  src={getEmbedUrl(partner.youtubeLink)}
-                  title={`${partner.heading} YouTube video`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="rounded-lg shadow-lg"
-                ></iframe>
+                {partner.youtubeLink ? (
+                  <iframe
+                    width="100%"
+                    height="250"
+                    src={getEmbedUrl(partner.youtubeLink)}
+                    title={`${partner.heading} YouTube video`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-lg shadow-lg"
+                  ></iframe>
+                ) : (
+                  partner.image &&
+                  partner.image.length > 0 && (
+                    <img
+                      src={partner.image[0]} // Display the first image in the array
+                      alt={`${partner.heading} image`}
+                      className="rounded-lg shadow-lg w-full h-64 object-cover"
+                    />
+                  )
+                )}
               </div>
             </div>
           </div>

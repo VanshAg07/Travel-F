@@ -78,7 +78,7 @@ function NationalEdit() {
   const handleInputChange = (e) => {
     const { name, type, checked, value } = e.target;
 
-    console.log(`Before update: customised = ${tripDetails.customised}`);
+    // console.log(`Before update: customised = ${tripDetails.customised}`);
 
     setTripDetails((prevDetails) => {
       const updatedDetails = {

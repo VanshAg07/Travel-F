@@ -373,7 +373,9 @@
     padding: 8px 10px; /* Adjust padding to ensure button stays in one line */
     /* gap: 2px; Reduce the gap between text and icon */
   }
-
+  .nav-wrapper {
+    padding: 10px; /* Add padding to the navbar */
+  }
   .cta span {
     font-size: 14px; /* Slightly reduce font size */
   }

@@ -65,7 +65,7 @@ const Videopage = () => {
       </div>
       {/* Button for booking */}
       <div className="absolute videopg-btn left-20 top-[460px] z-50">
-        <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-1">
+        <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-2">
           BOOK NOW
         </button>
       </div>

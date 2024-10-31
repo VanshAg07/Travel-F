@@ -43,10 +43,10 @@ const TripCard = () => {
             key={banner._id}
             className={`bg-white border-4 homecrd-div border-white mt-10 rounded-3xl shadow-lg shadow-black overflow-hidden ${getCardSizeClasses()} relative ${
               index === 1
-                ? "h-[390px]"
+                ? "h-[420px]"
                 : index === 0
-                ? "h-[360px]"
-                : "h-[360px]"
+                ? "h-[395px]"
+                : "h-[395px]"
             }`}
           >
             <img

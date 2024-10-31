@@ -87,32 +87,32 @@ const App = () => {
 
   const adminMiddleware = roleMiddleware(["admin"]);
 
-  // useEffect(() => {
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //   };
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
 
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //   };
-  // }, []);
-  // useEffect(() => {
-  //   const handleKeyDown = (e) => {
-  //     if (
-  //       e.key === "PrintScreen" ||
-  //       (e.ctrlKey && e.shiftKey && e.key === "s")
-  //     ) {
-  //       e.preventDefault();
-  //       alert("Screenshots are disabled.");
-  //     }
-  //   };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "PrintScreen" ||
+        (e.ctrlKey && e.shiftKey && e.key === "s")
+      ) {
+        e.preventDefault();
+        alert("Screenshots are disabled.");
+      }
+    };
 
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <BrowserRouter>
       <ScrollToTop />

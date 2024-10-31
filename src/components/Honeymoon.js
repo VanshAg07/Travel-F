@@ -22,8 +22,12 @@ import shi8 from "../img/20.png";
 import { Link } from "react-router-dom";
 import HoneymoonCard from "./User/Honeymoon/HoneymoonCard.js";
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
+import MobileHomeGallery from "./MobileHomeGallery.js";
 
 const Honeymoon = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   const [backgroundImages, setBackgroundImages] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -200,11 +204,12 @@ const Honeymoon = () => {
           </p>
         </div>
       </div>
-      <div>
+      <div className="pb-96">
         <HoneymoonCard />
       </div>
       <div className="bg-[#ffffe6]">
-        <Homeglry />
+        {isMobile ? <MobileHomeGallery /> : <Homeglry />}
+
         <Whyuss />
         <Review />
         {/* <Faq /> */}

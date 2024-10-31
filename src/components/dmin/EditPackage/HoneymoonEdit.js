@@ -105,19 +105,25 @@ function HoneymoonEdit() {
     e.preventDefault();
     if (selectedTrip) {
       const formData = new FormData();
-      formData.append("tripDetails", JSON.stringify(tripDetails));
-      if (newTripImage) formData.append("tripImage", newTripImage);
+      formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
+      // Additional form data handling
+      if (newPdfFile) formData.append("pdf", newPdfFile);
+      if (newTripImage) formData.append("tripImages", newTripImage);
       if (newBackgroundImg)
         formData.append("tripBackgroundImg", newBackgroundImg);
 
       axios
         .put(
           `https://api.travello10.com/api/edit-packages/edit-honeymoon-package/${selectedTrip.stateName}/${selectedTrip._id}`,
-          tripDetails
+          formData, // Change this line to send formData
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Set the content type
+            },
+          }
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
         })
         .catch((error) => {
@@ -156,13 +162,11 @@ function HoneymoonEdit() {
     updatedPdf[index].status = value;
     setTripDetails((prevDetails) => ({ ...prevDetails, pdf: updatedPdf }));
   };
-
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
-
     if (type === "pdf") setNewPdfFile(file);
-    else if (type === "tripImage") setNewTripImage(file);
+    else if (type === "tripImages") setNewTripImage(file);
     else if (type === "tripBackgroundImg") setNewBackgroundImg(file);
   };
 
@@ -279,6 +283,39 @@ function HoneymoonEdit() {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <h4>Trip Images</h4>
+                {tripDetails?.tripImages?.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`https://api.travello10.com/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
+                  />
+                ))}
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripImages")}
+                  accept="image/*"
+                />
+              </div>
+              <div>
+                <h4>Trip Background Image</h4>
+                {Array.isArray(tripDetails.tripBackgroundImg) &&
+                  tripDetails.tripBackgroundImg.map((image, index) => (
+                    <img
+                      key={index}
+                      src={`https://api.travello10.com/upload/${image}`}
+                      alt={`Trip Image ${index + 1}`}
+                      className="h-14 w-14"
+                    />
+                  ))}
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
+                  accept="image/*"
+                />
               </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">

@@ -24,8 +24,12 @@ import Dropnav from "./components/Dropnav.js";
 import Mainreview from "./components/Mainreview.js";
 import MainFooter from "./components/Footer/MainFooter.js";
 import Homeglry from "./components/Homeglry.js";
+import { useMediaQuery } from "react-responsive";
+import MobileHomeGallery from "./components/MobileHomeGallery.js";
 
 const National = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   const [getTrip, setGetTrip] = useState([]);
   const [backgroundImages, setBackgroundImages] = useState([]);
   const tripDetails = () => {
@@ -115,7 +119,13 @@ const National = () => {
           <div key={item._id} className="relative">
             {item.image.map((imgUrl, index) =>
               imgUrl.endsWith(".mp4") ? (
-                <video key={index} className="w-full h-auto" autoPlay muted loop>
+                <video
+                  key={index}
+                  className="w-full h-auto"
+                  autoPlay
+                  muted
+                  loop
+                >
                   <source src={imgUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -134,7 +144,6 @@ const National = () => {
             </div>
           </div>
         ))}
-        
       </div>
       <div className="mt-[130px] z-10 md:mt-0">
         <Mainreview />
@@ -177,13 +186,13 @@ const National = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 pb-96">
         <div className="w-full">
           <AllPackagesCard />
         </div>
       </div>
       <div className="bg-[#ffffe6]">
-        <Homeglry />
+        {isMobile ? <MobileHomeGallery /> : <Homeglry />}
         <Whyuss />
         <Review />
         {/* <Guide /> */}

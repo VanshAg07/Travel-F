@@ -14,12 +14,13 @@ function CorporatePartners() {
     logo: null,
     image: null,
   });
+  const [mediaType, setMediaType] = useState("youtube"); // New state to toggle between YouTube or image
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     fetchPartners();
   }, []);
-  
+
   const fetchPartners = async () => {
     try {
       const response = await axios.get(
@@ -41,7 +42,8 @@ function CorporatePartners() {
   };
 
   const handleFileChange = (e) => {
-    setForm({ ...form, logo: e.target.files[0] });
+    const { name, files } = e.target;
+    setForm({ ...form, [name]: files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -51,8 +53,12 @@ function CorporatePartners() {
     formData.append("description", form.description);
     formData.append("place", form.place);
     formData.append("people", form.people);
-    formData.append("youtubeLink", form.youtubeLink);
-    if (form.logo) formData.append("logo", form.logo);
+    formData.append("logo", form.logo);
+    if (mediaType === "youtube") {
+      formData.append("youtubeLink", form.youtubeLink);
+    } else {
+      formData.append("image", form.image);
+    }
 
     try {
       if (editingId) {
@@ -85,7 +91,9 @@ function CorporatePartners() {
       people: partner.people,
       youtubeLink: partner.youtubeLink,
       logo: null,
+      image: null,
     });
+    setMediaType(partner.youtubeLink ? "youtube" : "image"); // Set media type based on existing data
   };
 
   const handleDelete = async (id) => {
@@ -109,7 +117,9 @@ function CorporatePartners() {
       people: "",
       youtubeLink: "",
       logo: null,
+      image: null,
     });
+    setMediaType("youtube");
     setEditingId(null);
   };
 
@@ -146,15 +156,51 @@ function CorporatePartners() {
             className="border p-2 rounded"
             required
           />
-          <input
-            type="url"
-            name="youtubeLink"
-            placeholder="YouTube Link"
-            value={form.youtubeLink}
-            onChange={handleInputChange}
-            className="border p-2 rounded"
-            required
-          />
+
+          {/* Radio buttons to toggle between YouTube link and image */}
+          <div className="col-span-2 flex items-center space-x-4">
+            <label className="font-medium">Choose Media:</label>
+            <label>
+              <input
+                type="radio"
+                value="youtube"
+                checked={mediaType === "youtube"}
+                onChange={() => setMediaType("youtube")}
+              />
+              <span className="ml-2">YouTube Link</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="image"
+                checked={mediaType === "image"}
+                onChange={() => setMediaType("image")}
+              />
+              <span className="ml-2">Image</span>
+            </label>
+          </div>
+
+          {/* Conditionally render YouTube link or image file input */}
+          {mediaType === "youtube" ? (
+            <input
+              type="url"
+              name="youtubeLink"
+              placeholder="YouTube Link"
+              value={form.youtubeLink}
+              onChange={handleInputChange}
+              className="border p-2 rounded col-span-2"
+              required
+            />
+          ) : (
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileChange}
+              className="border p-2 rounded col-span-2"
+              required
+            />
+          )}
+
           <textarea
             name="description"
             placeholder="Description"
@@ -168,6 +214,7 @@ function CorporatePartners() {
             name="logo"
             onChange={handleFileChange}
             className="border p-2 rounded col-span-2"
+            required
           />
         </div>
         <div className="mt-4">
@@ -203,9 +250,9 @@ function CorporatePartners() {
             partners.map((partner) => (
               <tr key={partner._id}>
                 <td className="text-center">
-                  {partner.logo && partner.logo.length > 0 ? (
+                  {partner.logo ? (
                     <img
-                      src={partner.logo[0]}
+                      src={partner.logo}
                       alt={partner.heading}
                       className="w-16 h-16 object-cover rounded"
                     />
@@ -235,7 +282,7 @@ function CorporatePartners() {
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="text-center">
+              <td colSpan="6" className="text-center">
                 No partners found
               </td>
             </tr>

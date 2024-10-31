@@ -20,9 +20,12 @@ import { Link } from "react-router-dom";
 import AllInternational from "./components/International/AllInternational.js";
 import Homeglry from "./components/Homeglry.js";
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
+import MobileHomeGallery from "./components/MobileHomeGallery.js";
 // import Lottie from "lottie-react";
 
 const International = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [backgroundImages, setBackgroundImages] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -188,12 +191,12 @@ const International = () => {
           </p>
         </div>
       </div>
-
-      <div>
+      <div className="pb-96">
         <AllInternational />
       </div>
       <div className="bg-[#ffffe6]">
-        <Homeglry />
+        {isMobile ? <MobileHomeGallery /> : <Homeglry />}
+
         <Whyuss />
         <Review />
         {/* <Guide /> */}
