@@ -49,7 +49,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative bg-[#FDFFE2] pb-7 h-[120%] w-full">
+    <div className="relative bg-[#FDFFE2] pb-96 h-[120%] w-full">
       <div className="w-4/5 mx-auto">
         <h2 className="text-left text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">
           Explore Your Adventure

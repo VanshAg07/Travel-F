@@ -81,11 +81,11 @@ const Home = () => {
           {/* Show Explore component only when screen size is greater than 426px */}
           {!isMobile && <Explore />}
           {isMobile ? (
-            <div className="px-2 pt-72 pb-36 relative">
+            <div className="px-2 relative">
               <MobileHomeGallery />
             </div>
           ) : (
-            <div className="px-28 pt-96 pb-80 relative">
+            <div className="px-28 relative">
               <Homeglry />
             </div>
           )}

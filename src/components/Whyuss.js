@@ -35,7 +35,7 @@ const WhyTravello = () => {
   ];
 
   return (
-    <div className="why-travello-container py-10 px-4 w-[90vw] mx-auto relative">
+    <div className="why-travello-container mt-80 px-4 w-[90vw] mx-auto relative">
       {" "}
       {/* Set width to 90vw and center */}
       <h2 className="text-center md:text-2xl text-xl lg:text-4xl font-bold md:mb-8 mb-4">

@@ -25,7 +25,7 @@ function NationalEdit() {
     tripBackgroundImg: [],
     overView: "",
     status: "",
-    customised: "",
+    customised: false,
     tripOfferPrice: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,28 +70,25 @@ function NationalEdit() {
       pdf: trip.pdf || [],
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
-      customised: trip.customised || "",
+      customised: trip.customised || false,
       tripOfferPrice: trip.tripOfferPrice || "",
     });
     setIsModalOpen(true);
   };
-
   const handleInputChange = (e) => {
     const { name, type, checked, value } = e.target;
-    setTripDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: type === "checkbox" ? checked : value,
-    }));
 
-    // Ensure 'customised' is set to false if the checkbox is unchecked
-    if (name === "customised" && !checked) {
-      setTripDetails((prevDetails) => ({
+    console.log(`Before update: customised = ${tripDetails.customised}`);
+
+    setTripDetails((prevDetails) => {
+      const updatedDetails = {
         ...prevDetails,
-        customised: false,
-      }));
-    }
+        [name]: type === "checkbox" ? checked : value,
+      };
+      console.log(`After update: customised = ${updatedDetails.customised}`);
+      return updatedDetails;
+    });
   };
-
   const handleArrayChange = (name, index, value) => {
     setTripDetails((prevDetails) => {
       const newArray = [...prevDetails[name]];
@@ -120,21 +117,29 @@ function NationalEdit() {
     e.preventDefault();
     if (selectedTrip) {
       const formData = new FormData();
-      formData.append("tripDetails", JSON.stringify(tripDetails));
+      formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
+  
+      // Additional form data handling
       if (newPdfFile) formData.append("pdf", newPdfFile);
-      if (newTripImage) formData.append("tripImage", newTripImage);
-      if (newBackgroundImg)
-        formData.append("tripBackgroundImg", newBackgroundImg);
-
+      if (newTripImage) formData.append("tripImages", newTripImage);
+      if (newBackgroundImg) formData.append("tripBackgroundImg", newBackgroundImg);
+  
       axios
         .put(
           `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
-          tripDetails
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
+          // Reset new image state if necessary
+          setNewTripImage(null);
+          setNewBackgroundImg(null);
         })
         .catch((error) => {
           console.error("Error updating trip:", error);
@@ -176,9 +181,8 @@ function NationalEdit() {
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
-
     if (type === "pdf") setNewPdfFile(file);
-    else if (type === "tripImage") setNewTripImage(file);
+    else if (type === "tripImages") setNewTripImage(file);
     else if (type === "tripBackgroundImg") setNewBackgroundImg(file);
   };
 
@@ -300,7 +304,7 @@ function NationalEdit() {
                 <input
                   type="checkbox"
                   name="customised"
-                  value={tripDetails.customised}
+                  checked={tripDetails.customised}
                   onChange={handleInputChange}
                   className="mt-1 p-2 border rounded-lg"
                 />
@@ -352,14 +356,17 @@ function NationalEdit() {
                     </button>
                   </div>
                 ))}
-                {/* <input
-                  type="file"
-                  onChange={(e) => handleFileChange(e, "pdf")}
-                  accept=".pdf"
-                /> */}
               </div>
-              {/* <div>
+              <div>
                 <h4>Trip Images</h4>
+                {tripDetails.tripImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`https://api.travello10.com/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
+                  />
+                ))}
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, "tripImages")}
@@ -367,13 +374,21 @@ function NationalEdit() {
                 />
               </div>
               <div>
-                <h4>Background Image</h4>
+                <h4>Trip Background Image</h4>
+                {tripDetails.tripBackgroundImg.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`https://api.travello10.com/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
+                  />
+                ))}
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
                   accept="image/*"
                 />
-              </div> */}
+              </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Duration:

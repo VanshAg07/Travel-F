@@ -45,7 +45,7 @@ const TravelOptions = () => {
   };
 
   return (
-    <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-12">
+    <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-96">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
         <div className="flex ml-4 flex-col">
           <h1 className="text-lg font-bold">Upcoming Trips</h1>
