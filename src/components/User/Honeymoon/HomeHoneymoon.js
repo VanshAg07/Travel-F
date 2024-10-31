@@ -14,8 +14,11 @@ import HoneymoonCard from "./HoneymoonCard";
 import StateHoneymoon from "./StateHoneymoon";
 import axios from "axios";
 import { FaClock, FaMapMarkerAlt, FaCalendarAlt, FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
-const HomeHoneymoon = () => {
+const HomeHoneymoon = () => {  
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   const { name } = useParams();
   const [packages, setPackages] = useState([]);
   const [visiblePackages, setVisiblePackages] = useState(6);
