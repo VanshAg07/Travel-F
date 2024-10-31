@@ -105,7 +105,7 @@ const Payments = () => {
           </div>
 
           {/* Payment Policy Section */}
-          <div className=" mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-lg mt-10">
+          {/* <div className=" mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-lg mt-10">
             <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
               Payment Policy
             </h1>
@@ -121,7 +121,7 @@ const Payments = () => {
               UK, Turkey, Egypt, Australia, etc.
             </p>
 
-            {/* Short Haul Table */}
+           Short Haul Table 
             <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
               SHORT HAUL PACKAGES
             </h2>
@@ -140,11 +140,11 @@ const Payments = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700">{/* Add Table Rows */}</tbody>
+                <tbody className="text-gray-700"></tbody>
               </table>
             </div>
 
-            {/* Long Haul Table */}
+           
             <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
               LONG HAUL PACKAGES
             </h2>
@@ -163,10 +163,10 @@ const Payments = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700">{/* Add Table Rows */}</tbody>
+                <tbody className="text-gray-700"></tbody>
               </table>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
