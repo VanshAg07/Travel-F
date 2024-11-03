@@ -68,10 +68,10 @@ const Corporate = () => {
 
   return (
     <>
-      <div className="wrpper-inter">
+      <div>
         <Nav />
         <Dropnav />
-        <div className="hero-section-left-1">
+        <div>
           {nationalImages.map((item) => (
             <div key={item._id} className="relative">
               {item.image.map((imgUrl, index) =>

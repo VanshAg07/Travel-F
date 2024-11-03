@@ -42,7 +42,7 @@ const HighLevelCorporateTour = () => {
         partners.map((partner) => (
           <div
             key={partner._id}
-            className="relative bg-[#03346e] mb-20 text-white py-10 sm:py-16 top-10 max-h-[120vh]"
+            className="relative bg-[#03346e] mb-20 text-white py-10 sm:py-16 top-10"
           >
             <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:space-x-12 px-6 lg:px-16">
               {/* Left Content */}
