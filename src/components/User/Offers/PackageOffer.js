@@ -18,7 +18,7 @@ import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import TripForms from "../../Contact/TripForms";
 import QuotePopup from "../../../QuotePopup";
-const PackageHoneymoon = () => {
+const PackageOffer = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
@@ -56,7 +56,7 @@ const PackageHoneymoon = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/honeymoon/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/offer/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
       } catch (error) {
@@ -81,7 +81,7 @@ const PackageHoneymoon = () => {
   };
   return (
     <div>
-        {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
+      {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
 
       <Nav />
       <Dropnav />
@@ -363,7 +363,7 @@ const PackageHoneymoon = () => {
             Customise Your trip
           </div>
           {/* Second Section: Book Now Button */}
-          <div onClick={handleGetQuotesClick} >
+          <div onClick={handleGetQuotesClick}>
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
               Get Quotes
             </button>
@@ -391,4 +391,4 @@ const PackageHoneymoon = () => {
   );
 };
 
-export default PackageHoneymoon;
+export default PackageOffer;

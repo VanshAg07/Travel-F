@@ -7,7 +7,7 @@ const TravelOptions = () => {
   const fetchAdventures = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/explore-adventure"
+        "http://localhost:5000/api/home/explore-adventure"
       );
       setAdventures(res.data);
     } catch (error) {
@@ -22,7 +22,7 @@ const TravelOptions = () => {
   // Function to map adventure titles to corresponding routes
   const getAdventureLink = (title) => {
     switch (title) {
-      case "India Trips":
+      case "Experience India":
         return "/national";
       case "Weekend Trips":
         return "/Weekends";

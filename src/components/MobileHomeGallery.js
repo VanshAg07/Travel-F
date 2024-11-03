@@ -15,7 +15,7 @@ const MobileHomeGallery = () => {
   const fetchGalleryImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/gallery/home-galleries"
+        "http://localhost:5000/api/gallery/home-galleries"
       );
       setGalleryImages(response.data.images[0].images || []);
     } catch (error) {
@@ -24,11 +24,11 @@ const MobileHomeGallery = () => {
   };
 
   const handlePrevious = () => {
-    setRotation((prevRotation) => prevRotation + 30);
+    setRotation((prevRotation) => prevRotation - 30);
   };
 
   const handleNext = () => {
-    setRotation((prevRotation) => prevRotation - 30);
+    setRotation((prevRotation) => prevRotation + 30);
   };
 
   const handleWheel = (event) => {

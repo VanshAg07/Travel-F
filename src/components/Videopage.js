@@ -3,6 +3,7 @@ import Mainreview from "./Mainreview";
 import "../components/Videopage.css";
 import Homecrd from "./Homecrd";
 import axios from "axios";
+import QuotePopup from "../QuotePopup";
 
 const Videopage = () => {
   const [videos, setVideos] = useState([]);
@@ -14,17 +15,27 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/home-page-video"
+        "http://localhost:5000/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
       console.error("Error fetching videos:", error);
     }
   };
+  const [isQuotePopupVisible, setQuotePopupVisible] = useState(false);
+
+  const handleGetQuotesClick = () => {
+    setQuotePopupVisible(true); // Show the popup
+  };
+
+  const closeQuotePopup = () => {
+    setQuotePopupVisible(false); // Hide the popup
+  };
 
   return (
     <div className="w-full h-screen videopg-wrpper relative overflow-hidden">
       {/* Gradient overlay from black to transparent */}
+
       <div className="absolute top-0 left-0 w-[50vw] h-full z-10 gradient-bg"></div>
 
       {/* Video background */}
@@ -64,7 +75,10 @@ const Videopage = () => {
         </p>
       </div>
       {/* Button for booking */}
-      <div className="absolute videopg-btn left-20 top-[460px] z-50">
+      <div
+        onClick={handleGetQuotesClick}
+        className="absolute videopg-btn left-20 top-[460px] z-50"
+      >
         <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-2">
           BOOK NOW
         </button>
@@ -74,7 +88,11 @@ const Videopage = () => {
       <div className="z-20 w-full absolute bottom-0 ">
         <Mainreview />
       </div>
-
+      {isQuotePopupVisible && (
+        <div className="z-20">
+          <QuotePopup onClose={closeQuotePopup} />
+        </div>
+      )}
       {/* Homecrd component */}
       <div>
         <Homecrd />

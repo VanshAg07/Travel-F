@@ -46,7 +46,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/international/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -60,7 +60,7 @@ const InernationalPlaces = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -289,7 +289,6 @@ const InernationalPlaces = () => {
                 <p>No packages available</p>
               )}
             </div>
-
             {/* Right Chevron Icon */}
             <FaChevronCircleRight
               onClick={handleScrollRight}
@@ -297,16 +296,13 @@ const InernationalPlaces = () => {
             />
           </div>
         </div>
-
         <div className="bg-[#ffffe6]">
           <div className="pt-96">
             {isMobile ? <MobileHomeGallery /> : <Homeglry />}
           </div>
-
           <Whyuss />
           <Review />
           {/* <Guide /> */}
-
           <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
             Contact Form
           </h1>

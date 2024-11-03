@@ -42,7 +42,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/national/${stateName}`
+        `http://localhost:5000/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -56,7 +56,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
