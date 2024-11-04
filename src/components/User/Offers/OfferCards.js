@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function AllPackagesCard() {
+function OfferCards() {
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(1);
+  const [visiblePackages, setVisiblePackages] = useState(2);
   const navigate = useNavigate();
-  const { name } = useParams();
 
   useEffect(() => {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getTripDetails/${name}`
+          "https://api.travello10.com/api/offer/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);
@@ -28,11 +27,13 @@ function AllPackagesCard() {
   };
 
   const handlePackageClick = (stateName, tripName) => {
-    navigate(`/trip/${tripName}/${stateName}`);
+    const encodedState = encodeURIComponent(stateName);
+    const encodedTrip = encodeURIComponent(tripName);
+    navigate(`/trip/${encodedTrip}/${encodedState}`);
   };
 
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="container mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
         {packages.length > 0 ? (
           packages.slice(0, visiblePackages).map((pkg, index) =>
@@ -40,9 +41,7 @@ function AllPackagesCard() {
               <div
                 key={`${index}-${tripIndex}`}
                 className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
-                onClick={() =>
-                  handlePackageClick(pkg.stateName, String(trip.tripName))
-                }
+                onClick={() => handlePackageClick(pkg.stateName, trip.tripName)}
               >
                 <img
                   src={trip.tripImages}
@@ -50,22 +49,11 @@ function AllPackagesCard() {
                   className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 />
                 <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-                  <span className="font-semibold text-sm ">
-                    {trip.customised ? (
-                      "Customised"
-                    ) : (
-                      <>
-                        <span className="relative mr-1 line-through">
-                          {`₹ ${trip.tripPrice}/-`}
-                        </span>
-                        {`₹${trip.tripOfferPrice}/- onwards`}
-                      </>
-                    )}
-                  </span>
+                  <span className="font-semibold text-sm ">{`₹ ${trip.tripPrice}/- onwards`}</span>
                 </div>
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                   <div className="w-full">
-                    <h2 className="text-lg uppercase truncate font-semibold text-black pb-4">
+                    <h2 className="text-lg truncate uppercase font-semibold text-black pb-4">
                       {trip.tripName}
                     </h2>
                     <div className="flex flex-row mb-4 justify-between items-center w-full">
@@ -74,7 +62,6 @@ function AllPackagesCard() {
                         <FaClock className="mr-2 text-black" />
                         <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                       </div>
-
                       {/* Location */}
                       <div className="flex items-center text-black">
                         <FaMapMarkerAlt className="mr-1 text-black" />
@@ -106,10 +93,9 @@ function AllPackagesCard() {
             ))
           )
         ) : (
-          <p></p>
+          <p>No packages available</p>
         )}
       </div>
-
       {visiblePackages < packages.length && (
         <div className="flex justify-center mb-6">
           <button
@@ -124,4 +110,4 @@ function AllPackagesCard() {
   );
 }
 
-export default AllPackagesCard;
+export default OfferCards;

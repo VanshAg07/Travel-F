@@ -1,122 +1,88 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../National.css";
 import Nav from "../components/Nav";
 import intern from "../img/international.jpg";
 import Lottie from "lottie-react";
-import animationData from "../img/India.json";
 import Whyuss from "../components/Whyuss.js";
 import cont from "../img/cont-button.json";
 import axios from "axios";
 import Review from "../components/Review";
-import AllPackagesCard from "../components/Cards/AllPackagesCard.js";
 import Dropnav from "../components/Dropnav.js";
 import Mainreview from "../components/Mainreview.js";
 import MainFooter from "../components/Footer/MainFooter.js";
-import Homeglry from "../components/Homeglry.js";
+import OfferCards from "./User/Offers/OfferCards.js";
 
 const National = () => {
-  const [getTrip, setGetTrip] = useState([]);
-  const tripDetails = () => {
-    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
-    response.then((res) => {
-      setGetTrip(res.data);
-    });
-  };
-  useEffect(() => {
-    tripDetails();
-  }, []);
-  const places = [
-    { id: 1, name: "Meghalaya" },
-    { id: 2, name: "Kashmir" },
-    { id: 3, name: "Spiti Valley" },
-    { id: 4, name: "Kerala" },
-    { id: 5, name: "Himachal Pradesh" },
-    { id: 6, name: "Sikkim" },
-    { id: 7, name: "Uttarakhand" },
-    { id: 8, name: "Ladakh" },
-    { id: 9, name: "Rajasthan" },
-    { id: 10, name: "Andaman" },
-  ];
-  const linkedPlaces = places.map((place) => {
-    const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
-    return matchingTrip ? { ...place, tripId: matchingTrip._id } : place;
-  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     contactNo: "",
     message: "",
   });
-
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "contactNo") {
-      const re = /^[0-9\b]+$/;
-      if (value === "" || (re.test(value) && value.length <= 10)) {
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      }
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Form submitted:", formData);
-    // Add form submission logic here (e.g., API call)
-  };
+  const [backgroundImages, setBackgroundImages] = useState([]);
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
-
+  const fetchBackgroundImages = async () => {
+    const response = await axios.get(
+      "https://api.travello10.com/api/background-images/images"
+    );
+    setBackgroundImages(response.data);
+  };
+  useEffect(() => {
+    fetchBackgroundImages();
+  }, []);
+  const nationalImages = backgroundImages.filter(
+    (item) => item.type === "Offer"
+  );
   return (
     <div className="wrpper-inter">
       <Nav />
       <Dropnav />
-      <div className="hero-section-left-1">
-        <img className="hero-img" src={intern} alt="International" />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
-        <div className="relative flex flex-col items-center">
-          <div className="relative w-full flex items-start justify-center">
-            <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-              Diwali Special Offer
-            </h1>
+      <div className=" object-cover hero-section-left-1">
+        {nationalImages.map((item) => (
+          <div key={item._id} className="relative">
+            {item.image.map((imgUrl, index) =>
+              imgUrl.endsWith(".mp4") ? (
+                <video
+                  key={index}
+                  className="w-full h-auto"
+                  autoPlay
+                  muted
+                  loop
+                >
+                  <source src={imgUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img key={index} src={imgUrl} alt={`Image ${index}`} />
+              )
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                {item.heading}
+              </h1>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
       <div className="mt-[130px] md:mt-0">
         <Mainreview />
       </div>
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
         <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
-          Discover Diwali Packages
+          Discover Offer Packages
         </h1>
         <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
       </div>
       <div className="flex justify-center mt-10">
         <div className="w-full">
-          <AllPackagesCard />
+          <OfferCards />
         </div>
       </div>
       <div className="bg-[#ffffe6]">
-        {/* <Homeglry /> */}
         <Whyuss />
         <Review />
-        {/* <Guide /> */}
 
         <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">
           Contact Form
@@ -148,7 +114,6 @@ const National = () => {
                     className="w-full border border-gray-300 p-2 rounded-md"
                   />
                 </div>
-
                 {/* Phone Number */}
                 <div className="mb-4">
                   <label
@@ -164,7 +129,6 @@ const National = () => {
                     className="w-full border border-gray-300 p-2 rounded-md"
                   />
                 </div>
-
                 {/* Email */}
                 <div className="mb-4">
                   <label
@@ -180,7 +144,6 @@ const National = () => {
                     className="w-full border border-gray-300 p-2 rounded-md"
                   />
                 </div>
-
                 {/* Message */}
                 <div className="mb-6">
                   <label
@@ -195,7 +158,6 @@ const National = () => {
                     className="w-full border border-gray-300 p-2 rounded-md"
                   ></textarea>
                 </div>
-
                 {/* Submit Button */}
                 <button
                   type="submit"
