@@ -8,6 +8,7 @@ const OffersHome = () => {
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
+    tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
     tripDuration: "",
@@ -24,6 +25,7 @@ const OffersHome = () => {
     sharing: [{ title: "", price: "" }],
     tripBookingAmount: "",
     tripSeats: "",
+    customised: false,
   });
 
   useEffect(() => {
@@ -33,13 +35,13 @@ const OffersHome = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/offer/states")
+      .get("http://localhost:5000/api/offer/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
           id: state._id,
         }));
-        // console.log("States:", statesList);
+        console.log("States:", statesList);
         setStates(statesList);
         setLoading(false);
       })
@@ -48,7 +50,9 @@ const OffersHome = () => {
         setLoading(false);
       });
   };
-
+  const handleCustomisedChange = (e) => {
+    setTripDetails({ ...tripDetails, customised: e.target.checked });
+  };
   // Generic handler to update dynamic arrays like inclusions, exclusions, and itinerary
   const handleArrayChange = (e, index, arrayName, subField = null) => {
     const updatedArray = [...tripDetails[arrayName]];
@@ -120,7 +124,7 @@ const OffersHome = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/offer/add-offer-package/${selectedState.id}`,
+      `http://localhost:5000/api/offer/add-offer-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -178,7 +182,7 @@ const OffersHome = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-6">Add Offers</h2>
+      <h2 className="text-2xl font-bold mb-6">Add Offers Package</h2>
       <form onSubmit={handleSubmit}>
         {/* State Name */}
         <div className="mb-4">
@@ -242,6 +246,29 @@ const OffersHome = () => {
           />
         </div>
         <div className="mb-4">
+          <label className="block text-gray-700">Trip Offer Price</label>
+          <input
+            type="Number"
+            name="tripOfferPrice"
+            value={tripDetails.tripOfferPrice}
+            onChange={(e) =>
+              setTripDetails({ ...tripDetails, tripOfferPrice: e.target.value })
+            }
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="flex flex-row  gap-2">
+          <input
+            type="checkbox"
+            name="customised"
+            value={tripDetails.customised}
+            onChange={handleCustomisedChange}
+            className="block border-gray-300 rounded-md border-2 p-1 "
+          />
+          <label className="block text-l font-medium">Customised</label>
+        </div>
+        <div className="mb-4">
           <label className="block text-gray-700">Trip Booking Amount</label>
           <input
             type="text"
@@ -278,6 +305,7 @@ const OffersHome = () => {
                 type="date"
                 value={date}
                 onChange={(e) => handleArrayChange(e, index, "tripDate")}
+                required
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               />
               <button
@@ -319,6 +347,7 @@ const OffersHome = () => {
               setTripDetails({ ...tripDetails, overView: e.target.value })
             }
             className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -333,6 +362,7 @@ const OffersHome = () => {
               setTripDetails({ ...tripDetails, tripDuration: e.target.value })
             }
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
           />
         </div>
         <div className="mb-4">
@@ -348,6 +378,7 @@ const OffersHome = () => {
               })
             }
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
           />
         </div>
         {/* Dynamic Inputs: Trip Inclusions */}
@@ -360,6 +391,7 @@ const OffersHome = () => {
                 value={inclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"

@@ -101,7 +101,7 @@ const International = () => {
   ];
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -191,11 +191,21 @@ const International = () => {
           </p>
         </div>
       </div>
-      <div className="pb-96">
+      <div className="">
         <AllInternational />
       </div>
       <div className="bg-[#ffffe6]">
-        {isMobile ? <MobileHomeGallery /> : <Homeglry />}
+        <div className="pt-96">
+          {isMobile ? (
+            <>
+              <MobileHomeGallery />
+            </>
+          ) : (
+            <div className="px-36">
+              <Homeglry />
+            </div>
+          )}
+        </div>
 
         <Whyuss />
         <Review />

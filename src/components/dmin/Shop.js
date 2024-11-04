@@ -18,7 +18,7 @@ const Shop = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/trip/states")
+      .get("http://localhost:5000/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -63,7 +63,7 @@ const Shop = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/addShop",
+        "http://localhost:5000/api/admin/addShop",
         formData,
         {
           headers: {

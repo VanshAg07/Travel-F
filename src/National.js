@@ -33,7 +33,7 @@ const National = () => {
   const [getTrip, setGetTrip] = useState([]);
   const [backgroundImages, setBackgroundImages] = useState([]);
   const tripDetails = () => {
-    const response = axios.get("https://api.travello10.com/api/user/getTripDetails");
+    const response = axios.get("http://localhost:5000/api/user/getTripDetails");
     response.then((res) => {
       setGetTrip(res.data);
     });
@@ -99,7 +99,7 @@ const National = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -183,13 +183,23 @@ const National = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center mt-10 pb-96">
+      <div className="flex justify-center mt-10">
         <div className="w-full">
           <AllPackagesCard />
         </div>
       </div>
       <div className="bg-[#ffffe6]">
-        {isMobile ? <MobileHomeGallery /> : <Homeglry />}
+        <div className="pt-96">
+          {isMobile ? (
+            <>
+              <MobileHomeGallery />
+            </>
+          ) : (
+            <div className="px-36">
+              <Homeglry />
+            </div>
+          )}
+        </div>
         <Whyuss />
         <Review />
         {/* <Guide /> */}

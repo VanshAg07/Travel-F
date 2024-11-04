@@ -46,7 +46,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/international/${stateName}`
+        `http://localhost:5000/api/package-image/international/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -60,7 +60,7 @@ const InernationalPlaces = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -298,7 +298,15 @@ const InernationalPlaces = () => {
         </div>
         <div className="bg-[#ffffe6]">
           <div className="pt-96">
-            {isMobile ? <MobileHomeGallery /> : <Homeglry />}
+            {isMobile ? (
+              <>
+                <MobileHomeGallery />
+              </>
+            ) : (
+              <div className="px-36">
+                <Homeglry />
+              </div>
+            )}
           </div>
           <Whyuss />
           <Review />
