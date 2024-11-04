@@ -3,6 +3,8 @@ import imgcloud from "../img/cloud.jpg";
 import imgcloud1 from "../img/cloud.webp";
 import { MdLocationPin, MdPeople } from "react-icons/md";
 import { LuCircleDotDashed } from "react-icons/lu";
+// import SchoolAllPackage from "../components/";
+
 
 const HighLevelCorporateTour = () => {
   const [expandedDays, setExpandedDays] = useState({});
@@ -40,7 +42,7 @@ const HighLevelCorporateTour = () => {
   }
 
   return (
-    <div className="bg-white mb-40">
+    <div className="bg-white">
       <div className="text-center py-8">
         <header className="w-full bg-white p-6 text-center">
           <h1 className="text-3xl sm:text-4xl font-bold">
@@ -83,46 +85,6 @@ const HighLevelCorporateTour = () => {
               alt="Image Description"
               className="rounded-lg shadow-lg w-full h-auto max-h-[300px] sm:max-h-[400px] lg:max-h-[450px] object-cover max-w-full"
             />
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-10 flex justify-center">
-        <div className="w-4/5"> {/* 80% width */}
-          <p className="text-3xl pb-4 sm:text-4xl font-bold text-center">
-            Itinerary
-          </p>
-
-          <div className="mb-5 bg-blue-100 p-3 rounded-lg shadow-md">
-            <div className="flex items-start justify-between">
-              <div className="flex items-start flex-grow">
-                <div className="border-2 p-2 rounded-md mr-5 border-blue-400 bg-white text-sm md:text-base flex-shrink-0">
-                  Day 1 :
-                </div>
-                <p className="text-base sm:text-lg md:text-xl lg:text-xl flex-grow overflow-hidden">
-                Arrival, welcome dinner, and an introduction to the agenda
-                </p>
-              </div>
-              <span
-                className="cursor-pointer border-2 ml-2 border-blue-400 pl-2 pr-2 pt-[1px] pb-[1px] rounded-sm text-blue-400 hover:bg-blue-200 transition-colors duration-300"
-                onClick={() => handleToggleDay(1)}
-              >
-                {expandedDays[1] ? "-" : "+"}
-              </span>
-            </div>
-
-            {expandedDays[1] && (
-              <ul className="mt-4 pl-4 mx-10">
-                <div className="mt-2 flex flex-row items-center gap-3">
-                  <div className="flex-shrink-0 w-3 h-3 flex items-center justify-center">
-                    <LuCircleDotDashed className="w-full h-full" />
-                  </div>
-                  <li className="text-xs sm:text-sm md:text-base">
-                    helloji helloji  helloji  helloji  helloji   helloji helloji  helloji  helloji  helloji   helloji helloji helloji helloji helloji 
-                  </li>
-                </div>
-              </ul>
-            )}
           </div>
         </div>
       </div>
