@@ -24,7 +24,7 @@ const TravelPackageCard = ({ pkg }) => {
 
   // Function to handle navigation
   const handleNavigate = () => {
-    navigate(`/trip/${pkg.tripName}/${pkg.stateName}`, {
+    navigate(`/international/${pkg.tripName}/${pkg.stateName}`, {
       state: { stateName: pkg.stateName, tripName: pkg.tripName },
     });
   };
