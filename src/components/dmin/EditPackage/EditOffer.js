@@ -25,6 +25,8 @@ function EditOffer() {
     tripBackgroundImg: [],
     overView: "",
     status: "",
+    customised: false,
+    tripOfferPrice: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
@@ -68,17 +70,25 @@ function EditOffer() {
       pdf: trip.pdf || [],
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
+      customised: trip.customised || false,
+      tripOfferPrice: trip.tripOfferPrice || "",
     });
     setIsModalOpen(true);
   };
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setTripDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
+    const { name, type, checked, value } = e.target;
 
+    // console.log(`Before update: customised = ${tripDetails.customised}`);
+
+    setTripDetails((prevDetails) => {
+      const updatedDetails = {
+        ...prevDetails,
+        [name]: type === "checkbox" ? checked : value,
+      };
+      console.log(`After update: customised = ${updatedDetails.customised}`);
+      return updatedDetails;
+    });
+  };
   const handleArrayChange = (name, index, value) => {
     setTripDetails((prevDetails) => {
       const newArray = [...prevDetails[name]];
@@ -107,21 +117,30 @@ function EditOffer() {
     e.preventDefault();
     if (selectedTrip) {
       const formData = new FormData();
-      formData.append("tripDetails", JSON.stringify(tripDetails));
+      formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
+
+      // Additional form data handling
       if (newPdfFile) formData.append("pdf", newPdfFile);
-      if (newTripImage) formData.append("tripImage", newTripImage);
+      if (newTripImage) formData.append("tripImages", newTripImage);
       if (newBackgroundImg)
         formData.append("tripBackgroundImg", newBackgroundImg);
 
       axios
         .put(
           `http://localhost:5000/api/edit-packages/edit-offers-package/${selectedTrip.stateName}/${selectedTrip._id}`,
-          tripDetails
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         )
         .then((response) => {
           alert("Trip details updated successfully!");
-          // console.log("Updated Trip Details:", response.data);
           setIsModalOpen(false);
+          // Reset new image state if necessary
+          setNewTripImage(null);
+          setNewBackgroundImg(null);
         })
         .catch((error) => {
           console.error("Error updating trip:", error);
@@ -129,7 +148,7 @@ function EditOffer() {
     }
   };
 
-  const handleDeleteTrip = (pkg, tripId) => {
+  const handleDeleteTrip = (pkg, tripId) => { 
     const confirmed = window.confirm(
       `Are you sure you want to delete the trip: ${tripId}?`
     );
@@ -163,9 +182,8 @@ function EditOffer() {
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
-
     if (type === "pdf") setNewPdfFile(file);
-    else if (type === "tripImage") setNewTripImage(file);
+    else if (type === "tripImages") setNewTripImage(file);
     else if (type === "tripBackgroundImg") setNewBackgroundImg(file);
   };
 
@@ -193,8 +211,9 @@ function EditOffer() {
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
-        Edit National Packages
+        Edit Offer Packages
       </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         {packages.length > 0 ? (
           packages.map((pkg) => (
@@ -282,6 +301,18 @@ function EditOffer() {
                   ))}
                 </select>
               </div>
+              <div className="mb-4 flex flex-row gap-2 items-center">
+                <input
+                  type="checkbox"
+                  name="customised"
+                  checked={tripDetails.customised}
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 border rounded-lg"
+                />
+                <label className="block font-medium text-gray-700">
+                  Customised
+                </label>
+              </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Trip Name:
@@ -295,6 +326,7 @@ function EditOffer() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
+
               <div>
                 <h4>PDF Files</h4>
                 {tripDetails.pdf.map((pdf, index) => (
@@ -325,14 +357,17 @@ function EditOffer() {
                     </button>
                   </div>
                 ))}
-                {/* <input
-                  type="file"
-                  onChange={(e) => handleFileChange(e, "pdf")}
-                  accept=".pdf"
-                /> */}
               </div>
-              {/* <div>
+              <div>
                 <h4>Trip Images</h4>
+                {tripDetails.tripImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`http://localhost:5000/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
+                  />
+                ))}
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, "tripImages")}
@@ -340,13 +375,21 @@ function EditOffer() {
                 />
               </div>
               <div>
-                <h4>Background Image</h4>
+                <h4>Trip Background Image</h4>
+                {tripDetails.tripBackgroundImg.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`http://localhost:5000/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
+                  />
+                ))}
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
                   accept="image/*"
                 />
-              </div> */}
+              </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Duration:
@@ -368,6 +411,19 @@ function EditOffer() {
                   type="number"
                   name="tripPrice"
                   value={tripDetails.tripPrice}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Offer Price:
+                </label>
+                <input
+                  type="number"
+                  name="tripOfferPrice"
+                  value={tripDetails.tripOfferPrice}
                   onChange={handleInputChange}
                   required
                   className="mt-1 p-2 w-full border rounded-lg"

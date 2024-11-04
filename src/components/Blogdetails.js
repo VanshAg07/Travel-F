@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import MainFooter from "./Footer/MainFooter";
+import Nav from "./Nav";
+import Dropnav from "../components/Dropnav";
 
 const BlogDetails = () => {
   const { blogTitle } = useParams();
@@ -37,29 +39,43 @@ const BlogDetails = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      {/* Background and Card Images */}
-      <div className="relative w-full h-[70vh] mb-8">
+      <Nav />
+      <Dropnav />
+
+      {/* Background Image with Blog Title */}
+      <div className="relative w-full h-[100vh] mb-8">
         <img
-          src={blog.blogBackgroundImage} // Fixed typo
+          src={blog.blogBackgroundImage}
           alt={blog.blogTitle}
           className="w-full h-full object-cover"
         />
         <div className="absolute top-10 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black font-semibold py-2 px-4 rounded-full">
           {blog.blogName}
         </div>
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-2xl font-semibold py-3 px-8 rounded-lg">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-2xl font-semibold py-3 px-8 rounded-lg">
           {blog.blogTitle}
         </div>
       </div>
+
       {/* Blog Description */}
       <div className="w-[70%] bg-yellow-100 p-8 rounded-lg shadow-lg mb-10">
         <p className="text-gray-800 text-lg font-medium leading-relaxed">
           {blog.blogDescription}
         </p>
       </div>
-      {/* Blog Headings and Points */}
-      {blog.blogHeading.map((heading) => (
+
+      {/* Blog Content with Images, Headings, and Points */}
+      {blog.blogHeading.map((heading, index) => (
         <div key={heading._id} className="w-[70%] mb-12">
+          {/* Display image for each heading */}
+          {blog.blogImages[index] && (
+            <img
+              src={blog.blogImages[index]}
+              alt={`Heading image ${index + 1}`}
+              className="w-full h-80 object-cover rounded-lg mb-6 shadow-md"
+            />
+          )}
+          {/* Heading and Points */}
           <h2 className="text-3xl font-bold text-yellow-600 mb-4">
             {heading.headingTitle}
           </h2>
@@ -79,19 +95,10 @@ const BlogDetails = () => {
           ))}
         </div>
       ))}
-      {/* Blog Images Gallery */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-        {blog.blogImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Blog image ${index + 1}`}
-            className="w-full h-64 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
-          />
-        ))}
-      </div>
+
+      {/* Footer */}
       <div className="w-full">
-      <MainFooter />
+        <MainFooter />
       </div>
     </div>
   );

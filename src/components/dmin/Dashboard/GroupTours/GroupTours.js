@@ -12,6 +12,8 @@ const GroupTours = () => {
     testimonials: [""],
     callToAction: [""],
     conclusion: "",
+    pdf:[],
+
   });
 
   const handleSubmit = async (e) => {
@@ -220,35 +222,6 @@ const GroupTours = () => {
             Add Logistics Point
           </button>
         </div>
-        {/* <div className="mb-4">
-          <label className="block text-gray-700">Testimonials</label>
-          {form.testimonials.map((point, index) => (
-            <div key={index} className="mb-1 flex">
-              <input
-                type="text"
-                value={point}
-                onChange={(e) =>
-                  handleArrayChange(index, e.target.value, "testimonials")
-                }
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-              <button
-                type="button"
-                onClick={() => removeArrayPoint(index, "testimonials")}
-                className="bg-red-500 text-white px-3 py-1 rounded ml-2"
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() => addArrayPoint("testimonials")}
-            className="bg-green-500 text-white px-3 py-1 rounded mt-2"
-          >
-            Add Testimonials Point
-          </button>
-        </div> */}
         <div className="mb-4">
           <label className="block text-gray-700">Call To Action</label>
           {form.callToAction.map((point, index) => (
