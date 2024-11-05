@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { AiOutlineClose } from 'react-icons/ai'; // Import the close icon from React Icons
 import backgroundImage from '../img/popup.jpg'; // Adjust the path to your image
 
-const SignInPopup = () => {
+const Popup3 = () => {
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate(); // Initialize useNavigate
 
@@ -53,4 +53,4 @@ const SignInPopup = () => {
     );
 };
 
-export default SignInPopup;
+export default Popup3;

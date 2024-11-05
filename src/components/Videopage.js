@@ -89,9 +89,12 @@ const Videopage = () => {
         <Mainreview />
       </div>
       {isQuotePopupVisible && (
-        <div className="z-20">
-          <QuotePopup onClose={closeQuotePopup} />
-        </div>
+        <div
+  className="fixed inset-0 z-[100] flex items-center justify-center"
+>
+  <QuotePopup onClose={closeQuotePopup} />
+</div>
+
       )}
       {/* Homecrd component */}
       <div>
