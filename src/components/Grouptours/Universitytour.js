@@ -12,7 +12,7 @@ import MainFooter from "../Footer/MainFooter";
 import weekend from "../../img/weekend.json";
 import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
-import SchoolAllPackage from "./SchoolAllPackage"
+import UniversityAllPackage from "./UniversityAllPackage"
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -177,7 +177,7 @@ const BackpackingTrips = () => {
       </div>
       <div className="flex justify-center mt-10">
         <div className="w-full">
-          <SchoolAllPackage />
+          <UniversityAllPackage />
         </div>
         </div>
         <Grouptourform />

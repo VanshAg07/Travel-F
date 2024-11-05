@@ -26,6 +26,8 @@ import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popup.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
+import Popup2 from "./components/Popup2.js"; // Import the SignInPopup component
+
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -111,6 +113,7 @@ const Home = () => {
 
         {/* Include the SignInPopup component */}
         <SignInPopup />
+        <Popup2 />
       </GoogleOAuthProvider>
     </div>
   );

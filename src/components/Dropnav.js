@@ -55,10 +55,10 @@ const Navbar = () => {
     honeymoonPackages: honeymoonNav,
     weekendTrips: [],
     groupsTours: [
-      { name: "School Tours", route: "/" },
-      { name: "University Tours", route: "/" },
-      { name: "Sports Tours", route: "/" },
-      { name: "Adventure Tours", route: "/" },
+      { name: "School Tours", route: "/schooltour" },
+      { name: "University Tours", route: "/universitytour" },
+      { name: "Sports Tours", route: "/sportstour" },
+      { name: "Adventure Tours", route: "/adventuretour" },
     ],
     corporatePackages: [],
   };

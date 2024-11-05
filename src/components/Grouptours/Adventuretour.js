@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { FaHandHoldingHeart, FaUserFriends } from "react-icons/fa";
 import { MdHotel } from "react-icons/md";
-import Whyuss from "../../components/Whyuss";
 import Homeglry from "../../components/Homeglry";
 import Nav from "../Nav";
 import Image1 from "../../img/kerala.png";
 import Dropnav from "../../components/Dropnav";
 import intern from "../../img/india.jpg";
-import cont from "../../img/cont-button.json";
 import Lottie from "lottie-react";
 import Mainreview from "../../components/Mainreview";
 import MainFooter from "../Footer/MainFooter";
 import weekend from "../../img/weekend.json";
 import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
-import { LuCircleDotDashed } from "react-icons/lu";
+import AdventureAllPackage from "./AdventureAllPackage"
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -166,6 +164,22 @@ const BackpackingTrips = () => {
             </div>
           </div>
         <Grouptourhero />
+        <div className="justify-center pt-10 items-center flex flex-col w-full ">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+          All Packages
+        </h1>
+        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+        <div>
+          <p className=" pt-2 inter-description">
+            Discover Your Dream Journey with Our Best-Selling Travel Packages
+          </p>
+        </div>
+      </div>
+      <div className="flex justify-center mt-10">
+        <div className="w-full">
+          <AdventureAllPackage />
+        </div>
+        </div>
         <Grouptourform />
         <MainFooter />
       </div>
