@@ -26,7 +26,7 @@ const GroupToursEdit = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/group-tours/group-tours"
+        "https://api.travello10.com/api/group-tours/group-tours"
       );
       // console.log(response.data);
       setGroupTours(response.data.data);
@@ -43,7 +43,7 @@ const GroupToursEdit = () => {
     setLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/group-tours/group-tours/${id}`,
+        `https://api.travello10.com/api/group-tours/group-tours/${id}`,
         formData
       );
       setSelectedTour(null);
@@ -61,7 +61,7 @@ const GroupToursEdit = () => {
     setLoading(true);
     try {
       await axios.delete(
-        `http://localhost:5000/api/group-tours/group-tours/${id}`
+        `https://api.travello10.com/api/group-tours/group-tours/${id}`
       );
       setMessage("Group tour deleted successfully!");
       fetchGroupTours(); // Refresh the list

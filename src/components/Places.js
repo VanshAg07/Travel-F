@@ -42,7 +42,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/national/${stateName}`
+        `https://api.travello10.com/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -56,7 +56,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -71,11 +71,10 @@ const Place = () => {
   const loadMorePackages = () => {
     setVisiblePackages((prevVisible) => prevVisible + 6);
   };
-
   const handlePackageClick = (stateName, tripName) => {
-    navigate(`/trip/${tripName}/${stateName}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
-
   const [visiblePackages, setVisiblePackages] = useState(4); // Number of visible items on large screens
 
   const containerRef = useRef(null);

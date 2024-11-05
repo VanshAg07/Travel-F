@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Nav from "../Nav";
-import "../Places.css"; // Ensure this file has the styles defined above
+import "../Places.css";
 import { useRef } from "react";
 import Whyuss from "../Whyuss";
 import Review from "../Review";
@@ -10,7 +10,6 @@ import cont from "../../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "../Footer/MainFooter";
 import Mainreview from "../Mainreview";
-import InternatioanlCard from "./InternationalCard";
 import HikingIntern from "./HikingIntern";
 import VisitIntern from "./VisitIntern";
 import FoodInern from "./FoodIntern";
@@ -46,7 +45,7 @@ const InernationalPlaces = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/international/${stateName}`
+        `https://api.travello10.com/api/package-image/international/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -60,7 +59,7 @@ const InernationalPlaces = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/international/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/international/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -77,7 +76,10 @@ const InernationalPlaces = () => {
   };
 
   const handlePackageClick = (stateName, tripName) => {
-    navigate(`/international/${tripName}/${stateName}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-");
+    navigate(
+      `/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`
+    );
   };
 
   const containerRef = useRef(null);
@@ -122,10 +124,6 @@ const InernationalPlaces = () => {
                 {name} Tour Packages
               </h1>
             </div>
-
-            {/* <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-              The Perfect Blend of Adventure
-            </h1> */}
           </div>
         </div>
         <div className="mt-[180px] md:mt-0">
@@ -139,9 +137,7 @@ const InernationalPlaces = () => {
         </div>
         <div className="flex justify-center mt-10">
           <div className="w-full">
-            <Link to={`/Packagedetails/${name}`}>
-              <StateInternational />
-            </Link>
+            <StateInternational />
           </div>
         </div>
         <div className="w-full mx-auto pt-10 flex flex-col">
@@ -249,7 +245,6 @@ const InernationalPlaces = () => {
                                 <FaClock className="mr-2 text-black" />
                                 <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                               </div>
-
                               {/* Location */}
                               <div className="flex items-center text-black">
                                 <FaMapMarkerAlt className="mr-1 text-black" />
@@ -282,11 +277,11 @@ const InernationalPlaces = () => {
                       </div>
                     ))
                   ) : (
-                    <p>No trips available</p>
+                    <p></p>
                   )
                 )
               ) : (
-                <p>No packages available</p>
+                <p></p>
               )}
             </div>
             {/* Right Chevron Icon */}

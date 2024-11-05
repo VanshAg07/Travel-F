@@ -11,7 +11,7 @@ function AllWeekendTrips() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/weekends/weekend-choosen-display"
+          "https://api.travello10.com/api/weekends/weekend-choosen-display"
         );
         const data = await response.json();
         // Check if chosenPackages is defined and is an array
@@ -28,10 +28,9 @@ function AllWeekendTrips() {
   };
 
   const handlePackageClick = (stateName, tripName) => {
-    const name = encodeURIComponent(stateName);
-    navigate(`/trip/${tripName}/${name}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
-
   return (
     <div className="container mx-auto w-[80%]">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">

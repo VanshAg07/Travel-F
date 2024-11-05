@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const StateInternational = () => {
   const [trips, setTrips] = useState([]);
@@ -11,7 +11,7 @@ const StateInternational = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/international/get-all-international/${name}`
+          `https://api.travello10.com/api/international/get-all-international/${name}`
         );
         setTrips(response.data);
       } catch (error) {
@@ -22,18 +22,26 @@ const StateInternational = () => {
     fetchTrips();
   }, [name]);
 
+  const navigate = useNavigate();
   const filteredTrips = trips
     .filter((trip) => trip.stateName === name)
     .flatMap((trip) => trip.trips);
+
+  const handlePackageClick = (stateName, tripName) => {
+    const sanitizedTripName = tripName.replace(/\//g, "-");
+    navigate(
+      `/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`
+    );
+  };
 
   return (
     <div className="w-[90%] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
         {filteredTrips.length > 0 ? (
           filteredTrips.map((trip, index) => (
-            <Link
+            <div
               key={index}
-              to={`/international/${trip.tripName}/${name}`}
+              onClick={() => handlePackageClick(name, trip.tripName)}
               className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
             >
               <img
@@ -72,7 +80,6 @@ const StateInternational = () => {
                   <div className="flex items-center mb-2 text-black">
                     <FaCalendarAlt className="mr-2 text-black" />
                     <span className="text-black text-xs">
-                      {/* Format the date */}
                       {new Date(trip.tripDate).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "short",
@@ -87,7 +94,7 @@ const StateInternational = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))
         ) : (
           <p></p>

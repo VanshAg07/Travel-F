@@ -13,7 +13,7 @@ const BlogDetails = () => {
   const fetchBlog = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/blog/blogs/${blogTitle}`
+        `https://api.travello10.com/api/blog/blogs/${blogTitle}`
       );
       setBlog(response.data.blog);
     } catch (error) {
@@ -41,15 +41,14 @@ const BlogDetails = () => {
     <div className="flex flex-col items-center w-full">
       <Nav />
       <Dropnav />
-
       {/* Background Image with Blog Title */}
-      <div className="relative w-full h-[100vh] mb-8">
+      <div className="relative w-full h-[80vh] mb-8">
         <img
           src={blog.blogBackgroundImage}
           alt={blog.blogTitle}
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-10 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black font-semibold py-2 px-4 rounded-full">
+        <div className="absolute md:top-36 top-20 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black font-semibold py-2 px-4 rounded-full">
           {blog.blogName}
         </div>
         <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-2xl font-semibold py-3 px-8 rounded-lg">
@@ -58,8 +57,8 @@ const BlogDetails = () => {
       </div>
 
       {/* Blog Description */}
-      <div className="w-[70%] bg-yellow-100 p-8 rounded-lg shadow-lg mb-10">
-        <p className="text-gray-800 text-lg font-medium leading-relaxed">
+      <div className="w-[70%] bg-[#03346e] p-8 rounded-lg shadow-lg mb-10">
+        <p className="text-gray-800 text-lg text-white font-medium leading-relaxed">
           {blog.blogDescription}
         </p>
       </div>
@@ -76,7 +75,7 @@ const BlogDetails = () => {
             />
           )}
           {/* Heading and Points */}
-          <h2 className="text-3xl font-bold text-yellow-600 mb-4">
+          <h2 className="text-3xl font-bold text-[#03346e] mb-4">
             {heading.headingTitle}
           </h2>
           <p className="text-lg text-gray-600 mb-6">
@@ -85,7 +84,7 @@ const BlogDetails = () => {
           {heading.points.map((point) => (
             <div
               key={point._id}
-              className="mb-4 pl-4 border-l-4 border-yellow-400"
+              className="mb-4 pl-4 border-l-4 border-[#03346e]"
             >
               <h3 className="text-2xl font-semibold text-gray-800">
                 {point.pointTitle}

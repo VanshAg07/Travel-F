@@ -23,16 +23,8 @@ import TripForms from "./Contact/TripForms";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
   const [activeSection, setActiveSection] = useState("overview");
   const [error, setError] = React.useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
   const [sharing, setSharing] = useState([]);
@@ -47,10 +39,6 @@ const Packagedetails = () => {
     }
   };
 
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const [expandedDays, setExpandedDays] = useState({});
 
   const handleToggleDay = (day) => {
@@ -60,16 +48,12 @@ const Packagedetails = () => {
     }));
   };
 
-  const handleToggleDay1 = () => {
-    setIsDay1Expanded(!isDay1Expanded);
-  };
-
   const stateName = name;
   useEffect(() => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
