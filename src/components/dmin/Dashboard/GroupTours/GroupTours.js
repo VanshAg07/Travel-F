@@ -20,7 +20,7 @@ const GroupTours = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/group-tours/group-tours",
+        "https://api.travello10.com/api/group-tours/group-tours",
         form
       );
       resetForm();
