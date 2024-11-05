@@ -23,16 +23,8 @@ import TripForms from "./Contact/TripForms";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
   const [activeSection, setActiveSection] = useState("overview");
   const [error, setError] = React.useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
   const [sharing, setSharing] = useState([]);
@@ -47,10 +39,6 @@ const Packagedetails = () => {
     }
   };
 
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const [expandedDays, setExpandedDays] = useState({});
 
   const handleToggleDay = (day) => {
@@ -58,10 +46,6 @@ const Packagedetails = () => {
       ...prevState,
       [day]: !prevState[day],
     }));
-  };
-
-  const handleToggleDay1 = () => {
-    setIsDay1Expanded(!isDay1Expanded);
   };
 
   const stateName = name;

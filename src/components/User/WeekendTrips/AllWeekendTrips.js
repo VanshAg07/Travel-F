@@ -28,10 +28,9 @@ function AllWeekendTrips() {
   };
 
   const handlePackageClick = (stateName, tripName) => {
-    const name = encodeURIComponent(stateName);
-    navigate(`/trip/${tripName}/${name}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
-
   return (
     <div className="container mx-auto w-[80%]">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">

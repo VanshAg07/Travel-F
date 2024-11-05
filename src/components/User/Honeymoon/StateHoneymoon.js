@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 
 const StateHoneymoon = () => {
@@ -33,7 +33,9 @@ const StateHoneymoon = () => {
           filteredTrips.map((trip, index) => (
             <Link
               key={index}
-              to={`/honeymoon/${trip.tripName}/${name}`}
+              to={`/honeymoon/${encodeURIComponent(
+                trip.tripName.replace(/\//g, "-")
+              )}/${name}`}
               className="h-[420px] relative shadow-black shadow-lg rounded-lg mb-10 flex justify-center items-center cursor-pointer"
             >
               <img
@@ -42,7 +44,7 @@ const StateHoneymoon = () => {
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
               <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-                <span className="font-semibold text-sm ">{`Customised`}</span>
+                <span className="font-semibold text-sm ">Customised</span>
               </div>
               <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                 <div className="w-full">
@@ -53,7 +55,9 @@ const StateHoneymoon = () => {
                     {/* Duration */}
                     <div className="flex items-center text-black">
                       <FaClock className="mr-2 text-black" />
-                    <span className="text-black text-xs">{`${trip.tripDuration}`}</span> 
+                      <span className="text-black text-xs">
+                        {trip.tripDuration}
+                      </span>
                     </div>
                     {/* Location */}
                     <div className="flex items-center text-black">
@@ -63,13 +67,6 @@ const StateHoneymoon = () => {
                       </span>
                     </div>
                   </div>
-                  {/* Dates */}
-                  {/* <div className="flex items-center mb-2 text-black">
-                    <FaCalendarAlt className="mr-2 text-black" />
-                    <span className="text-black text-xs">
-                      {new Date(trip.tripDate).toLocaleDateString()}
-                    </span>
-                  </div> */}
                 </div>
               </div>
             </Link>

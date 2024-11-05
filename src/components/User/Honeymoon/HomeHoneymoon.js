@@ -64,7 +64,10 @@ const HomeHoneymoon = () => {
   };
 
   const handlePackageClick = (stateName, tripName) => {
-    navigate(`/honeymoon/${tripName}/${stateName}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-");
+    navigate(
+      `/honeymoon/${encodeURIComponent(sanitizedTripName)}/${stateName}`
+    );
   };
 
   const containerRef = useRef(null);

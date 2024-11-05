@@ -19,7 +19,7 @@
   height: 90%;
   z-index: -1; /* Ensure it is behind other content */
 }
-  
+
 .active-link {
   position: relative;
   color: #fff; /* Ensure the text is visible against your navbar background */

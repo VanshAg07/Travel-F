@@ -71,11 +71,10 @@ const Place = () => {
   const loadMorePackages = () => {
     setVisiblePackages((prevVisible) => prevVisible + 6);
   };
-
   const handlePackageClick = (stateName, tripName) => {
-    navigate(`/trip/${tripName}/${stateName}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
-
   const [visiblePackages, setVisiblePackages] = useState(4); // Number of visible items on large screens
 
   const containerRef = useRef(null);
