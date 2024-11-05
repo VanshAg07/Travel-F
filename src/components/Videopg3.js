@@ -24,9 +24,8 @@ const TravelPackageCard = ({ pkg }) => {
 
   // Function to handle navigation
   const handleNavigate = () => {
-    navigate(`/trip/${pkg.tripName}/${pkg.stateName}`, {
-      state: { stateName: pkg.stateName, tripName: pkg.tripName },
-    });
+    const sanitizedTripName = (pkg.tripName).replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${pkg.stateName}`);
   };
 
   const displayTripName =
@@ -80,7 +79,7 @@ const TravelPackages = () => {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/video-page"
+        "http://localhost:5000/api/home/video-page"
       );
       const internationalVideo = response.data.find(
         (video) => video.type === "Indian"
@@ -99,7 +98,7 @@ const TravelPackages = () => {
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/homepage-choosen-national-display"
+        "http://localhost:5000/api/home/homepage-choosen-national-display"
       );
       setPackages(res.data.chosenPackages); // Update state with fetched data
     } catch (error) {

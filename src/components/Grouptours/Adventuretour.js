@@ -12,7 +12,7 @@ import MainFooter from "../Footer/MainFooter";
 import weekend from "../../img/weekend.json";
 import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
-import AdventureAllPackage from "./AdventureAllPackage"
+import AdventureAllPackage from "./AdventureAllPackage";
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -31,7 +31,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/group-tours/group-tours"
+          "http://localhost:5000/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -55,7 +55,7 @@ const BackpackingTrips = () => {
         <div className="hero-section-left-1">
           <img className="hero-img" src={intern} alt="International" />
           {/* Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
           <div className="relative flex flex-col items-center">
             <div className="relative w-full flex items-start justify-center">
               <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
@@ -69,8 +69,8 @@ const BackpackingTrips = () => {
           </div>
         </div>
         <div className="mt-[130px] md:mt-0">
-        <Mainreview />
-      </div>
+          <Mainreview />
+        </div>
 
         <div className="lottie-wr">
           <Lottie
@@ -111,74 +111,74 @@ const BackpackingTrips = () => {
           </div>
         </div>
 
-          <div className="w-[80%] mx-auto pt-3 flex flex-col md:flex-row justify-between md:space-x-8">
-            <div className="w-full md:w-[50%] mt-2 md:ml-0">
-              <img
-                src={Image1}
-                alt="Descriptive text here"
-                className="rounded-xl w-full md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
-              />
-            </div>
-            <div className="w-full md:w-[50%] flex flex-col items-start justify-start md:ml-0 mt-5 md:mt-0">
-              <p className="text-yellow-500 font-bold text-3xl mt-10">
-                How to Reach Kedarnath: Your Journey Begins Here
+        <div className="w-[80%] mx-auto pt-3 flex flex-col md:flex-row justify-between md:space-x-8">
+          <div className="w-full md:w-[50%] mt-2 md:ml-0">
+            <img
+              src={Image1}
+              alt="Descriptive text here"
+              className="rounded-xl w-full md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
+            />
+          </div>
+          <div className="w-full md:w-[50%] flex flex-col items-start justify-start md:ml-0 mt-5 md:mt-0">
+            <p className="text-yellow-500 font-bold text-3xl mt-10">
+              How to Reach Kedarnath: Your Journey Begins Here
+            </p>
+            <p className="text-left mt-3">
+              Reaching Kedarnath is an adventure in itself, with multiple modes
+              of transport available to guide you to this sacred site.
+            </p>
+            <p className="font-bold mt-5 mb-2 text-left">By Air:</p>
+            <p className="text-left">
+              The nearest airport is Jolly Grant Airport in Dehradun,
+              approximately 250 km from Kedarnath. From the airport, you can
+              hire a taxi or take a bus to reach Sonprayag, the last motorable
+              point.
+            </p>
+            <p className="font-bold mt-5 mb-2 text-left">By Rail:</p>
+            <p className="text-left">
+              The closest railway stations are in Rishikesh and Haridwar.
+              Regular buses and taxis operate from these stations to Sonprayag,
+              which is about 210 km away.
+            </p>
+            <p className="font-bold mt-5 mb-2 text-left">By Road:</p>
+            <p className="text-left">
+              Kedarnath is well-connected by road to major cities like Delhi,
+              Haridwar, and Rishikesh. The journey by road is a scenic one,
+              passing through the lush green valleys and along the banks of the
+              Ganges. From Sonprayag, you’ll need to travel by shared jeep or
+              trek to Gaurikund, the base camp for the trek to Kedarnath.{" "}
+            </p>
+            <div className="mt-10">
+              <p className="font-bold text-2xl text-yellow-500 text-left">
+                The Trek to Kedarnath
               </p>
-              <p className="text-left mt-3">
-                Reaching Kedarnath is an adventure in itself, with multiple
-                modes of transport available to guide you to this sacred site.
+              <p className="mt-3 text-left">
+                The 16 km trek from Gaurikund to Kedarnath is both challenging
+                and rewarding. For those unable to undertake the trek, pony
+                rides, palanquins, and helicopter services are available. The
+                trail is lined with beautiful waterfalls, streams, and
+                mesmerizing views of snow-capped peaks, making the journey as
+                spiritual as the destination itself.
               </p>
-              <p className="font-bold mt-5 mb-2 text-left">By Air:</p>
-              <p className="text-left">
-                The nearest airport is Jolly Grant Airport in Dehradun,
-                approximately 250 km from Kedarnath. From the airport, you can
-                hire a taxi or take a bus to reach Sonprayag, the last motorable
-                point.
-              </p>
-              <p className="font-bold mt-5 mb-2 text-left">By Rail:</p>
-              <p className="text-left">
-                The closest railway stations are in Rishikesh and Haridwar.
-                Regular buses and taxis operate from these stations to
-                Sonprayag, which is about 210 km away.
-              </p>
-              <p className="font-bold mt-5 mb-2 text-left">By Road:</p>
-              <p className="text-left">
-                Kedarnath is well-connected by road to major cities like Delhi,
-                Haridwar, and Rishikesh. The journey by road is a scenic one,
-                passing through the lush green valleys and along the banks of
-                the Ganges. From Sonprayag, you’ll need to travel by shared jeep
-                or trek to Gaurikund, the base camp for the trek to Kedarnath.{" "}
-              </p>
-              <div className="mt-10">
-                <p className="font-bold text-2xl text-yellow-500 text-left">
-                  The Trek to Kedarnath
-                </p>
-                <p className="mt-3 text-left">
-                  The 16 km trek from Gaurikund to Kedarnath is both challenging
-                  and rewarding. For those unable to undertake the trek, pony
-                  rides, palanquins, and helicopter services are available. The
-                  trail is lined with beautiful waterfalls, streams, and
-                  mesmerizing views of snow-capped peaks, making the journey as
-                  spiritual as the destination itself.
-                </p>
-              </div>
             </div>
           </div>
+        </div>
         <Grouptourhero />
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
-        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
-          All Packages
-        </h1>
-        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-        <div>
-          <p className=" pt-2 inter-description">
-            Discover Your Dream Journey with Our Best-Selling Travel Packages
-          </p>
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+            All Packages
+          </h1>
+          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+          <div>
+            <p className=" pt-2 inter-description">
+              Discover Your Dream Journey with Our Best-Selling Travel Packages
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="flex justify-center mt-10">
-        <div className="w-full">
-          <AdventureAllPackage />
-        </div>
+        <div className="flex justify-center mt-10">
+          <div className="w-full">
+            <AdventureAllPackage />
+          </div>
         </div>
         <Grouptourform />
         <MainFooter />

@@ -30,7 +30,7 @@ function WeekendEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/edit-packages/get-weekends-packages")
+      .get("http://localhost:5000/api/edit-packages/get-weekends-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -115,7 +115,7 @@ function WeekendEdit() {
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-weekends-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `http://localhost:5000/api/edit-packages/edit-weekends-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           tripDetails
         )
         .then((response) => {
@@ -136,7 +136,7 @@ function WeekendEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-weekends-package/${pkg.stateName}/${tripId}`
+          `http://localhost:5000/api/edit-packages/delete-weekends-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -316,7 +316,7 @@ function WeekendEdit() {
                     <button
                       onClick={() =>
                         window.open(
-                          `https://api.travello10.com/upload/${pdf.filename}`,
+                          `http://localhost:5000/upload/${pdf.filename}`,
                           "_blank"
                         )
                       }

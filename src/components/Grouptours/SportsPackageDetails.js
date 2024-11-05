@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Packagedetails.css";
-import Nav from "./Nav";
+import "../Packagedetails.css";
+import Nav from "../Nav";
 import { FaFileDownload } from "react-icons/fa";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
-import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
 import { useParams } from "react-router-dom";
-import Review from "./Review";
-import Whyuss from "./Whyuss";
+import Review from "../Review";
 import { LuCircleDotDashed } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import Dropnav from "../components/Dropnav";
-import cont from "../img/cont-button.json";
+import Dropnav from "../../components/Dropnav";
+import cont from "../../img/cont-button.json";
 import Lottie from "lottie-react";
-import MainFooter from "./Footer/MainFooter";
-import QuotePopup from "../QuotePopup";
-import TripForms from "./Contact/TripForms";
-const Packagedetails = () => {
+import MainFooter from "../Footer/MainFooter";
+import QuotePopup from "../../QuotePopup";
+import TripForms from "../Contact/TripForms";
+const SportsPackageDetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
@@ -29,7 +27,7 @@ const Packagedetails = () => {
     phone: "",
   });
   const [activeSection, setActiveSection] = useState("overview");
-  const [error, setError] = React.useState("");
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [isDay1Expanded, setIsDay1Expanded] = useState(false);
@@ -69,7 +67,7 @@ const Packagedetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/findStateAndTrip/${stateName}/${tripName}`
+          `http://localhost:5000/api/group-tours/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -86,20 +84,51 @@ const Packagedetails = () => {
     fetchTripDetails();
   }, [name, tripName]);
 
-  // console.log(sharing);
-  let doubleSharing;
-  let tripleSharing;
-  let quadSharing;
-  // console.log(doubleSharing)
-  if (sharing && sharing.length >= 1) {
-    doubleSharing = sharing[0]?.price;
-    tripleSharing = sharing[1]?.price;
-    quadSharing = sharing[2]?.price;
-  } else {
-    console.error(
-      "Error: sharing array is empty or does not have enough elements"
-    );
-  }
+
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Validate form data
+    if (!formData.name || !formData.email || !formData.phone) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
+    try {
+      // Send form data to the backend
+      const res = await axios.post(
+        "http://localhost:5000/api/contact/contact-trip",
+        formData
+      );
+
+      // If the request is successful, clear the form and show success message
+      if (res.status === 200) {
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          phone: "",
+        });
+        setSuccess("Your message has been sent successfully.");
+        setError("");
+      }
+    } catch (err) {
+      // Handle error case
+      setError("Failed to send the message. Please try again later.");
+      setSuccess("");
+    }
+  };
+  
   const [isQuotePopupVisible, setQuotePopupVisible] = useState(false);
 
   const handleGetQuotesClick = () => {
@@ -110,31 +139,10 @@ const Packagedetails = () => {
   const closeQuotePopup = () => {
     setQuotePopupVisible(false); // Hide the popup
   };
-  const handleDatesAndCostingClick = () => {
-    if (trips && trips.tripDate) {
-      navigate("/dates-and-costing", {
-        state: {
-          tripDates: trips.tripDate,
-          tripPrice: trips.tripPrice,
-          tripName: trips.tripName,
-          doubleSharing,
-          tripleSharing,
-          quadSharing,
-          stateName: stateNames.stateName,
-          tripBookingAmount: trips.tripBookingAmount,
-          tripSeats: trips.tripSeats,
-        },
-      });
-    } else {
-      console.error("Trip dates not available");
-    }
-  };
-
   return (
     <div>
       <>
         {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
-
         <Nav />
         <Dropnav />
         <div className="relative">
@@ -143,10 +151,9 @@ const Packagedetails = () => {
             alt="Descriptive Alt Text"
             className="md:h-screen w-full"
           />
-
           {trips.pdf && (
             <button
-              className="absolute rounded-3xl bottom-28 left-1/2 transform -translate-x-1/2 
+              className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
                  flex items-center justify-center 
                  text-sm sm:text-base md:text-lg lg:text-xl 
                  bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
@@ -158,6 +165,7 @@ const Packagedetails = () => {
             </button>
           )}
         </div>
+
         <div className="flex w-[95%] justify-center mb-16 m-2">
           {/* Main div responsive */}
           <div className="flex flex-col lg:flex-row w-[80vw] mx-auto">
@@ -324,95 +332,23 @@ const Packagedetails = () => {
                   <p>No Itinerary Available</p>
                 )}
               </div>
-              <div
-                id="inclusions"
-                className="p-4 sm:p-5 bg-[#F5FFF6] rounded-lg shadow-lg box-border mt-8"
-              >
-                <h1 className="text-center font-bold text-base sm:text-lg md:text-2xl lg:text-4xl mb-4">
-                  Inclusions
-                </h1>
-                <ul className="list-none p-0 m-0 rounded-lg">
-                  {trips &&
-                  trips.tripInclusions &&
-                  trips.tripInclusions.length > 0 ? (
-                    trips.tripInclusions.map((inclusion, index) => (
-                      <li
-                        className="flex flex-row items-start gap-4 mt-2 text-xs sm:text-sm md:text-base"
-                        key={index}
-                      >
-                        <SiTicktick
-                          className="text-[#66bb6a] flex-none"
-                          style={{
-                            fontSize:
-                              window.innerWidth <= 640 ? "12px" : "20px", // Adjust icon size based on screen width
-                          }}
-                        />
-                        <span className="flex-1">{inclusion}</span>
-                      </li>
-                    ))
-                  ) : (
-                    <li>No Inclusions Available</li>
-                  )}
-                </ul>
-              </div>
-              <div
-                id="exclusions"
-                className="p-4 sm:p-5 bg-[#FFF4F4] rounded-lg shadow-lg box-border mt-8"
-              >
-                <h1 className="text-center font-bold text-base sm:text-lg md:text-2xl lg:text-4xl mb-4">
-                  Exclusions
-                </h1>
-                <ul className="list-none p-0 m-0 rounded-lg">
-                  {trips &&
-                  trips.tripExclusions &&
-                  trips.tripExclusions.length > 0 ? (
-                    trips.tripExclusions.map((exclusion, index) => (
-                      <li
-                        className="flex flex-row items-start text-xs sm:text-sm md:text-base gap-4 mt-2" // Changed items-center to items-start
-                        key={index}
-                      >
-                        <RxCrossCircled
-                          className="text-red-500 flex-none"
-                          style={{
-                            fontSize:
-                              window.innerWidth <= 640 ? "12px" : "22px", // Adjust icon size based on screen width
-                          }}
-                        />
-                        <span className="flex-1">{exclusion}</span>
-                      </li>
-                    ))
-                  ) : (
-                    <li>No Exclusions Available</li>
-                  )}
-                </ul>
-              </div>
             </div>
             {/* Form div with a width of 35% */}
             <div className="w-[35vw] hidden lg:block">
+              {" "}
               {/* Form div is hidden below lg (1024px) */}
-              <div className="ml-10 mt-20 sticky top-10 ">
-                <div className="bg-white shadow-lg p-4 rounded-2xl ">
-                  <p className="text-xl md:text-2xl">
-                    {trips.customised ? "Customised" : `Starting From`}
-                  </p>
+              <div className="ml-10 mt-20 sticky top-10">
+                <div className="bg-white shadow-lg p-4 rounded-2xl">
+                  <p className="text-xl md:text-2xl">Customised</p>
                   <p className="text-xl md:text-2xl text-blue-500">
                     <span className="font-bold text-2xl md:text-3xl">
-                      {trips.customised
-                        ? "Customise Your Trip"
-                        : `Rs.${trips.tripPrice}/-`}{" "}
+                      Customise Your Trip
                     </span>
-                    {trips.customised ? "" : "per person"}
                   </p>
                   <div className="bg-[#03346E] items-center justify-center flex p-4 rounded-xl mt-5">
-                    <button
-                      onClick={
-                        trips.customised
-                          ? handleGetQuotesClick
-                          : handleDatesAndCostingClick
-                      }
-                    >
+                    <button onClick={handleGetQuotesClick}>
                       <p className="text-white text-lg md:text-xl font-bold">
-                        {trips.customised ? "Get Quotes" : "Dates & Costing"}
+                        Get Quotes
                       </p>
                     </button>
                   </div>
@@ -425,20 +361,10 @@ const Packagedetails = () => {
           <div className="fixed bottom-0 w-full bg-white text-black p-4 flex justify-between items-center lg:hidden">
             {/* First Section: Starting Price */}
             <div className="text-lg md:text-xl font-bold flex flex-col">
-              {trips.customised ? "" : `Starting From`}
-              <span className="font-bold text-2xl md:text-3xl">
-                {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
-              </span>{" "}
-              {trips.customised ? "" : "per person"}
+              <span className="font-bold text-2xl md:text-3xl">Customised</span>
             </div>
             {/* Second Section: Book Now Button */}
-            <div
-              onClick={
-                trips.customised
-                  ? handleGetQuotesClick
-                  : handleDatesAndCostingClick
-              }
-            >
+            <div onClick={handleGetQuotesClick}>
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                 Book Now
               </button>
@@ -448,7 +374,7 @@ const Packagedetails = () => {
         <div className="pb-7 bg-[#ffffe6]">
           <Review />
         </div>
-        <div className="">
+        <div className="mb-[100px]">
           <MainFooter />
         </div>
         <div className="fixed-button-1">
@@ -467,4 +393,4 @@ const Packagedetails = () => {
   );
 };
 
-export default Packagedetails;
+export default SportsPackageDetails;

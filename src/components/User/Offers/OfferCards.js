@@ -10,7 +10,7 @@ function OfferCards() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/offer/getTripDetails"
+          "http://localhost:5000/api/offer/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);
@@ -22,9 +22,8 @@ function OfferCards() {
   }, []);
 
   const handlePackageClick = (stateName, tripName) => {
-    const encodedState = encodeURIComponent(stateName);
-    const encodedTrip = encodeURIComponent(tripName);
-    navigate(`/offer/${encodedTrip}/${encodedState}`);
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/offer/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
 
   return (

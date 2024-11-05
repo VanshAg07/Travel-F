@@ -14,7 +14,7 @@ const StateWeekend = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/weekends/get-all-weekend/${name}`
+          `http://localhost:5000/api/weekends/get-all-weekend/${name}`
         );
         setTrips(response.data);
       } catch (error) {
