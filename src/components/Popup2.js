@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineClose } from 'react-icons/ai';
 import backgroundImage from '../img/popup.jpg';
 
-const SignInPopup = () => {
+const Popup2 = () => {
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
@@ -75,4 +75,4 @@ const SignInPopup = () => {
     );
 };
 
-export default SignInPopup;
+export default Popup2;

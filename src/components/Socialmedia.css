@@ -4,3 +4,31 @@
     margin-top: -160px;
     }
 }
+
+.social-link {
+    position: relative;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Position it to the left of the icon */
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translate(-5px, -50%);
+  }
+  
+  .social-link:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-10px) translateY(-50%); /* Move tooltip further to the left */
+  }
+  
