@@ -46,11 +46,11 @@ const States = () => {
         offerRes,
         groupToursRes,
       ] = await Promise.all([
-        axios.get("https://api.travello10.com/api/admin/states"),
-        axios.get("https://api.travello10.com/api/trip/states"),
-        axios.get("https://api.travello10.com/api/honeymoon/states"),
-        axios.get("https://api.travello10.com/api/offer/states"),
-        axios.get("https://api.travello10.com/api/group-tours/group-tours"),
+        axios.get("http://localhost:5000/api/admin/states"),
+        axios.get("http://localhost:5000/api/trip/states"),
+        axios.get("http://localhost:5000/api/honeymoon/states"),
+        axios.get("http://localhost:5000/api/offer/states"),
+        axios.get("http://localhost:5000/api/group-tours/state"),
       ]);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
@@ -71,7 +71,7 @@ const States = () => {
     formData.append("stateImage", newInternationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/admin/international-state`,
+        `http://localhost:5000/api/admin/international-state`,
         formData,
         {
           headers: {
@@ -95,30 +95,7 @@ const States = () => {
     formData.append("stateImage", newOffer.image);
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/offer/states`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response.status === 201) {
-        setOfferStates({ name: "" });
-        fetchStates();
-        setRefresh((prev) => prev + 1);
-      }
-    } catch (error) {
-      console.error(`Error adding international state`, error);
-    }
-  };
-  const addGroupTours = async () => {
-    const formData = new FormData();
-    formData.append("stateName", newOffer.name);
-    formData.append("stateImage", newOffer.image);
-    try {
-      const response = await axios.post(
-        `https://api.travello10.com/api/group-tours/group-tours`,
+        `http://localhost:5000/api/offer/states`,
         formData,
         {
           headers: {
@@ -136,13 +113,37 @@ const States = () => {
     }
   };
 
+  const addGroupTours = async () => {
+    const formData = new FormData();
+    formData.append("stateName", newGroupTour.name);
+    formData.append("stateImage", newGroupTour.image);
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/group-tours/state`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response.status === 201) {
+        setnewGroupTour({ name: "" });
+        fetchStates();
+        setRefresh((prev) => prev + 1);
+      }
+    } catch (error) {
+      console.error(`Error adding international state`, error);
+    }
+  };
+
   const addNationalState = async () => {
     const formData = new FormData();
     formData.append("stateName", newNationalState.name);
     formData.append("stateImage", newNationalState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/trip/state`,
+        `http://localhost:5000/api/trip/state`,
         formData,
         {
           headers: {
@@ -165,7 +166,7 @@ const States = () => {
     formData.append("stateImage", newHoneymoonState.image); // Ensure this is defined
     try {
       const response = await axios.post(
-        `https://api.travello10.com/api/honeymoon/states`,
+        `http://localhost:5000/api/honeymoon/states`,
         formData,
         {
           headers: {
@@ -186,7 +187,7 @@ const States = () => {
   // Delete state functions for each category
   const deleteOfferState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/offer/states/${_id}`);
+      await axios.delete(`http://localhost:5000/api/offer/states/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -195,7 +196,7 @@ const States = () => {
   const deleteGroupTours = async (_id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com/api/groupt-tours/group-tours/${_id}`
+        `http://localhost:5000/api/group-tours/state/${_id}`
       );
       fetchStates();
     } catch (error) {
@@ -205,7 +206,7 @@ const States = () => {
 
   const deleteInternationalState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/admin/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/admin/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -214,7 +215,7 @@ const States = () => {
 
   const deleteNationalState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/trip/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/trip/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -223,7 +224,7 @@ const States = () => {
 
   const deleteHoneymoonState = async (_id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/honeymoon/state/${_id}`);
+      await axios.delete(`http://localhost:5000/api/honeymoon/state/${_id}`);
       fetchStates();
     } catch (error) {
       console.error(`Error deleting international state`, error);
@@ -435,13 +436,13 @@ const States = () => {
             type="text"
             placeholder="Add GroupTours"
             value={groupTours.name}
-            onChange={(e) => setGroupTours({ name: e.target.value })}
+            onChange={(e) => setnewGroupTour({ name: e.target.value })}
             className="border border-gray-300 rounded-lg p-3 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
           <input
             type="file"
-            onChange={(e) => handleImageChange(e, setGroupTours)}
+            onChange={(e) => handleImageChange(e, setnewGroupTour)}
             className="border border-gray-300 rounded-lg p-3 w-full mb-4"
             required
           />

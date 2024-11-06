@@ -20,6 +20,8 @@ import Flipcard from "./FlipCard/Flipcard";
 import AddBackground from "./AddBackground";
 import YoutubeDetails from "./Dashboard/YoutubeDetails";
 import GalleryPage from "./Dashboard/GalleryPage";
+import HallOfFrame from "./Dashboard/HallOfFrame";
+import PaymentPage from "./PaymentPage";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -85,6 +87,14 @@ function Dashboard() {
     {
       name: "Youtube",
       component: <YoutubeDetails />,
+    },
+    {
+      name: "Hall Of Frame",
+      component: <HallOfFrame />,
+    },
+    {
+      name: "Payment Page",
+      component: <PaymentPage />,
     },
     // {
     //   name: "Gallery Page",

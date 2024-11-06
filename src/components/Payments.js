@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import icon1 from "../img/payment.svg";
 import icon2 from "../img/sbi.svg";
@@ -8,16 +8,34 @@ import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 
 const Payments = () => {
+  const [paymentImages, setPaymentImages] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
+
+  const fetchPayment = async () => {
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/corporate/payment-image"
+      );
+      const data = await res.json();
+      // Filter images with "active" status
+      const activeImages = data.data.filter((item) => item.status === "active");
+      setPaymentImages(activeImages);
+    } catch (error) {
+      console.log("Failed to fetch payment images:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPayment();
+  }, []);
+
   return (
     <>
       <Nav />
       <Dropnav />
-      <div className="payment-section bg-gray-100 min-h-screen pt-28 py-10">
-        {/* Main Container for Centering */}
+      <div className="payment-section bg-gray-100 min-h-screen md:pt-28 py-10">
         <div className="container mx-auto max-w-6xl px-4">
-          {/* Header Section */}
-          <div className="payment-section__header flex flex-col sm:flex-row items-center justify-center pt-10 mb-10">
+          <div className=" flex flex-col sm:flex-row items-center justify-center pt-10 mb-4">
             <img
               src={icon1}
               alt="Payment Icon"
@@ -27,10 +45,24 @@ const Payments = () => {
               Pay Us At
             </h1>
           </div>
-
-          {/* Payment Methods Section */}
+          {/* Active Payment Images Section */}
+          {paymentImages.length > 0 && (
+            <div className="gap-6">
+              {paymentImages.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex justify-center items-center"
+                >
+                  <img
+                    src={item.image[0]} // Show only if status is active
+                    alt="Payment Method"
+                    className="md:w-[30%] md:h-[30%] w-[70%]"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Bank Transfer Section */}
             <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
               <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
                 Bank Transfer
@@ -60,7 +92,6 @@ const Payments = () => {
               </div>
             </div>
 
-            {/* UPI Payment Section */}
             <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
               <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
                 UPI Payment
@@ -81,7 +112,6 @@ const Payments = () => {
               </div>
             </div>
 
-            {/* Razorpay Section */}
             <div className="bg-white p-6 md:p-8 shadow-md rounded-lg">
               <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
                 Razorpay Link
@@ -103,70 +133,6 @@ const Payments = () => {
               </p>
             </div>
           </div>
-
-          {/* Payment Policy Section */}
-          {/* <div className=" mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-lg mt-10">
-            <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
-              Payment Policy
-            </h1>
-            <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
-              For Short Haul Destination refer to Short Haul payment and
-              cancellation policy and for Long Haul destination refer to Long
-              Haul payment and cancellation policy.
-              <br />
-              <span className="font-semibold">Short Haul Packages:</span>{" "}
-              Domestic Trips, Sri Lanka, Thailand, Singapore, Bali, Dubai, etc.
-              <br />
-              <span className="font-semibold">Long Haul Packages:</span> Europe,
-              UK, Turkey, Egypt, Australia, etc.
-            </p>
-
-           Short Haul Table 
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
-              SHORT HAUL PACKAGES
-            </h2>
-            <p className="text-lg font-semibold text-gray-700 mb-4">
-              Payment Policy
-            </p>
-            <div className="overflow-x-auto mb-10">
-              <table className="min-w-full border border-gray-200 text-left">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
-                      Number Of Days Prior To Tour Date
-                    </th>
-                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
-                      Amount to be Paid
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-700"></tbody>
-              </table>
-            </div>
-
-           
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
-              LONG HAUL PACKAGES
-            </h2>
-            <p className="text-lg font-semibold text-gray-700 mb-4">
-              Payment Policy
-            </p>
-            <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 text-left">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
-                      Number Of Days Prior To Tour Date
-                    </th>
-                    <th className="p-2 md:p-4 border text-gray-700 text-sm md:text-base">
-                      Amount to be Paid
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-700"></tbody>
-              </table>
-            </div>
-          </div> */}
         </div>
       </div>
 

@@ -1,425 +1,519 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const GroupToursEdit = () => {
-  const [groupTours, setGroupTours] = useState([]);
-  const [selectedTour, setSelectedTour] = useState(null);
-  const [formData, setFormData] = useState({
-    type: "",
-    introduction: [""],
-    objectives: [""],
-    itinerary: [{ title: "", points: [""] }],
-    benefits: [""],
-    logistics: [""],
-    testimonials: [""],
-    callToAction: [""],
-    conclusion: "",
+function GroupToursEdit() {
+  const [packages, setPackages] = useState([]);
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedTrip, setSelectedTrip] = useState(null);
+  const [newPdfFile, setNewPdfFile] = useState(null);
+  const [newTripImage, setNewTripImage] = useState(null);
+  const [newBackgroundImg, setNewBackgroundImg] = useState(null);
+  const [tripDetails, setTripDetails] = useState({
+    tripName: "",
+    tripDate: [""],
+    tripLocation: "",
+    tripDuration: "",
+    tripItinerary: [{ title: "", points: [""] }],
+    tripImages: [],
+    pdf: [],
+    tripDescription: [""],
+    pickAndDrop: "",
+    tripBackgroundImg: [],
+    overView: "",
+    status: "",
+    customised: "",
   });
-  const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState("");
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const statusOptions = ["active", "non-active"];
   useEffect(() => {
-    fetchGroupTours();
+    axios
+      .get(
+        "http://localhost:5000/api/group-tours/group-tours-edit"
+      )
+      .then((response) => {
+        if (response.data) {
+          const packages = response.data.states || [];
+          packages.forEach((pkg) => {
+            pkg.trips.forEach((trip) => {
+              if (!Array.isArray(trip.tripDate)) {
+                trip.tripDate = [trip.tripDate];
+              }
+            });
+          });
+          setPackages(packages);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching packages:", error);
+      });
   }, []);
 
-  const fetchGroupTours = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        "https://api.travello10.com/api/group-tours/group-tours"
-      );
-      // console.log(response.data);
-      setGroupTours(response.data.data);
-      setMessage("Group tours loaded successfully!");
-    } catch (error) {
-      console.error("Error fetching group tours:", error);
-      setMessage("Error fetching group tours.");
-    } finally {
-      setLoading(false);
-    }
+  const handleSelectTrip = (pkg, trip) => {
+    setSelectedTrip({ ...pkg, ...trip });
+    setTripDetails({
+      tripName: trip.tripName || "",
+      tripDuration: trip.tripDuration || "",
+      tripPrice: trip.tripPrice || 0,
+      tripDescription: trip.tripDescription || [""],
+      tripItinerary: trip.tripItinerary || [{ title: "", points: [""] }],
+      overView: trip.overView || "",
+      tripDate: trip.tripDate || [],
+      tripLocation: trip.tripLocation || "",
+      pickAndDrop: trip.pickAndDrop || "",
+      status: trip.status || "",
+      pdf: trip.pdf || [],
+      tripImages: trip.tripImages || [],
+      tripBackgroundImg: trip.tripBackgroundImg || [],
+      customised: trip.customised || false,
+    });
+    setIsModalOpen(true);
   };
-
-  const handleUpdate = async (id) => {
-    setLoading(true);
-    try {
-      const response = await axios.put(
-        `https://api.travello10.com/api/group-tours/group-tours/${id}`,
-        formData
-      );
-      setSelectedTour(null);
-      setMessage("Group tour updated successfully!");
-      fetchGroupTours(); // Refresh the list
-    } catch (error) {
-      console.error("Error updating group tour:", error);
-      setMessage("Error updating group tour.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    setLoading(true);
-    try {
-      await axios.delete(
-        `https://api.travello10.com/api/group-tours/group-tours/${id}`
-      );
-      setMessage("Group tour deleted successfully!");
-      fetchGroupTours(); // Refresh the list
-    } catch (error) {
-      console.error("Error deleting group tour:", error);
-      setMessage("Error deleting group tour.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name, type, checked, value } = e.target;
+    setTripDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: type === "checkbox" ? checked : value,
+    }));
 
-  const handleArrayChange = (e, field) => {
-    const { value } = e.target;
-    const updatedArray = [...formData[field]];
-    updatedArray[e.target.dataset.index] = value;
-    setFormData({ ...formData, [field]: updatedArray });
-  };
-
-  const addArrayItem = (field) => {
-    if (Array.isArray(formData[field])) {
-      setFormData({ ...formData, [field]: [...formData[field], ""] });
-    } else {
-      console.error(`${field} is not an array.`);
+    // Ensure 'customised' is set to false if the checkbox is unchecked
+    if (name === "customised" && !checked) {
+      setTripDetails((prevDetails) => ({
+        ...prevDetails,
+        customised: false,
+      }));
     }
   };
-  const removeArrayItem = (field, index) => {
-    const updatedArray = formData[field].filter((_, i) => i !== index);
-    setFormData({ ...formData, [field]: updatedArray });
+
+  const handleItineraryChange = (index, field, value) => {
+    setTripDetails((prevDetails) => {
+      const newItinerary = [...prevDetails.tripItinerary];
+      newItinerary[index][field] = value;
+      return { ...prevDetails, tripItinerary: newItinerary };
+    });
+  };
+
+  const handlePointsChange = (index, pointIndex, value) => {
+    setTripDetails((prevDetails) => {
+      const newItinerary = [...prevDetails.tripItinerary];
+      newItinerary[index].points[pointIndex] = value;
+      return { ...prevDetails, tripItinerary: newItinerary };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (selectedTrip) {
+      const formData = new FormData();
+      formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
+
+      // Additional form data handling
+      if (newPdfFile) formData.append("pdf", newPdfFile);
+      if (newTripImage) formData.append("tripImages", newTripImage);
+      if (newBackgroundImg)
+        formData.append("tripBackgroundImg", newBackgroundImg);
+
+      axios
+        .put(
+          `http://localhost:5000/api/group-tours/edit-group-tour-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          formData, // Change this line to send formData
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Set the content type
+            },
+          }
+        )
+        .then((response) => {
+          alert("Trip details updated successfully!");
+          setIsModalOpen(false);
+        })
+        .catch((error) => {
+          console.error("Error updating trip:", error);
+        });
+    }
+  };
+
+  const handleDeleteTrip = (pkg, tripId) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete the trip: ${tripId}?`
+    );
+    if (confirmed) {
+      axios
+        .delete(
+          `http://localhost:5000/api/group-tours/delete-group-tour-package/${pkg.stateName}/${tripId}`
+        )
+        .then((response) => {
+          alert("Trip deleted successfully!");
+          setPackages((prevPackages) =>
+            prevPackages.map((p) =>
+              p._id === pkg._id
+                ? { ...p, trips: p.trips.filter((trip) => trip._id !== tripId) }
+                : p
+            )
+          );
+        })
+        .catch((error) => {
+          console.error("Error deleting trip:", error);
+        });
+    }
+  };
+
+  const handleStatusChange = (index, value) => {
+    const updatedPdf = [...tripDetails.pdf];
+    updatedPdf[index].status = value;
+    setTripDetails((prevDetails) => ({ ...prevDetails, pdf: updatedPdf }));
+  };
+
+  const handleFileChange = (e, type) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (type === "pdf") setNewPdfFile(file);
+    else if (type === "tripImages") setNewTripImage(file);
+    else if (type === "tripBackgroundImg") setNewBackgroundImg(file);
+  };
+
+  const handleDateChange = (index, newDate) => {
+    setTripDetails((prevDetails) => {
+      const newDates = [...prevDetails.tripDate];
+      newDates[index] = newDate;
+      return { ...prevDetails, tripDate: newDates };
+    });
+  };
+
+  const handleDeleteDate = (index) => {
+    setTripDetails((prevDetails) => {
+      const newDates = prevDetails.tripDate.filter((_, i) => i !== index);
+      return { ...prevDetails, tripDate: newDates };
+    });
+  };
+
+  const handleAddDate = () => {
+    setTripDetails((prevDetails) => ({
+      ...prevDetails,
+      tripDate: [...prevDetails.tripDate, ""],
+    }));
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Group Tours</h1>
-      {message && <div className="mb-4 text-green-600">{message}</div>}
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="border rounded-lg divide-y">
-          {Array.isArray(groupTours) && groupTours.length > 0 ? (
-            groupTours.map((tour) => (
-              <li key={tour._id} className="p-4 hover:bg-gray-100 transition">
-                <h2 className="text-xl">{tour.type}</h2>
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                  onClick={() => {
-                    setSelectedTour(tour);
-                    setFormData({ ...tour });
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => handleDelete(tour._id)}
-                >
-                  Delete
-                </button>
-              </li>
-            ))
-          ) : (
-            <p>No group tours available.</p>
-          )}
-        </ul>
+    <div className="container mx-auto py-8 px-4">
+      <h2 className="text-3xl font-bold text-center mb-8">
+        Edit Group Tours Packages
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+        {packages.length > 0 ? (
+          packages.map((pkg) => (
+            <div
+              key={pkg._id}
+              className={`cursor-pointer border p-3 rounded-lg text-lg ${
+                selectedState === pkg._id
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100"
+              }`}
+              onClick={() =>
+                setSelectedState(selectedState === pkg._id ? null : pkg._id)
+              }
+            >
+              {pkg.stateName}
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500">
+            No national packages available.
+          </p>
+        )}
+      </div>
+
+      {selectedState && (
+        <div className="border-t pt-6">
+          {packages
+            .filter((pkg) => pkg._id === selectedState)
+            .map((pkg) => (
+              <ul key={pkg._id} className="space-y-4">
+                {pkg.trips.map((trip) => (
+                  <li
+                    key={trip._id}
+                    className="flex justify-between items-center bg-gray-100 p-3 rounded-lg"
+                  >
+                    <div>
+                      <span className="font-medium">
+                        {trip.tripName || "Unnamed Trip"}
+                      </span>{" "}
+                      - {trip.tripDuration || "No Duration"}
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => handleSelectTrip(pkg, trip)}
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors mr-2"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteTrip(pkg, trip._id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ))}
+        </div>
       )}
-
-      {selectedTour && (
-        <div className="mt-4 border p-4 rounded-lg">
-          <h2 className="text-xl font-bold">Edit Tour</h2>
-          <input
-            type="text"
-            name="type"
-            value={formData.type || ""}
-            onChange={handleInputChange}
-            placeholder="Tour Type"
-            className="border rounded-lg px-3 py-2 mb-4 w-full"
-          />
-          {/* Introduction */}
-          <div>
-            <h3 className="font-semibold">Introduction</h3>
-            {Array.isArray(formData.introduction) &&
-              formData.introduction.map((intro, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={intro}
-                    onChange={(e) => handleArrayChange(e, "introduction")}
-                    placeholder={`Introduction ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl h-[60vh] overflow-y-auto">
+            <h3 className="text-2xl font-bold mb-6 text-center sticky top-0 bg-white">
+              Editing Trip in {selectedTrip.stateName} - {tripDetails.tripName}
+            </h3>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Status:
+                </label>
+                <select
+                  name="status"
+                  value={tripDetails.status}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                >
+                  <option value="">Select a status</option>
+                  {statusOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Trip Name:
+                </label>
+                <input
+                  type="text"
+                  name="tripName"
+                  value={tripDetails.tripName}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div>
+                <h4>PDF Files</h4>
+                {tripDetails.pdf.map((pdf, index) => (
+                  <div key={pdf._id} className="flex items-center mb-2">
+                    <span>{pdf.filename}</span>
+                    <select
+                      value={pdf.status}
+                      onChange={(e) =>
+                        handleStatusChange(index, e.target.value)
+                      }
+                    >
+                      {statusOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `http://localhost:5000/upload/${pdf.filename}`,
+                          "_blank"
+                        )
+                      }
+                      className="bg-green-500 text-white px-2 py-1 rounded-lg ml-2"
+                    >
+                      Open PDF
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h4>Trip Images</h4>
+                {tripDetails?.tripImages?.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`http://localhost:5000/upload/${image}`}
+                    alt={`Trip Image ${index + 1}`}
+                    className="h-14 w-14"
                   />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("introduction", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("introduction")}
-            >
-              Add Introduction
-            </button>
-          </div>
-
-          {/* Objectives */}
-          <div>
-            <h3 className="font-semibold mt-4">Objectives</h3>
-            {Array.isArray(formData.objectives) &&
-              formData.objectives.map((objective, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={objective}
-                    onChange={(e) => handleArrayChange(e, "objectives")}
-                    placeholder={`Objective ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
-                  />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("objectives", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("objectives")}
-            >
-              Add Objective
-            </button>
-          </div>
-
-          {/* Itinerary */}
-
-          <div>
-            <h3 className="font-semibold mt-4">Itinerary</h3>
-            {Array.isArray(formData.itinerary) &&
-              formData.itinerary.map((item, index) => (
-                <div key={index} className="border rounded-lg p-2 mb-2">
-                  <input
-                    type="text"
-                    placeholder="Itinerary Title"
-                    value={item.title}
-                    onChange={(e) => {
-                      const updatedItinerary = [...formData.itinerary];
-                      updatedItinerary[index].title = e.target.value;
-                      setFormData({ ...formData, itinerary: updatedItinerary });
-                    }}
-                    className="border rounded-lg px-3 py-2 w-full mb-2"
-                  />
-                  {Array.isArray(item.points) &&
-                    item.points.map((point, pointIndex) => (
-                      <div key={pointIndex} className="flex mb-2">
-                        <input
-                          type="text"
-                          value={point}
-                          onChange={(e) => {
-                            const updatedPoints = [...item.points];
-                            updatedPoints[pointIndex] = e.target.value;
-                            const updatedItinerary = [...formData.itinerary];
-                            updatedItinerary[index].points = updatedPoints;
-                            setFormData({
-                              ...formData,
-                              itinerary: updatedItinerary,
-                            });
-                          }}
-                          placeholder={`Point ${pointIndex + 1}`}
-                          className="border rounded-lg px-3 py-2 mb-2 w-full"
-                        />
-                        <button
-                          className="bg-red-500 text-white px-2 ml-2 rounded"
-                          onClick={() => {
-                            const updatedPoints = item.points.filter(
-                              (_, i) => i !== pointIndex
-                            );
-                            const updatedItinerary = [...formData.itinerary];
-                            updatedItinerary[index].points = updatedPoints;
-                            setFormData({
-                              ...formData,
-                              itinerary: updatedItinerary,
-                            });
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </div>
+                ))}
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripImages")}
+                  accept="image/*"
+                />
+              </div>
+              <div>
+                <h4>Trip Background Image</h4>
+                {Array.isArray(tripDetails.tripBackgroundImg) &&
+                  tripDetails.tripBackgroundImg.map((image, index) => (
+                    <img
+                      key={index}
+                      src={`http://localhost:5000/upload/${image}`}
+                      alt={`Trip Image ${index + 1}`}
+                      className="h-14 w-14"
+                    />
+                  ))}
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, "tripBackgroundImg")}
+                  accept="image/*"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Duration:
+                </label>
+                <input
+                  type="text"
+                  name="tripDuration"
+                  value={tripDetails.tripDuration}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Description:
+                </label>
+                <textarea
+                  name="tripDescription"
+                  value={tripDetails.tripDescription}
+                  onChange={handleInputChange}
+                  rows="4"
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  OverView:
+                </label>
+                <textarea
+                  name="overView"
+                  value={tripDetails.overView}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Trip Dates:
+                </label>
+                {tripDetails.tripDate.map((date, index) => (
+                  <div key={index} className="flex items-center mb-2">
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={(e) => handleDateChange(index, e.target.value)}
+                      className="mt-1 p-2 flex-grow border rounded-lg mr-2"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteDate(index)}
+                      className="bg-red-500 text-white px-2 py-1 rounded-lg"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleAddDate}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg mt-2"
+                >
+                  Add Date
+                </button>
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Trip Location:
+                </label>
+                <textarea
+                  name="tripLocation"
+                  value={tripDetails.tripLocation}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Pick And Drop Points:
+                </label>
+                <textarea
+                  name="pickAndDrop"
+                  value={tripDetails.pickAndDrop}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              {/* Itinerary */}
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Itinerary:
+                </label>
+                {tripDetails.tripItinerary.map((item, index) => (
+                  <div key={index} className="mb-4">
+                    <input
+                      type="text"
+                      value={item.title}
+                      onChange={(e) =>
+                        handleItineraryChange(index, "title", e.target.value)
+                      }
+                      placeholder="Day Title"
+                      className="mt-1 p-2 w-full border rounded-lg mb-2"
+                    />
+                    {item.points.map((point, pointIndex) => (
+                      <input
+                        key={pointIndex}
+                        type="text"
+                        value={point}
+                        onChange={(e) =>
+                          handlePointsChange(index, pointIndex, e.target.value)
+                        }
+                        placeholder="Point of Interest"
+                        className="mt-1 p-2 w-full border rounded-lg mb-2"
+                      />
                     ))}
-                  <button
-                    className="bg-green-500 text-white px-4 py-2 rounded"
-                    onClick={() => {
-                      const updatedItinerary = [...formData.itinerary];
-                      updatedItinerary[index].points.push("");
-                      setFormData({ ...formData, itinerary: updatedItinerary });
-                    }}
-                  >
-                    Add Point
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("itinerary")}
-            >
-              Add Itinerary
-            </button>
-          </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handlePointsChange(index, item.points.length, "")
+                      }
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                    >
+                      Add Point
+                    </button>
+                  </div>
+                ))}
+              </div>
 
-          {/* Benefits */}
-          <div>
-            <h3 className="font-semibold mt-4">Benefits</h3>
-            {Array.isArray(formData.benefits) &&
-              formData.benefits.map((benefit, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={benefit}
-                    onChange={(e) => handleArrayChange(e, "benefits")}
-                    placeholder={`Benefit ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
-                  />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("benefits", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("benefits")}
-            >
-              Add Benefit
-            </button>
+              <div className="flex justify-end space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
-
-          {/* Logistics */}
-          <div>
-            <h3 className="font-semibold mt-4">Logistics</h3>
-            {Array.isArray(formData.logistics) &&
-              formData.logistics.map((logistic, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={logistic}
-                    onChange={(e) => handleArrayChange(e, "logistics")}
-                    placeholder={`Logistic ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
-                  />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("logistics", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("logistics")}
-            >
-              Add Logistic
-            </button>
-          </div>
-
-          {/* Testimonials */}
-          <div>
-            <h3 className="font-semibold mt-4">Testimonials</h3>
-            {Array.isArray(formData.testimonials) &&
-              formData.testimonials.map((testimonial, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={testimonial}
-                    onChange={(e) => handleArrayChange(e, "testimonials")}
-                    placeholder={`Testimonial ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
-                  />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("testimonials", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("testimonials")}
-            >
-              Add Testimonial
-            </button>
-          </div>
-
-          {/* Call to Action */}
-          <div>
-            <h3 className="font-semibold mt-4">Call to Action</h3>
-            {Array.isArray(formData.callToAction) &&
-              formData.callToAction.map((cta, index) => (
-                <div key={index} className="flex mb-2">
-                  <input
-                    type="text"
-                    data-index={index}
-                    value={cta}
-                    onChange={(e) => handleArrayChange(e, "callToAction")}
-                    placeholder={`Call to Action ${index + 1}`}
-                    className="border rounded-lg px-3 py-2 mb-2 w-full"
-                  />
-                  <button
-                    className="bg-red-500 text-white px-2 ml-2 rounded"
-                    onClick={() => removeArrayItem("callToAction", index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => addArrayItem("callToAction")}
-            >
-              Add Call to Action
-            </button>
-          </div>
-
-          {/* Conclusion */}
-          <div>
-            <h3 className="font-semibold mt-4">Conclusion</h3>
-            <textarea
-              name="conclusion"
-              value={formData.conclusion || ""}
-              onChange={handleInputChange}
-              placeholder="Conclusion"
-              className="border rounded-lg px-3 py-2 mb-2 w-full"
-            />
-          </div>
-
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-            onClick={() => handleUpdate(selectedTour._id)}
-          >
-            Update Tour
-          </button>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default GroupToursEdit;

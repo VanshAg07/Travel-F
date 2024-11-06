@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Nav from "./components/Nav.js";
 import Videopage from "./components/Videopage.js";
@@ -27,24 +27,51 @@ import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
 
-
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   // Media queries
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   const isSmallMobile = useMediaQuery({ query: "(max-width: 426px)" }); // Media query for small mobile
+  const [paymentImages, setPaymentImages] = useState([]);
 
+  const fetchPayment = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/home/home-offers");
+      const data = await res.json();
+      console.log("Fetched data:", data);
+      const activeImages = data.data.filter((item) => item.status === true);
+      setPaymentImages(activeImages);
+    } catch (error) {
+      console.log("Failed to fetch payment images:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPayment();
+  }, []);
   return (
     <div className="home-wr">
       <GoogleOAuthProvider clientId="your_client_id_here">
         <Nav />
         <Dropnav />
         <Videopage />
-
-        {/* Show ExploreMobile only on small mobile screens (less than 426px) */}
         {isLargeMobile && <ExploreMobile />}
-
+        {paymentImages.length > 0 && (
+          <div className="gap-6">
+            {paymentImages.map((item) => (
+              <div key={item._id} className="flex justify-center items-center">
+                <img
+                  src={`http://localhost:5000/upload/${
+                    isMobile ? item.phoneImage : item.image
+                  }`}
+                  alt="Payment Method"
+                  className="md:w-[30%] md:h-[30%] w-[70%]"
+                />
+              </div>
+            ))}
+          </div>
+        )}
         {isSmallMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
             <Mobcard />

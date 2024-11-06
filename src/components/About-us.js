@@ -20,7 +20,7 @@ const Aboutus = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/background-images/images"
+        "http://localhost:5000/api/background-images/images"
       );
       setBackgroundImages(response.data);
     } catch (error) {
@@ -31,7 +31,7 @@ const Aboutus = () => {
   const fetchTeamMembers = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/get-team-member"
+        "http://localhost:5000/api/home/get-team-member"
       );
       setTeamMembers(response.data.data);
     } catch (error) {
@@ -42,24 +42,42 @@ const Aboutus = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
+  const nationalImages = backgroundImages.filter(
+    (item) => item.type === "About Us"
+  );
   return (
     <>
       <Nav />
       <Dropnav />
       <div>
-        <div>
-          <img
-            src={icon1}
-            alt="About Us"
-            className="w-full h-[580px] object-cover"
-          />
-          {/* Black overlay */}
-          <div className="absolute top-0 left-0 right-0 h-[580px] bg-black opacity-50"></div>
-          {/* Text overlay */}
-          <h1 className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
-            About Us
-          </h1>
-        </div>
+      <div className="hero-section-left-1">
+        {nationalImages.map((item) => (
+          <div key={item._id} className="relative">
+            {item.image.map((imgUrl, index) =>
+              imgUrl.endsWith(".mp4") ? (
+                <video
+                  key={index}
+                  className="w-full h-auto"
+                  autoPlay
+                  muted
+                  loop
+                >
+                  <source src={imgUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img key={index} src={imgUrl} alt={`Image ${index}`} />
+              )
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                {item.heading}
+              </h1>
+            </div>
+          </div>
+        ))}
+      </div>
 
         {/* Introduction Section */}
         <div className="py-8 px-4 sm:px-8 lg:px-24 w-full lg:w-[80%] mx-auto text-center">

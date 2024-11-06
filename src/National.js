@@ -29,18 +29,6 @@ import MobileHomeGallery from "./components/MobileHomeGallery.js";
 
 const National = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
-  const [getTrip, setGetTrip] = useState([]);
-  const [backgroundImages, setBackgroundImages] = useState([]);
-  const tripDetails = () => {
-    const response = axios.get("https://api.travello10.com/api/user/getTripDetails");
-    response.then((res) => {
-      setGetTrip(res.data);
-    });
-  };
-  useEffect(() => {
-    tripDetails();
-  }, []);
   const places = [
     { id: 1, name: "Meghalaya", img: shi13 },
     { id: 2, name: "Kashmir", img: shi3 },
@@ -53,53 +41,13 @@ const National = () => {
     { id: 9, name: "Rajasthan", img: shi5 },
     { id: 10, name: "Andaman", img: shi7 },
   ];
-  const linkedPlaces = places.map((place) => {
-    const matchingTrip = getTrip.find((trip) => trip.stateName === place.name);
-    return matchingTrip ? { ...place, tripId: matchingTrip._id } : place;
-  });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    contactNo: "",
-    message: "",
-  });
-
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "contactNo") {
-      const re = /^[0-9\b]+$/;
-      if (value === "" || (re.test(value) && value.length <= 10)) {
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      }
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Form submitted:", formData);
-    // Add form submission logic here (e.g., API call)
-  };
-
+  
   const whatsappMessage = "Hello, I need assistance with my issue.";
-
+  
+  const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

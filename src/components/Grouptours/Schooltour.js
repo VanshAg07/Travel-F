@@ -15,10 +15,10 @@ import Grouptourform from "../../components/Groupform";
 import SchoolAllPackage from "./SchoolAllPackage";
 
 const BackpackingTrips = () => {
-  const whatsappMessage = "Hello, I need assistance with my issue.";
   const [expandedDays, setExpandedDays] = useState({});
   const [trips, setTrip] = useState([]);
   const [schoolTrip, setSchoolTrip] = useState(null);
+  const [backgroundImages, setBackgroundImages] = useState([]);
 
   const handleToggleDay = (day) => {
     setExpandedDays((prevState) => ({
@@ -31,7 +31,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/group-tours/group-tours"
+          "http://localhost:5000/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -47,27 +47,70 @@ const BackpackingTrips = () => {
     fetchData();
   }, []);
 
+  const fetchBackgroundImages = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/group-tours/state"
+      );
+      const data = await response.json();
+      setBackgroundImages(data);
+    } catch (error) {
+      console.error("Error fetching background images:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBackgroundImages();
+  }, []);
+  const nationalImages = Array.isArray(backgroundImages)
+    ? backgroundImages.filter((item) => item.stateName === "School")
+    : [];
+
   return (
     <>
       <div className="wrpper-inter">
         <Nav />
         <Dropnav />
-        <div className="hero-section-left-1">
-          <img className="hero-img" src={intern} alt="International" />
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
-          <div className="relative flex flex-col items-center">
-            <div className="relative w-full flex items-start justify-center">
-              <h1 className="ml-6 text-center text-white font-bold text-2xl xs:text-2xl sm:text3xl lg:text-4xl leading-tight mt-4 sm:mt-8">
-                Backpacking Trpis
-              </h1>
-            </div>
 
-            <h1 className="inline-block text-center text-black bg-[yellow] px-4 py-2 mt-4 text-xl xs:text-xl sm:text-2xl lg:text-3xl">
-              School Tour
-            </h1>
-          </div>
+        <div className="object-cover hero-section-left-1">
+          {nationalImages.length > 0 &&
+            nationalImages.map((item) => (
+              <div key={item._id} className="relative">
+                {item.stateImage &&
+                  item.stateImage.map((imgUrl, index) =>
+                    imgUrl.endsWith(".mp4") ? (
+                      <video
+                        key={index}
+                        className="w-full h-auto"
+                        autoPlay
+                        muted
+                        loop
+                      >
+                        <source
+                          src={`http://localhost:5000/upload/${imgUrl}`}
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <img
+                        key={index}
+                        src={`http://localhost:5000/upload/${imgUrl}`}
+                        alt={`Image ${index}`}
+                        className="w-full object-cover"
+                      />
+                    )
+                  )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                    {item.stateName} Tour
+                  </h1>
+                </div>
+              </div>
+            ))}
         </div>
+
         <div className="mt-[130px] md:mt-0">
           <Mainreview />
         </div>
@@ -146,7 +189,7 @@ const BackpackingTrips = () => {
               Haridwar, and Rishikesh. The journey by road is a scenic one,
               passing through the lush green valleys and along the banks of the
               Ganges. From Sonprayag, you’ll need to travel by shared jeep or
-              trek to Gaurikund, the base camp for the trek to Kedarnath.{" "}
+              trek to Gaurikund, the base camp for the trek to Kedarnath.
             </p>
             <div className="mt-10">
               <p className="font-bold text-2xl text-yellow-500 text-left">
@@ -164,25 +207,16 @@ const BackpackingTrips = () => {
           </div>
         </div>
         <Grouptourhero />
-        <div className="justify-center pt-10 items-center flex flex-col w-full ">
+        <div className="justify-center pt-10 items-center flex flex-col w-full">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             All Packages
           </h1>
-          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-          <div>
-            <p className=" pt-2 inter-description">
-              Discover Your Dream Journey with Our Best-Selling Travel Packages
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-center mt-10">
-          <div className="w-full">
+          <div className="flex items-center flex-col md:flex-row w-[90%]">
             <SchoolAllPackage />
           </div>
         </div>
-        <Grouptourform />
-        <MainFooter />
       </div>
+      <MainFooter />
     </>
   );
 };
