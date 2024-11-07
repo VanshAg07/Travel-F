@@ -1,34 +1,67 @@
-
-@media (max-width: 426px) {
-    .soci-wrpr{
-    margin-top: -160px;
-    }
+.social-icons {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
 }
 
-.social-link {
-    position: relative;
-  }
-  
-  .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    right: 100%; /* Position it to the left of the icon */
-    transform: translateY(-50%);
-    white-space: nowrap;
-    background-color: #333;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translate(-5px, -50%);
-  }
-  
-  .social-link:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-10px) translateY(-50%); /* Move tooltip further to the left */
-  }
-  
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50px; /* Initial width for icon container */
+  transition: width 0.5s ease; /* Smooth transition for width only */
+  overflow: hidden;
+  background-color: #fff;
+  margin-left: auto;
+  padding: 10px;
+}
+
+.icon:hover {
+  width: 145px; /* Expand container on hover to show text */
+}
+
+.icon svg {
+  font-size: 30px; /* Set icon size here */
+  color: #fff; /* Icon color */
+}
+
+/* Text styling */
+.icon span {
+  position: absolute;
+  left: 60px;
+  opacity: 0;
+  white-space: nowrap;
+  font-size: 16px;
+  color: #333;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+  line-height: 1.2;
+  padding: 5px 10px;
+}
+
+/* Show text on hover with white background and black text */
+.icon:hover span {
+  opacity: 1;
+  background-color: #fff; /* White background on hover */
+  color: #000; /* Black text on hover */
+}
+
+/* Icon background colors */
+.facebook {
+  background-color: #3b5998;
+}
+
+.whatsapp {
+  background-color: #25D366;
+}
+
+.instagram {
+  background: linear-gradient(to top right, #f9ce34, #ee2a7b, #6228d7); /* Gradient background */
+}
+
+.youtube {
+  background-color: #FF0000;
+}

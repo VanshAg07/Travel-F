@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper/modules";
 import axios from "axios";
+import underline from "../img/underline.png"
 
 export default function Card() {
   const [stateData, setStateData] = useState({
@@ -43,14 +44,14 @@ export default function Card() {
   return (
     <div className="">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
-        <div className="flex ml-4 flex-col">
-          <h1 className="text-lg font-bold">Indian Packages</h1>
-          <div className="w-32 border-b-4 border-blue-400 mt-1" />
-        </div>
-        <a href="/national" className="text-red-500 text-sm mr-4">
-          See All
-        </a>
-      </div>
+    <div className="flex ml-4 mt-32 flex-col">
+      <h1 className="text-lg  font-bold">Indian Packages</h1>
+      <img src={underline} alt="underline" className="w-32 -mt-12" /> {/* Replace the div with the SVG image */}
+    </div>
+    <a href="/national" className="text-red-500 text-sm mr-4">
+      See All
+    </a>
+  </div>
       <Swiper
         effect={"cards"}
         grabCursor={true}
