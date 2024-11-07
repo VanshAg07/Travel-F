@@ -7,53 +7,38 @@ function OurTeam() {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [image, setImage] = useState(null);
-  const [socialMedia, setSocialMedia] = useState([
-    { link: "", socialMediaImg: null },
-  ]);
   const [description, setDescription] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/home/get-team-member")
       .then((response) => {
+        console.log(response.data); // Add this to check the response format
         const data = response.data;
-        if (Array.isArray(data)) {
-          setTeamMembers(data);
-        } else {
-          console.error("Expected an array but got:", data);
-          setTeamMembers([]); // Set to empty array if not an array
-        }
+        setTeamMembers(data.data); // Ensure it's always an array
       })
       .catch((error) => {
         console.error("Error fetching team members:", error);
-        setTeamMembers([]); // Set to empty array on error as well
+        setTeamMembers([]); // Reset to an empty array in case of an error
       });
   }, [reloadData]);
 
+  // Pre-fill the input fields when editing a team member
+  const handleEdit = (member) => {
+    setTeamId(member._id);
+    setName(member.name);
+    setPosition(member.position);
+    setImage(member.image[0]); // Assuming the image is an array
+    setDescription(member.description);
+    setLinkedIn(member.linkedIn);
+    setInstagram(member.instagram);
+  };
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-  };
-
-  const handleSocialMediaChange = (index, event) => {
-    const values = [...socialMedia];
-    if (event.target.name === "socialMediaImg") {
-      // Handle file input for social media image
-      values[index][event.target.name] = event.target.files[0];
-    } else {
-      values[index][event.target.name] = event.target.value;
-    }
-    setSocialMedia(values);
-  };
-
-  const addSocialMedia = () => {
-    setSocialMedia([...socialMedia, { link: "", socialMediaImg: null }]);
-  };
-
-  const removeSocialMedia = (index) => {
-    const values = [...socialMedia];
-    values.splice(index, 1);
-    setSocialMedia(values);
   };
 
   const handleSubmit = async (e) => {
@@ -61,25 +46,15 @@ function OurTeam() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("position", position);
-    formData.append("image", image); // Add the team member image as a file
+    formData.append("image", image);
     formData.append("description", description);
-
-    // Append social media data (both link and image as file)
-    socialMedia.forEach((item, index) => {
-      formData.append(`socialMedia[${index}][link]`, item.link);
-      if (item.socialMediaImg) {
-        formData.append(
-          `socialMedia[${index}][socialMediaImg]`,
-          item.socialMediaImg
-        );
-      }
-    });
+    formData.append("linkedIn", linkedIn);
+    formData.append("instagram", instagram);
 
     try {
       if (teamId) {
-        // Update existing team member
         await axios.put(
-          `http://localhost:5000/api/home/add-team-member${teamId}`,
+          `http://localhost:5000/api/home/add-team-member/${teamId}`,
           formData,
           {
             headers: {
@@ -88,7 +63,6 @@ function OurTeam() {
           }
         );
       } else {
-        // Create new team member
         await axios.post(
           "http://localhost:5000/api/home/add-team-member",
           formData,
@@ -100,12 +74,13 @@ function OurTeam() {
         );
       }
 
-      // Reset form after submission
+      // Reset the form after submission
       setName("");
       setPosition("");
       setImage(null);
       setDescription("");
-      setSocialMedia([{ link: "", socialMediaImg: null }]);
+      setLinkedIn("");
+      setInstagram("");
       setTeamId(null);
       setReloadData(!reloadData);
     } catch (error) {
@@ -115,7 +90,7 @@ function OurTeam() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/home/add-team-member${id}`)
+      .delete(`http://localhost:5000/api/home/add-team-member/${id}`)
       .then(() => {
         setReloadData(!reloadData);
       })
@@ -128,7 +103,6 @@ function OurTeam() {
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Team Management</h1>
 
-      {/* Form for adding/updating team members */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-6">
         <h2 className="text-xl font-semibold mb-4">
           {teamId ? "Edit" : "Add"} Team Member
@@ -157,12 +131,34 @@ function OurTeam() {
           </div>
 
           <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">LinkedIn</label>
+            <input
+              type="url"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              value={linkedIn}
+              onChange={(e) => setLinkedIn(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Instagram</label>
+            <input
+              type="url"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Image</label>
             <input
               type="file"
               className="w-full p-2 border border-gray-300 rounded-md"
               onChange={handleImageChange}
-              required
+              required={!teamId} // Only require the image when adding a new member
             />
           </div>
 
@@ -178,44 +174,6 @@ function OurTeam() {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">
-              Social Media
-            </label>
-            {socialMedia.map((sm, index) => (
-              <div key={index} className="flex items-center mb-2">
-                <input
-                  type="text"
-                  name="link"
-                  placeholder="Link"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md mr-2"
-                  value={sm.link}
-                  onChange={(event) => handleSocialMediaChange(index, event)}
-                />
-                <input
-                  type="file"
-                  name="socialMediaImg"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md mr-2"
-                  onChange={(event) => handleSocialMediaChange(index, event)}
-                />
-                <button
-                  type="button"
-                  className="bg-red-500 text-white px-3 py-1 rounded-md"
-                  onClick={() => removeSocialMedia(index)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              onClick={addSocialMedia}
-            >
-              Add Social Media
-            </button>
-          </div>
-
           <button
             type="submit"
             className="bg-green-500 text-white px-6 py-2 rounded-md"
@@ -224,39 +182,58 @@ function OurTeam() {
           </button>
         </form>
       </div>
-      {/* List of team members */}
+
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Team Members</h2>
         <ul className="space-y-4">
-          {teamMembers.map((member) => (
-            <li key={member._id} className="flex items-center justify-between">
-              <div className="flex items-center">
-                <img
-                  src={`${member.image[0]}`}
-                  alt={member.name}
-                  className="w-16 h-16 rounded-full mr-4"
-                />
-                <div>
-                  <h3 className="text-lg font-medium">{member.name}</h3>
-                  <p className="text-sm text-gray-500">{member.position}</p>
+          {Array.isArray(teamMembers) &&
+            teamMembers.map((member) => (
+              <li
+                key={member._id}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center">
+                  <div>
+                    <h3 className="text-lg font-medium">{member.name}</h3>
+                    <p className="text-sm text-gray-500">{member.position}</p>
+                    <p className="text-sm">
+                      <a
+                        href={member.linkedIn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500"
+                      >
+                        LinkedIn
+                      </a>
+                    </p>
+                    <p className="text-sm">
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-pink-500"
+                      >
+                        Instagram
+                      </a>
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <button
-                  onClick={() => setTeamId(member._id)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(member._id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md"
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
+                <div>
+                  <button
+                    onClick={() => handleEdit(member)}
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(member._id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

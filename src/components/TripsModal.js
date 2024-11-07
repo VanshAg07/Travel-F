@@ -1,18 +1,52 @@
-import React from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import groupTripImage from '../img/rishikesh.png';
-import internationalTripImage from '../img/rishikesh.png';
-import exploreIndiaImage from '../img/rishikesh.png';
-import corporateTripImage from '../img/rishikesh.png';
-import romanticEscapesImage from '../img/rishikesh.png';
-import weekendTripImage from '../img/rishikesh.png';
-import "./TripsModal.css"
+import React, { useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import "./TripsModal.css";
+import axios from "axios";
 
 function TripsModal({ isOpen, onClose }) {
+  const [adventures, setAdventures] = useState([]);
+
+  const fetchAdventures = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/home/explore-adventure"
+      );
+      setAdventures(res.data);
+    } catch (error) {
+      console.error("Error fetching adventures:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdventures();
+  }, []);
+
+  // Function to map adventure titles to corresponding routes
+  const getAdventureLink = (title) => {
+    switch (title) {
+      case "Experience India":
+        return "/national";
+      case "Weekend Trips":
+        return "/Weekends";
+      case "Group Trips":
+        return "/Grouptours";
+      case "International":
+        return "/intern";
+      case "Romantic Escapes":
+        return "/Honeymoon";
+      case "Corporate Trips":
+        return "/Corporate";
+      case "Team Adventures":
+        return "/schooltour";
+      default:
+        return "#";
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed trip-z  inset-0 flex justify-center items-end bg-black bg-opacity-50">
+    <div className="fixed trip-z inset-0 flex justify-center items-end bg-black bg-opacity-50">
       <div className="bg-white p-4 rounded-t-lg w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Choose A Trip</h2>
@@ -21,30 +55,25 @@ function TripsModal({ isOpen, onClose }) {
           </button>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col items-center p-2  rounded">
-            <img src={groupTripImage} alt="Group Trips" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">Group Trips</span>
-          </div>
-          <div className="flex flex-col items-center p-2  rounded">
-            <img src={internationalTripImage} alt="International Trips" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">International Trips</span>
-          </div>
-          <div className="flex flex-col items-center p-2  rounded">
-            <img src={exploreIndiaImage} alt="Explore India" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">Explore India</span>
-          </div>
-          <div className="flex flex-col items-center p-2 rounded">
-            <img src={corporateTripImage} alt="Corporate Trips" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">Corporate Trips</span>
-          </div>
-          <div className="flex flex-col items-center p-2  rounded">
-            <img src={romanticEscapesImage} alt="Romantic Escapes" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">Romantic Escapes</span>
-          </div>
-          <div className="flex flex-col items-center p-2  rounded">
-            <img src={weekendTripImage} alt="Weekend Trips" className="w-16 h-16 object-cover rounded-full" />
-            <span className="text-sm mt-2">Weekend Trips</span>
-          </div>
+          {adventures.map((adventure) => (
+            <div
+              key={adventure._id}
+              className="flex flex-col items-center p-2 rounded"
+            >
+              <img
+                src={adventure.image[0]} // Assuming there's only one image in the array
+                alt={adventure.title}
+                className="w-16 h-16 object-cover rounded-full"
+              />
+              <span className="text-sm mt-2">{adventure.title}</span>
+              <a
+                href={getAdventureLink(adventure.title)}
+                className="text-blue-500 text-sm mt-1"
+              >
+                Explore
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </div>

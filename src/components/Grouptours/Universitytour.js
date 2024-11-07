@@ -16,6 +16,7 @@ const BackpackingTrips = () => {
   const [expandedDays, setExpandedDays] = useState({});
   const [trips, setTrip] = useState([]);
   const [schoolTrip, setSchoolTrip] = useState(null);
+  const [groupStart, setGroupStart] = useState([]);
 
   const handleToggleDay = (day) => {
     setExpandedDays((prevState) => ({
@@ -58,11 +59,26 @@ const BackpackingTrips = () => {
 
   useEffect(() => {
     fetchBackgroundImages();
+    fetchStart();
   }, []);
   const nationalImages = Array.isArray(backgroundImages)
     ? backgroundImages.filter((item) => item.stateName === "University")
     : [];
+  const fetchStart = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/group-tours/group-start"
+      );
+      const data = await response.json();
+      setGroupStart(data);
+    } catch (error) {
+      console.error("Error fetching start data:", error);
+    }
+  };
 
+  const adventureGroupStart = groupStart.filter(
+    (item) => item.stateName === "University"
+  );
   return (
     <>
       <div className="wrpper-inter">
@@ -149,57 +165,39 @@ const BackpackingTrips = () => {
           </div>
         </div>
 
-        <div className="w-[80%] mx-auto pt-3 flex flex-col md:flex-row justify-between md:space-x-8">
-          <div className="w-full md:w-[50%] mt-2 md:ml-0">
-            <img
-              src={Image1}
-              alt="Descriptive text here"
-              className="rounded-xl w-full md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
-            />
-          </div>
-          <div className="w-full md:w-[50%] flex flex-col items-start justify-start md:ml-0 mt-5 md:mt-0">
-            <p className="text-yellow-500 font-bold text-3xl mt-10">
-              How to Reach Kedarnath: Your Journey Begins Here
-            </p>
-            <p className="text-left mt-3">
-              Reaching Kedarnath is an adventure in itself, with multiple modes
-              of transport available to guide you to this sacred site.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Air:</p>
-            <p className="text-left">
-              The nearest airport is Jolly Grant Airport in Dehradun,
-              approximately 250 km from Kedarnath. From the airport, you can
-              hire a taxi or take a bus to reach Sonprayag, the last motorable
-              point.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Rail:</p>
-            <p className="text-left">
-              The closest railway stations are in Rishikesh and Haridwar.
-              Regular buses and taxis operate from these stations to Sonprayag,
-              which is about 210 km away.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Road:</p>
-            <p className="text-left">
-              Kedarnath is well-connected by road to major cities like Delhi,
-              Haridwar, and Rishikesh. The journey by road is a scenic one,
-              passing through the lush green valleys and along the banks of the
-              Ganges. From Sonprayag, you’ll need to travel by shared jeep or
-              trek to Gaurikund, the base camp for the trek to Kedarnath.{" "}
-            </p>
-            <div className="mt-10">
-              <p className="font-bold text-2xl text-yellow-500 text-left">
-                The Trek to Kedarnath
-              </p>
-              <p className="mt-3 text-left">
-                The 16 km trek from Gaurikund to Kedarnath is both challenging
-                and rewarding. For those unable to undertake the trek, pony
-                rides, palanquins, and helicopter services are available. The
-                trail is lined with beautiful waterfalls, streams, and
-                mesmerizing views of snow-capped peaks, making the journey as
-                spiritual as the destination itself.
-              </p>
-            </div>
-          </div>
+        <div className="w-full">
+          {adventureGroupStart.length > 0 &&
+            adventureGroupStart.map((item) => (
+              <div
+                key={item._id}
+                className="flex flex-col md:flex-row items-start bg-white rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="md:w-1/2 flex justify-end mt-5">
+                  {(item.tripImages || []).map((imgUrl, index) => (
+                    <img
+                      key={index}
+                      src={`http://localhost:5000/upload/${imgUrl}`}
+                      alt={item.heading}
+                      className="w-96 h-96"
+                    />
+                  ))}
+                </div>
+                <div className="p-6 md:w-1/2">
+                  <h2 className="text-xl font-bold text-gray-800 mb-2">
+                    {item.heading}
+                  </h2>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  {(item.points || []).map((point) => (
+                    <div key={point._id} className="mb-2">
+                      <h3 className="text-lg font-semibold text-gray-700">
+                        {point.subheading}
+                      </h3>
+                      <p className="text-gray-600">{point.des}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
         </div>
         <Grouptourhero />
         <div className="justify-center pt-10 items-center flex flex-col w-full ">

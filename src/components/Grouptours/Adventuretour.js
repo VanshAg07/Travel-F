@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FaHandHoldingHeart, FaUserFriends } from "react-icons/fa";
 import { MdHotel } from "react-icons/md";
 import Nav from "../Nav";
-import Image1 from "../../img/kerala.png";
 import Dropnav from "../../components/Dropnav";
 import Lottie from "lottie-react";
 import Mainreview from "../../components/Mainreview";
@@ -13,17 +12,10 @@ import Grouptourform from "../../components/Groupform";
 import AdventureAllPackage from "./AdventureAllPackage";
 
 const BackpackingTrips = () => {
-  const [expandedDays, setExpandedDays] = useState({});
+  const [backgroundImages, setBackgroundImages] = useState([]);
+  const [groupStart, setGroupStart] = useState([]);
   const [trips, setTrip] = useState([]);
   const [schoolTrip, setSchoolTrip] = useState(null);
-
-  const handleToggleDay = (day) => {
-    setExpandedDays((prevState) => ({
-      ...prevState,
-      [day]: !prevState[day],
-    }));
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,30 +35,48 @@ const BackpackingTrips = () => {
 
     fetchData();
   }, []);
-  const [backgroundImages, setBackgroundImages] = useState([]);
-  const fetchBackgroundImages = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/group-tours/state"
-      );
-      const data = await response.json();
-      setBackgroundImages(data);
-    } catch (error) {
-      console.error("Error fetching background images:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchBackgroundImages = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/group-tours/state"
+        );
+        const data = await response.json();
+        setBackgroundImages(data);
+      } catch (error) {
+        console.error("Error fetching background images:", error);
+      }
+    };
+
+    const fetchStart = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/group-tours/group-start"
+        );
+        const data = await response.json();
+        setGroupStart(data);
+      } catch (error) {
+        console.error("Error fetching start data:", error);
+      }
+    };
+
     fetchBackgroundImages();
+    fetchStart();
   }, []);
-  const nationalImages = Array.isArray(backgroundImages)
-    ? backgroundImages.filter((item) => item.stateName === "Adventure")
-    : [];
+
+  const nationalImages = backgroundImages.filter(
+    (item) => item.stateName === "Adventure"
+  );
+  const adventureGroupStart = groupStart.filter(
+    (item) => item.stateName === "Adventure"
+  );
+
   return (
     <>
-      <div className="wrpper-inter">
+      <div className="wrapper-inter">
         <Nav />
         <Dropnav />
+        {/* Hero Section */}
         <div className="hero-section-left-1">
           {nationalImages.length > 0 &&
             nationalImages.map((item) => (
@@ -105,6 +115,7 @@ const BackpackingTrips = () => {
               </div>
             ))}
         </div>
+
         <div className="mt-[130px] md:mt-0">
           <Mainreview />
         </div>
@@ -112,13 +123,13 @@ const BackpackingTrips = () => {
         <div className="lottie-wr">
           <Lottie
             animationData={weekend}
-            loop={true}
-            autoplay={true}
-            speed={0.5}
+            loop
+            autoplay
             className="hero-lottie"
           />
         </div>
 
+        {/* Highlights Section */}
         <div className="pt-[3rem] pb-4 bg-gray-50">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4 text-gray-800 sm:text-3xl lg:text-4xl">
@@ -148,75 +159,60 @@ const BackpackingTrips = () => {
           </div>
         </div>
 
-        <div className="w-[80%] mx-auto pt-3 flex flex-col md:flex-row justify-between md:space-x-8">
-          <div className="w-full md:w-[50%] mt-2 md:ml-0">
-            <img
-              src={Image1}
-              alt="Descriptive text here"
-              className="rounded-xl w-full md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
-            />
-          </div>
-          <div className="w-full md:w-[50%] flex flex-col items-start justify-start md:ml-0 mt-5 md:mt-0">
-            <p className="text-yellow-500 font-bold text-3xl mt-10">
-              How to Reach Kedarnath: Your Journey Begins Here
-            </p>
-            <p className="text-left mt-3">
-              Reaching Kedarnath is an adventure in itself, with multiple modes
-              of transport available to guide you to this sacred site.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Air:</p>
-            <p className="text-left">
-              The nearest airport is Jolly Grant Airport in Dehradun,
-              approximately 250 km from Kedarnath. From the airport, you can
-              hire a taxi or take a bus to reach Sonprayag, the last motorable
-              point.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Rail:</p>
-            <p className="text-left">
-              The closest railway stations are in Rishikesh and Haridwar.
-              Regular buses and taxis operate from these stations to Sonprayag,
-              which is about 210 km away.
-            </p>
-            <p className="font-bold mt-5 mb-2 text-left">By Road:</p>
-            <p className="text-left">
-              Kedarnath is well-connected by road to major cities like Delhi,
-              Haridwar, and Rishikesh. The journey by road is a scenic one,
-              passing through the lush green valleys and along the banks of the
-              Ganges. From Sonprayag, you’ll need to travel by shared jeep or
-              trek to Gaurikund, the base camp for the trek to Kedarnath.{" "}
-            </p>
-            <div className="mt-10">
-              <p className="font-bold text-2xl text-yellow-500 text-left">
-                The Trek to Kedarnath
-              </p>
-              <p className="mt-3 text-left">
-                The 16 km trek from Gaurikund to Kedarnath is both challenging
-                and rewarding. For those unable to undertake the trek, pony
-                rides, palanquins, and helicopter services are available. The
-                trail is lined with beautiful waterfalls, streams, and
-                mesmerizing views of snow-capped peaks, making the journey as
-                spiritual as the destination itself.
-              </p>
-            </div>
-          </div>
+        {/* Adventure Group Start Section */}
+        <div className="w-full">
+          {adventureGroupStart.length > 0 &&
+            adventureGroupStart.map((item) => (
+              <div
+                key={item._id}
+                className="flex flex-col md:flex-row items-start bg-white rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="md:w-1/2 flex justify-end mt-5">
+                  {(item.tripImages || []).map((imgUrl, index) => (
+                    <img
+                      key={index}
+                      src={`http://localhost:5000/upload/${imgUrl}`}
+                      alt={item.heading}
+                      className="w-96 h-96"
+                    />
+                  ))}
+                </div>
+                <div className="p-6 md:w-1/2">
+                  <h2 className="text-xl font-bold text-gray-800 mb-2">
+                    {item.heading}
+                  </h2>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  {(item.points || []).map((point) => (
+                    <div key={point._id} className="mb-2">
+                      <h3 className="text-lg font-semibold text-gray-700">
+                        {point.subheading}
+                      </h3>
+                      <p className="text-gray-600">{point.des}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
         </div>
+
         <Grouptourhero />
+
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             All Packages
           </h1>
           <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
-          <div>
-            <p className=" pt-2 inter-description">
-              Discover Your Dream Journey with Our Best-Selling Travel Packages
-            </p>
-          </div>
+          <p className="pt-2 inter-description">
+            Discover Your Dream Journey with Our Best-Selling Travel Packages
+          </p>
         </div>
+
         <div className="flex justify-center mt-10">
           <div className="w-full">
             <AdventureAllPackage />
           </div>
         </div>
+
         <Grouptourform />
         <MainFooter />
       </div>

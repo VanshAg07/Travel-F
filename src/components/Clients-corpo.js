@@ -1,31 +1,31 @@
-import React from 'react';
-import './Clients-corpo.css';
-
-// Import images from src folder
-import image1 from '../img/rishikesh.png';
-import image2 from '../img/ujji.jpg';
-import image3 from '../img/rishikesh.png';
-import image4 from '../img/rishikesh.png';
-import image5 from '../img/rishikesh.png';
-import image6 from '../img/rishikesh.png';
-import image7 from '../img/rishikesh.png';
-import image8 from '../img/rishikesh.png';
-import image9 from '../img/rishikesh.png';
-
-const images = [
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-  image7,
-  image8,
-  image9,
-  // ...add additional images here if needed
-];
+import React, { useEffect, useState } from "react";
+import "./Clients-corpo.css";
 
 const ContinuousScroll = () => {
+  const [hallOfFrame, setHallOfFrame] = useState([]);
+
+  // Fetch the Hall of Fame data
+  const fetchHall = async () => {
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/corporate/hall-of-frame"
+      );
+      const data = await res.json();
+      if (data && data.data) {
+        setHallOfFrame(data.data); // Store the image data in state
+      }
+    } catch (error) {
+      console.error("Error fetching Hall of Fame data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHall();
+  }, []);
+
+  // Extract image URLs from the fetched data
+  const images = hallOfFrame.map((item) => item.image[0]); // Assuming each item has an array with one image URL
+
   // Repeat the images multiple times to ensure seamless scrolling
   const repeatedImages = [...images, ...images, ...images]; // Adjust repetition as needed
 
@@ -38,14 +38,24 @@ const ContinuousScroll = () => {
       {/* First row */}
       <div className="animate-scroll rounded-full">
         {repeatedImages.map((image, index) => (
-          <img key={index} src={image} alt="Logo" className="w-36 rounded-sm h-auto" />
+          <img
+            key={index}
+            src={image}
+            alt="Client Logo"
+            className="w-36 rounded-sm h-auto"
+          />
         ))}
       </div>
 
       {/* Second row scrolling in the opposite direction */}
       <div className="animate-scroll mt-20">
-        {repeatedImages.slice(5).map((image, index) => (  // Start from the second image
-          <img key={index} src={image} alt="Logo" className="w-36 h-auto" />
+        {repeatedImages.slice(5).map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt="Client Logo"
+            className="w-36 h-auto"
+          />
         ))}
       </div>
     </div>

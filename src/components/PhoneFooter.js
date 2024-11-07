@@ -9,22 +9,17 @@ import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import TripsModal from "./TripsModal";
 import ContactModal from "./ContactModal";
-import VideoModal from "./VideoModal";
 import "./Phonefooter.css";
 
 function Footer() {
   const [isTripsModalOpen, setTripsModalOpen] = useState(false);
   const [isContactModalOpen, setContactModalOpen] = useState(false);
-  const [isVideoModalOpen, setVideoModalOpen] = useState(false);
 
   const openTripsModal = () => setTripsModalOpen(true);
   const closeTripsModal = () => setTripsModalOpen(false);
 
   const openContactModal = () => setContactModalOpen(true);
   const closeContactModal = () => setContactModalOpen(false);
-
-  const openVideoModal = () => setVideoModalOpen(true);
-  const closeVideoModal = () => setVideoModalOpen(false);
 
   return (
     <>
