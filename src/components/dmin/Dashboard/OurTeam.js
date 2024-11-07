@@ -15,7 +15,7 @@ function OurTeam() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/home/get-team-member")
+      .get("https://api.travello10.com/api/home/get-team-member")
       .then((response) => {
         const data = response.data;
         if (Array.isArray(data)) {
@@ -79,7 +79,7 @@ function OurTeam() {
       if (teamId) {
         // Update existing team member
         await axios.put(
-          `http://localhost:5000/api/home/add-team-member${teamId}`,
+          `https://api.travello10.com/api/home/add-team-member${teamId}`,
           formData,
           {
             headers: {
@@ -90,7 +90,7 @@ function OurTeam() {
       } else {
         // Create new team member
         await axios.post(
-          "http://localhost:5000/api/home/add-team-member",
+          "https://api.travello10.com/api/home/add-team-member",
           formData,
           {
             headers: {
@@ -115,7 +115,7 @@ function OurTeam() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/home/add-team-member${id}`)
+      .delete(`https://api.travello10.com/api/home/add-team-member${id}`)
       .then(() => {
         setReloadData(!reloadData);
       })

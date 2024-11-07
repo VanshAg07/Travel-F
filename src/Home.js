@@ -38,7 +38,7 @@ const Home = () => {
 
   const fetchPayment = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/home/home-offers");
+      const res = await fetch("https://api.travello10.com/api/home/home-offers");
       const data = await res.json();
       console.log("Fetched data:", data);
       const activeImages = data.data.filter((item) => item.status === true);
@@ -63,7 +63,7 @@ const Home = () => {
             {paymentImages.map((item) => (
               <div key={item._id} className="flex justify-center items-center">
                 <img
-                  src={`http://localhost:5000/upload/${
+                  src={`https://api.travello10.com/upload/${
                     isMobile ? item.phoneImage : item.image
                   }`}
                   alt="Payment Method"
