@@ -15,7 +15,7 @@ function OurTeam() {
 
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/home/get-team-member")
+      .get("http://localhost:5000/api/home/get-team-member")
       .then((response) => {
         const data = response.data;
         if (Array.isArray(data)) {
@@ -79,7 +79,7 @@ function OurTeam() {
       if (teamId) {
         // Update existing team member
         await axios.put(
-          `https://api.travello10.com/api/home/add-team-member${teamId}`,
+          `http://localhost:5000/api/home/add-team-member${teamId}`,
           formData,
           {
             headers: {
@@ -90,7 +90,7 @@ function OurTeam() {
       } else {
         // Create new team member
         await axios.post(
-          "https://api.travello10.com/api/home/add-team-member",
+          "http://localhost:5000/api/home/add-team-member",
           formData,
           {
             headers: {
@@ -115,7 +115,7 @@ function OurTeam() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://api.travello10.com/api/home/add-team-member${id}`)
+      .delete(`http://localhost:5000/api/home/add-team-member${id}`)
       .then(() => {
         setReloadData(!reloadData);
       })
@@ -224,7 +224,6 @@ function OurTeam() {
           </button>
         </form>
       </div>
-
       {/* List of team members */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Team Members</h2>
@@ -233,7 +232,7 @@ function OurTeam() {
             <li key={member._id} className="flex items-center justify-between">
               <div className="flex items-center">
                 <img
-                  src={`https://api.travello10.com/${member.image[0]}`}
+                  src={`${member.image[0]}`}
                   alt={member.name}
                   className="w-16 h-16 rounded-full mr-4"
                 />

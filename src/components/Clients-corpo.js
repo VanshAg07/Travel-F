@@ -5,7 +5,7 @@ const ClienteleHallOfFame = () => {
 
   const fetchHallOfFame = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/corporate/hall-of-frame");
+      const res = await fetch("http://localhost:5000/api/corporate/hall-of-frame");
       const data = await res.json();
       if (!res.ok) {
         throw new Error("Failed to fetch clients");

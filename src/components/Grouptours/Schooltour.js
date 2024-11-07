@@ -31,7 +31,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/group-tours/group-tours"
+          "http://localhost:5000/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -50,7 +50,7 @@ const BackpackingTrips = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/group-tours/state"
+        "http://localhost:5000/api/group-tours/state"
       );
       const data = await response.json();
       setBackgroundImages(data);
@@ -87,7 +87,7 @@ const BackpackingTrips = () => {
                         loop
                       >
                         <source
-                          src={`https://api.travello10.com/upload/${imgUrl}`}
+                          src={`http://localhost:5000/upload/${imgUrl}`}
                           type="video/mp4"
                         />
                         Your browser does not support the video tag.
@@ -95,7 +95,7 @@ const BackpackingTrips = () => {
                     ) : (
                       <img
                         key={index}
-                        src={`https://api.travello10.com/upload/${imgUrl}`}
+                        src={`http://localhost:5000/upload/${imgUrl}`}
                         alt={`Image ${index}`}
                         className="w-full object-cover"
                       />
