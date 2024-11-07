@@ -33,7 +33,7 @@ const Disclaimer = () => {
             service providers.
           </p>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mt-4">
-            Links from wanderon.in to third-party sites do not constitute an endorsement by WanderOn of the parties or their products and services. The appearance on the website of advertisements and product or service information does not constitute an endorsement by WanderOn.
+            Links from travello10.com to third-party sites do not constitute an endorsement by Travello10 of the parties or their products and services. The appearance on the website of advertisements and product or service information does not constitute an endorsement by Travello10.
           </p>
         </div>
       </div>
