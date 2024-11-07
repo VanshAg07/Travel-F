@@ -9,5 +9,5 @@
   }
 }
 .phone-z {
-  z-index: 9999; /* Make sure the footer is on top */
+  z-index: 999; /* Make sure the footer is on top */
 }

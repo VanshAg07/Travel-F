@@ -14,7 +14,7 @@ function OurTeam() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/home/get-team-member")
+      .get("https://api.travello10.com/api/home/get-team-member")
       .then((response) => {
         console.log(response.data); // Add this to check the response format
         const data = response.data;
@@ -64,7 +64,7 @@ function OurTeam() {
         );
       } else {
         await axios.post(
-          "http://localhost:5000/api/home/add-team-member",
+          "https://api.travello10.com/api/home/add-team-member",
           formData,
           {
             headers: {

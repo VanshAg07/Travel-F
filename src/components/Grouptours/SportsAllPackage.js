@@ -11,7 +11,7 @@ function SportsAllPackage() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/group-tours/group-tours`
+          `https://api.travello10.com/api/group-tours/group-tours`
         );
         const data = await response.json();
         const schoolPackages = data.filter((pkg) => pkg.stateName === type);
