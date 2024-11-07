@@ -1,18 +1,41 @@
-import React from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import video from "../img/bg-v.mp4"
-import "./VideoModal.css"
+import React, { useState, useEffect } from "react";
+import "./VideoModal.css";
+import VideoCard from "../components/Reels/VideoCard";
+// import db from "./firebase";
 
-function VideoModal({ isOpen, onClose, videoSrc }) {
-  if (!isOpen) return null;
+function VideoModal() {
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  useEffect(() => {
+    const fetchReelVideo = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/reel/reels");
+        const data = await response.json();
+        setVideos(data); // Assuming data is an array of video objects
+        if (data.length > 0) {
+          setSelectedVideo(`http://localhost:5000/upload/${data[0].video[0]}`);
+        }
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
+    };
+    fetchReelVideo();
+  }, []);
 
   return (
-    <div className="fixed video-z inset-0 flex justify-center items-center bg-black bg-opacity-90">
-      <div className="relative w-full h-full flex items-center justify-center">
-        <button onClick={onClose} className="absolute top-4 right-4 text-white text-3xl">
-          <AiOutlineClose />
-        </button>
-        <video className="w-full h-full object-cover" src={video} controls autoPlay />
+    <div className="app">
+      <div className="app__videos">
+        {videos.map(({ videoTitle, video, videoSubtitle, urlLink }) => (
+          <VideoCard
+            key={videoTitle} // Using videoTitle as the key
+            videoTitle={videoTitle}
+            videoSubtitle={videoSubtitle}
+            video={video}
+            url={`http://localhost:5000/upload/${video[0]}`}
+            link={urlLink}
+          />
+        ))}
       </div>
     </div>
   );

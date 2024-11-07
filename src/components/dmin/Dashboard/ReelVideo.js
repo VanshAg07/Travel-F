@@ -6,7 +6,8 @@ function ReelVideo() {
   const [videoTitle, setVideoTitle] = useState("");
   const [videoFiles, setVideoFiles] = useState(null);
   const [editingId, setEditingId] = useState(null);
-
+  const [urlLink, setUrl] = useState("");
+  const [videoSubtitle, setVideoSubtitle] = useState("");
   // Fetch all videos
   const fetchVideos = async () => {
     try {
@@ -30,7 +31,8 @@ function ReelVideo() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("videoTitle", videoTitle);
-
+    formData.append("videoSubtitle", videoSubtitle); // Add this line
+    formData.append("urlLink", urlLink);
     // Append files only if there are new selected files
     if (videoFiles) {
       Array.from(videoFiles).forEach((file) => formData.append("video", file));
@@ -50,6 +52,8 @@ function ReelVideo() {
       setVideoTitle("");
       setVideoFiles(null);
       setEditingId(null);
+      setVideoSubtitle("");
+      setUrl("");
       fetchVideos();
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -60,6 +64,8 @@ function ReelVideo() {
   const handleEditClick = (video) => {
     setEditingId(video._id);
     setVideoTitle(video.videoTitle);
+    setVideoSubtitle(video.videoSubtitle);
+    setUrl(video.urlLink);
   };
 
   // Handle delete button click
@@ -92,6 +98,23 @@ function ReelVideo() {
           onChange={(e) => setVideoTitle(e.target.value)}
           required
           className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="text"
+          placeholder="Video Subtitle"
+          value={videoSubtitle}
+          onChange={(e) => setVideoSubtitle(e.target.value)}
+          required
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="text"
+          placeholder="Video URL"
+          value={urlLink}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded
+        md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
         <input
           type="file"
@@ -128,6 +151,10 @@ function ReelVideo() {
                     autoPlay
                   />
                 ))}
+                <div className="flex flex-col">
+                  <p>{video.videoSubtitle}</p>
+                  <p>{video.urlLink}</p>
+                </div>
               </div>
             </div>
             <div className="flex gap-2 mt-4 md:mt-0">

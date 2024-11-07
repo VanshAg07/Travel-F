@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { AiOutlineHome, AiOutlineFlag, AiOutlineSearch, AiOutlinePhone } from 'react-icons/ai';
-import { FaPlay } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  AiOutlineHome,
+  AiOutlineFlag,
+  AiOutlineSearch,
+  AiOutlinePhone,
+} from "react-icons/ai";
+import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import TripsModal from './TripsModal';
-import ContactModal from './ContactModal';
-import VideoModal from './VideoModal';
+import TripsModal from "./TripsModal";
+import ContactModal from "./ContactModal";
+import VideoModal from "./VideoModal";
 import "./Phonefooter.css";
 
 function Footer() {
@@ -30,18 +35,30 @@ function Footer() {
             <span className="text-xs">Home</span>
           </div>
         </Link>
-        <div className="flex flex-col items-center text-gray-400" onClick={openTripsModal}>
+        <div
+          className="flex flex-col items-center text-gray-400"
+          onClick={openTripsModal}
+        >
           <AiOutlineFlag className="text-xl" />
           <span className="text-xs">Trips</span>
         </div>
-        <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center -mt-6" onClick={openVideoModal}>
-          <FaPlay className="text-2xl" />
-        </div>
+        <Link to="/reel-slider">
+          <div
+            className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center -mt-6"
+            // onClick={openVideoModal}
+          >
+            <FaPlay className="text-2xl" />
+          </div>
+        </Link>
+
         <div className="flex flex-col items-center text-gray-400">
           <AiOutlineSearch className="text-xl" />
           <span className="text-xs">Search</span>
         </div>
-        <div className="flex flex-col items-center text-gray-400  " onClick={openContactModal}>
+        <div
+          className="flex flex-col items-center text-gray-400  "
+          onClick={openContactModal}
+        >
           <AiOutlinePhone className="text-xl transform rotate-90" />
           <span className="text-xs">Contact</span>
         </div>
@@ -49,7 +66,11 @@ function Footer() {
 
       <TripsModal isOpen={isTripsModalOpen} onClose={closeTripsModal} />
       <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
-      <VideoModal isOpen={isVideoModalOpen} onClose={closeVideoModal} videoSrc="/assets/video.mp4" />
+      {/* <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={closeVideoModal}
+        videoSrc="/assets/video.mp4"
+      /> */}
     </>
   );
 }
