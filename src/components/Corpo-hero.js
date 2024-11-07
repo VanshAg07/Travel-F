@@ -81,14 +81,11 @@ const HighLevelCorporateTour = () => {
               <div className="flex-1 mt-8 lg:mt-0 lg:max-w-lg w-full">
                 {partner.youtubeLink ? (
                   <iframe
-                    width="100%"
-                    height="250"
                     src={getEmbedUrl(partner.youtubeLink)}
                     title={`${partner.heading} YouTube video`}
-                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="rounded-lg shadow-lg"
+                    className="w-full aspect-video rounded-lg shadow-lg"
                   ></iframe>
                 ) : (
                   partner.image &&

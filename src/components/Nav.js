@@ -151,25 +151,25 @@ const Nav = () => {
         {isMobile && (
           <div className="flex flex-col">
             <Link to="/national" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
                 <p>Indian Trips</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
                 <p>International Deals</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Honeymoon" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
                 <p>Honeymoon Packages</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
                 <p>Corporate Trips</p>
               </div>
             </Link>
@@ -179,7 +179,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/weekends")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>Weekends Trips</p>
               </div>
             </Link>
@@ -189,7 +189,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>Group Tours</p>
               </div>
             </Link>
@@ -199,7 +199,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Aboutus")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>About Us</p>
               </div>
             </Link>
@@ -209,7 +209,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Payments")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>Payments</p>
               </div>
             </Link>
@@ -219,8 +219,18 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Blog")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>Blogs</p>
+              </div>
+            </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
+            <Link
+              to="/Glry"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/Glry")}
+            >
+              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+                <p>Gallery</p>
               </div>
             </Link>
           </div>

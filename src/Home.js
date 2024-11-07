@@ -26,6 +26,7 @@ import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
+import PhoneFooter from "./components/PhoneFooter.js"
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -123,7 +124,9 @@ const Home = () => {
           <Forms />
           <Homeyt />
         </div>
+        <div className="">
         <MainFooter />
+        </div>
         <Socialmedia />
         <div className="fixed-button-1">
           <a
@@ -136,11 +139,10 @@ const Home = () => {
             <Lottie loop={true} animationData={cont} />
           </a>
         </div>
-
-        {/* Include the SignInPopup component */}
         <SignInPopup />
-        {/* <Popup /> */}
-        {/* <Popup2 /> */}
+        
+        <PhoneFooter />
+        
       </GoogleOAuthProvider>
     </div>
   );

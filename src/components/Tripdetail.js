@@ -33,7 +33,7 @@ const TripDetailCard = ({ trip }) => {
           <FaClock className="mr-1 text-black" />
           <p className="text-sm text-black">{trip.tripDuration}</p>
         </div>
-        <div className="flex items-center mb-2 ">
+        <div className="flex items-center mt-1 mb-2 ">
           <FaCalendarAlt className="mr-1" />
           {/* Use the first date for formatting */}
           <p className="text-sm text-black mr-1">{formatDate(firstDate)}</p>
