@@ -12,7 +12,7 @@ const VideoSlider = () => {
 
   const fetchVideos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/home/youtube");
+      const response = await fetch("https://api.travello10.com/api/home/youtube");
       const data = await response.json(); // Parse JSON response
       setVideos(data); // Set the videos state
     } catch (error) {

@@ -53,7 +53,7 @@ const PackageWeekend = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/weekends/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/weekends/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
         setSharing(response.data.sharing);
