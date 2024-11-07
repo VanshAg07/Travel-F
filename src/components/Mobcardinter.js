@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { product_card_2 } from "./Product_data";
-
+import underline from "../img/underline.png"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
@@ -45,9 +44,9 @@ export default function Card() {
   return (
     <div className="">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
-        <div className="flex ml-4 flex-col">
+        <div className="flex  mt-40 ml-4 flex-col">
           <h1 className="text-lg font-bold">International Packages</h1>
-          <div className="w-32 border-b-4 border-blue-400 mt-1" />
+          <img src={underline} alt="underline" className="w-40 -mt-16" />
         </div>
         <a href="/national" className="text-red-500 text-sm mr-4">
           See All

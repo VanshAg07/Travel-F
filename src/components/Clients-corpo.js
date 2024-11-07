@@ -1,43 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import './Clients-corpo.css';
 
-const ClienteleHallOfFame = () => {
-  const [clients, setClients] = useState([]);
+// Import images from src folder
+import image1 from '../img/rishikesh.png';
+import image2 from '../img/ujji.jpg';
+import image3 from '../img/rishikesh.png';
+import image4 from '../img/rishikesh.png';
+import image5 from '../img/rishikesh.png';
+import image6 from '../img/rishikesh.png';
+import image7 from '../img/rishikesh.png';
+import image8 from '../img/rishikesh.png';
+import image9 from '../img/rishikesh.png';
 
-  const fetchHallOfFame = async () => {
-    try {
-      const res = await fetch("https://api.travello10.com/api/corporate/hall-of-frame");
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error("Failed to fetch clients");
-      }
-      setClients(data.data); // Use data.data to access the array
-    } catch (error) {
-      console.error("Failed to fetch clients:", error);
-    }
-  };
+const images = [
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image6,
+  image7,
+  image8,
+  image9,
+  // ...add additional images here if needed
+];
 
-  useEffect(() => {
-    fetchHallOfFame();
-  }, []);
+const ContinuousScroll = () => {
+  // Repeat the images multiple times to ensure seamless scrolling
+  const repeatedImages = [...images, ...images, ...images]; // Adjust repetition as needed
 
   return (
-    <div className="pt-8 pl-8 pr-8 pb-2 bg-white text-center">
+    <div className="scroll-container pt-8 pl-8 pr-8 pb-2 bg-white text-center">
       <h2 className="text-xl md:text-3xl mb-8 lg:text-4xl font-bold leading-tight sm:text-xl">
         Our Clientele <span className="text-gray-800">Hall of Fame</span>
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">
-        {clients.map((client, index) => (
-          <div key={client._id} className="flex flex-col items-center">
-            <img
-              src={client.image[0]} // Access the first image URL from the array
-              alt={`Client logo ${index + 1}`}
-              className="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-contain mb-4"
-            />
-          </div>
+
+      {/* First row */}
+      <div className="animate-scroll rounded-full">
+        {repeatedImages.map((image, index) => (
+          <img key={index} src={image} alt="Logo" className="w-36 rounded-sm h-auto" />
+        ))}
+      </div>
+
+      {/* Second row scrolling in the opposite direction */}
+      <div className="animate-scroll mt-20">
+        {repeatedImages.slice(5).map((image, index) => (  // Start from the second image
+          <img key={index} src={image} alt="Logo" className="w-36 h-auto" />
         ))}
       </div>
     </div>
   );
 };
 
-export default ClienteleHallOfFame;
+export default ContinuousScroll;

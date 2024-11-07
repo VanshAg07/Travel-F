@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TripDetailCard from "./Tripdetail"; // Import the TripDetailCard component
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import underline from "../img/underline.png"
 import "./Explore-mob.css";
 
 const TravelOptions = () => {
@@ -47,9 +47,9 @@ const TravelOptions = () => {
   return (
     <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-96">
       <div className="flex justify-between items-center mb-4 h-[10vh]">
-        <div className="flex ml-4 flex-col">
+        <div className="flex mt-24 ml-4 flex-col">
           <h1 className="text-lg font-bold">Upcoming Trips</h1>
-          <div className="w-32 border-b-4 border-blue-400 mt-1" />
+          <img src={underline} alt="underline" className="w-28 -mt-10" />
         </div>
       </div>
 
