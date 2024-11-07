@@ -31,7 +31,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/group-tours/group-tours"
+          "https://api.travello10.com/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -50,7 +50,7 @@ const BackpackingTrips = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/group-tours/state"
+        "https://api.travello10.com/api/group-tours/state"
       );
       const data = await response.json();
       setBackgroundImages(data);
@@ -87,7 +87,7 @@ const BackpackingTrips = () => {
                         loop
                       >
                         <source
-                          src={`http://localhost:5000/upload/${imgUrl}`}
+                          src={`https://api.travello10.com/upload/${imgUrl}`}
                           type="video/mp4"
                         />
                         Your browser does not support the video tag.
@@ -95,7 +95,7 @@ const BackpackingTrips = () => {
                     ) : (
                       <img
                         key={index}
-                        src={`http://localhost:5000/upload/${imgUrl}`}
+                        src={`https://api.travello10.com/upload/${imgUrl}`}
                         alt={`Image ${index}`}
                         className="w-full object-cover"
                       />
@@ -207,16 +207,25 @@ const BackpackingTrips = () => {
           </div>
         </div>
         <Grouptourhero />
-        <div className="justify-center pt-10 items-center flex flex-col w-full">
+        <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             All Packages
           </h1>
-          <div className="flex items-center flex-col md:flex-row w-[90%]">
-            <SchoolAllPackage />
+          <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+          <div>
+            <p className=" pt-2 inter-description">
+              Discover Your Dream Journey with Our Best-Selling Travel Packages
+            </p>
           </div>
         </div>
-      </div>
+        <div className="flex justify-center mt-10">
+          <div className="w-full">
+          <SchoolAllPackage />
+          </div>
+        </div>
+        <Grouptourform />
       <MainFooter />
+      </div>
     </>
   );
 };

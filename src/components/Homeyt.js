@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // Importing icons
 import Logo from "../img/Travello10logo.png"; // Ensure this path is correct
+import "./Homeyt.css"
 
 const VideoSlider = () => {
   const [videos, setVideos] = useState([]);
@@ -12,7 +13,9 @@ const VideoSlider = () => {
 
   const fetchVideos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/home/youtube");
+      const response = await fetch(
+        "https://api.travello10.com/api/home/youtube"
+      );
       const data = await response.json(); // Parse JSON response
       setVideos(data); // Set the videos state
     } catch (error) {
@@ -52,7 +55,7 @@ const VideoSlider = () => {
           <div className="relative w-full">
             {videos.length > 0 ? ( // Check if videos are available
               <iframe
-                className="w-full h-64 sm:h-80 lg:h-[500px] rounded-md"
+                className="w-full aspect-video rounded-md"
                 src={`https://www.youtube.com/embed/${new URL(
                   videos[currentVideoIndex].videoLink
                 ).searchParams.get("v")}`}
@@ -85,7 +88,7 @@ const VideoSlider = () => {
           style={{ zIndex: 10 }}
           disabled={videos.length === 0} // Disable if no videos
         >
-          <FaChevronCircleRight className=" yt-right text-2xl" />
+          <FaChevronCircleRight className="yt-right text-2xl" />
         </button>
       </div>
 

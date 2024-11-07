@@ -47,6 +47,7 @@
     .fixed-button-1 {
         width: 20%;
         right: -10px;
+        bottom: 15%;
     }
     .home-wr{
         overflow-x: hidden;

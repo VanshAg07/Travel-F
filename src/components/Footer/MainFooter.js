@@ -4,7 +4,7 @@ import Footer from "../../Footer";
 
 function MainFooter() {
   return (
-    <div className="">
+    <div className="bg-white pb-12">
       <FooterSection />
       <Footer />
     </div>

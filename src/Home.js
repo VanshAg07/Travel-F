@@ -26,6 +26,7 @@ import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
+import PhoneFooter from "./components/PhoneFooter.js"
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -37,7 +38,7 @@ const Home = () => {
 
   const fetchPayment = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/home/home-offers");
+      const res = await fetch("https://api.travello10.com/api/home/home-offers");
       const data = await res.json();
       console.log("Fetched data:", data);
       const activeImages = data.data.filter((item) => item.status === true);
@@ -62,7 +63,7 @@ const Home = () => {
             {paymentImages.map((item) => (
               <div key={item._id} className="flex justify-center items-center">
                 <img
-                  src={`http://localhost:5000/upload/${
+                  src={`https://api.travello10.com/upload/${
                     isMobile ? item.phoneImage : item.image
                   }`}
                   alt="Payment Method"
@@ -123,7 +124,9 @@ const Home = () => {
           <Forms />
           <Homeyt />
         </div>
+        <div className="">
         <MainFooter />
+        </div>
         <Socialmedia />
         <div className="fixed-button-1">
           <a
@@ -136,11 +139,10 @@ const Home = () => {
             <Lottie loop={true} animationData={cont} />
           </a>
         </div>
-
-        {/* Include the SignInPopup component */}
         <SignInPopup />
-        {/* <Popup /> */}
-        {/* <Popup2 /> */}
+        
+        <PhoneFooter />
+        
       </GoogleOAuthProvider>
     </div>
   );

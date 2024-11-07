@@ -15,7 +15,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {
@@ -63,11 +63,15 @@ const Videopage = () => {
           </span>
           <span className="">
             WITH <span className="sp-1 text-[yellow]">TRAVELLO10</span>
+            <hr className="hidden md:block border-t-2 border-white w-[85%] md:mt-6" />
           </span>
+          {/* White horizontal line below the text */}
+          
         </h1>
+
         <div className="h-10 w-full bg-white z-20"></div>
         <p
-          className="videopg-p left-20 absolute uppercase md:top-[350px] top-[340px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
+          className="videopg-p md:mt-6 left-20 absolute uppercase md:top-[350px] top-[340px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
         >
           Book trips and explore new <br /> destinations with ease <br /> from
@@ -79,7 +83,7 @@ const Videopage = () => {
         onClick={handleGetQuotesClick}
         className="absolute videopg-btn left-20 top-[460px] z-50"
       >
-        <button className="bg-white video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-2">
+        <button className="bg-white md:mt-6 video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-2">
           BOOK NOW
         </button>
       </div>
@@ -89,12 +93,9 @@ const Videopage = () => {
         <Mainreview />
       </div>
       {isQuotePopupVisible && (
-        <div
-  className="fixed inset-0 z-[100] flex items-center justify-center"
->
-  <QuotePopup onClose={closeQuotePopup} />
-</div>
-
+        <div className="fixed inset-0 z-[100] flex items-center justify-center">
+          <QuotePopup onClose={closeQuotePopup} />
+        </div>
       )}
       {/* Homecrd component */}
       <div>

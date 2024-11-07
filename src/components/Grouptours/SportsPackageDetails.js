@@ -67,7 +67,7 @@ const SportsPackageDetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/group-tours/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/group-tours/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -107,7 +107,7 @@ const SportsPackageDetails = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "http://localhost:5000/api/contact/contact-trip",
+        "https://api.travello10.com/api/contact/contact-trip",
         formData
       );
 
@@ -287,6 +287,7 @@ const SportsPackageDetails = () => {
                     <div
                       className="mb-5 bg-blue-100 p-3 rounded-lg shadow-md"
                       key={index}
+                      onClick={() => handleToggleDay(index + 1)}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex items-start flex-grow">
@@ -301,7 +302,7 @@ const SportsPackageDetails = () => {
                         </div>
                         <span
                           className="cursor-pointer border-2 ml-2 border-blue-400 pl-2 pr-2 pt-[1px] pb-[1px] rounded-sm text-blue-400 hover:bg-blue-200 transition-colors duration-300"
-                          onClick={() => handleToggleDay(index + 1)}
+                          
                         >
                           {expandedDays[index + 1] ? "-" : "+"}
                         </span>
@@ -311,10 +312,10 @@ const SportsPackageDetails = () => {
                         <ul className="mt-4 mx-10">
                           {itineraryItem.points.map((detail, i) => (
                             <div
-                              className="mt-2 flex flex-row items-center gap-3"
+                              className="mt-2 flex items-start gap-3"
                               key={i}
                             >
-                              <div className="flex-shrink-0 w-3 h-3 flex items-center justify-center">
+                              <div className="flex-shrink-0 w-3 mt-2 h-3 flex items-center justify-center">
                                 <LuCircleDotDashed className="w-full h-full" />
                               </div>
                               <li className="text-xs sm:text-sm md:text-base">

@@ -41,11 +41,11 @@ const WhyTravello = () => {
       <h2 className="text-center md:text-2xl text-xl lg:text-4xl font-bold md:mb-8 mb-4">
         Why Travello10?
       </h2>
-      <div className="flex justify-between flex-wrap lg:flex-nowrap gap-4">
+      <div className="flex justify-between pb-10 flex-wrap lg:flex-nowrap gap-4">
         {reasons.map((reason, index) => (
           <div
             key={index}
-            className="w-full lg:w-1/4 h-[60vh] bg-white p-6 rounded-lg shadow-lg shadow-black flex flex-col justify-between"
+            className="w-full lg:w-1/4 h-[55vh] bg-white p-6 rounded-lg shadow-lg shadow-black flex flex-col justify-between"
           >
             <div>
               <h3 className="md:text-2xl text-lg text-[#03346e] font-semibold mb-2">

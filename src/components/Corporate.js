@@ -44,7 +44,7 @@ const Corporate = () => {
   const fetchCorporate = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/corporate/create-corporate-landing"
+        "https://api.travello10.com/api/corporate/create-corporate-landing"
       );
       setCorporateData(res.data.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const Corporate = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -68,10 +68,9 @@ const Corporate = () => {
 
   return (
     <>
-      <div>
         <Nav />
         <Dropnav />
-        <div>
+        <div className="hero-section-left-1">
           {nationalImages.map((item) => (
             <div key={item._id} className="relative">
               {item.image.map((imgUrl, index) =>
@@ -179,7 +178,6 @@ const Corporate = () => {
         <div className="bg-[#ffffe6]">
           <Whyuss />
           <Corpoform />
-        </div>
       </div>
       <MainFooter />
       <div className="fixed-button-1">
@@ -192,8 +190,9 @@ const Corporate = () => {
         >
           <Lottie loop={true} animationData={cont} />
         </a>
+        
       </div>
-    </>
+      </>
   );
 };
 

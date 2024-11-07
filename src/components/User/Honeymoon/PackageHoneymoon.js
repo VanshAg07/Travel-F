@@ -225,8 +225,9 @@ const PackageHoneymoon = () => {
               trips.tripItinerary.length > 0 ? (
                 trips.tripItinerary.map((itineraryItem, index) => (
                   <div
-                    className="mb-5 bg-blue-100 p-3 rounded-lg shadow-md"
+                    className="mb-5 cursor-pointer bg-blue-100 p-3 rounded-lg shadow-md"
                     key={index}
+                    onClick={() => handleToggleDay(index + 1)}  // Move onClick to the parent div
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-start flex-grow">
@@ -251,10 +252,10 @@ const PackageHoneymoon = () => {
                       <ul className="mt-4 mx-10">
                         {itineraryItem.points.map((detail, i) => (
                           <div
-                            className="mt-2 flex flex-row items-center gap-3"
+                            className="mt-2 flex items-start gap-3"
                             key={i}
                           >
-                            <div className="flex-shrink-0 w-3 h-3 flex items-center justify-center">
+                            <div className="flex-shrink-0 mt-2 w-3 h-3 flex items-center justify-center">
                               <LuCircleDotDashed className="w-full h-full" />
                             </div>
                             <li className="text-xs sm:text-sm md:text-base">

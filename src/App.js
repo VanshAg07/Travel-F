@@ -77,6 +77,7 @@ import Forgotmob from "./components/Login/Forgotmob.js";
 import Forgot from "./components/Login/Forgot.js";
 import PackageOffer from "./components/User/Offers/PackageOffer.js";
 import SportsPackageDetails from "./components/Grouptours/SportsPackageDetails.js";
+import PhoneFooter from "./components/PhoneFooter.js"
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -202,6 +203,7 @@ const App = () => {
         <Route path="/offer" element={<Offer />} />
         <Route path="/forgotmob" element={<Forgotmob />} />
         <Route path="/forgot" element={<Forgot />} />
+        <Route path="/phonefooter" element={<PhoneFooter />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>

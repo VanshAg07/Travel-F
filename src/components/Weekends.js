@@ -23,7 +23,7 @@ const Weekends = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -112,18 +112,21 @@ const Weekends = () => {
               </p>
             </div>
           </div>
-          <div className="relative pt-10 mb-8">
-            <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-              All Packages
-            </h1>
-            {/* Responsive yellow underline with adjusted spacing */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] h-2 bg-yellow w-2/4 sm:w-1/3 lg:w-[7vw]"></div>
-          </div>
-          <p className="inter-description">
+          <div className="justify-center pt-10 items-center flex flex-col w-full ">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
+          All Packages
+        </h1>
+        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
+        <div>
+          <p className=" pt-2 inter-description">
             Discover Your Dream Journey with Our Best-Selling Travel Packages
           </p>
-          <div>
+        </div>
+      </div>
+      <div className="flex justify-center mt-10">
+      <div className="w-full">
             <AllWeekendTrips />
+            </div>
           </div>
         </div>
         <div className="bg-[#ffffe6]">

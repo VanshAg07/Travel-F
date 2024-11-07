@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import axios from "axios";
+import "./Explore.css"
 
 const ImageSlider = () => {
   const [index, setIndex] = useState(0);
@@ -9,7 +10,7 @@ const ImageSlider = () => {
   const fetchAdventures = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/home/explore-adventure"
+        "https://api.travello10.com/api/home/explore-adventure"
       );
       setAdventures(res.data);
     } catch (error) {
@@ -75,7 +76,7 @@ const ImageSlider = () => {
                     <video
                       src={adventure.video[0]}
                       alt={`Slide ${i}`}
-                      className="w-full h-[480px] object-cover rounded-lg shadow-lg shadow-black transition-opacity duration-300"
+                      className="w-full h-[480px] object-cover shadow-lg shadow-black transition-opacity duration-300"
                       loop
                       muted
                       style={{ opacity: 0.8 }}
@@ -88,9 +89,12 @@ const ImageSlider = () => {
                         e.target.style.opacity = 0.8;
                       }}
                     />
-                    <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 rounded bg-[#000000a1]">
-                      {adventure.title}
-                    </h1>
+                    <h1
+  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border"
+>
+  {adventure.title}
+</h1>
+
                   </a>
                 </div>
               ))}

@@ -1,48 +1,57 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaHome, FaPlane, FaSearch, FaPhoneAlt } from 'react-icons/fa'; // Importing icons
-import './Phonefooter.css'; // Ensure you have the CSS in this file
+import React, { useState } from 'react';
+import { AiOutlineHome, AiOutlineFlag, AiOutlineSearch, AiOutlinePhone } from 'react-icons/ai';
+import { FaPlay } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import TripsModal from './TripsModal';
+import ContactModal from './ContactModal';
+import VideoModal from './VideoModal';
+import "./Phonefooter.css";
 
-const PhoneFooterr = () => {
-  const [activeIndex, setActiveIndex] = useState(1); // Default active item
-  const [menuPosition, setMenuPosition] = useState(0);
-  const menuRef = useRef(null);
+function Footer() {
+  const [isTripsModalOpen, setTripsModalOpen] = useState(false);
+  const [isContactModalOpen, setContactModalOpen] = useState(false);
+  const [isVideoModalOpen, setVideoModalOpen] = useState(false);
 
-  useEffect(() => {
-    // Update the position of the indicator when the component mounts or activeIndex changes
-    const menuItems = menuRef.current.querySelectorAll('.sc-menu-item');
-    const currentElement = menuItems[activeIndex];
+  const openTripsModal = () => setTripsModalOpen(true);
+  const closeTripsModal = () => setTripsModalOpen(false);
 
-    if (currentElement) {
-      const newPosition = currentElement.offsetLeft - 16;
-      setMenuPosition(newPosition);
-    }
-  }, [activeIndex]);
+  const openContactModal = () => setContactModalOpen(true);
+  const closeContactModal = () => setContactModalOpen(false);
 
-  const handleMenuClick = (index) => {
-    setActiveIndex(index);
-  };
+  const openVideoModal = () => setVideoModalOpen(true);
+  const closeVideoModal = () => setVideoModalOpen(false);
 
   return (
-    <div className="sc-bottom-bar" ref={menuRef} style={{ backgroundPosition: `${menuPosition - 8}px` }}>
-      <a className={`sc-menu-item ${activeIndex === 0 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(0)}>
-         <FaPlane />{/* Home Icon */}
-        <span className="sc-menu-label">Trips</span> {/* Label for Home */}
-      </a>
-      <a className={`sc-menu-item ${activeIndex === 1 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(1)}>
-      <FaHome /> {/* Trip Icon */}
-        <span className="sc-menu-label">Home</span> {/* Label for Trips */}
-      </a>
-      <a className={`sc-menu-item ${activeIndex === 2 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(2)}>
-        <FaSearch /> {/* Search Icon */}
-        <span className="sc-menu-label">Search</span> {/* Label for Search */}
-      </a>
-      <div className="sc-nav-indicator" style={{ left: `${menuPosition}px` }}></div>
-      <a className={`sc-menu-item ${activeIndex === 3 ? 'sc-current' : ''}`} onClick={() => handleMenuClick(3)}>
-        <FaPhoneAlt /> {/* Contact Icon */}
-        <span className="sc-menu-label">Contact</span> {/* Label for Contact */}
-      </a>
-    </div>
-  );
-};
+    <>
+      <div className="fixed phone-z  bottom-0 left-0 right-0 bg-black text-white flex justify-around items-center p-2 hide-above-425px ">
+        <Link to="/">
+          <div className="flex flex-col items-center text-gray-400">
+            <AiOutlineHome className="text-xl" />
+            <span className="text-xs">Home</span>
+          </div>
+        </Link>
+        <div className="flex flex-col items-center text-gray-400" onClick={openTripsModal}>
+          <AiOutlineFlag className="text-xl" />
+          <span className="text-xs">Trips</span>
+        </div>
+        <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center -mt-6" onClick={openVideoModal}>
+          <FaPlay className="text-2xl" />
+        </div>
+        <div className="flex flex-col items-center text-gray-400">
+          <AiOutlineSearch className="text-xl" />
+          <span className="text-xs">Search</span>
+        </div>
+        <div className="flex flex-col items-center text-gray-400  " onClick={openContactModal}>
+          <AiOutlinePhone className="text-xl transform rotate-90" />
+          <span className="text-xs">Contact</span>
+        </div>
+      </div>
 
-export default PhoneFooterr;
+      <TripsModal isOpen={isTripsModalOpen} onClose={closeTripsModal} />
+      <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
+      <VideoModal isOpen={isVideoModalOpen} onClose={closeVideoModal} videoSrc="/assets/video.mp4" />
+    </>
+  );
+}
+
+export default Footer;
