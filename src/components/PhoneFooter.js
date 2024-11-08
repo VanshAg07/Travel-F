@@ -69,6 +69,7 @@ function Footer() {
       {/* <SearchModal isOpen={isSearchModalOpen} onClose={closeSearchModal} /> */}
     </>
   );
+  
 }
 
 export default Footer;
