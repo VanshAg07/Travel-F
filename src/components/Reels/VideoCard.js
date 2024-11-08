@@ -2,10 +2,21 @@ import React, { useRef, useState } from "react";
 import "./VideoCard.css";
 import VideoHeader from "./VideoHeader";
 import VideoFooter from "./VideoFooter";
+import { useNavigate } from "react-router-dom";
 
-function VideoCard({ url, likes, shares, channel, avatarSrc, song ,videoTitle,videoSubtitle}) {
+function VideoCard({
+  url,
+  likes,
+  shares,
+  channel,
+  avatarSrc,
+  song,
+  videoTitle,
+  videoSubtitle,
+}) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   const onVideoPress = () => {
     if (isVideoPlaying) {
@@ -18,9 +29,15 @@ function VideoCard({ url, likes, shares, channel, avatarSrc, song ,videoTitle,vi
       setIsVideoPlaying(true);
     }
   };
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className="videoCard">
-      <VideoHeader />
+      <div onClick={handleBack}>
+        <VideoHeader />
+      </div>
       <video
         ref={videoRef}
         onClick={onVideoPress}
@@ -31,7 +48,7 @@ function VideoCard({ url, likes, shares, channel, avatarSrc, song ,videoTitle,vi
         autoPlay
         muted
       />
-      <VideoHeader />
+      {/* <VideoHeader /> */}
       <VideoFooter
         channel={channel}
         likes={likes}

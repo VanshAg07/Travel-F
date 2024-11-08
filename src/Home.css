@@ -47,7 +47,7 @@
     .fixed-button-1 {
         width: 20%;
         right: -10px;
-        bottom: 15%;
+        bottom: 20%;
     }
     .home-wr{
         overflow-x: hidden;
@@ -61,3 +61,14 @@
         right: -10px;
     }
 }
+
+@media (max-width: 425px) {
+    .pb-20-425 {
+      padding-bottom: 5rem; /* Equivalent to pb-20 */
+    }
+  
+    .bg-white-425 {
+      background-color: #fff;
+    }
+  }
+  

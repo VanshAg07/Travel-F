@@ -130,7 +130,7 @@ const Packagedetails = () => {
 
           {trips.pdf && (
             <button
-              className="absolute rounded-3xl bottom-28 left-1/2 transform -translate-x-1/2 
+              className="absolute btn-itin rounded-3xl bottom-28 left-1/2 transform -translate-x-1/2 
                  flex items-center justify-center 
                  text-sm sm:text-base md:text-lg lg:text-xl 
                  bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
@@ -426,10 +426,10 @@ const Packagedetails = () => {
         <div className="pb-7 bg-[#ffffe6]">
           <Review />
         </div>
-        <div className="">
+        <div className="pb-425 bg-425">
           <MainFooter />
         </div>
-        <div className="fixed-button-1">
+        <div className="fixed-button-1 btn-ind-phone">
           <a
             href={`https://wa.me/918287804197?text=${encodeURIComponent(
               whatsappMessage

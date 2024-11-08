@@ -12,7 +12,7 @@ const SearchModal = ({ isOpen, onClose }) => {
         <button onClick={onClose} className="modal-close-button">
           &times;
         </button>
-        <h2 className="modal-title">Search</h2>
+        <h2 className="text-lg font-semibold">Search</h2>
         <div className="-ml-3">
         <SearchBar /> {/* Render SearchBar within the modal */}
         </div>

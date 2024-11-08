@@ -138,12 +138,12 @@ const National = () => {
       </div>
       <div className="bg-[#ffffe6]">
         <div className="pt-96">
-          {isMobile ? (
-            <>
+        {isMobile ? (
+            <div className="pl-[10px] pr-[10px] relative">
               <MobileHomeGallery />
-            </>
+            </div>
           ) : (
-            <div className="px-36">
+            <div className="px-28 relative">
               <Homeglry />
             </div>
           )}

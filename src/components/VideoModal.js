@@ -28,7 +28,7 @@ function VideoModal() {
       <div className="app__videos">
         {videos.map(({ videoTitle, video, videoSubtitle, urlLink }) => (
           <VideoCard
-            key={videoTitle} // Using videoTitle as the key
+            key={videoTitle}
             videoTitle={videoTitle}
             videoSubtitle={videoSubtitle}
             video={video}

@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import icon1 from "../img/aboutus.jpg";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import Nav from "./Nav";
 import Dropnav from "../components/Dropnav";
 import cont from "../img/cont-button.json";
 import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 import Aboutushero from "./aboutus-hero";
+import "./About-us.css";
 
 const Aboutus = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
@@ -45,40 +46,40 @@ const Aboutus = () => {
   const nationalImages = backgroundImages.filter(
     (item) => item.type === "About Us"
   );
+
   return (
     <>
       <Nav />
       <Dropnav />
       <div>
-      <div className="hero-section-left-1">
-        {nationalImages.map((item) => (
-          <div key={item._id} className="relative">
-            {item.image.map((imgUrl, index) =>
-              imgUrl.endsWith(".mp4") ? (
-                <video
-                  key={index}
-                  className="w-full h-auto"
-                  autoPlay
-                  muted
-                  loop
-                >
-                  <source src={imgUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <img key={index} src={imgUrl} alt={`Image ${index}`} />
-              )
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
-                {item.heading}
-              </h1>
+        <div className="hero-section-left-1">
+          {nationalImages.map((item) => (
+            <div key={item._id} className="relative">
+              {item.image.map((imgUrl, index) =>
+                imgUrl.endsWith(".mp4") ? (
+                  <video
+                    key={index}
+                    className="w-full h-auto"
+                    autoPlay
+                    muted
+                    loop
+                  >
+                    <source src={imgUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img key={index} src={imgUrl} alt={`Image ${index}`} />
+                )
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0"></div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <h1 className="text-white font-bold text-2xl xs:text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4 sm:mt-8 text-center">
+                  {item.heading}
+                </h1>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
+          ))}
+        </div>
         {/* Introduction Section */}
         <div className="py-8 px-4 sm:px-8 lg:px-24 w-full lg:w-[80%] mx-auto text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
@@ -114,11 +115,10 @@ const Aboutus = () => {
             providing value every step of the way.
           </p>
         </div>
-
-        {/* Heroes Section */}
+        
         <Aboutushero />
-
         {/* Team Section */}
+
         <section className="text-center py-12 sm:py-16 bg-gray-50 px-4 sm:px-8 lg:px-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
             Meet Our Amazing Team. The Perfect Blend of Talent and Dedication
@@ -127,16 +127,33 @@ const Aboutus = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="flex flex-col items-center">
                 <img
-                  src={member.image} // updated from imgSrc to image
+                  src={member.image}
                   alt={member.name}
                   className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover mb-4 shadow-lg"
                 />
                 <h3 className="text-xl sm:text-2xl font-semibold">
                   {member.name}
                 </h3>
+                <p className="text-gray-600">{member.position}</p>
                 <hr className="border-t-4 border-yellow-500 mt-1 w-16 mb-2" />
-                <p className="text-gray-600 mb-4">{member.position}</p>{" "}
-                {/* updated from title to position */}
+                <div className="flex space-x-4 mb-4">
+                  <a
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="instagram-gradient"
+                  >
+                    <FaInstagram size={20} />
+                  </a>
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className=" facebook-gradient text-blue-700 hover:text-blue-800"
+                  >
+                    <FaLinkedin size={24} />
+                  </a>
+                </div>
                 <p className="text-gray-600 text-left text-sm sm:text-base leading-relaxed">
                   {member.description}
                 </p>

@@ -73,9 +73,8 @@ function AllPackagesCard() {
                     </div>
                     {/* Dates */}
                     <div className="flex items-center mb-2 text-black">
-                      <FaCalendarAlt className="mr-2 text-black" />
                       <span className="text-black text-xs">
-                        {new Date(trip.tripDate).toLocaleDateString()}
+                        Customised
                       </span>
                     </div>
                   </div>
@@ -84,7 +83,7 @@ function AllPackagesCard() {
             ))
           )
         ) : (
-          <p>No packages available</p>
+          <p></p>
         )}
       </div>
 

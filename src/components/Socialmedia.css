@@ -1,35 +1,33 @@
 .social-icons {
-  position: fixed;
-  top: 100px;
+  position: absolute;
+  top: 50%;
   right: 0;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
 }
 
 .icon {
   position: relative;
   display: flex;
   align-items: center;
-  width: 50px; /* Initial width for icon container */
-  transition: width 0.5s ease; /* Smooth transition for width only */
+  width: 50px;
+  transition: width 0.5s ease;
   overflow: hidden;
   background-color: #fff;
   margin-left: auto;
   padding: 10px;
 }
 
-
 .icon:hover {
-  width: 145px; /* Expand container on hover to show text */
+  width: 145px;
 }
 
 .icon svg {
-  font-size: 30px; /* Set icon size here */
-  color: #fff; /* Icon color */
+  font-size: 30px;
+  color: #fff;
 }
 
-/* Text styling */
 .icon span {
   position: absolute;
   left: 60px;
@@ -43,14 +41,12 @@
   padding: 5px 10px;
 }
 
-/* Show text on hover with white background and black text */
 .icon:hover span {
   opacity: 1;
-  background-color: #fff; /* White background on hover */
-  color: #000; /* Black text on hover */
+  background-color: #fff;
+  color: #000;
 }
 
-/* Icon background colors */
 .facebook {
   background-color: #3b5998;
 }
@@ -60,9 +56,36 @@
 }
 
 .instagram {
-  background: linear-gradient(to top right, #f9ce34, #ee2a7b, #6228d7); /* Gradient background */
+  background: linear-gradient(to top right, #f9ce34, #ee2a7b, #6228d7);
 }
 
 .youtube {
   background-color: #FF0000;
+}
+
+/* Media query for screens smaller than 425px */
+@media (max-width: 425px) {
+  .social-icons {
+    top: 35%; /* Adjust positioning if needed */
+  }
+
+  .icon {
+    width: 30px; /* Reduce icon container size */
+    height: 30px;
+    padding: 4px;
+  }
+
+  .icon svg {
+    font-size: 20px; /* Decrease icon size */
+  }
+
+  .icon span {
+    left: 50px;
+    font-size: 10px; /* Decrease font size */
+    padding: 3px 8px;
+  }
+
+  .icon:hover {
+    width: 110px; /* Adjust hover width for smaller screens */
+  }
 }

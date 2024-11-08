@@ -137,23 +137,6 @@ const Payments = () => {
       </div>
 
       <MainFooter />
-
-      {/* Floating WhatsApp Button */}
-      <div className="fixed bottom-4 right-4">
-        <a
-          href={`https://wa.me/918287804197?text=${encodeURIComponent(
-            whatsappMessage
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Lottie
-            loop={true}
-            animationData={cont}
-            className="w-12 h-12 sm:w-16 sm:h-16"
-          />
-        </a>
-      </div>
     </>
   );
 };

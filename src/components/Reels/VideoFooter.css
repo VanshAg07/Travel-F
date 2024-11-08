@@ -10,6 +10,7 @@
     color: white;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .videoFooter__text > h3 {
