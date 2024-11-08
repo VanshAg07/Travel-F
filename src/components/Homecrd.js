@@ -37,7 +37,7 @@ const TripCard = () => {
   return (
     <div className="hidden lg:block">
       {/* Hidden on small screens, visible on medium screens and larger */}
-      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10  ml-[600px]">
+      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10  ml-[550px]">
         {banners.map((banner, index) => (
           <div
             key={banner._id}

@@ -20,13 +20,12 @@ import MainFooter from "./components/Footer/MainFooter.js";
 import Mobcard from "./components/Mobcard.js";
 import Mobcardinter from "./components/Mobcardinter.js";
 import Mobcardhoney from "./components/Mobcardhoney.js";
-import Socialmedia from "./components/Socialmedia.js";
 import Homeyt from "./components/Homeyt.js";
 import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
-import PhoneFooter from "./components/PhoneFooter.js"
+import PhoneFooter from "./components/PhoneFooter.js";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -38,7 +37,9 @@ const Home = () => {
 
   const fetchPayment = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/home/home-offers");
+      const res = await fetch(
+        "https://api.travello10.com/api/home/home-offers"
+      );
       const data = await res.json();
       console.log("Fetched data:", data);
       const activeImages = data.data.filter((item) => item.status === true);
@@ -124,10 +125,10 @@ const Home = () => {
           <Forms />
           <Homeyt />
         </div>
-        <div className="">
-        <MainFooter />
+        <div className="pb-20-425 bg-white-425">
+          <MainFooter />
         </div>
-        <Socialmedia />
+
         <div className="fixed-button-1">
           <a
             href={`https://wa.me/918287804197?text=${encodeURIComponent(
@@ -140,9 +141,8 @@ const Home = () => {
           </a>
         </div>
         <SignInPopup />
-        
+
         <PhoneFooter />
-        
       </GoogleOAuthProvider>
     </div>
   );

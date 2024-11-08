@@ -56,8 +56,9 @@ function TripsModal({ isOpen, onClose }) {
         </div>
         <div className="grid grid-cols-2 gap-4">
           {adventures.map((adventure) => (
-            <div
+            <a
               key={adventure._id}
+              href={getAdventureLink(adventure.title)}
               className="flex flex-col items-center p-2 rounded"
             >
               <img
@@ -66,13 +67,7 @@ function TripsModal({ isOpen, onClose }) {
                 className="w-16 h-16 object-cover rounded-full"
               />
               <span className="text-sm mt-2">{adventure.title}</span>
-              <a
-                href={getAdventureLink(adventure.title)}
-                className="text-blue-500 text-sm mt-1"
-              >
-                Explore
-              </a>
-            </div>
+            </a>
           ))}
         </div>
       </div>

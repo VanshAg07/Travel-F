@@ -150,3 +150,18 @@ margin-top: -40px;
   font-size: 24px;
   color: #007bff; /* Blue color for the plus icon */
 }
+
+
+@media (max-width: 425px) {
+  .pb-425 {
+    padding-bottom: 8rem; /* Equivalent to pb-20 */
+  }
+
+  .bg-425 {
+    background-color: #fff;
+  }
+
+  .btn-itin{
+    bottom: 20%;
+  }
+}

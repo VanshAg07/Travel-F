@@ -4,6 +4,7 @@ import "../components/Videopage.css";
 import Homecrd from "./Homecrd";
 import axios from "axios";
 import QuotePopup from "../QuotePopup";
+import Socialmedia from "../components/Socialmedia.js";
 
 const Videopage = () => {
   const [videos, setVideos] = useState([]);
@@ -97,6 +98,7 @@ const Videopage = () => {
           <QuotePopup onClose={closeQuotePopup} />
         </div>
       )}
+      <Socialmedia />
       {/* Homecrd component */}
       <div>
         <Homecrd />

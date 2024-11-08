@@ -1,7 +1,7 @@
 import React from 'react';
-import { AiOutlineClose, AiOutlinePhone, AiOutlineMessage } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlinePhone } from 'react-icons/ai';
 import { FaWhatsapp } from 'react-icons/fa';
-import "./ContactModal.css"
+import "./ContactModal.css";
 
 function ContactModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -15,16 +15,19 @@ function ContactModal({ isOpen, onClose }) {
           </button>
         </div>
         <div className="space-y-4">
-          <div className="flex items-center p-4 bg-gray-100 rounded-lg">
-            {/* Rotate and adjust icon positioning */}
+          <a href="tel:+918287804197" className="flex items-center p-4 bg-gray-100 rounded-lg">
             <AiOutlinePhone className="text-blue-500 text-2xl mr-1 transform rotate-90" />
             <span className="text-sm font-medium">Call Now</span>
-          </div>
-          <div className="flex items-center p-4 bg-gray-100 rounded-lg">
-            {/* Rotate and adjust icon positioning */}
-            <FaWhatsapp className="text-green-500 text-2xl mr-1 transform " />
+          </a>
+          <a
+            href="https://wa.me/918287804197?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center p-4 bg-gray-100 rounded-lg"
+          >
+            <FaWhatsapp className="text-green-500 text-2xl mr-1" />
             <span className="text-sm font-medium">Chat With Our Executive</span>
-          </div>
+          </a>
         </div>
       </div>
     </div>

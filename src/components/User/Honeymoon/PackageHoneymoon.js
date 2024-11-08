@@ -374,7 +374,7 @@ const PackageHoneymoon = () => {
       <div className="pb-7 bg-[#ffffe6]">
         <Review />
       </div>
-      <div className="">
+      <div className="pb-425 bg-425">
         <MainFooter />
       </div>
       <div className="fixed-button-1">
