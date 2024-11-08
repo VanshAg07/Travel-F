@@ -79,6 +79,7 @@ import PackageOffer from "./components/User/Offers/PackageOffer.js";
 import SportsPackageDetails from "./components/Grouptours/SportsPackageDetails.js";
 import PhoneFooter from "./components/PhoneFooter.js"
 import VideoModal from "./components/VideoModal.js";
+import SimilarTrips from "./components/SimilarTrips.js";
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -206,6 +207,7 @@ const App = () => {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/phonefooter" element={<PhoneFooter />} />
         <Route path="/reel-slider" element={<VideoModal />} />
+        <Route path="/similar-trips" element={<SimilarTrips />} />
         {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
