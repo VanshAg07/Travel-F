@@ -11,7 +11,7 @@ const StateInternational = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/international/get-all-international/${name}`
+          `https://api.travello10.com/api/international/get-all-international/${name}`
         );
         setTrips(response.data);
       } catch (error) {
@@ -86,7 +86,7 @@ const StateInternational = () => {
                       })}
                     </span>
                     {trip.tripDateCount >= 0 && (
-                      <span className="text-xs ml-4">
+                      <span className="text-xs text-red-500 ml-1">
                         +{trip.tripDateCount}
                         <span className="ml-1">Batches</span>
                       </span>
