@@ -28,21 +28,7 @@ const TravelOptions = () => {
 
   // Get trips for the selected month
   const tripsForSelectedMonth = upcomingTrips[selectedMonth] || [];
-  const tripsToShow = window.innerWidth < 1024 ? 3 : 4; // Show 3 on small screens, 4 on larger
-
-  const nextTrips = () => {
-    setStartIndex(
-      (prevIndex) => (prevIndex + tripsToShow) % tripsForSelectedMonth.length
-    );
-  };
-
-  const prevTrips = () => {
-    setStartIndex(
-      (prevIndex) =>
-        (prevIndex - tripsToShow + tripsForSelectedMonth.length) %
-        tripsForSelectedMonth.length
-    );
-  };
+  const tripsToShow = window.innerWidth < 1024 ? 100 : 4; // Show 3 on small screens, 4 on larger
 
   return (
     <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-96">

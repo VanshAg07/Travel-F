@@ -66,7 +66,7 @@ const App = () => {
   const fetchUpcomingTrips = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/home/upcoming"
+        "http://localhost:5000/api/home/upcoming"
       );
       const data = await response.json();
       setUpcomingTrips(data.upcomingTrips);

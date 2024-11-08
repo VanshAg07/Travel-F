@@ -19,17 +19,12 @@ const OfferHomePage = () => {
   const fetchOffers = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/home-offers"
+        "http://localhost:5000/api/home/home-offers"
       );
-      setOffers(response.data);
+      setOffers(response.data.data);
     } catch (error) {
       console.error("Error fetching offers:", error);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   const handleFileChange = (e) => {
@@ -69,12 +64,12 @@ const OfferHomePage = () => {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travello10.com/api/home/home-offers/${editingId}`,
+          `http://localhost:5000/api/home/home-offers/${editingId}`,
           formDataToSubmit
         ); // Update offer
       } else {
         await axios.post(
-          "https://api.travello10.com/api/home/add-home-offer",
+          "http://localhost:5000/api/home/add-home-offer",
           formDataToSubmit
         ); // Create offer
       }
@@ -90,26 +85,26 @@ const OfferHomePage = () => {
 
   const handleEdit = (offer) => {
     setFormData({
-      image: offer.image,
+      image: offer.image, // Keep the old image path
       status: offer.status,
-      phoneImage: offer.phoneImage,
+      phoneImage: offer.phoneImage, // Keep the old phone image path
     });
     setEditingId(offer._id);
 
     // Set the preview image to the first image of the selected offer
     if (offer.image.length > 0) {
-      setPreviewImage(`https://api.travello10.com/upload/${offer.image[0]}`);
+      setPreviewImage(`http://localhost:5000/upload/${offer.image[0]}`);
     }
     if (offer.phoneImage.length > 0) {
       setPreviewPhoneImage(
-        `https://api.travello10.com/upload/${offer.phoneImage[0]}`
+        `http://localhost:5000/upload/${offer.phoneImage[0]}`
       );
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/home/home-offers/${id}`);
+      await axios.delete(`http://localhost:5000/api/home/home-offers/${id}`);
       fetchOffers(); // Refresh the list of offers
     } catch (error) {
       console.error("Error deleting offer:", error);
@@ -143,7 +138,7 @@ const OfferHomePage = () => {
             name="image"
             multiple
             onChange={handleFileChange}
-            required
+            // required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
           />
         </div>
@@ -167,7 +162,7 @@ const OfferHomePage = () => {
             name="phoneImage"
             multiple
             onChange={handleFileChange}
-            required
+            // required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
           />
         </div>
@@ -198,7 +193,7 @@ const OfferHomePage = () => {
         {offers.map((offer) => (
           <li key={offer._id} className="bg-white shadow-md rounded p-4">
             <img
-              src={`https://api.travello10.com/upload/${offer.image[0]}`}
+              src={`http://localhost:5000/upload/${offer.image[0]}`}
               alt="Offer"
               className="w-full h-32 object-cover rounded"
             />

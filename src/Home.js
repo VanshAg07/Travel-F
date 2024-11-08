@@ -38,15 +38,21 @@ const Home = () => {
 
   const fetchPayment = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/home/home-offers");
+      const res = await fetch("http://localhost:5000/api/home/home-offers");
       const data = await res.json();
       console.log("Fetched data:", data);
-      const activeImages = data.data.filter((item) => item.status === true);
+  
+      // Check if data.data exists and is an array before filtering
+      const activeImages = Array.isArray(data.data)
+        ? data.data.filter((item) => item.status === true)
+        : [];
+  
       setPaymentImages(activeImages);
     } catch (error) {
       console.log("Failed to fetch payment images:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchPayment();
@@ -63,11 +69,11 @@ const Home = () => {
             {paymentImages.map((item) => (
               <div key={item._id} className="flex justify-center items-center">
                 <img
-                  src={`https://api.travello10.com/upload/${
+                  src={`http://localhost:5000/upload/${
                     isMobile ? item.phoneImage : item.image
                   }`}
                   alt="Payment Method"
-                  className="md:w-[30%] md:h-[30%] w-[70%]"
+                  className="w-full md:mt-5"
                 />
               </div>
             ))}

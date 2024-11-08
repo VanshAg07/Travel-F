@@ -10,7 +10,7 @@ function OfferCards() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/offer/getTripDetails"
+          "http://localhost:5000/api/offer/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);

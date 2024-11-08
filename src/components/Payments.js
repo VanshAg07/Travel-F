@@ -14,7 +14,7 @@ const Payments = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/corporate/payment-image"
+        "http://localhost:5000/api/corporate/payment-image"
       );
       const data = await res.json();
       // Filter images with "active" status
