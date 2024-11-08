@@ -11,7 +11,7 @@ const StateHoneymoon = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/honeymoon/get-all-honeymoon/${name}`
+          `http://localhost:5000/api/honeymoon/get-all-honeymoon/${name}`
         );
         setTrips(response.data);
       } catch (error) {

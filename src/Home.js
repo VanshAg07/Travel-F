@@ -38,7 +38,7 @@ const Home = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/home/home-offer-display"
+        "http://localhost:5000/api/home/home-offer-display"
       );
       const data = await res.json();
       // console.log("Fetched data:", data);
@@ -70,7 +70,7 @@ const Home = () => {
                 <img
                   src={`${isMobile ? item.phoneImage : item.image}`}
                   alt="Payment Method"
-                  className="w-full md:mt-5 h-[70vh]"
+                  className="w-full bg-white md:pt-8 h-full"
                 />
               </div>
             ))}
