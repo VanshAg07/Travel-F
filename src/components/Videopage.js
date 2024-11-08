@@ -16,7 +16,7 @@ const Videopage = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming response.data.video is an array of video URLs
     } catch (error) {

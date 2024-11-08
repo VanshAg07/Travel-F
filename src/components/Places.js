@@ -42,7 +42,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/national/${stateName}`
+        `https://api.travello10.com/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -56,7 +56,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -203,7 +203,6 @@ const Place = () => {
               onClick={handleScrollLeft}
               className="absolute -left-5 top-1/2 -mt-20 transform -translate-y-1/2 text-3xl text-black cursor-pointer z-10"
             />
-
             {/* Scrollable Package Container */}
             <div
               className="grid grid-flow-col pl-3 auto-cols-[250px] gap-6 h-[80vh] scroll-smooth"
@@ -243,7 +242,6 @@ const Place = () => {
                                 <FaClock className="mr-2 text-black" />
                                 <span className="text-black text-xs">{`${trip.tripDuration}`}</span>
                               </div>
-
                               {/* Location */}
                               <div className="flex items-center text-black">
                                 <FaMapMarkerAlt className="mr-1 text-black" />
@@ -276,11 +274,11 @@ const Place = () => {
                       </div>
                     ))
                   ) : (
-                    <p>No trips available</p>
+                    <p></p>
                   )
                 )
               ) : (
-                <p>No packages available</p>
+                <p></p>
               )}
             </div>
 

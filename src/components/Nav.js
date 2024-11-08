@@ -42,7 +42,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("http://localhost:5000/api/home/nav-offer", {
+    fetch("https://api.travello10.com/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -150,26 +150,38 @@ const Nav = () => {
         )}
         {isMobile && (
           <div className="flex flex-col">
+            <Link
+              to="/offer"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/offer")}
+            >
+              {navOffer && (
+                <div className="flex flex-row justify-center  mr-10 items-center gap-1">
+                  <p>{navOffer}</p>
+                </div>
+              )}
+            </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/national" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center  mr-10 items-center gap-1">
                 <p>Indian Trips</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center  mr-10 items-center gap-1">
                 <p>International Deals</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Honeymoon" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center  mr-10 items-center gap-1">
                 <p>Honeymoon Packages</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex flex-row justify-center mb-2 mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center  mr-10 items-center gap-1">
                 <p>Corporate Trips</p>
               </div>
             </Link>
