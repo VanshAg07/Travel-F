@@ -90,9 +90,9 @@ const Nav = () => {
               </div>
             </Link>
             <Link
-              to="/Aboutus"
+              to="/similar-trips"
               onClick={() => setIsMenuOpen(false)}
-              className={isActive("/Aboutus")}
+              className={isActive("/similar-trips")}
             >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>About Us</p>
