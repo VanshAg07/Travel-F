@@ -2,11 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
   padding-left: 20%;
   padding-right: 20%;
 }
-
+.abcd {
+  z-index: 999;
+}
 .form {
   width: 100%;
   max-width: 350px;
@@ -35,8 +37,8 @@
   border: none;
   outline: none;
   color: white;
-  background-color: #171717; 
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5); 
+  background-color: #171717;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 .input-icon {
   height: 1.3em;
@@ -59,7 +61,8 @@
   margin-top: 2.5em;
 }
 
-.button1, .button2 {
+.button1,
+.button2 {
   padding: 0.5em 1em;
   border-radius: 5px;
   border: none;
@@ -69,7 +72,8 @@
   transition: background-color 0.4s ease-in-out;
 }
 
-.button1:hover, .button2:hover {
+.button1:hover,
+.button2:hover {
   background-color: black;
 }
 
@@ -79,4 +83,3 @@
 .error-message {
   color: red;
 }
-  

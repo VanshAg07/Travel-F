@@ -28,10 +28,9 @@ const TripCard = ({ trip }) => {
   const handleCardClick = (tripLocation, tripName) => {
     const sanitizedTripName = tripName.replace(/\//g, "-");
     let stateName = tripLocation;
-    navigate(
-      `/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`
-    );
+    navigate(`/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
+
   return (
     <div
       onClick={() => handleCardClick(trip.tripLocation, trip.tripName)} // Pass stateName and tripName
@@ -42,6 +41,7 @@ const TripCard = ({ trip }) => {
         alt="Trip"
         className="w-full h-[300px] max-[425px]:h-[270px] object-cover"
       />
+      
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
@@ -70,7 +70,7 @@ const TripCard = ({ trip }) => {
   );
 };
 
-const SimilarInternational = () => {
+const SimilarInterational = () => {
   const { name } = useParams();
   const [startIndex, setStartIndex] = useState(0);
   const [trips, setTrips] = useState([]);
@@ -83,8 +83,10 @@ const SimilarInternational = () => {
           `https://api.travello10.com/api/international/getSimilarTrips/${name}`
         );
         const data = await response.json();
-        console.log("Fetched data:", data);
-        setTrips(data[0]?.trips || []); // Ensure the data structure is valid
+
+        // Flatten the trips array from all state names
+        const allTrips = data.flatMap((stateData) => stateData.trips);
+        setTrips(allTrips); // Set all trips
       } catch (error) {
         console.error("Error fetching trips:", error);
       }
@@ -178,4 +180,4 @@ const SimilarInternational = () => {
   );
 };
 
-export default SimilarInternational;
+export default SimilarInterational;

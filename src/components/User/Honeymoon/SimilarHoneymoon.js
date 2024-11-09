@@ -23,14 +23,14 @@ const TripCard = ({ trip }) => {
       : trip.tripName;
 
   const firstDate = trip.tripDate;
+
   // Navigate to the trip details page when a user clicks the card
   const handleCardClick = (tripLocation, tripName) => {
     const sanitizedTripName = tripName.replace(/\//g, "-");
-    let stateName = tripLocation
-    navigate(
-      `/honeymoon/${encodeURIComponent(sanitizedTripName)}/${stateName}`
-    );
+    let stateName = tripLocation;
+    navigate(`/honeymoon/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
+
   return (
     <div
       onClick={() => handleCardClick(trip.tripLocation, trip.tripName)} // Pass stateName and tripName
@@ -59,7 +59,7 @@ const TripCard = ({ trip }) => {
         </div>
         <div className="flex items-center">
           <FaCalendarAlt className="mr-1" />
-          <p className="text-sm text-black mr-2">Customised</p>
+          <p className="text-sm text-black mr-2">Customied</p>
         </div>
       </div>
     </div>
@@ -79,8 +79,10 @@ const SimilarHoneymoon = () => {
           `https://api.travello10.com/api/honeymoon/getSimilarTrips/${name}`
         );
         const data = await response.json();
-        console.log("Fetched data:", data);
-        setTrips(data[0]?.trips || []); // Ensure the data structure is valid
+
+        // Flatten the trips array from all state names
+        const allTrips = data.flatMap((stateData) => stateData.trips);
+        setTrips(allTrips); // Set all trips
       } catch (error) {
         console.error("Error fetching trips:", error);
       }

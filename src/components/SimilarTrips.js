@@ -7,7 +7,7 @@ import {
   FaChevronCircleRight,
 } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
-
+import './Signup.css'
 const TripCard = ({ trip }) => {
   const navigate = useNavigate();
 
@@ -41,6 +41,20 @@ const TripCard = ({ trip }) => {
         alt="Trip"
         className="w-full h-[300px] max-[425px]:h-[270px] object-cover"
       />
+      <div className="abcd absolute z-50 top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
+        <span className="font-semibold text-sm ">
+          {trip.customised ? (
+            "Customised"
+          ) : (
+            <>
+              <span className="relative mr-1 line-through">
+                {`₹ ${trip.tripPrice}/-`}
+              </span>
+              {`₹${trip.tripOfferPrice}/- onwards`}
+            </>
+          )}
+        </span>
+      </div>
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
@@ -82,8 +96,10 @@ const SimilarTrips = () => {
           `https://api.travello10.com/api/user/getSimilarTrips/${name}`
         );
         const data = await response.json();
-        console.log("Fetched data:", data);
-        setTrips(data[0]?.trips || []); // Ensure the data structure is valid
+
+        // Flatten the trips array from all state names
+        const allTrips = data.flatMap((stateData) => stateData.trips);
+        setTrips(allTrips); // Set all trips
       } catch (error) {
         console.error("Error fetching trips:", error);
       }

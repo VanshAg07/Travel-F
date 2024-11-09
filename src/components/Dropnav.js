@@ -81,8 +81,8 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(key)}
             onMouseLeave={handleMouseLeave}
           >
-            <Link
-              to={
+            <a
+              href={
                 key === "indiaPackages"
                   ? "/national"
                   : key === "internationalPackage"
@@ -112,7 +112,7 @@ const Navbar = () => {
                 ? "Corporate Packages"
                 : key.charAt(0).toUpperCase() +
                   key.replace(/([A-Z])/g, " $1").toLowerCase()}
-            </Link>
+            </a>
             {/* Only render the down arrow if it's not "weekendTrips" */}
             {key !== "corporatePackages" && key !== "weekendTrips" && (
               <FaChevronDown className="dropdown-icon" />
@@ -121,8 +121,8 @@ const Navbar = () => {
               <ul className="dropdown">
                 {dropdownLinks[key].map((link, index) => (
                   <li key={index} className="dropdown-item">
-                    <Link
-                      to={
+                    <a
+                      href={
                         key === "groupsTours"
                           ? link.route
                           : key === "honeymoonPackages"
@@ -137,7 +137,7 @@ const Navbar = () => {
                       }
                     >
                       {key === "groupsTours" ? link.name : link.stateName}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
