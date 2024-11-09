@@ -18,7 +18,7 @@ const ExploreAdventure = () => {
   const fetchAdventures = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/home/explore-adventure"
+        "https://api.travello10.com/api/home/explore-adventure"
       );
       setAdventures(res.data);
     } catch (error) {
@@ -58,7 +58,7 @@ const ExploreAdventure = () => {
     try {
       if (isEditing) {
         await axios.put(
-          `http://localhost:5000/api/home/explore-adventure/${editId}`,
+          `https://api.travello10.com/api/home/explore-adventure/${editId}`,
           formDataObj
         );
         setIsEditing(false);
@@ -66,7 +66,7 @@ const ExploreAdventure = () => {
         toast.success("Adventure updated successfully.");
       } else {
         await axios.post(
-          "http://localhost:5000/api/home/explore-adventure",
+          "https://api.travello10.com/api/home/explore-adventure",
           formDataObj
         );
         toast.success("Adventure added successfully.");
@@ -83,7 +83,7 @@ const ExploreAdventure = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/home/explore-adventure/${id}`
+        `https://api.travello10.com/api/home/explore-adventure/${id}`
       );
       fetchAdventures();
       toast.success("Adventure deleted successfully.");

@@ -65,7 +65,7 @@ const Honeymoon = () => {
   const fetchImageCard = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/popup/state-images-user/${type}`
+        `https://api.travello10.com/api/popup/state-images-user/${type}`
       );
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -87,7 +87,7 @@ const Honeymoon = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

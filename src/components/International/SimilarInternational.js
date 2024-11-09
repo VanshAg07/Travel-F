@@ -28,9 +28,10 @@ const TripCard = ({ trip }) => {
   const handleCardClick = (tripLocation, tripName) => {
     const sanitizedTripName = tripName.replace(/\//g, "-");
     let stateName = tripLocation;
-    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
+    navigate(
+      `/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`
+    );
   };
-
   return (
     <div
       onClick={() => handleCardClick(trip.tripLocation, trip.tripName)} // Pass stateName and tripName
@@ -69,7 +70,7 @@ const TripCard = ({ trip }) => {
   );
 };
 
-const SimilarTrips = () => {
+const SimilarInternational = () => {
   const { name } = useParams();
   const [startIndex, setStartIndex] = useState(0);
   const [trips, setTrips] = useState([]);
@@ -79,7 +80,7 @@ const SimilarTrips = () => {
     const fetchSimilarTrips = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getSimilarTrips/${name}`
+          `https://api.travello10.com/api/international/getSimilarTrips/${name}`
         );
         const data = await response.json();
         console.log("Fetched data:", data);
@@ -177,4 +178,4 @@ const SimilarTrips = () => {
   );
 };
 
-export default SimilarTrips;
+export default SimilarInternational;

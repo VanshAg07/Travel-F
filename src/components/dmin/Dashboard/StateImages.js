@@ -17,7 +17,7 @@ function StateImages() {
   const fetchSignIns = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/popup/state-images"
+        "https://api.travello10.com/api/popup/state-images"
       );
       setSignInList(response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ function StateImages() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/popup/state-images",
+        "https://api.travello10.com/api/popup/state-images",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -67,7 +67,7 @@ function StateImages() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/popup/state-images/${selectedSignIn._id}`,
+        `https://api.travello10.com/api/popup/state-images/${selectedSignIn._id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -85,7 +85,7 @@ function StateImages() {
 
   const deleteSignIn = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/popup/state-images/${id}`);
+      await axios.delete(`https://api.travello10.com/api/popup/state-images/${id}`);
       setSignInList((prevList) => prevList.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting sign-in:", error);
@@ -171,7 +171,7 @@ function StateImages() {
             <h4 className="">{signIn.stateName}</h4>
             {signIn.image[0] && (
               <img
-                src={`http://localhost:5000/upload/${signIn.image[0]}`}
+                src={`https://api.travello10.com/upload/${signIn.image[0]}`}
                 alt={signIn.stateName}
                 className="mt-2 rounded-lg w-32 h-32 object-cover"
               />

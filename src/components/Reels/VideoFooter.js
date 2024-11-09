@@ -2,7 +2,7 @@ import React from "react";
 import "./VideoFooter.css";
 import { Avatar } from "@mui/material";
 import { RiShareFill } from "react-icons/ri";
-import logo from "../../img/logo.png";
+import logo from "../../img/Travello10logo.png";
 
 function VideoFooter({ title, videoSubtitle, urlLink }) {
   const handleShareClick = () => {
@@ -32,7 +32,7 @@ function VideoFooter({ title, videoSubtitle, urlLink }) {
     <div className="bottom-20 ml-10 w-full">
       <div className="videoFooter__text">
         <div className="flex flex-row items-center gap-5">
-          <Avatar src={logo} className="border-2 " />
+          <Avatar src={logo} className="" />
           <h3>Travello10</h3>
         </div>
         <div

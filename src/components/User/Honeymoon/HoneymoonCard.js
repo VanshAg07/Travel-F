@@ -11,7 +11,7 @@ function AllPackagesCard() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/honeymoon/get-all-honeymoon"
+          "https://api.travello10.com/api/honeymoon/get-all-honeymoon"
         );
         const data = await response.json();
         setPackages(data);
@@ -73,6 +73,7 @@ function AllPackagesCard() {
                     </div>
                     {/* Dates */}
                     <div className="flex items-center mb-2 text-black">
+                    <FaCalendarAlt className="mr-2 text-black" />
                       <span className="text-black text-xs">
                         Customised
                       </span>
