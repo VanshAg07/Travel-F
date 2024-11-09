@@ -15,20 +15,25 @@ function VideoCard({
   videoSubtitle,
 }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false); // State to control muting
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
   const onVideoPress = () => {
     if (isVideoPlaying) {
-      //stop
       videoRef.current.pause();
       setIsVideoPlaying(false);
     } else {
-      //play
       videoRef.current.play();
       setIsVideoPlaying(true);
     }
   };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    videoRef.current.muted = !isMuted; // Toggle the muted property
+  };
+
   const handleBack = () => {
     navigate("/");
   };
@@ -46,9 +51,11 @@ function VideoCard({
         alt="IG reel video"
         loop
         autoPlay
-        muted
+        muted={isMuted} // Set muted based on state
       />
-      {/* <VideoHeader /> */}
+      <button onClick={toggleMute} className="muteButton">
+        {isMuted ? "Unmute" : "Mute"}
+      </button>
       <VideoFooter
         channel={channel}
         likes={likes}

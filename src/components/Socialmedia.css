@@ -67,6 +67,7 @@
 @media (max-width: 425px) {
   .social-icons {
     top: 35%; /* Adjust positioning if needed */
+    z-index: 99;
   }
 
   .icon {
@@ -80,12 +81,12 @@
   }
 
   .icon span {
-    left: 50px;
+    left: 30px;
     font-size: 10px; /* Decrease font size */
     padding: 3px 8px;
   }
 
   .icon:hover {
-    width: 110px; /* Adjust hover width for smaller screens */
+    width: 90px; /* Adjust hover width for smaller screens */
   }
 }

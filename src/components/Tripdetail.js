@@ -27,23 +27,23 @@ const TripDetailCard = ({ trip }) => {
     >
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-xl font-semibold">{trip.tripName}</h3>
+          <h3 className="text-lg uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{trip.tripName}</h3>
         </div>
         <div className="flex items-center">
-          <FaClock className="mr-1 text-black" />
-          <p className="text-sm text-black">{trip.tripDuration}</p>
+          <FaClock className="mr-1 text-sm text-black" />
+          <p className="text-xs text-black">{trip.tripDuration}</p>
         </div>
-        <div className="flex items-center mt-1 mb-2 ">
-          <FaCalendarAlt className="mr-1" />
+        <div className="flex items-center mt-2 mb-2 ">
+          <FaCalendarAlt className="mr-1 text-sm " />
           {/* Use the first date for formatting */}
-          <p className="text-sm text-black mr-1">{formatDate(firstDate)}</p>
-          <p className="text-sm text-red-500 text-end">
+          <p className="text-xs text-black mr-1">{formatDate(firstDate)}</p>
+          <p className="text-xs text-red-500 text-end">
             + {trip.allTripDatesCount} batches
           </p>
         </div>
         <div className="flex items-center ">
-          <FaMapMarkerAlt className="mr-1" />
-          <p className="text-sm text-black">{trip.tripLocation}</p>
+          <FaMapMarkerAlt className="mr-1 text-sm " />
+          <p className="text-xs text-black">{trip.tripLocation}</p>
         </div>
       </div>
     </div>

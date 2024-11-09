@@ -42,7 +42,7 @@ const Nav = () => {
   };
 
   const fetchNavBar = () => {
-    fetch("http://localhost:5000/api/home/nav-offer", {
+    fetch("https://api.travello10.com/api/home/nav-offer", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -90,9 +90,9 @@ const Nav = () => {
               </div>
             </Link>
             <Link
-              to="/similar-trips"
+              to="/Aboutus"
               onClick={() => setIsMenuOpen(false)}
-              className={isActive("/similar-trips")}
+              className={isActive("/Aboutus")}
             >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
                 <p>About Us</p>
@@ -197,9 +197,9 @@ const Nav = () => {
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link
-              to="/"
+              to="/schooltour"
               onClick={() => setIsMenuOpen(false)}
-              className={isActive("/")}
+              className={isActive("/schooltour")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
                 <p>Group Tours</p>

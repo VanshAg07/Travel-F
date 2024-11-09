@@ -42,7 +42,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/national/${stateName}`
+        `https://api.travello10.com/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -56,7 +56,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -76,17 +76,21 @@ const Place = () => {
 
   const containerRef = useRef(null);
 
-  // Function to handle left arrow click
   const handleScrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -280, behavior: "smooth" });
+      const scrollAmount = window.innerWidth < 640 ? 250 : 280; // Scroll by 250px for mobile
+      containerRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
   // Function to handle right arrow click
   const handleScrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 280, behavior: "smooth" });
+      const scrollAmount = window.innerWidth < 640 ? 250 : 280; // Scroll by 250px for mobile
+      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
@@ -281,7 +285,6 @@ const Place = () => {
                 <p></p>
               )}
             </div>
-
             {/* Right Chevron Icon */}
             <FaChevronCircleRight
               onClick={handleScrollRight}
@@ -289,18 +292,17 @@ const Place = () => {
             />
           </div>
         </div>
-
         <div className="bg-[#ffffe6]">
           <div className="pt-96">
-          {isMobile ? (
-            <div className="pl-[10px] pr-[10px] relative">
-              <MobileHomeGallery />
-            </div>
-          ) : (
-            <div className="px-28 relative">
-              <Homeglry />
-            </div>
-          )}
+            {isMobile ? (
+              <div className="pl-[10px] pr-[10px] relative">
+                <MobileHomeGallery />
+              </div>
+            ) : (
+              <div className="px-28 relative">
+                <Homeglry />
+              </div>
+            )}
           </div>
 
           <Whyuss />

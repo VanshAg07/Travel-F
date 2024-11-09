@@ -39,7 +39,7 @@ const HomeHoneymoon = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/package-image/honeymoon/${stateName}`
+        `https://api.travello10.com/api/package-image/honeymoon/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -53,7 +53,7 @@ const HomeHoneymoon = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/honeymoon/getSimilarTrips/${stateName}`
+          `https://api.travello10.com/api/honeymoon/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         // console.log("Fetched Packages:", data); // Check if data is correct
@@ -198,6 +198,7 @@ const HomeHoneymoon = () => {
                             </div>
                             {/* Dates */}
                             <div className="flex items-center mb-2 text-black">
+                            <FaCalendarAlt className="mr-1 text-black" />
                               <span className="text-black text-xs">
                                 Customised
                               </span>
