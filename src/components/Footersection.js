@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FooterSection = () => {
   const [blogsTitle, setBlogsTitle] = useState([]);
   const fetchBlogs = () => {
-    fetch(`https://api.travello10.com/api/blog/blog-title`)
+    fetch(`http://localhost:5000/api/blog/blog-title`)
       .then((response) => response.json())
       .then((data) => {
         setBlogsTitle(data.blogTitles);

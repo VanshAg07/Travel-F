@@ -26,6 +26,7 @@ import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
 import PhoneFooter from "./components/PhoneFooter.js";
+import { Link, useNavigation } from "react-router-dom";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -38,7 +39,7 @@ const Home = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/home/home-offer-display"
+        "http://localhost:5000/api/home/home-offer-display"
       );
       const data = await res.json();
       // console.log("Fetched data:", data);
@@ -56,6 +57,7 @@ const Home = () => {
   useEffect(() => {
     fetchPayment();
   }, []);
+
   return (
     <div className="home-wr">
       <GoogleOAuthProvider clientId="your_client_id_here">
@@ -63,19 +65,24 @@ const Home = () => {
         <Dropnav />
         <Videopage />
         {isLargeMobile && <ExploreMobile />}
-        {paymentImages.length > 0 && (
-          <div className="gap-6">
-            {paymentImages.map((item) => (
-              <div key={item._id} className="flex justify-center items-center">
-                <img
-                  src={`${isMobile ? item.phoneImage : item.image}`}
-                  alt="Payment Method"
-                  className="w-full md:mt-5 h-[70vh]"
-                />
-              </div>
-            ))}
-          </div>
-        )}
+        <Link to="/offer">
+          {paymentImages.length > 0 && (
+            <div className="gap-6">
+              {paymentImages.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex justify-center items-center"
+                >
+                  <img
+                    src={`${isMobile ? item.phoneImage : item.image}`}
+                    alt="Payment Method"
+                    className="w-full md:mt-5 h-[70vh]"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </Link>
         {isSmallMobile ? (
           <div style={{ margin: "0px 10px 0px 10px" }}>
             <Mobcard />

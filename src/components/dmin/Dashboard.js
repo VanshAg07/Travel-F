@@ -23,6 +23,10 @@ import GalleryPage from "./Dashboard/GalleryPage";
 import HallOfFrame from "./Dashboard/HallOfFrame";
 import PaymentPage from "./PaymentPage";
 import ReelVideo from "./Dashboard/ReelVideo";
+import SignInPop from "./Dashboard/PopUp/SignInPop";
+import HaventSign from "./Dashboard/PopUp/HaventSign";
+import AssistPop from "./Dashboard/PopUp/AssistPop";
+import AssistForm from "./Dashboard/PopUp/AssistForm";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -101,10 +105,22 @@ function Dashboard() {
       name: "Reel Video",
       component: <ReelVideo />,
     },
-    // {
-    //   name: "Gallery Page",
-    //   component: <GalleryPage />,
-    // },
+    {
+      name: "SignIn Pop",
+      component: <SignInPop />,
+    },
+    {
+      name: "LastPopUp",
+      component: <HaventSign />,
+    },
+    {
+      name: "Assist Pop",
+      component: <AssistPop />,
+    },
+    {
+      name: "Assist Response",
+      component: <AssistForm />,
+    },
   ];
   const handleCardClick = (component) => {
     setSelectedComponent(component);

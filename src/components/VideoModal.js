@@ -10,11 +10,11 @@ function VideoModal() {
   useEffect(() => {
     const fetchReelVideo = async () => {
       try {
-        const response = await fetch("https://api.travello10.com/api/reel/reels");
+        const response = await fetch("http://localhost:5000/api/reel/reels");
         const data = await response.json();
         setVideos(data); // Assuming data is an array of video objects
         if (data.length > 0) {
-          setSelectedVideo(`https://api.travello10.com/upload/${data[0].video[0]}`);
+          setSelectedVideo(`http://localhost:5000/upload/${data[0].video[0]}`);
         }
       } catch (error) {
         console.error("Error fetching videos:", error);
@@ -32,7 +32,7 @@ function VideoModal() {
             videoTitle={videoTitle}
             videoSubtitle={videoSubtitle}
             video={video}
-            url={`https://api.travello10.com/upload/${video[0]}`}
+            url={`http://localhost:5000/upload/${video[0]}`}
             link={urlLink}
           />
         ))}
