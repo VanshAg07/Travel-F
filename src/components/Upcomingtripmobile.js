@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TripDetailCard from "./Tripdetail"; // Import the TripDetailCard component
-import underline from "../img/underline.png"
+import TripDetailCard from "./Tripdetail";
+import underline from "../img/underline.png";
 import "./Explore-mob.css";
 
 const TravelOptions = () => {
@@ -8,14 +8,13 @@ const TravelOptions = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [startIndex, setStartIndex] = useState(0);
 
-  // Fetch upcoming trips from the server
   const fetchUpcomingTrips = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/home/upcoming");
+      const response = await fetch("https://api.travello10.com/api/home/upcoming");
       const data = await response.json();
       setUpcomingTrips(data.upcomingTrips);
       if (Object.keys(data.upcomingTrips).length > 0) {
-        setSelectedMonth(Object.keys(data.upcomingTrips)[0]); // Set default selected month
+        setSelectedMonth(Object.keys(data.upcomingTrips)[0]);
       }
     } catch (error) {
       console.error("Error fetching upcoming trips:", error);
@@ -26,9 +25,8 @@ const TravelOptions = () => {
     fetchUpcomingTrips();
   }, []);
 
-  // Get trips for the selected month
   const tripsForSelectedMonth = upcomingTrips[selectedMonth] || [];
-  const tripsToShow = window.innerWidth < 1024 ? 100 : 4; // Show 3 on small screens, 4 on larger
+  const tripsToShow = window.innerWidth < 1024 ? 100 : 4;
 
   return (
     <div className="w-full bg-[#ffffe6] mt-10 h-[80vh] px-2 mb-96">
@@ -39,21 +37,26 @@ const TravelOptions = () => {
         </div>
       </div>
 
-      {/* Month selection section */}
-      <div className="flex flex-row w-[60%] justify-between space-x-3 mb-4">
-        {Object.keys(upcomingTrips).map((month) => (
-          <button
-            key={month}
-            className={`p-1 w-16 h-8 flex justify-center text-sm items-center text-center bg-white border border-black rounded-lg ${
-              selectedMonth === month ? "bg-blue-200" : ""
-            }`}
-            onClick={() => setSelectedMonth(month)} // Update month on click
-          >
-            {month}
-          </button>
-        ))}
+      {/* Scrollable month selection section */}
+      <div className="relative w-full mb-4 overflow-hidden">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-3 pr-4 pb-2 w-max">
+            {Object.keys(upcomingTrips).map((month) => (
+              <button
+                key={month}
+                className={`p-1 min-w-[64px] h-8 flex-shrink-0 flex justify-center text-sm items-center text-center bg-white border border-black rounded-lg ${
+                  selectedMonth === month ? "bg-blue-200" : ""
+                }`}
+                onClick={() => setSelectedMonth(month)}
+              >
+                {month}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
+      {/* Trip cards section */}
       <div className="flex items-center justify-between mb-4">
         <div className="overflow-x-auto scrollbar-hide h-[60vh]">
           <div className="flex flex-nowrap space-x-2">
@@ -73,8 +76,7 @@ const TravelOptions = () => {
                     alt={option.tripLocation}
                     className="w-full h-[34vh] object-cover rounded-t-lg"
                   />
-                  <TripDetailCard trip={option} />{" "}
-                  {/* Pass the entire trip object */}
+                  <TripDetailCard trip={option} />
                 </div>
               ))}
           </div>

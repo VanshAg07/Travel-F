@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./VideoCard.css";
 import VideoHeader from "./VideoHeader";
 import VideoFooter from "./VideoFooter";
@@ -13,25 +13,68 @@ function VideoCard({
   song,
   videoTitle,
   videoSubtitle,
+  videoId,
+  currentlyPlayingId,
+  setCurrentlyPlayingId
 }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false); // State to control muting
+  const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
+
+  // Handle video visibility changes
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible in viewport
+            setCurrentlyPlayingId(videoId);
+          }
+        });
+      },
+      { threshold: 0.6 } // Trigger when 60% of the video is visible
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, [videoId, setCurrentlyPlayingId]);
+
+  // Handle playing/pausing based on currently playing ID
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    if (currentlyPlayingId === videoId) {
+      videoRef.current.play();
+      setIsVideoPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsVideoPlaying(false);
+    }
+  }, [currentlyPlayingId, videoId]);
 
   const onVideoPress = () => {
     if (isVideoPlaying) {
       videoRef.current.pause();
       setIsVideoPlaying(false);
+      setCurrentlyPlayingId(null);
     } else {
       videoRef.current.play();
       setIsVideoPlaying(true);
+      setCurrentlyPlayingId(videoId);
     }
   };
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
-    videoRef.current.muted = !isMuted; // Toggle the muted property
+    videoRef.current.muted = !isMuted;
   };
 
   const handleBack = () => {
@@ -50,8 +93,7 @@ function VideoCard({
         src={url}
         alt="IG reel video"
         loop
-        autoPlay
-        muted={isMuted} // Set muted based on state
+        muted={isMuted}
       />
       <button onClick={toggleMute} className="muteButton">
         {isMuted ? "Unmute" : "Mute"}

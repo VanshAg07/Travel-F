@@ -24,9 +24,7 @@ const TripCard = ({ trip }) => {
   return (
     <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
       <img
-        src={
-          trip.tripImages.length > 0 ? trip.tripImages[0] : "defaultImage.jpg"
-        }
+        src={trip.tripImages[0]}
         alt="Trip"
         className="w-full h-[300px] max-[425px]:h-[270px] object-cover"
       />
@@ -59,36 +57,66 @@ const TripCard = ({ trip }) => {
   );
 };
 
-const SimilrTrips = () => {
-  const [upcomingTrips, setUpcomingTrips] = useState({});
-  const [selectedMonth, setSelectedMonth] = useState("");
+const SimilarTrips = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const fetchUpcomingTrips = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/home/upcoming"
-      );
-      const data = await response.json();
-      setUpcomingTrips(data.upcomingTrips);
-      if (Object.keys(data.upcomingTrips).length > 0) {
-        setSelectedMonth(Object.keys(data.upcomingTrips)[0]);
+  // Dummy data
+  const dummyTrips = {
+    "November 2024": [
+      {
+        tripName: "Mountain Adventure Trek",
+        stateName: "Himachal Pradesh",
+        tripDuration: "5 Days",
+        allTripDates: ["2024-11-15"],
+        allTripDatesCount: 3,
+        tripImages: ["/api/placeholder/400/300"]
+      },
+      {
+        tripName: "Beach Paradise Gateway",
+        stateName: "Goa",
+        tripDuration: "4 Days",
+        allTripDates: ["2024-11-20"],
+        allTripDatesCount: 2,
+        tripImages: ["/api/placeholder/400/300"]
+      },
+      {
+        tripName: "Desert Safari Experience",
+        stateName: "Rajasthan",
+        tripDuration: "6 Days",
+        allTripDates: ["2024-11-25"],
+        allTripDatesCount: 4,
+        tripImages: ["/api/placeholder/400/300"]
+      },
+      {
+        tripName: "Backwater Cruise",
+        stateName: "Kerala",
+        tripDuration: "3 Days",
+        allTripDates: ["2024-11-18"],
+        allTripDatesCount: 5,
+        tripImages: ["/api/placeholder/400/300"]
+      },
+      {
+        tripName: "Wildlife Safari Tour",
+        stateName: "Madhya Pradesh",
+        tripDuration: "4 Days",
+        allTripDates: ["2024-11-22"],
+        allTripDatesCount: 3,
+        tripImages: ["/api/placeholder/400/300"]
+      },
+      {
+        tripName: "Valley of Flowers Trek",
+        stateName: "Uttarakhand",
+        tripDuration: "7 Days",
+        allTripDates: ["2024-11-28"],
+        allTripDatesCount: 2,
+        tripImages: ["/api/placeholder/400/300"]
       }
-    } catch (error) {
-      console.error("Error fetching upcoming trips:", error);
-    }
+    ]
   };
 
-  useEffect(() => {
-    fetchUpcomingTrips();
-  }, []);
-
-  const tripsForSelectedMonth = upcomingTrips[selectedMonth] || [];
-  const allTrips = tripsForSelectedMonth;
-
-  const [isVisible, setIsVisible] = useState(true);
-  const tripsToShow =
-    window.innerWidth < 425 ? 1 : window.innerWidth < 1024 ? 4 : 5;
+  const allTrips = dummyTrips["November 2024"];
+  const tripsToShow = window.innerWidth < 425 ? 1 : window.innerWidth < 1024 ? 4 : 5;
 
   const checkWindowSize = () => {
     if (window.innerWidth < 768) {
@@ -177,4 +205,4 @@ const SimilrTrips = () => {
   );
 };
 
-export default SimilrTrips;
+export default SimilarTrips;

@@ -21,7 +21,7 @@ const WhyTravello = () => {
     {
       title: "Custom Co-Travelers Selection",
       description:
-        "Bringing the Right People Together with Precision Filtering—For the Perfect Trip!",
+        "Connecting You with the Perfect Travel Companions—Handpicked for Compatibility, Shared Interest.",
       image: icon3,
       marginTop: "-25px",
     },
@@ -45,7 +45,7 @@ const WhyTravello = () => {
         {reasons.map((reason, index) => (
           <div
             key={index}
-            className="w-full lg:w-1/4 h-[55vh] bg-white p-6 rounded-lg shadow-lg shadow-black flex flex-col justify-between"
+            className="w-full lg:w-1/4 h-[52vh] md:h-[55vh] bg-white p-6 rounded-lg shadow-lg shadow-black flex flex-col justify-between"
           >
             <div>
               <h3 className="md:text-2xl text-lg text-[#03346e] font-semibold mb-2">

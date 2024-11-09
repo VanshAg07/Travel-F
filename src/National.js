@@ -37,7 +37,7 @@ const National = () => {
     { id: 5, name: "Himachal Pradesh", img: shi1 },
     { id: 6, name: "Sikkim", img: shi15 },
     { id: 7, name: "Uttarakhand", img: shi2 },
-    { id: 8, name: "Ladakh", img: shi8 },
+    // { id: 8, name: "Ladakh", img: shi8 },
     { id: 9, name: "Rajasthan", img: shi5 },
     { id: 10, name: "Andaman", img: shi7 },
   ];
@@ -47,7 +47,7 @@ const National = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

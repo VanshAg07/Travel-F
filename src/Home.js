@@ -39,7 +39,7 @@ const Home = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/api/home/home-offer-display"
+        "https://api.travello10.com/api/home/home-offer-display"
       );
       const data = await res.json();
       // console.log("Fetched data:", data);
