@@ -21,7 +21,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/send-otp", {
+      const response = await fetch("https://api.travello10.com/api/auth/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const SignUp = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/verifyOtp",
+        "https://api.travello10.com/api/auth/verifyOtp",
         {
           method: "POST",
           headers: {
@@ -84,7 +84,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/register", {
+      const response = await fetch("https://api.travello10.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

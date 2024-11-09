@@ -11,7 +11,7 @@ const TravelOptions = () => {
   // Fetch upcoming trips from the server
   const fetchUpcomingTrips = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/home/upcoming");
+      const response = await fetch("https://api.travello10.com/api/home/upcoming");
       const data = await response.json();
       setUpcomingTrips(data.upcomingTrips);
       if (Object.keys(data.upcomingTrips).length > 0) {

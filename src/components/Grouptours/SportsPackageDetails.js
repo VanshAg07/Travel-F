@@ -67,7 +67,7 @@ const SportsPackageDetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/group-tours/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travello10.com/api/group-tours/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -107,7 +107,7 @@ const SportsPackageDetails = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "http://localhost:5000/api/contact/contact-trip",
+        "https://api.travello10.com/api/contact/contact-trip",
         formData
       );
 
