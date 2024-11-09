@@ -10,7 +10,7 @@ const Popup3 = ({ onClose }) => {
   // Fetch data for the popup
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/havent-user");
+      const res = await fetch("http://localhost:5000/api/popup/havent-user");
       const data = await res.json();
       setPopupData(data[0]); // Assuming the response is an array with a single object
     } catch (error) {
@@ -28,9 +28,9 @@ const Popup3 = ({ onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
+    <div className="fixed inset-0 md:pb-0 pb-28 popup-wr flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
       <div
-        className="bg-zinc-200 p-8 rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden sm:max-w-[80%] w-full md:w-auto mx-4"
+        className="bg-zinc-200 p-8 rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden sm:max-w-[80%] w-[80%] md:w-[30%] mx-4"
         style={{ marginTop: "80px" }}
       >
         <button

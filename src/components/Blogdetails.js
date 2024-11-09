@@ -13,7 +13,7 @@ const BlogDetails = () => {
   const fetchBlog = async () => {
     try {
       const response = await axios.get(
-        `https://api.travello10.com/api/blog/blogs/${blogTitle}`
+        `http://localhost:5000/api/blog/blogs/${blogTitle}`
       );
       setBlog(response.data.blog);
     } catch (error) {

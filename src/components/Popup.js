@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
+import "./Popup2.css"
 
 const Popup1 = ({ onClose }) => {
   const [popupData, setPopupData] = useState(null);
@@ -14,7 +15,7 @@ const Popup1 = ({ onClose }) => {
   // Fetch popup data from API
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/signin-user");
+      const res = await fetch("http://localhost:5000/api/popup/signin-user");
       const data = await res.json();
       setPopupData(data[0]); // Assuming the response is an array with a single object
     } catch (error) {
@@ -31,8 +32,8 @@ const Popup1 = ({ onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50">
-      <div className="bg-zinc-200 p-8 rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden sm:max-w-[80%] w-full md:w-auto mx-4 mt-2 md:mt-20">
+    <div className="fixed popup-wr inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50">
+      <div className="bg-zinc-200 p-8 rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden sm:max-w-[80%] w-full md:w-[30%] mx-4 mt-2 md:mt-20">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition-colors duration-200 z-10"
