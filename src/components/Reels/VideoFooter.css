@@ -6,7 +6,7 @@
 
 .videoFooter__text{
     position: absolute;
-    bottom: 0;
+    bottom: 10%;
     color: white;
     display: flex;
     flex-direction: column;

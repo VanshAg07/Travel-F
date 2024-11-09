@@ -198,6 +198,7 @@ const HomeHoneymoon = () => {
                             </div>
                             {/* Dates */}
                             <div className="flex items-center mb-2 text-black">
+                            <FaCalendarAlt className="mr-1 text-black" />
                               <span className="text-black text-xs">
                                 Customised
                               </span>
