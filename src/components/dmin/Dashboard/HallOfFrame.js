@@ -15,7 +15,7 @@ function HallOfFrame() {
   const fetchImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/corporate/hall-of-frame"
+        "http://localhost:5000/api/corporate/hall-of-frame"
       );
       const data = response.data?.data;
       setImages(data || []);
@@ -33,7 +33,7 @@ function HallOfFrame() {
       formData.append("image", newImage);
 
       await axios.post(
-        "https://api.travello10.com/api/corporate/hall-of-frame",
+        "http://localhost:5000/api/corporate/hall-of-frame",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -54,7 +54,7 @@ function HallOfFrame() {
       formData.append("image", updatedImage);
 
       await axios.put(
-        `https://api.travello10.com/api/corporate/hall-of-frame/${id}`,
+        `http://localhost:5000/api/corporate/hall-of-frame/${id}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -72,7 +72,7 @@ function HallOfFrame() {
   const deleteImage = async (id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com/api/corporate/hall-of-frame/${id}`
+        `http://localhost:5000/api/corporate/hall-of-frame/${id}`
       );
       fetchImages();
     } catch (error) {

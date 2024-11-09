@@ -2,19 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./National.css";
 import Nav from "./components/Nav";
-import intern from "./img/international.jpg";
 import Lottie from "lottie-react";
 import animationData from "./img/India.json";
-import shi1 from "./img/1.png";
-import shi2 from "./img/2.png";
-import shi3 from "./img/3.png";
-import shi4 from "./img/4.png";
-import shi5 from "./img/5.png";
-import shi7 from "./img/7.png";
-import shi8 from "./img/8.png";
-import shi12 from "./img/12.png";
-import shi13 from "./img/13.png";
-import shi15 from "./img/15.png";
 import Whyuss from "./components/Whyuss.js";
 import cont from "./img/cont-button.json";
 import axios from "axios";
@@ -29,35 +18,37 @@ import MobileHomeGallery from "./components/MobileHomeGallery.js";
 
 const National = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const places = [
-    { id: 1, name: "Meghalaya", img: shi13 },
-    { id: 2, name: "Kashmir", img: shi3 },
-    { id: 3, name: "Spiti Valley", img: shi12 },
-    { id: 4, name: "Kerala", img: shi4 },
-    { id: 5, name: "Himachal Pradesh", img: shi1 },
-    { id: 6, name: "Sikkim", img: shi15 },
-    { id: 7, name: "Uttarakhand", img: shi2 },
-    { id: 8, name: "Ladakh", img: shi8 },
-    { id: 9, name: "Rajasthan", img: shi5 },
-    { id: 10, name: "Andaman", img: shi7 },
-  ];
-  
+  const [places, setPlaces] = useState([]);
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
   useEffect(() => {
     fetchBackgroundImages();
+    fetchImageCard();
   }, []);
   const nationalImages = backgroundImages.filter(
     (item) => item.type === "National"
   );
-
+  const type = "National";
+  const fetchImageCard = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/popup/state-images-user/${type}`
+      );
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json(); // Ensure you await this call
+      setPlaces(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="wrpper-inter">
       <Nav />
@@ -108,16 +99,17 @@ const National = () => {
         <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
       </div>
       <div className=" w-full flex justify-center items-center">
-        <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
-          {places.map((place) => (
-            <Link to={`/place/${place.name}`} key={place.id}>
-              <img
-                className="h-[90%] w-[100%]"
-                src={place.img}
-                alt={place.name}
-              />
-            </Link>
-          ))}
+      <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
+          {Array.isArray(places) &&
+            places.map((place) => (
+              <Link key={place.stateName} to={`/place/${place.stateName}`}>
+                <img
+                  className="h-[90%] w-[100%]"
+                  src={place.image[0]} // Ensure you are accessing the first image
+                  alt={place.stateName}
+                />
+              </Link>
+            ))}
         </div>
       </div>
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
@@ -138,7 +130,7 @@ const National = () => {
       </div>
       <div className="bg-[#ffffe6]">
         <div className="pt-96">
-        {isMobile ? (
+          {isMobile ? (
             <div className="pl-[10px] pr-[10px] relative">
               <MobileHomeGallery />
             </div>

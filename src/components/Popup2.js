@@ -15,7 +15,7 @@ const Popup2 = ({ onClose }) => {
   // Fetch popup data from API
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/assist-user");
+      const res = await fetch("http://localhost:5000/api/popup/assist-user");
       const data = await res.json();
       setPopupData(data[0]); // Assuming the response is an array with a single object
     } catch (error) {
@@ -38,7 +38,7 @@ const Popup2 = ({ onClose }) => {
 
     try {
       const res = await axios.post(
-        "https://api.travello10.com/api/popup/assist-form",
+        "http://localhost:5000/api/popup/assist-form",
         formData
       );
       console.log("Form submitted successfully:", res);

@@ -27,9 +27,8 @@ import MobileHomeGallery from "./MobileHomeGallery.js";
 
 const Honeymoon = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
+  const [places, setPlaces] = useState([]);
   const [backgroundImages, setBackgroundImages] = useState([]);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,6 +61,22 @@ const Honeymoon = () => {
     }
   };
 
+  const type = "Honeymoon";
+  const fetchImageCard = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/popup/state-images-user/${type}`
+      );
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json(); // Ensure you await this call
+      setPlaces(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData);
@@ -70,57 +85,15 @@ const Honeymoon = () => {
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
-  const places = [
-    {
-      id: 1,
-      name: "Kashmir",
-      img: shi1,
-    },
-    {
-      id: 2,
-      name: "Andaman",
-      img: shi2,
-    },
-    {
-      id: 3,
-      name: "Kerala",
-      img: shi3,
-    },
-    {
-      id: 4,
-      name: "Manali",
-      img: shi4,
-    },
-    {
-      id: 5,
-      name: "Bali",
-      img: shi5,
-    },
-    {
-      id: 6,
-      name: "Thailand",
-      img: shi6,
-    },
-    {
-      id: 7,
-      name: "Maldives",
-      img: shi7,
-    },
-    {
-      id: 8,
-      name: "Vietnam",
-      img: shi8,
-    },
-  ];
-
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
   useEffect(() => {
     fetchBackgroundImages();
+    fetchImageCard()
   }, []);
   const nationalImages = backgroundImages.filter(
     (item) => item.type === "Honeymoon"
@@ -182,15 +155,19 @@ const Honeymoon = () => {
       </div>
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
-          {places.map((place) => (
-            <Link to={`/honeymoon-packages/${place.name}`} key={place.id}>
-              <img
-                className="h-[90%] w-[100%]"
-                src={place.img}
-                alt={place.name}
-              />
-            </Link>
-          ))}
+          {Array.isArray(places) &&
+            places.map((place) => (
+              <Link
+                key={place.stateName}
+                to={`/honeymoon-packages/${place.stateName}`}
+              >
+                <img
+                  className="h-[90%] w-[100%]"
+                  src={place.image[0]} // Ensure you are accessing the first image
+                  alt={place.stateName}
+                />
+              </Link>
+            ))}
         </div>
       </div>
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
@@ -209,7 +186,7 @@ const Honeymoon = () => {
       </div>
       <div className="bg-[#ffffe6]">
         <div className="pt-96">
-        {isMobile ? (
+          {isMobile ? (
             <div className="pl-[10px] pr-[10px] relative">
               <MobileHomeGallery />
             </div>

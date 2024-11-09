@@ -11,7 +11,7 @@ function AssistForm() {
     const fetchAssistForms = async () => {
       try {
         const response = await axios.get(
-          "https://api.travello10.com/api/popup/assist-form"
+          "http://localhost:5000/api/popup/assist-form"
         );
         setAssistForms(response.data);
       } catch (error) {
@@ -45,27 +45,13 @@ function AssistForm() {
       {/* Display Assist Form Data */}
       {!loading && !error && assistForms.length > 0 && (
         <div className="space-y-6">
-          {assistForms.map((form, index) => (
+          {assistForms.slice().reverse().map((form, index) => (
             <div key={index} className="bg-white shadow-md rounded-lg p-6">
               <h3 className="text-xl font-semibold text-gray-800">
-                {form.title}
+                {form.name}
               </h3>
-              <p className="text-gray-600 mt-2">{form.subTitle}</p>
-              <div className="mt-4 flex items-center gap-4">
-                {form.image && form.image.length > 0 && (
-                  <img
-                    src={`/uploads/${form.image[0]}`}
-                    alt={form.title}
-                    className="h-24 w-24 object-cover rounded-lg"
-                  />
-                )}
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-all"
-                  onClick={() => alert(`Form ID: ${form._id}`)} // Placeholder for functionality
-                >
-                  View Form Details
-                </button>
-              </div>
+              <p className="text-gray-600 mt-2">{form.number}</p>
+              <p className="text-gray-600 mt-2">{form.places}</p>
             </div>
           ))}
         </div>

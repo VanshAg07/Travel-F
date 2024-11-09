@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import backgroundImage from "../../img/login.jpg";
 import logo from "../../img/logo.png";
 import toast from "react-hot-toast";
@@ -12,7 +12,21 @@ const SignUp = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [error, setError] = useState("");
-
+  const [signInData, setSignInData] = useState(null);
+  const fetchSignInData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/popup/auth-image-user"
+      );
+      const data = await response.json(); // Make sure to parse the response
+      setSignInData(data[0]); // Assuming you want the first object from the array
+    } catch (error) {
+      console.error("Error fetching sign-in data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchSignInData();
+  }, []);
   // Handle sending OTP to the user's email
   const handleSendOtp = async () => {
     if (!email) {
@@ -21,7 +35,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/send-otp", {
+      const response = await fetch("http://localhost:5000/api/auth/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,16 +64,13 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch(
-        "https://api.travello10.com/api/auth/verifyOtp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, otp }),
-        }
-      );
+      const response = await fetch("http://localhost:5000/api/auth/verifyOtp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, otp }),
+      });
 
       const data = await response.json();
 
@@ -84,7 +95,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/register", {
+      const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,7 +128,15 @@ const SignUp = () => {
   return (
     <div
       className="h-screen flex flex-col justify-center items-center bg-cover overflow-y-auto bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: `url(${
+          signInData &&
+          signInData.phoneImage &&
+          signInData.phoneImage.length > 0
+            ? signInData.phoneImage[0]
+            : backgroundImage
+        })`,
+      }}
     >
       <div className="absolute inset-0 bg-[#4B6681B2] z-0"></div>
 

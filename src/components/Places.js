@@ -42,7 +42,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/national/${stateName}`
+        `http://localhost:5000/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -56,10 +56,9 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
+          `http://localhost:5000/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
-        // console.log("Fetched Packages:", data); // Check if data is correct
         setPackages(data);
       } catch (error) {
         console.error("Error fetching packages:", error);
@@ -211,7 +210,7 @@ const Place = () => {
             <div
               className="grid grid-flow-col pl-3 auto-cols-[250px] gap-6 h-[80vh] scroll-smooth"
               ref={containerRef}
-              style={{ overflowX: "hidden" }} // Disable horizontal scroll
+              style={{ overflowX: "hidden" }}
             >
               {packages.length > 0 ? (
                 packages.map((pkg, index) =>

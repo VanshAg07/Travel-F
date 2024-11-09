@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bg from "../../images/LoginImg.png";
-import  useMediaQuery  from "../hooks/UseMediaQuery";
+import useMediaQuery from "../hooks/UseMediaQuery";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Forgotmob from "./Forgotmob";
@@ -16,8 +16,12 @@ function Forgot() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [signInData, setSignInData] = useState(null);
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchSignInData();
+  }, []);
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
@@ -33,7 +37,7 @@ function Forgot() {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/request-password-reset",
+        "http://localhost:5000/api/auth/request-password-reset",
         { email }
       );
 
@@ -59,7 +63,7 @@ function Forgot() {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/verify-otp",
+        "http://localhost:5000/api/auth/verify-otp",
         { email, otp }
       );
 
@@ -89,7 +93,7 @@ function Forgot() {
 
     try {
       const response = await axios.put(
-        "https://api.travello10.com/api/auth/reset-password",
+        "http://localhost:5000/api/auth/reset-password",
         { email, password: newPassword }
       );
 
@@ -120,13 +124,29 @@ function Forgot() {
     return <Forgotmob />;
   }
 
+  const fetchSignInData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/popup/auth-image-user"
+      );
+      const data = await response.json(); // Make sure to parse the response
+      setSignInData(data[0]); // Assuming you want the first object from the array
+    } catch (error) {
+      console.error("Error fetching sign-in data:", error);
+    }
+  };
+
   return (
     <div className="bg-cover bg-center bg-[#e1feff] h-screen w-full flex justify-center items-center">
       <div className="w-[80%] max-w-[70%] h-[75%] bg-[#C4DAD2] shadow-xl shadow-black rounded-2xl flex">
-        <div
-          className="w-[50%] h-full bg-cover bg-center rounded-l-2xl"
-          style={{ backgroundImage: `url(${bg})` }}
-        ></div>
+        {signInData && signInData.image && signInData.image.length > 0 && (
+          <div
+            className="w-[50%] h-full bg-cover bg-center rounded-l-xl"
+            style={{
+              backgroundImage: `url(${signInData.image[0]})`,
+            }}
+          ></div>
+        )}
         <div className="w-[50%] h-full flex flex-col justify-center items-center bg-[#e1feff] p-10 rounded-r-2xl">
           <h1 className="text-2xl font-bold text-cyan-500 mb-4">
             Forgot Your Password

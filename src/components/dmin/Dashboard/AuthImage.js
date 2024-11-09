@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function HaventSign() {
+function AuthImage() {
   const [signInData, setSignInData] = useState({
-    title: "",
-    subTitle: "",
+    phoneImage: null,
     image: null,
   });
   const [signInList, setSignInList] = useState([]);
@@ -17,7 +16,7 @@ function HaventSign() {
   const fetchSignIns = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/popup/havent"
+        "http://localhost:5000/api/popup/auth-image"
       );
       setSignInList(response.data);
     } catch (error) {
@@ -25,35 +24,28 @@ function HaventSign() {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSignInData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleFileChange = (e) => {
+    const { name, files } = e.target;
     setSignInData((prevData) => ({
       ...prevData,
-      image: e.target.files[0],
+      [name]: files[0],  // Update only the relevant field (either phoneImage or image)
     }));
   };
-
+  
   const createSignIn = async () => {
     const formData = new FormData();
-    formData.append("title", signInData.title);
-    formData.append("subTitle", signInData.subTitle);
     if (signInData.image) formData.append("image", signInData.image);
+    if (signInData.phoneImage)
+      formData.append("phoneImage", signInData.phoneImage);
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/popup/havent",
+        "http://localhost:5000/api/popup/auth-image",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       setSignInList((prevList) => [...prevList, response.data]);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ phoneImage: null, image: null });
     } catch (error) {
       console.error("Error creating sign-in:", error);
     }
@@ -61,13 +53,13 @@ function HaventSign() {
 
   const updateSignIn = async () => {
     const formData = new FormData();
-    formData.append("title", signInData.title);
-    formData.append("subTitle", signInData.subTitle);
     if (signInData.image) formData.append("image", signInData.image);
+    if (signInData.phoneImage)
+      formData.append("phoneImage", signInData.phoneImage);
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/popup/havent/${selectedSignIn._id}`,
+        `http://localhost:5000/api/popup/auth-image/${selectedSignIn._id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -77,7 +69,7 @@ function HaventSign() {
         )
       );
       setSelectedSignIn(null);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ phoneImage: null, image: null });
     } catch (error) {
       console.error("Error updating sign-in:", error);
     }
@@ -85,7 +77,7 @@ function HaventSign() {
 
   const deleteSignIn = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/popup/havent/${id}`);
+      await axios.delete(`http://localhost:5000/api/popup/auth-image/${id}`);
       setSignInList((prevList) => prevList.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting sign-in:", error);
@@ -95,8 +87,7 @@ function HaventSign() {
   const loadSignIn = (signIn) => {
     setSelectedSignIn(signIn);
     setSignInData({
-      title: signIn.title,
-      subTitle: signIn.subTitle,
+      phoneImage: null,
       image: null,
     });
   };
@@ -104,7 +95,7 @@ function HaventSign() {
   return (
     <div className="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-lg mt-10">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-        Last Pop Up
+        Sign In Management
       </h2>
       <form
         onSubmit={(e) => {
@@ -114,26 +105,14 @@ function HaventSign() {
         className="space-y-4"
       >
         <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={signInData.title}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          type="text"
-          name="subTitle"
-          placeholder="Subtitle"
-          value={signInData.subTitle}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="file"
+          name="image"
+          onChange={handleFileChange}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
         />
         <input
           type="file"
-          name="image"
+          name="phoneImage"
           onChange={handleFileChange}
           className="w-full px-4 py-2 border rounded-lg focus:outline-none"
         />
@@ -157,7 +136,7 @@ function HaventSign() {
       </form>
 
       <h3 className="text-xl font-semibold text-gray-800 mt-6">
-        Existing PopUp
+        Existing Sign Ins
       </h3>
       <ul className="space-y-4 mt-4">
         {signInList.map((signIn) => (
@@ -165,12 +144,15 @@ function HaventSign() {
             key={signIn._id}
             className="border p-4 rounded-lg shadow-sm bg-gray-50"
           >
-            <h4 className="font-medium text-lg">{signIn.title}</h4>
-            <p className="text-gray-600">{signIn.subTitle}</p>
             {signIn.image[0] && (
               <img
                 src={`http://localhost:5000/upload/${signIn.image[0]}`}
-                alt={signIn.title}
+                className="mt-2 rounded-lg w-32 h-32 object-cover"
+              />
+            )}
+            {signIn.phoneImage[0] && (
+              <img
+                src={`http://localhost:5000/upload/${signIn.phoneImage[0]}`}
                 className="mt-2 rounded-lg w-32 h-32 object-cover"
               />
             )}
@@ -195,4 +177,4 @@ function HaventSign() {
   );
 }
 
-export default HaventSign;
+export default AuthImage;

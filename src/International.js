@@ -33,7 +33,7 @@ const International = () => {
     contactNo: "",
     message: "",
   });
-
+  const [places, setPlaces] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleReadMore = () => {
@@ -58,60 +58,40 @@ const International = () => {
       });
     }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Form submitted:", formData);
-    // Add form submission logic here (e.g., API call)
+  
+  const type = "International";
+  const fetchImageCard = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/popup/state-images-user/${type}`
+      );
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json(); // Ensure you await this call
+      setPlaces(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
 
-  const places = [
-    {
-      id: 16,
-      name: "Dubai",
-      img: shi16,
-    },
-    {
-      id: 17,
-      name: "Maldives",
-      img: shi17,
-    },
-    {
-      id: 18,
-      name: "Bali",
-      img: shi18,
-    },
-    {
-      id: 19,
-      name: "Thailand",
-      img: shi19,
-    },
-    {
-      id: 20,
-      name: "Vietnam",
-      img: shi20,
-    },
-    {
-      id: 21,
-      name: "Singapore",
-      img: shi21,
-    },
-  ];
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "http://localhost:5000/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
   useEffect(() => {
     fetchBackgroundImages();
+    fetchImageCard();
   }, []);
   const nationalImages = backgroundImages.filter(
     (item) => item.type === "International"
   );
 
+  const name = places.stateName;
   return (
     <div className="wrpper-inter">
       <Nav />
@@ -169,15 +149,16 @@ const International = () => {
       </div>
       <div className=" w-full flex justify-center items-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 w-[80%] gap-4">
-          {places.map((place) => (
-            <Link to={`/places/${place.name}`} key={place.id}>
-              <img
-                className="h-[90%] w-[100%]"
-                src={place.img}
-                alt={place.name}
-              />
-            </Link>
-          ))}
+          {Array.isArray(places) &&
+            places.map((place) => (
+              <Link key={place.stateName} to={`/places/${place.stateName}`}>
+                <img
+                  className="h-[90%] w-[100%]"
+                  src={place.image[0]} // Ensure you are accessing the first image
+                  alt={place.stateName}
+                />
+              </Link>
+            ))}
         </div>
       </div>
       <div className="justify-center pt-10 items-center flex flex-col w-full ">
@@ -196,7 +177,7 @@ const International = () => {
       </div>
       <div className="bg-[#ffffe6]">
         <div className="pt-96">
-        {isMobile ? (
+          {isMobile ? (
             <div className="pl-[10px] pr-[10px] relative">
               <MobileHomeGallery />
             </div>

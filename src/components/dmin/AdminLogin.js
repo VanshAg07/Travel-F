@@ -27,7 +27,7 @@ function AdminLogin() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("https://api.travello10.com/api/admin/login", {
+      const response = await fetch("http://localhost:5000/api/admin/login", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -66,7 +66,7 @@ function AdminLogin() {
   const handleForgotPassword = async () => {
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/request-password-reset",
+        "http://localhost:5000/api/auth/request-password-reset",
         {
           email,
         }
@@ -84,7 +84,7 @@ function AdminLogin() {
   const handleVerifyOtp = async () => {
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/verify-otp",
+        "http://localhost:5000/api/auth/verify-otp",
         {
           email,
           otp,
@@ -108,7 +108,7 @@ function AdminLogin() {
 
     try {
       const response = await axios.put(
-        "https://api.travello10.com/api/auth/reset-password",
+        "http://localhost:5000/api/auth/reset-password",
         {
           email,
           password: newPassword,

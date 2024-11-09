@@ -27,6 +27,8 @@ import SignInPop from "./Dashboard/PopUp/SignInPop";
 import HaventSign from "./Dashboard/PopUp/HaventSign";
 import AssistPop from "./Dashboard/PopUp/AssistPop";
 import AssistForm from "./Dashboard/PopUp/AssistForm";
+import AuthImage from "./Dashboard/AuthImage";
+import StateImages from "./Dashboard/StateImages";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -120,6 +122,14 @@ function Dashboard() {
     {
       name: "Assist Response",
       component: <AssistForm />,
+    },
+    {
+      name: "Login/Sign Pages",
+      component: <AuthImage />,
+    },
+    {
+      name: "National, International,Honeymoon Card Images",
+      component: <StateImages />,
     },
   ];
   const handleCardClick = (component) => {

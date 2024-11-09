@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import bg from "../../images/signup.jpg";
 import useMediaQuery from "../hooks/UseMediaQuery";
@@ -24,7 +24,7 @@ function Signup() {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/send-otp", {
+      const response = await fetch("http://localhost:5000/api/auth/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function Signup() {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/verifyOtp", {
+      const response = await fetch("http://localhost:5000/api/auth/verifyOtp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function Signup() {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/register", {
+      const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,21 @@ function Signup() {
       toast.error("An error occurred");
     }
   };
-
+  const [signInData, setSignInData] = useState(null);
+  const fetchSignInData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/popup/auth-image-user"
+      );
+      const data = await response.json(); // Make sure to parse the response
+      setSignInData(data[0]); // Assuming you want the first object from the array
+    } catch (error) {
+      console.error("Error fetching sign-in data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchSignInData();
+  }, []);
   if (isMobile) {
     return <Signupmobile />;
   }
@@ -122,10 +136,14 @@ function Signup() {
   return (
     <div className="bg-cover bg-center bg-[#e1feff] h-screen w-full flex justify-center items-center">
       <div className="w-[80%] max-w-[70%] h-[85%] bg-white shadow-xl shadow-black rounded-xl flex">
-        <div
-          className="w-[50%] h-full bg-cover bg-center rounded-l-xl"
-          style={{ backgroundImage: `url(${bg})` }}
-        ></div>
+        {signInData && signInData.image && signInData.image.length > 0 && (
+          <div
+            className="w-[50%] h-full bg-cover bg-center rounded-l-xl"
+            style={{
+              backgroundImage: `url(${signInData.image[0]})`,
+            }}
+          ></div>
+        )}
         <div className="w-[50%] h-full flex flex-col justify-center items-center bg-[#e1feff] p-10 rounded-r-2xl">
           <h1 className="text-2xl font-bold text-cyan-500 mb-4">
             Create an Account
@@ -180,7 +198,6 @@ function Signup() {
             >
               {isOtpSent ? "OTP Sent" : "Send OTP"}
             </button>
-
 
             {isOtpSent && !isOtpVerified && (
               <>

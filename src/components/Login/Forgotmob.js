@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import backgroundImage from "../../img/login.jpg";
 import logo from "../../img/logo.png";
@@ -14,6 +14,21 @@ const ForgotPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [signInData, setSignInData] = useState(null);
+  const fetchSignInData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/popup/auth-image-user"
+      );
+      const data = await response.json(); // Make sure to parse the response
+      setSignInData(data[0]); // Assuming you want the first object from the array
+    } catch (error) {
+      console.error("Error fetching sign-in data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchSignInData();
+  }, []);
   const navigate = useNavigate();
   const handleForgotPassword = async () => {
     setLoading(true);
@@ -21,7 +36,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/request-password-reset",
+        "http://localhost:5000/api/auth/request-password-reset",
         { email }
       );
 
@@ -42,7 +57,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/verify-otp",
+        "http://localhost:5000/api/auth/verify-otp",
         { email, otp }
       );
 
@@ -68,7 +83,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.put(
-        "https://api.travello10.com/api/auth/reset-password",
+        "http://localhost:5000/api/auth/reset-password",
         { email, password: newPassword }
       );
 
@@ -93,9 +108,17 @@ const ForgotPassword = () => {
 
   return (
     <div
-      className="h-screen flex flex-col justify-center items-center bg-cover overflow-hidden bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+    className="h-screen flex flex-col justify-center items-center bg-cover overflow-y-auto bg-center"
+    style={{
+      backgroundImage: `url(${
+        signInData &&
+        signInData.phoneImage &&
+        signInData.phoneImage.length > 0
+          ? signInData.phoneImage[0]
+          : backgroundImage
+      })`,
+    }}
+  >
       <div className="absolute inset-0 bg-[#4B6681B2] z-0"></div>
       <div className="relative w-full max-w-xs p-5 z-10 bg-transparent">
         <div className="flex justify-center">

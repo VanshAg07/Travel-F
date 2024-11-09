@@ -15,7 +15,7 @@ const Popup1 = ({ onClose }) => {
   // Fetch popup data from API
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/signin-user");
+      const res = await fetch("http://localhost:5000/api/popup/signin-user");
       const data = await res.json();
       setPopupData(data[0]); // Assuming the response is an array with a single object
     } catch (error) {
