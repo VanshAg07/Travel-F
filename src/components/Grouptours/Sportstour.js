@@ -89,7 +89,7 @@ const BackpackingTrips = () => {
         <Nav />
         <Dropnav />
 
-        <div className="hero-section-left-1">
+        <div className="w-full">
           {nationalImages.length > 0 &&
             nationalImages.map((item) => (
               <div key={item._id} className="relative">
@@ -114,7 +114,7 @@ const BackpackingTrips = () => {
                         key={index}
                         src={`https://api.travello10.com/upload/${imgUrl}`}
                         alt={`Image ${index}`}
-                        className="w-full object-cover"
+                        className="w-full md:h-screen"
                       />
                     )
                   )}

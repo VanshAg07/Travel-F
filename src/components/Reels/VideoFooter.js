@@ -5,6 +5,7 @@ import { RiShareFill } from "react-icons/ri";
 import logo from "../../img/Travello10logo.png";
 
 function VideoFooter({ title, videoSubtitle, urlLink }) {
+  console.log(urlLink);
   const handleShareClick = () => {
     const shareUrl = `https://www.travello10.com/reel-slider`;
 

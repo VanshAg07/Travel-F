@@ -77,7 +77,7 @@ const BackpackingTrips = () => {
         <Nav />
         <Dropnav />
         {/* Hero Section */}
-        <div className="hero-section-left-1">
+        <div className="w-full">
           {nationalImages.length > 0 &&
             nationalImages.map((item) => (
               <div key={item._id} className="relative">
@@ -102,7 +102,7 @@ const BackpackingTrips = () => {
                         key={index}
                         src={`https://api.travello10.com/upload/${imgUrl}`}
                         alt={`Image ${index}`}
-                        className="w-full object-cover"
+                        className="w-full md:h-screen"
                       />
                     )
                   )}
@@ -160,7 +160,7 @@ const BackpackingTrips = () => {
         </div>
 
         {/* Adventure Group Start Section */}
-        <div className="w-full">
+        <div className="w-[95%]">
           {adventureGroupStart.length > 0 &&
             adventureGroupStart.map((item) => (
               <div
@@ -173,7 +173,7 @@ const BackpackingTrips = () => {
                       key={index}
                       src={`https://api.travello10.com/upload/${imgUrl}`}
                       alt={item.heading}
-                      className="w-96 h-96"
+                      className="h-96 rounded-lg"
                     />
                   ))}
                 </div>

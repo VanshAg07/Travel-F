@@ -9,16 +9,20 @@ function VideoModal() {
   useEffect(() => {
     const fetchReelVideo = async () => {
       try {
-        const response = await fetch("https://api.travello10.com/api/reel/reels");
+        const response = await fetch(
+          "https://api.travello10.com/api/reel/reels"
+        );
         const data = await response.json();
         setVideos(data);
+        data.forEach((video) => {
+          console.log(video.urlLink); // Accessing urlLink for each video
+        });
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
     };
     fetchReelVideo();
   }, []);
-
   return (
     <div className="app">
       <div className="app__videos">
@@ -29,8 +33,8 @@ function VideoModal() {
             videoTitle={videoTitle}
             videoSubtitle={videoSubtitle}
             video={video}
-            url={`https://api.travello10.com/upload/${video[0]}`}
-            link={urlLink}
+            url={`https://api.travello10.com/upload/${video[0]}`} // Assuming this is the correct way to construct the video URL
+            link={urlLink} // Pass the urlLink to VideoCard
             currentlyPlayingId={currentlyPlayingId}
             setCurrentlyPlayingId={setCurrentlyPlayingId}
           />
