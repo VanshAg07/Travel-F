@@ -85,7 +85,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>Home</p>
               </div>
             </Link>
@@ -94,7 +94,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Aboutus")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>About Us</p>
               </div>
             </Link>
@@ -105,7 +105,7 @@ const Nav = () => {
               className={isActive("/offer")}
             >
               {navOffer && (
-                <div className="mr-10">
+                <div className="mr-5">
                   <p>{navOffer}</p>
                 </div>
               )}
@@ -115,7 +115,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Payments")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>Payments</p>
               </div>
             </Link>
@@ -124,7 +124,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Cont")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>Contact</p>
               </div>
             </Link>
@@ -133,7 +133,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Glry")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>Gallery</p>
               </div>
             </Link>
@@ -142,7 +142,7 @@ const Nav = () => {
               onClick={() => setIsMenuOpen(false)}
               className={isActive("/Blog")}
             >
-              <div className="flex flex-row justify-center mr-10 items-center gap-1">
+              <div className="flex flex-row justify-center mr-5 items-center gap-1">
                 <p>Blogs</p>
               </div>
             </Link>
@@ -255,7 +255,7 @@ const Nav = () => {
               className={`flex flex-row justify-center items-center gap-2 border-2 border-white rounded-full md:px-4 py-2 ${
                 isMobile
                   ? "mr-0 font-semibold text-sm text-black"
-                  : "mr-10 text-xs"
+                  : "mr-5 text-xs"
               }`}
             >
               <FaPhoneAlt className="transform" />
