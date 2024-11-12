@@ -76,7 +76,7 @@ const Home = () => {
                   <img
                     src={`${isMobile ? item.phoneImage : item.image}`}
                     alt="Payment Method"
-                    className="w-full md:mt-5 h-[70vh]"
+                    className="w-full md:mt-5 h-[100vh]"
                   />
                 </div>
               ))}
