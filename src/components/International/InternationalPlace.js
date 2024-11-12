@@ -34,8 +34,6 @@ const InernationalPlaces = () => {
   const { name } = useParams();
   // console.log(name);
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(2);
-  const navigate = useNavigate();
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const [nationalImages, setNationalImages] = useState([]);
@@ -72,32 +70,6 @@ const InernationalPlaces = () => {
     fetchSimilarPackages();
   }, []);
 
-  const loadMorePackages = () => {
-    setVisiblePackages((prevVisible) => prevVisible + 6);
-  };
-
-  const handlePackageClick = (stateName, tripName) => {
-    const sanitizedTripName = tripName.replace(/\//g, "-");
-    navigate(
-      `/international/${encodeURIComponent(sanitizedTripName)}/${stateName}`
-    );
-  };
-
-  const containerRef = useRef(null);
-
-  // Function to handle left arrow click
-  const handleScrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -280, behavior: "smooth" });
-    }
-  };
-
-  // Function to handle right arrow click
-  const handleScrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 280, behavior: "smooth" });
-    }
-  };
 
   return (
     <>

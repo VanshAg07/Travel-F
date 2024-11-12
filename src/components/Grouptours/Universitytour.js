@@ -84,7 +84,7 @@ const BackpackingTrips = () => {
       <div className="wrpper-inter">
         <Nav />
         <Dropnav />
-        <div className="hero-section-left-1">
+        <div className="w-full">
           {nationalImages.length > 0 &&
             nationalImages.map((item) => (
               <div key={item._id} className="relative">
@@ -109,7 +109,7 @@ const BackpackingTrips = () => {
                         key={index}
                         src={`https://api.travello10.com/upload/${imgUrl}`}
                         alt={`Image ${index}`}
-                        className="w-full object-cover"
+                        className="w-full md:h-screen"
                       />
                     )
                   )}
@@ -165,12 +165,12 @@ const BackpackingTrips = () => {
           </div>
         </div>
 
-        <div className="w-full">
+        <div className="w-[95%]">
           {adventureGroupStart.length > 0 &&
             adventureGroupStart.map((item) => (
               <div
                 key={item._id}
-                className="flex flex-col md:flex-row items-start bg-white rounded-lg shadow-md overflow-hidden"
+                className="flex flex-col md:flex-row items-start bg-white rounded-lg overflow-hidden"
               >
                 <div className="md:w-1/2 flex justify-end mt-5">
                   {(item.tripImages || []).map((imgUrl, index) => (
@@ -178,7 +178,7 @@ const BackpackingTrips = () => {
                       key={index}
                       src={`https://api.travello10.com/upload/${imgUrl}`}
                       alt={item.heading}
-                      className="w-96 h-96"
+                      className=" h-96 rounded-lg"
                     />
                   ))}
                 </div>
