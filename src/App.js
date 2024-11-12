@@ -52,10 +52,8 @@ import DateCosting from "./components/DatesCosting/DateCosting.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js";
 import Weekends from "./components/Weekends.js";
-import ComingSoon from "./components/coming/ComingSoon.jsx";
 import InternationalPlaces from "./components/International/InternationalPlace.js";
 import HomeHoneymoon from "./components/User/Honeymoon/HomeHoneymoon.js";
-import Exploremob from "./components/explore-mob.js";
 import PackageHoneymoon from "./components/User/Honeymoon/PackageHoneymoon.js";
 import PackageInternatioanl from "./components/International/PackageInternational.js";
 import PackageWeekend from "./components/User/WeekendTrips/PackageWeekend.js";
@@ -208,7 +206,6 @@ const App = () => {
         <Route path="/phonefooter" element={<PhoneFooter />} />
         <Route path="/reel-slider" element={<VideoModal />} />
         <Route path="/similar-trips" element={<SimilarTrips />} />
-        {/* <Route path='/' element={<ComingSoon />} /> */}
       </Routes>
     </BrowserRouter>
   );
