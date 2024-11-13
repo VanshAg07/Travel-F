@@ -27,7 +27,7 @@ function OfferCards() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="w-[90%] mx-auto">
       {packages.length > 0 ? (
         packages.map((pkg, index) => (
           <div key={index} className="mb-8">
@@ -37,7 +37,7 @@ function OfferCards() {
             </h2>
 
             {/* Grid for trips */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-6">
               {pkg.trips.map((trip, tripIndex) => (
                 <div
                   key={`${index}-${tripIndex}`}
