@@ -73,7 +73,6 @@ const National = () => {
         <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
           Discover Offer Packages
         </h1>
-        <div className="bg-[#ffff00] h-1 w-14 md:w-20 lg:w-40 mt-2"></div>
       </div>
       <div className="flex justify-center mt-10">
         <div className="w-full">

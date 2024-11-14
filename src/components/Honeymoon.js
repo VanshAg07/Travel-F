@@ -11,14 +11,6 @@ import Dropnav from "../components/Dropnav";
 import Homeglry from "../components/Homeglry.js";
 import Mainreview from "../components/Mainreview.js";
 import MainFooter from "../components/Footer/MainFooter.js";
-import shi1 from "../img/3.png";
-import shi2 from "../img/7.png";
-import shi3 from "../img/4.png";
-import shi4 from "../img/22.png";
-import shi5 from "../img/18.png";
-import shi6 from "../img/19.png";
-import shi7 from "../img/17.png";
-import shi8 from "../img/20.png";
 import { Link } from "react-router-dom";
 import HoneymoonCard from "./User/Honeymoon/HoneymoonCard.js";
 import axios from "axios";
@@ -36,31 +28,6 @@ const Honeymoon = () => {
     message: "",
   });
 
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "contactNo") {
-      const re = /^[0-9\b]+$/;
-      if (value === "" || (re.test(value) && value.length <= 10)) {
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      }
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
   const type = "Honeymoon";
   const fetchImageCard = async () => {
     try {
@@ -75,12 +42,6 @@ const Honeymoon = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Form submitted:", formData);
-    // Add form submission logic here (e.g., API call)
   };
 
   const whatsappMessage = "Hello, I need assistance with my issue.";

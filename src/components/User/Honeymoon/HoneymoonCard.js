@@ -4,7 +4,7 @@ import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 function AllPackagesCard() {
   const [packages, setPackages] = useState([]);
-  const [visiblePackages, setVisiblePackages] = useState(6);
+  const [visiblePackages, setVisiblePackages] = useState(16);
   const navigate = useNavigate(); // Initializing useNavigate
 
   useEffect(() => {

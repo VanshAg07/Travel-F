@@ -36,7 +36,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mb-80">
       <div className="flex relative flex-row">
         <div className="arrow-wrapper">
           <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
