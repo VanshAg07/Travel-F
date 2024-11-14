@@ -22,6 +22,8 @@ function GroupToursEdit() {
     overView: "",
     status: "",
     customised: "",
+    tripInclusions: [""],
+    tripExclusions: [""],
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
@@ -57,6 +59,8 @@ function GroupToursEdit() {
       tripDescription: trip.tripDescription || [""],
       tripItinerary: trip.tripItinerary || [{ title: "", points: [""] }],
       overView: trip.overView || "",
+      tripInclusions: trip.tripInclusions || [""],
+      tripExclusions: trip.tripExclusions || [""],
       tripDate: trip.tripDate || [],
       tripLocation: trip.tripLocation || "",
       pickAndDrop: trip.pickAndDrop || "",
@@ -192,6 +196,13 @@ function GroupToursEdit() {
     }));
   };
 
+  const handleArrayChange = (name, index, value) => {
+    setTripDetails((prevDetails) => {
+      const newArray = [...prevDetails[name]];
+      newArray[index] = value;
+      return { ...prevDetails, [name]: newArray };
+    });
+  };
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
@@ -202,11 +213,10 @@ function GroupToursEdit() {
           packages.map((pkg) => (
             <div
               key={pkg._id}
-              className={`cursor-pointer border p-3 rounded-lg text-lg ${
-                selectedState === pkg._id
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100"
-              }`}
+              className={`cursor-pointer border p-3 rounded-lg text-lg ${selectedState === pkg._id
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100"
+                }`}
               onClick={() =>
                 setSelectedState(selectedState === pkg._id ? null : pkg._id)
               }
@@ -451,6 +461,66 @@ function GroupToursEdit() {
                   required
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Inclusions:
+                </label>
+                {tripDetails.tripInclusions.map((inclusion, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    value={inclusion}
+                    onChange={(e) =>
+                      handleArrayChange("tripInclusions", index, e.target.value)
+                    }
+                    className="mt-1 p-2 w-full border rounded-lg mb-2"
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleArrayChange(
+                      "tripInclusions",
+                      tripDetails.tripInclusions.length,
+                      ""
+                    )
+                  }
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Add Inclusions
+                </button>
+              </div>
+
+              {/* Exclusions */}
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Exclusions:
+                </label>
+                {tripDetails.tripExclusions.map((exclusion, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    value={exclusion}
+                    onChange={(e) =>
+                      handleArrayChange("tripExclusions", index, e.target.value)
+                    }
+                    className="mt-1 p-2 w-full border rounded-lg mb-2"
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleArrayChange(
+                      "tripExclusions",
+                      tripDetails.tripExclusions.length,
+                      ""
+                    )
+                  }
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                >
+                  Add Exclusions
+                </button>
               </div>
               {/* Itinerary */}
               <div className="mb-4">
