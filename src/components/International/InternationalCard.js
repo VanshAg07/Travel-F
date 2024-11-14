@@ -57,7 +57,18 @@ const InternatioanlCard = () => {
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
               <div className="absolute top-3 right-3 bg-yellow-300 border-2 border-white px-3 py-1 rounded-full flex items-center justify-center">
-                <span className="font-bold text-sm">₹ {trip.tripPrice}</span>
+                <span className="font-semibold text-sm ">
+                  {trip.customised ? (
+                    "Customised"
+                  ) : (
+                    <>
+                      <span className="relative mr-1 line-through">
+                        {`₹ ${trip.tripPrice}/-`}
+                      </span>
+                      {`₹${trip.tripOfferPrice}/- onwards`}
+                    </>
+                  )}
+                </span>
               </div>
               <div className="w-full p-3 rounded-lg flex flex-col absolute bottom-0 bg-black bg-opacity-75">
                 <h2 className="text-xs md:text-sm lg:text-base font-bold text-white mb-2">

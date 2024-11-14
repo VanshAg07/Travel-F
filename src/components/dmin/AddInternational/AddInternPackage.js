@@ -179,7 +179,10 @@ const AddInternPackage = () => {
       sharing: [...tripDetails.sharing, { title: "", price: "" }],
     });
   };
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setTripDetails({ ...tripDetails, [name]: value });
+  };
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-md rounded">
       <h2 className="text-2xl font-bold mb-6">Add International Package</h2>
@@ -203,7 +206,22 @@ const AddInternPackage = () => {
                 {state.name}
               </option>
             ))}
-                   
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Location</label>
+          <select
+            name="tripLocation"
+            value={tripDetails.tripLocation}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+          >
+            <option value="">Select a Location</option>
+            {states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="mb-4">
@@ -214,19 +232,6 @@ const AddInternPackage = () => {
             value={tripDetails.tripName}
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripName: e.target.value })
-            }
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Location</label>
-          <input
-            type="text"
-            name="tripLocation"
-            value={tripDetails.tripLocation}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripLocation: e.target.value })
             }
             required
             className="w-full p-2 border border-gray-300 rounded"

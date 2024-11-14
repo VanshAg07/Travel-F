@@ -19,6 +19,8 @@ const AddInternPackage = () => {
     status: "active",
     overView: "",
     customised: false,
+    tripInclusions: [],
+    tripExclusions: []
   });
 
   useEffect(() => {
@@ -283,7 +285,64 @@ const AddInternPackage = () => {
             required
           />
         </div>
+        {/* Dynamic Inputs: Trip Inclusions */}
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Inclusions:</label>
+          {tripDetails.tripInclusions.map((inclusion, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="text"
+                value={inclusion}
+                onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveItem(index, "tripInclusions")}
+                className="ml-2 text-red-600"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => handleAddItem("tripInclusions", "")}
+            className="text-green-600 mt-2"
+          >
+            <FaPlus /> Add Inclusion
+          </button>
+        </div>
 
+        {/* Dynamic Inputs: Trip Exclusions */}
+        <div className="mb-4">
+          <label className="block text-gray-700">Trip Exclusions:</label>
+          {tripDetails.tripExclusions.map((exclusion, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="text"
+                value={exclusion}
+                onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveItem(index, "tripExclusions")}
+                className="ml-2 text-red-600"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => handleAddItem("tripExclusions", "")}
+            className="text-green-600 mt-2"
+          >
+            <FaPlus /> Add Exclusion
+          </button>
+        </div>
         {/* Trip Itinerary */}
         <div className="mb-4">
           <label className="block text-gray-700">Trip Itinerary:</label>
