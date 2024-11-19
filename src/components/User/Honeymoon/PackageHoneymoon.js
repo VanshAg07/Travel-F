@@ -19,6 +19,7 @@ import MainFooter from "../../Footer/MainFooter";
 import TripForms from "../../Contact/TripForms";
 import QuotePopup from "../../../QuotePopup";
 import SimilarHoneymoon from "./SimilarHoneymoon";
+import { FaShareFromSquare } from "react-icons/fa6";
 const PackageHoneymoon = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ const PackageHoneymoon = () => {
   const [sharing, setSharing] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [stateNames, setstateNames] = useState("");
   const handleDownload = () => {
     if (trips.pdf) {
       const fileUrl = `${trips.pdf}`;
@@ -38,6 +38,27 @@ const PackageHoneymoon = () => {
       console.error("No PDF file available");
     }
   };
+
+    // Handle sharing
+    const handleShare = () => {
+      const shareLink = window.location.href; // Get current URL of the page
+      if (navigator.share) {
+        // Native sharing on mobile browsers
+        navigator
+          .share({
+            title: "Trip Itinerary",
+            url: shareLink,
+          })
+          .catch((error) => console.error("Error sharing:", error));
+      } else {
+        // Fallback for desktop browsers that don't support the Share API
+        navigator.clipboard.writeText(shareLink).then(() => {
+          alert(
+            "Link copied to clipboard! You can now share it on your social platform."
+          );
+        });
+      }
+    };
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -87,25 +108,37 @@ const PackageHoneymoon = () => {
       <Nav />
       <Dropnav />
       <div className="relative">
-        <img
-          src={trips.tripBackgroundImg}
-          alt="Descriptive Alt Text"
-          className="md:h-screen w-full"
-        />
-        {trips.pdf && (
-          <button
-            className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
+          <img
+            src={trips.tripBackgroundImg}
+            alt="Descriptive Alt Text"
+            className="md:h-screen w-full"
+          />
+          {trips.pdf && (
+            <>
+              <button
+                className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
                  flex items-center justify-center 
                  text-sm sm:text-base md:text-lg lg:text-xl 
                  bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
                  transition-all duration-300"
-            onClick={handleDownload}
-          >
-            <FaFileDownload className="mr-2" />
-            <span>Download Itinerary</span>
-          </button>
-        )}
-      </div>
+                onClick={handleDownload}
+              >
+                <FaFileDownload className="mr-2" /> {/* Updated icon */}
+                <span>Download Itinerary</span>
+              </button>
+
+              <button
+                className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform 
+    translate-x-28 flex items-center justify-center ml-3 text-sm sm:text-base md:text-lg lg:text-3xl 
+     text-white p-2 sm:p-3 md:p-4 lg:p-3 
+    transition-all duration-300"
+                onClick={handleShare}
+              >
+                <FaShareFromSquare className="mr-2" />
+              </button>
+            </>
+          )}
+        </div>
 
       <div className="flex w-[95%] justify-center mb-16 m-2">
         {/* Main div responsive */}

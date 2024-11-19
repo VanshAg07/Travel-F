@@ -20,7 +20,12 @@ import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 import QuotePopup from "../QuotePopup";
 import TripForms from "./Contact/TripForms";
+<<<<<<< HEAD
 import { cloneUniformsGroups } from "three/src/renderers/shaders/UniformsUtils.js";
+=======
+import { FaShareFromSquare } from "react-icons/fa6";
+
+>>>>>>> ff2688b5688a78b662c2c13e730ae00b7ca79f29
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -45,6 +50,27 @@ const Packagedetails = () => {
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
+    }
+  };
+
+  // Handle sharing
+  const handleShare = () => {
+    const shareLink = window.location.href; // Get current URL of the page
+    if (navigator.share) {
+      // Native sharing on mobile browsers
+      navigator
+        .share({
+          title: "Trip Itinerary",
+          url: shareLink,
+        })
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      // Fallback for desktop browsers that don't support the Share API
+      navigator.clipboard.writeText(shareLink).then(() => {
+        alert(
+          "Link copied to clipboard! You can now share it on your social platform."
+        );
+      });
     }
   };
 
@@ -145,17 +171,29 @@ const Packagedetails = () => {
           className="md:h-screen w-full"
         />
         {trips.pdf && (
-          <button
-            className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
-               flex items-center justify-center 
-               text-sm sm:text-base md:text-lg lg:text-xl 
-               bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
-               transition-all duration-300"
-            onClick={handleDownload}
-          >
-            <FaFileDownload className="mr-2" />
-            <span>Download Itinerary</span>
-          </button>
+          <>
+            <button
+              className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
+                 flex items-center justify-center 
+                 text-sm sm:text-base md:text-lg lg:text-xl 
+                 bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
+                 transition-all duration-300"
+              onClick={handleDownload}
+            >
+              <FaFileDownload className="mr-2" /> {/* Updated icon */}
+              <span>Download Itinerary</span>
+            </button>
+
+            <button
+              className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform 
+    translate-x-28 flex items-center justify-center ml-3 text-sm sm:text-base md:text-lg lg:text-3xl 
+     text-white p-2 sm:p-3 md:p-4 lg:p-3 
+    transition-all duration-300"
+              onClick={handleShare}
+            >
+              <FaShareFromSquare className="mr-2" />
+            </button>
+          </>
         )}
       </div>
 
@@ -274,13 +312,13 @@ const Packagedetails = () => {
               </p>
 
               {trips &&
-                trips.tripItinerary &&
-                trips.tripItinerary.length > 0 ? (
+              trips.tripItinerary &&
+              trips.tripItinerary.length > 0 ? (
                 trips.tripItinerary.map((itineraryItem, index) => (
                   <div
                     className="mb-5 cursor-pointer bg-blue-100 p-3 rounded-lg shadow-md"
                     key={index}
-                    onClick={() => handleToggleDay(index + 1)}  // Move onClick to the parent div
+                    onClick={() => handleToggleDay(index + 1)} // Move onClick to the parent div
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-start flex-grow">
@@ -304,10 +342,7 @@ const Packagedetails = () => {
                     {expandedDays[index + 1] && (
                       <ul className="mt-4 mx-10">
                         {itineraryItem.points.map((detail, i) => (
-                          <div
-                            className="mt-2 flex items-start gap-3"
-                            key={i}
-                          >
+                          <div className="mt-2 flex items-start gap-3" key={i}>
                             <div className="flex-shrink-0 mt-2 w-3 h-3 flex items-center justify-center">
                               <LuCircleDotDashed className="w-full h-full" />
                             </div>
@@ -335,8 +370,8 @@ const Packagedetails = () => {
               </h1>
               <ul className="list-none p-0 m-0 rounded-lg">
                 {trips &&
-                  trips.tripInclusions &&
-                  trips.tripInclusions.length > 0 ? (
+                trips.tripInclusions &&
+                trips.tripInclusions.length > 0 ? (
                   trips.tripInclusions.map((inclusion, index) => (
                     <li
                       className="flex flex-row items-start gap-4 mt-2 text-xs sm:text-sm md:text-base"
@@ -365,8 +400,8 @@ const Packagedetails = () => {
               </h1>
               <ul className="list-none p-0 m-0 rounded-lg">
                 {trips &&
-                  trips.tripExclusions &&
-                  trips.tripExclusions.length > 0 ? (
+                trips.tripExclusions &&
+                trips.tripExclusions.length > 0 ? (
                   trips.tripExclusions.map((exclusion, index) => (
                     <li
                       className="flex flex-row items-start text-xs sm:text-sm md:text-base gap-4 mt-2" // Changed items-center to items-start
@@ -417,7 +452,7 @@ const Packagedetails = () => {
             Customise Your trip
           </div>
           {/* Second Section: Book Now Button */}
-          <div onClick={handleGetQuotesClick} >
+          <div onClick={handleGetQuotesClick}>
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
               Get Quotes
             </button>

@@ -1,3 +1,7 @@
 .icon-f {
     border-radius: 50%;
   }
+  body {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAIAAABLi1R9AAAAKklEQVQI12MAAQAABgABDQEBoAEAVAEFAQAA/h9LQAECAUQFAQIAUEAADhMAAwAAAABJRU5ErkJggg==') repeat;
+  }
+  

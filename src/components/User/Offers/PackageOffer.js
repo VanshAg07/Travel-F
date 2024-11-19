@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../Packagedetails.css";
 import Nav from "../../Nav";
-import { FaFileDownload } from "react-icons/fa";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
@@ -18,6 +17,9 @@ import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import QuotePopup from "../../../QuotePopup";
 import TripForms from "../../Contact/TripForms";
+import { FaFileDownload } from "react-icons/fa";
+import { FaShareFromSquare } from "react-icons/fa6";
+
 const PackageOffer = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -29,19 +31,59 @@ const PackageOffer = () => {
   const [activeSection, setActiveSection] = useState("overview");
 
   const [isExpanded, setIsExpanded] = useState(false);
-
   const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
   const [sharing, setSharing] = useState([]);
   const [loading, setLoading] = useState(true);
   const [stateNames, setstateNames] = useState("");
+
+  useEffect(() => {
+    const fetchTripDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.travello10.com/api/offer/findStateAndTrip/${name}/${tripName}`
+        );
+        setTrip(response.data.trip);
+        setSharing(response.data.trip.sharing);
+        setstateNames(response.data.state);
+      } catch (error) {
+        console.error("Error fetching trip details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTripDetails();
+  }, [name, tripName]);
+
+  // Handle file download
   const handleDownload = () => {
     if (trips.pdf) {
       const fileUrl = `${trips.pdf}`;
       window.open(fileUrl, "_blank");
     } else {
       console.error("No PDF file available");
+    }
+  };
+
+  // Handle sharing
+  const handleShare = () => {
+    const shareLink = window.location.href; // Get current URL of the page
+    if (navigator.share) {
+      // Native sharing on mobile browsers
+      navigator
+        .share({
+          title: "Trip Itinerary",
+          url: shareLink,
+        })
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      // Fallback for desktop browsers that don't support the Share API
+      navigator.clipboard.writeText(shareLink).then(() => {
+        alert(
+          "Link copied to clipboard! You can now share it on your social platform."
+        );
+      });
     }
   };
 
@@ -62,42 +104,14 @@ const PackageOffer = () => {
     setIsDay1Expanded(!isDay1Expanded);
   };
 
-  const stateName = name;
-  useEffect(() => {
-    const fetchTripDetails = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.travello10.com/api/offer/findStateAndTrip/${stateName}/${tripName}`
-        );
-        setTrip(response.data.trip);
-        setSharing(response.data.trip.sharing);
-        setstateNames(response.data.state);
-        // console.log(trips);
-        // console.log(sharing);
-      } catch (error) {
-        console.error("Error fetching trip details:", error);
-        setError("Failed to load trip details");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTripDetails();
-  }, [name, tripName]);
-
-  // console.log(sharing);
-  let doubleSharing;
-  let tripleSharing;
-  let quadSharing;
-  // console.log(doubleSharing)
+  // Set sharing prices (if available)
+  let doubleSharing, tripleSharing, quadSharing;
   if (sharing && sharing.length >= 1) {
     doubleSharing = sharing[0]?.price;
     tripleSharing = sharing[1]?.price;
     quadSharing = sharing[2]?.price;
-  } else {
-    console.log(
-      "Error: sharing array is empty or does not have enough elements"
-    );
   }
+
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
@@ -118,8 +132,6 @@ const PackageOffer = () => {
     }
   };
 
-  const [error, setError] = React.useState("");
-  const [success, setSuccess] = React.useState("");
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevState) => ({
@@ -133,18 +145,15 @@ const PackageOffer = () => {
 
     // Validate form data
     if (!formData.name || !formData.email || !formData.phone) {
-      setError("Please fill out all required fields.");
+      alert("Please fill out all required fields.");
       return;
     }
 
     try {
-      // Send form data to the backend
       const res = await axios.post(
         "https://api.travello10.com/api/contact/contact-trip",
         formData
       );
-
-      // If the request is successful, clear the form and show success message
       if (res.status === 200) {
         setFormData({
           name: "",
@@ -152,25 +161,23 @@ const PackageOffer = () => {
           message: "",
           phone: "",
         });
-        setSuccess("Your message has been sent successfully.");
-        setError("");
+        alert("Your message has been sent successfully.");
       }
     } catch (err) {
-      // Handle error case
-      setError("Failed to send the message. Please try again later.");
-      setSuccess("");
+      alert("Failed to send the message. Please try again later.");
     }
   };
+
   const [isQuotePopupVisible, setQuotePopupVisible] = useState(false);
 
   const handleGetQuotesClick = () => {
-    setActiveSection(""); // Reset active section to prevent highlighting
-    setQuotePopupVisible(true); // Show the popup
+    setQuotePopupVisible(true);
   };
 
   const closeQuotePopup = () => {
-    setQuotePopupVisible(false); // Hide the popup
+    setQuotePopupVisible(false);
   };
+
   return (
     <div>
       <>
@@ -184,17 +191,29 @@ const PackageOffer = () => {
             className="md:h-screen w-full"
           />
           {trips.pdf && (
-            <button
-              className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
+            <>
+              <button
+                className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform -translate-x-1/2 
                  flex items-center justify-center 
                  text-sm sm:text-base md:text-lg lg:text-xl 
                  bg-[#fee60b] text-black p-2 sm:p-3 md:p-4 lg:p-3 
                  transition-all duration-300"
-              onClick={handleDownload}
-            >
-              <FaFileDownload className="mr-2" /> {/* Updated icon */}
-              <span>Download Itinerary</span>
-            </button>
+                onClick={handleDownload}
+              >
+                <FaFileDownload className="mr-2" /> {/* Updated icon */}
+                <span>Download Itinerary</span>
+              </button>
+
+              <button
+                className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform 
+    translate-x-28 flex items-center justify-center ml-3 text-sm sm:text-base md:text-lg lg:text-3xl 
+     text-white p-2 sm:p-3 md:p-4 lg:p-3 
+    transition-all duration-300"
+                onClick={handleShare}
+              >
+                <FaShareFromSquare className="mr-2" />
+              </button>
+            </>
           )}
         </div>
 
@@ -317,8 +336,9 @@ const PackageOffer = () => {
                 trips.tripItinerary.length > 0 ? (
                   trips.tripItinerary.map((itineraryItem, index) => (
                     <div
-                      className="mb-5 bg-blue-100 p-3 rounded-lg shadow-md"
+                      className="mb-5 cursor-pointer bg-blue-100 p-3 rounded-lg shadow-md"
                       key={index}
+                      onClick={() => handleToggleDay(index + 1)}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex items-start flex-grow">
@@ -343,10 +363,10 @@ const PackageOffer = () => {
                         <ul className="mt-4 mx-10">
                           {itineraryItem.points.map((detail, i) => (
                             <div
-                              className="mt-2 flex flex-row items-center gap-3"
+                              className="mt-2 flex items-start gap-3"
                               key={i}
                             >
-                              <div className="flex-shrink-0 w-3 h-3 flex items-center justify-center">
+                              <div className="flex-shrink-0 mt-2 w-3 h-3 flex items-center justify-center">
                                 <LuCircleDotDashed className="w-full h-full" />
                               </div>
                               <li className="text-xs sm:text-sm md:text-base">
@@ -459,7 +479,7 @@ const PackageOffer = () => {
                     </button>
                   </div>
                 </div>
-                <TripForms/>
+                <TripForms />
               </div>
             </div>
           </div>
