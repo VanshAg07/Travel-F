@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import {
-  FaClock,
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-  FaChevronCircleLeft,
-  FaChevronCircleRight,
-} from "react-icons/fa";
+import { FaClock, FaCalendarAlt, FaMapMarkerAlt, FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const TripCard = ({ trip }) => {
+  const navigate = useNavigate(); // Initialize navigate function
+
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "short" }; // Short month format
     const date = new Date(dateString);
@@ -22,8 +18,14 @@ const TripCard = ({ trip }) => {
 
   const firstDate = trip.allTripDates[0];
 
+  // Handle trip click for navigation
+  const handleTripClick = () => {
+    const sanitizedTripName = trip.tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${encodeURIComponent(trip.stateName)}`);
+  };
+
   return (
-    <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4">
+    <div className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4" onClick={handleTripClick}>
       <img
         src={
           trip.tripImages.length > 0 ? trip.tripImages[0] : "defaultImage.jpg"
@@ -32,7 +34,7 @@ const TripCard = ({ trip }) => {
         className="w-[100vw] h-[300px] object-cover"
       />
       <div className="p-4">
-      <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
             {displayTripName}
           </h3>
@@ -124,10 +126,6 @@ const App = () => {
     }
   };
 
-  // Go to a specific trip
-  const goToTrip = (tripIndex) => {
-    setStartIndex(tripIndex);
-  };
   // Handle month selection
   const handleMonthClick = (month) => {
     setSelectedMonth(month);
@@ -164,9 +162,8 @@ const App = () => {
           {shouldShowArrows && ( // Render arrows conditionally
             <button
               onClick={prevTrips}
-              className={`p-2 ${
-                startIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`p-2 ${startIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               disabled={startIndex === 0}
             >
               <FaChevronCircleLeft size={30} />
@@ -187,11 +184,10 @@ const App = () => {
           {shouldShowArrows && ( // Render arrows conditionally
             <button
               onClick={nextTrips}
-              className={`p-2 ${
-                startIndex + tripsToShow >= allTrips.length
+              className={`p-2 ${startIndex + tripsToShow >= allTrips.length
                   ? "opacity-50 cursor-not-allowed"
                   : ""
-              }`}
+                }`}
               disabled={startIndex + tripsToShow >= allTrips.length}
             >
               <FaChevronCircleRight size={30} />
@@ -204,10 +200,9 @@ const App = () => {
               {Array.from({ length: totalDots }).map((_, dotIndex) => (
                 <div
                   key={dotIndex}
-                  onClick={() => goToTrip(dotIndex)} // Navigate directly to the selected trip
-                  className={`w-2 h-2 cursor-pointer rounded-full ${
-                    startIndex === dotIndex ? "bg-black" : "bg-gray-300"
-                  }`}
+                  onClick={() => setStartIndex(dotIndex)} // Navigate directly to the selected trip
+                  className={`w-2 h-2 cursor-pointer rounded-full ${startIndex === dotIndex ? "bg-black" : "bg-gray-300"
+                    }`}
                 />
               ))}
             </div>

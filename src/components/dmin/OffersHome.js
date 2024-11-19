@@ -141,6 +141,27 @@ const OffersHome = () => {
       .then((data) => {
         // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
+        setTripDetails({
+          tripName: "",
+          tripPrice: "",
+          tripOfferPrice: "",
+          tripDate: [""],
+          tripLocation: "",
+          tripDuration: "",
+          tripInclusions: [""],
+          tripExclusions: [""],
+          tripItinerary: [{ title: "", points: [""] }],
+          tripImages: [],
+          pdf: [],
+          tripDescription: [""],
+          pickAndDrop: "",
+          sharing: [{ title: "", price: "" }],
+          tripBackgroundImg: "",
+          overView: "",
+          tripBookingAmount: "",
+          tripSeats: "",
+          customised: false,
+        })
       })
       .catch((error) => {
         console.error("Error submitting trip", error);

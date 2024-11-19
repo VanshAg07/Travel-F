@@ -18,6 +18,7 @@ import Lottie from "lottie-react";
 import MainFooter from "../../Footer/MainFooter";
 import TripForms from "../../Contact/TripForms";
 import QuotePopup from "../../../QuotePopup";
+import SimilarHoneymoon from "./SimilarHoneymoon";
 const PackageHoneymoon = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -374,6 +375,7 @@ const PackageHoneymoon = () => {
       <div className="pb-7 bg-[#ffffe6]">
         <Review />
       </div>
+      <SimilarHoneymoon/>
       <div className="pb-425 bg-425">
         <MainFooter />
       </div>

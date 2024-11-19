@@ -18,6 +18,7 @@ import Lottie from "lottie-react";
 import MainFooter from "../Footer/MainFooter";
 import QuotePopup from "../../QuotePopup";
 import TripForms from "../Contact/TripForms";
+import SimilarInterational from "./SimilarInternational";
 const PackageInternational = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -490,6 +491,7 @@ const PackageInternational = () => {
         <div className="pb-7 bg-[#ffffe6]">
           <Review />
         </div>
+        <SimilarInterational/>
         <div className="mb-[100px]">
           <MainFooter />
         </div>

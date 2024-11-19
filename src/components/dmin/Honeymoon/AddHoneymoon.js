@@ -6,7 +6,6 @@ const AddHoneymoon = () => {
   const [states, setStates] = useState([]); // State for storing the list of states
   const [selectedState, setSelectedState] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -127,8 +126,28 @@ const AddHoneymoon = () => {
         return response.json();
       })
       .then((data) => {
-        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
+        setTripDetails({
+          tripName: "",
+          tripPrice: "",
+          tripOfferPrice: "",
+          tripDate: [""],
+          tripLocation: "",
+          tripDuration: "",
+          tripInclusions: [""],
+          tripExclusions: [""],
+          tripItinerary: [{ title: "", points: [""] }],
+          tripImages: [],
+          pdf: [],
+          tripDescription: [""],
+          pickAndDrop: "",
+          sharing: [{ title: "", price: "" }],
+          tripBackgroundImg: "",
+          overView: "",
+          tripBookingAmount: "",
+          tripSeats: "",
+          customised: false,
+        })
       })
       .catch((error) => {
         console.error("Error submitting trip", error);

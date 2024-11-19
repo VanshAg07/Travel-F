@@ -12,9 +12,9 @@ const TripDetailCard = ({ trip }) => {
     return date.toLocaleDateString(undefined, options); // Format the date
   };
 
-  // Function to handle click event for navigation
-  const handleTripClick = () => {
-    navigate(`/trips/${trip.id}`); // Navigate to trip details page
+  const handleTripClick = (tripLocation, tripName) => {
+    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
+    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${encodeURIComponent(tripLocation)}`);
   };
 
   // Extract the first date from the allTripDates array
@@ -23,11 +23,13 @@ const TripDetailCard = ({ trip }) => {
   return (
     <div
       className="bg-white h-[20vh] overflow-hidden rounded-lg shadow-md cursor-pointer"
-      onClick={handleTripClick} // Attach click handler
+      onClick={() => handleTripClick(trip.stateName, trip.tripName)}
     >
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{trip.tripName}</h3>
+          <h3 className="text-lg uppercase font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
+            {trip.tripName}
+          </h3>
         </div>
         <div className="flex items-center">
           <FaClock className="mr-1 text-sm text-black" />
@@ -35,7 +37,6 @@ const TripDetailCard = ({ trip }) => {
         </div>
         <div className="flex items-center mt-2 mb-2 ">
           <FaCalendarAlt className="mr-1 text-sm " />
-          {/* Use the first date for formatting */}
           <p className="text-xs text-black mr-1">{formatDate(firstDate)}</p>
           <p className="text-xs text-red-500 text-end">
             + {trip.allTripDatesCount} batches

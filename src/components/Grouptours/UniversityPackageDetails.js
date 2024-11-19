@@ -20,6 +20,7 @@ import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 import QuotePopup from "../QuotePopup";
 import TripForms from "./Contact/TripForms";
+import { cloneUniformsGroups } from "three/src/renderers/shaders/UniformsUtils.js";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const Packagedetails = () => {
   };
 
   const stateName = name;
+  console.log(stateName)
   useEffect(() => {
     const fetchTripDetails = async () => {
       try {

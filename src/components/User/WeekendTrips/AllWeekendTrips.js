@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 function AllWeekendTrips() {
-  const [packages, setPackages] = useState([]);
   const [visiblePackages, setVisiblePackages] = useState(6);
   const navigate = useNavigate();
-
+  
+  const [packages, setPackages] = useState([]);
   useEffect(() => {
     const fetchAllPackages = async () => {
       try {

@@ -78,13 +78,15 @@ const AddInternPackage = () => {
     updatedArray.splice(index, 1);
     setTripDetails({ ...tripDetails, [arrayName]: updatedArray });
   };
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // Handle form submission
   const handleSubmit = async (e) => {
     if (!selectedState) {
       alert("Please select a state before submitting the form.");
       return;
     }
+    setLoading(true);
+    setIsSubmitting(false);
     // console.log(selectedState);
     e.preventDefault();
 
@@ -141,9 +143,34 @@ const AddInternPackage = () => {
       .then((data) => {
         // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
+        setTripDetails({
+          tripName: "",
+          tripPrice: "",
+          tripOfferPrice: "",
+          tripDate: [""],
+          tripLocation: "",
+          tripDuration: "",
+          tripInclusions: [""],
+          tripExclusions: [""],
+          tripItinerary: [{ title: "", points: [""] }],
+          tripImages: [],
+          pdf: [],
+          tripDescription: [""],
+          pickAndDrop: "",
+          sharing: [{ title: "", price: "" }],
+          tripBackgroundImg: "",
+          overView: "",
+          tripBookingAmount: "",
+          tripSeats: "",
+          customised: false,
+        })
+        setSelectedState("");
+        setIsSubmitting(false);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error submitting trip", error);
+        setIsSubmitting(false);
       });
   };
 
@@ -614,9 +641,10 @@ const AddInternPackage = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+          className={`bg-blue-500 text-white py-2 px-4 rounded ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={isSubmitting} // Disable button while submitting
         >
-          Submit Package
+          {isSubmitting ? 'Submitting...' : 'Submit Package'}
         </button>
       </form>
     </div>

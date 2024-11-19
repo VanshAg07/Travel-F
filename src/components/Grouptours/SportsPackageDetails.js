@@ -142,7 +142,6 @@ const SportsPackageDetails = () => {
   return (
     <div>
       {isQuotePopupVisible && <QuotePopup onClose={closeQuotePopup} />}
-
       <Nav />
       <Dropnav />
       <div className="relative">

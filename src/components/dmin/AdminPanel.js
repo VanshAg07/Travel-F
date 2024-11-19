@@ -136,10 +136,9 @@ const AdminPanel = () => {
           formData.append("tripImages", image);
         });
       } else if (key === "pdf") {
-        // Append each PDF file and its status separately
         tripData.pdf.forEach((pdf, index) => {
-          formData.append("pdf", pdf.file); // Append the PDF file
-          formData.append(`pdfStatus[${index}]`, pdf.status); // Append the corresponding status
+          formData.append("pdf", pdf.file);
+          formData.append(`pdfStatus[${index}]`, pdf.status);
         });
       } else if (key === "tripBackgroundImg" && tripData.tripBackgroundImg) {
         formData.append("tripBackgroundImg", tripData.tripBackgroundImg);
@@ -165,6 +164,7 @@ const AdminPanel = () => {
         formData.append(key, tripData[key]);
       }
     });
+
     fetch(`https://api.travello10.com/api/trip/state/${selectedState.id}/trip`, {
       method: "POST",
       body: formData,
@@ -178,8 +178,30 @@ const AdminPanel = () => {
         return response.json();
       })
       .then((data) => {
-        // console.log("Trip submitted successfully", data);
         alert("Trip submitted successfully!");
+        // Reset the form data to initial state
+        setTripData({
+          tripName: "",
+          tripPrice: "",
+          tripOfferPrice: "",
+          tripDate: [""],
+          tripLocation: "",
+          tripDuration: "",
+          tripInclusions: [""],
+          tripExclusions: [""],
+          tripItinerary: [{ title: "", points: [""] }],
+          tripImages: [],
+          pdf: [],
+          tripDescription: [""],
+          pickAndDrop: "",
+          sharing: [{ title: "", price: "" }],
+          tripBackgroundImg: "",
+          overView: "",
+          tripBookingAmount: "",
+          tripSeats: "",
+          customised: false,
+        });
+        setSelectedState("");
         setLoading(false);
       })
       .catch((error) => {
@@ -533,9 +555,8 @@ const AdminPanel = () => {
         </div>
         <button
           type="submit"
-          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           disabled={loading}
         >
           {loading ? (

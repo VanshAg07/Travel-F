@@ -172,7 +172,7 @@ const InernationalPlaces = () => {
 
         <SimilarInternational />
         <div className="bg-[#ffffe6]">
-          <div className="pt-96">
+          <div className="pt-72">
           {isMobile ? (
             <div className="pl-[10px] pr-[10px] relative">
               <MobileHomeGallery />

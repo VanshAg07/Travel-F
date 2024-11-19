@@ -5,9 +5,10 @@ function NationalEdit() {
   const [packages, setPackages] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState(null);
-  const [newPdfFile, setNewPdfFile] = useState(null);
+  const [newPdfFile, setNewPdfFile] = useState({ pdf: [] });
   const [newTripImage, setNewTripImage] = useState(null);
   const [newBackgroundImg, setNewBackgroundImg] = useState(null);
+  const [newPdfStatus, setNewPdfStatus] = useState("active");
   const [tripDetails, setTripDetails] = useState({
     tripName: "",
     tripPrice: "",
@@ -118,12 +119,24 @@ function NationalEdit() {
     if (selectedTrip) {
       const formData = new FormData();
       formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
-  
-      // Additional form data handling
-      if (newPdfFile) formData.append("pdf", newPdfFile);
+
+      // Append existing PDFs with their statuses
+      tripDetails.pdf.forEach((pdf, index) => {
+        formData.append("pdf", pdf.file); // Append the existing PDF file
+        formData.append(`pdfStatus[${index}]`, pdf.status); // Append the corresponding status
+      });
+
+      // Append new PDF files with their statuses
+      if (newPdfFile && newPdfFile.pdf) {
+        newPdfFile.pdf.forEach((pdf, index) => {
+          formData.append("pdf", pdf.file); // Append the new PDF file
+          formData.append(`newPdfStatus[${index}]`, pdf.status); // Append the corresponding status
+        });
+      }
+
       if (newTripImage) formData.append("tripImages", newTripImage);
       if (newBackgroundImg) formData.append("tripBackgroundImg", newBackgroundImg);
-  
+
       axios
         .put(
           `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
@@ -140,6 +153,7 @@ function NationalEdit() {
           // Reset new image state if necessary
           setNewTripImage(null);
           setNewBackgroundImg(null);
+          setNewPdfFile({ pdf: [] }); // Reset new PDFs after submission
         })
         .catch((error) => {
           console.error("Error updating trip:", error);
@@ -181,11 +195,20 @@ function NationalEdit() {
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
-    if (type === "pdf") setNewPdfFile(file);
     else if (type === "tripImages") setNewTripImage(file);
     else if (type === "tripBackgroundImg") setNewBackgroundImg(file);
   };
 
+  const handlePdfChange = (e) => {
+    const pdfFiles = Array.from(e.target.files);
+    const newPdfs = pdfFiles.map((file) => ({
+      file: file,
+      status: newPdfStatus, // Use the selected status for the new PDF
+    }));
+    setNewPdfFile((prev) => ({
+      pdf: [...(prev.pdf || []), ...newPdfs],
+    }));
+  };
   const handleDateChange = (index, newDate) => {
     setTripDetails((prevDetails) => {
       const newDates = [...prevDetails.tripDate];
@@ -218,11 +241,10 @@ function NationalEdit() {
           packages.map((pkg) => (
             <div
               key={pkg._id}
-              className={`cursor-pointer border p-3 rounded-lg text-lg ${
-                selectedState === pkg._id
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100"
-              }`}
+              className={`cursor-pointer border p-3 rounded-lg text-lg ${selectedState === pkg._id
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100"
+                }`}
               onClick={() =>
                 setSelectedState(selectedState === pkg._id ? null : pkg._id)
               }
@@ -326,37 +348,46 @@ function NationalEdit() {
                 />
               </div>
 
-              <div>
-                <h4>PDF Files</h4>
-                {tripDetails.pdf.map((pdf, index) => (
-                  <div key={pdf._id} className="flex items-center mb-2">
-                    <span>{pdf.filename}</span>
-                    <select
-                      value={pdf.status}
-                      onChange={(e) =>
-                        handleStatusChange(index, e.target.value)
-                      }
-                    >
-                      {statusOptions.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                    <button
-                      onClick={() =>
-                        window.open(
-                          `https://api.travello10.com/upload/${pdf.filename}`,
-                          "_blank"
-                        )
-                      }
-                      className="bg-green-500 text-white px-2 py-1 rounded-lg ml-2"
-                    >
-                      Open PDF
-                    </button>
-                  </div>
-                ))}
-              </div>
+              <h4>PDF Files</h4>
+              {tripDetails.pdf.map((pdf, index) => (
+                <div key={pdf._id} className="flex items-center mb-2">
+                  <span>{pdf.filename}</span>
+                  <select
+                    value={pdf.status}
+                    onChange={(e) =>
+                      handleStatusChange(index, e.target.value) // Handle status change for each PDF
+                    }
+                  >
+                    {statusOptions.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    onClick={() =>
+                      window.open(`https://api.travello10.com/upload/${pdf.filename}`, "_blank")
+                    }
+                    className="bg-green-500 text-white px-2 py-1 rounded-lg ml-2"
+                  >
+                    Open PDF
+                  </button>
+                </div>
+              ))}
+              <h6>Add new PDF</h6>
+              <input
+                type="file"
+                onChange={(e) => handlePdfChange(e, "pdf")}
+                accept="application/pdf"
+              />
+              <select
+                name="pdfStatus"
+                value={newPdfStatus}
+                onChange={(e) => setNewPdfStatus(e.target.value)}
+              >
+                <option value="active">Active</option>
+                <option value="non-active">Non-active</option>
+              </select>
               <div>
                 <h4>Trip Images</h4>
                 {tripDetails.tripImages.map((image, index) => (

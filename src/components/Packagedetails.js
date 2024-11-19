@@ -20,6 +20,7 @@ import Lottie from "lottie-react";
 import MainFooter from "./Footer/MainFooter";
 import QuotePopup from "../QuotePopup";
 import TripForms from "./Contact/TripForms";
+import SimilarTrips from "./SimilarTrips";
 const Packagedetails = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
@@ -257,8 +258,8 @@ const Packagedetails = () => {
                 </p>
 
                 {trips &&
-                trips.tripItinerary &&
-                trips.tripItinerary.length > 0 ? (
+                  trips.tripItinerary &&
+                  trips.tripItinerary.length > 0 ? (
                   trips.tripItinerary.map((itineraryItem, index) => (
                     <div
                       className="mb-5 bg-blue-100 cursor-pointer p-3 rounded-lg shadow-md"
@@ -311,8 +312,8 @@ const Packagedetails = () => {
                 </h1>
                 <ul className="list-none p-0 m-0 rounded-lg">
                   {trips &&
-                  trips.tripInclusions &&
-                  trips.tripInclusions.length > 0 ? (
+                    trips.tripInclusions &&
+                    trips.tripInclusions.length > 0 ? (
                     trips.tripInclusions.map((inclusion, index) => (
                       <li
                         className="flex flex-row items-start gap-4 mt-2 text-xs sm:text-sm md:text-base"
@@ -342,8 +343,8 @@ const Packagedetails = () => {
                 </h1>
                 <ul className="list-none p-0 m-0 rounded-lg">
                   {trips &&
-                  trips.tripExclusions &&
-                  trips.tripExclusions.length > 0 ? (
+                    trips.tripExclusions &&
+                    trips.tripExclusions.length > 0 ? (
                     trips.tripExclusions.map((exclusion, index) => (
                       <li
                         className="flex flex-row items-start text-xs sm:text-sm md:text-base gap-4 mt-2" // Changed items-center to items-start
@@ -426,6 +427,7 @@ const Packagedetails = () => {
         <div className="pb-7 bg-[#ffffe6]">
           <Review />
         </div>
+        <SimilarTrips />
         <div className="pb-425 bg-425">
           <MainFooter />
         </div>
