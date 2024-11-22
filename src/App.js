@@ -88,15 +88,7 @@ const App = () => {
     return <Outlet />;
   };
 
-  const adminMiddleware = () => {
-    // Always redirect to "/" if trying to access "/admin"
-    if (!user) {
-      return <Navigate to="/" replace />;
-    } else if (user.role !== "admin") {
-      return <Navigate to="/" replace />;
-    }
-    return <Outlet />;
-  };
+  const adminMiddleware = roleMiddleware(["admin"]);
 
   useEffect(() => {
     const handleContextMenu = (e) => {
@@ -128,6 +120,7 @@ const App = () => {
       window.removeEventListener("keyup", handleKeyEvent);
     };
   }, []);
+  
   return (
     <BrowserRouter>
       <ScrollToTop />
