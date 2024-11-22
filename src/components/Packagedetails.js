@@ -411,7 +411,7 @@ const Packagedetails = () => {
                     <span className="font-bold text-2xl md:text-3xl">
                       {trips.customised
                         ? "Customise Your Trip"
-                        : `Rs.${trips.tripPrice}/-`}{" "}
+                        : `Rs.${trips.tripOfferPrice}/-`}{" "}
                     </span>
                     {trips.customised ? "" : "per person"}
                   </p>
@@ -439,7 +439,7 @@ const Packagedetails = () => {
             <div className="text-lg md:text-xl font-bold flex flex-col">
               {trips.customised ? "" : `Starting From`}
               <span className="font-bold text-2xl md:text-3xl">
-                {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
+                {trips.customised ? "Customised" : `Rs.${trips.tripOfferPrice}/-`}{" "}
               </span>{" "}
               {trips.customised ? "" : "per person"}
             </div>

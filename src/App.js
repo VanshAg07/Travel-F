@@ -88,7 +88,15 @@ const App = () => {
     return <Outlet />;
   };
 
-  const adminMiddleware = roleMiddleware(["admin"]);
+  const adminMiddleware = () => {
+    // Always redirect to "/" if trying to access "/admin"
+    if (!user) {
+      return <Navigate to="/" replace />;
+    } else if (user.role !== "admin") {
+      return <Navigate to="/" replace />;
+    }
+    return <Outlet />;
+  };
 
   useEffect(() => {
     const handleContextMenu = (e) => {
@@ -100,8 +108,9 @@ const App = () => {
       document.removeEventListener("contextmenu", handleContextMenu);
     };
   }, []);
+
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyEvent = (e) => {
       if (
         e.key === "PrintScreen" ||
         (e.ctrlKey && e.shiftKey && e.key === "s")
@@ -111,12 +120,14 @@ const App = () => {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyEvent);
+    window.addEventListener("keyup", handleKeyEvent);
+
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKeyEvent);
+      window.removeEventListener("keyup", handleKeyEvent);
     };
   }, []);
-  
   return (
     <BrowserRouter>
       <ScrollToTop />

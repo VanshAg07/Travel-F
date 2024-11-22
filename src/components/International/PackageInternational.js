@@ -47,26 +47,26 @@ const PackageInternational = () => {
     }
   };
 
-    // Handle sharing
-    const handleShare = () => {
-      const shareLink = window.location.href; // Get current URL of the page
-      if (navigator.share) {
-        // Native sharing on mobile browsers
-        navigator
-          .share({
-            title: "Trip Itinerary",
-            url: shareLink,
-          })
-          .catch((error) => console.error("Error sharing:", error));
-      } else {
-        // Fallback for desktop browsers that don't support the Share API
-        navigator.clipboard.writeText(shareLink).then(() => {
-          alert(
-            "Link copied to clipboard! You can now share it on your social platform."
-          );
-        });
-      }
-    };
+  // Handle sharing
+  const handleShare = () => {
+    const shareLink = window.location.href; // Get current URL of the page
+    if (navigator.share) {
+      // Native sharing on mobile browsers
+      navigator
+        .share({
+          title: "Trip Itinerary",
+          url: shareLink,
+        })
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      // Fallback for desktop browsers that don't support the Share API
+      navigator.clipboard.writeText(shareLink).then(() => {
+        alert(
+          "Link copied to clipboard! You can now share it on your social platform."
+        );
+      });
+    }
+  };
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -348,8 +348,8 @@ const PackageInternational = () => {
                 </p>
 
                 {trips &&
-                trips.tripItinerary &&
-                trips.tripItinerary.length > 0 ? (
+                  trips.tripItinerary &&
+                  trips.tripItinerary.length > 0 ? (
                   trips.tripItinerary.map((itineraryItem, index) => (
                     <div
                       className="mb-5 cursor-pointer bg-blue-100 p-3 rounded-lg shadow-md"
@@ -408,8 +408,8 @@ const PackageInternational = () => {
                 </h1>
                 <ul className="list-none p-0 m-0 rounded-lg">
                   {trips &&
-                  trips.tripInclusions &&
-                  trips.tripInclusions.length > 0 ? (
+                    trips.tripInclusions &&
+                    trips.tripInclusions.length > 0 ? (
                     trips.tripInclusions.map((inclusion, index) => (
                       <li
                         className="flex flex-row items-start gap-4 mt-2 text-xs sm:text-sm md:text-base"
@@ -439,8 +439,8 @@ const PackageInternational = () => {
                 </h1>
                 <ul className="list-none p-0 m-0 rounded-lg">
                   {trips &&
-                  trips.tripExclusions &&
-                  trips.tripExclusions.length > 0 ? (
+                    trips.tripExclusions &&
+                    trips.tripExclusions.length > 0 ? (
                     trips.tripExclusions.map((exclusion, index) => (
                       <li
                         className="flex flex-row items-start text-xs sm:text-sm md:text-base gap-4 mt-2" // Changed items-center to items-start
@@ -476,7 +476,7 @@ const PackageInternational = () => {
                     <span className="font-bold text-2xl md:text-3xl">
                       {trips.customised
                         ? "Customise Your Trip"
-                        : `Rs.${trips.tripPrice}/-`}{" "}
+                        : `Rs.${trips.tripOfferPrice}/-`}{" "}
                     </span>
                     {trips.customised ? "" : "per person"}
                   </p>
@@ -494,7 +494,7 @@ const PackageInternational = () => {
                     </button>
                   </div>
                 </div>
-                <TripForms/>
+                <TripForms />
               </div>
             </div>
           </div>
@@ -504,7 +504,7 @@ const PackageInternational = () => {
             <div className="text-lg md:text-xl font-bold flex flex-col">
               {trips.customised ? "" : `Starting From`}
               <span className="font-bold text-2xl md:text-3xl">
-                {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
+                {trips.customised ? "Customised" : `Rs.${trips.tripOfferPrice}/-`}{" "}
               </span>{" "}
               {trips.customised ? "" : "per person"}
             </div>
@@ -525,7 +525,7 @@ const PackageInternational = () => {
         <div className="pb-7 bg-[#ffffe6]">
           <Review />
         </div>
-        <SimilarInterational/>
+        <SimilarInterational />
         <div className="mb-[100px]">
           <MainFooter />
         </div>

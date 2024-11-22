@@ -149,7 +149,7 @@ const Nav = () => {
           </>
         )}
         {isMobile && (
-          <div className="flex flex-col">
+          <div className="flex flex-col overflow-y-auto ">
             <Link
               to="/offer"
               onClick={() => setIsMenuOpen(false)}
@@ -157,32 +157,32 @@ const Nav = () => {
             >
               {navOffer && (
                 <div className="flex flex-row justify-center  mr-10 items-center gap-1">
-                  <p>{navOffer}</p>
+                  <p clasName='text-sm'>{navOffer}</p>
                 </div>
               )}
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/national" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center  mr-10 items-center gap-1">
-                <p>Indian Trips</p>
+                <p clasName='text-sm'>Indian Trips</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/intern" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center  mr-10 items-center gap-1">
-                <p>International Deals</p>
+                <p clasName='text-sm'>International Deals</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Honeymoon" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center  mr-10 items-center gap-1">
-                <p>Honeymoon Packages</p>
+                <p clasName='text-sm'>Honeymoon Packages</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
             <Link to="/Corporate" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-row justify-center  mr-10 items-center gap-1">
-                <p>Corporate Trips</p>
+                <p clasName='text-sm'>Corporate Trips</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -192,7 +192,7 @@ const Nav = () => {
               className={isActive("/weekends")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
-                <p>Weekends Trips</p>
+                <p clasName='text-sm'>Weekends Trips</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -202,7 +202,40 @@ const Nav = () => {
               className={isActive("/schooltour")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
-                <p>Group Tours</p>
+                <p clasName='text-sm'>School Tours</p>
+              </div>
+            </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
+
+            <Link
+              to="/universitytour"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/universitytour")}
+            >
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
+                <p clasName='text-sm'>University Tours</p>
+              </div>
+            </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
+
+            <Link
+              to="/adventuretour"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/adventuretour")}
+            >
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
+                <p clasName='text-sm'>Adventure Tours</p>
+              </div>
+            </Link>
+            <hr class="w-full border-t-1 border-gray-200" />
+
+            <Link
+              to="/sportstour"
+              onClick={() => setIsMenuOpen(false)}
+              className={isActive("/sportstour")}
+            >
+              <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
+                <p clasName='text-sm'>Sports Tours</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -212,7 +245,7 @@ const Nav = () => {
               className={isActive("/Aboutus")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
-                <p>About Us</p>
+                <p clasName='text-sm'>About Us</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -222,7 +255,7 @@ const Nav = () => {
               className={isActive("/Payments")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
-                <p>Payments</p>
+                <p clasName='text-sm'>Payments</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -232,7 +265,7 @@ const Nav = () => {
               className={isActive("/Blog")}
             >
               <div className="flex flex-row justify-center mb-1 mr-10 items-center gap-1">
-                <p>Blogs</p>
+                <p clasName='text-sm'>Blogs</p>
               </div>
             </Link>
             <hr class="w-full border-t-1 border-gray-200" />
@@ -242,7 +275,7 @@ const Nav = () => {
               className={isActive("/Glry")}
             >
               <div className="flex flex-row justify-center mr-10 items-center gap-1">
-                <p>Gallery</p>
+                <p clasName='text-sm'>Gallery</p>
               </div>
             </Link>
           </div>
@@ -255,7 +288,7 @@ const Nav = () => {
               className={`flex flex-row justify-center items-center gap-2 border-2 border-white rounded-full md:px-4 py-2 ${
                 isMobile
                   ? "mr-0 font-semibold text-sm text-black"
-                  : "mr-5 text-xs"
+                  : "mr-5 text-sm"
               }`}
             >
               <FaPhoneAlt className="transform" />

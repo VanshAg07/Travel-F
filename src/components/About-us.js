@@ -146,7 +146,7 @@ const Aboutus = () => {
                     <FaInstagram size={20} />
                   </a>
                   <a
-                    href={member.linkedin}
+                    href={member.linkedIn}
                     target="_blank"
                     rel="noopener noreferrer"
                     className=" facebook-gradient text-blue-700 hover:text-blue-800"

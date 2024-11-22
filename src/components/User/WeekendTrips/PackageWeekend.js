@@ -403,7 +403,7 @@ const PackageWeekend = () => {
             <div className="bg-white shadow-lg p-4 rounded-2xl">
               <p className="text-2xl text-blue-500">
                 <span className="font-bold text-3xl">
-                  Rs.{trips.tripPrice}/-{" "}
+                  Rs.{trips.tripOfferPrice}/-{" "}
                 </span>
                 per person
               </p>
