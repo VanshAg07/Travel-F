@@ -366,7 +366,7 @@ const OffersHome = () => {
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
               />
               <input
-                type="number"
+                type="text"
                 placeholder="Seats"
                 value={dateItem.tripSeats}
                 onChange={(e) => {

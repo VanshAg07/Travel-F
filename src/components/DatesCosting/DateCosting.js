@@ -19,12 +19,12 @@ const DateCosting = () => {
     const date = dateObj.date || dateObj.tripDate;
     return {
       date,
-      tripOfferPrice: dateObj.tripOfferPrice || tripOfferPrice || 0, 
+      tripOfferPrice: dateObj.tripOfferPrice || tripOfferPrice || 0,
       tripSeats: dateObj.tripSeats || "N/A",
       status: dateObj.status || "Available",
     };
   });
-
+  console.log(tripDates);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) {

@@ -116,8 +116,9 @@ const PackageOffer = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
         state: {
-          tripDates: trips.tripDate,
+          tripDates: trips.tripDates,
           tripPrice: trips.tripPrice,
+          tripOfferPrice: trips.tripOfferPrice,
           tripName: trips.tripName,
           doubleSharing,
           tripleSharing,
@@ -461,7 +462,7 @@ const PackageOffer = () => {
                     <span className="font-bold text-2xl md:text-3xl">
                       {trips.customised
                         ? "Customise Your Trip"
-                        : `Rs.${trips.tripPrice}/-`}{" "}
+                        : `Rs.${trips.tripOfferPrice}/-`}{" "}
                     </span>
                     {trips.customised ? "" : "per person"}
                   </p>
@@ -489,7 +490,7 @@ const PackageOffer = () => {
             <div className="text-lg md:text-xl font-bold flex flex-col">
               {trips.customised ? "" : `Starting From`}
               <span className="font-bold text-2xl md:text-3xl">
-                {trips.customised ? "Customised" : `Rs.${trips.tripPrice}/-`}{" "}
+                {trips.customised ? "Customised" : `Rs.${trips.tripOfferPrice}/-`}{" "}
               </span>{" "}
               {trips.customised ? "" : "per person"}
             </div>

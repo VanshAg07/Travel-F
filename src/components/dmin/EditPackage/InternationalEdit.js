@@ -12,6 +12,7 @@ function InternationalEdit() {
     tripName: "",
     tripPrice: "",
     tripDate: [""],
+    tripDates: [{ tripDate: "", tripSeats: "" }],
     tripLocation: "",
     tripDuration: "",
     tripInclusions: [""],
@@ -72,6 +73,7 @@ function InternationalEdit() {
       tripImages: trip.tripImages || [],
       tripBackgroundImg: trip.tripBackgroundImg || [],
       customised: trip.customised || false,
+      tripDates: [{ tripDate: "", tripSeats: "" }],
     });
     setIsModalOpen(true);
   };
@@ -125,6 +127,11 @@ function InternationalEdit() {
       if (newTripImage) formData.append("tripImages", newTripImage);
       if (newBackgroundImg)
         formData.append("tripBackgroundImg", newBackgroundImg);
+
+      tripDetails.tripDates.forEach((item, index) => {
+        formData.append(`tripDates[${index}][tripDate]`, item.tripDate);
+        formData.append(`tripDates[${index}][tripSeats]`, item.tripSeats);
+      });
 
       axios
         .put(
@@ -438,6 +445,69 @@ function InternationalEdit() {
                   required
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
+              </div>
+              <div>
+                <label className="block text-l font-medium">Trip Dates</label>
+                {tripDetails.tripDates.map((dateItem, index) => (
+                  <div key={index} className="flex items-center mb-2">
+                    <input
+                      type="date"
+                      value={dateItem.tripDate}
+                      onChange={(e) => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates[index].tripDate = e.target.value;
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Seats"
+                      value={dateItem.tripSeats}
+                      onChange={(e) => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates[index].tripSeats = e.target.value;
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates.splice(index, 1); // Remove this date entry
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="ml-2 p-1 text-white bg-red-600 rounded"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTripDetails({
+                      ...tripDetails,
+                      tripDates: [
+                        ...tripDetails.tripDates,
+                        { tripDate: "", tripSeats: "" },
+                      ],
+                    });
+                  }}
+                  className="mt-2 p-1 text-white bg-green-600 rounded"
+                >
+                  Add Trip Date
+                </button>
               </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">

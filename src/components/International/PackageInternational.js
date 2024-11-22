@@ -125,7 +125,7 @@ const PackageInternational = () => {
     if (trips && trips.tripDate) {
       navigate("/dates-and-costing", {
         state: {
-          tripDates: trips.tripDate,
+          tripDates: trips.tripDates,
           tripPrice: trips.tripPrice,
           tripName: trips.tripName,
           doubleSharing,
@@ -134,6 +134,7 @@ const PackageInternational = () => {
           stateName: stateNames.stateName,
           tripBookingAmount: trips.tripBookingAmount,
           tripSeats: trips.tripSeats,
+          tripOfferPrice : trips.tripOfferPrice
         },
       });
     } else {

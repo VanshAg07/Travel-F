@@ -138,6 +138,10 @@ function NationalEdit() {
       if (newTripImage) formData.append("tripImages", newTripImage);
       if (newBackgroundImg)
         formData.append("tripBackgroundImg", newBackgroundImg);
+      tripDetails.tripDates.forEach((item, index) => {
+        formData.append(`tripDates[${index}][tripDate]`, item.tripDate);
+        formData.append(`tripDates[${index}][tripSeats]`, item.tripSeats);
+      });
 
       axios
         .put(
@@ -483,7 +487,7 @@ function NationalEdit() {
                       className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="Seats"
                       value={dateItem.tripSeats}
                       onChange={(e) => {
@@ -561,7 +565,7 @@ function NationalEdit() {
                   <div key={index} className="flex items-center mb-2">
                     <input
                       type="date"
-                      value={date.date}
+                      value={date.tripDate}
                       onChange={(e) => handleDateChange(index, e.target.value)}
                       className="mt-1 p-2 flex-grow border rounded-lg mr-2"
                     />
