@@ -9,6 +9,7 @@ const AdminPanel = () => {
     tripName: "",
     tripPrice: "",
     tripOfferPrice: "",
+    tripDates: [{ tripDate: "", tripSeats: "" }],
     tripDate: [""],
     tripLocation: "",
     tripDuration: "",
@@ -155,6 +156,11 @@ const AdminPanel = () => {
             formData.append(`${key}[${index}][title]`, item.title);
             formData.append(`${key}[${index}][price]`, item.price);
           });
+        } else if (key === "tripDates") {
+          tripData.tripDates.forEach((item, index) => {
+            formData.append(`tripDates[${index}][tripDate]`, item.tripDate);
+            formData.append(`tripDates[${index}][tripSeats]`, item.tripSeats);
+          });
         } else {
           tripData[key].forEach((item, index) => {
             formData.append(`${key}[${index}]`, item);
@@ -184,6 +190,7 @@ const AdminPanel = () => {
           tripName: "",
           tripPrice: "",
           tripOfferPrice: "",
+          tripDates: [{ tripDate: "", tripSeats: "" }], // Resetting to initial state
           tripDate: [""],
           tripLocation: "",
           tripDuration: "",
@@ -312,6 +319,60 @@ const AdminPanel = () => {
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             />
+          </div>
+          <div>
+            <label className="block text-l font-medium">Trip Dates</label>
+            {tripData.tripDates.map((dateItem, index) => (
+              <div key={index} className="flex items-center mb-2">
+                <input
+                  type="date"
+                  value={dateItem.tripDate}
+                  onChange={(e) => {
+                    const updatedDates = [...tripData.tripDates];
+                    updatedDates[index].tripDate = e.target.value;
+                    setTripData({ ...tripData, tripDates: updatedDates });
+                  }}
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                />
+                <input
+                  type="number"
+                  placeholder="Seats"
+                  value={dateItem.tripSeats}
+                  onChange={(e) => {
+                    const updatedDates = [...tripData.tripDates];
+                    updatedDates[index].tripSeats = e.target.value;
+                    setTripData({ ...tripData, tripDates: updatedDates });
+                  }}
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const updatedDates = [...tripData.tripDates];
+                    updatedDates.splice(index, 1); // Remove this date entry
+                    setTripData({ ...tripData, tripDates: updatedDates });
+                  }}
+                  className="ml-2 p-1 text-white bg-red-600 rounded"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                setTripData({
+                  ...tripData,
+                  tripDates: [
+                    ...tripData.tripDates,
+                    { tripDate: "", tripSeats: "" },
+                  ],
+                });
+              }}
+              className="mt-2 p-1 text-white bg-green-600 rounded"
+            >
+              Add Trip Date
+            </button>
           </div>
           <div>
             <label className="block text-l font-medium">
@@ -555,8 +616,9 @@ const AdminPanel = () => {
         </div>
         <button
           type="submit"
-          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${loading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+          className={`w-full py-2 px-4 bg-blue-600 text-white font-bold rounded ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           disabled={loading}
         >
           {loading ? (

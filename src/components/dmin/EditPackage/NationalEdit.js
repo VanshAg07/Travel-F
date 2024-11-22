@@ -13,6 +13,7 @@ function NationalEdit() {
     tripName: "",
     tripPrice: "",
     tripDate: [""],
+    tripDates: [{ tripDate: "", tripSeats: "" }],
     tripLocation: "",
     tripDuration: "",
     tripInclusions: [""],
@@ -73,6 +74,7 @@ function NationalEdit() {
       tripBackgroundImg: trip.tripBackgroundImg || [],
       customised: trip.customised || false,
       tripOfferPrice: trip.tripOfferPrice || "",
+      tripDates: trip.tripDates || [{ tripDate: "", tripSeats: "" }],
     });
     setIsModalOpen(true);
   };
@@ -119,7 +121,6 @@ function NationalEdit() {
     if (selectedTrip) {
       const formData = new FormData();
       formData.append("tripDetails", JSON.stringify(tripDetails)); // Use the current state directly
-
       // Append existing PDFs with their statuses
       tripDetails.pdf.forEach((pdf, index) => {
         formData.append("pdf", pdf.file); // Append the existing PDF file
@@ -135,7 +136,8 @@ function NationalEdit() {
       }
 
       if (newTripImage) formData.append("tripImages", newTripImage);
-      if (newBackgroundImg) formData.append("tripBackgroundImg", newBackgroundImg);
+      if (newBackgroundImg)
+        formData.append("tripBackgroundImg", newBackgroundImg);
 
       axios
         .put(
@@ -241,10 +243,11 @@ function NationalEdit() {
           packages.map((pkg) => (
             <div
               key={pkg._id}
-              className={`cursor-pointer border p-3 rounded-lg text-lg ${selectedState === pkg._id
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100"
-                }`}
+              className={`cursor-pointer border p-3 rounded-lg text-lg ${
+                selectedState === pkg._id
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100"
+              }`}
               onClick={() =>
                 setSelectedState(selectedState === pkg._id ? null : pkg._id)
               }
@@ -354,8 +357,8 @@ function NationalEdit() {
                   <span>{pdf.filename}</span>
                   <select
                     value={pdf.status}
-                    onChange={(e) =>
-                      handleStatusChange(index, e.target.value) // Handle status change for each PDF
+                    onChange={
+                      (e) => handleStatusChange(index, e.target.value) // Handle status change for each PDF
                     }
                   >
                     {statusOptions.map((opt) => (
@@ -366,7 +369,10 @@ function NationalEdit() {
                   </select>
                   <button
                     onClick={() =>
-                      window.open(`https://api.travello10.com/upload/${pdf.filename}`, "_blank")
+                      window.open(
+                        `https://api.travello10.com/upload/${pdf.filename}`,
+                        "_blank"
+                      )
                     }
                     className="bg-green-500 text-white px-2 py-1 rounded-lg ml-2"
                   >
@@ -459,6 +465,69 @@ function NationalEdit() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
+              <div>
+                <label className="block text-l font-medium">Trip Dates</label>
+                {tripDetails.tripDates.map((dateItem, index) => (
+                  <div key={index} className="flex items-center mb-2">
+                    <input
+                      type="date"
+                      value={dateItem.tripDate}
+                      onChange={(e) => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates[index].tripDate = e.target.value;
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Seats"
+                      value={dateItem.tripSeats}
+                      onChange={(e) => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates[index].tripSeats = e.target.value;
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updatedDates = [...tripDetails.tripDates];
+                        updatedDates.splice(index, 1); // Remove this date entry
+                        setTripDetails({
+                          ...tripDetails,
+                          tripDates: updatedDates,
+                        });
+                      }}
+                      className="ml-2 p-1 text-white bg-red-600 rounded"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTripDetails({
+                      ...tripDetails,
+                      tripDates: [
+                        ...tripDetails.tripDates,
+                        { tripDate: "", tripSeats: "" },
+                      ],
+                    });
+                  }}
+                  className="mt-2 p-1 text-white bg-green-600 rounded"
+                >
+                  Add Trip Date
+                </button>
+              </div>
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Description:
@@ -492,7 +561,7 @@ function NationalEdit() {
                   <div key={index} className="flex items-center mb-2">
                     <input
                       type="date"
-                      value={date}
+                      value={date.date}
                       onChange={(e) => handleDateChange(index, e.target.value)}
                       className="mt-1 p-2 flex-grow border rounded-lg mr-2"
                     />

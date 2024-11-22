@@ -11,6 +11,7 @@ const OffersHome = () => {
     tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
+    tripDates: [{ tripDate: "", tripSeats: "" }],
     tripDuration: "",
     tripInclusions: [""],
     tripExclusions: [""],
@@ -114,6 +115,11 @@ const OffersHome = () => {
             formData.append(`${key}[${index}][title]`, item.title);
             formData.append(`${key}[${index}][price]`, item.price);
           });
+        } else if (key === "tripDates") {
+          tripDetails.tripDates.forEach((item, index) => {
+            formData.append(`tripDates[${index}][tripDate]`, item.tripDate);
+            formData.append(`tripDates[${index}][tripSeats]`, item.tripSeats);
+          });
         } else {
           tripDetails[key].forEach((item, index) => {
             formData.append(`${key}[${index}]`, item);
@@ -146,6 +152,7 @@ const OffersHome = () => {
           tripPrice: "",
           tripOfferPrice: "",
           tripDate: [""],
+          tripDates: [{ tripDate: "", tripSeats: "" }],
           tripLocation: "",
           tripDuration: "",
           tripInclusions: [""],
@@ -161,7 +168,7 @@ const OffersHome = () => {
           tripBookingAmount: "",
           tripSeats: "",
           customised: false,
-        })
+        });
       })
       .catch((error) => {
         console.error("Error submitting trip", error);
@@ -343,6 +350,60 @@ const OffersHome = () => {
               </button>
             </div>
           ))}
+        </div>
+        <div>
+          <label className="block text-l font-medium">Trip Dates</label>
+          {tripDetails.tripDates.map((dateItem, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="date"
+                value={dateItem.tripDate}
+                onChange={(e) => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates[index].tripDate = e.target.value;
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+              />
+              <input
+                type="number"
+                placeholder="Seats"
+                value={dateItem.tripSeats}
+                onChange={(e) => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates[index].tripSeats = e.target.value;
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates.splice(index, 1); // Remove this date entry
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="ml-2 p-1 text-white bg-red-600 rounded"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setTripDetails({
+                ...tripDetails,
+                tripDates: [
+                  ...tripDetails.tripDates,
+                  { tripDate: "", tripSeats: "" },
+                ],
+              });
+            }}
+            className="mt-2 p-1 text-white bg-green-600 rounded"
+          >
+            Add Trip Date
+          </button>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">

@@ -7,28 +7,23 @@ const DateCosting = () => {
   const navigate = useNavigate();
   const {
     tripDates: tripDatesFromState = [],
-    tripPrice = 0,
     tripName,
+    tripOfferPrice,
     doubleSharing,
     tripleSharing,
     quadSharing,
     stateName,
     tripBookingAmount,
-    tripSeats,
   } = location.state || {};
-
-  const tripDates = tripDatesFromState.map((date) => ({
-    date,
-    price: tripPrice,
-    tripName,
-    doubleSharing,
-    tripleSharing,
-    quadSharing,
-    stateName,
-    tripBookingAmount,
-    tripSeats,
-    status: "Available",
-  }));
+  const tripDates = tripDatesFromState.map((dateObj) => {
+    const date = dateObj.date || dateObj.tripDate;
+    return {
+      date,
+      tripOfferPrice: dateObj.tripOfferPrice || tripOfferPrice || 0, 
+      tripSeats: dateObj.tripSeats || "N/A",
+      status: dateObj.status || "Available",
+    };
+  });
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -61,7 +56,6 @@ const DateCosting = () => {
   };
 
   const datesByMonth = groupDatesByMonth(tripDates);
-
   const getCurrentMonth = () => {
     const currentDate = new Date();
     return currentDate.toLocaleString("default", {
@@ -83,20 +77,19 @@ const DateCosting = () => {
     navigate("/booking-options", {
       state: {
         selectedDate,
-        tripPrice,
         tripName,
         doubleSharing,
         tripleSharing,
         quadSharing,
         stateName,
         tripBookingAmount,
-        tripSeats,
+        tripOfferPrice,
       },
     });
   };
 
   return (
-    <div className="min-h-screen  bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <Nav />
       <div className="p-4 mx-auto">
         <div className="flex flex-col items-center">
@@ -104,13 +97,12 @@ const DateCosting = () => {
             Dates and Costing
           </h1>
           <div className="mt-4 bg-cyan-500 p-3 sm:p-4 rounded-lg text-white font-bold text-lg sm:text-xl text-center">
-            {tripName}
+            {tripName || "Trip Details"}
           </div>
         </div>
-        {/* Main Content */}
         <div className="mt-6 flex flex-col md:flex-row w-[90vw] justify-center items-center">
           {/* Available Dates Section */}
-          <div className="bg-white rounded-lg p-6 min-h-[67vh] justify between flex flex-col">
+          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col">
             <h2 className="text-2xl font-bold text-gray-800 text-center border-b pb-4">
               Available Dates
             </h2>
@@ -134,18 +126,16 @@ const DateCosting = () => {
                           }`}
                           onClick={() => setSelectedDate(dateObj.date)}
                         >
-                          <div className="flex flex-col sm:flex-row justify-between w-full items-start sm:items-center">
-                            <div className="flex flex-col  sm:flex-row sm:space-x-4 mt-2 sm:mt-0">
-                              <span className="text-lg font-medium">
-                                {formatDate(dateObj.date)}
-                              </span>
-                              <span className="text-gray-700">
-                                {tripSeats || "N/A"} Seats Left
-                              </span>
-                              <span className="text-blue-500 font-bold">
-                                Starting Price: ₹{tripPrice}/-
-                              </span>
-                            </div>
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center md:gap-4 gap-2">
+                            <span className="text-lg font-medium">
+                              {formatDate(dateObj.date)}
+                            </span>
+                            <span className="text-gray-700">
+                              Seats {dateObj.tripSeats}
+                            </span>
+                            <span className="text-blue-500 font-bold">
+                              Starting Price: ₹{dateObj.tripOfferPrice}/-
+                            </span>
                           </div>
                         </div>
                       ))}
@@ -155,52 +145,51 @@ const DateCosting = () => {
               ))}
             </div>
           </div>
+
           {/* Costing Section */}
-          <div className="bg-white rounded-lg p-6 min-h-[67vh] justify-between flex flex-col">
-            <div>
-              <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
-                Costing
-              </h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
-                  <span className="text-gray-700 font-bold">Room Sharing</span>
-                  <span className="text-gray-700 font-bold">
-                    Cost (Per Person)
+          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+              Costing
+            </h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg">
+                <span className="text-gray-700 font-bold">Room Sharing</span>
+                <span className="text-gray-700 font-bold">
+                  Cost (Per Person)
+                </span>
+              </div>
+              {doubleSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Double Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{doubleSharing} /-
                   </span>
                 </div>
-                {doubleSharing && (
-                  <div className="flex justify-between items-center p-4">
-                    <span className="font-semibold">Double Sharing</span>
-                    <span className="text-gray-800 font-semibold">
-                      ₹{doubleSharing} /-
-                    </span>
-                  </div>
-                )}
-                {tripleSharing && (
-                  <div className="flex justify-between items-center p-4">
-                    <span className="font-semibold">Triple Sharing</span>
-                    <span className="text-gray-800 font-semibold">
-                      ₹{tripleSharing} /-
-                    </span>
-                  </div>
-                )}
-                {quadSharing && (
-                  <div className="flex justify-between items-center p-4">
-                    <span className="font-semibold">Quad Sharing</span>
-                    <span className="text-gray-800 font-semibold">
-                      ₹{quadSharing} /-
-                    </span>
-                  </div>
-                )}
-              </div>
+              )}
+              {tripleSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Triple Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{tripleSharing} /-
+                  </span>
+                </div>
+              )}
+              {quadSharing && (
+                <div className="flex justify-between items-center p-4">
+                  <span className="font-semibold">Quad Sharing</span>
+                  <span className="text-gray-800 font-semibold">
+                    ₹{quadSharing} /-
+                  </span>
+                </div>
+              )}
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl mt-8 p-4 gap-4 bg-white rounded-lg">
               <div className="md:text-xl font-bold text-blue-600 text-sm">
-                Starting Price: ₹{tripPrice || "N/A"}/- Per Person
+                Starting Price: ₹{tripBookingAmount || "N/A"}/- Per Person
               </div>
               <button
                 onClick={handleBooking}
-                className="bg-cyan-500 text-lg  text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200"
+                className="bg-cyan-500 text-lg text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200"
               >
                 Book Now
               </button>

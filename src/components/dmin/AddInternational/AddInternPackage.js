@@ -11,6 +11,7 @@ const AddInternPackage = () => {
     tripOfferPrice: "",
     tripLocation: "",
     tripDate: [""],
+    tripDates: [{ tripDate: "", tripSeats: "" }],
     tripDuration: "",
     tripInclusions: [""],
     tripExclusions: [""],
@@ -116,6 +117,11 @@ const AddInternPackage = () => {
             formData.append(`${key}[${index}][title]`, item.title);
             formData.append(`${key}[${index}][price]`, item.price);
           });
+        } else if (key === "tripDates") {
+          tripDetails.tripDates.forEach((item, index) => {
+            formData.append(`tripDates[${index}][tripDate]`, item.tripDate);
+            formData.append(`tripDates[${index}][tripSeats]`, item.tripSeats);
+          });
         } else {
           tripDetails[key].forEach((item, index) => {
             formData.append(`${key}[${index}]`, item);
@@ -148,6 +154,7 @@ const AddInternPackage = () => {
           tripPrice: "",
           tripOfferPrice: "",
           tripDate: [""],
+          tripDates: [{ tripDate: "", tripSeats: "" }],
           tripLocation: "",
           tripDuration: "",
           tripInclusions: [""],
@@ -163,7 +170,7 @@ const AddInternPackage = () => {
           tripBookingAmount: "",
           tripSeats: "",
           customised: false,
-        })
+        });
         setSelectedState("");
         setIsSubmitting(false);
         setLoading(false);
@@ -350,6 +357,60 @@ const AddInternPackage = () => {
             </div>
           ))}
         </div>
+        <div>
+          <label className="block text-l font-medium">Trip Dates</label>
+          {tripDetails.tripDates.map((dateItem, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="date"
+                value={dateItem.tripDate}
+                onChange={(e) => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates[index].tripDate = e.target.value;
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+              />
+              <input
+                type="number"
+                placeholder="Seats"
+                value={dateItem.tripSeats}
+                onChange={(e) => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates[index].tripSeats = e.target.value;
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const updatedDates = [...tripDetails.tripDates];
+                  updatedDates.splice(index, 1); // Remove this date entry
+                  setTripDetails({ ...tripDetails, tripDates: updatedDates });
+                }}
+                className="ml-2 p-1 text-white bg-red-600 rounded"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setTripDetails({
+                ...tripDetails,
+                tripDates: [
+                  ...tripDetails.tripDates,
+                  { tripDate: "", tripSeats: "" },
+                ],
+              });
+            }}
+            className="mt-2 p-1 text-white bg-green-600 rounded"
+          >
+            Add Trip Date
+          </button>
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700">
             Pick and Drop (eg. Guwahati - Guwahati)
@@ -442,8 +503,6 @@ const AddInternPackage = () => {
             <FaPlus /> Add Inclusion
           </button>
         </div>
-
-        {/* Dynamic Inputs: Trip Exclusions */}
         <div className="mb-4">
           <label className="block text-gray-700">Trip Exclusions:</label>
           {tripDetails.tripExclusions.map((exclusion, index) => (
@@ -641,10 +700,12 @@ const AddInternPackage = () => {
         </div>
         <button
           type="submit"
-          className={`bg-blue-500 text-white py-2 px-4 rounded ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`bg-blue-500 text-white py-2 px-4 rounded ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           disabled={isSubmitting} // Disable button while submitting
         >
-          {isSubmitting ? 'Submitting...' : 'Submit Package'}
+          {isSubmitting ? "Submitting..." : "Submit Package"}
         </button>
       </form>
     </div>

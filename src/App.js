@@ -75,7 +75,7 @@ import Forgotmob from "./components/Login/Forgotmob.js";
 import Forgot from "./components/Login/Forgot.js";
 import PackageOffer from "./components/User/Offers/PackageOffer.js";
 import SportsPackageDetails from "./components/Grouptours/SportsPackageDetails.js";
-import PhoneFooter from "./components/PhoneFooter.js"
+import PhoneFooter from "./components/PhoneFooter.js";
 import VideoModal from "./components/VideoModal.js";
 import SimilarTrips from "./components/SimilarTrips.js";
 
@@ -121,6 +121,28 @@ const App = () => {
     };
   }, []);
   
+  useEffect(() => {
+    const adjustZoomForLaptop = () => {
+      // Assuming 13.6-inch laptops generally have a width of ~2560px
+      const isLaptop136 =
+        window.screen.width === 2560 && window.screen.height === 1600;
+
+      if (isLaptop136) {
+        document.body.style.zoom = "90%"; // Adjust zoom level
+      } else {
+        document.body.style.zoom = "100%"; // Default zoom level
+      }
+    };
+
+    adjustZoomForLaptop(); // Initial check
+    window.addEventListener("resize", adjustZoomForLaptop); // Adjust on resize
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", adjustZoomForLaptop);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
