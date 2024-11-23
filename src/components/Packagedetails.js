@@ -166,7 +166,7 @@ const Packagedetails = () => {
               </button>
 
               <button
-                className="absolute rounded-3xl md:bottom-28 bottom-5 left-1/2 transform 
+                className="absolute sh-btn rounded-3xl md:bottom-28 bottom-5 left-1/2 transform 
     translate-x-28 flex items-center justify-center ml-3 text-sm sm:text-base md:text-lg lg:text-3xl 
      text-white p-2 sm:p-3 md:p-4 lg:p-3 
     transition-all duration-300"
@@ -189,7 +189,7 @@ const Packagedetails = () => {
                 </p>{" "}
                 {/* Responsive font size */}
               </div>
-              <div className="flex flex-col md:flex-row gap-5 mt-5">
+              <div className="flex w-auto flex-col md:flex-row gap-5 mt-5">
                 {" "}
                 {/* Stack vertically on smaller screens */}
                 <div className="flex flex-row items-center gap-5 bg-gray-700 rounded-lg border-2 p-4 inline-flex">
@@ -217,6 +217,17 @@ const Packagedetails = () => {
                     {/* Responsive text size */}
                     <span className="text-white text-sm md:text-base">
                       {trips && trips.tripDuration}
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex flex-row cursor-pointer w-auto items-center gap-5 bg-gray-700 rounded-lg border-2 p-4 inline-flex"
+                  onClick={handleShare} // Added the same onClick handler as the button
+                >
+                  <FaShareFromSquare className="text-white" />
+                  <div className="flex flex-col">
+                    <span className="text-white text-sm md:text-base">
+                      Share Itinerary
                     </span>
                   </div>
                 </div>

@@ -38,14 +38,19 @@ const ContinuousScroll = () => {
     ...images,
   ];
 
-  const reversedImages = [...repeatedImages].reverse();
+  // Rotate the array for the second row to start at the 4th logo
+  const rotatedImages = [
+    ...repeatedImages.slice(3), // Start from the 4th logo
+    ...repeatedImages.slice(0, 3), // Add the first 3 logos at the end
+  ];
+
   return (
     <div className="scroll-container pt-8 pl-8 pr-8 pb-2 bg-white text-center">
       <h2 className="text-xl md:text-3xl mb-8 lg:text-4xl font-bold leading-tight sm:text-xl">
         Our Clientele <span className="text-gray-800">Hall of Fame</span>
       </h2>
       {/* First row */}
-      <div className="animate-scroll rounded-full">
+      <div className="animate-scroll pb-7 rounded-full">
         {repeatedImages.map((image, index) => (
           <img
             key={index}
@@ -55,8 +60,9 @@ const ContinuousScroll = () => {
           />
         ))}
       </div>
+      {/* Second row */}
       <div className="animate-scroll rounded-full">
-        {reversedImages.map((image, index) => (
+        {rotatedImages.map((image, index) => (
           <img
             key={index}
             src={image}
