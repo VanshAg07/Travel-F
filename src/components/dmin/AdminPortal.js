@@ -30,6 +30,7 @@ const AdminPortal = () => {
     axios
       .post("https://api.travello10.com/api/admin/logout")
       .then(() => {
+        localStorage.clear();
         navigate("/");
       })
       .catch((error) => {
@@ -39,11 +40,10 @@ const AdminPortal = () => {
 
   const handleMainTabClick = (tabName) => {
     setActiveTab(tabName);
-    setOpenSubmenu(""); // Close any open submenu when a main tab is clicked
+    setOpenSubmenu("");
   };
 
   const handleSubmenuToggle = (submenuName) => {
-    // Toggle the submenu or open it if not already open
     setOpenSubmenu((prev) => (prev === submenuName ? "" : submenuName));
   };
 
