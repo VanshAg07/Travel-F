@@ -78,12 +78,12 @@ const FooterSection = () => {
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">
               Weekend Trips
             </h2>
-            <ul className="text-[#fff] space-y-2 text-sm md:text-base lg:text-lg">
+            <ul className="text-[#fff] uppercase space-y-2 text-sm md:text-base lg:text-lg">
               {packages.map((pkg, index) => (
                 <li key={index}>
                   <button
                     onClick={() => handlePackageClick(pkg.tripLocation, pkg.tripName)}
-                    className="hover:text-[#fffe9] transition-all ease-in-out duration-200"
+                    className="hover:text-[#fffe9] uppercase transition-all ease-in-out duration-200"
                   >
                     {pkg.tripName}
                   </button>

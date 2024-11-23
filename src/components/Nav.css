@@ -197,8 +197,12 @@
   align-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1343px) {
   .menu-icon {
+    display: block;
+  }
+
+  .lappi-nav{
     display: block;
   }
 
@@ -261,7 +265,7 @@
     position: absolute;
     top: 60px;
     right: 0;
-    width: 30%; /* Menu takes up 30% of the screen on smaller screens */
+    width: 40%; /* Menu takes up 30% of the screen on smaller screens */
     height: 100vh;
     background-color: #fff;
     transition: all 0.3s ease;
@@ -315,7 +319,7 @@
   }
 
   .nav-links {
-    width: 30%; /* Ensure it takes 30% of the screen width */
+    width: 40%; /* Ensure it takes 30% of the screen width */
     top: 60px; /* Align with the smaller navbar */
     padding: 10px; /* Reduced padding for smaller screens */
     font-size: 0.9rem; /* Adjust font size */
@@ -347,7 +351,7 @@
 
 @media (max-width: 593px) {
   .nav-links {
-    width: 40%;
+    width: 50%;
   }
 }
 
@@ -409,4 +413,21 @@
   .desktop-only {
     display: none;
   }
+}
+
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Prevent scrollbar from showing up */
+.overflow-y-auto {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

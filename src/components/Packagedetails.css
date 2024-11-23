@@ -164,4 +164,9 @@ margin-top: -40px;
   .btn-itin{
     bottom: 20%;
   }
+  .sh-btn{
+    margin-left: -30px;
+    /* margin-bottom: 3px; */
+    font-size: 20px;
+  }
 }
