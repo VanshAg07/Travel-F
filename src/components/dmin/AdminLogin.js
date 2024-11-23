@@ -1,24 +1,75 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import { setUser } from "../../Slices/UserSlice";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [verifiedOtp, setVerifiedOtp] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [otpSent, setOtpSent] = useState(false); // Add state for OTP sent
+  const [otp, setOtp] = useState(""); // Add state for OTP value
   const dispatch = useDispatch();
 
-  const handleSendOTP = async () => {
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setErrorMessage("");
     try {
+      const response = await fetch(
+        "https://api.travello10.com/api/admin/login",
+        {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+      const data = await response.json();
+
+      // Handle successful login
+      if (response.status === 200) {
+        toast.success("Login Success");
+        window.localStorage.setItem("token", data.data.token);
+        const decodedToken = jwtDecode(data.data.token);
+        dispatch(setUser(data.data));
+        const role = decodedToken.role;
+        if (role === "admin") {
+          window.location.href = "/admin";
+        } else {
+          setErrorMessage("You do not have admin access.");
+        }
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.response?.data?.message || "An error occurred during login."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/sendOtp",
+        "https://api.travello10.com/api/auth/request-password-reset",
         { email }
       );
 
@@ -28,31 +79,43 @@ function AdminLogin() {
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Failed to send OTP.");
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleVerifyOtp = async () => {
-    setLoading(true);
-    setErrorMessage("");
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/verifyOtp",
+        "https://api.travello10.com/api/auth/verify-otp",
         { email, otp }
       );
 
       if (response.status === 200) {
-
-          window.location.href = "/admin";
-        } else {
-          setErrorMessage("You do not have admin access.");
-        }
-      
+        setVerifiedOtp(true);
+        toast.success("OTP verified. You can now reset your password.");
+      }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Invalid OTP.");
-    } finally {
-      setLoading(false);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+    try {
+      const response = await axios.put(
+        "https://api.travello10.com/api/auth/reset-password",
+        { email, password: newPassword }
+      );
+      if (response.status === 200) {
+        toast.success("Password reset successfully.");
+        setShowForgotPassword(false);
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.response?.data?.message || "Failed to reset password."
+      );
     }
   };
 
@@ -60,21 +123,15 @@ function AdminLogin() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
         <h2 className="text-2xl font-bold text-center">
-          {otpSent ? "Verify OTP" : "Admin Login"}
+          {showForgotPassword ? "Forgot Password" : "Admin Login"}
         </h2>
         {errorMessage && (
           <div className="p-2 text-red-600 bg-red-100 rounded">
             {errorMessage}
           </div>
         )}
-        {!otpSent ? (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSendOTP();
-            }}
-            className="space-y-4"
-          >
+        {!showForgotPassword ? (
+          <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Email
@@ -88,43 +145,132 @@ function AdminLogin() {
                 placeholder="Enter your email"
               />
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
-            >
-              {loading ? "Sending OTP..." : "Send OTP"}
-            </button>
-          </form>
-        ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleVerifyOtp();
-            }}
-            className="space-y-4"
-          >
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
-                OTP
+                Password
               </label>
               <input
-                type="text"
+                type={showPassword ? "text" : "password"}
                 required
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
-                placeholder="Enter the OTP"
+                placeholder="Enter your password"
               />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="text-sm text-blue-600 hover:underline flex justify-end w-full mt-2"
+              >
+                {showPassword ? "Hide" : "Show"} Password
+              </button>
             </div>
             <button
               type="submit"
               disabled={loading}
               className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
             >
-              {loading ? "Verifying..." : "Verify OTP"}
+              {loading ? "Logging in..." : "Login"}
             </button>
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={() => setShowForgotPassword(true)}
+                className="text-sm text-blue-600 hover:underline"
+              >
+                Forgot Password?
+              </button>
+            </div>
           </form>
+        ) : (
+          <div className="space-y-4">
+            <div>
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                placeholder="Enter your email"
+              />
+            </div>
+            {otpSent && !verifiedOtp && (
+              <>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    OTP
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                    placeholder="Enter the OTP"
+                  />
+                </div>
+                <button
+                  onClick={handleVerifyOtp}
+                  className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                >
+                  Verify OTP
+                </button>
+              </>
+            )}
+            {verifiedOtp && (
+              <>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    New Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                    placeholder="Enter new password"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                    placeholder="Confirm new password"
+                  />
+                </div>
+                <button
+                  onClick={handleResetPassword}
+                  className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                >
+                  Reset Password
+                </button>
+              </>
+            )}
+            {!otpSent && (
+              <button
+                onClick={handleForgotPassword}
+                className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+              >
+                Send OTP
+              </button>
+            )}
+            <button
+              onClick={() => setShowForgotPassword(false)}
+              className="text-sm text-blue-600 hover:underline"
+            >
+              Back to Login
+            </button>
+          </div>
         )}
       </div>
     </div>
