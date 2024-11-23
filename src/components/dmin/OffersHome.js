@@ -363,6 +363,7 @@ const OffersHome = () => {
                   updatedDates[index].tripDate = e.target.value;
                   setTripDetails({ ...tripDetails, tripDates: updatedDates });
                 }}
+                required
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
               />
               <input
@@ -374,6 +375,7 @@ const OffersHome = () => {
                   updatedDates[index].tripSeats = e.target.value;
                   setTripDetails({ ...tripDetails, tripDates: updatedDates });
                 }}
+                required
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
               />
               <button
@@ -508,6 +510,7 @@ const OffersHome = () => {
                 value={exclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"
@@ -536,6 +539,7 @@ const OffersHome = () => {
                 placeholder="Sharing Type"
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 onChange={(e) => handleSharingChange(e, index, "title")}
+                required
               >
                 <option value="">Select Sharing Type</option>
                 <option value="Double">Double</option>
@@ -549,6 +553,7 @@ const OffersHome = () => {
                 placeholder="Price"
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 onChange={(e) => handleSharingChange(e, index, "price")}
+                required
               />
             </div>
           ))}
@@ -574,6 +579,7 @@ const OffersHome = () => {
                     handleArrayChange(e, index, "tripItinerary", "title")
                   }
                   className="w-full p-2 border border-gray-300 rounded"
+                  required
                 />
                 <button
                   type="button"
@@ -600,6 +606,7 @@ const OffersHome = () => {
                         });
                       }}
                       className="w-full p-2 border border-gray-300 rounded"
+                      required
                     />
                     <button
                       type="button"
@@ -653,6 +660,7 @@ const OffersHome = () => {
             type="file"
             multiple
             onChange={handleImageChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -662,6 +670,7 @@ const OffersHome = () => {
           </label>
           <input
             type="file"
+            required
             onChange={handlePackageChange}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
@@ -674,6 +683,7 @@ const OffersHome = () => {
             type="file"
             multiple
             onChange={handlePdfChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
           {tripDetails.pdf.map((pdf, index) => (

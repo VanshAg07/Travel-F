@@ -237,6 +237,7 @@ const AddHoneymoon = () => {
             onChange={(e) =>
               setTripDetails({ ...tripDetails, overView: e.target.value })
             }
+            required
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -251,6 +252,7 @@ const AddHoneymoon = () => {
             onChange={(e) =>
               setTripDetails({ ...tripDetails, tripDuration: e.target.value })
             }
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -266,6 +268,7 @@ const AddHoneymoon = () => {
                 tripDescription: e.target.value,
               })
             }
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -279,6 +282,7 @@ const AddHoneymoon = () => {
                 value={inclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"
@@ -308,6 +312,7 @@ const AddHoneymoon = () => {
                 value={exclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"
@@ -341,6 +346,7 @@ const AddHoneymoon = () => {
                     handleArrayChange(e, index, "tripItinerary", "title")
                   }
                   className="w-full p-2 border border-gray-300 rounded"
+                  required
                 />
                 <button
                   type="button"
@@ -367,6 +373,7 @@ const AddHoneymoon = () => {
                         });
                       }}
                       className="w-full p-2 border border-gray-300 rounded"
+                      required
                     />
                     <button
                       type="button"
@@ -420,6 +427,7 @@ const AddHoneymoon = () => {
             type="file"
             multiple
             onChange={handleImageChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -430,6 +438,7 @@ const AddHoneymoon = () => {
           <input
             type="file"
             onChange={handlePackageChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -441,6 +450,7 @@ const AddHoneymoon = () => {
             type="file"
             multiple
             onChange={handlePdfChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
           {tripDetails.pdf.map((pdf, index) => (

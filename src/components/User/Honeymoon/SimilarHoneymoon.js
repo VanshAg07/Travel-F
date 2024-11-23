@@ -22,9 +22,6 @@ const TripCard = ({ trip }) => {
       ? `${trip.tripName.slice(0, 18)}...`
       : trip.tripName;
 
-  const firstDate = trip.tripDate;
-
-  // Navigate to the trip details page when a user clicks the card
   const handleCardClick = (tripLocation, tripName) => {
     const sanitizedTripName = tripName.replace(/\//g, "-");
     let stateName = tripLocation;

@@ -13,6 +13,8 @@ import weekend from "../../img/weekend.json";
 import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
 import SportsAllPackage from "./SportsAllPackage";
+import GroupTourSchool from "./GroupTourSchool";
+import GroupTourSports from "./GroupTourSports";
 
 const BackpackingTrips = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -204,7 +206,7 @@ const BackpackingTrips = () => {
               </div>
             ))}
         </div>
-        <Grouptourhero />
+        <GroupTourSports />
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
             All Packages

@@ -266,6 +266,7 @@ const AdminPanel = () => {
               value={tripData.tripName}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -276,6 +277,7 @@ const AdminPanel = () => {
               value={tripData.tripPrice}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -286,6 +288,7 @@ const AdminPanel = () => {
               value={tripData.tripOfferPrice}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div className="flex flex-row justify-center items-center gap-2">
@@ -295,6 +298,8 @@ const AdminPanel = () => {
               value={tripData.customised}
               onChange={handleCustomisedChange}
               className="block border-gray-300 rounded-md border-2 p-1 "
+
+
             />
             <label className="block text-l font-medium">Customised</label>
           </div>
@@ -308,6 +313,7 @@ const AdminPanel = () => {
               value={tripData.tripBookingAmount}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -318,6 +324,7 @@ const AdminPanel = () => {
               value={tripData.tripSeats}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -333,6 +340,7 @@ const AdminPanel = () => {
                     setTripData({ ...tripData, tripDates: updatedDates });
                   }}
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                  required
                 />
                 <input
                   type="text"
@@ -344,6 +352,7 @@ const AdminPanel = () => {
                     setTripData({ ...tripData, tripDates: updatedDates });
                   }}
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                  required
                 />
                 <button
                   type="button"
@@ -385,6 +394,7 @@ const AdminPanel = () => {
               value={tripData.overView}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -396,6 +406,7 @@ const AdminPanel = () => {
                   value={date}
                   onChange={(e) => handleArrayChange(e, index, "tripDate")}
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  required
                 />
                 <button
                   type="button"
@@ -417,6 +428,7 @@ const AdminPanel = () => {
               value={tripData.tripDuration}
               onChange={handleInputChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -430,6 +442,7 @@ const AdminPanel = () => {
                     handleArrayChange(e, index, "tripInclusions")
                   }
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  required
                 />
                 <button
                   type="button"
@@ -452,6 +465,7 @@ const AdminPanel = () => {
                     handleArrayChange(e, index, "tripExclusions")
                   }
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  required
                 />
                 <button
                   type="button"
@@ -473,6 +487,7 @@ const AdminPanel = () => {
                   onChange={(e) => handleItineraryChange(e, index, "title")}
                   placeholder="Itinerary Title"
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  required
                 />
                 {item.points.map((point, pointIndex) => (
                   <input
@@ -484,6 +499,7 @@ const AdminPanel = () => {
                     }
                     placeholder="Point"
                     className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                    required
                   />
                 ))}
                 <button
@@ -514,6 +530,7 @@ const AdminPanel = () => {
                     handleArrayChange(e, index, "tripDescription")
                   }
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                  required
                 />
               </div>
             ))}
@@ -528,6 +545,7 @@ const AdminPanel = () => {
                   placeholder="Sharing Type"
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                   onChange={(e) => handleSharingChange(e, index, "title")}
+                  required
                 >
                   <option value="">Select Sharing Type</option>
                   <option value="Double">Double</option>
@@ -541,6 +559,7 @@ const AdminPanel = () => {
                   placeholder="Price"
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                   onChange={(e) => handleSharingChange(e, index, "price")}
+                  required
                 />
               </div>
             ))}
@@ -562,6 +581,7 @@ const AdminPanel = () => {
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               value={tripData.pickAndDrop}
               onChange={handleInputChange}
+              required
             />
           </div>
           <div>
@@ -573,6 +593,7 @@ const AdminPanel = () => {
               multiple
               onChange={handleImageChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -583,6 +604,7 @@ const AdminPanel = () => {
               type="file"
               onChange={handlePackageChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
           </div>
           <div>
@@ -594,6 +616,7 @@ const AdminPanel = () => {
               multiple
               onChange={handlePdfChange}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+              required
             />
             {tripData.pdf.map((pdf, index) => (
               <div key={index} className="flex items-center mb-2">

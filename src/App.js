@@ -128,7 +128,7 @@ const App = () => {
         window.screen.width === 2560 && window.screen.height === 1600;
 
       if (isLaptop136) {
-        document.body.style.zoom = "90%"; // Adjust zoom level
+        document.body.style.zoom = "80%"; // Adjust zoom level
       } else {
         document.body.style.zoom = "100%"; // Default zoom level
       }

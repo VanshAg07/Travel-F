@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdLocationPin, MdPeople } from "react-icons/md";
 
-const HighLevelCorporateTour = () => {
+const GroupTourSports = () => {
   const [groupDetails, setGroupDetails] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,7 @@ const HighLevelCorporateTour = () => {
       if (result.data) {
         // Filter data where type is "School"
         const filteredData = result.data.filter(
-          (tour) => tour.type === "University"
+          (tour) => tour.type === "Sports"
         );
         setGroupDetails(filteredData);
       }
@@ -87,4 +87,4 @@ const HighLevelCorporateTour = () => {
   );
 };
 
-export default HighLevelCorporateTour;
+export default GroupTourSports;

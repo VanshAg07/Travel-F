@@ -10,6 +10,7 @@ import weekend from "../../img/weekend.json";
 import Grouptourhero from "../../components/Grouptour-hero";
 import Grouptourform from "../../components/Groupform";
 import AdventureAllPackage from "./AdventureAllPackage";
+import GroupTourAdventure from "./GroupTourAdventure";
 
 const BackpackingTrips = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
@@ -195,7 +196,7 @@ const BackpackingTrips = () => {
             ))}
         </div>
 
-        <Grouptourhero />
+        <GroupTourAdventure />
 
         <div className="justify-center pt-10 items-center flex flex-col w-full ">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">

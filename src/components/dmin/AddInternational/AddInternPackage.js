@@ -381,6 +381,7 @@ const AddInternPackage = () => {
                   setTripDetails({ ...tripDetails, tripDates: updatedDates });
                 }}
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                required
               />
               <button
                 type="button"
@@ -512,6 +513,7 @@ const AddInternPackage = () => {
                 value={exclusion}
                 onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
                 className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               <button
                 type="button"
@@ -553,6 +555,7 @@ const AddInternPackage = () => {
                 placeholder="Price"
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                 onChange={(e) => handleSharingChange(e, index, "price")}
+                required
               />
             </div>
           ))}
@@ -578,6 +581,7 @@ const AddInternPackage = () => {
                     handleArrayChange(e, index, "tripItinerary", "title")
                   }
                   className="w-full p-2 border border-gray-300 rounded"
+                  required
                 />
                 <button
                   type="button"
@@ -604,6 +608,7 @@ const AddInternPackage = () => {
                         });
                       }}
                       className="w-full p-2 border border-gray-300 rounded"
+                      required
                     />
                     <button
                       type="button"
@@ -656,6 +661,7 @@ const AddInternPackage = () => {
           <input
             type="file"
             multiple
+            required
             onChange={handleImageChange}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
@@ -667,6 +673,7 @@ const AddInternPackage = () => {
           <input
             type="file"
             onChange={handlePackageChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
         </div>
@@ -678,6 +685,7 @@ const AddInternPackage = () => {
             type="file"
             multiple
             onChange={handlePdfChange}
+            required
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
           />
           {tripDetails.pdf.map((pdf, index) => (
