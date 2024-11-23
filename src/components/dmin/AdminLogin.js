@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {jwtDecode} from "jwt-decode";
 import { toast } from "react-toastify";
 import { setUser } from "../../Slices/UserSlice";
-import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -13,7 +12,6 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSendOTP = async () => {
     setLoading(true);
@@ -44,20 +42,13 @@ function AdminLogin() {
         { email, otp }
       );
 
-      if (response.data.status === "ok") {
-        // Decode JWT to extract user details and role
-        const { token } = response.data; // Ensure the backend returns a token
-        const decodedUser = jwtDecode(token);
+      if (response.status === 200) {
 
-        // Dispatch user details and role to Redux (assuming role is in decodedUser)
-        dispatch(setUser({ user: decodedUser, role: decodedUser.role }));
-
-        // Redirect to admin route
-        toast.success("Login successful! Redirecting...");
-        navigate("/admin");
-      } else {
-        setErrorMessage("You do not have admin access.");
-      }
+          window.location.href = "/admin";
+        } else {
+          setErrorMessage("You do not have admin access.");
+        }
+      
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Invalid OTP.");
     } finally {
