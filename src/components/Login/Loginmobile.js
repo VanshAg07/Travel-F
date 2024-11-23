@@ -57,9 +57,9 @@ const Login = () => {
         // Redirect based on the user role
         const role = decodedToken.role;
         if (role === "admin") {
-          window.location.href = "/home"; // Redirect to admin page
+          window.location.href = "/"; // Redirect to admin page
         } else {
-          window.location.href = "/home"; // Redirect to home page
+          window.location.href = "/"; // Redirect to home page
         }
       } else {
         setError(data.error || "Login failed");

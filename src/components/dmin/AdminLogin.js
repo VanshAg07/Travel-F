@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import { setUser } from "../../Slices/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleSendOTP = async () => {
     setLoading(true);
     setErrorMessage("");
@@ -41,21 +42,23 @@ function AdminLogin() {
         "https://api.travello10.com/api/auth/verifyOtp",
         { email, otp }
       );
-
       if (response.status === 200) {
-
-          window.location.href = "/admin";
+        // Check if the user is admin
+        if (response.data?.isAdmin) {
+          // Dispatch user details to Redux
+          dispatch(setUser(response.data.user));
+          // Navigate to admin page
+          navigate("/admin");
         } else {
           setErrorMessage("You do not have admin access.");
         }
-      
+      }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Invalid OTP.");
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
