@@ -33,7 +33,7 @@ const RichFlavour = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/trip/states")
+      .get("https://api.travelo10.com/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -63,7 +63,7 @@ const RichFlavour = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/addRichFlavour",
+        "https://api.travelo10.com/api/admin/addRichFlavour",
         formData,
         {
           headers: {

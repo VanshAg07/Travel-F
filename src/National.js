@@ -23,7 +23,7 @@ const National = () => {
   const [backgroundImages, setBackgroundImages] = useState([]);
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "https://api.travelo10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
@@ -38,7 +38,7 @@ const National = () => {
   const fetchImageCard = async () => {
     try {
       const res = await fetch(
-        `https://api.travello10.com/api/popup/state-images-user/${type}`
+        `https://api.travelo10.com/api/popup/state-images-user/${type}`
       );
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);

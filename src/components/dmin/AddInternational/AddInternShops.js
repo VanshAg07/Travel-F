@@ -17,7 +17,7 @@ const AddInternShops = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/admin/states")
+      .get("https://api.travelo10.com/api/admin/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -62,7 +62,7 @@ const AddInternShops = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/international/addShop",
+        "https://api.travelo10.com/api/admin/international/addShop",
         formData,
         {
           headers: {

@@ -15,7 +15,7 @@ function HomeNationalComponent() {
   const fetchNationalData = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/homepage-national"
+        "https://api.travelo10.com/api/home/homepage-national"
       );
       setNationalData(response.data.data || []);
     } catch (error) {
@@ -29,7 +29,7 @@ function HomeNationalComponent() {
   const fetchChosenNationalData = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/homepage-choosen-national"
+        "https://api.travelo10.com/api/home/homepage-choosen-national"
       );
       setChosenData(response.data.chosenPackages || []); // Correctly accessing the "chosenPackages" field
     } catch (error) {
@@ -42,7 +42,7 @@ function HomeNationalComponent() {
   // Handle package selection for a specific trip
   const handleChoosePackage = async (trip, stateId) => {
     try {
-      await axios.post("https://api.travello10.com/api/home/homepage-national", {
+      await axios.post("https://api.travelo10.com/api/home/homepage-national", {
         entryId: trip._id,
         stateId: stateId,
         tripName: trip.tripName,
@@ -59,7 +59,7 @@ function HomeNationalComponent() {
   const handleDeletePackage = async (packageId) => {
     try {
       await axios.delete(
-        `https://api.travello10.com/api/home/homepage-national/${packageId}`
+        `https://api.travelo10.com/api/home/homepage-national/${packageId}`
       );
       alert("Package deleted successfully");
       fetchChosenNationalData(); // Refresh chosen data

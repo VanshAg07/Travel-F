@@ -44,7 +44,7 @@ const Corporate = () => {
   const fetchCorporate = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/corporate/create-corporate-landing"
+        "https://api.travelo10.com/api/corporate/create-corporate-landing"
       );
       setCorporateData(res.data.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const Corporate = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "https://api.travelo10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

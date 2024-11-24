@@ -17,7 +17,7 @@ export default function Signup() {
             return;
         }
 
-        fetch("https://api.travello10.com/register", {
+        fetch("https://api.travelo10.com/register", {
             method: "POST",
             crossDomain: true,
             headers: {

@@ -78,7 +78,7 @@ const PackageHoneymoon = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/honeymoon/findStateAndTrip/${stateName}/${tripName}`
+          `https://api.travelo10.com/api/honeymoon/findStateAndTrip/${stateName}/${tripName}`
         );
         setTrip(response.data);
       } catch (error) {

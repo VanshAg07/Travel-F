@@ -33,7 +33,7 @@ const EuropeTripEnquiryForm = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "https://api.travello10.com/api/contact/contact-corporate",
+        "https://api.travelo10.com/api/contact/contact-corporate",
         formData
       );
 

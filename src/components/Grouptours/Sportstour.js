@@ -34,7 +34,7 @@ const BackpackingTrips = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/group-tours/group-tours"
+          "https://api.travelo10.com/api/group-tours/group-tours"
         );
         const data = await response.json();
         setTrip(data.data);
@@ -53,7 +53,7 @@ const BackpackingTrips = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/group-tours/state"
+        "https://api.travelo10.com/api/group-tours/state"
       );
       const data = await response.json();
       setBackgroundImages(data);
@@ -73,7 +73,7 @@ const BackpackingTrips = () => {
   const fetchStart = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/group-tours/group-start"
+        "https://api.travelo10.com/api/group-tours/group-start"
       );
       const data = await response.json();
       setGroupStart(data);
@@ -106,7 +106,7 @@ const BackpackingTrips = () => {
                         loop
                       >
                         <source
-                          src={`https://api.travello10.com/upload/${imgUrl}`}
+                          src={`https://api.travelo10.com/upload/${imgUrl}`}
                           type="video/mp4"
                         />
                         Your browser does not support the video tag.
@@ -114,7 +114,7 @@ const BackpackingTrips = () => {
                     ) : (
                       <img
                         key={index}
-                        src={`https://api.travello10.com/upload/${imgUrl}`}
+                        src={`https://api.travelo10.com/upload/${imgUrl}`}
                         alt={`Image ${index}`}
                         className="w-full md:h-screen"
                       />
@@ -183,7 +183,7 @@ const BackpackingTrips = () => {
                   {(item.tripImages || []).map((imgUrl, index) => (
                     <img
                       key={index}
-                      src={`https://api.travello10.com/upload/${imgUrl}`}
+                      src={`https://api.travelo10.com/upload/${imgUrl}`}
                       alt={item.heading}
                       className="w-96 h-96"
                     />

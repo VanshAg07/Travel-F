@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const BestActivities = () => {
-  const [states, setStates] = useState([]); // State for storing the list of states
+  const [states, setStates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     stateName: "",
     time: "",
     title: "",
     description: "",
-    img: null, // Store the file object instead of Base64 string
+    img: null,
   });
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const BestActivities = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/trip/states")
+      .get("https://api.travelo10.com/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -53,20 +53,18 @@ const BestActivities = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
-
-    // Create a FormData object to send the form data as multipart/form-data
     const formData = new FormData();
     formData.append("stateName", form.stateName);
     formData.append("time", form.time);
     formData.append("title", form.title);
     formData.append("description", form.description);
     if (form.img) {
-      formData.append("img", form.img); // Append the image file
+      formData.append("img", form.img);
     }
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/admin/addActivity",
+        "https://api.travelo10.com/api/admin/addActivity",
         formData,
         {
           headers: {
@@ -80,7 +78,7 @@ const BestActivities = () => {
         time: "",
         title: "",
         description: "",
-        img: null, // Reset the image field
+        img: null,
       });
       setLoading(false)
 

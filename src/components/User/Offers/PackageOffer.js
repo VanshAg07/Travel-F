@@ -42,7 +42,7 @@ const PackageOffer = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/offer/findStateAndTrip/${name}/${tripName}`
+          `https://api.travelo10.com/api/offer/findStateAndTrip/${name}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -148,7 +148,7 @@ const PackageOffer = () => {
 
     try {
       const res = await axios.post(
-        "https://api.travello10.com/api/contact/contact-trip",
+        "https://api.travelo10.com/api/contact/contact-trip",
         formData
       );
       if (res.status === 200) {

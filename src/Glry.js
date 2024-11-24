@@ -14,7 +14,7 @@ const Glry = () => {
   const fetchGalleryImages = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/gallery/home-galleries"
+        "https://api.travelo10.com/api/gallery/home-galleries"
       );
       const data = await response.json();
 

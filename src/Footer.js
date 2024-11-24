@@ -17,7 +17,7 @@ const Footer = () => {
   const fetchIcons = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/footer-icons"
+        "https://api.travelo10.com/api/home/footer-icons"
       );
       setIcons(response.data);
     } catch (error) {

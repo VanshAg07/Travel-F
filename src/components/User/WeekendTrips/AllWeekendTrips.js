@@ -11,10 +11,9 @@ function AllWeekendTrips() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/weekends/weekend-choosen-display"
+          "https://api.travelo10.com/api/weekends/weekend-choosen-display"
         );
         const data = await response.json();
-        // Check if chosenPackages is defined and is an array
         setPackages(Array.isArray(data.chosenPackages) ? data.chosenPackages : []);
       } catch (error) {
         console.error("Error fetching packages:", error);

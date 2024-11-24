@@ -7,7 +7,7 @@ const TravelOptions = () => {
   const fetchAdventures = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com/api/home/explore-adventure"
+        "https://api.travelo10.com/api/home/explore-adventure"
       );
       setAdventures(res.data);
     } catch (error) {

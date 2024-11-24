@@ -20,6 +20,7 @@ import GroupToursEdit from "./EditPackage/GroupToursEdit";
 import GroupDetailsEdit from "./EditPackage/GroupDetailsEdit";
 import OffersHome from "./OffersHome";
 import EditOffer from "./EditPackage/EditOffer";
+import EditNationalDetails from "./EditPackageShops/EditNationalDetails";
 
 const AdminPortal = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -28,7 +29,7 @@ const AdminPortal = () => {
 
   const handleLogout = () => {
     axios
-      .post("https://api.travello10.com/api/admin/logout")
+      .post("https://api.travelo10.com/api/admin/logout")
       .then(() => {
         localStorage.clear();
         navigate("/");
@@ -205,16 +206,16 @@ const AdminPortal = () => {
                     >
                       International
                     </li>
-                    {/* <li
-                      onClick={() => setActiveTab("edit-weekend")}
+                    <li
+                      onClick={() => setActiveTab("edit-national-details")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${
-                        activeTab === "edit-weekend"
+                        activeTab === "edit-national-details"
                           ? "bg-gray-700"
                           : "hover:bg-gray-600"
                       }`}
                     >
-                      Weekend
-                    </li> */}
+                      Shop,Places
+                    </li>
                     <li
                       onClick={() => setActiveTab("edit-honeymoon")}
                       className={`py-2 px-4 rounded-lg cursor-pointer ${
@@ -300,7 +301,7 @@ const AdminPortal = () => {
         {activeTab === "edit-blogs" && <BlogsEdit />}
         {activeTab === "add-group-tours" && <GroupDashboard />}
         {activeTab === "add-blogs" && <BlogForm />}
-        {/* Add additional content components as needed */}
+        {activeTab === "edit-national-details" && <EditNationalDetails />}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const Popup1 = ({ onClose }) => {
 
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/signin-user");
+      const res = await fetch("https://api.travelo10.com/api/popup/signin-user");
       const data = await res.json();
       setPopupData(data[0]);
     } catch (error) {

@@ -23,7 +23,7 @@ const Weekends = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com/api/background-images/images"
+      "https://api.travelo10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

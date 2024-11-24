@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import "./Places.css";
 import Card from "./3dCard";
@@ -17,13 +17,6 @@ import MainFooter from "./Footer/MainFooter";
 import Mainreview from "./Mainreview";
 import Homeglry from "../components/Homeglry.js";
 import axios from "axios";
-import {
-  FaClock,
-  FaMapMarkerAlt,
-  FaCalendarAlt,
-  FaChevronCircleLeft,
-  FaChevronCircleRight,
-} from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import MobileHomeGallery from "./MobileHomeGallery.js";
 import SimilarTrips from "./SimilarTrips.js";
@@ -31,7 +24,6 @@ import SimilarTrips from "./SimilarTrips.js";
 const Place = () => {
   const { name } = useParams();
   const [packages, setPackages] = useState([]);
-  const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const whatsappMessage = "Hello, I need assistance with my issue.";
@@ -43,7 +35,7 @@ const Place = () => {
   const fetchNationalImages = async () => {
     try {
       const res = await axios.get(
-        `https://api.travello10.com/api/package-image/national/${stateName}`
+        `https://api.travelo10.com/api/package-image/national/${stateName}`
       );
       // console.log(res.data);
       setNationalImages([res.data]);
@@ -57,7 +49,7 @@ const Place = () => {
     const fetchSimilarPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getSimilarTrips/${stateName}`
+          `https://api.travelo10.com/api/user/getSimilarTrips/${stateName}`
         );
         const data = await response.json();
         setPackages(data);
@@ -67,32 +59,6 @@ const Place = () => {
     };
     fetchSimilarPackages();
   }, []);
-
-  const handlePackageClick = (stateName, tripName) => {
-    const sanitizedTripName = tripName.replace(/\//g, "-"); // Replace slashes with hyphens
-    navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
-  };
-  const [visiblePackages, setVisiblePackages] = useState(4); // Number of visible items on large screens
-
-  const containerRef = useRef(null);
-
-  const handleScrollLeft = () => {
-    if (containerRef.current) {
-      const scrollAmount = window.innerWidth < 640 ? 250 : 280; // Scroll by 250px for mobile
-      containerRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  // Function to handle right arrow click
-  const handleScrollRight = () => {
-    if (containerRef.current) {
-      const scrollAmount = window.innerWidth < 640 ? 250 : 280; // Scroll by 250px for mobile
-      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
 
   return (
     <>
@@ -138,8 +104,6 @@ const Place = () => {
         </div>
         <div className="flex justify-center mt-10">
           <div className="w-full">
-            {/* <Link to={`/Packagedetails/${name}`}>
-            </Link> */}
             <Card />
           </div>
         </div>

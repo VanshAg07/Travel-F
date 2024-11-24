@@ -10,7 +10,7 @@ const DateCost = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/corporate/payment-image"
+        "https://api.travelo10.com/api/corporate/payment-image"
       );
       const data = await res.json();
       const activeImages = data.data.filter((item) => item.status === "active");

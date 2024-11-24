@@ -14,7 +14,7 @@ const InternatioanlCard = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/getTripDetails/${name}`
+          `https://api.travelo10.com/api/user/getTripDetails/${name}`
         );
         setTrips(response.data);
       } catch (error) {

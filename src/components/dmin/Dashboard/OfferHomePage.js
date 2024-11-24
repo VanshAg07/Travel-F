@@ -19,7 +19,7 @@ const OfferHomePage = () => {
   const fetchOffers = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/home-offers"
+        "https://api.travelo10.com/api/home/home-offers"
       );
       setOffers(response.data.data);
     } catch (error) {
@@ -64,12 +64,12 @@ const OfferHomePage = () => {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travello10.com/api/home/home-offers/${editingId}`,
+          `https://api.travelo10.com/api/home/home-offers/${editingId}`,
           formDataToSubmit
         ); // Update offer
       } else {
         await axios.post(
-          "https://api.travello10.com/api/home/add-home-offer",
+          "https://api.travelo10.com/api/home/add-home-offer",
           formDataToSubmit
         ); // Create offer
       }
@@ -93,18 +93,18 @@ const OfferHomePage = () => {
 
     // Set the preview image to the first image of the selected offer
     if (offer.image.length > 0) {
-      setPreviewImage(`https://api.travello10.com/upload/${offer.image[0]}`);
+      setPreviewImage(`https://api.travelo10.com/upload/${offer.image[0]}`);
     }
     if (offer.phoneImage.length > 0) {
       setPreviewPhoneImage(
-        `https://api.travello10.com/upload/${offer.phoneImage[0]}`
+        `https://api.travelo10.com/upload/${offer.phoneImage[0]}`
       );
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://api.travello10.com/api/home/home-offers/${id}`);
+      await axios.delete(`https://api.travelo10.com/api/home/home-offers/${id}`);
       fetchOffers(); // Refresh the list of offers
     } catch (error) {
       console.error("Error deleting offer:", error);
@@ -193,7 +193,7 @@ const OfferHomePage = () => {
         {offers.map((offer) => (
           <li key={offer._id} className="bg-white shadow-md rounded p-4">
             <img
-              src={`https://api.travello10.com/upload/${offer.image[0]}`}
+              src={`https://api.travelo10.com/upload/${offer.image[0]}`}
               alt="Offer"
               className="w-full h-32 object-cover rounded"
             />
