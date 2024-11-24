@@ -30,22 +30,8 @@ const Footer = () => {
       <div className="footer-info text-center">
         <h1 className="text-xl font-bold">TRAVELLOTEN INDIA PRIVATE LIMITED</h1>
         <div className="footer-icons flex justify-center space-x-4">
-          {icons.map((icon) => (
-            <a
-              key={icon._id} // Use unique key from data
-              className="footer-anchors text-[#3953fe]"
-              href={icon.url} // Use URL from fetched data
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={icon.iconImage[0]} // Use icon image from fetched data
-                alt={icon.name} // Use name for alt text
-                className="h-8 w-8 rounded-full"
-              />
-            </a>
-          ))}
-          {/* Add static links if needed */}
+          
+    
           <a
             className="footer-anchors"
             href="https://www.facebook.com/Travello10"
@@ -86,6 +72,21 @@ const Footer = () => {
           >
             <img src={GmailIcon} alt="Gmail" className="h-8 w-8" />
           </a>
+          {icons.map((icon) => (
+            <a
+              key={icon._id} // Use unique key from data
+              className="footer-anchors text-[#3953fe]"
+              href={icon.url} // Use URL from fetched data
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={icon.iconImage[0]} // Use icon image from fetched data
+                alt={icon.name} // Use name for alt text
+                className="h-8 w-8 rounded-full"
+              />
+            </a>
+          ))}
         </div>
         <p className="footer-p mt-4">
           3rd Floor Plot, Kakarola Housing Complex, 103, Kakrola Rd, Opposite
