@@ -43,7 +43,6 @@ const DateCost = () => {
       status: dateObj.status || "Available",
     };
   });
-  console.log(tripDates);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) {
@@ -92,6 +91,18 @@ const DateCost = () => {
     setOpenMonth(openMonth === month ? "" : month);
   };
 
+  const getSeatStatusClass = (status) => {
+    switch (status) {
+      case "Full":
+        return "text-red-500"; // Red color for 'Full'
+      case "Available":
+        return "text-green-500"; // Green color for 'Available'
+      case "FillingFast":
+        return "text-yellow-500"; // Yellow color for 'FillingFast'
+      default:
+        return "text-gray-700"; // Default color
+    }
+  };
   const handleBooking = () => {
     navigate("/booking-options", {
       state: {
@@ -162,7 +173,9 @@ const DateCost = () => {
                             <span className="text-lg font-medium">
                               {formatDate(dateObj.date)}
                             </span>
-                            <span className="text-gray-700">
+                            <span
+                              className={getSeatStatusClass(dateObj.tripSeats)}
+                            >
                               {dateObj.tripSeats}
                             </span>
                             <span className="text-blue-500 font-bold">
