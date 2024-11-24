@@ -93,12 +93,13 @@ const DateCosting = () => {
         return "text-red-500"; // Red color for 'Full'
       case "Available":
         return "text-green-500"; // Green color for 'Available'
-      case "FillingFast":
+      case "Filling Fast":
         return "text-yellow-500"; // Yellow color for 'FillingFast'
       default:
         return "text-gray-700"; // Default color
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Nav />
