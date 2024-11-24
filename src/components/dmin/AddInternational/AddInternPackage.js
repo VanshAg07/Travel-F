@@ -258,22 +258,23 @@ const AddInternPackage = () => {
           </select>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Trip Name</label>
-          <input
-            type="text"
-            name="tripName"
-            value={tripDetails.tripName}
-            onChange={(e) => {
-              const value = e.target.value;
-              // Allow only letters, numbers, "/", and "-" (no ".")
-              if (/^[A-Za-z0-9\/\-]*$/.test(value)) {
-                setTripDetails({ ...tripDetails, tripName: value });
-              }
-            }}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
+  <label className="block text-gray-700">Trip Name</label>
+  <input
+    type="text"
+    name="tripName"
+    value={tripDetails.tripName}
+    onChange={(e) => {
+      const value = e.target.value;
+      // Allow letters, numbers, "/", "-", and spaces
+      if (/^[A-Za-z0-9\/\ ]*$/.test(value)) {
+        setTripDetails({ ...tripDetails, tripName: value });
+      }
+    }}
+    required
+    className="w-full p-2 border border-gray-300 rounded"
+  />
+</div>
+
 
         <div className="mb-4">
           <label className="block text-gray-700">Trip Price</label>
@@ -468,9 +469,10 @@ const AddInternPackage = () => {
             onChange={(e) => {
               const value = e.target.value;
               // Allow only numbers, letters, spaces, and hyphens
-              if (/^[0-9A-Za-z\s\-]*$/.test(value)) {
-                setTripDetails({ ...tripDetails, tripDuration: value });
-              }
+              if (/^[0-9A-Za-z\s\/\-]*$/.test(value)) {
+  setTripDetails({ ...tripDetails, tripDuration: value });
+}
+
             }}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             required
