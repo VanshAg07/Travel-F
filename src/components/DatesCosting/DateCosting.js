@@ -113,11 +113,11 @@ const DateCosting = () => {
         </div>
         <div className="mt-6 flex flex-col md:flex-row w-[90vw] justify-center items-center">
           {/* Available Dates Section */}
-          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col">
+          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col overflow-y-auto max-h-[67vh]">
             <h2 className="text-2xl font-bold text-gray-800 text-center border-b pb-4">
               Available Dates
             </h2>
-            <div className="mt-4 space-y-4 overflow-y-auto">
+            <div className="mt-4 space-y-4">
               {Object.keys(datesByMonth).map((month, monthIndex) => (
                 <div key={monthIndex} className="mb-6">
                   <div
