@@ -34,7 +34,7 @@ const TripCard = ({ trip }) => {
   return (
     <div
       onClick={() => handleCardClick(trip.tripLocation, trip.tripName)} // Pass stateName and tripName
-      className="bg-white h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4 cursor-pointer"
+      className="bg-white h-[45vh] md:h-[60vh] shadow-md shadow-black rounded-lg overflow-hidden mb-4 cursor-pointer"
     >
       <img
         src={trip.tripImages[0]}
@@ -141,9 +141,9 @@ const SimilarTrips = () => {
   const shouldShowArrows = trips.length > tripsToShow;
 
   return (
-    <div className="min-h-screen bg-[#ffffe6] p-2 flex justify-center">
+    <div className="max-h-screen bg-[#ffffe6] p-2 pb-10 md:pb-1 flex justify-center">
       <div className="w-[90vw]">
-        <h1 className="text-3xl pl-12 font-bold mb-6">Equivalent Getaways</h1>
+        <h1 className="text-3xl pl-12 pt-7 font-bold mb-6">Equivalent Getaways</h1>
         <div className="flex items-center justify-between mb-6">
           {shouldShowArrows && (
             <button

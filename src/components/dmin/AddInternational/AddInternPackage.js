@@ -323,19 +323,6 @@ const AddInternPackage = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Trip Seats</label>
-          <input
-            type="text"
-            name="tripSeats"
-            value={tripDetails.tripSeats}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripSeats: e.target.value })
-            }
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
         <div>
           <label className="block text-l font-medium">Trip Dates</label>
           {tripDetails.tripDate.map((date, index) => (
@@ -361,6 +348,7 @@ const AddInternPackage = () => {
           <label className="block text-l font-medium">Trip Dates</label>
           {tripDetails.tripDates.map((dateItem, index) => (
             <div key={index} className="flex items-center mb-2">
+              {/* Date Input */}
               <input
                 type="date"
                 value={dateItem.tripDate}
@@ -371,18 +359,25 @@ const AddInternPackage = () => {
                 }}
                 className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
               />
-              <input
-                type="text"
-                placeholder="Seats"
+
+              {/* Dropdown for Trip Seats */}
+              <select
                 value={dateItem.tripSeats}
                 onChange={(e) => {
                   const updatedDates = [...tripDetails.tripDates];
                   updatedDates[index].tripSeats = e.target.value;
                   setTripDetails({ ...tripDetails, tripDates: updatedDates });
                 }}
-                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                 required
-              />
+              >
+                <option value="">Select Seat Status</option>
+                <option value="Full">Full</option>
+                <option value="Available">Available</option>
+                <option value="Filling Fast">Filling Fast</option>
+              </select>
+
+              {/* Remove Button */}
               <button
                 type="button"
                 onClick={() => {
@@ -396,6 +391,8 @@ const AddInternPackage = () => {
               </button>
             </div>
           ))}
+
+          {/* Add Trip Date Button */}
           <button
             type="button"
             onClick={() => {
@@ -412,6 +409,7 @@ const AddInternPackage = () => {
             Add Trip Date
           </button>
         </div>
+
         <div className="mb-4">
           <label className="block text-gray-700">
             Pick and Drop (eg. Guwahati - Guwahati)

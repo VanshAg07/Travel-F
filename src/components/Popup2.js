@@ -7,17 +7,11 @@ const Popup2 = ({ onClose }) => {
   const navigate = useNavigate();
   const [popupData, setPopupData] = useState(null);
 
-  // Handle sign-in button click
-  const handleSignInClick = () => {
-    navigate("/Signup");
-  };
-
-  // Fetch popup data from API
   const fetchPopup = async () => {
     try {
       const res = await fetch("https://api.travello10.com/api/popup/assist-user");
       const data = await res.json();
-      setPopupData(data[0]); // Assuming the response is an array with a single object
+      setPopupData(data[0]);
     } catch (error) {
       console.error("Error fetching popup data:", error);
     }
@@ -27,11 +21,11 @@ const Popup2 = ({ onClose }) => {
     fetchPopup();
   }, []);
 
-  // Form submission handler
   const submitForm = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     const formData = {
       name: e.target.name.value,
+      email: e.target.email.value,
       number: e.target.number.value,
       interestedPlaces: e.target.interestedPlaces.value,
     };
@@ -41,25 +35,21 @@ const Popup2 = ({ onClose }) => {
         "https://api.travello10.com/api/popup/assist-form",
         formData
       );
-
-      // Close the popup after successful form submission
-      onClose(); // Trigger onClose to close the popup
+      console.log("Form submitted successfully:", res);
+      onClose();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-  // Show loading message while popup data is being fetched
   if (!popupData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="fixed popup-wr inset-0 md:pb-0 pb-28 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-2">
-      <div
-        className="bg-zinc-200 pt-4 pl-6 pr-6 pb-4 sm:max-w-[80%] w-[80%] md:w-[30%] rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden"
-        style={{ marginTop: "100px" }}
-      >
+    <div className="fixed inset-0 flex items-center justify-center bg-[#ffffff7f] bg-opacity-70 z-50 p-4">
+      <div className="bg-white mt-10 rounded-lg h-[70vh] shadow-lg relative flex flex-col md:flex-row w-full max-w-4xl overflow-hidden">
+        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition-colors duration-200 z-10"
@@ -67,50 +57,63 @@ const Popup2 = ({ onClose }) => {
           <AiOutlineClose className="h-6 w-6 text-gray-600" />
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-cyan-600 z-10">
-          {popupData.title} {/* Display dynamic title */}
-        </h2>
+        {/* Left side - Image */}
+        <div className="md:w-1/2 h-80 md:h-auto">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `url(${popupData.image[0]})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
 
-        {/* Background image */}
-        <div
-          className="relative mb-4 h-48 sm:h-56 rounded-lg overflow-hidden"
-          style={{
-            backgroundImage: `url(${popupData.image[0]})`, // Display dynamic image
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        {/* Right side - Content */}
+        <div className="md:w-1/2 p-6 flex flex-col">
+          <h2 className="text-2xl font-bold mb-6 text-cyan-600">
+            {popupData.title}
+          </h2>
 
-        {/* Form fields */}
-        <form onSubmit={submitForm}>
-          <div className="mb-6">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              className="mb-4 w-full px-4 py-2 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            />
-            <input
-              type="number"
-              name="number"
-              placeholder="Number"
-              className="mb-4 w-full px-4 py-2 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            />
-            <input
-              type="text"
-              name="interestedPlaces"
-              placeholder="Interested Places"
-              className="w-full px-4 py-2 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            />
-          </div>
+          <form onSubmit={submitForm} className="flex flex-col space-y-4 pt-10">
+  <input
+    type="text"
+    name="name"
+    placeholder="Name"
+    className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    required
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email Address"
+    className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    required
+  />
+  <input
+    type="number"
+    name="number"
+    placeholder="Phone Number"
+    className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    required
+  />
+  <input
+    type="text"
+    name="interestedPlaces"
+    placeholder="Interested Places"
+    className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    required
+  />
 
-          <button
-            type="submit"
-            className="px-6 py-3 bg-cyan-500 text-white text-sm sm:text-base rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md z-10 w-full sm:w-auto"
-          >
-            Submit
-          </button>
-        </form>
+  <button
+    type="submit"
+    className="mt-4 px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md"
+  >
+    Submit
+  </button>
+</form>
+
+        </div>
       </div>
     </div>
   );

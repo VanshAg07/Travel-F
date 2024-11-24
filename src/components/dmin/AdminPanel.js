@@ -264,33 +264,77 @@ const AdminPanel = () => {
               type="text"
               name="tripName"
               value={tripData.tripName}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Allow letters, spaces, hyphens, and slashes
+                const filteredValue = e.target.value.replace(
+                  /[^a-zA-Z\s-/]/g,
+                  ""
+                );
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
+              onKeyPress={(event) => {
+                const charCode = event.which || event.keyCode;
+                if (!/^[a-zA-Z\s-/]+$/.test(event.key)) {
+                  event.preventDefault(); // Prevent invalid characters
+                }
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
           </div>
+
           <div>
             <label className="block text-l font-medium">Trip Price</label>
             <input
               type="text"
               name="tripPrice"
               value={tripData.tripPrice}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Remove any non-numeric characters
+                const filteredValue = e.target.value.replace(/[^0-9]/g, "");
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
+              onKeyPress={(event) => {
+                // Allow only numeric characters
+                const charCode = event.which || event.keyCode;
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
           </div>
+
           <div>
             <label className="block text-l font-medium">Trip Offer Price</label>
             <input
               type="text"
               name="tripOfferPrice"
               value={tripData.tripOfferPrice}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Remove any non-numeric characters
+                const filteredValue = e.target.value.replace(/[^0-9]/g, "");
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
+              onKeyPress={(event) => {
+                // Allow only numeric characters
+                const charCode = event.which || event.keyCode;
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
           </div>
+
           <div className="flex flex-row justify-center items-center gap-2">
             <input
               type="checkbox"
@@ -298,8 +342,6 @@ const AdminPanel = () => {
               value={tripData.customised}
               onChange={handleCustomisedChange}
               className="block border-gray-300 rounded-md border-2 p-1 "
-
-
             />
             <label className="block text-l font-medium">Customised</label>
           </div>
@@ -308,21 +350,23 @@ const AdminPanel = () => {
               Trip Booking Amount
             </label>
             <input
-              type="number"
+              type="text"
               name="tripBookingAmount"
               value={tripData.tripBookingAmount}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-l font-medium">Trip Seats</label>
-            <input
-              type="number"
-              name="tripSeats"
-              value={tripData.tripSeats}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Remove any non-numeric characters
+                const filteredValue = e.target.value.replace(/[^0-9]/g, "");
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
+              onKeyPress={(event) => {
+                // Allow only numeric characters
+                const charCode = event.which || event.keyCode;
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
@@ -331,6 +375,7 @@ const AdminPanel = () => {
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDates.map((dateItem, index) => (
               <div key={index} className="flex items-center mb-2">
+                {/* Date Input */}
                 <input
                   type="date"
                   value={dateItem.tripDate}
@@ -342,18 +387,25 @@ const AdminPanel = () => {
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                   required
                 />
-                <input
-                  type="text"
-                  placeholder="Seats"
+
+                {/* Dropdown for Trip Seats */}
+                <select
                   value={dateItem.tripSeats}
                   onChange={(e) => {
                     const updatedDates = [...tripData.tripDates];
                     updatedDates[index].tripSeats = e.target.value;
                     setTripData({ ...tripData, tripDates: updatedDates });
                   }}
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
+                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                   required
-                />
+                >
+                  <option value="">Select Seat Status</option>
+                  <option value="Full">Full</option>
+                  <option value="Available">Available</option>
+                  <option value="Filling Fast">Filling Fast</option>
+                </select>
+
+                {/* Remove Button */}
                 <button
                   type="button"
                   onClick={() => {
@@ -367,6 +419,8 @@ const AdminPanel = () => {
                 </button>
               </div>
             ))}
+
+            {/* Add Trip Date Button */}
             <button
               type="button"
               onClick={() => {
@@ -385,18 +439,28 @@ const AdminPanel = () => {
           </div>
           <div>
             <label className="block text-l font-medium">
-              Trip OverView(Guwahati - Shillong - Cherrapunjee - Shnongpdeng -
+              Trip OverView (Guwahati - Shillong - Cherrapunjee - Shnongpdeng -
               Shillong - Guwahati)
             </label>
             <input
               type="text"
               name="overView"
               value={tripData.overView}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Allow only letters, spaces, hyphens, and slashes
+                const filteredValue = e.target.value.replace(
+                  /[^a-zA-Z\s\-\/]/g,
+                  ""
+                );
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
           </div>
+
           <div>
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (
@@ -426,11 +490,21 @@ const AdminPanel = () => {
               type="text"
               name="tripDuration"
               value={tripData.tripDuration}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Allow only alphanumeric characters, spaces, hyphens, and slashes
+                const filteredValue = e.target.value.replace(
+                  /[^a-zA-Z0-9\s\-\/]/g,
+                  ""
+                );
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               required
             />
           </div>
+
           <div>
             <label className="block text-l font-medium">Trip Inclusions</label>
             {tripData.tripInclusions.map((inclusion, index) => (
@@ -438,9 +512,19 @@ const AdminPanel = () => {
                 <input
                   type="text"
                   value={inclusion}
-                  onChange={(e) =>
-                    handleArrayChange(e, index, "tripInclusions")
-                  }
+                  onChange={(e) => {
+                    // Allow only letters, numbers, spaces, commas, slashes, and parentheses
+                    const filteredValue = e.target.value.replace(
+                      /[^a-zA-Z0-9\s,\/()]/g,
+                      ""
+                    );
+                    handleArrayChange(
+                      e,
+                      index,
+                      "tripInclusions",
+                      filteredValue
+                    );
+                  }}
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
                   required
                 />
@@ -454,6 +538,7 @@ const AdminPanel = () => {
               </div>
             ))}
           </div>
+
           <div>
             <label className="block text-l font-medium">Trip Exclusions</label>
             {tripData.tripExclusions.map((exclusion, index) => (
@@ -553,12 +638,34 @@ const AdminPanel = () => {
                   <option value="Quad">Quad</option>
                 </select>
                 <input
-                  type="number"
+                  type="text"
                   name="price"
-                  value={share.price}
-                  placeholder="Price"
                   className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-                  onChange={(e) => handleSharingChange(e, index, "price")}
+                  value={tripData.price}
+                  onChange={(e) => {
+                    // Allow only numeric values
+                    const numericValue = e.target.value.replace(/[^0-9]/g, "");
+                    handleInputChange({
+                      target: { name: e.target.name, value: numericValue },
+                    });
+                  }}
+                  onKeyDown={(e) => {
+                    const allowedKeys = [
+                      "Backspace",
+                      "ArrowLeft",
+                      "ArrowRight",
+                      "Tab",
+                    ];
+                    if (!/^\d$/.test(e.key) && !allowedKeys.includes(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onPaste={(e) => {
+                    const pastedText = e.clipboardData.getData("text");
+                    if (!/^\d+$/.test(pastedText)) {
+                      e.preventDefault();
+                    }
+                  }}
                   required
                 />
               </div>
@@ -580,10 +687,20 @@ const AdminPanel = () => {
               name="pickAndDrop"
               className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
               value={tripData.pickAndDrop}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                // Allow only letters, spaces, /, and -
+                const filteredValue = e.target.value.replace(
+                  /[^a-zA-Z\s/-]/g,
+                  ""
+                );
+                handleInputChange({
+                  target: { name: e.target.name, value: filteredValue },
+                });
+              }}
               required
             />
           </div>
+
           <div>
             <label className="block text-l font-medium">
               Trip Images (i.e. Card Image)

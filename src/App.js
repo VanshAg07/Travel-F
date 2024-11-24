@@ -49,6 +49,7 @@ import SignUp from "./components/Login/SignUp.js";
 import Login from "./components/Login/Login.js";
 import Corpoform from "./components/Corpo-form.js";
 import DateCosting from "./components/DatesCosting/DateCosting.js";
+import DateCost from "./components/DatesCosting/DateCost.js";
 import BookingOptions from "./components/DatesCosting/BookingOptions.js";
 import Grouptours from "./components/Grouptours.js";
 import Weekends from "./components/Weekends.js";
@@ -78,7 +79,8 @@ import SportsPackageDetails from "./components/Grouptours/SportsPackageDetails.j
 import PhoneFooter from "./components/PhoneFooter.js";
 import VideoModal from "./components/VideoModal.js";
 import SimilarTrips from "./components/SimilarTrips.js";
-import DateCost from "./components/DatesCosting/DateCost.js";
+import Popup2 from "./components/Popup2.js";
+import ScreenshotPrevention from "./components/Screenshotprevention.js";
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -88,6 +90,22 @@ const App = () => {
     }
     return <Outlet />;
   };
+
+  useEffect(() => {
+    // Disable the browser's default screenshot behavior
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        e.preventDefault();
+        return false;
+      }
+    }, { capture: true });
+
+    // Disable right-click
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+  }, []);
 
   const adminMiddleware = roleMiddleware(["admin"]);
 
@@ -147,6 +165,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <ScreenshotPrevention>
       <Routes>
         <Route path="/admin" element={adminMiddleware}>
           <Route path="/admin" element={<AdminPortal />} />
@@ -235,7 +254,9 @@ const App = () => {
         <Route path="/phonefooter" element={<PhoneFooter />} />
         <Route path="/reel-slider" element={<VideoModal />} />
         <Route path="/similar-trips" element={<SimilarTrips />} />
+        <Route path="/popup2" element={<Popup2 />} />
       </Routes>
+      </ScreenshotPrevention>
     </BrowserRouter>
   );
 };
