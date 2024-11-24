@@ -15,7 +15,8 @@ function VideoCard({
   videoSubtitle,
   videoId,
   currentlyPlayingId,
-  setCurrentlyPlayingId
+  setCurrentlyPlayingId,
+  link,
 }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -106,6 +107,7 @@ function VideoCard({
         song={song}
         title={videoTitle}
         videoSubtitle={videoSubtitle}
+        urlLink={link}
       />
     </div>
   );

@@ -8,7 +8,7 @@ const GroupDetails = () => {
     description: [""],
     duration: "",
     numberOfPax: "",
-    image: [], 
+    image: [],
   });
 
   const handleChange = (e) => {
@@ -58,11 +58,15 @@ const GroupDetails = () => {
     });
 
     try {
-      await axios.post("https://api.travello10.com/api/group-tours/group-details", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://api.travello10.com/api/group-tours/group-details",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       resetForm();
     } catch (error) {
       console.error("Error saving group details", error);
@@ -109,6 +113,8 @@ const GroupDetails = () => {
             value={form.name}
             onChange={handleChange}
             required
+            pattern="^[A-Za-z/]+$" 
+            title="Only letters and '/' are allowed"
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -121,6 +127,7 @@ const GroupDetails = () => {
                 type="text"
                 value={desc}
                 onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                required
                 className="w-full p-2 border border-gray-300 rounded"
               />
               <button
@@ -172,6 +179,7 @@ const GroupDetails = () => {
             multiple
             onChange={handleImageChange}
             className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
 

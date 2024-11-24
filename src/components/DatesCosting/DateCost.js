@@ -43,7 +43,6 @@ const DateCost = () => {
       status: dateObj.status || "Available",
     };
   });
-  console.log(tripDates);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) {
@@ -92,6 +91,18 @@ const DateCost = () => {
     setOpenMonth(openMonth === month ? "" : month);
   };
 
+  const getSeatStatusClass = (status) => {
+    switch (status) {
+      case "Full":
+        return "text-red-500"; // Red color for 'Full'
+      case "Available":
+        return "text-green-500"; // Green color for 'Available'
+      case "Filling Fast":
+        return "text-yellow-500"; // Yellow color for 'FillingFast'
+      default:
+        return "text-gray-700"; // Default color
+    }
+  };
   const handleBooking = () => {
     navigate("/booking-options", {
       state: {
@@ -134,11 +145,11 @@ const DateCost = () => {
         )}
         <div className="mt-6 flex flex-col md:flex-row w-[90vw] justify-center items-center">
           {/* Available Dates Section */}
-          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col">
+          <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col overflow-y-auto max-h-[67vh]">
             <h2 className="text-2xl font-bold text-gray-800 text-center border-b pb-4">
               Available Dates
             </h2>
-            <div className="mt-4 space-y-4 overflow-y-auto">
+            <div className="mt-4 space-y-4">
               {Object.keys(datesByMonth).map((month, monthIndex) => (
                 <div key={monthIndex} className="mb-6">
                   <div
@@ -162,7 +173,9 @@ const DateCost = () => {
                             <span className="text-lg font-medium">
                               {formatDate(dateObj.date)}
                             </span>
-                            <span className="text-gray-700">
+                            <span
+                              className={getSeatStatusClass(dateObj.tripSeats)}
+                            >
                               {dateObj.tripSeats}
                             </span>
                             <span className="text-blue-500 font-bold">
