@@ -23,7 +23,7 @@ const Popup3 = ({ onClose }) => {
   }, []);
 
   const handleSignInClick = () => {
-    navigate("/Signup");
+    navigate("/offer");
   };
 
   // Show loading state until popup data is fetched
@@ -55,13 +55,19 @@ const Popup3 = ({ onClose }) => {
           </div>
 
           {/* Content Section */}
-          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[200px] md:h-[250px]">
+          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[250px] md:h-[250px]">
             <h2 className="text-2xl font-bold mb-4 text-cyan-600">
               {popupData.title} {/* Dynamically display title */}
             </h2>
             <p className="mb-6 text-gray-700">
               {popupData.subTitle} {/* Dynamically display subtitle */}
             </p>
+            <button
+              onClick={handleSignInClick}
+              className="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md w-full sm:w-auto"
+            >
+              View Offers
+            </button>
           </div>
         </div>
       </div>
