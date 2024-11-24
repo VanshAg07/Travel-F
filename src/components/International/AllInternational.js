@@ -70,7 +70,7 @@ function AllInternational() {
                 <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                   <div className="w-full">
                     <h2 className="text-lg uppercase truncate font-semibold text-black pb-6">
-                      {pkg.stateName} - {trip.tripName}
+                      {trip.tripName}
                     </h2>
                     <div className="flex flex-row mb-4 justify-between items-center w-full">
                       {/* Duration */}

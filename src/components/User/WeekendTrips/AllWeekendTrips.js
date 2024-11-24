@@ -51,7 +51,7 @@ function AllWeekendTrips() {
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
               <div className="absolute top-3 right-3 bg-yellow-400 pl-2 pr-2 p-1 rounded-full w-auto flex items-center justify-center">
-              <span className="font-semibold text-sm ">
+                <span className="font-semibold text-sm ">
                     {pkg.customised ? (
                       "Customised"
                     ) : (
@@ -62,12 +62,12 @@ function AllWeekendTrips() {
                         {`₹${pkg.tripOfferPrice}/- onwards`}
                       </>
                     )}
-                  </span>
+                </span>
               </div>
               <div className="w-full rounded-b pl-4 pt-2 pr-4 pb-2 flex flex-col md:flex-row absolute bottom-0 bg-white">
                 <div className="w-full">
                   <h2 className="text-lg uppercase truncate font-semibold text-black pb-6">
-                    {pkg.stateName} - {pkg.tripName}
+                    {pkg.tripName}
                   </h2>
                   <div className="flex flex-row mb-4 justify-between items-center w-full">
                     {/* Duration */}
