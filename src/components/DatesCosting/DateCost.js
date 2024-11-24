@@ -100,9 +100,10 @@ const DateCost = () => {
       case "Filling Fast":
         return "text-yellow-500"; // Yellow color for 'FillingFast'
       default:
-        return "text-gray-700"; // Default color
+        return "text-gray-700";
     }
   };
+
   const handleBooking = () => {
     navigate("/booking-options", {
       state: {
@@ -118,6 +119,12 @@ const DateCost = () => {
     });
   };
 
+  const isBookingDisabled = () => {
+    const selectedDateObj = tripDates.find(
+      (dateObj) => dateObj.date === selectedDate
+    );
+    return selectedDateObj?.tripSeats === "Full";
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Nav />
@@ -234,7 +241,12 @@ const DateCost = () => {
               </div>
               <button
                 onClick={handleBooking}
-                className="bg-cyan-500 text-lg text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200"
+                className={`${
+                  isBookingDisabled()
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-cyan-500"
+                } text-lg text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200`}
+                disabled={isBookingDisabled()}
               >
                 Book Now
               </button>

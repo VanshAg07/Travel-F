@@ -43,7 +43,21 @@ function EditNationalPlaces() {
     });
     setIsPopupOpen(true);
   };
-
+  
+  const handleDelete = (activity) => {
+    try {
+      axios
+        .delete(
+          `https://api.travello10.com/api/admin/deleteActivity/${activity._id}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          fetchStates();
+        });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
@@ -135,6 +149,12 @@ function EditNationalPlaces() {
                   className="mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
                 >
                   Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(activity)}
+                  className="mt-4 ml-4 bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+                >
+                  Delete
                 </button>
               </div>
             ))}

@@ -99,7 +99,12 @@ const DateCosting = () => {
         return "text-gray-700"; // Default color
     }
   };
-
+  const isBookingDisabled = () => {
+    const selectedDateObj = tripDates.find(
+      (dateObj) => dateObj.date === selectedDate
+    );
+    return selectedDateObj?.tripSeats === "Full";
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Nav />
@@ -203,7 +208,12 @@ const DateCosting = () => {
               </div>
               <button
                 onClick={handleBooking}
-                className="bg-cyan-500 text-lg text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200"
+                className={`${
+                  isBookingDisabled()
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-cyan-500"
+                } text-lg text-white px-4 py-3 md:mt-0 rounded-lg font-semibold transition-all duration-200`}
+                disabled={isBookingDisabled()}
               >
                 Book Now
               </button>

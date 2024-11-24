@@ -87,8 +87,6 @@ function EditNationalDetails() {
             <div>{renderInterNationalContent()}</div>
           </div>
         );
-      case "Honeymoon":
-        return <div>Honeymoon content goes here...</div>;
       default:
         return null;
     }
@@ -100,7 +98,7 @@ function EditNationalDetails() {
         Edit Details
       </h1>
       <div className="flex justify-center space-x-4 mb-8">
-        {["National", "International", "Honeymoon"].map((tab) => (
+        {["National", "International"].map((tab) => (
           <button
             key={tab}
             className={`px-6 py-2 text-lg rounded-lg shadow-md ${

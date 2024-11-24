@@ -96,7 +96,20 @@ function EditInternationalPlaces() {
         alert("Failed to update activity.");
       });
   };
-
+  const handleDelete = (activity) => {
+    try {
+      axios
+        .delete(
+          `https://api.travello10.com/api/admin/international/deletePlaces/${activity._id}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          fetchStates();
+        });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
@@ -135,6 +148,12 @@ function EditInternationalPlaces() {
                   className="mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
                 >
                   Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(activity)}
+                  className="mt-4 ml-4 bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+                >
+                  Delete
                 </button>
               </div>
             ))}
