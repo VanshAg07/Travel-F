@@ -237,7 +237,7 @@ const DateCost = () => {
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl mt-8 p-4 gap-4 bg-white rounded-lg">
               <div className="md:text-xl font-bold text-blue-600 text-sm">
-                Starting Price: ₹{tripBookingAmount || "N/A"}/- Per Person
+                Starting Price: ₹{tripOfferPrice || "N/A"}/- Per Person
               </div>
               <button
                 onClick={handleBooking}
