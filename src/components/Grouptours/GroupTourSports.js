@@ -12,7 +12,7 @@ const GroupTourSports = () => {
   const fetchGroupDetails = async () => {
     try {
       const response = await fetch(
-        `https://api.travelo10.com/api/group-tours/group-details`
+        `https://api.travello10.com/api/group-tours/group-details`
       );
       const result = await response.json();
 

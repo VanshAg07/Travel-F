@@ -19,7 +19,7 @@ function GroupBlogs() {
   const fetchGroupBlogs = async () => {
     try {
       const response = await axios.get(
-        "https://api.travelo10.com/api/group-tours/group-start"
+        "https://api.travello10.com/api/group-tours/group-start"
       );
       setGroupBlogs(response.data);
     } catch (error) {
@@ -50,7 +50,7 @@ function GroupBlogs() {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travelo10.com/api/group-tours/group-start/${editingId}`,
+          `https://api.travello10.com/api/group-tours/group-start/${editingId}`,
           data,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -60,7 +60,7 @@ function GroupBlogs() {
         setEditingId(null);
       } else {
         await axios.post(
-          "https://api.travelo10.com/api/group-tours/group-start",
+          "https://api.travello10.com/api/group-tours/group-start",
           data,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -101,7 +101,7 @@ function GroupBlogs() {
     if (window.confirm("Are you sure you want to delete this Group Blog?")) {
       try {
         await axios.delete(
-          `https://api.travelo10.com/api/group-tours/group-start/${id}`
+          `https://api.travello10.com/api/group-tours/group-start/${id}`
         );
         alert("GroupStart deleted successfully!");
         fetchGroupBlogs();
@@ -277,7 +277,7 @@ function GroupBlogs() {
                 {groupBlog.tripImages.map((img, idx) => (
                   <img
                     key={idx}
-                    src={`https://api.travelo10.com/upload/${img}`}
+                    src={`https://api.travello10.com/upload/${img}`}
                     alt="trip"
                     className="h-20 w-20 rounded-md object-cover"
                   />

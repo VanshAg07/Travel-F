@@ -35,7 +35,7 @@ const Forms = () => {
     try {
       // Send form data to the backend
       const res = await axios.post(
-        "https://api.travelo10.com/api/contact/contact-home",
+        "https://api.travello10.com/api/contact/contact-home",
         formData
       );
 

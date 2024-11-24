@@ -5,7 +5,7 @@ const FooterSection = () => {
   const [blogsTitle, setBlogsTitle] = useState([]);
   const navigate = useNavigate();
   const fetchBlogs = () => {
-    fetch(`https://api.travelo10.com/api/blog/blog-title`)
+    fetch(`https://api.travello10.com/api/blog/blog-title`)
       .then((response) => response.json())
       .then((data) => {
         setBlogsTitle(data.blogTitles);
@@ -21,7 +21,7 @@ const FooterSection = () => {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travelo10.com/api/weekends/weekend-choosen-display"
+          "https://api.travello10.com/api/weekends/weekend-choosen-display"
         );
         const data = await response.json();
         setPackages(Array.isArray(data.chosenPackages) ? data.chosenPackages : []);
@@ -38,7 +38,7 @@ const FooterSection = () => {
     const fetchBackPacking = async () => {
       try {
         const response = await fetch(
-          "https://api.travelo10.com/api/weekends/backpacking"
+          "https://api.travello10.com/api/weekends/backpacking"
         );
         const data = await response.json();
         setBackpacking(data.data);

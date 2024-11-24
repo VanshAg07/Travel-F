@@ -20,7 +20,7 @@ function EditNationalShop() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travelo10.com/api/admin/getShop")
+      .get("https://api.travello10.com/api/admin/getShop")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -47,7 +47,7 @@ function EditNationalShop() {
     try {
       axios
         .delete(
-          `https://api.travelo10.com/api/admin/deleteShop/${activity._id}`
+          `https://api.travello10.com/api/admin/deleteShop/${activity._id}`
         )
         .then((response) => {
           console.log(response.data);
@@ -90,7 +90,7 @@ function EditNationalShop() {
 
     axios
       .put(
-        `https://api.travelo10.com/api/admin/editShop/${selectedActivity._id}`,
+        `https://api.travello10.com/api/admin/editShop/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -134,7 +134,7 @@ function EditNationalShop() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travelo10.com/upload/${activity.img}`}
+                    src={`https://api.travello10.com/upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

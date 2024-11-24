@@ -36,7 +36,7 @@ const OffersHome = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travelo10.com/api/offer/states")
+      .get("https://api.travello10.com/api/offer/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -130,7 +130,7 @@ const OffersHome = () => {
       }
     });
     fetch(
-      `https://api.travelo10.com/api/offer/add-offer-package/${selectedState.id}`,
+      `https://api.travello10.com/api/offer/add-offer-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,

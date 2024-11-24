@@ -15,7 +15,7 @@ const Food = () => {
       // console.log("Fetching activities..."); 
       try {
         const response = await axios.get(
-          `https://api.travelo10.com/api/user/getInternFlavour/${name}`
+          `https://api.travello10.com/api/user/getInternFlavour/${name}`
         );
         // console.log(response.data); 
         setActivities(response.data.activities || []); 

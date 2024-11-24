@@ -17,7 +17,7 @@ function HaventSign() {
   const fetchSignIns = async () => {
     try {
       const response = await axios.get(
-        "https://api.travelo10.com/api/popup/havent"
+        "https://api.travello10.com/api/popup/havent"
       );
       setSignInList(response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ function HaventSign() {
 
     try {
       const response = await axios.post(
-        "https://api.travelo10.com/api/popup/havent",
+        "https://api.travello10.com/api/popup/havent",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -67,7 +67,7 @@ function HaventSign() {
 
     try {
       const response = await axios.put(
-        `https://api.travelo10.com/api/popup/havent/${selectedSignIn._id}`,
+        `https://api.travello10.com/api/popup/havent/${selectedSignIn._id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -85,7 +85,7 @@ function HaventSign() {
 
   const deleteSignIn = async (id) => {
     try {
-      await axios.delete(`https://api.travelo10.com/api/popup/havent/${id}`);
+      await axios.delete(`https://api.travello10.com/api/popup/havent/${id}`);
       setSignInList((prevList) => prevList.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting sign-in:", error);
@@ -169,7 +169,7 @@ function HaventSign() {
             <p className="text-gray-600">{signIn.subTitle}</p>
             {signIn.image[0] && (
               <img
-                src={`https://api.travelo10.com/upload/${signIn.image[0]}`}
+                src={`https://api.travello10.com/upload/${signIn.image[0]}`}
                 alt={signIn.title}
                 className="mt-2 rounded-lg w-32 h-32 object-cover"
               />

@@ -21,7 +21,7 @@ function EditNationalPlaces() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travelo10.com/api/admin/getBeautifulPlaces")
+      .get("https://api.travello10.com/api/admin/getBeautifulPlaces")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -78,7 +78,7 @@ function EditNationalPlaces() {
 
     axios
       .put(
-        `https://api.travelo10.com/api/admin/editBeautifulPlaces/${selectedActivity._id}`,
+        `https://api.travello10.com/api/admin/editBeautifulPlaces/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -125,7 +125,7 @@ function EditNationalPlaces() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travelo10.com/upload/${activity.img}`}
+                    src={`https://api.travello10.com/upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

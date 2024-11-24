@@ -9,7 +9,7 @@ function Bookings() {
     const fetchTickets = async () => {
       try {
         const response = await fetch(
-          "https://api.travelo10.com/api/payments/getAllTickets"
+          "https://api.travello10.com/api/payments/getAllTickets"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

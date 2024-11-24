@@ -71,7 +71,7 @@ const EuropeTripEnquiryForm = () => {
       setMessage(""); // Clear previous messages
 
       const response = await axios.post(
-        "https://api.travelo10.com/api/contact/contact-corporate",
+        "https://api.travello10.com/api/contact/contact-corporate",
         formData
       );
 

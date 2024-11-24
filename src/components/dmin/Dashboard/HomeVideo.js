@@ -17,7 +17,7 @@ function HomeVideo() {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        "https://api.travelo10.com/api/home/home-page-video"
+        "https://api.travello10.com/api/home/home-page-video"
       );
       setVideos(response.data.video); // Assuming the response structure is { video: [] }
     } catch (error) {
@@ -35,7 +35,7 @@ function HomeVideo() {
       formData.append("video", newVideoFile);
 
       const response = await axios.post(
-        "https://api.travelo10.com/api/home/create-home-page-video",
+        "https://api.travello10.com/api/home/create-home-page-video",
         formData,
         {
           headers: {
@@ -63,7 +63,7 @@ function HomeVideo() {
       formData.append("video", editValue);
 
       const response = await axios.put(
-        `https://api.travelo10.com/api/home/home-page-video/${id}`,
+        `https://api.travello10.com/api/home/home-page-video/${id}`,
         formData,
         {
           headers: {
@@ -90,7 +90,7 @@ function HomeVideo() {
   const handleDeleteVideo = async (id) => {
     try {
       await axios.delete(
-        `https://api.travelo10.com/api/home/home-page-video/${id}`
+        `https://api.travello10.com/api/home/home-page-video/${id}`
       );
       setVideos(videos.filter((_, index) => index !== id));
       toast.success("Video deleted successfully!");

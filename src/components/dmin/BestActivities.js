@@ -19,7 +19,7 @@ const BestActivities = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travelo10.com/api/trip/states")
+      .get("https://api.travello10.com/api/trip/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -64,7 +64,7 @@ const BestActivities = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travelo10.com/api/admin/addActivity",
+        "https://api.travello10.com/api/admin/addActivity",
         formData,
         {
           headers: {

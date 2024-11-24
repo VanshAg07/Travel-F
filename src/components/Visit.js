@@ -14,7 +14,7 @@ const Visit = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          `https://api.travelo10.com/api/user/getBeautifulPlaces/${name}`
+          `https://api.travello10.com/api/user/getBeautifulPlaces/${name}`
         );
         // console.log(response.data);
         setPlaces(response.data.places || []);

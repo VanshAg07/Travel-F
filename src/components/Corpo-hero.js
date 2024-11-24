@@ -12,7 +12,7 @@ const HighLevelCorporateTour = () => {
   const fetchPartners = async () => {
     try {
       const res = await axios.get(
-        "https://api.travelo10.com/api/corporate/partners-get"
+        "https://api.travello10.com/api/corporate/partners-get"
       );
       setPartners(res.data.data);
     } catch (error) {

@@ -93,7 +93,7 @@ const SimilarTrips = () => {
     const fetchSimilarTrips = async () => {
       try {
         const response = await fetch(
-          `https://api.travelo10.com/api/user/getSimilarTrips/${name}`
+          `https://api.travello10.com/api/user/getSimilarTrips/${name}`
         );
         const data = await response.json();
 

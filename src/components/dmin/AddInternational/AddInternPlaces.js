@@ -18,7 +18,7 @@ const AddInternPlaces = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travelo10.com/api/admin/states")
+      .get("https://api.travello10.com/api/admin/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -63,7 +63,7 @@ const AddInternPlaces = () => {
 
     try {
       const response = await axios.post(
-        "https://api.travelo10.com/api/admin/international/addBeautifulPlaces",
+        "https://api.travello10.com/api/admin/international/addBeautifulPlaces",
         formData,
         {
           headers: {

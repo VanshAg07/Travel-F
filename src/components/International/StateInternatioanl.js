@@ -11,7 +11,7 @@ const StateInternational = () => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get(
-          `https://api.travelo10.com/api/international/get-all-international/${name}`
+          `https://api.travello10.com/api/international/get-all-international/${name}`
         );
         setTrips(response.data);
       } catch (error) {

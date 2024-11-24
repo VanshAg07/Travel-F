@@ -10,7 +10,7 @@ function PackagesVideo() {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travelo10.com/api/home/video-page"
+        "https://api.travello10.com/api/home/video-page"
       );
       setVideoPages(response.data);
     } catch (error) {
@@ -42,12 +42,12 @@ function PackagesVideo() {
 
     if (editing) {
       await axios.put(
-        `https://api.travelo10.com/api/home/video-page/${editing}`,
+        `https://api.travello10.com/api/home/video-page/${editing}`,
         data
       );
       setEditing(null);
     } else {
-      await axios.post("https://api.travelo10.com/api/home/video-page", data);
+      await axios.post("https://api.travello10.com/api/home/video-page", data);
     }
 
     setFormData({ type: "", backgroundVideo: "" });
@@ -66,7 +66,7 @@ function PackagesVideo() {
 
   // Handle delete button click
   const handleDelete = async (id) => {
-    await axios.delete(`https://api.travelo10.com/api/home/video-page/${id}`);
+    await axios.delete(`https://api.travello10.com/api/home/video-page/${id}`);
     fetchVideoPages();
   };
 

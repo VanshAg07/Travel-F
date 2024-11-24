@@ -73,7 +73,7 @@ const SimilarHoneymoon = () => {
     const fetchSimilarTrips = async () => {
       try {
         const response = await fetch(
-          `https://api.travelo10.com/api/honeymoon/getSimilarTrips/${name}`
+          `https://api.travello10.com/api/honeymoon/getSimilarTrips/${name}`
         );
         const data = await response.json();
 

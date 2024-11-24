@@ -14,7 +14,7 @@ const Hiking = () => {
     const fetchActivities = async () => {
       try {
         const response = await axios.get(
-          `https://api.travelo10.com/api/user/getBestActivities/${name}`
+          `https://api.travello10.com/api/user/getBestActivities/${name}`
         );
         setActivities(response.data.activities || []);
       } catch (err) {

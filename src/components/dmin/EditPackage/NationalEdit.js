@@ -34,7 +34,7 @@ function NationalEdit() {
   const statusOptions = ["active", "non-active"];
   useEffect(() => {
     axios
-      .get("https://api.travelo10.com/api/edit-packages/get-national-packages")
+      .get("https://api.travello10.com/api/edit-packages/get-national-packages")
       .then((response) => {
         if (response.data) {
           const packages = response.data.states || [];
@@ -145,7 +145,7 @@ function NationalEdit() {
 
       axios
         .put(
-          `https://api.travelo10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `https://api.travello10.com/api/edit-packages/edit-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           formData,
           {
             headers: {
@@ -174,7 +174,7 @@ function NationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travelo10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
+          `https://api.travello10.com/api/edit-packages/delete-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -374,7 +374,7 @@ function NationalEdit() {
                   <button
                     onClick={() =>
                       window.open(
-                        `https://api.travelo10.com/upload/${pdf.filename}`,
+                        `https://api.travello10.com/upload/${pdf.filename}`,
                         "_blank"
                       )
                     }
@@ -403,7 +403,7 @@ function NationalEdit() {
                 {tripDetails.tripImages.map((image, index) => (
                   <img
                     key={index}
-                    src={`https://api.travelo10.com/upload/${image}`}
+                    src={`https://api.travello10.com/upload/${image}`}
                     alt={`Trip Image ${index + 1}`}
                     className="h-14 w-14"
                   />
@@ -419,7 +419,7 @@ function NationalEdit() {
                 {tripDetails.tripBackgroundImg.map((image, index) => (
                   <img
                     key={index}
-                    src={`https://api.travelo10.com/upload/${image}`}
+                    src={`https://api.travello10.com/upload/${image}`}
                     alt={`Trip Image ${index + 1}`}
                     className="h-14 w-14"
                   />
