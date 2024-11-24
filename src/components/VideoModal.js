@@ -14,9 +14,6 @@ function VideoModal() {
         );
         const data = await response.json();
         setVideos(data);
-        data.forEach((video) => {
-          console.log(video.urlLink); // Accessing urlLink for each video
-        });
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
