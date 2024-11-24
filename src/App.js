@@ -78,6 +78,7 @@ import SportsPackageDetails from "./components/Grouptours/SportsPackageDetails.j
 import PhoneFooter from "./components/PhoneFooter.js";
 import VideoModal from "./components/VideoModal.js";
 import SimilarTrips from "./components/SimilarTrips.js";
+import DateCost from "./components/DatesCosting/DateCost.js";
 
 const App = () => {
   const { user } = useSelector((state) => state.profile);
@@ -216,6 +217,7 @@ const App = () => {
         <Route path="/honeymoon-packages/:name" element={<HomeHoneymoon />} />
         <Route path="/trip/:tripName/:name" element={<Packagedetails />} />
         <Route path="/dates-and-costing" element={<DateCosting />} />
+        <Route path="/dates-and-cost" element={<DateCost />} />
         <Route path="/booking-options" element={<BookingOptions />} />
         <Route path="/grouptour-hero" element={<Grouptourhero />} />
         <Route path="/groupform" element={<Grouptourform />} />

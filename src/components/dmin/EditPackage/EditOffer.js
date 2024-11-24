@@ -28,7 +28,6 @@ function EditOffer() {
     customised: false,
     tripOfferPrice: "",
     tripDates: [{ tripDate: "", tripSeats: "" }],
-
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
@@ -75,7 +74,6 @@ function EditOffer() {
       customised: trip.customised || false,
       tripOfferPrice: trip.tripOfferPrice || "",
       tripDates: trip.tripDates || [{ tripDate: "", tripSeats: "" }],
-
     });
     setIsModalOpen(true);
   };
@@ -466,6 +464,7 @@ function EditOffer() {
                 <label className="block text-l font-medium">Trip Dates</label>
                 {tripDetails.tripDates.map((dateItem, index) => (
                   <div key={index} className="flex items-center mb-2">
+                    {/* Date Input */}
                     <input
                       type="date"
                       value={dateItem.tripDate}
@@ -479,9 +478,9 @@ function EditOffer() {
                       }}
                       className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                     />
-                    <input
-                      type="text"
-                      placeholder="Seats"
+
+                    {/* Dropdown for Seats */}
+                    <select
                       value={dateItem.tripSeats}
                       onChange={(e) => {
                         const updatedDates = [...tripDetails.tripDates];
@@ -491,8 +490,15 @@ function EditOffer() {
                           tripDates: updatedDates,
                         });
                       }}
-                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
-                    />
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                    >
+                      <option value="">Select Seat Status</option>
+                      <option value="Full">Full</option>
+                      <option value="Available">Available</option>
+                      <option value="Filling Fast">Filling Fast</option>
+                    </select>
+
+                    {/* Remove Button */}
                     <button
                       type="button"
                       onClick={() => {
@@ -509,6 +515,8 @@ function EditOffer() {
                     </button>
                   </div>
                 ))}
+
+                {/* Add Trip Date Button */}
                 <button
                   type="button"
                   onClick={() => {

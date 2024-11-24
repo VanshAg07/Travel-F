@@ -129,6 +129,7 @@ function StateImages() {
           required
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
+          <option value="">Select Type</option>
           <option value="National">National</option>
           <option value="International">International</option>
           <option value="Honeymoon">Honeymoon</option>

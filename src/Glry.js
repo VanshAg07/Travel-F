@@ -17,7 +17,10 @@ const Glry = () => {
         "https://api.travello10.com/api/gallery/home-galleries"
       );
       const data = await response.json();
-      setGalleryImages(data.images[0].images || []);
+
+      // Flatten all image arrays into a single array
+      const allImages = data.images.flatMap((gallery) => gallery.images);
+      setGalleryImages(allImages);
     } catch (error) {
       console.error("Error fetching gallery images:", error);
     }

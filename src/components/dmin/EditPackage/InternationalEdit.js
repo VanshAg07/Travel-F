@@ -450,6 +450,7 @@ function InternationalEdit() {
                 <label className="block text-l font-medium">Trip Dates</label>
                 {tripDetails.tripDates.map((dateItem, index) => (
                   <div key={index} className="flex items-center mb-2">
+                    {/* Date Input */}
                     <input
                       type="date"
                       value={dateItem.tripDate}
@@ -463,9 +464,9 @@ function InternationalEdit() {
                       }}
                       className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
                     />
-                    <input
-                      type="text"
-                      placeholder="Seats"
+
+                    {/* Dropdown for Seats */}
+                    <select
                       value={dateItem.tripSeats}
                       onChange={(e) => {
                         const updatedDates = [...tripDetails.tripDates];
@@ -475,8 +476,15 @@ function InternationalEdit() {
                           tripDates: updatedDates,
                         });
                       }}
-                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1"
-                    />
+                      className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mr-2"
+                    >
+                      <option value="">Select Seat Status</option>
+                      <option value="Full">Full</option>
+                      <option value="Available">Available</option>
+                      <option value="Filling Fast">Filling Fast</option>
+                    </select>
+
+                    {/* Remove Button */}
                     <button
                       type="button"
                       onClick={() => {
@@ -493,6 +501,8 @@ function InternationalEdit() {
                     </button>
                   </div>
                 ))}
+
+                {/* Add Trip Date Button */}
                 <button
                   type="button"
                   onClick={() => {
@@ -509,6 +519,7 @@ function InternationalEdit() {
                   Add Trip Date
                 </button>
               </div>
+
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Trip Dates:

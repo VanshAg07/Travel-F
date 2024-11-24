@@ -100,10 +100,6 @@ const PackageOffer = () => {
     }));
   };
 
-  const handleToggleDay1 = () => {
-    setIsDay1Expanded(!isDay1Expanded);
-  };
-
   // Set sharing prices (if available)
   let doubleSharing, tripleSharing, quadSharing;
   if (sharing && sharing.length >= 1) {
@@ -114,7 +110,7 @@ const PackageOffer = () => {
 
   const handleDatesAndCostingClick = () => {
     if (trips && trips.tripDate) {
-      navigate("/dates-and-costing", {
+      navigate("/dates-and-cost", {
         state: {
           tripDates: trips.tripDates,
           tripPrice: trips.tripPrice,

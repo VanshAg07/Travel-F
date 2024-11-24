@@ -48,7 +48,12 @@ function HomePageBannerCards() {
     const formData = new FormData();
     formData.append("title", newBanner.title);
     formData.append("description", newBanner.description);
-    formData.append("image", newBanner.image);
+
+    // Only append the image if it exists (for updates)
+    if (newBanner.image) {
+      formData.append("image", newBanner.image);
+    }
+
     formData.append("link", newBanner.link);
 
     try {

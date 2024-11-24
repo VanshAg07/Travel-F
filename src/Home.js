@@ -42,9 +42,6 @@ const Home = () => {
         "https://api.travello10.com/api/home/home-offer-display"
       );
       const data = await res.json();
-      // console.log("Fetched data:", data);
-
-      // Check if data.data exists and is an array before filtering
       const activeImages = Array.isArray(data.data)
         ? data.data.filter((item) => item.status === true)
         : [];

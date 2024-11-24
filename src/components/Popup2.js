@@ -41,7 +41,6 @@ const Popup2 = ({ onClose }) => {
         "https://api.travello10.com/api/popup/assist-form",
         formData
       );
-      console.log("Form submitted successfully:", res);
 
       // Close the popup after successful form submission
       onClose(); // Trigger onClose to close the popup

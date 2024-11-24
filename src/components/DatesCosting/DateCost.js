@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 
-const DateCosting = () => {
+const DateCost = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [paymentImages, setPaymentImages] = useState([]);
+
+  const fetchPayment = async () => {
+    try {
+      const res = await fetch(
+        "https://api.travello10.com/api/corporate/payment-image"
+      );
+      const data = await res.json();
+      const activeImages = data.data.filter((item) => item.status === "active");
+      setPaymentImages(activeImages);
+    } catch (error) {
+      console.log("Failed to fetch payment images:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPayment();
+  }, []);
+
   const {
     tripDates: tripDatesFromState = [],
     tripName,
@@ -100,6 +119,19 @@ const DateCosting = () => {
             {tripName || "Trip Details"}
           </div>
         </div>
+        {paymentImages.length > 0 && (
+          <div className="gap-6">
+            {paymentImages.map((item) => (
+              <div key={item._id} className="flex justify-center items-center">
+                <img
+                  src={item.image[0]} // Show only if status is active
+                  alt="Payment Method"
+                  className="md:w-[30%] md:h-[30%] w-[70%]"
+                />
+              </div>
+            ))}
+          </div>
+        )}
         <div className="mt-6 flex flex-col md:flex-row w-[90vw] justify-center items-center">
           {/* Available Dates Section */}
           <div className="bg-white rounded-lg p-6 min-h-[67vh] flex flex-col">
@@ -201,4 +233,4 @@ const DateCosting = () => {
   );
 };
 
-export default DateCosting;
+export default DateCost;
