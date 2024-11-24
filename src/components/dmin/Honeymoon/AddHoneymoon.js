@@ -147,7 +147,7 @@ const AddHoneymoon = () => {
           tripBookingAmount: "",
           tripSeats: "",
           customised: false,
-        })
+        });
       })
       .catch((error) => {
         console.error("Error submitting trip", error);
@@ -193,7 +193,6 @@ const AddHoneymoon = () => {
                 {state.name}
               </option>
             ))}
-                   
           </select>
         </div>
         <div className="mb-4">
@@ -202,25 +201,35 @@ const AddHoneymoon = () => {
             type="text"
             name="tripName"
             value={tripDetails.tripName}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripName: e.target.value })
-            }
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only letters, numbers, "/", and "-" (no ".")
+              if (/^[A-Za-z0-9\/\-]*$/.test(value)) {
+                setTripDetails({ ...tripDetails, tripName: value });
+              }
+            }}
             required
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">
-            Pick and Drop (eg. Guwahati - Guwahati)
+            Pick and Drop (e.g., Guwahati - Guwahati)
           </label>
           <input
             type="text"
             name="pickAndDrop"
             value={tripDetails.pickAndDrop}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, pickAndDrop: e.target.value })
-            }
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only letters, spaces, and hyphens
+              if (/^[A-Za-z\s\-]*$/.test(value)) {
+                setTripDetails({ ...tripDetails, pickAndDrop: value });
+              }
+            }}
             required
+            pattern="^[A-Za-z\s\-]+$"
+            title="Only letters, spaces, and hyphens (-) are allowed."
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -234,26 +243,36 @@ const AddHoneymoon = () => {
             type="text"
             name="overView"
             value={tripDetails.overView}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, overView: e.target.value })
-            }
-            required
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only letters, spaces, and hyphens
+              if (/^[A-Za-z\s\-]*$/.test(value)) {
+                setTripDetails({ ...tripDetails, overView: value });
+              }
+            }}
+            pattern="^[A-Za-z\s\-]+$"
             className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
         <div className="mb-4">
           <label className="block text-l">
-            Trip Duration (in days eg. 3D - 2N)
+            Trip Duration (in days e.g., 3D - 2N)
           </label>
           <input
             type="text"
             name="tripDuration"
             value={tripDetails.tripDuration}
-            onChange={(e) =>
-              setTripDetails({ ...tripDetails, tripDuration: e.target.value })
-            }
-            required
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only numbers, letters, spaces, and hyphens
+              if (/^[0-9A-Za-z\s\-]*$/.test(value)) {
+                setTripDetails({ ...tripDetails, tripDuration: value });
+              }
+            }}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
+            pattern="^[0-9A-Za-z\s\-]+$"
           />
         </div>
         <div className="mb-4">
@@ -262,14 +281,18 @@ const AddHoneymoon = () => {
             type="text"
             name="tripDescription"
             value={tripDetails.tripDescription}
-            onChange={(e) =>
-              setTripDetails({
-                ...tripDetails,
-                tripDescription: e.target.value,
-              })
-            }
-            required
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only letters, numbers, ".", "/", and "-"
+              if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                setTripDetails({
+                  ...tripDetails,
+                  tripDescription: value,
+                });
+              }
+            }}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+            required
           />
         </div>
         {/* Dynamic Inputs: Trip Inclusions */}
@@ -280,7 +303,13 @@ const AddHoneymoon = () => {
               <input
                 type="text"
                 value={inclusion}
-                onChange={(e) => handleArrayChange(e, index, "tripInclusions")}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Allow only letters, numbers, ".", "/", and "-"
+                  if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                    handleArrayChange(e, index, "tripInclusions");
+                  }
+                }}
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               />
@@ -301,8 +330,6 @@ const AddHoneymoon = () => {
             <FaPlus /> Add Inclusion
           </button>
         </div>
-
-        {/* Dynamic Inputs: Trip Exclusions */}
         <div className="mb-4">
           <label className="block text-gray-700">Trip Exclusions:</label>
           {tripDetails.tripExclusions.map((exclusion, index) => (
@@ -310,7 +337,13 @@ const AddHoneymoon = () => {
               <input
                 type="text"
                 value={exclusion}
-                onChange={(e) => handleArrayChange(e, index, "tripExclusions")}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Allow only letters, numbers, ".", "/", and "-"
+                  if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                    handleArrayChange(e, index, "tripExclusions");
+                  }
+                }}
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               />
@@ -342,9 +375,13 @@ const AddHoneymoon = () => {
                   type="text"
                   placeholder="Itinerary Title"
                   value={itinerary.title}
-                  onChange={(e) =>
-                    handleArrayChange(e, index, "tripItinerary", "title")
-                  }
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    // Allow only letters, numbers, ".", "/", and "-"
+                    if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                      handleArrayChange(e, index, "tripItinerary", "title");
+                    }
+                  }}
                   className="w-full p-2 border border-gray-300 rounded"
                   required
                 />
@@ -364,13 +401,18 @@ const AddHoneymoon = () => {
                       type="text"
                       value={point}
                       onChange={(e) => {
-                        const updatedItinerary = [...tripDetails.tripItinerary];
-                        updatedItinerary[index].points[pointIndex] =
-                          e.target.value;
-                        setTripDetails({
-                          ...tripDetails,
-                          tripItinerary: updatedItinerary,
-                        });
+                        const value = e.target.value;
+                        // Allow only letters, numbers, ".", "/", and "-"
+                        if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                          const updatedItinerary = [
+                            ...tripDetails.tripItinerary,
+                          ];
+                          updatedItinerary[index].points[pointIndex] = value;
+                          setTripDetails({
+                            ...tripDetails,
+                            tripItinerary: updatedItinerary,
+                          });
+                        }
                       }}
                       className="w-full p-2 border border-gray-300 rounded"
                       required
@@ -445,6 +487,9 @@ const AddHoneymoon = () => {
         <div>
           <label className="block text-l font-medium">
             Upload PDF (i.e. Itinerary)
+            <br/>
+
+            <span className="text-red-500">Note: PDF size 60mb</span>
           </label>
           <input
             type="file"

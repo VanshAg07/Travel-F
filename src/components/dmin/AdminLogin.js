@@ -15,8 +15,8 @@ function AdminLogin() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [otpSent, setOtpSent] = useState(false); // Add state for OTP sent
-  const [otp, setOtp] = useState(""); // Add state for OTP value
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
@@ -28,23 +28,18 @@ function AdminLogin() {
     setLoading(true);
     setErrorMessage("");
     try {
-      const response = await fetch(
-        "https://api.travello10.com/api/admin/login",
-        {
-          method: "POST",
-          crossDomain: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
+      const response = await fetch("https://api.travello10.com/api/admin/login", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
       const data = await response.json();
-
-      // Handle successful login
       if (response.status === 200) {
         toast.success("Login Success");
         window.localStorage.setItem("token", data.data.token);
@@ -132,7 +127,7 @@ function AdminLogin() {
           </div>
         )}
         {!showForgotPassword ? (
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Email
@@ -144,36 +139,10 @@ function AdminLogin() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
                 placeholder="Enter your email"
+                disabled={otpSent}
               />
             </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
-                placeholder="Enter your password"
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="text-sm text-blue-600 hover:underline flex justify-end w-full mt-2"
-              >
-                {showPassword ? "Hide" : "Show"} Password
-              </button>
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-            <div className="text-center">
+            <div className="text-right">
               <button
                 type="button"
                 onClick={() => setShowForgotPassword(true)}
@@ -182,6 +151,78 @@ function AdminLogin() {
                 Forgot Password?
               </button>
             </div>
+
+            {/* Send OTP Button */}
+            {!otpSent && (
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+              >
+                Send OTP
+              </button>
+            )}
+
+            {/* OTP Section */}
+            {otpSent && !verifiedOtp && (
+              <>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    OTP
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                    placeholder="Enter the OTP"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={handleVerifyOtp}
+                  className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                >
+                  Verify OTP
+                </button>
+              </>
+            )}
+
+            {/* Password Section */}
+            {verifiedOtp && (
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full p-2 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+                  placeholder="Enter your password"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="text-sm text-blue-600 hover:underline flex justify-end w-full mt-2"
+                >
+                  {showPassword ? "Hide" : "Show"} Password
+                </button>
+              </div>
+            )}
+
+            {/* Login Button */}
+            {verifiedOtp && (
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+              >
+                {loading ? "Logging in..." : "Login"}
+              </button>
+            )}
           </form>
         ) : (
           <div className="space-y-4">

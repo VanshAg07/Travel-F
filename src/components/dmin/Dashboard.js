@@ -29,6 +29,7 @@ import AssistPop from "./Dashboard/PopUp/AssistPop";
 import AssistForm from "./Dashboard/PopUp/AssistForm";
 import AuthImage from "./Dashboard/AuthImage";
 import StateImages from "./Dashboard/StateImages";
+import PageGallery from "./Dashboard/PageGallery";
 function Dashboard() {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const items = [
@@ -119,10 +120,10 @@ function Dashboard() {
       name: "Assist Pop",
       component: <AssistPop />,
     },
-    {
-      name: "Assist Response",
-      component: <AssistForm />,
-    },
+    // {
+    //   name: "Assist Response",
+    //   component: <AssistForm />,
+    // },
     {
       name: "Login/Sign Pages",
       component: <AuthImage />,
@@ -130,6 +131,10 @@ function Dashboard() {
     {
       name: "National, International,Honeymoon Card Images",
       component: <StateImages />,
+    },
+    {
+      name: "Gallery Page",
+      component: <PageGallery />,
     },
   ];
   const handleCardClick = (component) => {

@@ -142,21 +142,16 @@ const App = () => {
   
   useEffect(() => {
     const adjustZoomForLaptop = () => {
-      // Assuming 13.6-inch laptops generally have a width of ~2560px
       const isLaptop136 =
         window.screen.width === 2560 && window.screen.height === 1600;
-
       if (isLaptop136) {
-        document.body.style.zoom = "80%"; // Adjust zoom level
+        document.body.style.zoom = "80%";
       } else {
-        document.body.style.zoom = "100%"; // Default zoom level
+        document.body.style.zoom = "100%";
       }
     };
-
-    adjustZoomForLaptop(); // Initial check
-    window.addEventListener("resize", adjustZoomForLaptop); // Adjust on resize
-
-    // Cleanup event listener on component unmount
+    adjustZoomForLaptop();
+    window.addEventListener("resize", adjustZoomForLaptop);
     return () => {
       window.removeEventListener("resize", adjustZoomForLaptop);
     };

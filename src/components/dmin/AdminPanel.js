@@ -265,7 +265,6 @@ const AdminPanel = () => {
               name="tripName"
               value={tripData.tripName}
               onChange={(e) => {
-                // Allow letters, spaces, hyphens, and slashes
                 const filteredValue = e.target.value.replace(
                   /[^a-zA-Z\s-/]/g,
                   ""
@@ -726,7 +725,8 @@ const AdminPanel = () => {
           </div>
           <div>
             <label className="block text-l font-medium">
-              Upload PDF (i.e. Itinerary)
+              Upload PDF (i.e. Itinerary)<br/>
+              <span className="text-red-500">Note: PDF size 60mb</span>
             </label>
             <input
               type="file"

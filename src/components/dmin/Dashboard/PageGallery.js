@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function HomeGallery() {
+function PageGallery() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [existingGalleryId, setExistingGalleryId] = useState(null);
- 
+
   useEffect(() => {
     fetchGalleryImages();
   }, []);
@@ -112,9 +112,7 @@ function HomeGallery() {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4 text-center">Home Gallery</h2>
-      <h3 className="text-red-500 text-center mb-10">Note: In one time only upload the images here as much you can 
-        <br/>If uploaded differently it will not work.
-      </h3>
+
       <div className="mb-6 text-center">
         <input
           type="file"
@@ -204,4 +202,4 @@ function HomeGallery() {
   );
 }
 
-export default HomeGallery;
+export default PageGallery;
