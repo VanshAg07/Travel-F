@@ -183,7 +183,7 @@ const AddInternPackage = () => {
             onChange={(e) => {
               const value = e.target.value;
               // Allow only letters, numbers, "/", and "-" (no ".")
-              if (/^[A-Za-z0-9\/\-]*$/.test(value)) {
+              if (/^[A-Za-z0-9\/\ ]*$/.test(value)) {
                 setTripDetails({ ...tripDetails, tripName: value });
               }
             }}
@@ -283,7 +283,7 @@ const AddInternPackage = () => {
             onChange={(e) => {
               const value = e.target.value;
               // Allow only numbers, letters, spaces, and hyphens
-              if (/^[0-9A-Za-z\s\-]*$/.test(value)) {
+              if (/^[0-9A-Za-z\s\/\-]*$/.test(value)) {
                 setTripDetails({ ...tripDetails, tripDuration: value });
               }
             }}

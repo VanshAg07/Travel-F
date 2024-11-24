@@ -266,7 +266,7 @@ const AdminPanel = () => {
               value={tripData.tripName}
               onChange={(e) => {
                 const filteredValue = e.target.value.replace(
-                  /[^a-zA-Z\s-/]/g,
+                  /[^a-zA-Z\s/]/g,
                   ""
                 );
                 handleInputChange({
