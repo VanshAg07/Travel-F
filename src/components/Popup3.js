@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
-import backgroundImage from "../img/popup.jpg";
+import "./Popup2.css"; // Assuming this is where your styles are located
 
 const Popup3 = ({ onClose }) => {
-  const navigate = useNavigate();
   const [popupData, setPopupData] = useState(null);
+  const navigate = useNavigate();
 
   // Fetch data for the popup
   const fetchPopup = async () => {
@@ -22,42 +22,48 @@ const Popup3 = ({ onClose }) => {
     fetchPopup();
   }, []);
 
+  const handleSignInClick = () => {
+    navigate("/Signup");
+  };
+
   // Show loading state until popup data is fetched
   if (!popupData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="fixed inset-0 md:pb-0 pb-28 popup-wr flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
-      <div
-        className="bg-zinc-200 p-8 rounded-lg shadow-lg text-center relative transition-transform transform scale-105 hover:scale-100 overflow-hidden sm:max-w-[80%] w-[80%] md:w-[30%] mx-4"
-        style={{ marginTop: "80px" }}
-      >
+    <div className="fixed popup-wr inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
+      <div className="rounded-lg md:mt-0 -mt-7 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden w-full max-w-4xl">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition-colors duration-200 z-10"
+          className="absolute mt-28 md:mt-40 top-2 right-2 rounded-full p-2 transition-colors duration-200 z-10"
         >
-          <AiOutlineClose className="h-6 w-6 text-gray-600" />{" "}
-          {/* Close icon */}
+          <AiOutlineClose className="h-6 w-6 text-black" />
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-cyan-600 z-10">
-          {popupData.title} {/* Dynamically display title */}
-        </h2>
+        <div className="flex flex-col sm:flex-row">
+          {/* Image Section */}
+          <div className="w-full mt-28 sm:w-1/2">
+            <div
+              className="w-full h-80 rounded-3xl sm:h-[350px]"
+              style={{
+                backgroundImage: `url(${popupData.image[0]})`, // Dynamically load image
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          </div>
 
-        {/* Background image positioned between text and button */}
-        <div
-          className="relative mb-6 h-64 w-full rounded-lg overflow-hidden"
-          style={{
-            backgroundImage: `url(${popupData.image[0] || backgroundImage})`, // Dynamically load image, fallback to a default image
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-
-        <p className="mb-6 text-gray-700 z-10">
-          {popupData.subTitle} {/* Dynamically display subtitle */}
-        </p>
+          {/* Content Section */}
+          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[200px] md:h-[250px]">
+            <h2 className="text-2xl font-bold mb-4 text-cyan-600">
+              {popupData.title} {/* Dynamically display title */}
+            </h2>
+            <p className="mb-6 text-gray-700">
+              {popupData.subTitle} {/* Dynamically display subtitle */}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

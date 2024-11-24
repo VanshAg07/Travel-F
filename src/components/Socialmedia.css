@@ -67,7 +67,7 @@
 @media (max-width: 425px) {
   .social-icons {
     top: 35%; /* Adjust positioning if needed */
-    z-index: 99;
+    z-index: 10;
   }
 
   .icon {
