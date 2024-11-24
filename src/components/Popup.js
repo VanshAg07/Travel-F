@@ -30,7 +30,7 @@ const Popup1 = ({ onClose }) => {
 
   return (
     <div className="fixed popup-wr inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
-      <div className="rounded-lg md:mt-0 -mt-7 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden w-full max-w-4xl">
+      <div className="rounded-lg md:mt-0 -mt-24 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden w-full max-w-4xl">
         <button
           onClick={onClose}
           className="absolute mt-28 md:mt-40  top-2 right-2 rounded-full p-2 transition-colors duration-200 z-10"
@@ -52,7 +52,7 @@ const Popup1 = ({ onClose }) => {
           </div>
 
           {/* Content Section */}
-          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[200px] md:h-[250px]">
+          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[250px] md:h-[250px]">
             <h2 className="text-2xl font-bold mb-4 text-cyan-600">
               {popupData.title}
             </h2>
