@@ -26,11 +26,10 @@ import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
 import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
 import PhoneFooter from "./components/PhoneFooter.js";
-import { Link, useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
-  // Media queries
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   const isSmallMobile = useMediaQuery({ query: "(max-width: 426px)" }); // Media query for small mobile

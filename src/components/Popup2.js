@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
-import "./Popup2.css"
+import "./Popup2.css";
 
 const Popup2 = ({ onClose }) => {
   const [popupData, setPopupData] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const fetchPopup = async () => {
     try {
-      const res = await fetch("https://api.travello10.com/api/popup/assist-user");
+      const res = await fetch(
+        "https://api.travello10.com/api/popup/assist-user"
+      );
       const data = await res.json();
       setPopupData(data[0]);
     } catch (error) {
@@ -22,6 +25,7 @@ const Popup2 = ({ onClose }) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state to true
     const formData = {
       name: e.target.name.value,
       email: e.target.email.value,
@@ -31,19 +35,17 @@ const Popup2 = ({ onClose }) => {
 
     try {
       const res = await axios.post(
-        "http://api.travello10.com/api/popup/assist-form",
+        "https://api.travello10.com/api/popup/assist-form",
         formData
       );
       console.log("Form submitted successfully:", res);
+      setLoading(false); // Set loading state to false
       onClose();
     } catch (error) {
       console.error("Error submitting form:", error);
+      setLoading(false); // Ensure loading state is reset even on error
     }
   };
-
-  if (!popupData) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="fixed popup-wr inset-0 flex md:mt-0 -mt-11 items-center justify-center bg-[#ffffff7f] bg-opacity-70 z-50 p-4">
@@ -57,11 +59,11 @@ const Popup2 = ({ onClose }) => {
         </button>
 
         {/* Left side - Image */}
-        <div className="md:w-1/2 md:h-[420px] h-[220px] ">
+        <div className="md:w-1/2 md:h-[420px] h-[220px]">
           <div
             className="w-full h-full"
             style={{
-              backgroundImage: `url(${popupData.image[0]})`,
+              backgroundImage: `url(${popupData?.image[0] || ""})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -71,10 +73,13 @@ const Popup2 = ({ onClose }) => {
         {/* Right side - Content */}
         <div className="md:w-1/2 md:h-[420px] h-[420px] p-6 flex flex-col">
           <h2 className="text-2xl font-bold mb-6 text-cyan-600">
-            {popupData.title}
+            {popupData?.title || "Loading..."}
           </h2>
 
-          <form onSubmit={submitForm} className="flex flex-col space-y-4 md:pt-10 pt-2">
+          <form
+            onSubmit={submitForm}
+            className="flex flex-col space-y-4 md:pt-10 pt-2"
+          >
             <input
               type="text"
               name="name"
@@ -106,9 +111,14 @@ const Popup2 = ({ onClose }) => {
 
             <button
               type="submit"
-              className="mt-4 px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md"
+              className={`mt-4 px-6 py-3 text-white rounded-lg transition duration-300 shadow-md ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-cyan-500 hover:bg-cyan-600"
+              }`}
+              disabled={loading} // Disable button when loading
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>

@@ -11,6 +11,7 @@ const EuropeTripEnquiryForm = () => {
     tripType: "",
     travelMonth: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -43,33 +44,25 @@ const EuropeTripEnquiryForm = () => {
       setError("All fields are required.");
       return false;
     }
-
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address.");
       return false;
     }
-
-    // Validate WhatsApp number
     const phoneRegex = /^\d+$/;
     if (!phoneRegex.test(whatsappNumber)) {
       setError("Please enter a valid WhatsApp number.");
       return false;
     }
-
     return true;
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
-
     try {
-      setError(""); // Clear any previous errors
-      setMessage(""); // Clear previous messages
-
+      setError("");
+      setMessage("");
+      setIsLoading(true);
       const response = await axios.post(
         "https://api.travello10.com/api/contact/contact-corporate",
         formData
@@ -94,6 +87,7 @@ const EuropeTripEnquiryForm = () => {
       setError(
         "Failed to submit the form. Please check your connection or try again later."
       );
+      setIsLoading(false);
     }
   };
 
@@ -301,9 +295,10 @@ const EuropeTripEnquiryForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-cyan-500 text-white p-3 rounded-lg"
+          className={`w-full bg-cyan-500 text-white p-3 rounded-lg ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={isLoading} // Disable button while loading
         >
-          Submit
+          {isLoading ? 'Submitting...' : 'Submit'} {/* Conditional text */}
         </button>
       </form>
     </div>
