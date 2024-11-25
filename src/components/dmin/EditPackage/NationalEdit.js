@@ -236,6 +236,21 @@ function NationalEdit() {
       tripDate: [...prevDetails.tripDate, ""],
     }));
   };
+  const formatDateForDisplay = (isoDate) => {
+    if (!isoDate) return "Invalid date";
+    const date = new Date(isoDate);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+  
+  const formatDateForInput = (isoDate) => {
+    if (!isoDate) return "";
+    const date = new Date(isoDate);
+    return date.toISOString().split("T")[0]; // Returns YYYY-MM-DD
+  };
+  
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
@@ -572,23 +587,36 @@ function NationalEdit() {
                 <label className="block font-medium text-gray-700">
                   Trip Dates:
                 </label>
-                {tripDetails.tripDate.map((date, index) => (
-                  <div key={index} className="flex items-center mb-2">
-                    <input
-                      type="date"
-                      value={date.tripDate}
-                      onChange={(e) => handleDateChange(index, e.target.value)}
-                      className="mt-1 p-2 flex-grow border rounded-lg mr-2"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => handleDeleteDate(index)}
-                      className="bg-red-500 text-white px-2 py-1 rounded-lg"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))}
+                {tripDetails.tripDate && tripDetails.tripDate.length > 0 ? (
+                  tripDetails.tripDate.map((date, index) => (
+                    <div key={index} className="flex items-center mb-2">
+                      <input
+                        type="date"
+                        value={
+                          date ? formatDateForInput(date.tripDate || date) : ""
+                        }
+                        onChange={(e) =>
+                          handleDateChange(index, e.target.value)
+                        }
+                        className="mt-1 p-2 flex-grow border rounded-lg mr-2"
+                      />
+                      <span className="text-gray-600 mr-4">
+                        {date
+                          ? formatDateForDisplay(date.tripDate || date)
+                          : "Invalid date"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteDate(index)}
+                        className="bg-red-500 text-white px-2 py-1 rounded-lg"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No trip dates available.</p>
+                )}
                 <button
                   type="button"
                   onClick={handleAddDate}
@@ -597,6 +625,7 @@ function NationalEdit() {
                   Add Date
                 </button>
               </div>
+
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Trip Location:
