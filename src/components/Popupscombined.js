@@ -1,68 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Popup1 from "./Popup";
 import Popup2 from "./Popup2";
-import Popup3 from "./Popup3";
 
 const PopupManager = () => {
-    const [showPopup1, setShowPopup1] = useState(false);
-    const [showPopup2, setShowPopup2] = useState(false);
-    const [showPopup3, setShowPopup3] = useState(false);
-    const [startSecondTimer, setStartSecondTimer] = useState(false);
-    const [startThirdTimer, setStartThirdTimer] = useState(false);
+  const [showPopup1, setShowPopup1] = useState(false);
+  const [showPopup2, setShowPopup2] = useState(false);
 
-    // Timer for first popup
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowPopup1(true);
-        }, 15000);
+  // Timer for Popup1
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setShowPopup1(true);
+    }, 15000); // 15 seconds
 
-        return () => clearTimeout(timer);
-    }, []);
+    return () => clearTimeout(timer1);
+  }, []);
 
-    // Timer for second popup - only starts after first popup is closed
-    useEffect(() => {
-        if (startSecondTimer) {
-            const timer = setTimeout(() => {
-                setShowPopup2(true);
-            }, 15000);
+  // Timer for Popup2
+  useEffect(() => {
+    const timer2 = setTimeout(() => {
+      setShowPopup2(true);
+    }, 30000); // 30 seconds
 
-            return () => clearTimeout(timer);
-        }
-    }, [startSecondTimer]);
+    return () => clearTimeout(timer2);
+  }, []);
 
-    // Timer for third popup - only starts after second popup is closed
-    useEffect(() => {
-        if (startThirdTimer) {
-            const timer = setTimeout(() => {
-                setShowPopup3(true);
-            }, 15000);
+  const handleClosePopup1 = () => {
+    setShowPopup1(false);
+  };
 
-            return () => clearTimeout(timer);
-        }
-    }, [startThirdTimer]);
+  const handleClosePopup2 = () => {
+    setShowPopup2(false);
+  };
 
-    const handleClosePopup1 = () => {
-        setShowPopup1(false);
-        setStartSecondTimer(true); // Start the timer for second popup
-    };
-
-    const handleClosePopup2 = () => {
-        setShowPopup2(false);
-        setStartThirdTimer(true); // Start the timer for third popup
-    };
-
-    const handleClosePopup3 = () => {
-        setShowPopup3(false);
-    };
-
-    return (
-        <>
-            {showPopup1 && <Popup1 onClose={handleClosePopup1} />}
-            {showPopup2 && <Popup2 onClose={handleClosePopup2} />}
-            {/* {showPopup3 && <Popup3 onClose={handleClosePopup3} />} */}
-        </>
-    );
+  return (
+    <>
+      {showPopup1 && <Popup1 onClose={handleClosePopup1} />}
+      {showPopup2 && <Popup2 onClose={handleClosePopup2} />}
+    </>
+  );
 };
 
 export default PopupManager;

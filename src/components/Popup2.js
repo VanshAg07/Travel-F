@@ -81,6 +81,10 @@ const Popup2 = ({ onClose }) => {
     }
   };
 
+  if (!popupData || !popupData.status) {
+    return null;
+  }
+
   return (
     <div className="fixed popup-wr inset-0 flex md:mt-0 -mt-11 items-center justify-center bg-[#ffffff7f] bg-opacity-70 z-50 p-4">
       <div className="bg-white mt-10 rounded-lg md:h-[420px] h-[590px] shadow-lg relative flex flex-col md:flex-row w-full max-w-4xl overflow-hidden">

@@ -5,6 +5,7 @@ function AssistPop() {
   const [signInData, setSignInData] = useState({
     title: "",
     image: null,
+    status: "Active", // Default status (stored as string for the UI)
   });
   const [signInList, setSignInList] = useState([]);
   const [selectedSignIn, setSelectedSignIn] = useState(null);
@@ -42,6 +43,8 @@ function AssistPop() {
   const createSignIn = async () => {
     const formData = new FormData();
     formData.append("title", signInData.title);
+    // Convert "Active"/"Inactive" to Boolean
+    formData.append("status", signInData.status === "Active");
     if (signInData.image) formData.append("image", signInData.image);
 
     try {
@@ -51,7 +54,7 @@ function AssistPop() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       setSignInList((prevList) => [...prevList, response.data]);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ title: "", image: null, status: "Active" });
     } catch (error) {
       console.error("Error creating sign-in:", error);
     }
@@ -60,7 +63,8 @@ function AssistPop() {
   const updateSignIn = async () => {
     const formData = new FormData();
     formData.append("title", signInData.title);
-    formData.append("subTitle", signInData.subTitle);
+    // Convert "Active"/"Inactive" to Boolean
+    formData.append("status", signInData.status === "Active");
     if (signInData.image) formData.append("image", signInData.image);
 
     try {
@@ -75,7 +79,7 @@ function AssistPop() {
         )
       );
       setSelectedSignIn(null);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ title: "", image: null, status: "Active" });
     } catch (error) {
       console.error("Error updating sign-in:", error);
     }
@@ -94,7 +98,7 @@ function AssistPop() {
     setSelectedSignIn(signIn);
     setSignInData({
       title: signIn.title,
-      subTitle: signIn.subTitle,
+      status: signIn.status ? "Active" : "Inactive", // Convert Boolean to string for UI
       image: null,
     });
   };
@@ -120,6 +124,15 @@ function AssistPop() {
           required
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <select
+          name="status"
+          value={signInData.status}
+          onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
         <input
           type="file"
           name="image"
@@ -145,9 +158,7 @@ function AssistPop() {
         </div>
       </form>
 
-      <h3 className="text-xl font-semibold text-gray-800 mt-6">
-        Existing Pop
-      </h3>
+      <h3 className="text-xl font-semibold text-gray-800 mt-6">Existing Pop</h3>
       <ul className="space-y-4 mt-4">
         {signInList.map((signIn) => (
           <li
@@ -155,7 +166,9 @@ function AssistPop() {
             className="border p-4 rounded-lg shadow-sm bg-gray-50"
           >
             <h4 className="font-medium text-lg">{signIn.title}</h4>
-            <p className="text-gray-600">{signIn.subTitle}</p>
+            <p className="text-gray-600">
+              Status: {signIn.status ? "Active" : "Inactive"}
+            </p>
             {signIn.image[0] && (
               <img
                 src={`https://api.travello10.com/upload/${signIn.image[0]}`}

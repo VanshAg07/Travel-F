@@ -6,6 +6,7 @@ function SignInPop() {
     title: "",
     subTitle: "",
     image: null,
+    status: false,
   });
   const [signInList, setSignInList] = useState([]);
   const [selectedSignIn, setSelectedSignIn] = useState(null);
@@ -29,7 +30,7 @@ function SignInPop() {
     const { name, value } = e.target;
     setSignInData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: name === "status" ? value === "true" : value, // Handle boolean conversion for status
     }));
   };
 
@@ -44,6 +45,7 @@ function SignInPop() {
     const formData = new FormData();
     formData.append("title", signInData.title);
     formData.append("subTitle", signInData.subTitle);
+    formData.append("status", signInData.status);
     if (signInData.image) formData.append("image", signInData.image);
 
     try {
@@ -53,7 +55,7 @@ function SignInPop() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       setSignInList((prevList) => [...prevList, response.data]);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ title: "", subTitle: "", image: null, status: false });
     } catch (error) {
       console.error("Error creating sign-in:", error);
     }
@@ -63,6 +65,7 @@ function SignInPop() {
     const formData = new FormData();
     formData.append("title", signInData.title);
     formData.append("subTitle", signInData.subTitle);
+    formData.append("status", signInData.status);
     if (signInData.image) formData.append("image", signInData.image);
 
     try {
@@ -77,7 +80,7 @@ function SignInPop() {
         )
       );
       setSelectedSignIn(null);
-      setSignInData({ title: "", subTitle: "", image: null });
+      setSignInData({ title: "", subTitle: "", image: null, status: false });
     } catch (error) {
       console.error("Error updating sign-in:", error);
     }
@@ -98,6 +101,7 @@ function SignInPop() {
       title: signIn.title,
       subTitle: signIn.subTitle,
       image: null,
+      status: signIn.status,
     });
   };
 
@@ -131,6 +135,15 @@ function SignInPop() {
           required
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <select
+          name="status"
+          value={signInData.status}
+          onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value={true}>Active</option>
+          <option value={false}>Non-Active</option>
+        </select>
         <input
           type="file"
           name="image"
@@ -167,6 +180,9 @@ function SignInPop() {
           >
             <h4 className="font-medium text-lg">{signIn.title}</h4>
             <p className="text-gray-600">{signIn.subTitle}</p>
+            <p className="text-gray-800">
+              Status: {signIn.status ? "Active" : "Non-Active"}
+            </p>
             {signIn.image[0] && (
               <img
                 src={`https://api.travello10.com/upload/${signIn.image[0]}`}
