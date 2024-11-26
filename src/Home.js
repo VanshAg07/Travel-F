@@ -32,7 +32,7 @@ const Home = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-  const isSmallMobile = useMediaQuery({ query: "(max-width: 426px)" }); // Media query for small mobile
+  const isSmallMobile = useMediaQuery({ query: "(max-width: 426px)" });
   const [paymentImages, setPaymentImages] = useState([]);
 
   const fetchPayment = async () => {

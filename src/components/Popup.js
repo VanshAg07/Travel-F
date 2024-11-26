@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
-import "./Popup2.css"
+import "./Popup2.css";
+
 const Popup1 = ({ onClose }) => {
   const [popupData, setPopupData] = useState(null);
   const navigate = useNavigate();
@@ -24,8 +25,8 @@ const Popup1 = ({ onClose }) => {
     fetchPopup();
   }, []);
 
-  if (!popupData) {
-    return <div>Loading...</div>;
+  if (!popupData || !popupData.status) {
+    return null;
   }
 
   return (
@@ -33,7 +34,7 @@ const Popup1 = ({ onClose }) => {
       <div className="rounded-lg md:mt-0 -mt-24 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden w-full max-w-4xl">
         <button
           onClick={onClose}
-          className="absolute mt-28 md:mt-40  top-2 right-2 rounded-full p-2 transition-colors duration-200 z-10"
+          className="absolute mt-28 md:mt-40 top-2 right-2 rounded-full p-2 transition-colors duration-200 z-10"
         >
           <AiOutlineClose className="h-6 w-6 text-black" />
         </button>
