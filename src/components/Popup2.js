@@ -87,7 +87,7 @@ const Popup2 = ({ onClose }) => {
 
   return (
     <div className="fixed popup-wr inset-0 flex md:mt-0 -mt-11 items-center justify-center bg-[#ffffff7f] bg-opacity-70 z-50 p-4">
-      <div className="bg-white mt-10 rounded-lg md:h-[420px] h-[590px] shadow-lg relative flex flex-col md:flex-row w-full max-w-4xl overflow-hidden">
+      <div className="bg-white mt-10 rounded-lg md:h-[420px] h-[460px] shadow-lg relative flex flex-col md:flex-row w-full max-w-4xl overflow-hidden">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -109,14 +109,14 @@ const Popup2 = ({ onClose }) => {
         </div>
 
         {/* Right side - Content */}
-        <div className="md:w-1/2 md:h-[420px] h-[420px] p-6 flex flex-col">
-          <h2 className="text-2xl font-bold mb-6 text-cyan-600">
+        <div className="md:w-1/2 md:h-[420px] h-[300px] md:p-6 p-4 flex flex-col">
+          <h2 className="md:text-2xl text-xl font-bold md:mb-6 mb-2 text-cyan-600">
             {popupData?.title || "Loading..."}
           </h2>
 
           <form
             onSubmit={submitForm}
-            className="flex flex-col space-y-4 md:pt-10 pt-2"
+            className="flex flex-col md:space-y-4 space-y-2 md:pt-10 pt-2"
           >
             {["name", "email", "number", "interestedPlaces"].map((field) => (
               <div key={field}>

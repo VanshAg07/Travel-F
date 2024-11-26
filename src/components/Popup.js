@@ -31,7 +31,7 @@ const Popup1 = ({ onClose }) => {
 
   return (
     <div className="fixed popup-wr inset-0 flex items-center justify-center bg-gray-900 bg-opacity-70 z-50 p-4">
-      <div className="rounded-lg md:mt-0 -mt-24 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden w-full max-w-4xl">
+      <div className="rounded-lg md:mt-0 -mt-24 relative z-50 transition-transform transform scale-105 hover:scale-100 overflow-hidden md:max-w-4xl">
         <button
           onClick={onClose}
           className="absolute mt-28 md:mt-40 top-2 right-2 rounded-full p-2 transition-colors duration-200 z-10"
@@ -39,11 +39,11 @@ const Popup1 = ({ onClose }) => {
           <AiOutlineClose className="h-6 w-6 text-black" />
         </button>
 
-        <div className="flex flex-col sm:flex-row">
+        <div className="flex md:w-full w-[80vw] flex-col sm:flex-row">
           {/* Image Section */}
           <div className="w-full mt-28 sm:w-1/2">
             <div
-              className="w-full h-60 rounded-3xl sm:h-[350px]"
+              className="w-full h-64 rounded-3xl sm:h-[350px]"
               style={{
                 backgroundImage: `url(${popupData.image[0]})`,
                 backgroundSize: "cover",
@@ -54,11 +54,11 @@ const Popup1 = ({ onClose }) => {
           </div>
 
           {/* Content Section */}
-          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-28 md:mt-36 flex-col justify-start h-[330px] md:h-[280px]">
-            <h2 className="text-2xl font-bold mb-4 text-cyan-600">
+          <div className="w-full md:rounded-r-3xl sm:w-1/2 md:p-8 p-4 bg-white bg-opacity-95 flex -mt-28 md:mt-36 flex-col justify-start h-[270px] md:h-[280px]">
+            <h2 className="md:text-2xl text-lg font-bold md:mb-4 mb-2 text-cyan-600">
               {popupData.title}
             </h2>
-            <p className="mb-6 text-gray-700">{popupData.subTitle}</p>
+            <p className="md:mb-6 mb-2 text-sm md:text-base text-gray-700">{popupData.subTitle}</p>
             <button
               onClick={handleSignInClick}
               className="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md w-full sm:w-auto"
