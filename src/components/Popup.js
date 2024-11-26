@@ -42,11 +42,12 @@ const Popup1 = ({ onClose }) => {
           {/* Image Section */}
           <div className="w-full mt-28 sm:w-1/2">
             <div
-              className="w-full h-80 rounded-3xl sm:h-[350px]"
+              className="w-full h-60 rounded-3xl sm:h-[350px]"
               style={{
                 backgroundImage: `url(${popupData.image[0]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                objectFit: "cover"
               }}
             />
           </div>
