@@ -60,7 +60,7 @@ const PopupManager = () => {
         <>
             {showPopup1 && <Popup1 onClose={handleClosePopup1} />}
             {showPopup2 && <Popup2 onClose={handleClosePopup2} />}
-            {showPopup3 && <Popup3 onClose={handleClosePopup3} />}
+            {/* {showPopup3 && <Popup3 onClose={handleClosePopup3} />} */}
         </>
     );
 };
