@@ -5,7 +5,14 @@ import "./Popup2.css";
 
 const Popup2 = ({ onClose }) => {
   const [popupData, setPopupData] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    number: "",
+    interestedPlaces: "",
+  });
 
   const fetchPopup = async () => {
     try {
@@ -23,24 +30,51 @@ const Popup2 = ({ onClose }) => {
     fetchPopup();
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+    setFormErrors({ ...formErrors, [name]: "" }); // Clear errors for the field as the user types
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formValues.name.trim()) errors.name = "Name is required";
+    if (!formValues.email.trim()) errors.email = "Email is required";
+    if (!formValues.number.trim()) errors.number = "Phone number is required";
+    if (!formValues.interestedPlaces.trim())
+      errors.interestedPlaces = "Interested places are required";
+
+    return errors;
+  };
+
   const submitForm = async (e) => {
     e.preventDefault();
+    const errors = validateForm();
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
     setLoading(true); // Set loading state to true
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      number: e.target.number.value,
-      interestedPlaces: e.target.interestedPlaces.value,
-    };
 
     try {
       const res = await axios.post(
         "https://api.travello10.com/api/popup/assist-form",
-        formData
+        formValues
       );
       console.log("Form submitted successfully:", res);
+
+      // Clear the form values after submission
+      setFormValues({
+        name: "",
+        email: "",
+        number: "",
+        interestedPlaces: "",
+      });
+
       setLoading(false); // Set loading state to false
-      onClose();
+      onClose(); // Close the popup
     } catch (error) {
       console.error("Error submitting form:", error);
       setLoading(false); // Ensure loading state is reset even on error
@@ -84,34 +118,30 @@ const Popup2 = ({ onClose }) => {
             onSubmit={submitForm}
             className="flex flex-col space-y-4 md:pt-10 pt-2"
           >
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              required
-            />
-            <input
-              type="number"
-              name="number"
-              placeholder="Phone Number"
-              className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              required
-            />
-            <input
-              type="text"
-              name="interestedPlaces"
-              placeholder="Interested Places"
-              className="px-4 py-2 text-sm border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              required
-            />
+            {["name", "email", "number", "interestedPlaces"].map((field) => (
+              <div key={field}>
+                <input
+                  type={field === "number" ? "number" : "text"}
+                  name={field}
+                  placeholder={
+                    field === "interestedPlaces"
+                      ? "Interested Places"
+                      : field.charAt(0).toUpperCase() + field.slice(1)
+                  }
+                  value={formValues[field]}
+                  onChange={handleChange}
+                  className={`px-4 py-2 text-sm border w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 ${
+                    formErrors[field]
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-600"
+                  }`}
+                  required
+                />
+                {formErrors[field] && (
+                  <p className="text-sm text-red-500">{formErrors[field]}</p>
+                )}
+              </div>
+            ))}
 
             <button
               type="submit"

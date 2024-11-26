@@ -53,7 +53,7 @@ const Popup1 = ({ onClose }) => {
           </div>
 
           {/* Content Section */}
-          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-14 md:mt-40 flex-col justify-start h-[250px] md:h-[250px]">
+          <div className="w-full md:rounded-r-3xl sm:w-1/2 p-8 bg-white bg-opacity-95 flex -mt-28 md:mt-36 flex-col justify-start h-[330px] md:h-[280px]">
             <h2 className="text-2xl font-bold mb-4 text-cyan-600">
               {popupData.title}
             </h2>
