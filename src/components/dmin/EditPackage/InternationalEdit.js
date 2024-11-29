@@ -27,6 +27,7 @@ function InternationalEdit() {
     overView: "",
     status: "",
     customised: "",
+    tripBookingAmount: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const statusOptions = ["active", "non-active"];
@@ -74,6 +75,7 @@ function InternationalEdit() {
       tripBackgroundImg: trip.tripBackgroundImg || [],
       customised: trip.customised || false,
       tripDates: [{ tripDate: "", tripSeats: "" }],
+      tripBookingAmount: trip.tripBookingAmount || 0,
     });
     setIsModalOpen(true);
   };
@@ -222,13 +224,13 @@ function InternationalEdit() {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
-  
+
   const formatDateForInput = (isoDate) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
     return date.toISOString().split("T")[0]; // Returns YYYY-MM-DD
   };
-  
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
@@ -418,6 +420,19 @@ function InternationalEdit() {
                   type="text"
                   name="tripDuration"
                   value={tripDetails.tripDuration}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 p-2 w-full border rounded-lg"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium text-gray-700">
+                  Trip Booking Amount:
+                </label>
+                <input
+                  type="text"
+                  name="tripBookingAmount"
+                  value={tripDetails.tripBookingAmount}
                   onChange={handleInputChange}
                   required
                   className="mt-1 p-2 w-full border rounded-lg"
