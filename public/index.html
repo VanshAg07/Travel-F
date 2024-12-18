@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/travell_logo.png" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="viewport"
@@ -23,7 +23,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/travell_logo.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link
       rel="stylesheet"
@@ -33,6 +33,13 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="Styles.css" />
+    <script>
+      window.onload = function () {
+        if (window.screen.width === 1366 && window.screen.height === 768) {
+          document.body.style.zoom = "80%";
+        }
+      };
+    </script>
     <title>Travello10</title>
   </head>
   <body>
