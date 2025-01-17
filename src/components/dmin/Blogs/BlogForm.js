@@ -268,7 +268,7 @@ const BlogForm = () => {
           </button>
         </div>
         <div>
-          <label className="block font-medium">Upload Images:</label>
+          <label className="block font-medium">Upload Images: <br /><span className="text-red-500">Choose multiple images at a time according to the count of the headings. Like 3 heading so 3 images. </span></label>
           <input
             type="file"
             multiple
@@ -277,7 +277,7 @@ const BlogForm = () => {
           />
         </div>
         <div>
-          <label className="block font-medium">Background Image:</label>
+          <label className="block font-medium">Background Image: <br /><span className="text-red-500">Background Image of the blog details page</span></label>
           <input
             type="file"
             onChange={handleBackgroundImageChange}
@@ -285,7 +285,9 @@ const BlogForm = () => {
           />
         </div>
         <div>
-          <label className="block font-medium">Card Image:</label>
+          <label className="block font-medium">Card Image: <br />
+          <span className="text-red-500">Card Image of the blog details page</span>
+          </label>
           <input
             type="file"
             onChange={handleCardImageChange}

@@ -70,29 +70,33 @@ const ImageSlider = () => {
                   key={adventure._id}
                   className="w-1/4 box-border p-2 relative"
                 >
-                  {/* <a
-                    href={`/${adventure.title.toLowerCase().replace(" ", "")}`}
-                  > */}
                     <video
                       src={adventure.video[0]}
                       alt={`Slide ${i}`}
                       className="w-full h-[480px] object-cover shadow-lg shadow-black transition-opacity duration-300"
                       loop
                       muted
-                      style={{ opacity: 0.8 }}
+                      playsInline
+                      onCanPlay={(e) => {
+                        e.target.dataset.ready = "true"; // Mark video as ready
+                      }}
                       onMouseEnter={(e) => {
-                        e.target.play();
+                        if (e.target.dataset.ready === "true") {
+                          e.target.play().catch((err) => console.error("Autoplay blocked:", err));
+                        } else {
+                          e.target.addEventListener("canplay", () => e.target.play(), { once: true });
+                        }
                         e.target.style.opacity = 1;
                       }}
                       onMouseLeave={(e) => {
                         e.target.pause();
+                        e.target.currentTime = 0;
                         e.target.style.opacity = 0.8;
                       }}
                     />
                     <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border">
                       {adventure.title}
                     </h1>
-                  {/* </a> */}
                 </div>
               ))}
           </div>

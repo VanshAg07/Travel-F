@@ -103,6 +103,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  align-items: center; /* Ensure arrows are centered vertically */
 }
 
 /* Arrow Styles */
@@ -119,11 +120,11 @@
 
 .arrow-left-glry {
   position: absolute;
-  left: -30px;
+  left: 10px; /* Adjusted for better centering */
 }
 
 .arrow-right-glry {
   position: absolute;
-  right: -30px;
+  right: 10px; /* Adjusted for better centering */
 }
 

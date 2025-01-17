@@ -87,7 +87,7 @@ function SearchBar() {
         className="pl-6 pr-2 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 w-full transition-all duration-200 text-black"
       />
       <FaSearch className="absolute right-5 text-gray-800 z-10" />
-      {search && suggestions.length > 0 && (
+      {search && suggestions.length > 0 ? (
         <ul className="absolute top-full mt-2 w-full bg-white text-black border border-gray-300 rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto">
           {suggestions.slice(0, 5).map((item, index) => (
             <li
@@ -99,6 +99,12 @@ function SearchBar() {
             </li>
           ))}
         </ul>
+      ) : (
+        search && (
+          <div className="absolute top-full mt-2 w-full bg-white text-black border border-gray-300 rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto px-4 py-2">
+            No results match your search
+          </div>
+        )
       )}
     </div>
   );

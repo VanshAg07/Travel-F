@@ -81,7 +81,7 @@ const Gallery = () => {
         </div>
         <div className="arrow-wrapper">
           <div className="arrow-glry arrow-right-glry" onClick={handleNext}>
-            <FaChevronCircleRight /> {/* Use right icon */}
+            <FaChevronCircleRight />
           </div>
         </div>
       </div>

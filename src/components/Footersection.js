@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const FooterSection = () => {
-  const [blogsTitle, setBlogsTitle] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const navigate = useNavigate();
   const fetchBlogs = () => {
     fetch(`https://api.travello10.com/api/blog/blog-title`)
       .then((response) => response.json())
       .then((data) => {
-        setBlogsTitle(data.blogTitles);
+        setBlogs(data.blogs);
       })
       .catch((error) => console.error("Error fetching blog titles:", error));
   };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -24,7 +25,9 @@ const FooterSection = () => {
           "https://api.travello10.com/api/weekends/weekend-choosen-display"
         );
         const data = await response.json();
-        setPackages(Array.isArray(data.chosenPackages) ? data.chosenPackages : []);
+        setPackages(
+          Array.isArray(data.chosenPackages) ? data.chosenPackages : []
+        );
       } catch (error) {
         console.error("Error fetching packages:", error);
       }
@@ -82,7 +85,9 @@ const FooterSection = () => {
               {packages.map((pkg, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => handlePackageClick(pkg.tripLocation, pkg.tripName)}
+                    onClick={() =>
+                      handlePackageClick(pkg.tripLocation, pkg.tripName)
+                    }
                     className="hover:text-[#fffe9] uppercase transition-all ease-in-out duration-200"
                   >
                     {pkg.tripName}
@@ -98,7 +103,10 @@ const FooterSection = () => {
                 <li key={index}>
                   <button
                     onClick={() =>
-                      handlePackageClick(trip.stateName, trip.tripDetails.tripName)
+                      handlePackageClick(
+                        trip.stateName,
+                        trip.tripDetails.tripName
+                      )
                     }
                     className="hover:text-[#fffe9] transition-all ease-in-out duration-200"
                   >
@@ -114,15 +122,10 @@ const FooterSection = () => {
             <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4">
               Blogs
             </h2>
-            <ul className="text-[#fff] space-y-2 text-sm md:text-base lg:text-lg">
-              {blogsTitle.map((title, index) => (
-                <li key={index}>
-                  <Link
-                    to={`/blogdetails/${blogsTitle[index]}`}
-                    className="hover:text-[#fffe9] transition-all ease-in-out duration-200"
-                  >
-                    {title}
-                  </Link>
+            <ul className="text-[#fff] space-y-2 text-sm md:text-base lg:text-lg ">
+              {blogs.map((blog, index) => (
+                <li key={index} onClick={() => navigate(`/blogdetails/${blog.title}`)} className="cursor-pointer">
+                  {blog.name}
                 </li>
               ))}
             </ul>

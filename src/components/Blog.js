@@ -79,11 +79,11 @@ const Blog = () => {
               <img
                 src={blog.blogCardImage}
                 alt="Blog Card"
-                className="object-cover w-full h-[200px] sm:h-[250px] md:h-[300px] rounded-md"
+                className="w-auto h-[200px] sm:h-[250px] md:h-[300px] rounded-md"
               />
               <div className="w-full text-center">
                 <h3 className="blog-h3 py-4 capitalize font-medium text-lg md:text-xl">
-                  {blog.blogTitle}
+                  {blog.blogName}
                 </h3>
               </div>
             </div>

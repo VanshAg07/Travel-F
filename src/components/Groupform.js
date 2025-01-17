@@ -79,6 +79,9 @@ const EuropeTripEnquiryForm = () => {
           tripType: "",
           travelMonth: "",
         });
+        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+          radio.checked = false;
+        });
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -182,7 +185,7 @@ const EuropeTripEnquiryForm = () => {
               <input
                 type="radio"
                 name="peopleCount"
-                value="2-4 Pax"
+                value="20-40 Pax"
                 className="form-radio text-blue-600 focus:ring-blue-500"
                 onChange={handleChange}
               />
@@ -192,7 +195,7 @@ const EuropeTripEnquiryForm = () => {
               <input
                 type="radio"
                 name="peopleCount"
-                value="5-8 Pax"
+                value="40-60 Pax"
                 className="form-radio text-blue-600 focus:ring-blue-500"
                 onChange={handleChange}
               />
@@ -202,7 +205,7 @@ const EuropeTripEnquiryForm = () => {
               <input
                 type="radio"
                 name="peopleCount"
-                value="8+ Pax"
+                value="60-80 Pax"
                 className="form-radio text-blue-600 focus:ring-blue-500"
                 onChange={handleChange}
               />
@@ -212,7 +215,7 @@ const EuropeTripEnquiryForm = () => {
               <input
                 type="radio"
                 name="peopleCount"
-                value="8+ Pax"
+                value="80-100 Pax"
                 className="form-radio text-blue-600 focus:ring-blue-500"
                 onChange={handleChange}
               />
@@ -222,7 +225,7 @@ const EuropeTripEnquiryForm = () => {
               <input
                 type="radio"
                 name="peopleCount"
-                value="8+ Pax"
+                value="100+ Pax"
                 className="form-radio text-blue-600 focus:ring-blue-500"
                 onChange={handleChange}
               />
@@ -296,9 +299,9 @@ const EuropeTripEnquiryForm = () => {
         <button
           type="submit"
           className={`w-full bg-cyan-500 text-white p-3 rounded-lg ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={isLoading} // Disable button while loading
+          disabled={isLoading}
         >
-          {isLoading ? 'Submitting...' : 'Submit'} {/* Conditional text */}
+          {isLoading ? 'Submitting...' : 'Submit'}
         </button>
       </form>
     </div>

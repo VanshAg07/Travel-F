@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MobileHomeGallery.css";
 import axios from "axios";
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // Import icons
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 const MobileHomeGallery = () => {
   const [galleryImages, setGalleryImages] = useState([]);
@@ -36,14 +36,13 @@ const MobileHomeGallery = () => {
   };
 
   return (
-    <div className="relative mb-80">
+    <div className="relative pb-60">
       <div className="flex relative flex-row">
         <div className="arrow-wrapper">
           <div className="arrow-glry arrow-left-glry" onClick={handlePrevious}>
-            <FaChevronCircleLeft className="text-lg" /> {/* Use left icon */}
+            <FaChevronCircleLeft className="text-lg" />
           </div>
           <div className="gallery-wrap" onWheel={handleWheel}>
-            {/* Heading */}
             <h1 className="text-center md:text-2xl pt-4 text-xl lg:text-4xl font-bold mb-4">
               PORTALS TO ADVENTURE
             </h1>

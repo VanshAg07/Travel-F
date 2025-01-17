@@ -92,7 +92,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Disable the browser's default screenshot behavior
     document.addEventListener('keyup', (e) => {
       if (e.key === 'PrintScreen' || e.keyCode === 44) {
         e.preventDefault();

@@ -23,7 +23,7 @@ import Mobcardhoney from "./components/Mobcardhoney.js";
 import Homeyt from "./components/Homeyt.js";
 import Upcomingtrip from "./components/Upcomingtrips.js";
 import UpcomingtripMobile from "./components/Upcomingtripmobile.js";
-import SignInPopup from "./components/Popupscombined.js"; // Import the SignInPopup component
+import SignInPopup from "./components/Popupscombined.js";
 import MobileHomeGallery from "./components/MobileHomeGallery.js";
 import PhoneFooter from "./components/PhoneFooter.js";
 import { Link } from "react-router-dom";
@@ -103,7 +103,7 @@ const Home = () => {
           <Videopg4 />
         )}
 
-        <div className="bg-[#ffffe6]">
+        <div className="bg-[#ffffe6] relative">
           {isMobile ? (
             <div style={{ margin: "0px 10px 0px 10px" }}>
               <UpcomingtripMobile />
