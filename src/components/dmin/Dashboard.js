@@ -132,10 +132,10 @@ function Dashboard() {
       name: "National, International,Honeymoon Card Images",
       component: <StateImages />,
     },
-    {
-      name: "Gallery Page",
-      component: <PageGallery />,
-    },
+    // {
+    //   name: "Gallery Page",
+    //   component: <PageGallery />,
+    // },
   ];
   const handleCardClick = (component) => {
     setSelectedComponent(component);

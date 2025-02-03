@@ -82,8 +82,10 @@ const EuropeTripEnquiryForm = () => {
         document.querySelectorAll('input[type="radio"]').forEach((radio) => {
           radio.checked = false;
         });
+        setIsLoading(false); // Reset loading state
       } else {
         setError("Something went wrong. Please try again.");
+        setIsLoading(false); // Reset loading state
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -175,7 +177,6 @@ const EuropeTripEnquiryForm = () => {
             onChange={handleChange}
           />
         </div>
-
         <div className="mb-6">
           <label className="block text-gray-700 font-semibold mb-2">
             Number of people interested for the trip?

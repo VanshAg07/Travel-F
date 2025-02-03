@@ -15,7 +15,10 @@ function Signup() {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [error, setError] = useState("");
-
+  const [phoneError, setPhoneError] = useState("");
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
   // Handle sending OTP to the user's email
   const handleSendOtp = async () => {
     if (!email) {
@@ -23,14 +26,18 @@ function Signup() {
       return;
     }
 
+    setIsSendingOtp(true); // Set loading state
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/send-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        "https://api.travello10.com/api/auth/send-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const data = await response.json();
 
@@ -42,6 +49,8 @@ function Signup() {
       }
     } catch (error) {
       toast.error("An error occurred while sending OTP");
+    } finally {
+      setIsSendingOtp(false); // Reset loading state
     }
   };
 
@@ -52,14 +61,18 @@ function Signup() {
       return;
     }
 
+    setIsVerifyingOtp(true); // Set loading state
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/verifyOtp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp }),
-      });
+      const response = await fetch(
+        "https://api.travello10.com/api/auth/verifyOtp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, otp }),
+        }
+      );
 
       const data = await response.json();
 
@@ -71,6 +84,8 @@ function Signup() {
       }
     } catch (error) {
       toast.error("An error occurred during OTP verification");
+    } finally {
+      setIsVerifyingOtp(false); // Reset loading state
     }
   };
 
@@ -83,6 +98,12 @@ function Signup() {
       return;
     }
 
+    if (phoneNo.length !== 10) {
+      setPhoneError("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    setIsSigningUp(true); // Set loading state
     try {
       const response = await fetch("https://api.travello10.com/register", {
         method: "POST",
@@ -112,6 +133,8 @@ function Signup() {
     } catch (error) {
       setError("An error occurred");
       toast.error("An error occurred");
+    } finally {
+      setIsSigningUp(false); // Reset loading state
     }
   };
   const [signInData, setSignInData] = useState(null);
@@ -170,13 +193,26 @@ function Signup() {
                 Phone No.
               </label>
               <input
-                type="number"
+                type="text"
                 value={phoneNo}
-                onChange={(e) => setPhoneNo(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d{0,10}$/.test(value)) {
+                    setPhoneNo(value);
+                    setPhoneError(""); // Clear error when valid input
+                  } else {
+                    setPhoneError(
+                      "Phone number must be exactly 10 digits and contain only numbers."
+                    );
+                  }
+                }}
                 placeholder="Enter phone number"
                 className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
                 autoComplete="off"
               />
+              {phoneError && (
+                <p className="text-red-500 text-sm">{phoneError}</p>
+              )}
             </div>
             <div className="flex flex-col">
               <label className="text-black font-medium mb-1 text-sm">
@@ -192,11 +228,11 @@ function Signup() {
             </div>
             <button
               type="button"
-              className="w-full py-2 mt-2 font-medium bg-blue-500 text-white rounded-lg hover:scale-95 transition duration-300"
+              className="w-full py-2 mt-2 font-medium bg-blue-500 text-white rounded-lg hover:scale-95 transition duration-300 cursor-pointer"
               onClick={handleSendOtp}
-              disabled={isOtpSent} // Disable button once OTP is sent
+              disabled={isSendingOtp || isOtpSent}
             >
-              {isOtpSent ? "OTP Sent" : "Send OTP"}
+              {isSendingOtp ? "Sending OTP..." : isOtpSent ? "OTP Sent" : "Send OTP"}
             </button>
 
             {isOtpSent && !isOtpVerified && (
@@ -216,9 +252,9 @@ function Signup() {
                     type="button"
                     className="w-full py-2 mt-2 font-medium bg-green-500 text-white rounded-lg hover:scale-95 transition duration-300"
                     onClick={handleVerifyOtp}
-                    disabled={isOtpVerified} // Disable after OTP is verified
+                    disabled={isVerifyingOtp || isOtpVerified}
                   >
-                    Verify OTP
+                    {isVerifyingOtp ? "Verifying OTP..." : "Verify OTP"}
                   </button>
                 </div>
               </>
@@ -241,9 +277,9 @@ function Signup() {
             <button
               type="submit"
               className="w-full py-3 font-medium bg-cyan-500 text-white rounded-lg hover:scale-95 transition duration-300"
-              disabled={!isOtpVerified} // Disable button until OTP is verified
+              disabled={isSigningUp || !isOtpVerified} // Disable button while loading or until OTP is verified
             >
-              Sign Up
+              {isSigningUp ? "Signing Up..." : "Sign Up"}
             </button>
           </form>
           <p className="mt-3 font-medium text-black">

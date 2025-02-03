@@ -7,11 +7,14 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { setUser } from "../../Slices/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+
 function Login() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const [signInData, setSignInData] = useState(null);
@@ -112,17 +115,23 @@ function Login() {
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <label className="text-black font-medium mb-1 text-sm">
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"} // Toggle input type
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#16423C]"
               />
+              <div
+                className="absolute right-3 top-10 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </div>
             </div>
             <p className="mt-2 text-blue-600 font-medium text-right text-sm">
               <Link to="/forgot">Forgot Your Password?</Link>
