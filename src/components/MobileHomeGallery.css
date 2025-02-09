@@ -41,27 +41,6 @@
   margin-bottom: 10%;
 }
 
-/* Arrow Wrapper */
-.arrow-wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  gap: 5px;
-  bottom: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Arrow Styles */
-.arrow-glry {
-  font-size: 2rem;
-  color: #000000;
-  cursor: pointer;
-  border-radius: 20px;
-  padding: 5px;
-  align-items: center;
-  justify-content: center;
-}
 
 @media (max-width: 475px) {
   .arrow-wrapper {
@@ -120,11 +99,11 @@
 .arrow-left-glry {
   position: absolute;
   left: -10px;
-  margin-top: -170px;
+  margin-top: -250px;
 }
 
 .arrow-right-glry {
   position: absolute;
   right: -10px;
-  margin-top: -170px;
+  margin-top: -250px;
 }
