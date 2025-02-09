@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import axios from "axios";
 import "./Explore.css";
@@ -6,6 +6,7 @@ import "./Explore.css";
 const ImageSlider = () => {
   const [index, setIndex] = useState(0);
   const [adventures, setAdventures] = useState([]);
+  const videoRefs = useRef([]);
 
   const fetchAdventures = async () => {
     try {
@@ -35,14 +36,11 @@ const ImageSlider = () => {
   };
 
   const getNumberOfVideos = () => {
-    if (window.innerWidth <= 426) {
-      return 3; // Adjust if necessary for mobile
-    }
-    return 4; // Default number of videos to show
+    return window.innerWidth <= 426 ? 3 : 4;
   };
 
   const getNumberOfDots = () => {
-    return Math.max(adventures.length - getNumberOfVideos() + 1, 0); // Ensure at least one dot
+    return Math.max(adventures.length - getNumberOfVideos() + 1, 0);
   };
 
   const goToSlide = (dotIndex) => {
@@ -63,40 +61,40 @@ const ImageSlider = () => {
             <FaChevronCircleLeft size={30} />
           </button>
           <div className="flex transition-transform duration-500 ease-in-out w-full">
-            {adventures
-              .slice(index, index + getNumberOfVideos())
-              .map((adventure, i) => (
+            {adventures.length > 0 &&
+              adventures.slice(index, index + getNumberOfVideos()).map((adventure, i) => (
                 <div
                   key={adventure._id}
-                  className="w-1/4 box-border p-2 relative"
+                  onMouseEnter={() => {
+                    const video = videoRefs.current[i];
+                    if (video) {
+                      video.play().catch((err) =>
+                        console.error("Autoplay blocked:", err)
+                      );
+                      video.style.opacity = "1";
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    const video = videoRefs.current[i];
+                    if (video) {
+                      video.pause();
+                      video.currentTime = 0;
+                      video.style.opacity = "0.8";
+                    }
+                  }}
+                  className="w-1/4 p-2 relative"
                 >
-                    <video
-                      src={adventure.video[0]}
-                      alt={`Slide ${i}`}
-                      className="w-full h-[480px] object-cover shadow-lg shadow-black transition-opacity duration-300"
-                      loop
-                      muted
-                      playsInline
-                      onCanPlay={(e) => {
-                        e.target.dataset.ready = "true"; // Mark video as ready
-                      }}
-                      onMouseEnter={(e) => {
-                        if (e.target.dataset.ready === "true") {
-                          e.target.play().catch((err) => console.error("Autoplay blocked:", err));
-                        } else {
-                          e.target.addEventListener("canplay", () => e.target.play(), { once: true });
-                        }
-                        e.target.style.opacity = 1;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.pause();
-                        e.target.currentTime = 0;
-                        e.target.style.opacity = 0.8;
-                      }}
-                    />
-                    <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border">
-                      {adventure.title}
-                    </h1>
+                  <video
+                    ref={(el) => (videoRefs.current[i] = el)}
+                    src={adventure.video[0]}
+                    className="w-full h-[680px] object-cover shadow-lg shadow-black transition-opacity duration-300 cursor-pointer pointer-events-auto"
+                    loop
+                    muted
+                    preload="auto"
+                  />
+                  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border">
+                    {adventure.title}
+                  </h1>
                 </div>
               ))}
           </div>

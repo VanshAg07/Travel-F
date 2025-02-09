@@ -51,9 +51,9 @@ const Videopage = () => {
       )}
 
       {/* Text content */}
-      <div className="z-20 video-text text-white mb-20 md:mb-28 px-4 text-left relative">
+      <div className="z-20 text-white mb-20 px-4 text-left relative ">
         <h1
-          className="absolute video-hed left-20 text-2xl md:top-[200px] top-[180px] sm:text-3xl md:text-4xl lg:text-[50px] xl:text-[50px] font-bold"
+          className="absolute left-20 text-2xl md:top-[200px] top-[180px] sm:text-3xl md:text-5xl  font-bold main-contents "
           style={{
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
             lineHeight: "1.2",
@@ -72,7 +72,7 @@ const Videopage = () => {
 
         <div className="h-10 w-full bg-white z-20"></div>
         <p
-          className="videopg-p md:mt-6 left-20 absolute uppercase md:top-[350px] top-[340px] text-xs sm:text-sm md:text-lg lg:text-xl tracking-wider"
+          className="videopg-p md:mt-6 left-20 absolute main-contents uppercase md:top-[350px] top-[340px] text-xs sm:text-sm md:text-lg tracking-wider"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
         >
           Book trips and explore new <br /> destinations with ease <br /> from
@@ -82,7 +82,7 @@ const Videopage = () => {
       {/* Button for booking */}
       <div
         onClick={handleGetQuotesClick}
-        className="absolute videopg-btn left-20 top-[460px] z-50"
+        className="absolute videopg-btn left-20 top-[460px] z-50 main-contents"
       >
         <button className="bg-white md:mt-6 video-btn text-black md:py-2 md:px-6 md:rounded-full rounded-lg md:text-sm font-bold text-xs p-2">
           BOOK NOW

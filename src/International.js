@@ -93,7 +93,7 @@ const International = () => {
 
   const name = places.stateName;
   return (
-    <div className="wrpper-inter">
+    <div className="wrpper-inter relative">
       <Nav />
       <Dropnav />
       <div className="hero-section-left-1">
@@ -141,7 +141,7 @@ const International = () => {
           className="hero-lottie"
         />
       </div>
-      <div className="justify-center items-center mb-4 flex flex-col w-full">
+      <div className="justify-center items-center mb-4 flex flex-col w-full relative">
         <h1 className="text-center text-black text-2xl mt-8 sm:text-3xl lg:text-4xl font-bold">
           Destinations
         </h1>
@@ -161,7 +161,7 @@ const International = () => {
             ))}
         </div>
       </div>
-      <div className="justify-center pt-10 items-center flex flex-col w-full ">
+      <div className="justify-center pt-10 items-center flex flex-col w-full relative ">
         <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-center leading-tight sm:text-xl">
           All Packages
         </h1>
@@ -172,17 +172,17 @@ const International = () => {
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="relative">
         <AllInternational />
       </div>
       <div className="bg-[#ffffe6]">
         <div className="pt-96">
           {isMobile ? (
-            <div className="pl-[10px] pr-[10px] relative">
+            <div className="pl-[10px] pr-[10px] mt-10">
               <MobileHomeGallery />
             </div>
           ) : (
-            <div className="px-28 relative">
+            <div className="px-28">
               <Homeglry />
             </div>
           )}

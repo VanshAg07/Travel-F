@@ -3,12 +3,12 @@ import bg from "../../images/LoginImg.png";
 import { jwtDecode } from "jwt-decode";
 import useMediaQuery from "../hooks/UseMediaQuery";
 import Loginmobile from "./Loginmobile";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { setUser } from "../../Slices/UserSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -40,39 +40,35 @@ function Login() {
         crossDomain: true,
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer your-token",
         },
         body: JSON.stringify({
           email,
           password,
         }),
       });
-
+  
       const data = await response.json();
-
-      if (data.status === "ok") {
-        toast.success("Login Success");
+  
+      if (response.status === 200) {
+        toast.success("Login Successful");
         window.localStorage.setItem("token", data.data.token);
         window.localStorage.setItem("username", data.data.username);
         window.localStorage.setItem("loggedIn", true);
         const decodedToken = jwtDecode(data.data.token);
         dispatch(setUser(data.data));
-        // console.log(data.data)
+        
         const role = decodedToken.role;
-        if (role === "admin") {
-          window.location.href = "/"; // Redirect to admin page
-        } else {
-          window.location.href = "/"; // Redirect to home page
-        }
+        window.location.href = role === "admin" ? "/admin-dashboard" : "/home";
       } else {
         setError(data.error || "Login failed");
         toast.error(data.error || "Login failed");
       }
     } catch (error) {
-      setError("An error occurred");
-      toast.error("An error occurred");
+      setError("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     }
   };
+  
 
   // Conditionally render `Signupmobile` for screens smaller than tablet size
   if (isMobile) {
@@ -133,6 +129,7 @@ function Login() {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
+            {error && <p className="text-red-600 text-sm text-center">{error}</p>}
             <p className="mt-2 text-blue-600 font-medium text-right text-sm">
               <Link to="/forgot">Forgot Your Password?</Link>
             </p>

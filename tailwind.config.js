@@ -13,12 +13,15 @@ module.exports = {
  
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-
-   
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        sm: '640px',
+        lg: '1024px',
+      },
+    },
   },
   plugins: [],
 }

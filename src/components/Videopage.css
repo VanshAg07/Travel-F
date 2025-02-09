@@ -64,3 +64,34 @@
 .gradient-bg {
   background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
+
+
+
+@media (max-width: 1366px) {
+  .main-contents  {
+    left:0%;
+    transform: scale(0.8); 
+  }
+
+  h1.main-contents {
+    font-size: 3rem; /* Increase font size */
+    top: 150px; /* Adjust position */
+  }
+
+  p.videopg-p {
+    font-size: 1.5rem; /* Increase font size */
+    top: 280px; /* Adjust position */
+    left: 1%;
+  }
+
+  .videopg-btn {
+    left: 3%; /* Adjust position */
+    top: 380px; /* Adjust position */
+  }
+
+  .videopg-btn button {
+    font-size: 1.25rem; /* Increase font size */
+    padding: 0.5rem 1.5rem; /* Adjust padding */
+    border-radius: 0.5rem; /* Adjust border radius */
+  }
+}

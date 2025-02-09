@@ -7,6 +7,7 @@ import {
   Routes,
 } from "react-router-dom";
 import "./App.scss";
+import "./App.css";
 import Home from "./Home.js";
 import Contactus from "./Contactus.js";
 import Cont from "./Cont.js";

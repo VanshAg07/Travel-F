@@ -35,9 +35,9 @@ const TripCard = () => {
   };
 
   return (
-    <div className="hidden lg:block">
+    <div className="">
       {/* Hidden on small screens, visible on medium screens and larger */}
-      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10  ml-[550px]">
+      <div className="flex homecrd-wrpper space-x-2 justify-center items-center -mt-10 ml-[550px]">
         {banners.map((banner, index) => (
           <div
             key={banner._id}
@@ -73,7 +73,6 @@ const TripCard = () => {
           </div>
         ))}
       </div>
-      {error && <div className="text-red-500 mt-4">{error}</div>}
     </div>
   );
 };
