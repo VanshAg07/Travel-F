@@ -22,7 +22,7 @@ const HomeIntern = () => {
       case "bestActivities":
         return <AddInternActivities />;
       default:
-        return <AddInternPackage />; // Default component
+        return <AddInternPackage />;
     }
   };
 

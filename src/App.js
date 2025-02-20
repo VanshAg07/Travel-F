@@ -124,7 +124,7 @@ const App = () => {
   useEffect(() => {
     const adjustZoomForLaptop = () => {
       const isLaptop136 =
-        window.screen.width === 2560 && window.screen.height === 1600;
+        window.screen.width === 2560 && window.screen.height === 1366;
       if (isLaptop136) {
         document.body.style.zoom = "80%";
       } else {
