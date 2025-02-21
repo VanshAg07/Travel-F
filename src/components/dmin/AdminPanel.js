@@ -4,7 +4,6 @@ const AdminPanel = () => {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [tripData, setTripData] = useState({
     tripName: "",
     tripPrice: "",

@@ -258,24 +258,29 @@ const AddInternPackage = () => {
           </select>
         </div>
         <div className="mb-4">
-  <label className="block text-gray-700">Trip Name</label>
-  <input
-    type="text"
-    name="tripName"
-    value={tripDetails.tripName}
-    onChange={(e) => {
-      const value = e.target.value;
-      // Allow letters, numbers, "/", "-", and spaces
-      if (/^[A-Za-z0-9\/\ ]*$/.test(value)) {
-        setTripDetails({ ...tripDetails, tripName: value });
-      }
-    }}
-    required
-    className="w-full p-2 border border-gray-300 rounded"
-  />
-</div>
-
-
+          <label className="block text-gray-700">Trip Name</label>
+          <input
+            type="text"
+            name="tripName"
+            value={tripDetails.tripName}
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow only letters, numbers, "/", and spaces
+              if (/^[A-Za-z0-9\/\ ]*$/.test(value)) {
+                setTripDetails({ ...tripDetails, tripName: value });
+              }
+            }}
+            onPaste={(e) => {
+              e.preventDefault(); // Prevent the default paste behavior
+              const paste = e.clipboardData.getData("text");
+              // Clean the pasted text to only allow letters, numbers, "/", and spaces
+              const cleanedText = paste.replace(/[^A-Za-z0-9\/\ ]/g, "");
+              setTripDetails({ ...tripDetails, tripName: cleanedText });
+            }}
+            required
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700">Trip Price</label>
           <input
@@ -424,10 +429,16 @@ const AddInternPackage = () => {
             value={tripDetails.pickAndDrop}
             onChange={(e) => {
               const value = e.target.value;
-              // Allow only letters, spaces, and hyphens
               if (/^[A-Za-z\s\-]*$/.test(value)) {
                 setTripDetails({ ...tripDetails, pickAndDrop: value });
               }
+            }}
+            onPaste={(e) => {
+              e.preventDefault(); // Prevent the default paste behavior
+              const paste = e.clipboardData.getData("text");
+              // Clean the pasted text to only allow letters, spaces, and hyphens
+              const cleanedText = paste.replace(/[^A-Za-z\s\-]/g, "");
+              setTripDetails({ ...tripDetails, pickAndDrop: cleanedText });
             }}
             required
             pattern="^[A-Za-z\s\-]+$"
@@ -435,12 +446,10 @@ const AddInternPackage = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-
         {/* Trip Overview */}
         <div className="mb-4">
           <label className="block text-gray-700">
-            Trip OverView(Guwahati - Shillong - Cherrapunjee - Shnongpdeng -
-            Shillong - Guwahati)
+            Trip Overview (e.g., Guwahati - Shillong - Cherrapunjee)
           </label>
           <input
             type="text"
@@ -448,16 +457,24 @@ const AddInternPackage = () => {
             value={tripDetails.overView}
             onChange={(e) => {
               const value = e.target.value;
-              // Allow only letters, spaces, and hyphens
               if (/^[A-Za-z\s\-]*$/.test(value)) {
                 setTripDetails({ ...tripDetails, overView: value });
               }
+            }}
+            onPaste={(e) => {
+              e.preventDefault(); // Prevent the default paste behavior
+              const paste = e.clipboardData.getData("text");
+              // Clean the pasted text to only allow letters, spaces, and hyphens
+              const cleanedText = paste.replace(/[^A-Za-z\s\-]/g, "");
+              setTripDetails({ ...tripDetails, overView: cleanedText });
             }}
             pattern="^[A-Za-z\s\-]+$"
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
         </div>
+
+        {/* Trip Duration */}
         <div className="mb-4">
           <label className="block text-l">
             Trip Duration (in days e.g., 3D - 2N)
@@ -468,32 +485,36 @@ const AddInternPackage = () => {
             value={tripDetails.tripDuration}
             onChange={(e) => {
               const value = e.target.value;
-              // Allow only numbers, letters, spaces, and hyphens
               if (/^[0-9A-Za-z\s\/\-]*$/.test(value)) {
-  setTripDetails({ ...tripDetails, tripDuration: value });
-}
-
+                setTripDetails({ ...tripDetails, tripDuration: value });
+              }
+            }}
+            onPaste={(e) => {
+              const paste = e.clipboardData.getData("text");
+              if (!/^[0-9A-Za-z\s\/\-]+$/.test(paste)) {
+                e.preventDefault();
+              }
             }}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             required
             pattern="^[0-9A-Za-z\s\-]+$"
           />
         </div>
+
         <div className="mb-4">
           <label className="block text-l">Trip Description</label>
-          <input
+          <textarea
             type="text"
             name="tripDescription"
             value={tripDetails.tripDescription}
             onChange={(e) => {
               const value = e.target.value;
-              // Allow only letters, numbers, ".", "/", and "-"
-              if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
-                setTripDetails({
-                  ...tripDetails,
-                  tripDescription: value,
-                });
-              }
+              // Remove invalid characters after paste
+              const sanitizedValue = value.replace(/[^A-Za-z0-9.\-\/\s]/g, "");
+              setTripDetails({
+                ...tripDetails,
+                tripDescription: sanitizedValue,
+              });
             }}
             className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
             required
@@ -509,10 +530,33 @@ const AddInternPackage = () => {
                 value={inclusion}
                 onChange={(e) => {
                   const value = e.target.value;
-                  // Allow only letters, numbers, ".", "/", and "-"
-                  if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
-                    handleArrayChange(e, index, "tripInclusions");
-                  }
+                  // Allow letters, numbers, ".", "/", "-", and spaces
+                  handleArrayChange(
+                    {
+                      target: {
+                        value: value.replace(/[^A-Za-z0-9.\-\/\s]/g, ""),
+                      },
+                    },
+                    index,
+                    "tripInclusions"
+                  );
+                }}
+                onPaste={(e) => {
+                  e.preventDefault();
+                  const pastedText = e.clipboardData.getData("text");
+                  const sanitizedText = pastedText.replace(
+                    /[^A-Za-z0-9.\-\/\s]/g,
+                    ""
+                  );
+                  setTimeout(
+                    () =>
+                      handleArrayChange(
+                        { target: { value: sanitizedText } },
+                        index,
+                        "tripInclusions"
+                      ),
+                    0
+                  );
                 }}
                 className="w-full p-2 border border-gray-300 rounded"
                 required
@@ -534,6 +578,7 @@ const AddInternPackage = () => {
             <FaPlus /> Add Inclusion
           </button>
         </div>
+
         <div className="mb-4">
           <label className="block text-gray-700">Trip Exclusions:</label>
           {tripDetails.tripExclusions.map((exclusion, index) => (
@@ -543,10 +588,32 @@ const AddInternPackage = () => {
                 value={exclusion}
                 onChange={(e) => {
                   const value = e.target.value;
-                  // Allow only letters, numbers, ".", "/", and "-"
-                  if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
-                    handleArrayChange(e, index, "tripExclusions");
-                  }
+                  handleArrayChange(
+                    {
+                      target: {
+                        value: value.replace(/[^A-Za-z0-9.\-\/\s]/g, ""),
+                      },
+                    },
+                    index,
+                    "tripExclusions"
+                  );
+                }}
+                onPaste={(e) => {
+                  e.preventDefault();
+                  const pastedText = e.clipboardData.getData("text");
+                  const sanitizedText = pastedText.replace(
+                    /[^A-Za-z0-9.\-\/\s]/g,
+                    ""
+                  );
+                  setTimeout(
+                    () =>
+                      handleArrayChange(
+                        { target: { value: sanitizedText } },
+                        index,
+                        "tripExclusions"
+                      ),
+                    0
+                  );
                 }}
                 className="w-full p-2 border border-gray-300 rounded"
                 required
@@ -615,11 +682,34 @@ const AddInternPackage = () => {
                   placeholder="Itinerary Title"
                   value={itinerary.title}
                   onChange={(e) => {
-                    const value = e.target.value;
-                    // Allow only letters, numbers, ".", "/", and "-"
-                    if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
-                      handleArrayChange(e, index, "tripItinerary", "title");
-                    }
+                    const value = e.target.value.replace(
+                      /[^A-Za-z0-9.\-\/\s]/g,
+                      ""
+                    ); // Allow spaces
+                    handleArrayChange(
+                      { target: { value } },
+                      index,
+                      "tripItinerary",
+                      "title"
+                    );
+                  }}
+                  onPaste={(e) => {
+                    e.preventDefault();
+                    const pastedText = e.clipboardData.getData("text");
+                    const sanitizedText = pastedText.replace(
+                      /[^A-Za-z0-9.\-\/\s]/g,
+                      ""
+                    ); // Allow spaces
+                    setTimeout(
+                      () =>
+                        handleArrayChange(
+                          { target: { value: sanitizedText } },
+                          index,
+                          "tripItinerary",
+                          "title"
+                        ),
+                      0
+                    );
                   }}
                   className="w-full p-2 border border-gray-300 rounded"
                   required
@@ -640,18 +730,35 @@ const AddInternPackage = () => {
                       type="text"
                       value={point}
                       onChange={(e) => {
-                        const value = e.target.value;
-                        // Allow only letters, numbers, ".", "/", and "-"
-                        if (/^[A-Za-z0-9.\-/]*$/.test(value)) {
+                        const value = e.target.value.replace(
+                          /[^A-Za-z0-9.\-\/\s]/g,
+                          ""
+                        ); // Allow spaces
+                        const updatedItinerary = [...tripDetails.tripItinerary];
+                        updatedItinerary[index].points[pointIndex] = value;
+                        setTripDetails({
+                          ...tripDetails,
+                          tripItinerary: updatedItinerary,
+                        });
+                      }}
+                      onPaste={(e) => {
+                        e.preventDefault();
+                        const pastedText = e.clipboardData.getData("text");
+                        const sanitizedText = pastedText.replace(
+                          /[^A-Za-z0-9.\-\/\s]/g,
+                          ""
+                        ); // Allow spaces
+                        setTimeout(() => {
                           const updatedItinerary = [
                             ...tripDetails.tripItinerary,
                           ];
-                          updatedItinerary[index].points[pointIndex] = value;
+                          updatedItinerary[index].points[pointIndex] =
+                            sanitizedText;
                           setTripDetails({
                             ...tripDetails,
                             tripItinerary: updatedItinerary,
                           });
-                        }
+                        }, 0);
                       }}
                       className="w-full p-2 border border-gray-300 rounded"
                       required
@@ -725,7 +832,8 @@ const AddInternPackage = () => {
         </div>
         <div>
           <label className="block text-l font-medium">
-            Upload PDF (i.e. Itinerary)<br/>
+            Upload PDF (i.e. Itinerary)
+            <br />
             <span className="text-red-500">Note: PDF size 60mb</span>
           </label>
           <input
