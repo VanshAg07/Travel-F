@@ -244,10 +244,17 @@ const OffersHome = () => {
             value={tripDetails.tripName}
             onChange={(e) => {
               const value = e.target.value;
-              // Allow only letters, numbers, "/", and "-" (no ".")
+              // Allow only letters, numbers, "/", and spaces
               if (/^[A-Za-z0-9\/\ ]*$/.test(value)) {
                 setTripDetails({ ...tripDetails, tripName: value });
               }
+            }}
+            onPaste={(e) => {
+              e.preventDefault(); // Prevent the default paste behavior
+              const paste = e.clipboardData.getData("text");
+              // Clean the pasted text to only allow letters, numbers, "/", and spaces
+              const cleanedText = paste.replace(/[^A-Za-z0-9\/\ ]/g, "");
+              setTripDetails({ ...tripDetails, tripName: cleanedText });
             }}
             required
             className="w-full p-2 border border-gray-300 rounded"
