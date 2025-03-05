@@ -16,7 +16,7 @@ const SignUp = () => {
   const fetchSignInData = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/popup/auth-image-user"
+        "https://api.travello10.com//api/popup/auth-image-user"
       );
       const data = await response.json(); // Make sure to parse the response
       setSignInData(data[0]); // Assuming you want the first object from the array
@@ -35,7 +35,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/send-otp", {
+      const response = await fetch("https://api.travello10.com//api/auth/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/api/auth/verifyOtp", {
+      const response = await fetch("https://api.travello10.com//api/auth/verifyOtp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://api.travello10.com/register", {
+      const response = await fetch("https://api.travello10.com//register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

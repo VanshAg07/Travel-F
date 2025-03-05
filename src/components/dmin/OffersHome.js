@@ -36,7 +36,7 @@ const OffersHome = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/offer/states")
+      .get("https://api.travello10.com//api/offer/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -130,7 +130,7 @@ const OffersHome = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/offer/add-offer-package/${selectedState.id}`,
+      `https://api.travello10.com//api/offer/add-offer-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,
@@ -328,7 +328,7 @@ const OffersHome = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block text-l font-medium">Trip Dates</label>
           {tripDetails.tripDate.map((date, index) => (
             <div key={index} className="flex items-center">
@@ -348,7 +348,7 @@ const OffersHome = () => {
               </button>
             </div>
           ))}
-        </div>
+        </div> */}
         <div>
           <label className="block text-l font-medium">Trip Dates</label>
           {tripDetails.tripDates.map((dateItem, index) => (

@@ -10,7 +10,7 @@ function VideoModal() {
     const fetchReelVideo = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/reel/reels"
+          "https://api.travello10.com//api/reel/reels"
         );
         const data = await response.json();
         setVideos(data);
@@ -30,7 +30,7 @@ function VideoModal() {
             videoTitle={videoTitle}
             videoSubtitle={videoSubtitle}
             video={video}
-            url={`https://api.travello10.com/upload/${video[0]}`} // Assuming this is the correct way to construct the video URL
+            url={`https://api.travello10.com//upload/${video[0]}`} // Assuming this is the correct way to construct the video URL
             link={urlLink} // Pass the urlLink to VideoCard
             currentlyPlayingId={currentlyPlayingId}
             setCurrentlyPlayingId={setCurrentlyPlayingId}

@@ -8,7 +8,7 @@ const ContinuousScroll = () => {
   const fetchHall = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/corporate/hall-of-frame"
+        "https://api.travello10.com//api/corporate/hall-of-frame"
       );
       const data = await res.json();
       if (data && data.data) {

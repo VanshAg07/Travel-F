@@ -34,7 +34,7 @@ function InternationalEdit() {
   useEffect(() => {
     axios
       .get(
-        "https://api.travello10.com/api/edit-packages/get-intern-national-packages"
+        "https://api.travello10.com//api/edit-packages/get-intern-national-packages"
       )
       .then((response) => {
         if (response.data) {
@@ -137,7 +137,7 @@ function InternationalEdit() {
 
       axios
         .put(
-          `https://api.travello10.com/api/edit-packages/edit-intern-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
+          `https://api.travello10.com//api/edit-packages/edit-intern-national-package/${selectedTrip.stateName}/${selectedTrip._id}`,
           formData, // Change this line to send formData
           {
             headers: {
@@ -162,7 +162,7 @@ function InternationalEdit() {
     if (confirmed) {
       axios
         .delete(
-          `https://api.travello10.com/api/edit-packages/delete-intern-national-package/${pkg.stateName}/${tripId}`
+          `https://api.travello10.com//api/edit-packages/delete-intern-national-package/${pkg.stateName}/${tripId}`
         )
         .then((response) => {
           alert("Trip deleted successfully!");
@@ -368,7 +368,7 @@ function InternationalEdit() {
                     <button
                       onClick={() =>
                         window.open(
-                          `https://api.travello10.com/upload/${pdf.filename}`,
+                          `https://api.travello10.com//upload/${pdf.filename}`,
                           "_blank"
                         )
                       }
@@ -384,7 +384,7 @@ function InternationalEdit() {
                 {tripDetails?.tripImages?.map((image, index) => (
                   <img
                     key={index}
-                    src={`https://api.travello10.com/upload/${image}`}
+                    src={`https://api.travello10.com//upload/${image}`}
                     alt={`Trip Image ${index + 1}`}
                     className="h-14 w-14"
                   />
@@ -401,7 +401,7 @@ function InternationalEdit() {
                   tripDetails.tripBackgroundImg.map((image, index) => (
                     <img
                       key={index}
-                      src={`https://api.travello10.com/upload/${image}`}
+                      src={`https://api.travello10.com//upload/${image}`}
                       alt={`Trip Image ${index + 1}`}
                       className="h-14 w-14"
                     />

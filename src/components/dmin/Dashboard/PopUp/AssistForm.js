@@ -11,7 +11,7 @@ function AssistForm() {
     const fetchAssistForms = async () => {
       try {
         const response = await axios.get(
-          "https://api.travello10.com/api/popup/assist-form"
+          "https://api.travello10.com//api/popup/assist-form"
         );
         setAssistForms(response.data);
       } catch (error) {

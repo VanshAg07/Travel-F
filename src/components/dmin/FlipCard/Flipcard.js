@@ -28,9 +28,9 @@ const Flipcard = () => {
   const fetchStateNames = async () => {
     try {
       const [internationalRes, nationalRes, honeymoonRes] = await Promise.all([
-        axios.get("https://api.travello10.com/api/admin/states"),
-        axios.get("https://api.travello10.com/api/trip/states"),
-        axios.get("https://api.travello10.com/api/honeymoon/states"),
+        axios.get("https://api.travello10.com//api/admin/states"),
+        axios.get("https://api.travello10.com//api/trip/states"),
+        axios.get("https://api.travello10.com//api/honeymoon/states"),
       ]);
       setInternationalStates(internationalRes.data);
       setNationalStates(nationalRes.data);
@@ -43,7 +43,7 @@ const Flipcard = () => {
   const fetchFlipcards = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/flip-card/flip"
+        "https://api.travello10.com//api/flip-card/flip"
       );
       const flipcardData = response.data; // Adjust based on the actual structure of the response
 
@@ -82,13 +82,13 @@ const Flipcard = () => {
       if (isEditing && editFlipcardId) {
         // Only proceed with editing if editFlipcardId is not null or undefined
         await axios.put(
-          `https://api.travello10.com/api/flip-card/flip/${selectedCategory}/${editFlipcardId}`,
+          `https://api.travello10.com//api/flip-card/flip/${selectedCategory}/${editFlipcardId}`,
           formData
         );
         setIsEditing(false);
         setEditFlipcardId(null);
       } else {
-        await axios.post("https://api.travello10.com/api/flip-card/flip", formData);
+        await axios.post("https://api.travello10.com//api/flip-card/flip", formData);
       }
       fetchFlipcards(); // Refresh the list
       clearForm();
@@ -151,7 +151,7 @@ const Flipcard = () => {
     }
     try {
       // Send delete request with category and stateName as parameters
-      await axios.delete(`https://api.travello10.com/api/flip-card/flip`, {
+      await axios.delete(`https://api.travello10.com//api/flip-card/flip`, {
         data: {
           category: category,
           stateName: stateName,

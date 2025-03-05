@@ -15,7 +15,7 @@ function HomeHoneymoon() {
   const fetchNationalData = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/homepage-honeymoon"
+        "https://api.travello10.com//api/home/homepage-honeymoon"
       );
       setNationalData(response.data.data || []);
     } catch (error) {
@@ -29,7 +29,7 @@ function HomeHoneymoon() {
   const fetchChosenInternationalData = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com/api/home/homepage-choosen-honeymoon"
+        "https://api.travello10.com//api/home/homepage-choosen-honeymoon"
       );
       setChosenData(response.data.chosenPackages || []); // Correctly accessing the "chosenPackages" field
     } catch (error) {
@@ -43,7 +43,7 @@ function HomeHoneymoon() {
   const handleChoosePackage = async (trip, stateId) => {
     try {
       await axios.post(
-        "https://api.travello10.com/api/home/homepage-honeymoon",
+        "https://api.travello10.com//api/home/homepage-honeymoon",
         {
           entryId: trip._id,
           stateId: stateId,
@@ -62,7 +62,7 @@ function HomeHoneymoon() {
   const handleDeletePackage = async (packageId) => {
     try {
       await axios.delete(
-        `https://api.travello10.com/api/home/homepage-honeymoon/${packageId}`
+        `https://api.travello10.com//api/home/homepage-honeymoon/${packageId}`
       );
       alert("Package deleted successfully");
       fetchChosenInternationalData(); // Refresh chosen data

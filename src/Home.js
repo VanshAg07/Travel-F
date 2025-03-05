@@ -38,7 +38,7 @@ const Home = () => {
   const fetchPayment = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/home/home-offer-display"
+        "https://api.travello10.com//api/home/home-offer-display"
       );
       const data = await res.json();
       const activeImages = Array.isArray(data.data)

@@ -59,7 +59,7 @@ const GroupDetails = () => {
 
     try {
       await axios.post(
-        "https://api.travello10.com/api/group-tours/group-details",
+        "https://api.travello10.com//api/group-tours/group-details",
         formData,
         {
           headers: {

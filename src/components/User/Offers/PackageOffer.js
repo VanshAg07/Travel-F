@@ -23,15 +23,8 @@ import { FaShareFromSquare } from "react-icons/fa6";
 const PackageOffer = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
   const [activeSection, setActiveSection] = useState("overview");
 
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isDay1Expanded, setIsDay1Expanded] = useState(false);
   const { tripName, name } = useParams();
   const [trips, setTrip] = useState([]);
   const [sharing, setSharing] = useState([]);
@@ -42,7 +35,7 @@ const PackageOffer = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/offer/findStateAndTrip/${name}/${tripName}`
+          `https://api.travello10.com//api/offer/findStateAndTrip/${name}/${tripName}`
         );
         setTrip(response.data.trip);
         setSharing(response.data.trip.sharing);
@@ -87,10 +80,6 @@ const PackageOffer = () => {
     }
   };
 
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const [expandedDays, setExpandedDays] = useState({});
 
   const handleToggleDay = (day) => {
@@ -126,42 +115,6 @@ const PackageOffer = () => {
       });
     } else {
       console.error("Trip dates not available");
-    }
-  };
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
-
-  const submitForm = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
-    // Validate form data
-    if (!formData.name || !formData.email || !formData.phone) {
-      alert("Please fill out all required fields.");
-      return;
-    }
-
-    try {
-      const res = await axios.post(
-        "https://api.travello10.com/api/contact/contact-trip",
-        formData
-      );
-      if (res.status === 200) {
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-          phone: "",
-        });
-        alert("Your message has been sent successfully.");
-      }
-    } catch (err) {
-      alert("Failed to send the message. Please try again later.");
     }
   };
 

@@ -37,7 +37,7 @@ function Forgot() {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/request-password-reset",
+        "https://api.travello10.com//api/auth/request-password-reset",
         { email }
       );
 
@@ -63,7 +63,7 @@ function Forgot() {
 
     try {
       const response = await axios.post(
-        "https://api.travello10.com/api/auth/verify-otp",
+        "https://api.travello10.com//api/auth/verify-otp",
         { email, otp }
       );
 
@@ -93,7 +93,7 @@ function Forgot() {
 
     try {
       const response = await axios.put(
-        "https://api.travello10.com/api/auth/reset-password",
+        "https://api.travello10.com//api/auth/reset-password",
         { email, password: newPassword }
       );
 
@@ -127,7 +127,7 @@ function Forgot() {
   const fetchSignInData = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com/api/popup/auth-image-user"
+        "https://api.travello10.com//api/popup/auth-image-user"
       );
       const data = await response.json(); // Make sure to parse the response
       setSignInData(data[0]); // Assuming you want the first object from the array

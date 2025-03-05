@@ -15,7 +15,7 @@ const Hiking = () => {
       // console.log("Fetching activities...");
       try {
         const response = await axios.get(
-          `https://api.travello10.com/api/user/getInternActivities/${name}`
+          `https://api.travello10.com//api/user/getInternActivities/${name}`
         );
         // console.log(response.data);
         setActivities(response.data.activities || []);

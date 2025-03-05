@@ -14,7 +14,7 @@ function OurTeam() {
 
   useEffect(() => {
     axios
-      .get("https://api.travello10.com/api/home/get-team-member")
+      .get("https://api.travello10.com//api/home/get-team-member")
       .then((response) => {
         console.log(response.data); // Add this to check the response format
         const data = response.data;
@@ -54,7 +54,7 @@ function OurTeam() {
     try {
       if (teamId) {
         await axios.put(
-          `https://api.travello10.com/api/home/add-team-member/${teamId}`,
+          `https://api.travello10.com//api/home/add-team-member/${teamId}`,
           formData,
           {
             headers: {
@@ -64,7 +64,7 @@ function OurTeam() {
         );
       } else {
         await axios.post(
-          "https://api.travello10.com/api/home/add-team-member",
+          "https://api.travello10.com//api/home/add-team-member",
           formData,
           {
             headers: {
@@ -90,7 +90,7 @@ function OurTeam() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://api.travello10.com/api/home/add-team-member/${id}`)
+      .delete(`https://api.travello10.com//api/home/add-team-member/${id}`)
       .then(() => {
         setReloadData(!reloadData);
       })

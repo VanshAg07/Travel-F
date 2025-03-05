@@ -64,7 +64,7 @@ const EuropeTripEnquiryForm = () => {
       setMessage("");
       setIsLoading(true);
       const response = await axios.post(
-        "https://api.travello10.com/api/contact/contact-corporate",
+        "https://api.travello10.com//api/contact/contact-corporate",
         formData
       );
 

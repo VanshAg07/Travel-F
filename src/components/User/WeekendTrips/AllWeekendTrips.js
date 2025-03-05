@@ -11,7 +11,7 @@ function AllWeekendTrips() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com/api/weekends/weekend-choosen-display"
+          "https://api.travello10.com//api/weekends/weekend-choosen-display"
         );
         const data = await response.json();
         setPackages(Array.isArray(data.chosenPackages) ? data.chosenPackages : []);

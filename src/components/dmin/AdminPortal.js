@@ -29,7 +29,7 @@ const AdminPortal = () => {
 
   const handleLogout = () => {
     axios
-      .post("https://api.travello10.com/api/admin/logout")
+      .post("https://api.travello10.com//api/admin/logout")
       .then(() => {
         localStorage.clear();
         navigate("/");

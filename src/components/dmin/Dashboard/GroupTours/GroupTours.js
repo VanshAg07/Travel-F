@@ -30,7 +30,7 @@ const AddInternPackage = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/group-tours/state")
+      .get("https://api.travello10.com//api/group-tours/state")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -108,7 +108,7 @@ const AddInternPackage = () => {
       }
     });
     fetch(
-      `https://api.travello10.com/api/group-tours/group-tours/${selectedState.id}`,
+      `https://api.travello10.com//api/group-tours/group-tours/${selectedState.id}`,
       {
         method: "POST",
         body: formData,

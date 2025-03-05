@@ -20,7 +20,7 @@ function EditInternationalShop() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com/api/admin/international/getShop")
+      .get("https://api.travello10.com//api/admin/international/getShop")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -76,7 +76,7 @@ function EditInternationalShop() {
 
     axios
       .put(
-        `https://api.travello10.com/api/admin/international/editShop/${selectedActivity._id}`,
+        `https://api.travello10.com//api/admin/international/editShop/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -99,7 +99,7 @@ function EditInternationalShop() {
     try {
       axios
         .delete(
-          `https://api.travello10.com/api/admin/international/deleteShop/${activity._id}`
+          `https://api.travello10.com//api/admin/international/deleteShop/${activity._id}`
         )
         .then((response) => {
           console.log(response.data);
@@ -134,7 +134,7 @@ function EditInternationalShop() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travello10.com/upload/${activity.img}`}
+                    src={`https://api.travello10.com//upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

@@ -12,7 +12,7 @@ function AllPackagesCard() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com/api/user/getTripDetails/${name}`
+          `https://api.travello10.com//api/user/getTripDetails/${name}`
         );
         const data = await response.json();
         setPackages(data);
@@ -30,6 +30,7 @@ function AllPackagesCard() {
     const sanitizedTripName = tripName.replace(/\//g, "-");
     navigate(`/trip/${encodeURIComponent(sanitizedTripName)}/${stateName}`);
   };
+
   return (
     <div className="w-[90%] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">

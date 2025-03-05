@@ -17,7 +17,7 @@ const Popup2 = ({ onClose }) => {
   const fetchPopup = async () => {
     try {
       const res = await fetch(
-        "https://api.travello10.com/api/popup/assist-user"
+        "https://api.travello10.com//api/popup/assist-user"
       );
       const data = await res.json();
       setPopupData(data[0]);
@@ -60,7 +60,7 @@ const Popup2 = ({ onClose }) => {
 
     try {
       const res = await axios.post(
-        "https://api.travello10.com/api/popup/assist-form",
+        "https://api.travello10.com//api/popup/assist-form",
         formValues
       );
       console.log("Form submitted successfully:", res);
