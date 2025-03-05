@@ -21,7 +21,7 @@ function EditInternationalActivity() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com//api/admin/international/getActivity")
+      .get("https://api.travello10.com/api/admin/international/getActivity")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -79,7 +79,7 @@ function EditInternationalActivity() {
 
     axios
       .put(
-        `https://api.travello10.com//api/admin/international/editActivity/${selectedActivity._id}`,
+        `https://api.travello10.com/api/admin/international/editActivity/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -102,7 +102,7 @@ function EditInternationalActivity() {
     try {
       axios
         .delete(
-          `https://api.travello10.com//api/admin/international/deleteActivity/${activity._id}`
+          `https://api.travello10.com/api/admin/international/deleteActivity/${activity._id}`
         )
         .then((response) => {
           console.log(response.data);
@@ -140,7 +140,7 @@ function EditInternationalActivity() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travello10.com//upload/${activity.img}`}
+                    src={`https://api.travello10.com/upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

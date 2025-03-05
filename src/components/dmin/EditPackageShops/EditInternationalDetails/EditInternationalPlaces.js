@@ -21,7 +21,7 @@ function EditInternationalPlaces() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com//api/admin/international/getBeautifulPlaces")
+      .get("https://api.travello10.com/api/admin/international/getBeautifulPlaces")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -78,7 +78,7 @@ function EditInternationalPlaces() {
 
     axios
       .put(
-        `https://api.travello10.com//api/admin/international/editBeautifulPlaces/${selectedActivity._id}`,
+        `https://api.travello10.com/api/admin/international/editBeautifulPlaces/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -100,7 +100,7 @@ function EditInternationalPlaces() {
     try {
       axios
         .delete(
-          `https://api.travello10.com//api/admin/international/deletePlaces/${activity._id}`
+          `https://api.travello10.com/api/admin/international/deletePlaces/${activity._id}`
         )
         .then((response) => {
           console.log(response.data);
@@ -138,7 +138,7 @@ function EditInternationalPlaces() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travello10.com//upload/${activity.img}`}
+                    src={`https://api.travello10.com/upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

@@ -13,13 +13,13 @@ const Blog = () => {
 
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com//api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };
 
   const fetchBlogs = async () => {
-    const response = await axios.get("https://api.travello10.com//api/blog/blogs");
+    const response = await axios.get("https://api.travello10.com/api/blog/blogs");
     setBlogs(response.data.blogs);
   };
 

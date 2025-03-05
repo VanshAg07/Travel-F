@@ -79,7 +79,7 @@ const TravelPackages = () => {
   const fetchVideoPages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com//api/home/video-page"
+        "https://api.travello10.com/api/home/video-page"
       );
       const internationalVideo = response.data.find(
         (video) => video.type === "Indian"
@@ -98,7 +98,7 @@ const TravelPackages = () => {
   const fetchInternationalPackages = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com//api/home/homepage-choosen-national-display"
+        "https://api.travello10.com/api/home/homepage-choosen-national-display"
       );
       setPackages(res.data.chosenPackages); // Update state with fetched data
     } catch (error) {

@@ -24,7 +24,7 @@ function CorporatePartners() {
   const fetchPartners = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com//api/corporate/partners-get"
+        "https://api.travello10.com/api/corporate/partners-get"
       );
       const partnersData = Array.isArray(response.data.data)
         ? response.data.data
@@ -63,13 +63,13 @@ function CorporatePartners() {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travello10.com//api/corporate/partners-update/${editingId}`,
+          `https://api.travello10.com/api/corporate/partners-update/${editingId}`,
           formData
         );
         toast.success("Partner updated successfully!");
       } else {
         await axios.post(
-          "https://api.travello10.com//api/corporate/partners-create",
+          "https://api.travello10.com/api/corporate/partners-create",
           formData
         );
         toast.success("Partner added successfully!");
@@ -99,7 +99,7 @@ function CorporatePartners() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com//api/corporate/partners-delete/${id}`
+        `https://api.travello10.com/api/corporate/partners-delete/${id}`
       );
       toast.success("Partner deleted successfully!");
       fetchPartners();

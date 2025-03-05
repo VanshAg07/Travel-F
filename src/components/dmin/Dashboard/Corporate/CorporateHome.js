@@ -27,7 +27,7 @@ function CorporateHome() {
   const fetchCorporates = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com//api/corporate/create-corporate-landing"
+        "https://api.travello10.com/api/corporate/create-corporate-landing"
       );
       setCorporates(response.data.data);
     } catch (error) {
@@ -102,13 +102,13 @@ function CorporateHome() {
     try {
       if (editingId) {
         await axios.put(
-          `https://api.travello10.com//api/corporate/update-corporate-landing/${editingId}`,
+          `https://api.travello10.com/api/corporate/update-corporate-landing/${editingId}`,
           formData
         );
         toast.success("Corporate updated successfully!");
       } else {
         await axios.post(
-          "https://api.travello10.com//api/corporate/create-corporate-landing",
+          "https://api.travello10.com/api/corporate/create-corporate-landing",
           formData
         );
         toast.success("Corporate added successfully!");
@@ -134,7 +134,7 @@ function CorporateHome() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com//api/corporate/delete-corporate-landing/${id}`
+        `https://api.travello10.com/api/corporate/delete-corporate-landing/${id}`
       );
       toast.success("Corporate deleted successfully!");
       fetchCorporates();

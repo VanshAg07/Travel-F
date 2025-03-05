@@ -30,7 +30,7 @@ const AddHoneymoon = () => {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com//api/honeymoon/states")
+      .get("https://api.travello10.com/api/honeymoon/states")
       .then((response) => {
         const statesList = response.data.map((state) => ({
           name: state.stateName,
@@ -111,7 +111,7 @@ const AddHoneymoon = () => {
       }
     });
     fetch(
-      `https://api.travello10.com//api/honeymoon/add-honeymoon-package/${selectedState.id}`,
+      `https://api.travello10.com/api/honeymoon/add-honeymoon-package/${selectedState.id}`,
       {
         method: "POST",
         body: formData,

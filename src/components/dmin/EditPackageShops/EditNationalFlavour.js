@@ -20,7 +20,7 @@ function EditNationalFlavour() {
   const fetchStates = () => {
     setLoading(true);
     axios
-      .get("https://api.travello10.com//api/admin/getFlavour")
+      .get("https://api.travello10.com/api/admin/getFlavour")
       .then((response) => {
         setStates(response.data);
         setLoading(false);
@@ -76,7 +76,7 @@ function EditNationalFlavour() {
 
     axios
       .put(
-        `https://api.travello10.com//api/admin/editFlavour/${selectedActivity._id}`,
+        `https://api.travello10.com/api/admin/editFlavour/${selectedActivity._id}`,
         formData,
         {
           headers: {
@@ -99,7 +99,7 @@ function EditNationalFlavour() {
     try {
       axios
         .delete(
-          `https://api.travello10.com//api/admin/deleteActivity/${activity._id}`
+          `https://api.travello10.com/api/admin/deleteActivity/${activity._id}`
         )
         .then((response) => {
           console.log(response.data);
@@ -135,7 +135,7 @@ function EditNationalFlavour() {
                 </p>
                 {activity.img && (
                   <img
-                    src={`https://api.travello10.com//upload/${activity.img}`}
+                    src={`https://api.travello10.com/upload/${activity.img}`}
                     alt={activity.stateName}
                     className="mt-2 rounded"
                   />

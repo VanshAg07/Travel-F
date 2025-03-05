@@ -21,7 +21,7 @@ function Login() {
   const fetchSignInData = async () => {
     try {
       const response = await fetch(
-        "https://api.travello10.com//api/popup/auth-image-user"
+        "https://api.travello10.com/api/popup/auth-image-user"
       );
       const data = await response.json(); // Make sure to parse the response
       setSignInData(data[0]); // Assuming you want the first object from the array
@@ -35,7 +35,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://api.travello10.com//login-user", {
+      const response = await fetch("https://api.travello10.com/login-user", {
         method: "POST",
         crossDomain: true,
         headers: {

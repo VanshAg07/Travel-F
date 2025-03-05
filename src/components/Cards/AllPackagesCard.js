@@ -11,7 +11,7 @@ function AllPackagesCard() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com//api/user/getTripDetails"
+          "https://api.travello10.com/api/user/getTripDetails"
         );
         const data = await response.json();
         setPackages(data);

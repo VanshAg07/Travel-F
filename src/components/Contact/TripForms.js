@@ -36,7 +36,7 @@ function TripForms() {
 
     try {
       const res = await axios.post(
-        "https://api.travello10.com//api/contact/contact-trip",
+        "https://api.travello10.com/api/contact/contact-trip",
         formData
       );
 

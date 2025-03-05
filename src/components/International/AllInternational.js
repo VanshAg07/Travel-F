@@ -11,7 +11,7 @@ function AllInternational() {
     const fetchAllPackages = async () => {
       try {
         const response = await fetch(
-          "https://api.travello10.com//api/international/get-all-international"
+          "https://api.travello10.com/api/international/get-all-international"
         );
         const data = await response.json();
         setPackages(data);

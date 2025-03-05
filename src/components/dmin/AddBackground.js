@@ -17,7 +17,7 @@ const AddBackground = () => {
   const fetchBackgroundImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.travello10.com//api/background-images/images"
+        "https://api.travello10.com/api/background-images/images"
       );
       setBackgroundImages(response.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const AddBackground = () => {
       if (editingId) {
         // Update existing background image
         await axios.put(
-          `https://api.travello10.com//api/background-images/images/${editingId}`,
+          `https://api.travello10.com/api/background-images/images/${editingId}`,
           formDataToSend,
           {
             headers: {
@@ -67,7 +67,7 @@ const AddBackground = () => {
       } else {
         // Create new background image
         await axios.post(
-          "https://api.travello10.com//api/background-images/images",
+          "https://api.travello10.com/api/background-images/images",
           formDataToSend,
           {
             headers: {
@@ -90,7 +90,7 @@ const AddBackground = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://api.travello10.com//api/background-images/images/${id}`
+        `https://api.travello10.com/api/background-images/images/${id}`
       );
       setSuccessMessage("Background image deleted successfully!");
       await fetchBackgroundImages();

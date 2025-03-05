@@ -24,7 +24,7 @@ const National = () => {
   const whatsappMessage = "Hello, I need assistance with my issue.";
   const fetchBackgroundImages = async () => {
     const response = await axios.get(
-      "https://api.travello10.com//api/background-images/images"
+      "https://api.travello10.com/api/background-images/images"
     );
     setBackgroundImages(response.data);
   };

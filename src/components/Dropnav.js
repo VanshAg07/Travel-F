@@ -13,7 +13,7 @@ const Navbar = () => {
   const fetchNationalNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com//api/home/get-national-nav"
+        "https://api.travello10.com/api/home/get-national-nav"
       );
       setNationalNav(res.data);
     } catch (error) {
@@ -24,7 +24,7 @@ const Navbar = () => {
   const fetchInternNationalNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com//api/home/get-international-nav"
+        "https://api.travello10.com/api/home/get-international-nav"
       );
       setInternationalNav(res.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const Navbar = () => {
   const fetchHoneymoonNav = async () => {
     try {
       const res = await axios.get(
-        "https://api.travello10.com//api/home/get-honeymoon-nav"
+        "https://api.travello10.com/api/home/get-honeymoon-nav"
       );
       setHoneymoonNav(res.data);
     } catch (error) {

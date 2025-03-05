@@ -80,7 +80,7 @@ const SimilarInterational = () => {
     const fetchSimilarTrips = async () => {
       try {
         const response = await fetch(
-          `https://api.travello10.com//api/international/getSimilarTrips/${name}`
+          `https://api.travello10.com/api/international/getSimilarTrips/${name}`
         );
         const data = await response.json();
 
