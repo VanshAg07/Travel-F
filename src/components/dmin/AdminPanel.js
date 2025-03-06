@@ -459,7 +459,7 @@ const AdminPanel = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-l font-medium">Trip Dates</label>
             {tripData.tripDate.map((date, index) => (
               <div key={index} className="flex items-center">
@@ -479,7 +479,7 @@ const AdminPanel = () => {
                 </button>
               </div>
             ))}
-          </div>
+          </div> */}
           <div>
             <label className="block text-l font-medium">
               Trip Duration (in days eg. 3D - 2N)

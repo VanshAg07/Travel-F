@@ -47,13 +47,38 @@ const ImageSlider = () => {
     setIndex(dotIndex);
   };
 
+  const navigateToPage = (title) => {
+    switch (title) {
+      case "International":
+        window.location.href = "/intern";
+        break;
+      case "Team Adventures":
+        window.location.href = "/";
+        break;
+      case "Romantic Escapes":
+        window.location.href = "/honeymoon";
+        break;
+      case "Experience India":
+        window.location.href = "/national";
+        break;
+      case "Corporate Trips":
+        window.location.href = "/corporate";
+        break;
+      case "Weekend Trips":
+        window.location.href = "/weekends";
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="relative bg-[#FDFFE2] pb-96 h-[120%] w-full">
       <div className="w-4/5 mx-auto">
-        <h2 className="text-left text-2xl lg:text-3xl mb-5 text-gray-800 font-bold">
+        <h2 className="text-left text-2xl lg:text-3xl mb-2 text-gray-800 font-bold">
           Explore Your Adventure
         </h2>
-        <div className="flex items-center justify-center relative py-5">
+        <div className="flex items-center justify-center relative py-2">
           <button
             onClick={prevSlide}
             className="bg-transparent border-none text-2xl cursor-pointer p-2 absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 text-gray-800 hover:text-black"
@@ -62,41 +87,46 @@ const ImageSlider = () => {
           </button>
           <div className="flex transition-transform duration-500 ease-in-out w-full">
             {adventures.length > 0 &&
-              adventures.slice(index, index + getNumberOfVideos()).map((adventure, i) => (
-                <div
-                  key={adventure._id}
-                  onMouseEnter={() => {
-                    const video = videoRefs.current[i];
-                    if (video) {
-                      video.play().catch((err) =>
-                        console.error("Autoplay blocked:", err)
-                      );
-                      video.style.opacity = "1";
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    const video = videoRefs.current[i];
-                    if (video) {
-                      video.pause();
-                      video.currentTime = 0;
-                      video.style.opacity = "0.8";
-                    }
-                  }}
-                  className="w-1/4 p-2 relative"
-                >
-                  <video
-                    ref={(el) => (videoRefs.current[i] = el)}
-                    src={adventure.video[0]}
-                    className="w-full h-[680px] object-cover shadow-lg shadow-black transition-opacity duration-300 cursor-pointer pointer-events-auto"
-                    loop
-                    muted
-                    preload="auto"
-                  />
-                  <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border">
-                    {adventure.title}
-                  </h1>
-                </div>
-              ))}
+              adventures
+                .slice(index, index + getNumberOfVideos())
+                .map((adventure, i) => (
+                  <div
+                    key={adventure._id}
+                    onMouseEnter={() => {
+                      const video = videoRefs.current[i];
+                      if (video) {
+                        video
+                          .play()
+                          .catch((err) =>
+                            console.error("Autoplay blocked:", err)
+                          );
+                        video.style.opacity = "1";
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      const video = videoRefs.current[i];
+                      if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.style.opacity = "0.8";
+                      }
+                    }}
+                    onClick={() => navigateToPage(adventure.title)}
+                    className="w-1/4 p-2 relative cursor-pointer"
+                  >
+                    <video
+                      ref={(el) => (videoRefs.current[i] = el)}
+                      src={adventure.video[0]}
+                      className="w-full h-[480px] object-cover shadow-lg shadow-black transition-opacity duration-300 pointer-events-auto"
+                      loop
+                      muted
+                      preload="auto"
+                    />
+                    <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl shadow-lg text-center p-4 w-32 h-32 rounded-full bg-[#00000082] flex items-center justify-center custom-dashed-border">
+                      {adventure.title}
+                    </h1>
+                  </div>
+                ))}
           </div>
           <button
             onClick={nextSlide}
