@@ -598,7 +598,7 @@ function NationalEdit() {
                   className="mt-1 p-2 w-full border rounded-lg"
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-medium text-gray-700">
                   Trip Dates:
                 </label>
@@ -639,7 +639,7 @@ function NationalEdit() {
                 >
                   Add Date
                 </button>
-              </div>
+              </div> */}
 
               <div className="mb-4">
                 <label className="block font-medium text-gray-700">
