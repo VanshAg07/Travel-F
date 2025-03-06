@@ -619,63 +619,40 @@ const AdminPanel = () => {
             ))}
           </div>
           <div>
-            <label className="block text-l font-medium">Sharing Options</label>
-            {tripData.sharing.map((share, index) => (
-              <div key={index}>
-                <select
-                  name="title"
-                  value={share.title}
-                  placeholder="Sharing Type"
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-                  onChange={(e) => handleSharingChange(e, index, "title")}
-                  required
-                >
-                  <option value="">Select Sharing Type</option>
-                  <option value="Double">Double</option>
-                  <option value="Triple">Triple</option>
-                  <option value="Quad">Quad</option>
-                </select>
-                <input
-                  type="text"
-                  name="price"
-                  className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
-                  value={tripData.price}
-                  onChange={(e) => {
-                    // Allow only numeric values
-                    const numericValue = e.target.value.replace(/[^0-9]/g, "");
-                    handleInputChange({
-                      target: { name: e.target.name, value: numericValue },
-                    });
-                  }}
-                  onKeyDown={(e) => {
-                    const allowedKeys = [
-                      "Backspace",
-                      "ArrowLeft",
-                      "ArrowRight",
-                      "Tab",
-                    ];
-                    if (!/^\d$/.test(e.key) && !allowedKeys.includes(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
-                  onPaste={(e) => {
-                    const pastedText = e.clipboardData.getData("text");
-                    if (!/^\d+$/.test(pastedText)) {
-                      e.preventDefault();
-                    }
-                  }}
-                  required
-                />
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addSharingField}
-              className="mt-2 p-1 text-white bg-green-600 rounded"
-            >
-              Add Sharing Options
-            </button>
-          </div>
+          <label className="block text-l font-medium">Sharing Options</label>
+          {tripData.sharing.map((share, index) => (
+            <div key={index}>
+              <select
+                name="title"
+                value={share.title}
+                placeholder="Sharing Type"
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                onChange={(e) => handleSharingChange(e, index, "title")}
+              >
+                <option value="">Select Sharing Type</option>
+                <option value="Double">Double</option>
+                <option value="Triple">Triple</option>
+                <option value="Quad">Quad</option>
+              </select>
+              <input
+                type="number"
+                name="price"
+                value={share.price}
+                placeholder="Price"
+                className="mt-1 block w-full border-gray-300 rounded-md border-2 p-1 mb-2"
+                onChange={(e) => handleSharingChange(e, index, "price")}
+                required
+              />
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addSharingField}
+            className="mt-2 p-1 text-white bg-green-600 rounded"
+          >
+            Add Sharing Options
+          </button>
+        </div>
           <div>
             <label className="block text-l font-medium">
               Pick and Drop (eg. Guwahati - Guwahati)
