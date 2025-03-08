@@ -726,8 +726,8 @@ function InternationalEdit() {
                 </label>
                 {tripDetails.sharing.map((option, index) => (
                   <div key={index} className="mb-4 flex space-x-2">
-                    <input
-                      type="text"
+                    {/* Select Dropdown for Title */}
+                    <select
                       value={option.title}
                       onChange={(e) =>
                         handleArrayChange("sharing", index, {
@@ -735,9 +735,15 @@ function InternationalEdit() {
                           title: e.target.value,
                         })
                       }
-                      placeholder="Option Title"
                       className="mt-1 p-2 w-full border rounded-lg"
-                    />
+                    >
+                      <option value="">Select Sharing Option</option>
+                      <option value="Double">Double</option>
+                      <option value="Triple">Triple</option>
+                      <option value="Quad">Quad</option>
+                    </select>
+
+                    {/* Input for Price */}
                     <input
                       type="number"
                       value={option.price}
@@ -752,6 +758,8 @@ function InternationalEdit() {
                     />
                   </div>
                 ))}
+
+                {/* Add Sharing Option Button */}
                 <button
                   type="button"
                   onClick={() =>

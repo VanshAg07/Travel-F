@@ -223,13 +223,13 @@ function EditOffer() {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
-  
+
   const formatDateForInput = (isoDate) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
     return date.toISOString().split("T")[0]; // Returns YYYY-MM-DD
   };
-  
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-bold text-center mb-8">
@@ -725,8 +725,8 @@ function EditOffer() {
                 </label>
                 {tripDetails.sharing.map((option, index) => (
                   <div key={index} className="mb-4 flex space-x-2">
-                    <input
-                      type="text"
+                    {/* Select Dropdown for Title */}
+                    <select
                       value={option.title}
                       onChange={(e) =>
                         handleArrayChange("sharing", index, {
@@ -734,9 +734,15 @@ function EditOffer() {
                           title: e.target.value,
                         })
                       }
-                      placeholder="Option Title"
                       className="mt-1 p-2 w-full border rounded-lg"
-                    />
+                    >
+                      <option value="">Select Sharing Option</option>
+                      <option value="Double">Double</option>
+                      <option value="Triple">Triple</option>
+                      <option value="Quad">Quad</option>
+                    </select>
+
+                    {/* Input for Price */}
                     <input
                       type="number"
                       value={option.price}
@@ -751,6 +757,8 @@ function EditOffer() {
                     />
                   </div>
                 ))}
+
+                {/* Add Sharing Option Button */}
                 <button
                   type="button"
                   onClick={() =>
