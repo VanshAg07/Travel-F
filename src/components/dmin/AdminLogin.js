@@ -17,6 +17,9 @@ function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [verifyOtpLoading, setVerifyOtpLoading] = useState(false);
+  const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
   const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
@@ -62,6 +65,7 @@ function AdminLogin() {
   };
 
   const handleForgotPassword = async () => {
+    setOtpLoading(true);
     try {
       const response = await axios.post(
         "https://api.travello10.com/api/auth/request-password-reset",
@@ -74,10 +78,13 @@ function AdminLogin() {
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Failed to send OTP.");
+    } finally {
+      setOtpLoading(false);
     }
   };
 
   const handleVerifyOtp = async () => {
+    setVerifyOtpLoading(true);
     try {
       const response = await axios.post(
         "https://api.travello10.com/api/auth/verify-otp",
@@ -90,12 +97,16 @@ function AdminLogin() {
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Invalid OTP.");
+    } finally {
+      setVerifyOtpLoading(false);
     }
   };
 
   const handleResetPassword = async () => {
+    setResetPasswordLoading(true);
     if (newPassword !== confirmPassword) {
       setErrorMessage("Passwords do not match.");
+      setResetPasswordLoading(false);
       return;
     }
 
@@ -112,6 +123,8 @@ function AdminLogin() {
       setErrorMessage(
         error.response?.data?.message || "Failed to reset password."
       );
+    } finally {
+      setResetPasswordLoading(false);
     }
   };
 
@@ -158,8 +171,9 @@ function AdminLogin() {
                 type="button"
                 onClick={handleForgotPassword}
                 className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                disabled={otpLoading}
               >
-                Send OTP
+                {otpLoading ? "Sending OTP..." : "Send OTP"}
               </button>
             )}
 
@@ -183,8 +197,9 @@ function AdminLogin() {
                   type="button"
                   onClick={handleVerifyOtp}
                   className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                  disabled={verifyOtpLoading}
                 >
-                  Verify OTP
+                  {verifyOtpLoading ? "Verifying OTP..." : "Verify OTP"}
                 </button>
               </>
             )}
@@ -257,8 +272,9 @@ function AdminLogin() {
                 <button
                   onClick={handleVerifyOtp}
                   className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                  disabled={verifyOtpLoading}
                 >
-                  Verify OTP
+                  {verifyOtpLoading ? "Verifying OTP..." : "Verify OTP"}
                 </button>
               </>
             )}
@@ -293,8 +309,9 @@ function AdminLogin() {
                 <button
                   onClick={handleResetPassword}
                   className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                  disabled={resetPasswordLoading}
                 >
-                  Reset Password
+                  {resetPasswordLoading ? "Resetting Password..." : "Reset Password"}
                 </button>
               </>
             )}
@@ -302,8 +319,9 @@ function AdminLogin() {
               <button
                 onClick={handleForgotPassword}
                 className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
+                disabled={otpLoading}
               >
-                Send OTP
+                {otpLoading ? "Sending OTP..." : "Send OTP"}
               </button>
             )}
             <button

@@ -54,9 +54,9 @@ const Payments = () => {
                   className="flex justify-center items-center"
                 >
                   <img
-                    src={item.image[0]} // Show only if status is active
+                    src={item.image[0]}
                     alt="Payment Method"
-                    className="md:w-[30%] md:h-[30%] w-[70%]"
+                    className="h-[70vh] w-full"
                   />
                 </div>
               ))}

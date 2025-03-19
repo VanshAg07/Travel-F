@@ -88,7 +88,7 @@ const FooterSection = () => {
                     onClick={() =>
                       handlePackageClick(pkg.tripLocation, pkg.tripName)
                     }
-                    className="hover:text-[#fffe9] uppercase transition-all ease-in-out duration-200"
+                    className="hover:text-[#fffe9] uppercase transition-all ease-in-out duration-200 text-left hover:underline "
                   >
                     {pkg.tripName}
                   </button>

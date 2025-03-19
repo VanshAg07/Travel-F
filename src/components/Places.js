@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 import "./Places.css";
 import Card from "./3dCard";
@@ -62,7 +61,7 @@ const Place = () => {
 
   return (
     <>
-      <div className="wrpper-inter">
+      <div className="w-full">
         <Nav />
         <Dropnav />
         <div className="hero-section-left-1 relative">
@@ -79,7 +78,7 @@ const Place = () => {
               />
             ))
           ) : (
-            <p>No images available for this location.</p>
+            <p></p>
           )}
 
           <div className="relative flex flex-col items-center z-10">
